@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+#new_post_title {
+	font-family: "NanumPen", "serif";
+	font-size: 60px;
+	text-align: center;
+	border-bottom: 1px solid #ededed;
+}
+
+#new_post_contents {
+	background-image: url("../img/background_img/write_page.png");
+	background-repeat: repeat;
+	width: 960px;
+	height: auto;
+	margin: 0 auto;
+}
+
+#new_post_loading {
+	padding: 15px;
+	width: 930px;
+}
+
+#new_post_loading_cont {
+/* 	border-top: 2px solid #808080; */
+	border-bottom: 2px solid #808080;
+	padding: 15px;
+}
+
+#new_post_loading_cont_text {
+	display: inline-block;
+	width: 680px;
+	height: 180px;
+	line-height: 1.6em;
+}
+#new_post_loading_cont_text_title{
+	font-size: 25px;
+	padding:5px;
+}
+
+#new_post_loading_cont_text_writer {
+	display: inline-block;
+}
+
+#new_post_loading_cont_text_writer i {
+	font-family: "NanumPen", "serif";
+}
+
+#new_post_loading_cont_text_tag {
+	display: inline-block;
+}
+
+#new_post_loading_cont_text_ago {
+	display: inline-block;
+}
+
+#new_post_loading_cont_img {
+	display: inline-block;
+	over-fit: cover;
+	width: 200px;
+	height: 160px;
+	margin: 0;
+	vertical-align:top;
+	margin:auto 0px;
+}

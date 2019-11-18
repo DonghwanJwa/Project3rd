@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+#pass_modify_main_wrap{
+	padding: calc((100vh - 702px) / 2) 0;
+   	background-image: url(../img/background_img/login_pattern2.jpg);
+    background-size: cover;
+}
+#pass_modify_main_div{
+	background-color:white;
+	width:400px;
+	margin: 0px auto;
+	height:540px;
+	text-align: center;
+	
+}
+#pass_modify_sub_div{
+	/* border:solid 1px red; */
+	background-color:white;
+	width:310px;
+	height: 200px;
+	margin: 0px auto;
+	padding-top:50px;
+	text-align: center;
+	
+}
+
+#pass_modify_label{
+	
+	font-size: 20px;
+	color:gray;
+	border-bottom: 1px solid gray;
+	padding-bottom: 5px;
+}
+#pass_modify_img_logo{
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+
+.pass_modify_text{
+	
+	width: 230px;
+	height: 30px;
+	font-size:20px;
+	padding-left: 20px;
+	padding-bottom: 5px;
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+
+.pass_modify_text:hover{
+	
+	border-bottom: 2px solid orange;	
+}
+.pass_modify_text:focus{
+	border-bottom: 2px solid orange;
+}
+.pass_modify_error{
+	width: 200px;
+	height: 20px;
+	line-height:20px;
+	margin-top:10px;
+	font-size:12px;
+	padding-left: 50px;
+}
+#pass_modify_lastbtn{
+	width: 150px;
+	height: 50px;
+	font-size:1rem;
+	background-color:white;
+	border:solid 2px orange;
+	outline: 0;
+	color:gray;
+	margin-top: 10px; 
+}
+#pass_modify_lastbtn:hover{
+	background-color: orange;
+	color:white;
+}
+
+

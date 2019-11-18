@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+#offer_back {
+	background-color: #fffcf6;
+}
+
+#offer_wrap ul li {
+	list-style:none;
+	margin-bottom:10px;	
+}
+::selection {
+	background:#f57c689e;
+}
+#offer_wrap {
+	width:750px;
+	height:auto;
+	margin:0 auto;
+	padding:20px;
+	background-color:#fff;
+	user-select: none;
+}
+
+#offer_intro {
+	display:flex;
+	flex-direction: row;
+	justify-content:space-around;
+	padding:30px;
+	background-color: #fdfdff;
+	border: 1px solid #f8f6f9;
+}
+
+.offer_author_img {
+	border:1px solid gray;
+	border-radius:100px;
+	width:150px;
+	height:150px;
+}
+
+#offer_intro h2 {
+	display:inline-block;
+	margin:auto 0;
+	line-height:1.8em;
+}
+
+#offer_tip {
+	margin:40px 0;
+}
+
+#offer_tip h3 {
+	padding-left: 15px;
+}
+
+#offer_type {
+	margin:60px 0;
+}
+
+#offer_type h3 {
+	padding-left: 15px;
+}
+
+.offer_radio_div {
+	width:400px;
+	margin:0 auto;
+	display:flex;
+	justify-content:center;
+	-webkit-transform:scale(1.2);
+}
+
+.req_label {
+	margin-right:30px;
+	vertical-align:text-bottom;
+}
+
+#offer_info_wrap {
+	margin:40px 0 20px 0;
+}
+
+#offer_info_wrap h3{
+	padding-left: 15px;
+}
+
+.offer_info {
+	width:500px;
+	margin:0 auto;
+	padding:5px;
+}
+
+.offer_info span {
+	margin-right:15px;	
+}
+
+.offer_email_wrap span {
+	margin-right:20px;
+}
+
+.offer_phone_wrap span {
+	margin-right:20px;
+}
+
+.offer_text_area {
+	padding:5px;
+	border:1px solid grey;
+	min-height:200px;
+	outline:none;
+}
+.offer_text_area:empty::before{
+	content:"작가에게 제안합니다.";
+	size:12pt;
+	color:#a6a6a6;
+}
+.offer_button_wrap {
+	padding:30px 30px 0 30px;
+	margin-top:15px;
+	display:flex;
+	justify-content:center;
+}
+
+.offer_btn {
+	margin:0 25px;
+	border:1px solid gray;
+	border-radius:20px;
+	padding:6px 10px;
+	color:gray;
+	cursor:pointer;
+}
+
+.offer_btn:hover {
+	background-color:gray;
+	color:#fff;
+}

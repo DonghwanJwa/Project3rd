@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+#find_id_main_wrap{
+	background-image: url(../img/background_img/login_pattern1.png);
+    background-size: cover;
+	background-repeat: no-repeat;
+	padding: calc((100vh - 530px) / 2) 0;
+}
+#find_id_main_div{
+	background-color:white;
+	width:400px;
+	height:530px;
+	margin: 0px auto;
+	text-align: center;
+}
+#find_id_sub_div{
+	background-color:white;
+	width:310px;
+	height: 150px;
+	margin: 0px auto;
+	margin-top: 30px;
+	text-align: center;
+}
+
+#find_id_img_logo{
+	margin: 40px 0px;
+}
+
+.find_pass_error{
+	width:250px;
+	height:20px;
+	line-height:20px;
+	padding-left:37px;
+	margin:5px;
+	color:#ff0000;
+	font-size:12px;
+	
+}
+#find_id_name_email{
+	margin-top: 20px;
+}
+
+.find_id_text{
+	width: 250px;
+	height: 30px;
+	padding-left: 20px;
+	padding-bottom: 5px;
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	font-size: 20px;
+}
+.find_id_text:hover{
+	border-bottom: 2px solid orange;
+}
+.find_id_text:focus{
+	border-bottom: 2px solid orange;
+}
+#find_id_label{
+	font-size: 25px;
+	margin-bottom: 10px;
+	color:gray;
+	border-bottom: 1px solid gray;
+	padding-bottom: 5px;
+}
+
+.find_id_name_email_color :hover{
+	border-bottom: 2px solid orange;
+}
+
+.find_id_name_email_color :focus{
+	border-bottom: 2px solid orange;
+}
+#find_id_lastbtn{
+	width: 150px;
+	height: 50px;
+	font-size:1rem;
+	margin-top:10px;
+	background-color:white;
+	border:solid 2px orange;
+	outline: 0;
+	cursor: pointer;
+	color:gray;
+}
+
+
+#find_id_lastbtn:hover{
+	background-color: orange;
+	color:white;
+}
+
+
+
+
+
+
+
+
+
