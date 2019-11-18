@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+@font-face {/*나눔고딕 일반*/
+font-family: 'NanumGothic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/NanumGothic.eot');
+src: url('../fonts/NanumGothic.eot') format('embedded-opentype'),
+	 url('../fonts/NanumGothic.woff') format('woff'),
+	 url('../fonts/NanumGothic.ttf') format('truetype');
+}
+
+@font-face {/*나눔고딕 Bold(굵게)*/
+font-family: 'NanumGothic';
+font-style: normal;
+font-weight: bold;
+src: url('../fonts/NanumGothicBold.eot');
+src: url('../fonts/NanumGothicBold.eot') format('embedded-opentype'),
+	 url('../fonts/NanumGothicBold.woff') format('woff'),
+	 url('../fonts/NanumGothicBold.ttf') format('truetype');
+}
+
+@font-face {/*나눔명조 일반*/
+font-family: 'NanumMyeongjo';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/NanumMyeongjo.eot');
+src: url('../fonts/NanumMyeongjo.eot') format('embedded-opentype'),
+	 url('../fonts/NanumMyeongjo.woff') format('woff'),
+	 url('../fonts/NanumMyeongjo.ttf') format('truetype');
+}
+
+@font-face {/*나눔명조 Bold(굵게)*/
+font-family: 'NanumMyeongjo';
+font-style: normal;
+font-weight: bold;
+src: url('../fonts/NanumMyeongjoBold.eot');
+src: url('../fonts/NanumMyeongjoBold.eot') format('embedded-opentype'),
+	 url('../fonts/NanumMyeongjoBold.woff') format('woff'),
+	 url('../fonts/NanumMyeongjoBold.ttf') format('truetype');
+}
+
+@font-face {/*나눔스퀘어라운드 일반*/
+font-family: 'NanumSquareRound';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/NanumSquareRoundR.eot');
+src: url('../fonts/NanumSquareRoundR.eot') format('embedded-opentype'),
+	 url('../fonts/NanumSquareRoundR.woff') format('woff'),
+	 url('../fonts/NanumSquareRoundR.ttf') format('truetype');
+}
+
+@font-face {/*나눔스퀘어라운드 Bold(굵게)*/
+font-family: 'NanumSquareRound';
+font-style: normal;
+font-weight: bold;
+src: url('../fonts/NanumSquareRoundB.eot');
+src: url('../fonts/NanumSquareRoundB.eot') format('embedded-opentype'),
+	 url('../fonts/NanumSquareRoundB.woff') format('woff'),
+	 url('../fonts/NanumSquareRoundB.ttf') format('truetype');
+}
+
+@font-face {/*나눔바른고딕 일반*/
+font-family: 'NanumBarunGothic';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/NanumBarunGothic.eot');
+src: url('../fonts/NanumBarunGothic.eot') format('embedded-opentype'),
+	 url('../fonts/NanumBarunGothic.woff') format('woff'),
+	 url('../fonts/NanumBarunGothic.ttf') format('truetype');
+}
+
+@font-face {/*나눔바른고딕 Bold(굵게)*/
+font-family: 'NanumBarunGothic';
+font-style: normal;
+font-weight: bold;
+src: url('../fonts/NanumBarunGothicBold.eot');
+src: url('../fonts/NanumBarunGothicBold.eot') format('embedded-opentype'),
+	 url('../fonts/NanumBarunGothicBold.woff') format('woff'),
+	 url('../fonts/NanumBarunGothicBold.ttf') format('truetype');
+}
+
+@font-face {/*나눔팬 일반(굵게 없음)*/
+font-family: 'NanumPen';
+font-style: normal;
+font-weight: normal;
+src: url('../fonts/NanumPen.eot');
+src: url('../fonts/NanumPen.eot') format('embedded-opentype'),
+	 url('../fonts/NanumPen.woff') format('woff'),
+	 url('../fonts/NanumPen.ttf') format('truetype');
+}
+
+

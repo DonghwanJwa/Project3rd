@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+
+.clear{
+	clear:both;
+}
+
+body {
+	margin:0;
+}
+
+body a {
+	text-decoration:none;
+	color:#3b3b3b;
+}
+
+#req_close img{
+	width:20px;
+	height:20px;
+}
+
+#req_wrap {
+   display:none;
+   margin: 0 auto;
+   padding-top:100px;
+   width:100%;
+   height:100%;
+   z-index:10100;
+   background:url(../img/background_img/write_page.png);
+   position:fixed;
+   max-height:900px;
+   overflow-y: auto;
+}
+
+#req_auth_title {
+	width:700px;
+	padding-top:5px;
+	margin:0px auto;
+	margin-bottom:50px;
+	text-align:left;
+	background-color:#fff;
+	display:flex;
+	justify-content:space-between;
+	padding-left:35px;
+	box-sizing:border-box;
+}
+
+#req_auth_title h1{
+	display:inline-block;
+	margin-top: 15px;
+	margin-bottom: 0;
+}
+
+#req_auth_wrap {
+	width:900px;
+	background-color:#FFF;
+	margin:20px auto;
+	margin-bottom: 100px;
+	padding:30px;
+}
+
+.req_form {
+	margin:20px;
+}
+
+.req_form_Mtitle b{
+	font-size:30px;
+	color:#3b3b3b;
+	margin-left:22px;
+	margin-bottom:10px;
+	
+}
+
+.req_form_Stitle {
+	line-height:25px;
+	font-size:15px;
+	margin-left:22px;
+}
+.req_form_Stitle b{
+	line-height:25px;
+	font-size:12px;
+	color:blue;
+}
+
+.req_form_textarea {
+	min-height:200px;
+	margin:20px;
+	padding:10px;
+	border:1px solid #3b3b3b;
+}
+
+.req_form_textarea p {
+	margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+    font-size:13px;
+}
+
+#req_form_upload {
+	padding-left:150px;
+	margin:20px;
+}
+
+.req_form_url {
+	width:500px;
+}
+
+.req_url_box {
+	min-height:20px;
+	max-height:20px;
+	min-width:497px;
+	max-width:500px;
+	margin-bottom:8px;
+	
+}
+
+.req_form_file {
+	margin-top:15px;
+}
+
+.req_form_file_add {
+	display:inline;
+	position:absolute;
+	margin-left:45px;
+	border: 1px solid gray;
+	border-radius:50px;
+	padding:7px;
+	box-sizing:border-box;
+	font-size:13px;
+	cursor:pointer;
+}
+
+.req_form_file_add:hover {
+	background-color:grey;
+	color:white;
+}
+
+.req_form_file_name {
+	display:inline-block;
+	min-width:500px;
+	max-width:500px;
+	border:1px solid gray;
+	padding:5px;
+	box-sizing:border-box;
+}
+
+#req_auth_btn_wrap {
+	display:flex;
+	justify-content: center;
+}
+
+#req_auth_btn_wrap a{
+	cursor:pointer;
+	margin: 10px 50px;
+	border: 1px solid grey;
+	border-radius:55px;
+	box-sizing: border-box;
+	padding:10px;
+}
+
+#req_auth_btn_wrap a:hover{
+	background-color:grey;
+	color:white;
+}
+

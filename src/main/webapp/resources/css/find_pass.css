@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+#find_pass_id_main_wrap{
+	
+	padding: calc((100vh - 600px) / 2) 0;
+	background-image: url(../img/background_img/login_pattern1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#find_pass_main_div{
+	background-color:white;
+	width:400px;
+	margin: 0px auto;
+	height:600px;
+	text-align: center;
+	
+}
+#find_pass_sub_div{
+	/* border:solid 1px red; */
+	background-color:white;
+	width:311px;
+	height: 250px;
+	margin: 0px auto;
+	margin-top: 50px;
+	text-align: center;
+}
+#find_pass_logo_wrap a{
+	display: inline-block;
+}
+#find_pass_img_logo{
+	margin: 40px 0px;
+}
+
+#find_pass_label{
+	font-size: 25px;
+	margin-bottom: 10px;
+	color:gray;
+	border-bottom: 1px solid gray;
+	padding-bottom: 5px;
+}
+
+.find_pass_inputbox{
+	width: 230px;
+	height: 30px;
+	padding-left: 20px;
+	padding-bottom: 5px;
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	font-size: 20px;
+}
+.find_pass_inputbox:hover{
+	border-bottom: 2px solid orange;
+}
+
+.find_pass_inputbox:focus{
+	border-bottom: 2px solid orange;
+}
+.find_pass_error{
+	width:250px;
+	height:20px;
+	margin:0;
+	padding-left:50px;
+	color:#ff0000;
+	font-size:12px;
+	line-height:20px;
+	
+}
+
+#find_pass_lastbtn{
+	width: 150px;
+	height: 50px;
+	font-size:1rem;
+	background-color:white;
+	border:solid 2px orange;
+	outline: 0;
+	color:gray;
+	margin-top: 20px; 
+	cursor: pointer;
+}
+#find_pass_lastbtn:hover{
+	background-color: orange;
+	color:white;
+}
