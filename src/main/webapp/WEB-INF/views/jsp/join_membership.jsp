@@ -4,20 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/joinmembership.css" />
-<link rel="stylesheet" type="text/css" href="./css/font.css"/>
-<script src="../js/jquery.js"></script>
-<script src="../js/login.js"></script>
+<link rel="stylesheet" type="text/css" href="../resources/css/joinmembership.css" />
+<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
+<script src="../resources/js/jquery.js"></script>
+<script src="../resources/js/login.js"></script>
 <title>회원가입 페이지입니다</title>
 </head>
 <body>
 <div id ="join_membership_main_wrap">
-		<form method="post" action="../index.jsp" onsubmit="return join_membership();">
+		<form method="post" action="../index" onsubmit="return join_membership();">
 	
 	<div id="join_membership_main_div">
 		<!-------------------------------로고------------------------------------>
 		<div id="join_membership_img_logo">
-			<a href="../index.jsp"><img src="../img/logo2.png" /></a>
+			<a href="../index"><img src="../img/logo2.png" /></a>
 		</div>
 		<label id="join_membership_label">JA-MONG 계정 만들기</label>
 			<!-------------------------------아이디, 비번, 비번확인, 이름,------------------------------------>			

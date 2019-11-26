@@ -11,13 +11,13 @@ $(document).ready(function(){
 	});
 });
 </script>
-<link rel="stylesheet" type="text/css" href="../css/book_info.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/css/book_info.css"/>
 <div id="book_info_wrap">
  <div id="book_info_base">
   <div id="book_info_about">
   
    <div id="book_info_cover" class="book_info_about_div">
-    <img id="book_info_cover_img" src="../img/write2.jpg">
+    <img id="book_info_cover_img" src="../resources/img/write2.jpg">
     <div id="book_info_cover_txt">
 	 <div id="book_info_cover_head">
 	  <strong id="book_info_cover_title">강아지와 지내는건 어때?</strong>
@@ -35,7 +35,7 @@ $(document).ready(function(){
     <div id="book_info_intro_inner">
      <div id="book_info_intro_like">
       <button id="book_info_intro_like_inner">
-       <img id="book_info_intro_like_img" src="../img/heart.png"/>
+       <img id="book_info_intro_like_img" src="../resources/img/heart.png"/>
       </button>
      </div>
      <strong id="book_info_intro_title">브런치북 소개</strong>
@@ -81,7 +81,7 @@ $(document).ready(function(){
    <div id="book_info_article_inner">
 <% for(int i=1;i<=15;i++) { %>
     <div class="book_info_article_list">
-     <a href="../jsp/read.jsp" class="book_info_article_link">
+     <a href="../read" class="book_info_article_link">
       <div class="book_info_article_num">
 	   <em class="book_info_num_txt"><%=i%></em>
       </div>
@@ -96,7 +96,7 @@ $(document).ready(function(){
        <em class="book_info_time">3일전</em>
       </div>
       <div class="book_info_article_img">
-       <img src="../img/write1.jpg">
+       <img src="../resources/img/write1.jpg">
       </div>
      </a>
     </div>

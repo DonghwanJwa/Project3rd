@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel=stylesheet type="text/css" href="../css/profile.css">
-<script src="../js/profile.js"></script>
-<script src="../js/jquery.js"></script>
+<link rel=stylesheet type="text/css" href="../resources/css/profile.css">
+<script src="../resources/js/profile.js"></script>
+<script src="../resources/js/jquery.js"></script>
 <title></title>
 </head>
 <body>
@@ -25,7 +25,7 @@
 								</div>
 					<div id="profile_cont">
 						<div class="">
-							<img id="profile_img" alt="이미지" src="../img/profile.jpg">
+							<img id="profile_img" alt="이미지" src="../resources/img/profile.jpg">
 							<!--  <input class="?" date-image="???">-->
 						</div>
 						<strong id="profile_name">영화 읽어주는 남자</strong>
@@ -102,11 +102,11 @@
 					<ul class="profile_writer_list">
 						<li class="profile_articles">
 							<div class=>
-								<img class="profile_post_img" alt="이미지 정보" src="../img/a.jpg">
+								<img class="profile_post_img" alt="이미지 정보" src="../resources/img/a.jpg">
 							</div>
 							<div>
-								<a class="profile_article_main" href="book_info.jsp">미리보는 영화</a>
-								<a href="read.jsp">
+								<a class="profile_article_main" href="book_info">미리보는 영화</a>
+								<a href="read">
 								<h3>[말레피센트 2] 어둠의 요정이 디즈니에서 살아남는 법</h3>
 								<p class="article_cont">말레피센트 2 2014년 개봉한 말레피센트는 동화에서 악역을 맡았던 어둠의 요정의 시선에서 재구성한
 									이야기다. 저주를 풀고 진정한 사랑과 평화를 추구했던 ...</p>
@@ -115,11 +115,11 @@
 						</li>
 						<li class="profile_articles">
 							<div class=>
-								<img class="profile_post_img" alt="이미지 정보" src="../img/a.jpg">
+								<img class="profile_post_img" alt="이미지 정보" src="../resources/img/a.jpg">
 							</div>
 							<div>
-								<a class="profile_article_main" href="book_info.jsp">미리보는 영화</a>
-								<a href="read.jsp">
+								<a class="profile_article_main" href="book_info">미리보는 영화</a>
+								<a href="read">
 								<h3>[말레피센트 2] 어둠의 요정이 디즈니에서 살아남는 법</h3>
 								<p class="article_cont">말레피센트 2 2014년 개봉한 말레피센트는 동화에서 악역을 맡았던 어둠의 요정의 시선에서 재구성한
 									이야기다. 저주를 풀고 진정한 사랑과 평화를 추구했던 ...</p>
@@ -135,16 +135,91 @@
 				<div id="" class="Magazine_list jm_list ">
 						<div class="box_contents">
 						<div class="cover_book">
-							<a href="book_info.jsp">
+							<a href="book_info">
 							<div class="info_cover">
 								<strong class="tit_cover">미리보는 영화</strong>
 							</div>
-							<img src="../img/a.jpg" class="magazin_img"> 
+							<img src="../resources/img/a.jpg" class="magazin_img"> 
 							<span class="book_line"></span>
 							<span></span>
 							</a>
 						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="book_info.jsp">미리 보는 영화</a>
+						<strong>Magazine</strong> <a class="profile_jm" href="book_info">미리 보는 영화</a>
+						<dl class="j_list_info">
+							<dt>
+								<span class="article_icon"></span>
+							</dt>
+							<dd class="box_contents_num">
+								<b>142</b>
+							</dd>
+							<dt>
+								<span class="relate"></span>
+							</dt>
+							<dd class="box_contents_num">61</dd>
+						</dl>
+					</div>
+						<div class="box_contents">
+						<div class="cover_book">
+							<a href="book_info">
+							<div class="info_cover">
+								<strong class="tit_cover">미리보는 영화</strong>
+							</div>
+							<img src="../resources/img/a.jpg" class="magazin_img"> 
+							<span class="book_line"></span>
+							<span></span>
+							</a>
+						</div>
+						<strong>Magazine</strong> <a class="profile_jm" href="book_info">미리 보는 영화</a>
+						<dl class="j_list_info">
+							<dt>
+								<span class="article_icon"></span>
+							</dt>
+							<dd class="box_contents_num">
+								<b>142</b>
+							</dd>
+							<dt>
+								<span class="relate"></span>
+							</dt>
+							<dd class="box_contents_num">61</dd>
+						</dl>
+					</div>
+						<div class="box_contents">
+						<div class="cover_book">
+							<a href="book_info">
+							<div class="info_cover">
+								<strong class="tit_cover">미리보는 영화</strong>
+							</div>
+							<img src="../resources/img/a.jpg" class="magazin_img"> 
+							<span class="book_line"></span>
+							<span></span>
+							</a>
+						</div>
+						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리 보는 영화</a>
+						<dl class="j_list_info">
+							<dt>
+								<span class="article_icon"></span>
+							</dt>
+							<dd class="box_contents_num">
+								<b>142</b>
+							</dd>
+							<dt>
+								<span class="relate"></span>
+							</dt>
+							<dd class="box_contents_num">61</dd>
+						</dl>
+					</div>
+						<div class="box_contents">
+						<div class="cover_book">
+							<a href="book_info">
+							<div class="info_cover">
+								<strong class="tit_cover">미리보는 영화</strong>
+							</div>
+							<img src="../resources/img/a.jpg" class="magazin_img"> 
+							<span class="book_line"></span>
+							<span></span>
+							</a>
+						</div>
+						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리 보는 영화</a>
 						<dl class="j_list_info">
 							<dt>
 								<span class="article_icon"></span>
@@ -164,12 +239,12 @@
 							<div class="info_cover">
 								<strong class="tit_cover">미리보는 영화</strong>
 							</div>
-							<img src="../img/a.jpg" class="magazin_img"> 
+							<img src="../resources/img/a.jpg" class="magazin_img"> 
 							<span class="book_line"></span>
 							<span></span>
 							</a>
 						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="book_info.jsp">미리 보는 영화</a>
+						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리 보는 영화</a>
 						<dl class="j_list_info">
 							<dt>
 								<span class="article_icon"></span>
@@ -185,16 +260,16 @@
 					</div>
 						<div class="box_contents">
 						<div class="cover_book">
-							<a href="book_info.jsp">
+							<a href="book_info">
 							<div class="info_cover">
 								<strong class="tit_cover">미리보는 영화</strong>
 							</div>
-							<img src="../img/a.jpg" class="magazin_img"> 
+							<img src="../resources/img/a.jpg" class="magazin_img"> 
 							<span class="book_line"></span>
 							<span></span>
 							</a>
 						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./jsp/book_info.jsp">미리 보는 영화</a>
+						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리 보는 영화</a>
 						<dl class="j_list_info">
 							<dt>
 								<span class="article_icon"></span>
@@ -210,91 +285,16 @@
 					</div>
 						<div class="box_contents">
 						<div class="cover_book">
-							<a href="book_info.jsp">
+							<a href="book_info">
 							<div class="info_cover">
 								<strong class="tit_cover">미리보는 영화</strong>
 							</div>
-							<img src="../img/a.jpg" class="magazin_img"> 
+							<img src="../resources/img/a.jpg" class="magazin_img"> 
 							<span class="book_line"></span>
 							<span></span>
 							</a>
 						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./jsp/book_info.jsp">미리 보는 영화</a>
-						<dl class="j_list_info">
-							<dt>
-								<span class="article_icon"></span>
-							</dt>
-							<dd class="box_contents_num">
-								<b>142</b>
-							</dd>
-							<dt>
-								<span class="relate"></span>
-							</dt>
-							<dd class="box_contents_num">61</dd>
-						</dl>
-					</div>
-						<div class="box_contents">
-						<div class="cover_book">
-							<a href="book_info.jsp">
-							<div class="info_cover">
-								<strong class="tit_cover">미리보는 영화</strong>
-							</div>
-							<img src="../img/a.jpg" class="magazin_img"> 
-							<span class="book_line"></span>
-							<span></span>
-							</a>
-						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./jsp/book_info.jsp">미리 보는 영화</a>
-						<dl class="j_list_info">
-							<dt>
-								<span class="article_icon"></span>
-							</dt>
-							<dd class="box_contents_num">
-								<b>142</b>
-							</dd>
-							<dt>
-								<span class="relate"></span>
-							</dt>
-							<dd class="box_contents_num">61</dd>
-						</dl>
-					</div>
-						<div class="box_contents">
-						<div class="cover_book">
-							<a href="book_info.jsp">
-							<div class="info_cover">
-								<strong class="tit_cover">미리보는 영화</strong>
-							</div>
-							<img src="../img/a.jpg" class="magazin_img"> 
-							<span class="book_line"></span>
-							<span></span>
-							</a>
-						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./jsp/book_info.jsp">미리 보는 영화</a>
-						<dl class="j_list_info">
-							<dt>
-								<span class="article_icon"></span>
-							</dt>
-							<dd class="box_contents_num">
-								<b>142</b>
-							</dd>
-							<dt>
-								<span class="relate"></span>
-							</dt>
-							<dd class="box_contents_num">61</dd>
-						</dl>
-					</div>
-						<div class="box_contents">
-						<div class="cover_book">
-							<a href="book_info.jsp">
-							<div class="info_cover">
-								<strong class="tit_cover">미리보는 영화</strong>
-							</div>
-							<img src="../img/a.jpg" class="magazin_img"> 
-							<span class="book_line"></span>
-							<span></span>
-							</a>
-						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./jsp/book_info.jsp">미리 보는 영화</a>
+						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리 보는 영화</a>
 						<dl class="j_list_info">
 							<dt>
 								<span class="article_icon"></span>

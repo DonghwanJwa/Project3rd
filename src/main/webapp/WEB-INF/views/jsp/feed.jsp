@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="../include/header.jsp" />
-<link rel="stylesheet" type="text/css" href="../css/feed.css" />
-<script type="text/javascript" src="../js/feed.js"></script>
+<link rel="stylesheet" type="text/css" href="../resources/css/feed.css" />
+<script type="text/javascript" src="../resources/js/feed.js"></script>
 
 <div id="feed_wrap">
  <div id="feed_menu"><%-- 피드 메뉴버튼 --%>
@@ -18,7 +18,7 @@
   
   <%-- 새글 보여주기 양식 --%>
    <div class="feed_new_cont_article">
-    <a href="../jsp/read.jsp">
+    <a href="../read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../img/cat_writer_face1.jpg"/>
      </div>
@@ -33,7 +33,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../jsp/read.jsp">
+    <a href="../read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../img/cat_writer_face2.jpg"/>
      </div>
@@ -63,7 +63,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../jsp/read.jsp">
+    <a href="../read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img no_img"/>
      </div>
@@ -78,7 +78,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../jsp/read.jsp">
+    <a href="../read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img no_img" />
      </div>
@@ -93,7 +93,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../jsp/book_info.jsp">
+    <a href="../book_info">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../img/cat_writer_face4.jpg"/>
      </div>
@@ -108,7 +108,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../jsp/read.jsp">
+    <a href="../read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../img/cat_writer_face1.jpg"/>
      </div>
@@ -153,7 +153,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../jsp/read.jsp">
+    <a href="../read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img no_img"/>
      </div>
@@ -168,7 +168,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../jsp/read.jsp">
+    <a href="../read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img no_img" />
      </div>
@@ -183,7 +183,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../jsp/book.jsp">
+    <a href="../book">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../img/cat_writer_face4.jpg"/>
      </div>
@@ -202,7 +202,7 @@
   <div id="feed_scrap_wrap" class="feed_main_cont_wrap"><%-- 피드 스크랩 --%><%-- display:none --%>
    
    <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="../jsp/read.jsp">
+    <a class="feed_scrap_link" href="../read">
      <div class="feed_scrap_img_container">
       <img class="feed_scrap_img" src="../img/a.jpg" alt="그림 안나옴">
      </div>
@@ -221,7 +221,7 @@
    </div>
    
    <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="../jsp/book.jsp">
+    <a class="feed_scrap_link" href="../book">
      <div class="feed_scrap_img_container">
       <img class="feed_scrap_img" src="../img/book_img.jpg"/>
      </div>
@@ -240,7 +240,7 @@
    </div>
  
    <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="../jsp/read.jsp">
+    <a class="feed_scrap_link" href="../read">
      <div class="feed_scrap_img_container">
       <img class="feed_scrap_img" src="../img/a.jpg" alt="그림 안나옴">
      </div>
@@ -253,13 +253,13 @@
     </a>
     <div class="feed_scrap_like_outer">
      <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="../img/heart.png"/>
+      <img class="feed_scrap_like_img" src="../heart"/>
      </button>
     </div>
    </div>
    
    <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="../jsp/read.jsp">
+    <a class="feed_scrap_link" href="../read">
      <div class="feed_scrap_img_container">
       <img class="feed_scrap_img" src="../img/a.jpg" alt="그림 안나옴">
      </div>
