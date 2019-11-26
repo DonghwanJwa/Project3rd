@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<jsp:include page="../include/header.jsp" />
+<%@ include file="./include/header.jsp" %>
 <script>
 $(document).ready(function(){
 	$('#book_info_intro_like_img').click(function(event){
@@ -53,13 +53,13 @@ $(document).ready(function(){
    </div>
    
    <div id="book_info_author" class="book_info_about_div">
-    <a id="book_info_author_wrap" href="../jsp/profile.jsp">
+    <a id="book_info_author_wrap" href="../profile">
      <div id="book_info_author_head">
      
      </div>
   	 <div id="book_info_author_main">
   	  <span id="book_info_author_img">
-  	   <img src="../img/cat_writer_face1.jpg">
+  	   <img src="../resources/img/cat_writer_face1.jpg">
   	  </span>
   	  <div id="book_info_author_desc">
   	   <strong id="book_info_author_name">멍뭉이</strong>
@@ -106,4 +106,4 @@ $(document).ready(function(){
   
  </div>
 </div>
-<jsp:include page="../include/footer.jsp" />
+<%@ include file="./include/footer.jsp" %>

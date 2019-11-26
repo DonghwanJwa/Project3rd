@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 
-
  <div id=cat_empty>
   <div id=cat_title_name><strong>영화·평가</strong></div>
    <div id=cat_writer_block>
