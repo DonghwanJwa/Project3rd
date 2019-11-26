@@ -3,12 +3,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="./css/font.css"/>
-<link rel="stylesheet" type="text/css" href="./css/m.css"/>
-<script src="./js/jquery.js"></script>
-<script type="text/javascript" src="./js/main.js"></script>
-<script src="./js/request_author.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/request_author.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/css/font.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/css/m.css"/>
+<script src="./resources/js/jquery.js"></script>
+<script type="text/javascript" src="./resources/js/main.js"></script>
+<script src="./resources/js/request_author.js"></script>
+<link rel="stylesheet" type="text/css" href="../resources/css/request_author.css"/>
 <title>글에 꿈을 담다, 자몽</title>
 <script>
 $(document).ready(function(){
@@ -100,8 +100,8 @@ $(document).ready(function(){
    
   	<%-- 헤드-로고 --%>
  	<div id="head-menu_logo">
- 	 <a id="head-logo-link" href="index.jsp">
- 	  <img id="head-logo-img" src="./img/logo.png" alt="로고"/>
+ 	 <a id="head-logo-link" href="./index">
+ 	  <img id="head-logo-img" src="./resources/img/logo.png" alt="로고"/>
  	 </a>
  	</div>
  	
@@ -112,14 +112,14 @@ $(document).ready(function(){
  	<%-- 헤드-검색버튼 --%>
  	<div id="head-menu_search">
  	 <button id="head-menu_search-button">
- 	  <img id="head-search-img" src="./img/glass.png" alt="검색버튼" />
+ 	  <img id="head-search-img" src="./resources/img/glass.png" alt="검색버튼" />
  	 </button>
  	</div>
  	
  	<%-- 헤드-메뉴버튼 --%>
  	<div id="head-menu_open_button">
  	 <button id="head-menu-button" name="head-menu-button">
- 	  <img id="head-menu-img" src="./img/menu.png" alt="메뉴버튼"/>
+ 	  <img id="head-menu-img" src="./resources/img/menu.png" alt="메뉴버튼"/>
  	 </button>
  	</div>
    </div>
@@ -136,7 +136,7 @@ $(document).ready(function(){
     <%-- 좌측 닫기버튼 --%>
     <div id="head-menu-close-wrap">
      <a id="head-menu-close-right-button" href="#">
-      <img src="./img/right.png">
+      <img src="./resources/img/right.png">
      </a>
     </div>
     
@@ -152,11 +152,11 @@ $(document).ready(function(){
 	 	for(int i=1;i<=5;i++){
 %>			
 	    <li class="head-page-best-item">
-	     <a href="./jsp/read.jsp" class="head-page-link">
+	     <a href="./read" class="head-page-link">
 	      <%if(i%2==1){%>
-	      <img src="./img/a.jpg"/>
+	      <img src="./resources/img/a.jpg"/>
 	      <%}else {%>
-	      <img src="./img/b.jpg"/>
+	      <img src="./resources/img/b.jpg"/>
 	      <%}%>
 	      <div class="head-page-cont">	      
 	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
@@ -212,11 +212,11 @@ $(document).ready(function(){
 	 	for(int i=1;i<=5;i++){
 %>			
 	    <li class="head-page-hot-item">
-	     <a href="./jsp/read.jsp" class="head-page-link">
+	     <a href="./read" class="head-page-link">
 	      <%if(i%2==1){%>
-	      <img src="./img/b.jpg"/>
+	      <img src="./resources/img/b.jpg"/>
 	      <%}else {%>
-	      <img src="./img/a.jpg"/>
+	      <img src="./resources/img/a.jpg"/>
 	      <%}%>
 	      <div class="head-page-cont">	      
 	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
@@ -270,7 +270,7 @@ $(document).ready(function(){
 	 for(int i=1;i<=15;i++){      
 %>
 	   <li class="head-page-category-item">
-	    <a href="./jsp/category.jsp">
+	    <a href="./category">
 	    카테고리	    
 	    </a>
 	   </li>
@@ -284,11 +284,11 @@ $(document).ready(function(){
     <%-- profile --%>
     <div id="head-page-profile-wrap">
      <div id="head-profile-menu">
-      <a href="./jsp/feed.jsp" class="head-feed-button">
-       <img src="./img/feed.png" alt="피드"/>
+      <a href="./feed" class="head-feed-button">
+       <img src="./resources/img/feed.png" alt="피드"/>
       </a>
      </div>
-     <a href="./jsp/profile.jsp" id="head-profile-info-wrap">
+     <a href="./profile" id="head-profile-info-wrap">
       <div id="head-profile-info-img-wrap">
        <img id="head-profile-info-img" src="./img/profile_logout.png">
       </div>
@@ -299,21 +299,21 @@ $(document).ready(function(){
      <div id="head-profile-service-wrap">
       <ul>
        <li id="head-profile-service-login" class="head-profile-stat-logout">
-        <a href="./jsp/login.jsp">
+        <a href="./login">
          <span class="head-profile-service-bar-left"></span>
         	<b>로그인</b>
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
        <li id="head-profile-service-signup" class="head-profile-stat-logout">
-        <a href="./jsp/join_membership.jsp">
+        <a href="./join_membership">
          <span class="head-profile-service-bar-left"></span>
         	<b>회원가입</b>
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
        <li id="head-profile-service-write" class="head-profile-stat-login">
-        <a href="./jsp/jamong_write.jsp">
+        <a href="./jamong_write">
          <span class="head-profile-service-bar-left"></span>
        		 <b>글쓰기</b>
          <span class="head-profile-service-bar-right"></span>
@@ -321,21 +321,21 @@ $(document).ready(function(){
        </li>
        <li id="head-profile-service-hr">―――――――</li>
        <li id="head-profile-service-rec-writing">
-        <a href="./jsp/new_posts.jsp">
+        <a href="./new_posts">
          <span class="head-profile-service-bar-left"></span>
        		 <b>최신 글</b>
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
        <li id="head-profile-service-rec-book">
-        <a href="./jsp/new_book.jsp">
+        <a href="./new_book">
          <span class="head-profile-service-bar-left"></span>
         	<b>최신 책</b>
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
        <li id="head-profile-service-setting" class="head-profile-stat-login">
-        <a href="./jsp/pass_modify.jsp">
+        <a href="./pass_modify">
          <span class="head-profile-service-bar-left"></span>
         	<b>내 설정</b>
          <span class="head-profile-service-bar-right"></span>
@@ -376,10 +376,10 @@ $(document).ready(function(){
 %>
      <li>
        <div class="recom_book-item">
-        <a href="./jsp/book_info.jsp" class="link_item">
+        <a href="./book_info" class="link_item">
          <div class="recom_book-item-head">
           <div class="book-item-head-inner">
-           <img class="book-item-head-inner-img" src="./img/write2.jpg">
+           <img class="book-item-head-inner-img" src="./resources/img/write2.jpg">
            <div class="book-item-head-inner-cont">
             <div class="book-item-head-inner-cont-top">
              <strong>강아지와 지내는건 어때?</strong>
@@ -405,11 +405,11 @@ $(document).ready(function(){
      <div class="slide-button">
       <a href="javascript:;" id="recom_book-cont-slideleft" class="slide-left" onclick="scrollmove('recom_book-cont','slideleft');"
       	style="visibility:hidden;">
-       <img src="./img/left.png" alt="왼쪽스크롤버튼"/>
+       <img src="./resources/img/left.png" alt="왼쪽스크롤버튼"/>
       </a>
       <a href="javascript:;" id="recom_book-cont-slideright" class="slide-right" onclick="scrollmove('recom_book-cont','slideright');"
       	style="visibility:visible;">
-       <img src="./img/right.png" alt="오른쪽스크롤버튼"/>
+       <img src="./resources/img/right.png" alt="오른쪽스크롤버튼"/>
       </a>
      </div>
    </div>
@@ -429,7 +429,7 @@ $(document).ready(function(){
 %>
      <li>
        <div class="recom_writting-item">
-        <a href="./jsp/read.jsp" class="link_item">
+        <a href="./read" class="link_item">
          <div class="recom_writting-item-head">
           <div class="writting-item-head-inner">
            <div class="writting-item-head-inner-cont">
@@ -461,11 +461,11 @@ $(document).ready(function(){
      <div class="slide-button">
       <a href="javascript:;" id="recom_writting-cont-slideleft" class="slide-left" onclick="scrollmove('recom_writting-cont','slideleft');"
       	style="visibility:hidden;">
-       <img src="./img/left.png" alt="왼쪽스크롤버튼"/>
+       <img src="./resources/img/left.png" alt="왼쪽스크롤버튼"/>
       </a>
       <a href="javascript:;" id="recom_writting-cont-slideright" class="slide-right" onclick="scrollmove('recom_writting-cont','slideright');"
       	style="visibility:visible;">
-       <img src="./img/right.png" alt="오른쪽스크롤버튼"/>
+       <img src="./resources/img/right.png" alt="오른쪽스크롤버튼"/>
       </a>     
     </div>   
    </div>
@@ -482,9 +482,9 @@ $(document).ready(function(){
 %>
 	  <li class="recom_author-item">
 	   <div class="recom_author-item-inner">
-	   	<a href="./jsp/profile.jsp" class="recom_author-item-link">
+	   	<a href="./profile" class="recom_author-item-link">
 	   	 <div class="recom_author-item-img">
-		  <img src="./img/profile.jpg" alt="프로필 사진"/>
+		  <img src="./resources/img/profile.jpg" alt="프로필 사진"/>
 		 </div>
 		 <div class="recom_author-item-intro">
 		  <strong>김지아</strong>
@@ -520,7 +520,7 @@ $(document).ready(function(){
 %>
      <li>
        <div class="recent_writting-item">
-        <a href="./jsp/read.jsp" class="link_item">
+        <a href="./read" class="link_item">
          <div class="recent_writting-item-head">
           <div class="recent_writting-item-head-inner">
            <div class="recent_writting-item-head-inner-cont">
@@ -552,11 +552,11 @@ $(document).ready(function(){
      <div class="slide-button">
      <a href="javascript:;" id="recent_writting-cont-slideleft" class="slide-left" onclick="scrollmove('recent_writting-cont','slideleft');"
       style="visibility:hidden;">
-      <img src="./img/left.png"/>
+      <img src="./resources/img/left.png"/>
      </a>
      <a href="javascript:;" id="recent_writting-cont-slideright" class="slide-right" onclick="scrollmove('recent_writting-cont','slideright');"
      	style="visibility:visible;">
-      <img src="./img/right.png"/>
+      <img src="./resources/img/right.png"/>
      </a>     
     </div>
    </div>
@@ -578,26 +578,26 @@ $(document).ready(function(){
        <li class="foot-inner-menu-item"><a href="#">공지사항</a></li>
        <li class="foot-inner-menu-item"><a href="#">자몽 이용안내</a></li>
        <li class="foot-inner-menu-item"><a onclick="offerToggle();">작가신청</a></li>
-       <li class="foot-inner-menu-item"><a href="./jsp/inquire.jsp">고객센터</a></li>
-       <li class="foot-inner-menu-item"><a href="./jsp/policy_terms.jsp">이용약관</a></li>
-       <li class="foot-inner-menu-item"><a href="./jsp/policy_privacy.jsp">개인정보 처리방침</a></li>
+       <li class="foot-inner-menu-item"><a href="./inquire">고객센터</a></li>
+       <li class="foot-inner-menu-item"><a href="./policy_terms">이용약관</a></li>
+       <li class="foot-inner-menu-item"><a href="./policy_privacy">개인정보 처리방침</a></li>
       </ul>
      </div>
      <div id="foot-inner-sns">
       <ul id="foot-inner-sns-list">
        <li class="foot-inner-sns-item">
         <a class="foot-inner-sns-link" href="http://www.facebook.com" target="_blank">
-         <img class="foot-inner-sns-img" src="./img/footer/facebook.png" alt="페이스북"/>
+         <img class="foot-inner-sns-img" src="./resources/img/footer/facebook.png" alt="페이스북"/>
         </a>
        </li>
        <li class="foot-inner-sns-item">
         <a class="foot-inner-sns-link" href="https://www.instagram.com" target="_blank">
-         <img class="foot-inner-sns-img" src="./img/footer/instagram.png" alt="인스타그램"/>
+         <img class="foot-inner-sns-img" src="./resources/img/footer/instagram.png" alt="인스타그램"/>
         </a>
        </li>
        <li class="foot-inner-sns-item">
         <a class="foot-inner-sns-link" href="http://www.twitter.com" target="_blank">
-         <img class="foot-inner-sns-img" src="./img/footer/twitter.png" alt="트위터"/>
+         <img class="foot-inner-sns-img" src="./resources/img/footer/twitter.png" alt="트위터"/>
         </a>
        </li>
       </ul>
