@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="../include/header.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="../css/search_result.css" />
-<script src="../js/search.js"></script>
+<link rel="stylesheet" type="text/css" href="../resources/css/search_result.css" />
+<script src="../resources/js/search.js"></script>
 
 <%-- 검색페이지 header --%>
 <div id="search_header">
@@ -31,9 +31,9 @@
 
    <div class="author_cont">
 
-  <a href="profile.jsp">
+  <a href="profile">
     <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="../img/profile.jpg" alt="프로필 사진">
+     <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
       <div id="search_result_author_name">김 누구누구</div>
       <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
@@ -45,9 +45,9 @@
     </div>
     </a>
 
-    <a href="profile.jsp">
+    <a href="profile">
      <div id="search_result_author_profile">
-      <img id="search_result_author_profile_img" src="../img/profile.jpg" alt="프로필 사진">
+      <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
       <div id="search_result_author_profile_info">
        <div id="search_result_author_name">김 누구누구</div>
        <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
@@ -61,9 +61,9 @@
      </div>
     </a>
 
-<a href="profile.jsp">
+<a href="profile">
     <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="../img/profile.jpg" alt="프로필 사진">
+     <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
       <div id="search_result_author_name">김 누구누구</div>
       <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
@@ -75,9 +75,9 @@
     </div>
     </a>
     
-    <a href="profile.jsp">
+    <a href="profile">
     <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="../img/profile.jpg" alt="프로필 사진">
+     <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
       <div id="search_result_author_name">김 누구누구</div>
       <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
@@ -89,9 +89,9 @@
     </div>
     </a>
     
-    <a href="profile.jsp">
+    <a href="profile">
     <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="../img/profile.jpg" alt="프로필 사진">
+     <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
       <div id="search_result_author_name">김 누구누구</div>
       <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
@@ -103,9 +103,9 @@
     </div>
     </a>
     
-    <a href="profile.jsp">
+    <a href="profile">
     <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="../img/profile.jpg" alt="프로필 사진">
+     <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
       <div id="search_result_author_name">김 누구누구</div>
       <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
@@ -117,9 +117,9 @@
     </div>
     </a>
     
-    <a href="profile.jsp">
+    <a href="profile">
     <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="../img/profile.jpg" alt="프로필 사진">
+     <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
       <div id="search_result_author_name">김 누구누구</div>
       <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
@@ -131,9 +131,9 @@
     </div>
     </a>
     
-    <a href="profile.jsp">
+    <a href="profile">
     <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="../img/profile.jpg" alt="프로필 사진">
+     <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
       <div id="search_result_author_name">김 누구누구</div>
       <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
@@ -145,9 +145,9 @@
     </div>
     </a>
     
-    <a href="profile.jsp">
+    <a href="profile">
     <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="../img/profile.jpg" alt="프로필 사진">
+     <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
       <div id="search_result_author_name">김 누구누구</div>
       <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
@@ -159,9 +159,9 @@
     </div>
     </a>
     
-    <a href="profile.jsp">
+    <a href="profile">
     <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="../img/profile.jpg" alt="프로필 사진">
+     <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
       <div id="search_result_author_name">김 누구누구</div>
       <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
