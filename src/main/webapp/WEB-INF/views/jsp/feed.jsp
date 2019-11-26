@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="../include/header.jsp" %>
+<jsp:include page="../include/header.jsp" />
 <link rel="stylesheet" type="text/css" href="../resources/css/feed.css" />
 <script type="text/javascript" src="../resources/js/feed.js"></script>
 
@@ -12,7 +12,6 @@
  </div>
  
  <div class="clear"></div>
- WARN : org.springframework.web.servlet.PageNotFound - No mapping found for HTTP request with URI [/WEB-INF/views/jsp/request_author] in DispatcherServlet with name 'appServlet'
  
  <div id="feed_main_wrap">
   <div id="feed_new_wrap" class="feed_main_cont_wrap"><%-- 피드 새소식 --%><%-- display:show --%>
@@ -21,7 +20,7 @@
    <div class="feed_new_cont_article">
     <a href="../read">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face1.jpg"/>
+      <img class="feed_new_cont_profile_img" src="../img/cat_writer_face1.jpg"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -36,7 +35,7 @@
    <div class="feed_new_cont_article">
     <a href="../read">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face2.jpg"/>
+      <img class="feed_new_cont_profile_img" src="../img/cat_writer_face2.jpg"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -51,7 +50,7 @@
    <div class="feed_new_cont_article">
     <a href="#">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="../resources/img/profile_logout.png"/>
+      <img class="feed_new_cont_profile_img" src="../img/profile_logout.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -96,7 +95,7 @@
    <div class="feed_new_cont_article">
     <a href="../book_info">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face4.jpg"/>
+      <img class="feed_new_cont_profile_img" src="../img/cat_writer_face4.jpg"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -111,7 +110,7 @@
    <div class="feed_new_cont_article">
     <a href="../read">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face1.jpg"/>
+      <img class="feed_new_cont_profile_img" src="../img/cat_writer_face1.jpg"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -126,7 +125,7 @@
    <div class="feed_new_cont_article">
     <a href="#">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face2.jpg"/>
+      <img class="feed_new_cont_profile_img" src="../img/cat_writer_face2.jpg"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -141,7 +140,7 @@
    <div class="feed_new_cont_article">
     <a href="#">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="../resources/img/profile_logout.png"/>
+      <img class="feed_new_cont_profile_img" src="../img/profile_logout.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -186,7 +185,7 @@
    <div class="feed_new_cont_article">
     <a href="../book">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face4.jpg"/>
+      <img class="feed_new_cont_profile_img" src="../img/cat_writer_face4.jpg"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -205,7 +204,7 @@
    <div class="feed_scrap_inner">
     <a class="feed_scrap_link" href="../read">
      <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="../resources/img/a.jpg" alt="그림 안나옴">
+      <img class="feed_scrap_img" src="../img/a.jpg" alt="그림 안나옴">
      </div>
      <div class="feed_scrap_cont">
       <div class="feed_scrap_type">Article</div>
@@ -216,7 +215,7 @@
     </a>
     <div class="feed_scrap_like_outer">
      <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="../resources/img/heart.png"/>
+      <img class="feed_scrap_like_img" src="../img/heart.png"/>
      </button>
     </div>
    </div>
@@ -224,7 +223,7 @@
    <div class="feed_scrap_inner">
     <a class="feed_scrap_link" href="../book">
      <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="../resources/img/book_img.jpg"/>
+      <img class="feed_scrap_img" src="../img/book_img.jpg"/>
      </div>
      <div class="feed_scrap_cont">
       <div class="feed_scrap_type">Book</div>
@@ -235,7 +234,7 @@
     </a>
     <div class="feed_scrap_like_outer">
      <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="../resources/img/heart.png"/>
+      <img class="feed_scrap_like_img" src="../img/heart.png"/>
      </button>
     </div>
    </div>
@@ -243,7 +242,7 @@
    <div class="feed_scrap_inner">
     <a class="feed_scrap_link" href="../read">
      <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="../resources/img/a.jpg" alt="그림 안나옴">
+      <img class="feed_scrap_img" src="../img/a.jpg" alt="그림 안나옴">
      </div>
      <div class="feed_scrap_cont">
       <div class="feed_scrap_type">Article</div>
@@ -254,7 +253,7 @@
     </a>
     <div class="feed_scrap_like_outer">
      <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="../resources/heart"/>
+      <img class="feed_scrap_like_img" src="../heart"/>
      </button>
     </div>
    </div>
@@ -262,7 +261,7 @@
    <div class="feed_scrap_inner">
     <a class="feed_scrap_link" href="../read">
      <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="../resources/img/a.jpg" alt="그림 안나옴">
+      <img class="feed_scrap_img" src="../img/a.jpg" alt="그림 안나옴">
      </div>
      <div class="feed_scrap_cont">
       <div class="feed_scrap_type">Article</div>
@@ -273,7 +272,7 @@
     </a>
     <div class="feed_scrap_like_outer">
      <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="../resources/img/heart.png"/>
+      <img class="feed_scrap_like_img" src="../img/heart.png"/>
      </button>
     </div>
    </div>
@@ -282,4 +281,4 @@
  </div><%-- feed_main_wrap --%>
 </div>
 
-<%@ include file="../include/footer.jsp" %>
+<jsp:include page="../include/footer.jsp" />

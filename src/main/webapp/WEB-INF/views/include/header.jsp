@@ -25,10 +25,8 @@
 </script>
 </head>
 <body>
-<%@ include  file="../jsp/request_author.jsp" %>
-<%@ include  file="../jsp/accuse.jsp" %>
-<!--<jsp:include page="jsp/request_author" />
-<jsp:include page="jsp/accuse" />!-->
+<jsp:include page="../jsp/request_author.jsp" />
+<jsp:include page="../jsp/accuse.jsp" />
   <%-- 해드 메뉴바 --%>
  <div id="head-header-wrap">
   <header id="head-main-header">
@@ -36,8 +34,8 @@
    
   	<%-- 헤드-로고 --%>
  	<div id="head-menu_logo">
- 	 <a id="head-logo-link" href="../index">
- 	  <img id="head-logo-img" src="../resources/img/logo.png" alt="로고"/>
+ 	 <a id="head-logo-link" href="../index.jsp">
+ 	  <img id="head-logo-img" src="../img/logo.png" alt="로고"/>
  	 </a>
  	</div>
  	
@@ -48,14 +46,14 @@
  	<%-- 헤드-검색버튼 --%>
  	<div id="head-menu_search">
  	 <button id="head-menu_search-button">
- 	  <img id="head-search-img" src="../resources/img/glass.png" alt="검색버튼" />
+ 	  <img id="head-search-img" src="../img/glass.png" alt="검색버튼" />
  	 </button>
  	</div>
  	
  	<%-- 헤드-메뉴버튼 --%>
  	<div id="head-menu_open_button">
  	 <button id="head-menu-button" name="head-menu-button">
- 	  <img id="head-menu-img" src="../resources/img/menu.png" alt="메뉴버튼"/>
+ 	  <img id="head-menu-img" src="../img/menu.png" alt="메뉴버튼"/>
  	 </button>
  	</div>
    </div>
@@ -72,7 +70,7 @@
     <%-- 좌측 닫기버튼 --%>
     <div id="head-menu-close-wrap">
      <a id="head-menu-close-right-button" href="#">
-      <img src="../resources/img/right.png">
+      <img src="../img/right.png">
      </a>
     </div>
     
@@ -88,11 +86,11 @@
 	 	for(int i=1;i<=5;i++){
 %>			
 	    <li class="head-page-best-item">
-	     <a href="../jsp/read" class="head-page-link">
+	     <a href="../jsp/read.jsp" class="head-page-link">
 	      <%if(i%2==1){%>
-	      <img src="../resources/img/a.jpg"/>
+	      <img src="../img/a.jpg"/>
 	      <%}else {%>
-	      <img src="../resources/img/b.jpg"/>
+	      <img src="../img/b.jpg"/>
 	      <%}%>
 	      <div class="head-page-cont">	      
 	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
@@ -148,11 +146,11 @@
 	 	for(int i=1;i<=5;i++){
 %>			
 	    <li class="head-page-hot-item">
-	     <a href="../read" class="head-page-link">
+	     <a href="../jsp/read.jsp" class="head-page-link">
 	      <%if(i%2==1){%>
-	      <img src="../resources/img/b.jpg"/>
+	      <img src="../img/b.jpg"/>
 	      <%}else {%>
-	      <img src="../resources/img/a.jpg"/>
+	      <img src="../img/a.jpg"/>
 	      <%}%>
 	      <div class="head-page-cont">	      
 	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
@@ -206,7 +204,7 @@
 	 for(int i=1;i<=15;i++){      
 %>
 	   <li class="head-page-category-item">
-	    <a href="../category">
+	    <a href="../jsp/category.jsp">
 	    카테고리	    
 	    </a>
 	   </li>
@@ -220,13 +218,13 @@
     <%-- profile --%>
     <div id="head-page-profile-wrap">
      <div id="head-profile-menu">
-      <a href="../feed" class="head-feed-button">
-       <img src="../resources/img/feed.png" alt="피드"/>
+      <a href="../jsp/feed.jsp" class="head-feed-button">
+       <img src="../img/feed.png" alt="피드"/>
       </a>
      </div>
-     <a href="../profile" id="head-profile-info-wrap">
+     <a href="../jsp/profile.jsp" id="head-profile-info-wrap">
       <div id="head-profile-info-img-wrap">
-       <img id="head-profile-info-img" src="../resources/img/profile_logout.png">
+       <img id="head-profile-info-img" src="../img/profile_logout.png">
       </div>
       <div id="head-profile-name-wrap">
        <strong>프로필명</strong>
@@ -235,21 +233,21 @@
      <div id="head-profile-service-wrap">
       <ul>
        <li id="head-profile-service-login" class="head-profile-stat-logout">
-        <a href="../jsp/login">
+        <a href="../jsp/login.jsp">
          <span class="head-profile-service-bar-left"></span>
         	<b>로그인</b>
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
        <li id="head-profile-service-signup" class="head-profile-stat-logout">
-        <a href="../jsp/join_membership">
+        <a href="../jsp/join_membership.jsp">
          <span class="head-profile-service-bar-left"></span>
         	<b>회원가입</b>
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
        <li id="head-profile-service-write" class="head-profile-stat-login">
-        <a href="../jsp/jamong_write">
+        <a href="../jsp/jamong_write.jsp">
          <span class="head-profile-service-bar-left"></span>
        		 <b>글쓰기</b>
          <span class="head-profile-service-bar-right"></span>
@@ -257,21 +255,21 @@
        </li>
        <li id="head-profile-service-hr">―――――――</li>
        <li id="head-profile-service-rec-writing">
-        <a href="../jsp/new_posts">
+        <a href="../jsp/new_posts.jsp">
          <span class="head-profile-service-bar-left"></span>
        		 <b>최신 글</b>
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
        <li id="head-profile-service-rec-book">
-        <a href="../jsp/new_book">
+        <a href="../jsp/new_book.jsp">
          <span class="head-profile-service-bar-left"></span>
         	<b>최신 책</b>
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
        <li id="head-profile-service-setting" class="head-profile-stat-login">
-        <a href="../jsp/pass_modify">
+        <a href="../jsp/pass_modify.jsp">
          <span class="head-profile-service-bar-left"></span>
         	<b>내 설정</b>
          <span class="head-profile-service-bar-right"></span>

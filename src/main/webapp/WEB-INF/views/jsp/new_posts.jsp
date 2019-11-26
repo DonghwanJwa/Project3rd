@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="../include/header.jsp"%>
-
+<jsp:include page="../include/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="../resources/css/new_post.css" />
 
 <div id="new_post_title">최신 글</div>
@@ -93,4 +92,9 @@
  </div>
 
 </div>
-<%@ include file="../include/footer.jsp"%>
+
+
+
+
+
+<jsp:include page="../include/footer.jsp"></jsp:include>
