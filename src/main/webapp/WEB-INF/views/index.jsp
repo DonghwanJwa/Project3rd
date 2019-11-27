@@ -28,7 +28,7 @@ $(document).ready(function(){
 	<div id="req_auth_wrap">
 		<div id="req_auth_title">
 		<h1>자몽 작가신청</h1>
-		<a href="#" id="req_close" onclick="offerToggle();"><img src="./img/close_x.png"/></a>
+		<a href="#" id="req_close" onclick="offerToggle();"><img src="../resources/img/close_x.png"/></a>
 	</div>
 		<div class="req_form">
 			
@@ -290,7 +290,7 @@ $(document).ready(function(){
      </div>
      <a href="./profile" id="head-profile-info-wrap">
       <div id="head-profile-info-img-wrap">
-       <img id="head-profile-info-img" src="./img/profile_logout.png">
+       <img id="head-profile-info-img" src="../resources/img/profile_logout.png">
       </div>
       <div id="head-profile-name-wrap">
        <strong>프로필명</strong>

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include file="./include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <script>
 $(document).ready(function(){
 	$('#book_info_intro_like_img').click(function(event){
@@ -106,4 +106,4 @@ $(document).ready(function(){
   
  </div>
 </div>
-<%@ include file="./include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>
