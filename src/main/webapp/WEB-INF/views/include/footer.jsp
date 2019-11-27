@@ -1,8 +1,8 @@
  <%-- <%@ include file="../include/footer.jsp"%> 사용하여 푸터연결--%>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
-<link rel="stylesheet" type="text/css" href="../css/font.css"/>
-<link rel="stylesheet" type="text/css" href="../css/footer.css" />
+<link rel="stylesheet" type="text/css" href="../resources/css/font.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/css/footer.css" />
 
   <div class="clear"></div>
 <%-- 정보란 파랑--%>

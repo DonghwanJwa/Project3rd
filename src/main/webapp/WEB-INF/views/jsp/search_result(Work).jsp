@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <jsp:include page="../include/header.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="../css/search_result.css" />
-<script src="../js/search.js"></script>
+<link rel="stylesheet" type="text/css" href="../resources/css/search_result.css" />
+<script src="../resources/js/search.js"></script>
 
 <%-- 검색페이지 header --%>
 <div id="search_header">
@@ -32,7 +32,7 @@
   
   <a href="book_info.jsp">
    <div class="work_cont">
-    <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
+    <img id="work_img" src="../resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
     <div id="work_author">김땡땡 작가</div>
    </div>
@@ -40,7 +40,7 @@
 
   <a href="book_info.jsp">
    <div class="work_cont">
-    <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
+    <img id="work_img" src="../resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
     <div id="work_author">김땡땡 작가</div>
    </div>
@@ -48,7 +48,7 @@
   
     <a href="book_info.jsp">
    <div class="work_cont">
-    <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
+    <img id="work_img" src="../resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
     <div id="work_author">김땡땡 작가</div>
    </div>
@@ -56,7 +56,7 @@
   
     <a href="book_info.jsp">
    <div class="work_cont">
-    <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
+    <img id="work_img" src="../resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
     <div id="work_author">김땡땡 작가</div>
    </div>
@@ -64,7 +64,7 @@
   
     <a href="book_info.jsp">
    <div class="work_cont">
-    <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
+    <img id="work_img" src="../resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
     <div id="work_author">김땡땡 작가</div>
    </div>

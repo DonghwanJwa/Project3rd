@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title> </title>
-<link rel="stylesheet" type="text/css" href="../css/read.css"/>
-<link rel="stylesheet" type="text/css" href="../css/write.css" />
-<script src="../js/jquery.js"></script>
-<script src="../js/read.js"></script>
+<link rel="stylesheet" type="text/css" href="../resources/css/read.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/css/write.css" />
+<script src="../resources/js/jquery.js"></script>
+<script src="../resources/js/read.js"></script>
 </head>
 <body>
 	<%-- 본문 구역 쓰기 페이지와 같음 --%>
@@ -109,21 +109,21 @@ MVC ( Model, View, Controller ）의 개념 )<br/>
 	<div id="read_back">
 	<div id="border_line_wrap">
 		<hr class="border_line"/>
-		<img src="../img/logo.png"/>
+		<img src="../resources/img/logo.png"/>
 		<hr class="border_line"/>
 	</div>
 		<div id="white_back">	
 		<%-- 작가 프로필 --%>
 		<div id="author_profile">
 			<%-- 프로필사진, 이름 --%>
-			<a href="../jsp/profile.jsp"><img class="author_img" src=../img/a.jpg width="90" height="90" alt="글쓴이 프로필사진"/></a>
-			<a href="../jsp/profile.jsp"><span><strong>글쓴이 프로필 명</strong></span></a>
+			<a href="../profile"><img class="author_img" src=../resources/img/a.jpg width="90" height="90" alt="글쓴이 프로필사진"/></a>
+			<a href="../profile"><span><strong>글쓴이 프로필 명</strong></span></a>
 			
 			<%-- 작가 키워드 --%>
 			<div class="author_keyword">
-				<a href="../jsp/search_result(Post).jsp">작가키워드1</a>
-				<a href="../jsp/search_result(Post).jsp">작가키워드2</a>
-				<a href="../jsp/search_result(Post).jsp">작가키워드3</a>
+				<a href="../search_result(Post)">작가키워드1</a>
+				<a href="../search_result(Post)">작가키워드2</a>
+				<a href="../search_result(Post)">작가키워드3</a>
 			</div>
 			
 			<%-- 작가 소개 --%>
@@ -140,7 +140,7 @@ MVC ( Model, View, Controller ）의 개념 )<br/>
 			<div class="author_button_wrap">
 				<a href="#" class="subscribe">구독하기</a>
 				<a href="../jsp/offer_author.jsp" class="offer">제안하기</a>
-				<a class="accuse_page_open" onclick="accuseShow();" title="신고하기"><img src="../img/warring.png" /></a>
+				<a class="accuse_page_open" onclick="accuseShow();" title="신고하기"><img src="../resources/img/warring.png" /></a>
 			</div>
 		</div>
 		
@@ -151,8 +151,8 @@ MVC ( Model, View, Controller ）의 개념 )<br/>
 			</div>
 			<div class="hide_comment" style="display:none;">
 				<div class="comment_frame">
-					<a href="../jsp/profile.jsp"><img class="comment_user_img" src=../img/a.jpg width="50" height="50"/></a>
-					<a href="../jsp/profile.jsp" class="comment_user_name"><span >사용자 1</span></a>
+					<a href="../profile"><img class="comment_user_img" src=../resources/img/a.jpg width="50" height="50"/></a>
+					<a href="../profile" class="comment_user_name"><span >사용자 1</span></a>
 					<p class="comment_cont">댓글입니다.</p><br/>
 					<span class="comment_date">2019-10-15 00:00:00</span>
 					<div class="reply_hide_wrap"><a class="comment_reply" onclick="replyHide();">답글</a></div>
@@ -186,21 +186,21 @@ MVC ( Model, View, Controller ）의 개념 )<br/>
 		<%-- 리스트 반복문으로 처리 할 것. --%>	
 			<a href="#">
 			<div class="list">
-				<img src="../img/a.jpg" width="250" height="100">
+				<img src="../resources/img/a.jpg" width="250" height="100">
 				<p>이전글, 다음글 리스트 입니다.</p>
 			</div>
 			</a>
 			
 			<a href="#">
 			<div class="list">
-				<img src="../img/a.jpg" width="250" height="100">
+				<img src="../resources/img/a.jpg" width="250" height="100">
 				<p>이전글, 다음글 리스트 입니다.</p>
 			</div>
 			</a>
 			
 			<a href="#">
 			<div class="list">
-				<img src="../img/a.jpg" width="250" height="100">
+				<img src="../resources/img/a.jpg" width="250" height="100">
 				<p>이전글, 다음글 리스트 입니다.</p>
 			</div>
 			</a>
@@ -213,7 +213,7 @@ MVC ( Model, View, Controller ）의 개념 )<br/>
 				<h3>같은 카테고리 다른 글</h3>
 				<a href="#">
 					<div class="another_cover">
-						<img src="../img/a.jpg" width="700" height="250"/>
+						<img src="../resources/img/a.jpg" width="700" height="250"/>
 						<div class="another_title">
 						<p><strong>캐나다의 밤은 서울의 밤보다 천천히 흐른다.</strong></p>
 						</div>
@@ -239,7 +239,7 @@ MVC ( Model, View, Controller ）의 개념 )<br/>
 				
 				<a href="#">
 					<div class="another_cover">
-						<img src="../img/a.jpg" width="700" height="250"/>
+						<img src="../resources/img/a.jpg" width="700" height="250"/>
 						<div class="another_title">
 						<p><strong>캐나다의 밤은 서울의 밤보다 천천히 흐른다.</strong></p>
 						</div>
@@ -265,7 +265,7 @@ MVC ( Model, View, Controller ）의 개념 )<br/>
 				
 				<a href="#">
 					<div class="another_cover">
-						<img src="../img/a.jpg" width="700" height="250"/>
+						<img src="../resources/img/a.jpg" width="700" height="250"/>
 						<div class="another_title">
 						<p><strong>캐나다의 밤은 <br/>서울의 밤보다 천천히 흐른다.</strong></p>
 						</div>

@@ -22,8 +22,8 @@
    value="oracle.jdbc.OracleDriver" />
    <property name="url" 
    value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
-   <property name="username" value="two" />
-   <property name="password" value="two" />
+   <property name="username" value="jamong" />
+   <property name="password" value="jamong" />
  </bean>    
  
  <!-- 스프링 jdbc와 mybatis연결,mybatis환경설정 -->
@@ -35,7 +35,7 @@
   		이 경로의 mybatis-config.xml의 역할은  데이터 저장빈 클래스의 객체 별칭을 관리한다.-->
    
   <!-- mybatis mapper태그로 쿼리문을 다룸 ->mapper태그 경로 설정 -->
-  <property name="mapperLocations" value="classpath:org/zerock/mappers/*/*.xml"/>  
+    <property name="mapperLocations" value="classpath:com/jamong/mappers/*/*.xml"/>  
  </bean>	
   	
    <!-- 스프링을 통한 트랜잭션 매니져 설정 -->
@@ -55,7 +55,7 @@
   </bean>
   
   <!-- Model DAOImpl의 @Repository 애노테이션이 설정된 부분을 자동스캔(찾아서) 스프링 등록 -->
-  <context:component-scan base-package="org.zerock.dao"/>
+  <context:component-scan base-package="com.jamong.dao"/>
   
     <!-- 서비스 추가목적)
   1.스프링 AOP를 통한 트랜잭션 적용->데이터 일관성과 사이트 신뢰도 유지.

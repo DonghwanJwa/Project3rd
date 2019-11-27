@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="../js/profile.js"></script>
-<link rel=stylesheet type="text/css" href="../css/profile.css">
+<script src="../resources/js/profile.js"></script>
+<link rel=stylesheet type="text/css" href="../resources/css/profile.css">
 <title></title>
 </head>
 <body>
@@ -15,7 +15,7 @@
 		</div>
 		<article id="profile_main_edit_article">
 			<div>
-				<img id="profile_edit_img" alt="이미지" src="../img/profile.jpg">
+				<img id="profile_edit_img" alt="이미지" src="../resources/img/profile.jpg">
 				<form enctype="multipart/form-data" action="">
 					<span id="profile_img_edit_button"> <label for="profile_img"
 						class="profile_font_hide"
