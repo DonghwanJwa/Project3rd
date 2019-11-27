@@ -5,8 +5,17 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <configuration>
  <typeAliases>
- <!-- 예시 <typeAlias type="org.zerock.domain.MemberVO" alias="m"/> -->
- 
- 
+  <typeAlias type="com.jamong.domain.AccuseVO" alias="ac"/>
+  <typeAlias type="com.jamong.domain.AuthorVO" alias="aut"/>
+  <typeAlias type="com.jamong.domain.BoardVO" alias="b"/>
+  <typeAlias type="com.jamong.domain.BookVO" alias="book"/>
+  <typeAlias type="com.jamong.domain.FavoriteVO" alias="fav"/>
+  <typeAlias type="com.jamong.domain.InquireVO" alias="inq"/>
+  <typeAlias type="com.jamong.domain.MemberVO" alias="m"/>
+  <typeAlias type="com.jamong.domain.OfferVO" alias="off"/>
+  <typeAlias type="com.jamong.domain.RecommendVO" alias="rec"/>
+  <typeAlias type="com.jamong.domain.ReplyVO" alias="rep"/>
+  <typeAlias type="com.jamong.domain.SubscribeVO" alias="sub"/> 
+  <typeAlias type="com.jamong.domain.SympathyVO" alias="sym"/>  
  </typeAliases>
 </configuration>
