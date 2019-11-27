@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<jsp:include page="../include/header.jsp"></jsp:include>
+<%@ include file="../include/header.jsp"%>
 <script src="../resources/js/new_book.js"></script>
 <link rel="stylesheet" type="text/css" href="../resources/css/new_book.css">
 
@@ -354,4 +354,4 @@
  <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide next on"></button>
 </section>
 
-<jsp:include page="../include/footer.jsp"></jsp:include>
+<%@ include file="../include/footer.jsp"%>
