@@ -95,7 +95,7 @@
    <div class="feed_new_cont_article">
     <a href="./book_info">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face4.jpg"/>
+      <img class="feed_new_cont_profile_img" src="./resources/img/cat_writer_face4.jpg"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -253,7 +253,7 @@
     </a>
     <div class="feed_scrap_like_outer">
      <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="./resources/heart.png"/>
+      <img class="feed_scrap_like_img" src="./resources/img/heart.png"/>
      </button>
     </div>
    </div>

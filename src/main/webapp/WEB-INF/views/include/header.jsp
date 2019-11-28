@@ -27,8 +27,6 @@
 <body>
 <%@ include file="../jsp/request_author.jsp" %>
 <%@ include file="../jsp/accuse.jsp" %>
-<!--<jsp:include page="jsp/request_author" />
-<jsp:include page="jsp/accuse" />!-->
   <%-- 해드 메뉴바 --%>
  <div id="head-header-wrap">
   <header id="head-main-header">
