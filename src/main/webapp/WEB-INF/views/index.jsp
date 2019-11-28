@@ -3,12 +3,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../resources/css/font.css"/>
-<link rel="stylesheet" type="text/css" href="../resources/css/m.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/m.css"/>
 <script src="./resources/js/jquery.js"></script>
 <script type="text/javascript" src="./resources/js/main.js"></script>
 <script src="./resources/js/request_author.js"></script>
-<link rel="stylesheet" type="text/css" href="../resources/css/request_author.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/request_author.css"/>
 <title>글에 꿈을 담다, 자몽</title>
 <script>
 $(document).ready(function(){
@@ -28,7 +28,7 @@ $(document).ready(function(){
 	<div id="req_auth_wrap">
 		<div id="req_auth_title">
 		<h1>자몽 작가신청</h1>
-		<a href="#" id="req_close" onclick="offerToggle();"><img src="../resources/img/close_x.png"/></a>
+		<a href="#" id="req_close" onclick="offerToggle();"><img src="./resources/img/close_x.png"/></a>
 	</div>
 		<div class="req_form">
 			
@@ -290,7 +290,7 @@ $(document).ready(function(){
      </div>
      <a href="./profile" id="head-profile-info-wrap">
       <div id="head-profile-info-img-wrap">
-       <img id="head-profile-info-img" src="../resources/img/profile_logout.png">
+       <img id="head-profile-info-img" src="./resources/img/profile_logout.png">
       </div>
       <div id="head-profile-name-wrap">
        <strong>프로필명</strong>
