@@ -15,7 +15,7 @@ $(document).ready(function(){
 	$('#head-menu_search-text').keyup(function(e) {
 		if(!$.trim($('#head-menu_search-text').val())==""){
 			if (e.keyCode == 13){			
-				location.href = "./jsp/search_result(Post).jsp"
+				location.href = "./search?result=post"
 			}
     	}       
 	});
@@ -100,7 +100,7 @@ $(document).ready(function(){
    
   	<%-- 헤드-로고 --%>
  	<div id="head-menu_logo">
- 	 <a id="head-logo-link" href="/">
+ 	 <a id="head-logo-link" href="./">
  	  <img id="head-logo-img" src="./resources/img/logo.png" alt="로고"/>
  	 </a>
  	</div>

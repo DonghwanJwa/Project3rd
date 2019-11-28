@@ -2,6 +2,7 @@ package com.jamong.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jamong.service.InquireService;
 
@@ -10,4 +11,10 @@ public class InquireController {
 
 	@Autowired
 	private InquireService inqService;
+	
+	@RequestMapping("inquire")
+	public String user_inquire() {
+		
+		return "jsp/inquire";
+	}
 }
