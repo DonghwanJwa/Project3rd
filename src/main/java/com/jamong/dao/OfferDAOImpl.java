@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class OfferDAOImpl {
+public class OfferDAOImpl implements OfferDAO{
 
 	@Autowired
 	private SqlSession sqlSession;

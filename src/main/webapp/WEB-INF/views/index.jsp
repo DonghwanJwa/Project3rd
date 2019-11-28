@@ -100,7 +100,7 @@ $(document).ready(function(){
    
   	<%-- 헤드-로고 --%>
  	<div id="head-menu_logo">
- 	 <a id="head-logo-link" href="./index">
+ 	 <a id="head-logo-link" href="/">
  	  <img id="head-logo-img" src="./resources/img/logo.png" alt="로고"/>
  	 </a>
  	</div>
@@ -313,7 +313,7 @@ $(document).ready(function(){
         </a>
        </li>
        <li id="head-profile-service-write" class="head-profile-stat-login">
-        <a href="./jamong_write">
+        <a href="./write">
          <span class="head-profile-service-bar-left"></span>
        		 <b>글쓰기</b>
          <span class="head-profile-service-bar-right"></span>
