@@ -1,13 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<link rel="stylesheet" type="text/css" href="../resources/css/accuse.css"/>
-<link rel="stylesheet" type="text/css" href="../resources/css/font.css"/>
-<script src="../resources/js/accuse.js"></script>
+<link rel="stylesheet" type="text/css" href="./resources/css/accuse.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
+<script src="./resources/js/accuse.js"></script>
    <div id=acc_wrap>
 	<div id=acc_base>
 	  <div id=acc_report_base>
 	  	<h3>신고하기
 	  	<a class="acc_close" onclick="accuseHide()">
-	  	  <img src="../resources/img/close_x.png">
+	  	  <img src="./resources/img/close_x.png">
 	  	</a>
 	  	</h3>
 	  	<br/>
