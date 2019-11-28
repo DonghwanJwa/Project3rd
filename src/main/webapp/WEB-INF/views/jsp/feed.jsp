@@ -18,7 +18,7 @@
   
   <%-- 새글 보여주기 양식 --%>
    <div class="feed_new_cont_article">
-    <a href="../read">
+    <a href="./read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face1.jpg"/>
      </div>
@@ -33,7 +33,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../read">
+    <a href="./read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face2.jpg"/>
      </div>
@@ -63,7 +63,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../read">
+    <a href="./read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img no_img"/>
      </div>
@@ -78,7 +78,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../read">
+    <a href="./read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img no_img" />
      </div>
@@ -93,7 +93,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../book_info">
+    <a href="./book_info">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face4.jpg"/>
      </div>
@@ -108,7 +108,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../read">
+    <a href="./read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face1.jpg"/>
      </div>
@@ -153,7 +153,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../read">
+    <a href="./read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img no_img"/>
      </div>
@@ -168,7 +168,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../read">
+    <a href="./read">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img no_img" />
      </div>
@@ -183,7 +183,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../book">
+    <a href="./book">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face4.jpg"/>
      </div>
@@ -202,7 +202,7 @@
   <div id="feed_scrap_wrap" class="feed_main_cont_wrap"><%-- 피드 스크랩 --%><%-- display:none --%>
    
    <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="../read">
+    <a class="feed_scrap_link" href="./read">
      <div class="feed_scrap_img_container">
       <img class="feed_scrap_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      </div>
@@ -221,7 +221,7 @@
    </div>
    
    <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="../book">
+    <a class="feed_scrap_link" href="./book">
      <div class="feed_scrap_img_container">
       <img class="feed_scrap_img" src="../resources/img/book_img.jpg"/>
      </div>
@@ -240,7 +240,7 @@
    </div>
  
    <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="../read">
+    <a class="feed_scrap_link" href="./read">
      <div class="feed_scrap_img_container">
       <img class="feed_scrap_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      </div>
@@ -259,7 +259,7 @@
    </div>
    
    <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="../read">
+    <a class="feed_scrap_link" href="./read">
      <div class="feed_scrap_img_container">
       <img class="feed_scrap_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      </div>

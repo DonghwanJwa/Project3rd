@@ -53,7 +53,7 @@ $(document).ready(function(){
    </div>
    
    <div id="book_info_author" class="book_info_about_div">
-    <a id="book_info_author_wrap" href="../profile">
+    <a id="book_info_author_wrap" href="./profile">
      <div id="book_info_author_head">
      
      </div>
@@ -81,7 +81,7 @@ $(document).ready(function(){
    <div id="book_info_article_inner">
 <% for(int i=1;i<=15;i++) { %>
     <div class="book_info_article_list">
-     <a href="../read" class="book_info_article_link">
+     <a href="./read" class="book_info_article_link">
       <div class="book_info_article_num">
 	   <em class="book_info_num_txt"><%=i%></em>
       </div>

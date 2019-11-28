@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="../resources/css/find_id.css" />
-<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/css/font.css"/>
 <script src="../resources/js/jquery.js"></script>
 <script src="../resources/js/login.js"></script>
 <title>아이디찾기 페이지입니다</title>
@@ -16,7 +16,7 @@
 		<div id="find_id_main_div">
 				<!-----------------로고------------------------>
 				<div>
-					<a href="../index.jsp"><img id="find_id_img_logo"
+					<a href="./"><img id="find_id_img_logo"
 						src="../resources/img/logo2.png" /></a>
 				</div>
 				<!--------------------링크 버튼 두개--------------------->
