@@ -1,6 +1,13 @@
 package com.jamong.service;
 
-/**임시 .java파일 (패키지 생성을 위해서)**/
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.jamong.dao.IndexDAO;
+
+@Service
 public class IndexServiceImpl implements IndexService{
 
+	@Autowired
+	private IndexDAO indexDao;
 }
