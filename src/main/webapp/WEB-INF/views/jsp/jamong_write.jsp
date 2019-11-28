@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../resources/css/write.css" />
-<script src="../resources/js/jquery.js"></script>
-<script src="../resources/js/jamong_write.js"></script>
+<link rel="stylesheet" type="text/css" href="./resources/css/write.css" />
+<script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/jamong_write.js"></script>
 <title> </title>
 </head>
 <body>
