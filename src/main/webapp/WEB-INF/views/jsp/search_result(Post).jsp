@@ -27,14 +27,14 @@
   <%-- 검색 결과 내용 --%>
   <div id="search_result_post_main">
 
-   <a href="read">
+   <a href="./read">
     <div class="post_cont">
      <img id="post_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      <div id="post_text">
       <div id="post_title">여기에 제목이 출력</div>
       <div id="post_cont">이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다.
        글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.</div>
-      <a href="profile">
+      <a href="./profile">
        <div id="post_writer">아마추어 작가</div>
       </a>
       <div id="post_tag">
@@ -44,14 +44,14 @@
     </div>
    </a>
 
-   <a href="read">
+   <a href="./read">
     <div class="post_cont">
      <img id="post_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      <div id="post_text">
       <div id="post_title">여기에 제목이 출력</div>
       <div id="post_cont">이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다.
        글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.</div>
-      <a href="profile">
+      <a href="./profile">
        <div id="post_writer">아마추어 작가</div>
       </a>
       <div id="post_tag">
@@ -61,14 +61,14 @@
     </div>
    </a>
    
-      <a href="read">
+      <a href="./read">
     <div class="post_cont">
      <img id="post_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      <div id="post_text">
       <div id="post_title">여기에 제목이 출력</div>
       <div id="post_cont">이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다.
        글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.</div>
-      <a href="profile">
+      <a href="./profile">
        <div id="post_writer">아마추어 작가</div>
       </a>
       <div id="post_tag">
@@ -85,7 +85,7 @@
       <div id="post_title">여기에 제목이 출력</div>
       <div id="post_cont">이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다.
        글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.</div>
-      <a href="profile">
+      <a href="./profile">
        <div id="post_writer">아마추어 작가</div>
       </a>
       <div id="post_tag">
@@ -95,14 +95,14 @@
     </div>
    </a>
    
-      <a href="read">
+      <a href="./read">
     <div class="post_cont">
      <img id="post_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      <div id="post_text">
       <div id="post_title">여기에 제목이 출력</div>
       <div id="post_cont">이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다.
        글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.</div>
-      <a href="profile">
+      <a href="./profile">
        <div id="post_writer">아마추어 작가</div>
       </a>
       <div id="post_tag">
@@ -112,14 +112,14 @@
     </div>
    </a>
    
-      <a href="read">
+      <a href="./read">
     <div class="post_cont">
      <img id="post_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      <div id="post_text">
       <div id="post_title">여기에 제목이 출력</div>
       <div id="post_cont">이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다.
        글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.</div>
-      <a href="profile">
+      <a href="./profile">
        <div id="post_writer">아마추어 작가</div>
       </a>
       <div id="post_tag">
@@ -129,14 +129,14 @@
     </div>
    </a>
    
-      <a href="read">
+      <a href="./read">
     <div class="post_cont">
      <img id="post_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      <div id="post_text">
       <div id="post_title">여기에 제목이 출력</div>
       <div id="post_cont">이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다.
        글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.</div>
-      <a href="profile">
+      <a href="./profile">
        <div id="post_writer">아마추어 작가</div>
       </a>
       <div id="post_tag">
@@ -146,14 +146,14 @@
     </div>
    </a>
    
-      <a href="read">
+      <a href="./read">
     <div class="post_cont">
      <img id="post_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      <div id="post_text">
       <div id="post_title">여기에 제목이 출력</div>
       <div id="post_cont">이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다.
        글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.</div>
-      <a href="profile">
+      <a href="./profile">
        <div id="post_writer">아마추어 작가</div>
       </a>
       <div id="post_tag">
@@ -163,14 +163,14 @@
     </div>
    </a>
    
-      <a href="read">
+      <a href="./read">
     <div class="post_cont">
      <img id="post_img" src="../resources/img/a.jpg" alt="그림 안나옴">
      <div id="post_text">
       <div id="post_title">여기에 제목이 출력</div>
       <div id="post_cont">이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다.
        글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.</div>
-      <a href="profile">
+      <a href="./profile">
        <div id="post_writer">아마추어 작가</div>
       </a>
       <div id="post_tag">

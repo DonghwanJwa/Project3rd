@@ -30,7 +30,7 @@
   <%-- 검색 결과 내용 --%>
   <div id="search_result_work_main">
   
-  <a href="book_info.jsp">
+  <a href="./book_info">
    <div class="work_cont">
     <img id="work_img" src="../resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
@@ -38,7 +38,7 @@
    </div>
   </a>
 
-  <a href="book_info.jsp">
+  <a href="./book_info">
    <div class="work_cont">
     <img id="work_img" src="../resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
@@ -46,7 +46,7 @@
    </div>
   </a>
   
-    <a href="book_info.jsp">
+    <a href="./book_info">
    <div class="work_cont">
     <img id="work_img" src="../resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
@@ -54,7 +54,7 @@
    </div>
   </a>
   
-    <a href="book_info.jsp">
+    <a href="./book_info">
    <div class="work_cont">
     <img id="work_img" src="../resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
@@ -62,7 +62,7 @@
    </div>
   </a>
   
-    <a href="book_info.jsp">
+    <a href="./book_info">
    <div class="work_cont">
     <img id="work_img" src="../resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
@@ -70,7 +70,7 @@
    </div>
   </a>
   
-    <a href="book_info.jsp">
+    <a href="./book_info">
    <div class="work_cont">
     <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
@@ -78,7 +78,7 @@
    </div>
   </a>
   
-    <a href="book_info.jsp">
+    <a href="./book_info".jsp">
    <div class="work_cont">
     <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
@@ -86,7 +86,7 @@
    </div>
   </a>
   
-    <a href="book_info.jsp">
+    <a href="./book_info">
    <div class="work_cont">
     <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
     <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>

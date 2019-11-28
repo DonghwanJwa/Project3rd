@@ -93,7 +93,7 @@
     </a>
    </div>
    <div class="feed_new_cont_article">
-    <a href="../book_info">
+    <a href="./book_info">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="../resources/img/cat_writer_face4.jpg"/>
      </div>
