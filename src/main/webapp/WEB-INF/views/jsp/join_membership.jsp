@@ -12,12 +12,12 @@
 </head>
 <body>
 <div id ="join_membership_main_wrap">
-		<form method="post" action="../index" onsubmit="return join_membership();">
+		<form method="post" action="/" onsubmit="return join_membership();">
 	
 	<div id="join_membership_main_div">
 		<!-------------------------------로고------------------------------------>
 		<div id="join_membership_img_logo">
-			<a href="../index"><img src="../resources/img/logo2.png" /></a>
+			<a href="./"><img src="../resources/img/logo2.png" /></a>
 		</div>
 		<label id="join_membership_label">JA-MONG 계정 만들기</label>
 			<!-------------------------------아이디, 비번, 비번확인, 이름,------------------------------------>			

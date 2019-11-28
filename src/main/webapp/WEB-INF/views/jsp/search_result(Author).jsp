@@ -31,7 +31,7 @@
 
    <div class="author_cont">
 
-  <a href="profile">
+  <a href="./profile">
     <div id="search_result_author_profile">
      <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
@@ -45,7 +45,7 @@
     </div>
     </a>
 
-    <a href="profile">
+    <a href="./profile">
      <div id="search_result_author_profile">
       <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
       <div id="search_result_author_profile_info">
@@ -61,7 +61,7 @@
      </div>
     </a>
 
-<a href="profile">
+<a href="./profile">
     <div id="search_result_author_profile">
      <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
@@ -75,7 +75,7 @@
     </div>
     </a>
     
-    <a href="profile">
+    <a href="./profile">
     <div id="search_result_author_profile">
      <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
@@ -89,7 +89,7 @@
     </div>
     </a>
     
-    <a href="profile">
+    <a href="./profile">
     <div id="search_result_author_profile">
      <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
@@ -103,7 +103,7 @@
     </div>
     </a>
     
-    <a href="profile">
+    <a href="./profile">
     <div id="search_result_author_profile">
      <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
@@ -117,7 +117,7 @@
     </div>
     </a>
     
-    <a href="profile">
+    <a href="./profile">
     <div id="search_result_author_profile">
      <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
@@ -131,7 +131,7 @@
     </div>
     </a>
     
-    <a href="profile">
+    <a href="./profile">
     <div id="search_result_author_profile">
      <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
@@ -145,7 +145,7 @@
     </div>
     </a>
     
-    <a href="profile">
+    <a href="./profile">
     <div id="search_result_author_profile">
      <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">
@@ -159,7 +159,7 @@
     </div>
     </a>
     
-    <a href="profile">
+    <a href="./profile">
     <div id="search_result_author_profile">
      <img id="search_result_author_profile_img" src="../resources/img/profile.jpg" alt="프로필 사진">
      <div id="search_result_author_profile_info">

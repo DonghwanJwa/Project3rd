@@ -150,7 +150,7 @@
   	    </table>
   	    <p class="inq_desc_more">
   	    더 자세한 내용에 대해서는
-  	    <a class="inq_link_more" href="../index"
+  	    <a class="inq_link_more" href="./"
   	    target="_blank">자몽 개인정보처리방침</a>
   	    을 참고하시기 바랍니다.
   	    </p>

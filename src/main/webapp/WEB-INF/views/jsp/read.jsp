@@ -116,8 +116,8 @@ MVC ( Model, View, Controller ）의 개념 )<br/>
 		<%-- 작가 프로필 --%>
 		<div id="author_profile">
 			<%-- 프로필사진, 이름 --%>
-			<a href="../profile"><img class="author_img" src=../resources/img/a.jpg width="90" height="90" alt="글쓴이 프로필사진"/></a>
-			<a href="../profile"><span><strong>글쓴이 프로필 명</strong></span></a>
+			<a href="./profile"><img class="author_img" src=../resources/img/a.jpg width="90" height="90" alt="글쓴이 프로필사진"/></a>
+			<a href="./profile"><span><strong>글쓴이 프로필 명</strong></span></a>
 			
 			<%-- 작가 키워드 --%>
 			<div class="author_keyword">
@@ -139,7 +139,7 @@ MVC ( Model, View, Controller ）의 개념 )<br/>
 			<%-- 구독/제안 버튼부 --%>
 			<div class="author_button_wrap">
 				<a href="#" class="subscribe">구독하기</a>
-				<a href="../jsp/offer_author.jsp" class="offer">제안하기</a>
+				<a href="./offer_author" class="offer">제안하기</a>
 				<a class="accuse_page_open" onclick="accuseShow();" title="신고하기"><img src="../resources/img/warring.png" /></a>
 			</div>
 		</div>
@@ -151,8 +151,8 @@ MVC ( Model, View, Controller ）의 개념 )<br/>
 			</div>
 			<div class="hide_comment" style="display:none;">
 				<div class="comment_frame">
-					<a href="../profile"><img class="comment_user_img" src=../resources/img/a.jpg width="50" height="50"/></a>
-					<a href="../profile" class="comment_user_name"><span >사용자 1</span></a>
+					<a href="./profile"><img class="comment_user_img" src=../resources/img/a.jpg width="50" height="50"/></a>
+					<a href="./profile" class="comment_user_name"><span >사용자 1</span></a>
 					<p class="comment_cont">댓글입니다.</p><br/>
 					<span class="comment_date">2019-10-15 00:00:00</span>
 					<div class="reply_hide_wrap"><a class="comment_reply" onclick="replyHide();">답글</a></div>
