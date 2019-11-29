@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../resources/css/pass_modify.css" />
-<link rel="stylesheet" type="text/css" href="../resources/css/font.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/pass_modify.css" />
+<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
 <title>비밀번호수정페이지입니다</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
 				<!-----------------로고------------------------>
 				<div>
 					<a href="./"><img id="pass_modify_img_logo"
-						src="../resources/img/logo2.png" /></a>
+						src="./resources/img/logo2.png" /></a>
 				</div>
 				
 				<label id="pass_modify_label">비밀번호 확인</label>
