@@ -4,15 +4,15 @@
 $(document).ready(function() {
 	//post 버튼 클릭
 	$("#search_type_btn_post").click(function(){
-		location="../jsp/search_result(Post).jsp";
+		location="./search?result=post";
 	});
 	//work 버튼 클릭
 	$("#search_type_btn_work").click(function(){
-		location="../jsp/search_result(Work).jsp";
+		location="./search?result=work";
 	});
 	//author 버튼 클릭
 	$("#search_type_btn_author").click(function(){
-		location="../jsp/search_result(Author).jsp";
+		location="./search?result=author";
 	});
 	//정확도 정렬
 	$("#btn_accuracy").click(function() {

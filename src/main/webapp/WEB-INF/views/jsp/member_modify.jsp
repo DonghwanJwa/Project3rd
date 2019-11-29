@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../resources/css/member_modify.css" />
-<link rel="stylesheet" type="text/css" href="../resources/css/font.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/member_modify.css" />
+<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
 <script src="./resources/js/login.js"></script>
 <title>회원정보수정페이지입니다</title>
 </head>
@@ -13,7 +13,7 @@
 <div id="member_modify_main_wrap">
 	<form id="member_modify_form" method="post" action="/">
 	<div id="member_modify_main_div">
-	<div id="member_modify_img_logo"><a href="./"><img src="../resources/img/logo2.png" /></a></div>
+	<div id="member_modify_img_logo"><a href="./"><img src="./resources/img/logo2.png" /></a></div>
 		<label id="member_modify_label">회원가입 페이지 입니다!</label>
 		<!-- 두개로 나눠진 디브 -->
 	
