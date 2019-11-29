@@ -10,7 +10,7 @@
        <a class=cat_writer_a href="./profile">
       	<div id=cat_writer_list1>
        		<div id=cat_writer_face1>
-        		<img class="cat_face_img" src="../resources/img/cat_writer_face1.jpg" alt="작가이미지" />
+        		<img class="cat_face_img" src="./resources/img/cat_writer_face1.jpg" alt="작가이미지" />
        		</div>
        		<div class=cat_writer_name><strong>좌동환</strong></div>
        		<div id=cat_write_count1>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;25개</div>
@@ -25,7 +25,7 @@
         <a class=cat_writer_a href="./profile">
           <div id=cat_writer_list2>
         	<div id=cat_writer_face2>
-         		<img class="cat_face_img" src="../resources/img/cat_writer_face2.jpg" alt="작가이미지" />
+         		<img class="cat_face_img" src="./resources/img/cat_writer_face2.jpg" alt="작가이미지" />
          	</div>
          	<div class=cat_writer_name><strong>최하늘</strong></div>
          	<div id=cat_write_count2>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;30개</div>
@@ -40,7 +40,7 @@
          <a class=cat_writer_a href="./profile">
         	<div id=cat_writer_list3>
          		<div id=cat_writer_face3>
-          			<img class="cat_face_img" src="../resources/img/cat_writer_face3.png" alt="작가이미지" />        
+          			<img class="cat_face_img" src="./resources/img/cat_writer_face3.png" alt="작가이미지" />        
          		</div>
          		<div class=cat_writer_name><strong>이상헌</strong></div>
         		<div id=cat_write_count3>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;40개</div>
@@ -55,7 +55,7 @@
           <a class=cat_writer_a href="./profile">
          	<div id=cat_writer_list4>
          		 <div id=cat_writer_face4>
-           			<img class="cat_face_img" src="../resources/img/cat_writer_face4.jpg" alt="작가이미지" />
+           			<img class="cat_face_img" src="./resources/img/cat_writer_face4.jpg" alt="작가이미지" />
           		 </div>
          		 <div class=cat_writer_name><strong>노광훈</strong></div>
          		 <div id=cat_write_count4>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;45개</div>
@@ -70,7 +70,7 @@
            <a class=cat_writer_a href="./profile">
           		<div id=cat_writer_list5>
            			<div id=cat_writer_face5>
-            			<img class="cat_face_img" src="../resources/img/cat_writer_face5.png" alt="작가이미지" />
+            			<img class="cat_face_img" src="./resources/img/cat_writer_face5.png" alt="작가이미지" />
            			</div>
           			<div class=cat_writer_name><strong>김학영</strong></div>
           			<div id=cat_write_count5>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;50개</div>
@@ -83,11 +83,16 @@
           		</div>
           </a>
      </div>
+     <div class=cat_write_button>
+     	<input type="button" id="cat_write_button" class="cat_write_btn" value="글">
+     	<input type="button" id="cat_book_button" class="cat_book_btn" value="책">
+     	 
+     </div>
    </div>
 	<div class=cat_writing_block>
 	 <div class=cat_writing>
 	  <div class="cat_writing_img-div">
-	   <img class="cat_writing_img" src="../resources/img/joker.jpg" alt="글" />
+	   <img class="cat_writing_img" src="./resources/img/joker.jpg" alt="글" />
 	  </div>
 	 <a class=cat_write_top href="./read">
 	  <div class=cat_writing_top>
@@ -106,7 +111,7 @@
 	<div class=cat_writing_block>
 	 <div class=cat_writing>
 	  <div class="cat_writing_img-div">
-	   <img class="cat_writing_img" src="../resources/img/write1.jpg" alt="글" />
+	   <img class="cat_writing_img" src="./resources/img/write1.jpg" alt="글" />
 	  </div>
 	 <a class=cat_write_top href="./read">
 	  <div class=cat_writing_top>
@@ -125,7 +130,7 @@
 	<div class=cat_writing_block>
 	 <div class=cat_writing>
 	  <div class="cat_writing_img-div">
-	   <img class="cat_writing_img" src="../resources/img/write2.jpg" alt="글" />
+	   <img class="cat_writing_img" src="./resources/img/write2.jpg" alt="글" />
 	  </div>
 	 <a class=cat_write_top href="./read">
 	  <div class=cat_writing_top>
@@ -144,7 +149,7 @@
 	<div class=cat_writing_block>
 	 <div class=cat_writing>
 	  <div class="cat_writing_img-div">
-	   <img class="cat_writing_img" src="../resources/img/write3.jpg" alt="글" />
+	   <img class="cat_writing_img" src="./resources/img/write3.jpg" alt="글" />
 	  </div>
 	 <a class=cat_write_top href="./read">
 	  <div class=cat_writing_top>

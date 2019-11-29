@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<link rel="stylesheet" type="text/css" href="../resources/css/inquire.css"/>
+<link rel="stylesheet" type="text/css" href="./resources/css/inquire.css"/>
 <article class=inq_main_art>
   <h3 class=inq_title>문의하기</h3>
   <span class=inq_required>*필수입력 사항</span>
