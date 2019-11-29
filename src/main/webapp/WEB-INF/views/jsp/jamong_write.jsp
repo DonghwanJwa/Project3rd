@@ -39,6 +39,11 @@
        <button type="button" class="write_icon_btn" title="커버 이미지" >
         <i id="write_title_coverimage_icon"></i>
        </button>
+       <div class="write_file_form">
+        <form target="write_frame_1" enctype="multipart/form-data" encoding="multipart/form-data" action="write_cover_ok" method="post" id="write_upload_form_1">
+         <input id="write_cover_file"type="file" name="file" accept="image/*" title="커버 이미지" />
+        </form>
+       </div>
       </div>
       <div class="write_button_wrap write_background_icon">
        <button type="button" class="write_icon_btn" title="배경색">
@@ -64,6 +69,11 @@
        <button type="button" class="write_icon_btn" title="이미지" >
         <i id="write_cont_image_icon"></i>
        </button>
+       <div class="write_file_form">
+        <form target="write_frame_2" enctype="multipart/form-data" encoding="multipart/form-data" action="write_cover_ok" method="post" id="write_upload_form_2">
+         <input id="write_image_file" type="file" name="file" title="이미지" accept="image/*" multiple="true" />
+        </form>
+        </div>
       </div>
       <div class="write_button_wrap">
        <button type="button" class="write_icon_btn" title="동영상링크">
