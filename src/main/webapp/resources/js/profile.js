@@ -142,7 +142,7 @@ $(document).ready(function() {
 	$('.profile_edit_btn1').click(function() {
 		var result = confirm('편집 중인 내용을 저장하지 않고 나가시겠습니까?');
 		if (result) {
-			location.replace('profile.jsp');
+			location.replace('profile');
 		} else {}
 	});
 })
