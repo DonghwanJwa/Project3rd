@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="../resources/css/new_post.css" />
+<link rel="stylesheet" type="text/css" href="./resources/css/new_post.css" />
 
 <div id="new_post_title">최신 글</div>
 
@@ -11,7 +11,7 @@
  <div id="new_post_loading">
 
   <div id="new_post_loading_cont">
-   <img id="new_post_loading_cont_img" src="../resources/img/bookshelve_back.jpg">
+   <img id="new_post_loading_cont_img" src="./resources/img/bookshelve_back.jpg">
    <div id="new_post_loading_cont_text">
     <div id="new_post_loading_cont_text_title">게으름뱅이의 고백</div>
     <div id="new_post_loading_cont_text_cont">내 일상을 어떤 색으로 채우고싶나 | 회사를 그만두고 가장 힘들었던 일 중의 하나는
@@ -27,7 +27,7 @@
   </div>
   
   <div id="new_post_loading_cont">
-   <img id="new_post_loading_cont_img" src="../resources/img/bookshelve_back.jpg">
+   <img id="new_post_loading_cont_img" src="./resources/img/bookshelve_back.jpg">
    <div id="new_post_loading_cont_text">
     <div id="new_post_loading_cont_text_title">게으름뱅이의 고백</div>
     <div id="new_post_loading_cont_text_cont">내 일상을 어떤 색으로 채우고싶나 | 회사를 그만두고 가장 힘들었던 일 중의 하나는
@@ -43,7 +43,7 @@
   </div>
   
   <div id="new_post_loading_cont">
-   <img id="new_post_loading_cont_img" src="../resources/img/bookshelve_back.jpg">
+   <img id="new_post_loading_cont_img" src="./resources/img/bookshelve_back.jpg">
    <div id="new_post_loading_cont_text">
     <div id="new_post_loading_cont_text_title">게으름뱅이의 고백</div>
     <div id="new_post_loading_cont_text_cont">내 일상을 어떤 색으로 채우고싶나 | 회사를 그만두고 가장 힘들었던 일 중의 하나는
@@ -59,7 +59,7 @@
   </div>
   
   <div id="new_post_loading_cont">
-   <img id="new_post_loading_cont_img" src="../resources/img/bookshelve_back.jpg">
+   <img id="new_post_loading_cont_img" src="./resources/img/bookshelve_back.jpg">
    <div id="new_post_loading_cont_text">
     <div id="new_post_loading_cont_text_title">게으름뱅이의 고백</div>
     <div id="new_post_loading_cont_text_cont">내 일상을 어떤 색으로 채우고싶나 | 회사를 그만두고 가장 힘들었던 일 중의 하나는
@@ -75,7 +75,7 @@
   </div>
   
   <div id="new_post_loading_cont">
-   <img id="new_post_loading_cont_img" src="../resources/img/bookshelve_back.jpg">
+   <img id="new_post_loading_cont_img" src="./resources/img/bookshelve_back.jpg">
    <div id="new_post_loading_cont_text">
     <div id="new_post_loading_cont_text_title">게으름뱅이의 고백</div>
     <div id="new_post_loading_cont_text_cont">내 일상을 어떤 색으로 채우고싶나 | 회사를 그만두고 가장 힘들었던 일 중의 하나는
