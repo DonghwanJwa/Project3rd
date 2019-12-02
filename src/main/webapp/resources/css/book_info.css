@@ -45,24 +45,37 @@
     transform: translate(-50%);
 }
 #book_info_cover_head{
-	height: 220px;
-    padding-top: 80px;
+	height: 240px;
+	margin:0 50px;
+	margin-top:90px;
+	background:#ffffffe0;
+	color:#959595;
 }
 #book_info_cover_title{
 	display: block;
-    margin: 0 50px;
-    font-size: 30px;
-    color: #fff;
-}
-#book_info_cover_bot{
-	height: 40px;
-    padding-top: 20px;
+    margin: 0;
+    padding: 0px 15px;
+    padding-top: 30px;
+    font-size: 23px;
+    height: 150px;
 }
 #book_info_cover_author{
 	display: block;
-    margin: 0 50px;
-    font-size: 20px;
-    color: #fff;
+	margin:0;
+	padding: 0px 15px;
+	height:40px;
+	font-size:16px;
+	line-height: 40px;
+}
+#book_info_cover_bot{
+	display:block;
+	height:40px;
+	margin:0;
+	padding:0 15px;
+	padding-top:60px;
+	font-size:16px;
+	color:#fff;
+	font-weight: bold;
 }
 #book_info_cover_line{
 	width: 11px;
