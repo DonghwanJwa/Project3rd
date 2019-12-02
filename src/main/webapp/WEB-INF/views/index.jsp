@@ -270,7 +270,7 @@ $(document).ready(function(){
 	 for(int i=1;i<=15;i++){      
 %>
 	   <li class="head-page-category-item">
-	    <a href="./category">
+	    <a href="./category?directory=articles">
 	    카테고리	    
 	    </a>
 	   </li>

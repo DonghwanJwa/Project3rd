@@ -163,7 +163,9 @@
   	    </div>
   	   </div>
   	   <div class="inq_wrap_btn">
-  	    <button class="inq_btn_cs" type="submit">문의접수
+  	    <button class="inq_btn_cs" type="submit" 
+  	    onclick="location.href='http://localhost:8018/jamong.com/'">
+  	    	문의접수 
   	    </button>
   	   </div>
   	</fieldset>

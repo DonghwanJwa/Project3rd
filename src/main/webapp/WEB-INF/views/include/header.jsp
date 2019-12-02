@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="./resources/css/font.css"/> <%-- 폰트 적용 css --%>
 <link rel="stylesheet" type="text/css" href="./resources/css/header.css" />
-<link rel="stylesheet" type="text/css" href="./resources/css/category.css" />
+
 <script src="./resources/js/jquery.js"></script>
 <script type="text/javascript" src="./resources/js/main.js"></script>
 <title>글에 꿈을 담다, 자몽</title>

@@ -14,11 +14,15 @@ public class FavoriteController {
 	private FavoriteService favService;
 	
 	@RequestMapping("category")
-	public ModelAndView user_category() {
+	public ModelAndView user_category(String directory) {
 		ModelAndView mv=new ModelAndView();
 		
+		if(directory.equals("articles")) {
 		mv.setViewName("jsp/category");
-		
+		}else if(directory.equals("books")) {
+			mv.setViewName("jsp/category(book)");
+		}// if else if
+			
 		return mv;
 	}
 }
