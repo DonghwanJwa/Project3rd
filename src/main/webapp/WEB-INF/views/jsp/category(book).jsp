@@ -86,8 +86,8 @@
      
    	<!-- 글,책 버튼  -->  
      <div class=cat_write_button>
-        <input type="button" id="cat_write_button" class="cat_write_btn" value="Article"  onclick="location.href='category?directory=articles'" >
-     	<input type="button" id="cat_book_button" class="cat_book_btn" value="Book" onclick="location.href='category?directory=books'"/>
+     	<input type="button" id="cat_book_button" class="cat_write_btn" value="Article" onclick="location.href='category?directory=articles'"/>
+        <input type="button" id="cat_write_button" class="cat_book_btn" value="Book"  onclick="location.href='category?directory=books'"/ >
      </div>
    </div>
    
