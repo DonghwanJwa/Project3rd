@@ -17,8 +17,8 @@
 
 		<div id="join_membership_main_div">
 			<!-------------------------------로고------------------------------------>
-			<div id="join_membership_img_logo" >
-				<a href="./"><img src="./resources/img/logo2.png" /></a>
+			<div id="join_membership_img_logo" tabindex="0">
+				<a href="./"><img src="./resources/img/logo2.png" tabindex="0"/></a>
 			</div>
 
 			<div id="join_membership_sequence_box">
@@ -36,7 +36,7 @@
 			<div id="join_membership_sub_div_1">
 
 				<input placeholder="아이디" class="join_membership_text"
-					id="join_membership_id" tabindex="1" onkeydown="JavaScript:Enter_Check();" />
+					id="join_membership_id" tabindex="1" />
 				<div class="join_membership_error" id="join_membership_error_id"></div>
 
 
