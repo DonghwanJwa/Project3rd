@@ -37,25 +37,57 @@ function scrollmove(whereScroll,howMove){
 	}, 1);
 }
 
+/*메뉴바 Best,Hot 페이징버튼*/
 function hotscroll(where,number){
-	var scrollMove = $("#head-page-"+where+"-list-frame").width();
-	$("#head-page-"+where+"-list-frame").scrollLeft(scrollMove*(5-number));
+	scrollAmount = 0; 
+	var hotContainer = document.getElementById("head-page-"+where+"-list-frame");
+	var hotScrollMove = $("#head-page-"+where+"-list-frame").width();/* 사진 1장의 가로길이 */
+	var hotSlideTimer = setInterval(function(){
+		if(hotScrollMove*(number-1)>hotContainer.scrollLeft){/*누른버튼의 숫자가 현재 보여지는 페이지 숫자보다 작으면*/
+			hotContainer.scrollLeft += hotScrollMove/20;
+		}else if(hotScrollMove*(number-1)<hotContainer.scrollLeft){/*누른버튼의 숫자가 현재 보여지는 페이지 숫자보다 크면*/
+			hotContainer.scrollLeft -= hotScrollMove/20;
+		}else{/*같은버튼을 눌렀을 때*/
+			window.clearInterval(hotSlideTimer);
+		}
+		
+		if(hotContainer.scrollLeft==hotScrollMove*(number-1)){//원하는 페이지까지 이동이되면 쓰레드 중지
+			window.clearInterval(hotSlideTimer);			
+		}
+	},1);
 }
 
 $(document).ready(function(){
 	/*검색버튼*/
 	$('#head-menu_search-button').click(function(){
-		$('#head-menu_search-text').css('visibility','visible');
-		$('#head-menu_search-text').css('opacity','1');
-		setTimeout(function(){$('#head-menu_search-text').focus();},400);
-	});
-	
-	/*검색필드 포커스아웃*/
-	$('#head-menu_search-text').blur(function(){
-		$('#head-menu_search-text').css('visibility','hidden');
-		$('#head-menu_search-text').css('opacity','0');
+		if($('#head-menu_search-text').css('opacity')=='0'){//검색창 숨겨져있을 때
+			$('#head-menu_search-text').css('width','140px');
+			$('#head-menu_search-text').css('opacity','1');
+			setTimeout(function(){$('#head-menu_search-text').focus();},400);
+		}else{//검색창이 드러나있을 때
+			if(!$.trim($('#head-menu_search-text').val())==""){	
+				location.href = "./search?result=post"
+				$('#head-menu_search-text').val('');
+	    	}       
+		}
 	});
 
+	/*검색필드 포커스아웃*/
+	$('#head-menu_search-text').blur(function(){
+		$('#head-menu_search-text').css('width','0');
+		$('#head-menu_search-text').css('opacity','0');
+		setTimeout(function(){$('#head-menu_search-text').val('');},400);
+	});
+	
+	/*검색input에서 검색어입력후 앤터눌렀을 때*/
+	$('#head-menu_search-text').keyup(function(e) {
+		if(!$.trim($('#head-menu_search-text').val())==""){
+			if (e.keyCode == 13){			
+				location.href = "./search?result=post"
+			}
+		}       
+	});
+	
 	/*메뉴버튼*/
 	$('#head-menu-button').click(function(){		
 		if($('#head-menu_page').css('left')==$('html').css('width')){

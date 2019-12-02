@@ -1,7 +1,7 @@
-<%-- <jsp:include page="../include/header.jsp" /> 사용하여 해더연결--%>
+<%-- <%@ include file="../include/header.jsp" %> 사용하여 해더연결--%>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,17 +12,6 @@
 <script src="./resources/js/jquery.js"></script>
 <script type="text/javascript" src="./resources/js/main.js"></script>
 <title>글에 꿈을 담다, 자몽</title>
-<script>
-	$(document).ready(function() {
-		$('#head-menu_search-text').keyup(function(e) {
-			if (!$.trim($('#head-menu_search-text').val()) == "") {
-				if (e.keyCode == 13) {
-					location.href = "./search?result=post"
-				}
-			}
-		});
-	});
-</script>
 </head>
 <body>
 <%@ include file="../jsp/request_author.jsp" %>
@@ -82,16 +71,16 @@
       </div>
       <div id="head-page-best-list-frame">
        <ul id="head-page-best-list">
-<%
-	 	for(int i=1;i<=5;i++){
-%>			
+       
+		<c:forEach var="i" begin="1" end="5" step="1">	
 	    <li class="head-page-best-item">
 	     <a href="./read" class="head-page-link">
-	      <%if(i%2==1){%>
-	      <img src="./resources/img/a.jpg"/>
-	      <%}else {%>
-	      <img src="./resources/img/b.jpg"/>
-	      <%}%>
+	      <c:if test="${i%2==1}">
+	       <img src="./resources/img/a.jpg"/>
+	      </c:if>
+	      <c:if test="${i%2!=1}">
+	       <img src="./resources/img/b.jpg"/>
+	      </c:if>
 	      <div class="head-page-cont">	      
 	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
 	       <span class="head-page-sub-title">경력 10년차에 퇴사하고 캐나다로 떠난 여행</span>	     	    
@@ -99,38 +88,21 @@
 	      </div>
 	     </a>
 	    </li>
-<% 			
-	 	}
-%>
+		</c:forEach>
+		
 	   </ul>
 	   </div>
 	   <div class="head-item-scroll">
 	    <ul class="head-item-scroll-list">
+	    
+	     <c:forEach var="i" begin="1" end="5" step="1">
 		 <li class="head-item-scroll-item">
-		  <a href="#" class="head-item-scroll-link1" onclick="hotscroll('best',1);">
+		  <a class="head-item-scroll-link${i}" onclick="hotscroll('best',${i});">
 		   <span>&nbsp;</span>
 		  </a>
-		 </li>
-		 <li class="head-item-scroll-item">
-		  <a href="#" class="head-item-scroll-link2" onclick="hotscroll('best',2);">
-		   <span>&nbsp;</span>
-		  </a>
-		 </li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link3" onclick="hotscroll('best',3);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link4" onclick="hotscroll('best',4);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link5" onclick="hotscroll('best',5);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>		
+		 </li>		
+		</c:forEach>
+		
 	   </ul>
 	  </div>
      </div>
@@ -142,16 +114,16 @@
       </div>
       <div id="head-page-hot-list-frame">
        <ul id="head-page-hot-list">
-<%
-	 	for(int i=1;i<=5;i++){
-%>			
+       
+		<c:forEach var="i" begin="1" end="5" step="1">			
 	    <li class="head-page-hot-item">
 	     <a href="./read" class="head-page-link">
-	      <%if(i%2==1){%>
-	      <img src="./resources/img/b.jpg"/>
-	      <%}else {%>
-	      <img src="./resources/img/a.jpg"/>
-	      <%}%>
+	      <c:if test="${i%2==1}">
+	       <img src="./resources/img/a.jpg"/>
+	      </c:if>
+	      <c:if test="${i%2!=1}">
+	       <img src="./resources/img/b.jpg"/>
+	      </c:if>
 	      <div class="head-page-cont">	      
 	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
 	       <span class="head-page-sub-title">경력 10년차에 퇴사하고 캐나다로 떠난 여행</span>	     	    
@@ -159,75 +131,55 @@
 	      </div>
 	     </a>
 	    </li>
-<% 			
-	 	}
-%>
+		</c:forEach>
+		
 	   </ul>
 	   </div>
 	   <div class="head-item-scroll">
-	    <ul class="head-item-scroll-list">
+	    <ul class="head-item-scroll-list"> 
+	    
+	    <c:forEach var="i" begin="1" end="5" step="1">
 		 <li class="head-item-scroll-item">
-		  <a href="#" class="head-item-scroll-link1" onclick="hotscroll('hot',1);">
+		  <a class="head-item-scroll-link${i}" onclick="hotscroll('hot',${i});">
 		   <span>&nbsp;</span>
 		  </a>
-		 </li>
-		 <li class="head-item-scroll-item">
-		  <a href="#" class="head-item-scroll-link2" onclick="hotscroll('hot',2);">
-		   <span>&nbsp;</span>
-		  </a>
-		 </li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link3" onclick="hotscroll('hot',3);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link4" onclick="hotscroll('hot',4);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link5" onclick="hotscroll('hot',5);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>		
+		 </li>		
+		</c:forEach>
+		
 	   </ul>
 	  </div>
      </div>
     </div>
     
-    <%-- category --%>
+   <%-- category --%>
     <div id="head-page-category-wrap">
      <div id="head-page-category-frame">
       <ul id="head-page-category-list">
-<%
-	 for(int i=1;i<=15;i++){      
-%>
+
+	   <c:forEach begin="1" end="15" step="1">
 	   <li class="head-page-category-item">
-	    <a href="./category">
+	    <a href="./category?directory=articles">
 	    카테고리	    
 	    </a>
 	   </li>
-<%
-	 }
-%>
+	   </c:forEach>
+	   
 	  </ul>
      </div>
     </div>
     
     <%-- profile --%>
+    <%-- 로그인 전 --%>
+    <c:if test="${empty id}">
     <div id="head-page-profile-wrap">
      <div id="head-profile-menu">
-      <a href="./feed" class="head-feed-button">
-       <img src="./resources/img/feed.png" alt="피드"/>
-      </a>
      </div>
-     <a href="./profile" id="head-profile-info-wrap">
+     <a id="head-profile-info-wrap">
       <div id="head-profile-info-img-wrap">
        <img id="head-profile-info-img" src="./resources/img/profile_logout.png">
       </div>
       <div id="head-profile-name-wrap">
-       <strong>프로필명</strong>
+       <strong></strong>
       </div>
      </a>
      <div id="head-profile-service-wrap">
@@ -246,10 +198,55 @@
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
+       <li id="head-profile-service-hr"><span class="head-profile-service-bar"></span></li>
+       <li id="head-profile-service-rec-writing">
+        <a href="./new_posts">
+         <span class="head-profile-service-bar-left"></span>
+       		 <b>최신 글</b>
+         <span class="head-profile-service-bar-right"></span>
+        </a>
+       </li>
+       <li id="head-profile-service-rec-book">
+        <a href="./new_book">
+         <span class="head-profile-service-bar-left"></span>
+        	<b>최신 책</b>
+         <span class="head-profile-service-bar-right"></span>
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+    </c:if>
+    
+    <%-- 로그인 후 --%>
+    <c:if test="${!empty id}">
+    <div id="head-page-profile-wrap">
+     <div id="head-profile-menu">
+      <a href="./feed" class="head-feed-button">
+       <img src="./resources/img/feed.png" alt="피드"/>
+      </a>
+     </div>
+     <a href="./profile" id="head-profile-info-wrap">
+      <div id="head-profile-info-img-wrap">
+       <img id="head-profile-info-img" src="./resources/img/profile_logout.png">
+      </div>
+      <div id="head-profile-name-wrap">
+       <strong>프로필명</strong>
+      </div>
+     </a>
+     <div id="head-profile-service-wrap">
+      <ul>
        <li id="head-profile-service-write" class="head-profile-stat-login">
-        <a href="./jamong_write">
+        <a href="./write">
          <span class="head-profile-service-bar-left"></span>
        		 <b>글쓰기</b>
+         <span class="head-profile-service-bar-right"></span>
+        </a>
+       </li>
+       <li id="head-profile-service-setting" class="head-profile-stat-login">
+        <a href="./pass_modify">
+         <span class="head-profile-service-bar-left"></span>
+        	<b>내 설정</b>
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
@@ -268,13 +265,6 @@
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
-       <li id="head-profile-service-setting" class="head-profile-stat-login">
-        <a href="./pass_modify">
-         <span class="head-profile-service-bar-left"></span>
-        	<b>내 설정</b>
-         <span class="head-profile-service-bar-right"></span>
-        </a>
-       </li>
        <li id="head-profile-service-logout" class="head-profile-stat-login">
         <a href="#">
          <span class="head-profile-service-bar-left"></span>
@@ -285,6 +275,7 @@
       </ul>
      </div>
     </div>
+    </c:if>
    </div> <%-- menu-page-wrap --%>
   </div> <%-- menu-page-wrap --%>
  </div> <%-- header-wrap --%>

@@ -60,14 +60,13 @@ body{
 
 #head-menu_search-text{
 	display:inline-block;
-	width:140px;
+	width:0;
 	height:30px;
 	margin-right:10px;
-	visibility: hidden;
 	outline:none;
 	opacity:0;
-	transition:visibility 0.33s, opacity 0.33s linear;
-	-webkit-transition:visibility 0.33s, opacity 0.33s linear;
+	transition:width 0.33s linear, opacity 0.33s linear;
+	-webkit-transition:width 0.33s linear, opacity 0.33s linear;
 }
 
 #head-menu-button{
@@ -238,6 +237,9 @@ body{
 	padding:0;
 	justify-content:center
 }
+.head-item-scroll-item{
+	cursor: pointer;
+}
 
 .head-item-scroll-item span{
 	display:inline-block;
@@ -342,9 +344,9 @@ body{
 	width:200px;
 }
 #head-profile-service-wrap{
-	height:280px;
+	height:270px;
 	width:200px;
-	margin-top:30px;
+	margin-top:40px;
 }
 #head-profile-service-wrap ul{
 	list-style: none;
@@ -355,12 +357,13 @@ body{
 #head-profile-service-wrap li{
 	margin:10px 20px;
 	color:#3d3d3d; 
-	font-size:15px;
-	font-weight: bold;
+	padding: 3px 0;
 }
 #head-profile-service-wrap b{
 	display:inline-block;
 	width:90px;
+	font-weight:normal;
+	font-size:17px;
 }
 
 #head-profile-service-wrap a{
@@ -379,6 +382,15 @@ body{
 }
 #head-profile-service-wrap a:hover .head-profile-service-bar-right{
 	border-bottom:1px solid #FBA621;
+}
+
+#head-profile-service-hr{ /*프로필 중앙선 li*/
+	paddding:10px 0;
+}
+
+.head-profile-service-bar{
+	display:block;
+	border:0.5px solid #3d3d3d; 
 }
 
 .head-profile-service-bar-left{
@@ -478,7 +490,7 @@ body{
 	margin:0 50px;
 	margin-top:80px;
 	background:#ffffffe0;
-	color:#959595;
+	color:#333;
 }
 
 .book-item-head-inner-cont-top strong{
@@ -575,9 +587,9 @@ body{
 }
 
 .recom_writting-item{
-	border: medium solid #c0c0c0;
+	border: 1.5px solid #c0c0c0;
 	margin: 15px 30px;
-	box-shadow:3px 3px 3px #636569;
+	box-shadow: 12px 18px 13px #636569;
 }
 .recom_writting-item .link_item{
 	text-decoration: none;
@@ -690,13 +702,13 @@ body{
 }
 .recom_author-item-intro strong{
 	font-size:20px;
-	color:#797979;
+	color:#333;
 	display:block;
 	margin-top:15px;
 }
 .recom-author-job{
 	font-size:14px;
-	color:#797979;
+	color:#333;
 	display:block;
 	margin-top:5px;
 }
@@ -708,13 +720,13 @@ body{
 	word-wrap: break-word;	/*엔터처리시에 단어단위로 끊어서 사용.*/
 	text-overflow: ellipsis;/*문자 over되는거 ...처리*/
 	display: -webkit-box; 
-	-webkit-line-clamp: 4; /* 라인수 */ 
+	-webkit-line-clamp: 3; /* 라인수 */ 
 	-webkit-box-orient: vertical;
-	line-height: 1.2em; 
-	height: 4.7em; 
-	/* line-height 가 1.2em 이고 4라인을 자르기 때문에 height는 
-		1.2em * 4 = 4.8em ....아래가 조금 보여서 4.7로 줄임*/
-	margin-top:10px;	
+	line-height: 1.4em; 
+	height: 4.1em; 
+	/* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 
+		1.4em * 3 = 4.2em ....아래가 조금 보여서 4.1로 줄임*/
+	margin-top:14px;	
 
 }
 .recom_author-keyword{
@@ -758,9 +770,9 @@ body{
 	margin-left:282px;	
 }
 .recent_writting-item{
-	border: medium solid #c0c0c0;
+	border: 1.5px solid #c0c0c0;
 	margin: 15px 30px;
-	box-shadow:3px 3px 3px #636569;
+	box-shadow: 12px 18px 13px #636569;
 }
 .recent_writting-item .link_item{
 	text-decoration: none;
