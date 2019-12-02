@@ -475,23 +475,37 @@ body{
 }
 .book-item-head-inner-cont-top{
 	height: 220px;
-	padding-top:80px;
+	margin:0 50px;
+	margin-top:80px;
+	background:#ffffffe0;
+	color:#959595;
+}
+
+.book-item-head-inner-cont-top strong{
+    display: block;
+    margin: 0;
+    padding: 0px 15px;
+    padding-top: 30px;
+    font-size: 23px;
+    height: 150px;
+}
+.book-item-head-inner-cont-top span{
+	display: block;
+	margin:0;
+	padding: 0px 15px;
+	height:40px;
+	font-size:16px;
+	line-height: 40px;
 }
 .book-item-head-inner-cont-bottom{
-	height: 40px;
-	padding-top:20px;
-}
-.book-item-head-inner strong{
 	display:block;
-	margin:0 50px;
-	font-size:30px;
+	height:40px;
+	margin:0;
+	padding:0 15px;
+	padding-top:60px;
+	font-size:16px;
 	color:#fff;
-}
-.book-item-head-inner-cont-bottom span{
-	display: block;
-	margin:0 50px;
-	font-size:20px;
-	color:#fff;
+	font-weight: bold;
 }
 .book-item-head-inner-line{
 	width: 11px;
@@ -650,6 +664,7 @@ body{
 .recom_author-item-inner{
 	width:280px;
 	height:170px;
+	box-shadow: 11px 20px 22px grey;
 }
 .recom_author-item-link {
 	text-decoration:none;
@@ -675,19 +690,19 @@ body{
 }
 .recom_author-item-intro strong{
 	font-size:20px;
-	color:#3d3d3d;
+	color:#797979;
 	display:block;
 	margin-top:15px;
 }
-.author-job{
+.recom-author-job{
 	font-size:14px;
-	color:#4f4f4f;
+	color:#797979;
 	display:block;
 	margin-top:5px;
 }
-.author-intro{
+.recom-author-intro{
 	font-size:12px;
-	color:#b8b8b8;
+	color:#797979;
 	overflow: hidden;		/*내용이 넘어가면 숨김*/
 	white-space: normal;	/*줄바꿈 처리 : width넘어가면 엔터처리*/ 
 	word-wrap: break-word;	/*엔터처리시에 단어단위로 끊어서 사용.*/
@@ -711,9 +726,9 @@ body{
 }
 .recom_author-keyword button{
 	background-color:transparent;
-    border:1px solid #c0c0c0; 
+    border:1px solid #797979; 
     border-radius: 20px;
-    color:#c0c0c0;
+    color:#797979;
     margin:6px 2px;
     outline:none;
     cursor: pointer;
@@ -909,22 +924,33 @@ recent_writting-cont-slideleft .slide-button{
 }
 
 .slide-left, .slide-right{	
-	background-color:#ffffac;
+	background-color:#8b8b8b;
 	border-radius: 50%;
 	width:100px;
 	height:100px;
 	justify-content:center;
 	align-items: center;
 }
+.slide-right:hover{
+	filter:brightness(60%);
+	animation: fadein 0.5s;
+	-webkit-animation: fadein 0.5s;
+}
+.slide-left:hover{
+	filter:brightness(60%);
+	animation: fadein 0.5s;
+	-webkit-animation: fadein 0.5s;
+}
+
 .slide-button .slide-left img{
 	width:80px;
 	height:80px;
-	margin:10px 10px 10px 0px;
+	margin:10px 0px 10px 10px;
 }
 .slide-button .slide-right img{
 	width:80px;
 	height:80px;
-	margin:10px 0px 10px 20px;
+	margin:10px 0px 10px 10px;
 }
 
 

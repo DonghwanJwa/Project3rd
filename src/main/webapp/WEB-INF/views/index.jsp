@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,16 +149,16 @@ $(document).ready(function(){
       </div>
       <div id="head-page-best-list-frame">
        <ul id="head-page-best-list">
-<%
-	 	for(int i=1;i<=5;i++){
-%>			
+       
+		<c:forEach var="i" begin="1" end="5" step="1">	
 	    <li class="head-page-best-item">
 	     <a href="./read" class="head-page-link">
-	      <%if(i%2==1){%>
-	      <img src="./resources/img/a.jpg"/>
-	      <%}else {%>
-	      <img src="./resources/img/b.jpg"/>
-	      <%}%>
+	      <c:if test="${i%2==1}">
+	       <img src="./resources/img/a.jpg"/>
+	      </c:if>
+	      <c:if test="${i%2!=1}">
+	       <img src="./resources/img/b.jpg"/>
+	      </c:if>
 	      <div class="head-page-cont">	      
 	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
 	       <span class="head-page-sub-title">경력 10년차에 퇴사하고 캐나다로 떠난 여행</span>	     	    
@@ -165,9 +166,8 @@ $(document).ready(function(){
 	      </div>
 	     </a>
 	    </li>
-<% 			
-	 	}
-%>
+		</c:forEach>
+		
 	   </ul>
 	   </div>
 	   <div class="head-item-scroll">
@@ -208,16 +208,16 @@ $(document).ready(function(){
       </div>
       <div id="head-page-hot-list-frame">
        <ul id="head-page-hot-list">
-<%
-	 	for(int i=1;i<=5;i++){
-%>			
+       
+		<c:forEach var="i" begin="1" end="5" step="1">			
 	    <li class="head-page-hot-item">
 	     <a href="./read" class="head-page-link">
-	      <%if(i%2==1){%>
-	      <img src="./resources/img/b.jpg"/>
-	      <%}else {%>
-	      <img src="./resources/img/a.jpg"/>
-	      <%}%>
+	      <c:if test="${i%2==1}">
+	       <img src="./resources/img/a.jpg"/>
+	      </c:if>
+	      <c:if test="${i%2!=1}">
+	       <img src="./resources/img/b.jpg"/>
+	      </c:if>
 	      <div class="head-page-cont">	      
 	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
 	       <span class="head-page-sub-title">경력 10년차에 퇴사하고 캐나다로 떠난 여행</span>	     	    
@@ -225,9 +225,7 @@ $(document).ready(function(){
 	      </div>
 	     </a>
 	    </li>
-<% 			
-	 	}
-%>
+		</c:forEach>
 	   </ul>
 	   </div>
 	   <div class="head-item-scroll">
@@ -266,17 +264,15 @@ $(document).ready(function(){
     <div id="head-page-category-wrap">
      <div id="head-page-category-frame">
       <ul id="head-page-category-list">
-<%
-	 for(int i=1;i<=15;i++){      
-%>
+
+	   <c:forEach begin="1" end="15" step="1">
 	   <li class="head-page-category-item">
 	    <a href="./category?directory=articles">
 	    카테고리	    
 	    </a>
 	   </li>
-<%
-	 }
-%>
+	   </c:forEach>
+	   
 	  </ul>
      </div>
     </div>
@@ -371,32 +367,31 @@ $(document).ready(function(){
     </div>
     <div id="recom_book-cont">
      <ul id="recom_book-list">
-<%
-     for(int i=1;i<=20;i++){
-%>
-     <li>
-       <div class="recom_book-item">
-        <a href="./book_info" class="link_item">
-         <div class="recom_book-item-head">
-          <div class="book-item-head-inner">
-           <img class="book-item-head-inner-img" src="./resources/img/write2.jpg">
-           <div class="book-item-head-inner-cont">
-            <div class="book-item-head-inner-cont-top">
-             <strong>강아지와 지내는건 어때?</strong>
+     
+	  <c:forEach begin="1" end="20" step="1">
+       <li>
+        <div class="recom_book-item">
+         <a href="./book_info" class="link_item">
+          <div class="recom_book-item-head">
+           <div class="book-item-head-inner">
+            <img class="book-item-head-inner-img" src="./resources/img/write2.jpg">
+            <div class="book-item-head-inner-cont">
+             <div class="book-item-head-inner-cont-top">
+              <strong>강아지와 지내는건 어때?</strong>
+              <span>by 멍뭉이</span>
+             </div>
+             <div class="book-item-head-inner-cont-bottom">
+              <span>Jamong Book</span>
+             </div>
             </div>
-            <div class="book-item-head-inner-cont-bottom">
-             <span>by 멍뭉이</span>
-            </div>
+            <span class="book-item-head-inner-line"></span>
            </div>
-           <span class="book-item-head-inner-line"></span>
           </div>
-         </div>
-        </a>
-       </div> 
-      </li>
-<%
-     }
-%>
+         </a>
+        </div> 
+       </li>
+      </c:forEach>
+      
      </ul>
      <div id="recom_book-item-shelveback"></div>
      <div class="clear"></div>
@@ -405,11 +400,11 @@ $(document).ready(function(){
      <div class="slide-button">
       <a href="javascript:;" id="recom_book-cont-slideleft" class="slide-left" onclick="scrollmove('recom_book-cont','slideleft');"
       	style="visibility:hidden;">
-       <img src="./resources/img/left.png" alt="왼쪽스크롤버튼"/>
+       <img src="./resources/img/writepage_icon/prev_btn.png" alt="왼쪽스크롤버튼"/>
       </a>
       <a href="javascript:;" id="recom_book-cont-slideright" class="slide-right" onclick="scrollmove('recom_book-cont','slideright');"
       	style="visibility:visible;">
-       <img src="./resources/img/right.png" alt="오른쪽스크롤버튼"/>
+       <img src="./resources/img/writepage_icon/next_btn.png" alt="오른쪽스크롤버튼"/>
       </a>
      </div>
    </div>
@@ -424,48 +419,46 @@ $(document).ready(function(){
 	<div id="recom_writting-cont">
 	
      <ul id="recom_writting-list">
-<%
-     for(int i=1;i<=20;i++){
-%>
-     <li>
-       <div class="recom_writting-item">
-        <a href="./read" class="link_item">
-         <div class="recom_writting-item-head">
-          <div class="writting-item-head-inner">
-           <div class="writting-item-head-inner-cont">
-            <div class="writting-item-head-inner-cont-img">
-             <%-- 이미지 div --%>
-            </div>
-            <div class="writting-item-head-inner-cont-hs">
-             <div class="writting-item-head-inner-cont-head">
-              <p>캐나다의 밤은 서울보다 조용히 흐른다.</p>
+     
+ 	  <c:forEach begin="1" end="20" step="1">
+       <li>
+        <div class="recom_writting-item">
+         <a href="./read" class="link_item">
+          <div class="recom_writting-item-head">
+           <div class="writting-item-head-inner">
+            <div class="writting-item-head-inner-cont">
+             <div class="writting-item-head-inner-cont-img">
+              <%-- 이미지 div --%>
              </div>
-             <div class="writting-item-head-inner-cont-sub">
-              <span>중국 회사에서 인턴을 하며 알게 된 프랑스 친구와 파리에서 3년 만에 만나 이야기를</span>
+             <div class="writting-item-head-inner-cont-hs">
+              <div class="writting-item-head-inner-cont-head">
+               <p>캐나다의 밤은 서울보다 조용히 흐른다.</p>
+              </div>
+              <div class="writting-item-head-inner-cont-sub">
+               <span>중국 회사에서 인턴을 하며 알게 된 프랑스 친구와 파리에서 3년 만에 만나 이야기를</span>
+              </div>
              </div>
-            </div>
-            <div class="writting-item-head-inner-cont-bottom">
-             <span>by 글쓴이</span>
+             <div class="writting-item-head-inner-cont-bottom">
+              <span>by 글쓴이</span>
+             </div>
             </div>
            </div>
           </div>
-         </div>
-        </a>
-       </div> 
-      </li>
-<%
-     }
-%>
+         </a>
+        </div> 
+       </li>
+	  </c:forEach>
+	  
      </ul>
      </div>
      <div class="slide-button">
       <a href="javascript:;" id="recom_writting-cont-slideleft" class="slide-left" onclick="scrollmove('recom_writting-cont','slideleft');"
       	style="visibility:hidden;">
-       <img src="./resources/img/left.png" alt="왼쪽스크롤버튼"/>
+       <img src="./resources/img/writepage_icon/prev_btn.png" alt="왼쪽스크롤버튼"/>
       </a>
       <a href="javascript:;" id="recom_writting-cont-slideright" class="slide-right" onclick="scrollmove('recom_writting-cont','slideright');"
       	style="visibility:visible;">
-       <img src="./resources/img/right.png" alt="오른쪽스크롤버튼"/>
+       <img src="./resources/img/writepage_icon/next_btn.png" alt="오른쪽스크롤버튼"/>
       </a>     
     </div>   
    </div>
@@ -477,20 +470,19 @@ $(document).ready(function(){
     </div>
     <div id="recom_author-cont">
      <ul id="recom_author-list">
-<%
-	for(int i=1;i<=9;i++){
-%>
+
+	  <c:forEach begin="1" end="9" step="1">
 	  <li class="recom_author-item">
 	   <div class="recom_author-item-inner">
 	   	<a href="./profile" class="recom_author-item-link">
+		 <div class="recom_author-item-intro">
+		  <strong>김지아</strong>
+		  <span class="recom-author-job">일상담소 강사</span>
+		  <span class="recom-author-intro">일의 선택에 필요한 정보/경험을 상담으로 제공합니다. 자신을 빛내는 자소서 글쓰기, 진로 선택을 위한 취준/이직 상담, 워크숍을 주력으로 하고 있습니다.</span>
+		 </div>	  
 	   	 <div class="recom_author-item-img">
 		  <img src="./resources/img/profile.jpg" alt="프로필 사진"/>
 		 </div>
-		 <div class="recom_author-item-intro">
-		  <strong>김지아</strong>
-		  <span class="author-job">일상담소 강사</span>
-		  <span class="author-intro">일의 선택에 필요한 정보/경험을 상담으로 제공합니다. 자신을 빛내는 자소서 글쓰기, 진로 선택을 위한 취준/이직 상담, 워크숍을 주력으로 하고 있습니다.</span>
-		 </div>	  
 	   	</a>		  	
 	    <div class="recom_author-keyword">
 	     <button class="keyword1">취업</button>
@@ -499,9 +491,8 @@ $(document).ready(function(){
 	    </div>
 	   </div>
 	  </li>
-<%
-	}
-%>
+	  </c:forEach>
+	  
      </ul>
     </div>
    </div>
@@ -515,9 +506,8 @@ $(document).ready(function(){
     </div>
     <div id="recent_writting-cont">
      <ul id="recent_writting-list">
-<%
-     for(int i=1;i<=20;i++){
-%>
+
+	 <c:forEach begin="1" end="20" step="1">
      <li>
        <div class="recent_writting-item">
         <a href="./read" class="link_item">
@@ -544,19 +534,18 @@ $(document).ready(function(){
         </a>
        </div> 
       </li>
-<%
-     }
-%>
+	  </c:forEach>
+	 
      </ul>
     </div>
      <div class="slide-button">
      <a href="javascript:;" id="recent_writting-cont-slideleft" class="slide-left" onclick="scrollmove('recent_writting-cont','slideleft');"
       style="visibility:hidden;">
-      <img src="./resources/img/left.png"/>
+      <img src="./resources/img/writepage_icon/prev_btn.png" alt="왼쪽스크롤버튼"/>
      </a>
      <a href="javascript:;" id="recent_writting-cont-slideright" class="slide-right" onclick="scrollmove('recent_writting-cont','slideright');"
      	style="visibility:visible;">
-      <img src="./resources/img/right.png"/>
+      <img src="./resources/img/writepage_icon/next_btn.png" alt="오른쪽스크롤버튼"/>
      </a>     
     </div>
    </div>

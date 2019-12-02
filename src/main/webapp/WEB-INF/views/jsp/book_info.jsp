@@ -21,11 +21,10 @@ $(document).ready(function(){
     <div id="book_info_cover_txt">
 	 <div id="book_info_cover_head">
 	  <strong id="book_info_cover_title">강아지와 지내는건 어때?</strong>
+	  <span id="book_info_cover_author">by 멍뭉이 </span>
 	 </div>
 	 <div id="book_info_cover_bot">
-	  <span id="book_info_cover_author">
-	   by 멍뭉이
-	  </span>
+	  <span>Jamong Book</span>
 	 </div>
     </div>
     <span id="book_info_cover_line"></span>
