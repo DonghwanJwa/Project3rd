@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../resources/css/login.css" />
-<link rel="stylesheet" type="text/css" href="../resources/css/font.css"/>	
-<script src="../resources/js/jquery.js"></script>
-<script src="../resources/js/login.js"></script>
+<link rel="stylesheet" type="text/css" href="./resources/css/login.css" />
+<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>	
+<script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/login.js"></script>
 <title>로그인 페이지입니다</title>
 </head>
 <body>
@@ -14,7 +14,7 @@
 <form id="login_main_form" action="#" method="post" onsubmit="return login();">
 		<div id="login_main_div">
 			<div id="login_logo_wrap">
-			 <a href="./"><img id="login_img_logo" src="../resources/img/logo2.png"/></a>
+			 <a href="./"><img id="login_img_logo" src="./resources/img/logo2.png"/></a>
 			</div>
 			
 			<div id="login_mid">

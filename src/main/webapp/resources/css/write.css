@@ -178,14 +178,6 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	background-image:url(../img/writepage_icon/j_bottom.png);
 }
 /* 상단 타이틀 아이콘부분 기본값 */
-#write_title_coverimage_icon{
-	background-position:-2px 0px;
-	display:inline-block;
-	width:25px;
-	height:25px;
-	
-	background-image:url(../img/writepage_icon/b_image.png);
-}
 #write_title_background_icon{
 	background-position:-2px 0px;
 	display:inline-block;
@@ -210,9 +202,33 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	
 	background-image:url(../img/writepage_icon/b_bottom.png);	
 }
+.write_file_form{
+	background:0px 0px;
+	height:40px;
+	left:0px;
+	top:0px;
+	overflow:hidden;
+	position:absolute;
+	width:100%;
+}
+.write_file_form input{
+	margin-top:10px;
+	outline:0px;
+	width:30px;
+	height:30px;
+	cursor:pointer;
+	text-indent:-9999px;
 
-/* 상단 타이틀 아이콘부분 마우스 오버 */
-#write_title_coverimage_icon:hover{
+}
+#write_cover_file{		
+	background-position:-2px 0px;
+	display:inline-block;
+	width:25px;
+	height:25px;
+	
+	background-image:url(../img/writepage_icon/b_image.png);
+} 
+#write_cover_file:hover{	
 	background-position:-2px 0px;
 	display:inline-block;
 	width:25px;
@@ -220,6 +236,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	
 	background-image:url(../img/writepage_icon/j_image.png);
 }
+/* 상단 타이틀 아이콘부분 마우스 오버 */
 #write_title_background_icon:hover{
 	background-position:-2px 0px;
 	display:inline-block;
@@ -428,7 +445,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	position:fixed;
 	top:0px;
 }
-#write_cont_image_icon{
+#write_image_file{
 	background-position:0px 0px;
 	display:inline-block;
 	width:25px;
@@ -436,7 +453,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	
 	background-image:url(../img/writepage_icon/btn_side_jamong.png);	
 }
-#write_cont_image_icon:hover{
+#write_image_file:hover{
 	background-position:24px 0px;
 	display:inline-block;
 	width:25px;
