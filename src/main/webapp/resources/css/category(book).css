@@ -287,25 +287,26 @@ line-height: 42px;
 	width: 120px;
     height: 40px;
     margin-top: 25px;
-    margin: 30px 25px 5px 0px;
-    outline: none;
-    border: 1px solid orange;
-    border-radius: 15px 15px 0px 0px;
-    background-color: #ffdfbf;
-    cursor: pointer;
-    float: right;
-}
-.cat_book_btn{
-	width: 120px;
-    height: 40px;
-    margin-top: 25px;
     margin: 30px 3px 5px 0px;
     outline: none;
     border: 1px solid orange;
     border-radius: 15px 15px 0px 0px;
     background-color: #ffdfbf;
     cursor: pointer;
-    float: right;
+    float: left;
+
+}
+.cat_book_btn{
+	width: 120px;
+	height: 40px;
+	margin-top: 25px;
+	margin: 30px 0px 5px 5px;
+	outline: none;
+	border: 1px solid orange;
+	border-radius: 15px 15px 0px 0px;
+	background-color: #ffdfbf;
+	cursor: pointer;
+	float: left;
 }
 .cat_book_inner{
 	width:150px;
