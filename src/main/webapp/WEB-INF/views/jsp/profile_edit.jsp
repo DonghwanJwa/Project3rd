@@ -74,9 +74,9 @@
 						</ul>
 					</div>
 				</div>
-				<div>
-					<h3 class="profile_edit_font">포트폴리오</h3>
-					
+				<button type="button" id="flio_b"> </button>
+				<div id="pf_folio"  style="display: none;">	
+				<h3 class="profile_edit_font">포트폴리오</h3>
 						<div id="profile_portflio" contenteditable="true" class="profile_edit_info" 
 						 placeholder=""></div>
 				</div>

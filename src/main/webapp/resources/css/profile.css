@@ -565,6 +565,31 @@ span.del_btn {
     border-radius: 50%;
     border: 1px solid #eee;
 }
+#flio_b{
+    float: right;
+    outline: none;
+    background: transparent url(../img/close_x.png) no-repeat;
+    background-size: 16px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    transform: rotate(45deg);
+    opacity: 0.4;
+}
+#flio_b_open{
+    float: right;
+    outline: none;
+    background: transparent url(../img/close_x.png) no-repeat;
+    background-size: 16px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    transition: 1s;
+}
+#flio_b_open:hover{
+		transition:0.5s;
+    transform: rotate(45deg);
+}
 #profile_portflio{
 	border: 1px solid #eee;
 	width: 95%;
