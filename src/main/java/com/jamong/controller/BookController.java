@@ -30,4 +30,13 @@ public class BookController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("book_create")
+	public ModelAndView user_book_create() { // 책 생성 (노시현이 만짐)
+		ModelAndView mv=new ModelAndView();
+		
+		mv.setViewName("jsp/book_create");
+		
+		return mv;
+	}
 }
