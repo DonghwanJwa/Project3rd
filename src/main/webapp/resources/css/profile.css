@@ -52,7 +52,7 @@ background: url(../img/warring.png) no-repeat;
 }
 
 #profile_img{
-	margin-top: 10px;
+	margin-top: 25px;
 	border-radius:55px;
 	width:100px;
 	height: 100px;
@@ -98,6 +98,8 @@ background: url(../img/warring.png) no-repeat;
 ul.profile_keyword_link{
 	display: flex;
 	padding-left: 15px;
+	margin: 0;
+	padding-bottom: 6px;
 }
 .profile_post_img{
 	float:left;
@@ -134,18 +136,27 @@ margin: -5px 10px 15px 0;
 	}
 #profile_cont{
 	background-color: #F57C68;
-    padding: 25px 35px 1px;
+    padding: 25px 35px 20px;
     border-radius: 25px 25px 0 0;
 }
 #profile_name{
 	width:10px;
 	white-space:nowrap; 
 }
+.subscriber{
+	height: 80px;
+    margin: 0;
+    background: #fff;
+    padding-top: 8px;
+    padding-bottom: 7px;
+}
 #profile_button{
 	position:absolute;
-display: flex;
-right:15px;	
-margin-top: -65px;
+	display: flex;
+	right:15px;	
+	margin-top: 13px;
+	width: 170px;
+	justify-content: center
 }
 #profile_button a{
 	font-size: 14px;
@@ -177,6 +188,7 @@ margin-top: -65px;
 #profile_keyword_line{
     padding: 5px 25px;
     background: #fff;
+    height: 
     }
 .profile_button_keyword{
 	display: inline-block;
@@ -212,6 +224,7 @@ margin-top: -65px;
 	box-sizing: border-box;
 	
 }
+
 #profile_menu {
 	position: relative;
     width: 700px;
@@ -300,12 +313,24 @@ margin-top: -65px;
 	margin: 0 auto;
 }
 .info_cover{
-	text-align: center;
-	margin-bottom:12px;
+	  position: absolute;
+    display: inline;
+    text-align: center;
+    margin-top: 55px;
+    background-color: #ffffffe0;
+    height: 150px;
+    width: 136px;
+    transform: translate(-50%);
+    left: 50%;
+    color: #333;
 }
 .tit_cover{    
-	font-size: 25px;
-    color: #555;
+	display: block;
+    margin: 0;
+    padding: 0px 6px;
+    padding-top: 20px;
+    font-size: 18px;
+    height: 90px;
 }
 .Magazine_list{
 	width: 735px;
@@ -321,6 +346,12 @@ margin-top: -65px;
     border: 1px solid #bbb;
     border-radius: 0  6px 2px 0px;
     }
+.cover_img{
+	width:100%;
+	height: 100%;
+	object-fit:cover;
+	filter:brightness(50%);
+}
 .box_contents{
 	display :inline-block;
 	position: relative;
@@ -408,12 +439,16 @@ background: url(../img/article.png) no-repeat;
 	font-size: 25px;
 }
 #profile_edit_img{
+	display:block;
+	background-size: cover;
+	background-position: 50% 50%;
 	margin-right: 35px;
 	border-radius:55px;
 	width:100px;
 	height: 100px;
 	float: right;
 	z-index: 0;
+	border: 0.5px solid
 }
 #profile_edit_title{
 	text-align: center;
@@ -489,7 +524,7 @@ padding: 10px;
     outline: none;
     border: none;
     border-bottom: 1px solid #eee;
-    width: 35%;
+    width: 37%;
 	}
 	/*#profile_editor:focus{
 	border-bottom: 1px solid #F57C68;

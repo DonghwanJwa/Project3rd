@@ -2,7 +2,7 @@
 CREATE member(
 mem_no NUMBER(38) PRIMARY KEY,		  -- 회원번호
 mem_id VARCHAR2(100) UNIQUE,		  -- 아이디
-mem_pwd VARCHAR2(200) NOT NULL,	 	  -- 비밀번호
+mem_pwd VARCHAR2(200) NOT NULL,	 	  -- 비밀번호s
 mem_name VARCHAR2(100) NOT NULL,	  -- 본명(사람이름)
 mem_birth1 VARCHAR2(10) NOT NULL,	  -- 생년
 mem_birth2 VARCHAR2(10) NOT NULL, 	  -- 월
@@ -23,6 +23,7 @@ mem_keyword VARHCHAR2(400), 		  -- 작가 키워드 ※ 카테고리아님
 mem_fav1 VARCHAR2(50), 				  -- 관심 카테고리 (선호하는 장르 선택)
 mem_fav2 VARCHAR2(50),
 mem_fav3 VARCHAR2(50),
+mem_portflio CLOB		  			  -- 작가 포트폴리오 내용 (12/03 추가)
 );
 
 SELECT * FROM member ORDER BY mem_no DESC;
@@ -34,6 +35,7 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
-
+-- 회원 테이블에 작가 포트폴리오 내용 추가
+ALTER mem ADD (mem_portflio CLOB);
 
 

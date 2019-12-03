@@ -55,6 +55,15 @@ public class MemberController {
 		return mv;
 	}
 	
+	@RequestMapping("profile_edit")
+	public ModelAndView profile_edit() { // 프로필 편집 
+		ModelAndView mv=new ModelAndView(); 
+		
+		mv.setViewName("jsp/profile_edit");
+		
+		return mv;
+	}
+	
 	@RequestMapping("feed")
 	public ModelAndView user_feed() {
 		ModelAndView mv=new ModelAndView();

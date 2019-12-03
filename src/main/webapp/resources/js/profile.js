@@ -1,9 +1,6 @@
-/**
- * 
- */
-
-/* tab 변경 */
+// tab 변경 
 $(document).ready(function() {
+	$("#profile_edit_img").on("change",profileImgSelect);
 
 	$("#info_tab").click(function() {
 		$("#profile_info").show();
@@ -33,7 +30,7 @@ $(document).ready(function() {
 	});
 
 })
-/**/
+// 작가 구독 텍스트 변경되게
 $(document).ready(function() {
 	$(".profile_button_type2").click(function() {
 		// togglClass : 해당요소 여부를판단해 제거 및 부여함
@@ -47,10 +44,9 @@ $(document).ready(function() {
 		});
 	});
 });
-/*edit 글자제한 */
+// edit 글자제한 
 
-/*	 키워드 	*/
-
+// 키워드 	
 $(document).ready(function() {
 	var keyword_tag = {};
 	var counter = 0;
@@ -58,43 +54,39 @@ $(document).ready(function() {
 	// 특수문자 정규식 변수(공백 미포함)
 	var s_word = /[~!@\#$%^&*\()\-=+_'\;<>\/.\`:\"\\,\[\]?|{}]/gi;
 	var k_word = /[ㄱ-ㅎㅏ-ㅣ]/gi;
-	var n_word = /[0-9]/gi;
-
-
-
 	// 완성형 아닌 한글 정규식
+	var n_word = /[0-9]/gi;
 
 	// 태그를 추가한다.
 	function addTag(value) {
 		keyword_tag[counter] = value; // 태그를 Object 안에 추가
 		counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
 	}
-
+	//공백이 아니게
 	function marginTag() {
 		return Object.values(keyword_tag).filter(function(word) {
 			return word !== "";
 		});
 	}
-	/*작가명 엔터 키 제한*/
+	// 작가명 엔터 키 제한
 	$('#profile_editor').on("keypress",function(e){
 		var p_edit =$(this).val();
 		if(e.keyCode == 13){
 			alert('작가이름은 줄바꿈을 사용할 수 없습니다!');
-			$(this).val('');
+			return false;
 		}
 	});
-	/*작가명 특수문자안되게*/
+	// 작가명 특수문자 제한
 	$('#profile_editor').on("focusout",function(e){
 		var p_edit =$(this).val();
 		if(p_edit.length >0){
 			if(p_edit.match(s_word)){
-				p_edit = p_edit.replace(s_word,"");
 				alert('특수문자는 입력할 수 없습니다.')
+				return false;
 			}
-			$(this).val(p_edit);
 		}
 	});
-	/*자기소개 엔터키 제한*/
+	// 자기소개 엔터키 제한
 	$('.e').on("keypress",function(e){
 		var p_edit =$(this).val();
 		if(e.keyCode == 13){
@@ -103,11 +95,11 @@ $(document).ready(function() {
 		}
 	});
 
-	//keypress : 글자가 입력되었을때 이벤트 실행, keyup : 키 입력 후 발생되는 이벤트
+	// keypress : 글자가 입력되었을때 이벤트 실행, keyup : 키 입력 후 발생되는 이벤트
 	$("#keyword_tag").on("keypress", function(e) {
 		var self = $(this);
 
-		if (e.keyCode == 32) {/*스페이스 바 입력 안되도록*/
+		if (e.keyCode == 32) {// 스페이스 바 입력 안되도록
 			alert('띄어쓰기는 사용할 수 없습니다');
 			return false;
 		}
@@ -127,7 +119,7 @@ $(document).ready(function() {
 
 				if (result.length == 0) { // 태그 중복 검사
 
-					if ($(".tag_item").siblings().length <= 7) {//태그 생성 제한
+					if ($(".tag_item").siblings().length <= 7) {// 태그 생성 제한
 						$("#edit_tag_list").append("<li class='tag_item'>" + tagValue + "<span class='del_btn' idx='" + counter + "'></span></li>").hide().fadeIn('2000');
 						addTag(tagValue);
 						self.val("");
@@ -142,7 +134,7 @@ $(document).ready(function() {
 				e.preventDefault;
 			}
 		}
-		/*키워드 버튼 클릭 */
+		// 키워드 버튼 클릭
 		if($(".keyword_button").on("click",function(e){
 
 			var tagValue = self.val(); // 값 가져오기
@@ -157,7 +149,6 @@ $(document).ready(function() {
 					return word === tagValue;
 				})
 				if (result1.length == 0) { // 태그 중복 검사
-					/*si*/
 					if ($(".tag_item").siblings().length <= 7) {//태그 생성 제한
 						$("#edit_tag_list").append("<li class='tag_item'>" + tagValue + "<span class='del_btn' idx='" + counter + "'></span></li>").hide().fadeIn('2000');
 						addTag(tagValue);
@@ -180,7 +171,6 @@ $(document).ready(function() {
 		keyword_tag[index] = "";
 		$(this).parent().remove();
 	});
-	/*[출처] Jquery : 태그기능 클라이언트 부분 작업|작성자 Demnodey*/
 	$("#flio_b").click(function() {	
 		$("#pf_folio").toggle();
 			});
@@ -192,3 +182,26 @@ $(document).ready(function() {
 		} else {}
 	});
 });
+
+function profileImgSelect(e){
+	var files = e.target.files;
+	var filesArr =  Array.prototype.slice.call(files);
+	
+	filesArr.forEach(function(f){
+		if(!f.type.match("image.*")){
+		alert('이미지 확장자만 가능합니다!');
+		return;
+		}
+		sel_file = f;
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$("#profile_edit_img").css("background-image",'url(\"'+e.target.result+'\")');
+		$("#profile_edit_img").css("height","450px");
+		}
+		reader.readAsDataURL(f);
+	});
+}
+
+
+
+
