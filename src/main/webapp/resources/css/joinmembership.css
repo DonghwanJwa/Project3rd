@@ -285,7 +285,12 @@ body{
 }
 
 
-/*-----------------------------*/
+/*------------카테고리-----------------*/
+
+#join_membership_head-page-category-wrap{
+	width:calc(56.76vw - 140px); 
+	min-width:420px;
+}
 #join_membership_category_btn{
 	margin-left: 721px;
     outline: none;
@@ -300,7 +305,6 @@ body{
 	width:calc(56.76vw - 100px);
 	min-width:376px;
 	height:300px;
-	margin:10px 20px;
 	display:flex;
 	justify-content: center;
 	align-items: center;
@@ -343,15 +347,139 @@ body{
 	background-color: #f79482;
 }
 
-.join_membership_profile_edit_btn1 {/* 프로필페이지 버튼 설정 */
-	margin-top:30px;
-	margin-left: 280px;
+
+/* 광훈이 css */
+
+
+#join_membership_profile_main_edit{
+	min-height: calc(100vh - 380px);
+	background: 	snow;
+}
+#join_membership_profile_edit_title{
+	text-align: center;
+	margin: 0;
+	padding: 10px;
+}
+#join_membership_profile_main_edit_article{
+	line-height:1.2;
+	position: relative; 
+	width:700px;
+	min-width: 700px; 
+	height: auto;
+	padding: 15px 30px;
+	margin-left:50%; margin-right:50%;
+	transform: translate(-50%);
+	background: #fff;
+	border:  1px solid  #eee;
+}
+#join_membership_profile_edit_img{
+	margin-right: 35px;
+	border-radius:55px;
+	width:100px;
+	height: 100px;
+	float: right;
+	z-index: 0;
+}
+#join_membership_profile_img_edit_button{
+	position: absolute;
+    box-shadow: 1px 1px 1px #eee;
+    top: 75px;
+    right: 60px;
+    background: #fff url(../img/photo-camera.png) no-repeat;
+    z-index: 1;
+    background-size: 25px;
+    background-position: 7px;
+    width: 40px;
+    height: 40px;
+    text-indent: -999px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+}
+.join_membership_profile_font_hide{
+	overflow: hidden;
+	width: 0;
+	heigth:0;
+	line-height: 0;
+	text-indent: -9999px;
+}
+.join_membership_profile_input_hide{
+	overflow: hidden;
+	position: absolute;
+	top:0;
+	left:0;
+	width: 42px;
+	height: 42px;
+	opacity: .01;
+	font-size: 0;
+	line-height: 0;
+	background: 0 0;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+#join_membership_profile_edit{
+	
+}
+.join_membership_profile_edit_font{
+	margin-top:35px;
+	font-size: 13px;
+	line-height: 1.5;
+}
+#join_membership_profile_editor{
+	padding: 0px 150px 0px 15px;
+    font-size: 13px;
+    height: 18px;
+    color: #333;
+    overflow-y: hidden;
+    resize: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #eee;
+    width: 35%;
+}
+.join_membership_profile_edit_font{
+	margin-top:35px;
+	font-size: 13px;
+	line-height: 1.5;
+}
+.join_membership_profile_editor_box{
+	overflow: hidden;
+    border: 1px solid #EEE;
+    background-color: #fff;
+}
+.join_membership_profile_edit_info{
+	display: block;
+	width: 100%;
+	margin:0;
+	padding :10px 5px 15px 15px;
+	border: 0 none;
+	font-size: 13px;
+	line-height: 25px;
+	background: transparent;
 	outline: none;
+	color: #333;
+	resize: none;
+	height: 40px;
+}
+.join_membership_profile_edit_btn2{
+	margin: 0 5px;
+	    outline: none;
     border: 1px solid;
     background: white;
     border-radius: 15px;
     padding: 2px 14px;
-    color: #b9b9b9;
+    color: #ff8040;
+    margin-left: 577px;
+    margin-top: 15px;
 }
+
+
+
+
+
+
+
+
+
+
 
 

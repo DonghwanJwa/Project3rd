@@ -122,13 +122,13 @@
 			<!--///////////////////////////광훈이 프로필페이지 가져옴/////////////////////////////////////////////  -->
 
 			<div id="join_membership_profile_main_edit">
-				<div id="profile_edit_title"></div>
-				<article id="profile_main_edit_article">
+				<div id="join_membership_profile_edit_title"></div>
+				<article id="join_membership_profile_main_edit_article">
 					<div>
-						<img id="profile_edit_img" alt="이미지" src="./resources/img/profile.jpg">
-						<span id="profile_img_edit_button"> <label
-							for="profile_img" class="profile_font_hide"></label> <input
-							class="profile_input_hide" type="file" name="file"
+						<img id="join_membership_profile_edit_img" alt="이미지" src="./resources/img/profile.jpg">
+						<span id="join_membership_profile_img_edit_button"> <label
+							for="profile_img" class="join_membership_profile_font_hide"></label> <input
+							class="join_membership_profile_input_hide" type="file" name="file"
 							accept="image/*">
 						</span>
 					</div>
@@ -136,10 +136,10 @@
 						<div>
 							<div>
 								<h3 class="">
-									<input type="hidden" id="profile_edit"> <label
-										for="profile_editor" class="profile_edit_font">작가명</label> <span></span>
+									<input type="hidden" id="join_membership_profile_edit"> <label
+										for="profile_editor" class="join_membership_profile_edit_font">작가명</label> <span></span>
 								</h3>
-								<textarea id="profile_editor" name="" placeholder="이름을 입력해주세요"
+								<textarea id="join_membership_profile_editor" name="" placeholder="이름을 입력해주세요"
 									maxlength="30"></textarea>
 							</div>
 						</div>
@@ -151,14 +151,13 @@
 							</h3>
 						</div>
 						<div>
-							<h3 class="profile_edit_font">자기소개</h3>
+							<h3 class="join_membership_profile_edit_font">자기소개</h3>
 						</div>
-						<div class="profile_editor_box">
-							<textarea class="profile_edit_info" placeholder="자신을 소개해보세요"></textarea>
+						<div class="join_membership_profile_editor_box">
+							<textarea class="join_membership_profile_edit_info" placeholder="자신을 소개해보세요"></textarea>
 						</div>
 						<!-- 경고문 띄우기 -->
-						<button type="button" class="join_membership_profile_edit_btn1">취소하기</button>
-						<button type="button" class="profile_edit_btn2" onclick="change2();">넘어가기</button>
+						<button type="button" class="join_membership_profile_edit_btn2" onclick="change2();">넘어가기</button>
 					</div>
 				</article>
 			</div>
@@ -182,7 +181,7 @@
 			</div>
 
 			<%-- category --%>
-			<div id="head-page-category-wrap">
+			<div id="join_membership_head-page-category-wrap">
 				<div id="join_membership_head-page-category-frame">
 					<ul id="join_membership_head-page-category-list">
 						<%
