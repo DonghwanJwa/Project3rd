@@ -223,14 +223,52 @@
      <div id="head-page-category-frame">
       <ul id="head-page-category-list">
 
-	   <c:forEach begin="1" end="15" step="1">
 	   <li class="head-page-category-item">
-	    <a href="./category?directory=articles">
-	    카테고리	    
-	    </a>
+	    <a href="./category?directory=articles">여행</a>
 	   </li>
-	   </c:forEach>
-	   
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">감성·에세이</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">시사·이슈</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">IT<br/>트렌드</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">사진·촬영</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">영화 리뷰</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">음악</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">글쓰기<br/>코치</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">문화·예술</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">육아<br/>이야기</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">요리·레시피</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">건강·운동</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">심리 탐구</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">건축·설계</a>
+	   </li>
+	   <li class="head-page-category-item">
+	    <a href="./category?directory=articles">인문학·철학</a>
+	   </li>
+	      
 	  </ul>
      </div>
     </div>

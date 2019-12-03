@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="./resources/css/joinmembership.css" />
 <link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
-<link rel=stylesheet type="text/css" href="./resources/css/profile.css">
 <link rel="stylesheet" type="text/css" href="./resources/css/header.css" />
 <script src="./resources/js/jquery.js"></script>
 <script src="./resources/js/login.js"></script>
@@ -17,39 +16,36 @@
 
 		<div id="join_membership_main_div">
 			<!-------------------------------로고------------------------------------>
-			<div id="join_membership_img_logo" tabindex="0">
-				<a href="./"><img src="./resources/img/logo2.png" tabindex="0"/></a>
+			<div id="join_membership_img_logo" >
+				<a href="./"><img src="./resources/img/logo2.png" /></a>
+				<div id="join_membership_sequence_box">
+					<ol id="join_membership_sequence">
+						<li><span class="join_membership_sequence_list membership_step">기본정보</span></li>
+						<li><span class="join_membership_sequence_list">프로필</span></li>
+						<li><span class="join_membership_sequence_list">카테고리</span></li>
+					</ol>
+				</div>
 			</div>
 
-			<div id="join_membership_sequence_box">
-				<div id="join_membership_label_box">
-					<label id="join_membership_label">JA-MONG 계정 만들기</label>
-				</div>
-				<ol id="join_membership_sequence">
-					<li>1.회원가입</li>
-					<li>2.프로필</li>
-					<li>3.카테고리</li>
-				</ol>
-			</div>
 			<!-------------------------------아이디, 비번, 비번확인, 이름,------------------------------------>
 
 			<div id="join_membership_sub_div_1">
 
 				<input placeholder="아이디" class="join_membership_text"
-					id="join_membership_id" tabindex="1" />
+					id="join_membership_id" tabindex="1"/>
 				<div class="join_membership_error" id="join_membership_error_id"></div>
 
 
-				<input type="password" placeholder="비밀번호"
+				<input type="password" placeholder="비밀번호" tabindex="2"
 					class="join_membership_text" id="join_membership_pass">
 				<div class="join_membership_error" id="join_membership_error_pass"></div>
 
-				<input type="password" placeholder="비밀번호 확인"
+				<input type="password" placeholder="비밀번호 확인" tabindex="3"
 					class="join_membership_text" id="join_membership_pass_check">
 				<div class="join_membership_error"
 					id="join_membership_error_pass_check"></div>
 
-				<input placeholder="이름" class="join_membership_text"
+				<input placeholder="이름" class="join_membership_text" tabindex="4" 
 					id="join_membership_name">
 				<div class="join_membership_error" id="join_membership_error_name"></div>
 
@@ -60,10 +56,12 @@
 			<div id="join_membership_sub_div_2">
 
 				<span id="join_membership_birth_span">
-				<input placeholder="년" class="join_membership_birth" id="join_membership_birth_year" ><input placeholder="월" class="join_membership_birth" id="join_membership_birth_month"><input placeholder="일" class="join_membership_birth" id="join_membership_birth_date">
+					<input placeholder="년" class="join_membership_birth numberOnly" id="join_membership_birth_year" tabindex="5" maxlength="4">
+					<input placeholder="월" class="join_membership_birth numberOnly" id="join_membership_birth_month" tabindex="6" maxlength="2">
+					<input placeholder="일" class="join_membership_birth numberOnly" id="join_membership_birth_date" tabindex="7" maxlength="2">
 				</span> 
 					
-					<select id="join_membership_select_gender">
+				<select id="join_membership_select_gender" tabindex="8">
 					<option value="	성별">성별</option>
 					<option value=" 남자">남자</option>
 					<option value=" 여자">여자</option>
@@ -71,9 +69,12 @@
 
 				<div class="join_membership_error" id="join_membership_error_birth"></div>
 
-				<input class="join_membership_email_class"
-					id="join_membership_email" placeholder="이메일"> @ <input
-					type=text list=browsers id="join_membership_email_datalist"
+				<div class="join_membership_email_class">
+					<input class="join_membership_email" tabindex="9"
+							id="join_membership_email" placeholder="이메일">
+				</div>			 
+				<b id="join_membership_email_atMark">@</b> 
+				<input type=text list=browsers id="join_membership_email_datalist"
 					placeholder="도메인">
 				<datalist id=browsers>
 					<option value="naver.com">
@@ -89,12 +90,14 @@
 
 				<div id="join_membership_tel_color">
 					<div class="join_membership_tel_hover_focus">
-						<input id="join_membership_tel" placeholder="핸드폰번호 ">
+						<input class="join_membership_tel numberOnly" id="join_membership_tel1" placeholder="010" maxlength="3">-
+						<input class="join_membership_tel numberOnly" id="join_membership_tel2" placeholder="0000" maxlength="4">-
+						<input class="join_membership_tel numberOnly" id="join_membership_tel3" placeholder="0000" maxlength="4">	
 					</div>
 					<div class="join_membership_error" id="join_membership_error_tel"></div>
 				</div>
 
-				<button id="join_membership_last_btn" onclick="join_membership();" onclick="change();">다음으로</button>
+				<button id="join_membership_next_btn">다음으로</button>
 			</div>
 		</div>
 
@@ -105,19 +108,15 @@
 
 		<div id="join_membership_main_div2" style="display: none;">
 			<!-------------------------------로고------------------------------------>
-			<div id="join_membership_img_logo">
-				<a href="./resources/index.jsp"><img src="./resources/img/logo2.png" /></a>
-			</div>
-
-			<div id="join_membership_sequence_box">
-				<div id="join_membership_label_box">
-					<label id="join_membership_label">JA-MONG 계정 만들기</label>
+			<div id="join_membership_img_logo" >
+				<a href="./"><img src="./resources/img/logo2.png" /></a>
+				<div id="join_membership_sequence_box">
+					<ol id="join_membership_sequence">
+						<li><span class="join_membership_sequence_list">기본정보</span></li>
+						<li><span class="join_membership_sequence_list membership_step">프로필</span></li>
+						<li><span class="join_membership_sequence_list">카테고리</span></li>
+					</ol>
 				</div>
-				<ol id="join_membership_sequence">
-					<li>1.회원가입</li>
-					<li>2.프로필</li>
-					<li>3.카테고리</li>
-				</ol>
 			</div>
 
 			<!--///////////////////////////광훈이 프로필페이지 가져옴/////////////////////////////////////////////  -->
@@ -171,19 +170,15 @@
 
 		<div id="join_membership_main_div3" style="display: none;">
 			<!-------------------------------로고------------------------------------>
-			<div id="join_membership_img_logo">
-				<a href="./resources/index.jsp"><img src="./img/resources/logo2.png" /></a>
-			</div>
-
-			<div id="join_membership_sequence_box">
-				<div id="join_membership_label_box">
-					<label id="join_membership_label">JA-MONG 계정 만들기</label>
+			<div id="join_membership_img_logo" >
+				<a href="./"><img src="./resources/img/logo2.png" /></a>
+				<div id="join_membership_sequence_box">
+					<ol id="join_membership_sequence">
+						<li><span class="join_membership_sequence_list">기본정보</span></li>
+						<li><span class="join_membership_sequence_list">프로필</span></li>
+						<li><span class="join_membership_sequence_list  membership_step">카테고리</span></li>
+					</ol>
 				</div>
-				<ol id="join_membership_sequence">
-					<li>1.회원가입</li>
-					<li>2.프로필</li>
-					<li>3.카테고리</li>
-				</ol>
 			</div>
 
 			<%-- category --%>
