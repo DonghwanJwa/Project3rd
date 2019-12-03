@@ -123,6 +123,14 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		//년 1900 ~ 2020사이 체크
+		if ($.trim($('#join_membership_birth_year').val())>2020 || $.trim($('#join_membership_birth_year').val())<1900) {
+			$('#join_membership_error_birth').text('유효한 년도를 입력해 주세요!');
+			$("#join_membership_birth_year").val("").focus();
+			return false;
+		}
+		
+		
 		//월 공백
 		if ($.trim($('#join_membership_birth_month').val())=="") {
 			$('#join_membership_error_birth').text('생년월일을 입력해 주세요!');
@@ -137,6 +145,13 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		//월 1 ~ 12사이 체크
+		if ($.trim($('#join_membership_birth_month').val())>12 || $.trim($('#join_membership_birth_month').val())<1) {
+			$('#join_membership_error_birth').text('유효한 월을 입력해 주세요!');
+			$("#join_membership_birth_month").val("").focus();
+			return false;
+		}
+		
 		//일 정규식
 		if ($.trim($('#join_membership_birth_date').val())=="") {
 			$('#join_membership_error_birth').text('생년월일을 입력해 주세요!');
@@ -147,6 +162,13 @@ $(document).ready(function(){
 		//일 정규식
 		if(!getmonth_date.test($('#join_membership_birth_date').val())){
 			$('#join_membership_error_birth').text('일을 입력해주세요!');
+			$("#join_membership_birth_date").val("").focus();
+			return false;
+		}
+		
+		//일 1 ~ 30사이 체크
+		if ($.trim($('#join_membership_birth_date').val())>31 || $.trim($('#join_membership_birth_date').val())<1) {
+			$('#join_membership_error_birth').text('유효한 일을 입력해 주세요!');
 			$("#join_membership_birth_date").val("").focus();
 			return false;
 		}
