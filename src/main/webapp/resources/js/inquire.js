@@ -2,18 +2,49 @@
  *  inquire.jsp inquire.css
  */
 
-function selectchange(obj) {
-
-    f = document.forms.select_list;
-
-    if(obj == 1) {
-    
-        f.listsub.style.display = "";
-        
-
-    } else {
-
-        f.listsub.style.display = "none";
-        
-     }
+function inq(){
+	if($("#listselect option:selected").val() == "none"){
+		$('#inq_vali_list').text('목록을 선택해주세요.');
+		$("#listselect").focus();
+		return false;
+	}
+	if($("#listsub option:selected").val() == "none"){
+		$('#inq_vali_wrap').text('목록을 선택해주세요.');
+		$('#listsub').focus();
+		return false;
+	}
+	if($("#email").val() == ""){
+		$('#inq_vali_email').text('E-mail을 작성해 주세요.');
+		$('#email').focus();
+		return false;
+	}
+	if($('#phone').val() == ""){
+		$('#inq_vali_phone').text('Phone번호를 입력해 주세요.');
+		$('#phone').focus();
+		return false;
+	}
+	if($('#info').val() == ""){
+		$('#inq_vali_info').text('문의내용을 입력해 주세요.')
+		$('#info').focus();
+		return false;
+	}
+	
 }
+	$(document).ready(function(){
+		$("#phone").on("focus",function(){
+		var x = $(this).val();
+		$(this).val(x);
+		}).on("focusout", function(){
+			var x = $(this).val();
+		if(x && x.length > 0){
+			if(!$.isNumberic(x)){
+				x = x.replace(/[^0-9]/g,"");
+			}
+		}
+	}).on("keyup", function(){
+		$(this).val($(this).val().replace(/[^0-9]/g,""));
+	});
+	});
+
+
+

@@ -5,6 +5,14 @@ body{
 	margin: 0px;
 	background-image: url(../img/background_img/login_page.png);
 }
+.inq_vali_date{
+	width:280px;
+	height:20px;
+	border:0px solid #333;
+	display: inline-block;
+	margin: 5px 0px 0px 6px;
+	color:#fe5458;
+}
 .inq_main_art{
 	position: relative;
 	width: 940px;
@@ -49,7 +57,7 @@ body{
 	font-size: 15px;
 	text-align: center;
 	border-top: 2px solid #1e1e1e;
-	background-color: #ffdc00;
+	background-color: #FBA621;
 }
 .inq_txt_caution{
 	display: block;
@@ -158,6 +166,9 @@ body{
 }
 .inq_info_question label{
 	cursor: default;
+}
+.inq_link_more{
+	color: #2c91ef;
 }
 .inq_wrap_item{
 	float: right;
@@ -270,10 +281,9 @@ body{
     line-height: 40px;
     height: 42px;
     font-size: 15px;
-    color: #1e1e1e;
+    color: white;
     float:right;
-    border: 1px solid #00b8b3;	
-    border-radius: 32px;
+    border-radius: 0px;
 }
 .inq_lab_check{
 	vertical-align:text-bottom;

@@ -2,13 +2,15 @@
 <%@ include file="../include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="./resources/css/inquire.css"/>
+<script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/inquire.js"></script>
 <article class=inq_main_art>
   <h3 class=inq_title>문의하기</h3>
   <span class=inq_required>*필수입력 사항</span>
   <br/>
   <div class=inq_question_cont>
-  	<form id="inq_request" action="#" method="post"  
-  	novalidate="novalidate" name="select_list">
+  	<form id="inq_request" method="post"  
+  	novalidate="novalidate" name="select_list" onsubmit="return inq();">
   	 <input type="hidden" id="serviceId" name="serviceId" value="54">
   	 <input type="hidden" id="serviceId" name="categoryId" value="30">
   	 <input type="hidden" id="locale" name="locale" value="ko">
@@ -19,19 +21,28 @@
   	   
   	   
   	   <!-- Select 시 Hide 보여지는 부분 시작 -->
-  	   <dl class="inq_info_confirm">
-  	    <dt class="inq_tit_confirm">
-  	     <span class="inq_txt_caution">꼭 확인해 주세요!</span>
+  	   <dl class="inq_info_confirm" id="inq_info_confirm" style="display:none;">
+  	    <dt class="inq_tit_confirm" id="inq_tit_confirm">
+  	     <span class="inq_txt_caution" id="inq_txt_caution">꼭 확인해 주세요!</span>
   	    </dt>
-  	    <dd class="inq_txt_confirm" style="border:1px solid black; height: -webkit-fill-available;">
+  	    <dd class="inq_txt_confirm" id="inq_txt_confirm" 
+  	    style="border:1px solid black; height: -webkit-fill-available;">
   	    	Jamong 서비스에 개선 또는 제안하고 싶은 내용을 입력해 주세요 :)
-  	    
-  	    <c:if test="${'inq_select'=='normal'}">
-  	   		Jamong 서비스에 문의하고 싶은 내용을 입력해 주세요 :)
-  	    </c:if>
   	    </dd>
   	   </dl>
   	   <!-- Select 시 Hide 보여지는 부분 끝 -->
+  	   
+  	   <!-- Select 시 Hide 보여지는 부분 시작2 -->
+  	   <dl class="inq_info_confirm" id="inq_info_confirm2" style="display:none;">
+  	    <dt class="inq_tit_confirm" id="inq_tit_confirm2">
+  	     <span class="inq_txt_caution" id="inq_txt_caution2">꼭 확인해 주세요!</span>
+  	    </dt>
+  	    <dd class="inq_txt_confirm" id="inq_txt_confirm2" 
+  	    style="border:1px solid black; height: -webkit-fill-available;">
+  	    	Jamong 서비스에 문의하고 싶은 내용을 입력해 주세요 :)
+  	    </dd>
+  	   </dl>
+  	   <!-- Select 시 Hide 보여지는 부분 끝2 -->
   	   
   	   
   	   <!-- 문의 분류쪽 큰 Div 시작 -->
@@ -39,23 +50,25 @@
   	     <dt>문의 분류 *</dt>
   	    <dd>
   	      <div class="inq_wrap_select">
-  	       <select class="inq_list_select" name="inq_select" id="listselect" onChange="selectchange(this.options[this.selectedIndex].value());">
+  	       <select class="inq_list_select" name="inq_select" id="listselect" onselect="return inq2();">
   	          <option value="none">선택</option>
-  	          <option value="feedback">개선/제안</option>
+  	          <option value="feedback" href="#none">개선/제안</option>
   	          <option value="normal">일반문의</option>
   	          <option value="jaehyu">제휴/협업 문의</option> 
   	       </select>
+  	       
   	      </div>
   	       
-  	       
   	       <div class="inq_wrap_select">
-  	       <select class="inq_list_select" name="listsub" style="display:;">
+  	       <select class="inq_list_select" name="inq_sub" id="listsub"style="display:;">
   	          <option value="none">선택</option>
   	          <option value="">web</option>
   	          <option value="">안드로이드</option>
   	          <option value="">아이폰</option>
   	       </select>
   	      </div>
+  	       <div class="inq_vali_date" id="inq_vali_list"></div>
+  	       <div class="inq_vali_date" id="inq_vali_wrap"></div>
   	    </dd>
   	   </dl>
   	   <!-- 문의쪽 큰DIV 끝 -->
@@ -73,6 +86,7 @@
   	    id="email" name="email" required="required"
   	    type="email" aria-required="true" placeholder="Example@Jamong.com">
   	     </div>
+  	      <div class="inq_vali_date" id="inq_vali_email"></div>
   	    </dd>
   	   </dl>
   	   <!-- E-Mail주소 큰 DIV 끝 -->
@@ -86,8 +100,9 @@
   	    
   	    <dd>
   	     <div class="inq_wrap_phone">+82</div>
-  	     <input autocomplete="off" class="inq_nation" id="inpnationinfo"
+  	     <input autocomplete="off" class="inq_nation" id="phone"
   	      type="text" placeholder="01012345678">
+  	     <div class="inq_vali_date" id="inq_vali_phone"></div>
   	    </dd>
   	   </dl>
   	   <!-- 휴대폰 번호 DIV 끝 -->
@@ -101,10 +116,11 @@
   	    </dt>
   	    <dd>
   	     <div class="inq_wrap_item2">
-  	     	<textarea class="inq_inp_info2" cols="24" rows="6" id="contents"
+  	     	<textarea class="inq_inp_info2" cols="24" rows="6" id="info"
   	     	name="contents" required="required" style="line-height: normal"
   	     	aria-required="true"></textarea>
   	     </div>
+  	     <div class="inq_vali_date" id="inq_vali_info"></div>
   	    </dd>
   	   </dl>
   	   <!-- 문의 내용 큰 DIV 끝 -->
@@ -182,16 +198,16 @@
   	     name="agree" required="required" type="checkbox" aria-required="true">
   	      <label class="inq_lab_check" for="agree">
   	             위 내용에 동의합니다.
-  	      </label> 
+  	      </label>
   	    </div>
+  	       <div class="inq_vali_date" id="inq_vali_check">문의분류를 선택해주세요</div>
   	   </div>
   	   <!-- 개인정보수집 DIV 끝 -->
   	   
   	   
   	   <!-- 문의접수 BUTTON -->
   	   <div class="inq_wrap_btn">
-  	    <button class="inq_btn_cs" type="submit" 
-  	    onclick="location.href='http://localhost:8018/jamong.com/'">
+  	    <button class="inq_btn_cs" type="submit">
   	    	문의접수 
   	    </button>
   	   </div>

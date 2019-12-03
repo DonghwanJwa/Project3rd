@@ -93,6 +93,7 @@
    </div>
    
     <!-- 글 내용부분 -->
+    <c:forEach begin="1" end="5" step="1" var="i">
 	<div class=cat_writing_block>
 	 <div class=cat_writing>
 	  <div class="cat_writing_img-div">
@@ -112,6 +113,9 @@
 	  </div>
 	 </div>
 	</div>
+	</c:forEach>
+	<!-- 끝 -->
+	
 	<div class=cat_writing_block>
 	 <div class=cat_writing>
 	  <div class="cat_writing_img-div">
