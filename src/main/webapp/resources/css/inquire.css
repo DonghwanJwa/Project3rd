@@ -37,6 +37,38 @@ body{
     right: 0;
     margin-right: 91px;
 }
+.inq_info_confirm{
+	overflow: hidden;
+	width: 750px;
+	height:70.4px;
+}
+.inq_tit_confirm{
+	float: left;
+	width: 110px;
+	padding: 25px 15px;
+	font-size: 15px;
+	text-align: center;
+	border-top: 2px solid #1e1e1e;
+	background-color: #ffdc00;
+}
+.inq_txt_caution{
+	display: block;
+	width: 110px;
+	height: 17px;
+	margin: 0 auto;
+	font-size: 14px;
+	color: black;
+}
+.inq_txt_confirm{
+	float: right;
+    width: 528px;	
+    padding: 25px 40px 23px;
+    line-height: 27px;
+    font-size: 15px;
+    background-color: #fff;
+    border: 1px solid black;
+    height: -webkit-fill-available;    
+}
 .inq_question_cont{
     margin: 0;
     padding: 0;
@@ -44,13 +76,13 @@ body{
     font-size: 13px;
     line-height: 1.5px;
     color:#333;
-    boder:1px solid #333;
 }
 .inq_question_cont dd{
 	float: left;
 	width: 581px;
 	padding: 18px 0px 18px 20px;
 	margin:0px;
+	border: 1px;
 }
 #inq_request{
 	font-size: 13px;
@@ -84,6 +116,8 @@ body{
     border: 1px solid #919191;
     width: 282px;
     height: 38px;
+    margin: 0px 0px 0px 6px;
+  
 }
 .inq_email_info{
     width: 551px;
@@ -202,6 +236,7 @@ body{
 	font-size: 15px;
 	padding-left: 15px;
 	border: 1px solid black;
+	style= resize:none;
 }
 .inq_inp_info2{
 	width: 549px;
@@ -246,3 +281,30 @@ body{
 ::selection{
 	background:RGB(245,124,104,0.6);
 }
+
+
+
+
+
+/* placeholder 클릭만 해도 placeholder 내용 없애는 코드 */
+/* 4가지 브라우저를 호환합니다 우리는 개발자니깐요 */ 
+
+input:focus::-webkit-input-placeholder, 
+textarea:focus::-webkit-input-placeholder {/* WebKit browsers */ 
+color:transparent; 
+} 
+
+input:focus:-moz-placeholder, 
+textarea:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color:transparent; 
+}
+
+ input:focus::-moz-placeholder, 
+ textarea:focus::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:transparent; 
+  } 
+ 
+ input:focus:-ms-input-placeholder,
+ textarea:focus:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+ color:transparent; }
+

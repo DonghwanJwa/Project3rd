@@ -86,8 +86,8 @@
      
      
      <div class=cat_write_button>
-     <input type="button" id="cat_write_button" class="cat_write_btn" value="Article"  onclick="location.href='category?directory=articles'" >
-     	<input type="button" id="cat_book_button" class="cat_book_btn" value="Book" onclick="location.href='category?directory=books'"/>
+     <input type="button" id="cat_book_button" class="cat_write_btn" value="Article"  onclick="location.href='category?directory=articles'" >
+     	<input type="button" id="cat_write_button" class="cat_book_btn" value="Book" onclick="location.href='category?directory=books'"/>
      	 
      </div>
    </div>
@@ -163,9 +163,9 @@
 	  </div>
 	</a>
 	  <div class=cat_writing_bottom>
-	   <button class=cat_writing_button><b>여행</b></button>
-	   <button class=cat_writing_button2><b>포틀랜드</b></button>
-	   <button class=cat_writing_button3><b>후드산</b></button>
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>여행</b></button>
+	   <button class=cat_writing_button2 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>포틀랜드</b></button>
+	   <button class=cat_writing_button3 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>후드산</b></button>
 	  </div>
 	 </div>
 	</div>    

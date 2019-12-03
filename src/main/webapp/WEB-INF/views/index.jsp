@@ -11,17 +11,6 @@
 <script src="./resources/js/request_author.js"></script>
 <link rel="stylesheet" type="text/css" href="./resources/css/request_author.css"/>
 <title>글에 꿈을 담다, 자몽</title>
-<script>
-$(document).ready(function(){
-	$('#head-menu_search-text').keyup(function(e) {
-		if(!$.trim($('#head-menu_search-text').val())==""){
-			if (e.keyCode == 13){			
-				location.href = "./search?result=post"
-			}
-    	}       
-	});
-});
-</script>
 </head>
 <body>
 
@@ -172,31 +161,15 @@ $(document).ready(function(){
 	   </div>
 	   <div class="head-item-scroll">
 	    <ul class="head-item-scroll-list">
+	    
+	     <c:forEach var="i" begin="1" end="5" step="1">
 		 <li class="head-item-scroll-item">
-		  <a href="#" class="head-item-scroll-link1" onclick="hotscroll('best',1);">
+		  <a class="head-item-scroll-link${i}" onclick="hotscroll('best',${i});">
 		   <span>&nbsp;</span>
 		  </a>
-		 </li>
-		 <li class="head-item-scroll-item">
-		  <a href="#" class="head-item-scroll-link2" onclick="hotscroll('best',2);">
-		   <span>&nbsp;</span>
-		  </a>
-		 </li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link3" onclick="hotscroll('best',3);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link4" onclick="hotscroll('best',4);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link5" onclick="hotscroll('best',5);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>		
+		 </li>		
+		</c:forEach>
+		
 	   </ul>
 	  </div>
      </div>
@@ -226,35 +199,20 @@ $(document).ready(function(){
 	     </a>
 	    </li>
 		</c:forEach>
+		
 	   </ul>
 	   </div>
 	   <div class="head-item-scroll">
-	    <ul class="head-item-scroll-list">
+	    <ul class="head-item-scroll-list"> 
+	    
+	    <c:forEach var="i" begin="1" end="5" step="1">
 		 <li class="head-item-scroll-item">
-		  <a href="#" class="head-item-scroll-link1" onclick="hotscroll('hot',1);">
+		  <a class="head-item-scroll-link${i}" onclick="hotscroll('hot',${i});">
 		   <span>&nbsp;</span>
 		  </a>
-		 </li>
-		 <li class="head-item-scroll-item">
-		  <a href="#" class="head-item-scroll-link2" onclick="hotscroll('hot',2);">
-		   <span>&nbsp;</span>
-		  </a>
-		 </li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link3" onclick="hotscroll('hot',3);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link4" onclick="hotscroll('hot',4);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>
-		<li class="head-item-scroll-item">
-		 <a href="#" class="head-item-scroll-link5" onclick="hotscroll('hot',5);">
-		  <span>&nbsp;</span>
-		 </a>
-		</li>		
+		 </li>		
+		</c:forEach>
+		
 	   </ul>
 	  </div>
      </div>
@@ -278,18 +236,17 @@ $(document).ready(function(){
     </div>
     
     <%-- profile --%>
+     <%-- 로그인 전 --%>
+    <c:if test="${empty id}">
     <div id="head-page-profile-wrap">
      <div id="head-profile-menu">
-      <a href="./feed" class="head-feed-button">
-       <img src="./resources/img/feed.png" alt="피드"/>
-      </a>
      </div>
-     <a href="./profile" id="head-profile-info-wrap">
+     <a id="head-profile-info-wrap">
       <div id="head-profile-info-img-wrap">
        <img id="head-profile-info-img" src="./resources/img/profile_logout.png">
       </div>
       <div id="head-profile-name-wrap">
-       <strong>프로필명</strong>
+       <strong></strong>
       </div>
      </a>
      <div id="head-profile-service-wrap">
@@ -308,10 +265,55 @@ $(document).ready(function(){
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
+       <li id="head-profile-service-hr"><span class="head-profile-service-bar"></span></li>
+       <li id="head-profile-service-rec-writing">
+        <a href="./new_posts">
+         <span class="head-profile-service-bar-left"></span>
+       		 <b>최신 글</b>
+         <span class="head-profile-service-bar-right"></span>
+        </a>
+       </li>
+       <li id="head-profile-service-rec-book">
+        <a href="./new_book">
+         <span class="head-profile-service-bar-left"></span>
+        	<b>최신 책</b>
+         <span class="head-profile-service-bar-right"></span>
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+    </c:if>
+    
+    <%-- 로그인 후 --%>
+    <c:if test="${!empty id}">
+    <div id="head-page-profile-wrap">
+     <div id="head-profile-menu">
+      <a href="./feed" class="head-feed-button">
+       <img src="./resources/img/feed.png" alt="피드"/>
+      </a>
+     </div>
+     <a href="./profile" id="head-profile-info-wrap">
+      <div id="head-profile-info-img-wrap">
+       <img id="head-profile-info-img" src="./resources/img/profile_logout.png">
+      </div>
+      <div id="head-profile-name-wrap">
+       <strong>프로필명</strong>
+      </div>
+     </a>
+     <div id="head-profile-service-wrap">
+      <ul>
        <li id="head-profile-service-write" class="head-profile-stat-login">
         <a href="./write">
          <span class="head-profile-service-bar-left"></span>
        		 <b>글쓰기</b>
+         <span class="head-profile-service-bar-right"></span>
+        </a>
+       </li>
+       <li id="head-profile-service-setting" class="head-profile-stat-login">
+        <a href="./pass_modify">
+         <span class="head-profile-service-bar-left"></span>
+        	<b>내 설정</b>
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
@@ -330,13 +332,6 @@ $(document).ready(function(){
          <span class="head-profile-service-bar-right"></span>
         </a>
        </li>
-       <li id="head-profile-service-setting" class="head-profile-stat-login">
-        <a href="./pass_modify">
-         <span class="head-profile-service-bar-left"></span>
-        	<b>내 설정</b>
-         <span class="head-profile-service-bar-right"></span>
-        </a>
-       </li>
        <li id="head-profile-service-logout" class="head-profile-stat-login">
         <a href="#">
          <span class="head-profile-service-bar-left"></span>
@@ -347,9 +342,11 @@ $(document).ready(function(){
       </ul>
      </div>
     </div>
+    </c:if>
    </div> <%-- menu-page-wrap --%>
   </div> <%-- menu-page-wrap --%>
  </div> <%-- header-wrap --%>
+
   <div class="clear"></div>
   
   <%-- 메인페이지 --%>

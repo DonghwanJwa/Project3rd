@@ -59,14 +59,13 @@ body{
 
 #head-menu_search-text{
 	display:inline-block;
-	width:140px;
+	width:0;
 	height:30px;
 	margin-right:10px;
-	visibility: hidden;
 	outline:none;
 	opacity:0;
-	transition:visibility 0.33s, opacity 0.33s linear;
-	-webkit-transition:visibility 0.33s, opacity 0.33s linear;
+	transition:width 0.33s linear, opacity 0.33s linear;
+	-webkit-transition:width 0.33s linear, opacity 0.33s linear;
 }
 
 #head-menu-button{
@@ -237,6 +236,9 @@ body{
 	padding:0;
 	justify-content:center
 }
+.head-item-scroll-item{
+	cursor: pointer;
+}
 
 .head-item-scroll-item span{
 	display:inline-block;
@@ -341,9 +343,9 @@ body{
 	width:200px;
 }
 #head-profile-service-wrap{
-	height:280px;
+	height:270px;
 	width:200px;
-	margin-top:30px;
+	margin-top:40px;
 }
 #head-profile-service-wrap ul{
 	list-style: none;
@@ -354,12 +356,13 @@ body{
 #head-profile-service-wrap li{
 	margin:10px 20px;
 	color:#3d3d3d; 
-	font-size:15px;
-	font-weight: bold;
+	padding: 3px 0;
 }
 #head-profile-service-wrap b{
 	display:inline-block;
 	width:90px;
+	font-weight:normal;
+	font-size:17px;
 }
 
 #head-profile-service-wrap a{
@@ -378,6 +381,15 @@ body{
 }
 #head-profile-service-wrap a:hover .head-profile-service-bar-right{
 	border-bottom:1px solid #FBA621;
+}
+
+#head-profile-service-hr{ /*프로필 중앙선 li*/
+	paddding:10px 0;
+}
+
+.head-profile-service-bar{
+	display:block;
+	border:0.5px solid #3d3d3d; 
 }
 
 .head-profile-service-bar-left{
