@@ -311,12 +311,12 @@ line-height: 42px;
 .cat_book_inner{
 	width:150px;
 	height:180px;
-	background:white;
+	background-color:#ffffffe0;
 	margin:auto auto;
 	position: absolute;
 	top:25%;
 	left:25%;
-	opacity:85%;
+	
 }
 .cat_jamong_book{
 	display: block;
