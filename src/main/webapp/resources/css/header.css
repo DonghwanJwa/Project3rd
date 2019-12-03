@@ -15,7 +15,6 @@ body{
 	position:fixed;
 	background-color:#fff;
 	opacity: 0.8;
-	border-bottom: 1px solid #3b3b3b;
 	z-index: 10020;
 }
 
@@ -290,7 +289,7 @@ body{
 	text-decoration: none;
 	text-align: center;
 	color: #3d3d3d;
-	font-size: 13px;
+	font-size: calc(8px + .5vw);
 }
 
 .head-page-category-item a:hover{
@@ -341,6 +340,7 @@ body{
 	font-size:17px;
 	display:inline-block;
 	width:200px;
+	
 }
 #head-profile-service-wrap{
 	height:270px;
