@@ -75,14 +75,14 @@
 				</div>			 
 				<b id="join_membership_email_atMark">@</b> 
 				<input type=text list=browsers id="join_membership_email_datalist"
-					placeholder="도메인">
+					placeholder="도메인" tabindex="10">
 				<datalist id=browsers>
 					<option value="naver.com">
 					<option value="daum.com">
 					<option value="gmail.com">
 					<option value="nate.com">
 				</datalist>
-				<button id="join_membership_certified_btn">인증</button>
+				<button id="join_membership_certified_btn" tabindex="11">인증</button>
 				<div class="join_membership_error"
 					id="join_membership_error_email_domain"></div>
 
@@ -90,14 +90,14 @@
 
 				<div id="join_membership_tel_color">
 					<div class="join_membership_tel_hover_focus">
-						<input class="join_membership_tel numberOnly" id="join_membership_tel1" placeholder="010" maxlength="3">-
-						<input class="join_membership_tel numberOnly" id="join_membership_tel2" placeholder="0000" maxlength="4">-
-						<input class="join_membership_tel numberOnly" id="join_membership_tel3" placeholder="0000" maxlength="4">	
+						<input class="join_membership_tel numberOnly" id="join_membership_tel1" placeholder="010" maxlength="3"tabindex="12">-
+						<input class="join_membership_tel numberOnly" id="join_membership_tel2" placeholder="0000" maxlength="4"tabindex="13">-
+						<input class="join_membership_tel numberOnly" id="join_membership_tel3" placeholder="0000" maxlength="4"tabindex="14">	
 					</div>
 					<div class="join_membership_error" id="join_membership_error_tel"></div>
 				</div>
 
-				<button id="join_membership_next_btn">다음으로</button>
+				<button id="join_membership_next_btn"tabindex="15" onclick="change1();">다음으로</button>
 			</div>
 		</div>
 
@@ -126,10 +126,13 @@
 				<article id="join_membership_profile_main_edit_article">
 					<div>
 						<img id="join_membership_profile_edit_img" alt="이미지" src="./resources/img/profile.jpg">
-						<span id="join_membership_profile_img_edit_button"> <label
-							for="profile_img" class="join_membership_profile_font_hide"></label> <input
-							class="join_membership_profile_input_hide" type="file" name="file"
-							accept="image/*">
+						<span id="join_membership_profile_img_edit_button"> 
+						<label for="profile_img" class="join_membership_profile_font_hide"></label> 
+						<div id="imagePriview">
+					        <form target="Upload" enctype="multipart/form-data"action="write_cover_ok" method="post">
+							<input class="join_membership_profile_input_hide" type="file" name="file" accept="image/*"/>
+							</form>
+							</div>
 						</span>
 					</div>
 					<div>

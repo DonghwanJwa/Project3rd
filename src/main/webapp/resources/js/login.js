@@ -23,7 +23,7 @@ function login() {
 	}
 
 }
-$(document).ready(function(){
+/*$(document).ready(function(){
 	$("#join_membership_next_btn").click(function() {
 		$('.join_membership_error').text('');//에러택스트
 	
@@ -214,7 +214,191 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		/*기본정보 -> 프로필*/
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
+		if($("#join_membership_main_div2").css("display") == "none"){
+	
+			$("#join_membership_main_div").css("display","none");
+			$("#join_membership_main_div2").css("display","block");
+		} else {  
+			$('#join_membership_main_div2').css("display", "none");   
+		}
+		기본정보 -> 프로필
 		if($("#join_membership_main_div2").css("display") == "none"){
 	
 			$("#join_membership_main_div").css("display","none");
@@ -225,7 +409,7 @@ $(document).ready(function(){
 		
 	});
 
-	/*생년월일,전화번호 숫자만 받도록*/
+	생년월일,전화번호 숫자만 받도록
 	$(".numberOnly").on("focus", function() {//포커스되었을때
 	    var x = $(this).val();
 	    $(this).val(x);
@@ -239,7 +423,7 @@ $(document).ready(function(){
 	}).on("keyup", function() {//숫자가 눌렸을 때
 		$(this).val($(this).val().replace(/[^0-9]/g,""));//숫자가 아닌존재들을 지움
 	});	
-});
+});*/
 
 function change2(){
 	if($("#join_membership_main_div3").css ("display") == "none"){
@@ -248,7 +432,31 @@ function change2(){
 	}
 }
 
+$(document).ready(function(){
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
 	
+	filesArr.forEach(function(f){
+		if(!f.type.match("image.*")){
+			alert('확장자는 이미지 확장자만 가능합니다!');
+			return;
+		}
+		sel_file = f;
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$("#join_membership_profile_edit_img").css('background-image','url(\"'+e.target.result+'\")');
+		}
+		reader.readAsDataURL(f);
+	});
+//기본정보 -> 프로필
+function change1(){
+if($("#join_membership_main_div2").css("display") == "none"){
+	
+	$("#join_membership_main_div").css("display","none");
+	$("#join_membership_main_div2").css("display","block");
+} else {  
+	$('#join_membership_main_div2').css("display", "none");   
+}
 
 
 

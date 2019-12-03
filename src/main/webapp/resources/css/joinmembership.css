@@ -292,19 +292,20 @@ body{
 	min-width:420px;
 }
 #join_membership_category_btn{
-	margin-left: 721px;
-    outline: none;
-    border: 1px solid;
-    background: white;
-    border-radius: 15px;
-    padding: 2px 14px;
-    color: #ff8040;
+border: solid 2px orange;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    cursor: pointer;
+    outline: 0;
+    margin-top: 26px;
+    margin-left: 317px;
 }
 /*우측사이드창 - category*/
 #join_membership_head-page-category-frame{
-	width:calc(56.76vw - 100px);
+	width:calc(56.76vw - 50px);
 	min-width:376px;
-	height:300px;
+	height:220px;
 	display:flex;
 	justify-content: center;
 	align-items: center;
@@ -323,7 +324,7 @@ body{
 	height: calc(7.55vw - 55px);
 	min-width: 50px;
 	min-height: 50px;
-	margin:0 45px;
+	margin: 15px 12px;
 	display:flex;
 	justify-content: center;
 	align-items: center;
@@ -353,19 +354,17 @@ body{
 
 #join_membership_profile_main_edit{
 	min-height: calc(100vh - 380px);
-	background: 	snow;
+	background: white;
 }
 #join_membership_profile_edit_title{
 	text-align: center;
 	margin: 0;
-	padding: 10px;
 }
 #join_membership_profile_main_edit_article{
 	line-height:1.2;
 	position: relative; 
-	width:700px;
-	min-width: 700px; 
-	height: auto;
+	width:545px;
+	height: 282px;
 	padding: 15px 30px;
 	margin-left:50%; margin-right:50%;
 	transform: translate(-50%);
@@ -461,15 +460,25 @@ body{
 	height: 40px;
 }
 .join_membership_profile_edit_btn2{
-	margin: 0 5px;
+/* 	margin: 0 5px;
 	    outline: none;
     border: 1px solid;
     background: white;
     border-radius: 15px;
     padding: 2px 14px;
     color: #ff8040;
-    margin-left: 577px;
-    margin-top: 15px;
+    margin-left: 250px;
+    margin-top: 25px; */
+	
+	border: solid 2px orange;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    cursor: pointer;
+    outline: 0;
+    margin-top: 14px;
+    margin-left: 190px;
+
 }
 
 
