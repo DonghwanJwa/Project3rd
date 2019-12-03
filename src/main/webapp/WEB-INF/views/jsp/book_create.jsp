@@ -3,7 +3,6 @@
 <script src="./resources/js/book_create.js"></script>
 <script src="./resources/js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="./resources/css/book_create.css">
-<link rel="stylesheet" type="text/css" href="./resources/css/jquery-ui.css">
 
 <div id="book_create_wrap">
  <div id="book_create_list">
@@ -66,14 +65,15 @@
    </li>
   </ul>
 
-  <div id="book_create_function">
-   <input type="button" id="add" class="btn" value="추가">
-   <input type="button" id="del" class="btn" value="삭제">
+  <div id="book_create_btn">
+   <div id="book_create_function">
+    <input type="button" id="add" class="btn" value="추가">
+    <input type="button" id="del" class="btn" value="삭제">
+   </div>
   </div>
-  <div id="book_create_make">
-  <ul>
+  
+  <ul id="create_list" class="ui-sortable">
   </ul>
-  </div>
  </div>
 </div>
 

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<jsp:include page="../include/header.jsp"></jsp:include>
+<%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" type="text/css" href="./resources/css/search_result.css" />
 <script src="./resources/js/search.js"></script>
 
@@ -30,69 +30,22 @@
   <%-- 검색 결과 내용 --%>
   <div id="search_result_work_main">
   
+  <c:forEach begin="1" end="10" step="1">
   <a href="./book_info">
    <div class="work_cont">
     <img id="work_img" src="./resources/img/b.jpg" alt="책 표지인데 안나옴;">
-    <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
-    <div id="work_author">김땡땡 작가</div>
+    <div class="work_cont_view">
+     <div class="work_cont_view_top">
+      <strong>강아지와 지내는건 어때?</strong>
+      <span>by 멍뭉이</span>
+     </div>
+     <div class="work_cont_view_bottom">
+      <span>Jamong Book</span>
+     </div>
+    </div>
    </div>
   </a>
-
-  <a href="./book_info">
-   <div class="work_cont">
-    <img id="work_img" src="./resources/img/b.jpg" alt="책 표지인데 안나옴;">
-    <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
-    <div id="work_author">김땡땡 작가</div>
-   </div>
-  </a>
-  
-    <a href="./book_info">
-   <div class="work_cont">
-    <img id="work_img" src="./resources/img/b.jpg" alt="책 표지인데 안나옴;">
-    <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
-    <div id="work_author">김땡땡 작가</div>
-   </div>
-  </a>
-  
-    <a href="./book_info">
-   <div class="work_cont">
-    <img id="work_img" src="./resources/img/b.jpg" alt="책 표지인데 안나옴;">
-    <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
-    <div id="work_author">김땡땡 작가</div>
-   </div>
-  </a>
-  
-    <a href="./book_info">
-   <div class="work_cont">
-    <img id="work_img" src="./resources/img/b.jpg" alt="책 표지인데 안나옴;">
-    <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
-    <div id="work_author">김땡땡 작가</div>
-   </div>
-  </a>
-  
-    <a href="./book_info">
-   <div class="work_cont">
-    <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
-    <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
-    <div id="work_author">김땡땡 작가</div>
-   </div>
-  </a>
-  
-    <a href="./book_info".jsp">
-   <div class="work_cont">
-    <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
-    <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
-    <div id="work_author">김땡땡 작가</div>
-   </div>
-  </a>
-  
-    <a href="./book_info">
-   <div class="work_cont">
-    <img id="work_img" src="../img/b.jpg" alt="책 표지인데 안나옴;">
-    <div id="work_title">책 표지 3/4 위치를 기점으로 제목 출력</div>
-    <div id="work_author">김땡땡 작가</div>
-   </div>
-  </a>
+  </c:forEach>
 
   </div>
  </div>
