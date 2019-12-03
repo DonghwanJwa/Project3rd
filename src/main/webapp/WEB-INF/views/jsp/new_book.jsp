@@ -93,6 +93,13 @@
      </div>
      <div class="new_book_banner_book_image_container">
       <div class="new_book_banner_book_image">
+      <div class="new_book_banner_book_image_top">
+        <strong>강아지와 지내는 건 어때?</strong>
+        <span>by 멍뭉이</span>
+       </div>
+       <div class="new_book_banner_book_image_bottom">
+        <span>Jamong Book</span>
+       </div>
        <div class="border_left"></div>
        <div class="book_image">
         <img src="./resources/img/bookCover.jpg">
@@ -194,159 +201,21 @@
   </div>
   <div class="new_book_list_item">
    <ul id="gradeItemList_all" style="width: 21840px;" class="slide_work_list visible" data-page="1">
-    <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
-    
+    <c:forEach begin="1" end="22" step="1">
      <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
-    
-     <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
-    
-     <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
-    
-     <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
-    
-     <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
-    
-     <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
-    
-     <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
-    
-     <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
-    
-     <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
-    
-     <li class="item_work open">
-     <div class="new_book_item_work_cover">
-      <img class="img_cover" src="./resources/img/book_img.jpg">
-      <div class="border_left"></div>
-     </div>
-     <p class="title">오늘부터 그림</p>
-     <p class="author">
-      <span class="by">by</span>
-      "&nbsp;"
-      <a target="_blank" href="#">흔디</a>
-     </p>
-     <span class="open_marker"></span>
-    </li>
+      <div class="new_book_item_work_cover">
+       <img class="img_cover" src="./resources/img/book_img.jpg">
+       <div class="border_left"></div>
+      </div>
+      <p class="title">오늘부터 그림</p>
+      <p class="author">
+       <span class="by">by</span>
+       "&nbsp;"
+       <a target="_blank" href="#">흔디</a>
+      </p>
+      <span class="open_marker"></span>
+     </li>
+    </c:forEach>
    </ul>
   </div>
  </div>
