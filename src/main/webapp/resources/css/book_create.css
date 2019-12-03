@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+#book_create_list {
+	border: 1px solid black;
+	min-height: calc(100vh-50px);
+}
+
+#post_list {
+	border: 1px solid red;
+	margin: 10px;
+	display: inline-block;
+	width: 40%;
+}
+
+#book_create_function {
+	display: inline-block;
+	width: 15%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.btn {
+	margin: 10px 50px;
+}
+
+#book_create_make {
+	display: inline-block;
+	width: 40%;
+	border: 1px solid blue;
+	height: 383px;
+}
+
+input[tpye="checkbox"]:checked + #post_list_cont{
+	background-color: #ffff80;
+}

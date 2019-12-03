@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-
+<link rel="stylesheet" type="text/css" href="./resources/css/category.css" />
 
  <div id=cat_empty>
   <div id=cat_title_name><strong>영화·평가</strong></div>
@@ -17,8 +17,8 @@
        		<div id=cat_sub_count1>구독자 : 121만</div>
       		 <div class=cat_writer_keyword_div>
       		 	<button class="cat_writer_keyword" ><strong>영화</strong></button>
-      		 	<button class="cat_writer_keyword"><strong>여행</strong></button>
-      		 	<button class="cat_writer_keyword"><strong>맛집</strong></button>
+      		 	<button class="cat_writer_keyword" ><strong>여행</strong></button>
+      		 	<button class="cat_writer_keyword" ><strong>맛집</strong></button>
       		 </div>
       	</div>
        </a>
@@ -31,9 +31,9 @@
          	<div id=cat_write_count2>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;30개</div>
          	<div id=cat_sub_count2>구독자 :  122만</div>
          	 <div class=cat_writer_keyword_div>
-         	    <button class="cat_writer_keyword"><strong>영화</strong></button>
-      		 	<button class="cat_writer_keyword"><strong>여행</strong></button>
-      		 	<button class="cat_writer_keyword"><strong>맛집</strong></button>
+         	    <button class="cat_writer_keyword" ><strong>영화</strong></button>
+      		 	<button class="cat_writer_keyword" ><strong>여행</strong></button>
+      		 	<button class="cat_writer_keyword" ><strong>맛집</strong></button>
          	 </div>
           </div>
         </a>
@@ -46,9 +46,9 @@
         		<div id=cat_write_count3>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;40개</div>
         		<div id=cat_sub_count3>구독자 : 123만</div>
         		 <div class=cat_writer_keyword_div>
-      		 	  <button class="cat_writer_keyword"><strong>영화</strong></button>
+      		 	  <button class="cat_writer_keyword" ><strong>영화</strong></button>
       		 	  <button class="cat_writer_keyword"><strong>여행</strong></button>
-      		 	  <button class="cat_writer_keyword"><strong>맛집</strong></button>
+      		 	  <button class="cat_writer_keyword" ><strong>맛집</strong></button>
       		 	 </div>
         	</div>
          </a>
@@ -61,9 +61,9 @@
          		 <div id=cat_write_count4>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;45개</div>
          		 <div id=cat_sub_count4>구독자 : 125만</div>
          		 	<div class=cat_writer_keyword_div>
-      		 			<button class="cat_writer_keyword"><strong>영화</strong></button>
-      		 			<button class="cat_writer_keyword"><strong>여행</strong></button>
-      		 			<button class="cat_writer_keyword"><strong>맛집</strong></button>
+      		 			<button class="cat_writer_keyword" ><strong>영화</strong></button>
+      		 			<button class="cat_writer_keyword" ><strong>여행</strong></button>
+      		 			<button class="cat_writer_keyword" ><strong>맛집</strong></button>
       		        </div>
          	</div>
           </a>
@@ -76,19 +76,23 @@
           			<div id=cat_write_count5>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;50개</div>
           			<div id=cat_sub_count5>구독자 : 140만</div>
           				<div class=cat_writer_keyword_div>
-      		 				<button class="cat_writer_keyword"><strong>영화</strong></button>
-      		 				<button class="cat_writer_keyword"><strong>여행</strong></button>
-      		 				<button class="cat_writer_keyword"><strong>맛집</strong></button>
+      		 				<button class="cat_writer_keyword" ><strong>영화</strong></button>
+      		 				<button class="cat_writer_keyword" ><strong>여행</strong></button>
+      		 				<button class="cat_writer_keyword" ><strong>맛집</strong></button>
       				    </div>
           		</div>
           </a>
      </div>
+     
+     
      <div class=cat_write_button>
-     	<input type="button" id="cat_write_button" class="cat_write_btn" value="글">
-     	<input type="button" id="cat_book_button" class="cat_book_btn" value="책">
+     <input type="button" id="cat_book_button" class="cat_write_btn" value="Article"  onclick="location.href='category?directory=articles'" >
+     	<input type="button" id="cat_write_button" class="cat_book_btn" value="Book" onclick="location.href='category?directory=books'"/>
      	 
      </div>
    </div>
+   
+    <!-- 글 내용부분 -->
 	<div class=cat_writing_block>
 	 <div class=cat_writing>
 	  <div class="cat_writing_img-div">
@@ -102,9 +106,9 @@
 	  </div>
 	</a>
 	  <div class=cat_writing_bottom>
-	   <button class=cat_writing_button><b>여행</b></button>
-	   <button class=cat_writing_button2><b>힐링</b></button>
-	   <button class=cat_writing_button3><b>도시</b></button>
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>여행</b></button>
+	   <button class=cat_writing_button2 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>힐링</b></button>
+	   <button class=cat_writing_button3 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>도시</b></button>
 	  </div>
 	 </div>
 	</div>
@@ -121,9 +125,9 @@
 	  </div>
 	</a>
 	  <div class=cat_writing_bottom>
-	   <button class=cat_writing_button><b>이별</b></button>
-	   <button class=cat_writing_button2><b>슬픔</b></button>
-	   <button class=cat_writing_button3><b>눈물</b></button>
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>이별</b></button>
+	   <button class=cat_writing_button2 onclick="location.href='http://localhost:8018/jamong.com/search?result=post' "><b>슬픔</b></button>
+	   <button class=cat_writing_button3 onclick="location.href='http://localhost:8018/jamong.com/search?result=post' "><b>눈물</b></button>
 	  </div>
 	 </div>
 	</div>
@@ -140,9 +144,9 @@
 	  </div>
 	</a>
 	  <div class=cat_writing_bottom>
-	   <button class=cat_writing_button><b>반려</b></button>
-	   <button class=cat_writing_button2><b>동물</b></button>
-	   <button class=cat_writing_button3><b>존귀</b></button>
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>반려</b></button>
+	   <button class=cat_writing_button2 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>동물</b></button>
+	   <button class=cat_writing_button3 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>존귀</b></button>
 	  </div>
 	 </div>
 	</div>  
@@ -159,9 +163,9 @@
 	  </div>
 	</a>
 	  <div class=cat_writing_bottom>
-	   <button class=cat_writing_button><b>여행</b></button>
-	   <button class=cat_writing_button2><b>포틀랜드</b></button>
-	   <button class=cat_writing_button3><b>후드산</b></button>
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>여행</b></button>
+	   <button class=cat_writing_button2 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>포틀랜드</b></button>
+	   <button class=cat_writing_button3 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>후드산</b></button>
 	  </div>
 	 </div>
 	</div>    

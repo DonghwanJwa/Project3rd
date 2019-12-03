@@ -31,6 +31,7 @@ $(document).ready(function() {
 		$("#article_tab").removeClass("active");
 		$("#info_tab").removeClass("active");
 	});
+
 })
 /**/
 $(document).ready(function() {
@@ -46,8 +47,7 @@ $(document).ready(function() {
 		});
 	});
 });
-/* */
-
+/*edit 글자제한 */
 
 /*	 키워드 	*/
 
@@ -55,36 +55,78 @@ $(document).ready(function() {
 	var keyword_tag = {};
 	var counter = 0;
 
+	// 특수문자 정규식 변수(공백 미포함)
+	var s_word = /[~!@\#$%^&*\()\-=+_'\;<>\/.\`:\"\\,\[\]?|{}]/gi;
+	var k_word = /[ㄱ-ㅎㅏ-ㅣ]/gi;
+	var n_word = /[0-9]/gi;
+
+
+
+	// 완성형 아닌 한글 정규식
+
 	// 태그를 추가한다.
 	function addTag(value) {
 		keyword_tag[counter] = value; // 태그를 Object 안에 추가
 		counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
 	}
 
-	// tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
 	function marginTag() {
 		return Object.values(keyword_tag).filter(function(word) {
 			return word !== "";
 		});
 	}
+	/*작가명 엔터 키 제한*/
+	$('#profile_editor').on("keypress",function(e){
+		var p_edit =$(this).val();
+		if(e.keyCode == 13){
+			alert('작가이름은 줄바꿈을 사용할 수 없습니다!');
+			$(this).val('');
+		}
+	});
+	/*작가명 특수문자안되게*/
+	$('#profile_editor').on("focusout",function(e){
+		var p_edit =$(this).val();
+		if(p_edit.length >0){
+			if(p_edit.match(s_word)){
+				p_edit = p_edit.replace(s_word,"");
+				alert('특수문자는 입력할 수 없습니다.')
+			}
+			$(this).val(p_edit);
+		}
+	});
+	/*자기소개 엔터키 제한*/
+	$('.e').on("keypress",function(e){
+		var p_edit =$(this).val();
+		if(e.keyCode == 13){
+			alert('자기소개는 줄바꿈을 사용할 수 없습니다!');
+			return false;
+		}
+	});
 
 	//keypress : 글자가 입력되었을때 이벤트 실행, keyup : 키 입력 후 발생되는 이벤트
 	$("#keyword_tag").on("keypress", function(e) {
 		var self = $(this);
- 
+
 		if (e.keyCode == 32) {/*스페이스 바 입력 안되도록*/
-			alert('띄여쓰기는 사용할 수 없습니다');
+			alert('띄어쓰기는 사용할 수 없습니다');
 			return false;
 		}
-		// input 에 focus 되있을 때 엔터 입력 ( 버튼 클릭시  구동-미구현)
+		// input 에 focus 되있을 때 엔터 입력 ( )
 		if (e.key === "Enter") {
 			var tagValue = self.val(); // 값 가져오기
-			if (tagValue !== "") { // 값이 없으면 동작 안하게
+			if (tagValue !== "" ) { // 값이 없으면 동작 안하게
+				if (tagValue.match(s_word) || tagValue.match(k_word) || tagValue.match(n_word)){
+					alert('특수문자,미완성된 한글,숫자는 입력할 수 없습니다.') 
+					return self.val("");
+				}
+
 				// 같은 태그가 있는지 검사한다. 있다면 해당값이 array로 return한다.
 				var result = Object.values(keyword_tag).filter(function(word) {// filter : 찾은 요소에서 특정 요소 걸러내기
 					return word === tagValue;
 				})
+
 				if (result.length == 0) { // 태그 중복 검사
+
 					if ($(".tag_item").siblings().length <= 7) {//태그 생성 제한
 						$("#edit_tag_list").append("<li class='tag_item'>" + tagValue + "<span class='del_btn' idx='" + counter + "'></span></li>").hide().fadeIn('2000');
 						addTag(tagValue);
@@ -97,52 +139,56 @@ $(document).ready(function() {
 					alert("중복되는 키워드 입니다.");
 					self.val("");
 				}
-				e.preventDefault();
+				e.preventDefault;
 			}
 		}
+		/*키워드 버튼 클릭 */
 		if($(".keyword_button").on("click",function(e){
-			
-				var tagValue = self.val(); // 값 가져오기
-				if (tagValue !== "") { // 값이 없으면 동작 안하게
-				
+
+			var tagValue = self.val(); // 값 가져오기
+			if (tagValue !== "") { // 값이 없으면 동작 안하게
+
+				if (tagValue.match(s_word) || tagValue.match(k_word) || tagValue.match(n_word)){
+					alert('특수문자,미완성된 한글,숫자는 입력할 수 없습니다.') 
+					return self.val("");
+				}
 				// 같은 태그가 있는지 검사한다. 있다면 해당값이 array로 return한다.
 				var result1 = Object.values(keyword_tag).filter(function(word) {// filter : 찾은 요소에서 특정 요소 걸러내기
 					return word === tagValue;
 				})
 				if (result1.length == 0) { // 태그 중복 검사
+					/*si*/
 					if ($(".tag_item").siblings().length <= 7) {//태그 생성 제한
 						$("#edit_tag_list").append("<li class='tag_item'>" + tagValue + "<span class='del_btn' idx='" + counter + "'></span></li>").hide().fadeIn('2000');
 						addTag(tagValue);
 						self.val("");
 					} else {
 						alert("키워드는 8개를 넘어갈 수 없습니다!");
-					self.val("");
+						self.val("");
 					}
 				} else {
 					alert("중복되는 키워드 입니다.");
 					self.val("");
 				}
-				e.preventDefault();
 			}
 		}));
-			
-
-	// 삭제 버튼 
-	// 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.?
+		// 삭제 버튼 
+		// 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.?
+	});
 	$(document).on("click", ".del_btn", function(e) {
 		var index = $(this).attr("idx");
 		keyword_tag[index] = "";
 		$(this).parent().remove();
 	});
-});
-/*[출처] Jquery : 태그기능 클라이언트 부분 작업|작성자 Demnodey*/
-});
+	/*[출처] Jquery : 태그기능 클라이언트 부분 작업|작성자 Demnodey*/
+	$("#flio_b").click(function() {	
+		$("#pf_folio").toggle();
+			});
 
-$(document).ready(function() {
 	$('.profile_edit_btn1').click(function() {
 		var result = confirm('편집 중인 내용을 저장하지 않고 나가시겠습니까?');
 		if (result) {
-			location.replace('profile');
+			location.replace('./profile');
 		} else {}
 	});
-})
+});

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* Category.jsp */
+/* Category(book).jsp */
 
 body{
 	background-color:snow;
@@ -243,7 +243,7 @@ line-height: 42px;
 	justify-content:center;
 	display:flex;
 	margin-top:20px;
-	border:1px solid #00ffff;
+	border:0px solid #00ffff;
 	margin-bottom:60px;
 }
 .cat_writing{
@@ -252,6 +252,7 @@ line-height: 42px;
 	margin:0px auto;
 	padding: 0px 10px;
 	position: relative;
+	cursor:pointer;
 }
 .cat_writing_img{
 	width:260px;
@@ -275,38 +276,37 @@ line-height: 42px;
 	bottom: 0px;
 	margin-top: 167px;
 }
-.
 .cat_story_writer{
-    bottom: 16px;
-    left: 0;
-    width: 100%;
-    max-height: 37px;
-    padding: 0 16px;
-    font-size: 14px;
-    line-height: 20px;
-    color: #959595;
+    font-size:12px;
+    color:#959595;
+    width:100%;
+    display:inline-block;
+    margin-top:15px;
 }
 .cat_write_btn{
 	width: 120px;
     height: 40px;
     margin-top: 25px;
-    margin: 5px 0px 5px 0px;
+    margin: 30px 3px 5px 0px;
     outline: none;
     border: 1px solid orange;
     border-radius: 15px 15px 0px 0px;
     background-color: #ffdfbf;
     cursor: pointer;
+    float: left;
+
 }
 .cat_book_btn{
 	width: 120px;
-    height: 40px;
-    margin-top: 25px;
-    margin: 5px 0px 5px 0px;
-    outline: none;
-    border: 1px solid orange;
-    border-radius: 15px 15px 0px 0px;
-    background-color: #ffdfbf;
-    cursor: pointer;
+	height: 40px;
+	margin-top: 25px;
+	margin: 30px 0px 5px 5px;
+	outline: none;
+	border: 1px solid orange;
+	border-radius: 15px 15px 0px 0px;
+	background-color: #ffdfbf;
+	cursor: pointer;
+	float: left;
 }
 .cat_book_inner{
 	width:150px;
@@ -316,6 +316,7 @@ line-height: 42px;
 	position: absolute;
 	top:25%;
 	left:25%;
+	opacity:85%;
 }
 .cat_jamong_book{
 	display: block;
@@ -327,4 +328,29 @@ line-height: 42px;
     line-height: 18px;
     color: #fff;
     text-align: center;
+}
+.cat_inner_line{
+	width: 11px;
+    position: absolute;
+    top: 0;
+    left: 18px;
+    height: 100%;
+}
+.cat_inner_line:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: rgba(255,255,255,.1);
+    content: '';
+}
+.cat_inner_line:before {
+    position: absolute;
+    top: 0;
+    right: 2px;
+    width: 1px;
+    height: 100%;
+    background: rgba(0,0,0,.05);
+    content: '';
 }

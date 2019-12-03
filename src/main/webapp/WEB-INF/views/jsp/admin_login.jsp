@@ -8,28 +8,29 @@
 <script src="./resources/js/jquery.js"></script>
 <script>
 	function admin_check() {
-		if($.trim($("#admin_id").val())=="") {
+		if($.trim($("#adm_id").val())=="") {
 			alert('관리자 아이디를 입력하세요.');
-			$('#admin_id').val("").focus();
+			$('#adm_id').val("").focus();
 			return false;
 		}
-		if($.trim($('#admin_pwd').val())=="") {
+		if($.trim($('#adm_pwd').val())=="") {
 			alert('관리자 비밀번호를 입력하세요.');
-			$("#admin_pwd").val('').focus();
+			$("#adm_pwd").val('').focus();
 			return false;
 		}
 	}
 </script>
 </head>
 <body>
+<div id="aLogin_back">
 <div id="aLogin_wrap">
-	<h2 class="aLogin_title">관리자 로그인</h2>
+	<h2 class="aLogin_title">자몽 관리자 로그인</h2>
 	<form method="post" action="admin_login_ok" onsubmit="return admin_check();">
 		<table id="aLogin_t">
 			<tr>
-				<th>관리자 아이디</th>
+				<th>ID</th>
 				<td>
-				<input name="admin_id" id="admin_id" size="14" tabindex="1" />
+				<input name="adm_id" id="adm_id" size="14" tabindex="1" />
 				</td>
 				
 				<th rowspan="2">
@@ -38,13 +39,14 @@
 			</tr>
 			
 			<tr>
-				<th>관리자 비밀번호</th>
+				<th>PW</th>
 				<td>
-					<input type="password" name="admin_pwd" id="admin_pwd" size="14" tabindex="2" />
+					<input type="password" name="adm_pwd" id="adm_pwd" size="14" tabindex="2" />
 				</td>
 			</tr>
 		</table>
 	</form>
+</div>
 </div>
 </body>
 </html>

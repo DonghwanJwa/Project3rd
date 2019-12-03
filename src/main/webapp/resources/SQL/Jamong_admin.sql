@@ -11,4 +11,27 @@ create table jamong_admin (
     ,adm_date date
 );
 
-select * from jamong_admin;
+select * from jamong_admin where adm_id='aaaa';
+
+insert into jamong_admin values('admin','admin','관리자','010','8379','2298','tkdgjs905','gmail.com',sysdate);
+
+update jamong_admin set adm_pwd = 'test';
+commit;
+
+
+-- 공지사항 테이블
+create table adm_notice (
+    noti_no number(38) primary key
+    ,noti_title varchar2(50) not null
+    ,noti_name varchar2(50) not null
+    ,noti_pwd varchar2(30) not null
+    ,noti_cont varchar2(4000) not null
+    ,noti_hit number(38) default 0
+    ,noti_date date
+);
+
+drop table adm_notice;
+
+select * from adm_notice;
+
+create sequence adm_noti_seq start with 1 increment by 1 nocache;

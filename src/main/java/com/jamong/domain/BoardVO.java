@@ -17,6 +17,9 @@ public class BoardVO {
 	private int mem_no;
 	private int book_no;
 	
+	private String find_name;
+	private String find_field;
+	
 	// Setter()
 	public void setBo_date(String bo_date)		   {		this.bo_date = bo_date;				}
 	public void setBo_editdate(String bo_editdate) {		this.bo_editdate = bo_editdate;		}
@@ -31,6 +34,8 @@ public class BoardVO {
 	public void setBo_subtitle(String bo_subtitle) {		this.bo_subtitle = bo_subtitle;		}
 	public void setBo_cont(String bo_cont) 		   {		this.bo_cont = bo_cont;				}
 	public void setBo_hit(int bo_hit) 			   {		this.bo_hit = bo_hit;				}
+	public void setFind_field(String find_field)   {		this.find_field = find_field;		}
+	public void setFind_name(String find_name) 	   {		this.find_name = find_name;			}
 	
 	// Getter()
 	public int getBo_no() 		   {		return bo_no;			}
@@ -46,5 +51,7 @@ public class BoardVO {
 	public int getFav_no() 		   {		return fav_no;			}
 	public int getMem_no() 		   {		return mem_no;			}
 	public int getBook_no() 	   {		return book_no;			}
+	public String getFind_name()   {		return find_name;		}
+	public String getFind_field()  {		return find_field;		}
 		
 }
