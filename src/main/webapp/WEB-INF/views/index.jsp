@@ -284,7 +284,7 @@
        <img id="head-profile-info-img" src="./resources/img/profile_logout.png">
       </div>
       <div id="head-profile-name-wrap">
-       <strong></strong>
+       <strong>자몽,꿈에 글을 담다</strong>
       </div>
      </a>
      <div id="head-profile-service-wrap">
