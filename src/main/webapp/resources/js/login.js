@@ -1,6 +1,8 @@
 /**
  * login.jsp, join_membership.jsp,find_id,find_pass의 자바스크립트 기능들이 있습니다
  */
+var sel_file; // 이미지 미리보기 변수
+var category_count = 0;	//카테고리 선택갯수 제한변수
 
 function login() {
 	if ($.trim($('#login_id').val()) == "") {//기본 텍스트
@@ -23,7 +25,7 @@ function login() {
 	}
 
 }
-/*$(document).ready(function(){
+$(document).ready(function(){
 	$("#join_membership_next_btn").click(function() {
 		$('.join_membership_error').text('');//에러택스트
 	
@@ -214,202 +216,16 @@ function login() {
 			return false;
 		}
 		
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
+		//기본정보 -> 프로필
+		if($("#join_membership_page2").css("display") == "none"){
+			$("#join_membership_page1").hide();
+			$("#join_membership_sequence_list1").removeClass('membership_step');
+			$("#join_membership_page2").show();
+			$("#join_membership_sequence_list2").addClass('membership_step');
 		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		기본정보 -> 프로필
-		if($("#join_membership_main_div2").css("display") == "none"){
-	
-			$("#join_membership_main_div").css("display","none");
-			$("#join_membership_main_div2").css("display","block");
-		} else {  
-			$('#join_membership_main_div2').css("display", "none");   
-		}
-		
 	});
-
-	생년월일,전화번호 숫자만 받도록
+	
+	//생년월일,전화번호 숫자만 받도록
 	$(".numberOnly").on("focus", function() {//포커스되었을때
 	    var x = $(this).val();
 	    $(this).val(x);
@@ -422,17 +238,62 @@ function login() {
 	    }
 	}).on("keyup", function() {//숫자가 눌렸을 때
 		$(this).val($(this).val().replace(/[^0-9]/g,""));//숫자가 아닌존재들을 지움
-	});	
-});*/
+	});
+	
+	/*page2 버튼*/
+	//프로필 -> 기본정보 : 이전으로
+	$("#join_membership_before_btn2").click(function() {
+		if($("#join_membership_page1").css ("display") == "none"){
+			$("#join_membership_page2").hide();
+			$("#join_membership_sequence_list2").removeClass('membership_step');
+			$("#join_membership_page1").show();
+			$("#join_membership_sequence_list1").addClass('membership_step');
+		}
+	});
+	
+	//프로필 -> 카테고리 : 다음으로
+	$("#join_membership_next_btn2").click(function() {
+		if($("#join_membership_page3").css ("display") == "none"){
+			$("#join_membership_page2").hide();
+			$("#join_membership_sequence_list2").removeClass('membership_step');
+			$("#join_membership_page3").show();
+			$("#join_membership_sequence_list3").addClass('membership_step');
+		}
+	});
+	
+	/*page3 버튼*/
+	//카테고리 -> 프로필 : 이전으로
+	$("#join_membership_before_btn3").click(function() {
+		if($("#join_membership_page2").css ("display") == "none"){
+			$("#join_membership_page3").hide();
+			$("#join_membership_sequence_list3").removeClass('membership_step');
+			$("#join_membership_page2").show();
+			$("#join_membership_sequence_list2").addClass('membership_step');
+		}
+	});
+	
+	//카테고리 선택시 class,name 추가(form에 post전달하기 위해서 name값에 숫자 추가)
+	$(".join_membership_category-span").click(function(){
+		
+		if($(this).parent().hasClass("member_category_check")){
+			$(this).parent().removeClass("member_category_check");
+			$(this).parent().removeAttr("name");
+			category_count-=1;
+		}else{
+			if(category_count<3){
+				category_count+=1;
+				$(this).parent().addClass("member_category_check");
+				$(this).parent().attr("name","mem_fav"+category_count);
+			}
+		}
+	});
+	
+	/*프로필 미리보기 이미지 변경 - 등록메서드 실행*/
+	$("#join_membership_profile_input_hide").on("change", handleImgFileSelect);
+});
 
-function change2(){
-	if($("#join_membership_main_div3").css ("display") == "none"){
-		$("#join_membership_main_div2").hide();
-		$("#join_membership_main_div3").show();
-	}
-}
-
-$(document).ready(function(){
+/*프로필 미리보기 이미지 등록 메서드 */
+function handleImgFileSelect(e){
 	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);
 	
@@ -444,29 +305,11 @@ $(document).ready(function(){
 		sel_file = f;
 		var reader = new FileReader();
 		reader.onload = function(e){
-			$("#join_membership_profile_edit_img").css('background-image','url(\"'+e.target.result+'\")');
+			$("#join_membership_profile_img").attr("src",e.target.result);
 		}
 		reader.readAsDataURL(f);
 	});
-//기본정보 -> 프로필
-function change1(){
-if($("#join_membership_main_div2").css("display") == "none"){
-	
-	$("#join_membership_main_div").css("display","none");
-	$("#join_membership_main_div2").css("display","block");
-} else {  
-	$('#join_membership_main_div2').css("display", "none");   
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

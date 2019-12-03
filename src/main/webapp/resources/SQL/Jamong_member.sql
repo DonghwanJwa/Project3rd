@@ -2,7 +2,7 @@
 CREATE member(
 mem_no NUMBER(38) PRIMARY KEY,		  -- 회원번호
 mem_id VARCHAR2(100) UNIQUE,		  -- 아이디
-mem_pwd VARCHAR2(200) NOT NULL,	 	  -- 비밀번호s
+mem_pwd VARCHAR2(200) NOT NULL,	 	  -- 비밀번호
 mem_name VARCHAR2(100) NOT NULL,	  -- 본명(사람이름)
 mem_birth1 VARCHAR2(10) NOT NULL,	  -- 생년
 mem_birth2 VARCHAR2(10) NOT NULL, 	  -- 월
