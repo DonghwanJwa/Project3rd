@@ -316,5 +316,6 @@ color:transparent;
  
  input:focus:-ms-input-placeholder,
  textarea:focus:-ms-input-placeholder { /* Internet Explorer 10+ */ 
- color:transparent; }
+ color:transparent; 
+ }
 

@@ -13,4 +13,26 @@ function accuseHide(){
 		$('#acc_wrap').hide();
 		$('html').css("overflow-y","auto");
 	}
+		$('#acc_close').click(function(){
+			$("#acc_form_accuse").each(function(){
+				this.reset();
+			});
+		});
+		$('#acc_close').click(function(){
+			$('.acc_vali_date').text("")
+			return false;
+		});
+}
+
+function accuseVali(){
+	if($(':radio[name="list"]:checked').length <1 ){
+		$('#acc_vali_list').text("신고종류를 선택해 주세요.")
+		$("#list").focus();
+		return false;
+	}
+	if($('#acc_write_reason').val() == ""){
+		$('#acc_vali_field').text("신고내용을 입력해 주세요.")
+		$("#acc_write_reason").focus();
+		return false;
+	}
 }
