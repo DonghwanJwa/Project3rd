@@ -26,7 +26,7 @@ public class MemberVO {
 	private String mem_fav1;
 	private String mem_fav2;
 	private String mem_fav3;
-	private String mem_portflio; // 12/03 회원 테이블 수정 후 VO에 추가 (getter,setter)
+	private String mem_portfolio; // 12/03 회원 테이블 수정 후 VO에 추가 (getter,setter)
 	
 	// Setter
 	public void setMem_no(int mem_no) 				   {			this.mem_no = mem_no;					}
@@ -52,7 +52,7 @@ public class MemberVO {
 	public void setMem_fav1(String mem_fav1) 		   {			this.mem_fav1 = mem_fav1;				}
 	public void setMem_fav2(String mem_fav2) 		   {			this.mem_fav2 = mem_fav2;				}
 	public void setMem_fav3(String mem_fav3) 		   {			this.mem_fav3 = mem_fav3;				}
-	public void setMem_portflio(String mem_portflio)   {			this.mem_portflio = mem_portflio;		}
+	public void setMem_portfolio(String mem_portfolio)   {			this.mem_portfolio = mem_portfolio;		}
 	
 	// Getter()
 	public int getMem_no() 			 {		return mem_no;			}
@@ -78,6 +78,6 @@ public class MemberVO {
 	public String getMem_fav1() 	 {		return mem_fav1;		}
 	public String getMem_fav2() 	 {		return mem_fav2;		}
 	public String getMem_fav3() 	 {		return mem_fav3;		}
-	public String getMem_portflio()  {		return mem_portflio;	}
+	public String getMem_portfolio()  {		return mem_portfolio;	}
 	
 }

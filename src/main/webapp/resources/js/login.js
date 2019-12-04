@@ -27,7 +27,7 @@ function login() {
 }
 $(document).ready(function(){
 	$("#join_membership_next_btn").click(function() {
-		$('.join_membership_error').text('');//에러택스트
+		/*$('.join_membership_error').text('');//에러택스트
 	
 		var regExpPw = RegExp(/^(?=.*\d{1,50})(?=.*[0-9]{1,50})(?=.*[~`!@#$%\^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/);
 		var getCheck= RegExp(/^[a-zA-Z0-9]{6,12}$/); 
@@ -214,7 +214,7 @@ $(document).ready(function(){
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			$("#join_membership_tel3").focus();
 			return false;
-		}
+		}*/
 		
 		//기본정보 -> 프로필
 		if($("#join_membership_page2").css("display") == "none"){
