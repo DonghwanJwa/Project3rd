@@ -22,7 +22,8 @@ mem_nickname VARCHAR2(100) UNIQUE,    -- 회원 닉네임(필명, 예명)
 mem_keyword VARHCHAR2(400), 		  -- 작가 키워드 ※ 카테고리아님
 mem_fav1 VARCHAR2(50), 				  -- 관심 카테고리 (선호하는 장르 선택)
 mem_fav2 VARCHAR2(50),
-mem_fav3 VARCHAR2(50)
+mem_fav3 VARCHAR2(50),
+mem_portflio CLOB		  			  -- 작가 포트폴리오 내용 (12/03 추가)
 );
 
 SELECT * FROM member ORDER BY mem_no DESC;
@@ -34,6 +35,7 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
-
+-- 회원 테이블에 작가 포트폴리오 내용 추가
+ALTER mem ADD (mem_portflio CLOB);
 
 

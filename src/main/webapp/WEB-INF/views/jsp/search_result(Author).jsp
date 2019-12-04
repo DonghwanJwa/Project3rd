@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<jsp:include page="../include/header.jsp"></jsp:include>
+<%@ include file="../include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="./resources/css/search_result.css" />
 <script src="./resources/js/search.js"></script>
 
@@ -30,148 +30,21 @@
   <div id="search_result_author_main">
 
    <div class="author_cont">
-
-  <a href="./profile">
-    <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
-     <div id="search_result_author_profile_info">
-      <div id="search_result_author_name">김 누구누구</div>
-      <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
-       정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상태를 가장 정확하게 진단해</div>
-      <div id="search_result_author_tag">
-       <span>태그1</span><span>태그2</span><span>태그3</span>
-      </div>
-     </div>
-    </div>
-    </a>
-
-    <a href="./profile">
-     <div id="search_result_author_profile">
-      <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
-      <div id="search_result_author_profile_info">
-       <div id="search_result_author_name">김 누구누구</div>
-       <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
-        정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의
-        심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의 심리신의
-        심리태를 가장 정확하게 진단해</div>
-       <div id="search-result_author_tag">
-        <span>태그1</span><span>태그2</span><span>태그3</span>
+    <c:forEach begin="1" end="10" step="1">
+     <a href="./profile">
+      <div id="search_result_author_profile">
+       <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
+       <div id="search_result_author_profile_info">
+        <div id="search_result_author_name">김 누구누구</div>
+        <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
+         정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상태를 가장 정확하게 진단해</div>
+        <div id="search_result_author_tag">
+         <span>태그1</span><span>태그2</span><span>태그3</span>
+        </div>
        </div>
       </div>
-     </div>
-    </a>
-
-<a href="./profile">
-    <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
-     <div id="search_result_author_profile_info">
-      <div id="search_result_author_name">김 누구누구</div>
-      <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
-       정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상태를 가장 정확하게 진단해</div>
-      <div id="search_result_author_tag">
-       <span>태그1</span><span>태그2</span><span>태그3</span>
-      </div>
-     </div>
-    </div>
-    </a>
-    
-    <a href="./profile">
-    <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
-     <div id="search_result_author_profile_info">
-      <div id="search_result_author_name">김 누구누구</div>
-      <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
-       정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상태를 가장 정확하게 진단해</div>
-      <div id="search_result_author_tag">
-       <span>태그1</span><span>태그2</span><span>태그3</span>
-      </div>
-     </div>
-    </div>
-    </a>
-    
-    <a href="./profile">
-    <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
-     <div id="search_result_author_profile_info">
-      <div id="search_result_author_name">김 누구누구</div>
-      <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
-       정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상태를 가장 정확하게 진단해</div>
-      <div id="search_result_author_tag">
-       <span>태그1</span><span>태그2</span><span>태그3</span>
-      </div>
-     </div>
-    </div>
-    </a>
-    
-    <a href="./profile">
-    <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
-     <div id="search_result_author_profile_info">
-      <div id="search_result_author_name">김 누구누구</div>
-      <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
-       정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상태를 가장 정확하게 진단해</div>
-      <div id="search_result_author_tag">
-       <span>태그1</span><span>태그2</span><span>태그3</span>
-      </div>
-     </div>
-    </div>
-    </a>
-    
-    <a href="./profile">
-    <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
-     <div id="search_result_author_profile_info">
-      <div id="search_result_author_name">김 누구누구</div>
-      <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
-       정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상태를 가장 정확하게 진단해</div>
-      <div id="search_result_author_tag">
-       <span>태그1</span><span>태그2</span><span>태그3</span>
-      </div>
-     </div>
-    </div>
-    </a>
-    
-    <a href="./profile">
-    <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
-     <div id="search_result_author_profile_info">
-      <div id="search_result_author_name">김 누구누구</div>
-      <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
-       정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상태를 가장 정확하게 진단해</div>
-      <div id="search_result_author_tag">
-       <span>태그1</span><span>태그2</span><span>태그3</span>
-      </div>
-     </div>
-    </div>
-    </a>
-    
-    <a href="./profile">
-    <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
-     <div id="search_result_author_profile_info">
-      <div id="search_result_author_name">김 누구누구</div>
-      <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
-       정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상태를 가장 정확하게 진단해</div>
-      <div id="search_result_author_tag">
-       <span>태그1</span><span>태그2</span><span>태그3</span>
-      </div>
-     </div>
-    </div>
-    </a>
-    
-    <a href="./profile">
-    <div id="search_result_author_profile">
-     <img id="search_result_author_profile_img" src="./resources/img/profile.jpg" alt="프로필 사진">
-     <div id="search_result_author_profile_info">
-      <div id="search_result_author_name">김 누구누구</div>
-      <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
-       정확하게 진단해당신의 심리상태를 가장 정확하게 진단해 진단해당신의 심리상태를 가장 정확하게 진단해</div>
-      <div id="search_result_author_tag">
-       <span>태그1</span><span>태그2</span><span>태그3</span>
-      </div>
-     </div>
-    </div>
-    </a>
+     </a>
+    </c:forEach>
 
    </div>
 

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<jsp:include page="../include/header.jsp" />
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,16 +16,22 @@
 				<div id="profile_">
 					<div>
 						<div id="p_menu" class="p_menu_button hide">
+						<%--신고  --%>
+							<c:if test ="${empty id}">
 							<button id="warring_icon" class="accuse_page_open"
 								onclick="accuseShow();"	>
 								<!-- after 적용 -->
 							</button>
+							</c:if>
+							<%--편집 --%>
+							<c:if test ="${!empty id}">
 							<button id="pt_edit_icon" onclick="location='profile_edit';">
 								<!-- after 적용 -->
 							</button>
+							</c:if>
 						</div>
 						<div id="profile_cont">
-							<div class="">
+							<div class="pf_subscriber">
 								<img id="profile_img" alt="이미지"
 									src="./resources/img/profile.jpg"
 								>
@@ -34,17 +40,31 @@
 							<strong id="profile_name">영화 읽어주는 남자</strong>
 							<br>
 							<span class="profile_font_size">카노라이츠 편집장</span>
-							<dl>
-								<dt class="profile_font_size">정보</dt>
+						</div>
+							<dl class="subscriber">
+								<dt class="hide_font">정보</dt>
 								<dd>
 									<a><b class="profile_line profile_font_size">구독자</b> <span
 										class="profile_line_num"
 									>8,380</span></a>
 								<dd>
-							</dl>
+						<div id="profile_button">
+							<%--해당되는 아이디로 로그인 했을때 --%>
+							<c:if test="${!empty id}">
+							<a href="./write" class="profile_button_type subscribe_check">글쓰기</a>
+							</c:if>
+							<c:if test="${mem_author}">
+							<a href="./offer_author" class="profile_button_type">제안하기</a> 
+							</c:if>
+							<c:if test="${empty id}">
+							<span>
+							<button	class="profile_button_type2">구독하기</button>
+							</span>
+							</c:if>
 						</div>
+							</dl>
+							<c:if test="${mem_author}">
 						<div id="profile_keyword_line">
-							<a class="hide_font">작가키워드</a>
 							<ul class="profile_keyword_link">
 								<li><a href="new_posts" class="profile_button_keyword profile_line">예술</a></li>
 								<li><a href="new_posts" class="profile_button_keyword profile_line">문화</a></li>
@@ -55,12 +75,7 @@
 								<li><a href="new_posts" class="profile_button_keyword profile_line">키노라이츠</a></li>
 							</ul>
 						</div>
-						<div id="profile_button">
-							<a href="./write"
-								class="profile_button_type subscribe_check"
-							>글쓰기</a> <a href="./offer_author" class="profile_button_type">제안하기</a>
-							<span><button class="profile_button_type2">구독하기</button></span>
-						</div>
+						</c:if>
 						<!-- after적용 -->
 					</div>
 				</div>
@@ -113,6 +128,7 @@
 				<div class="author_intro">
 					<h3 class="hide_font">글목록</h3>
 					<ul class="profile_writer_list">
+					<c:forEach var="i" begin="1" end="5" step="1">
 						<li class="profile_articles">
 							<div class=>
 								<img class="profile_post_img" alt="이미지 정보"
@@ -120,30 +136,15 @@
 								>
 							</div>
 							<div>
-								<a class="profile_article_main" href="book_info">미리보는 영화</a>
-								 <a	href="./read">
-									<h3>[말레피센트 2] 어둠의 요정이 디즈니에서 살아남는 법</h3>
-									<p class="article_cont">말레피센트 2 2014년 개봉한 말레피센트는 동화에서 악역을
-										맡았던 어둠의 요정의 시선에서 재구성한 이야기다. 저주를 풀고 진정한 사랑과 평화를 추구했던 ...</p>
-								</a>
+								<a class="profile_article_main" href="./book_info">미리보는 영화</a>
+									<a	href="./read">
+										<h3>[말레피센트 2] 어둠의 요정이 디즈니에서 살아남는 법</h3>
+										<p class="article_cont">말레피센트 2 2014년 개봉한 말레피센트는 동화에서 악역을
+											맡았던 어둠의 요정의 시선에서 재구성한 이야기다. 저주를 풀고 진정한 사랑과 평화를 추구했던 ...</p>
+									</a>
 							</div> <span></span>
 						</li>
-						<li class="profile_articles">
-							<div class=>
-								<img class="profile_post_img" alt="이미지 정보"
-									src="./resources/img/a.jpg"
-								>
-							</div>
-							<div>
-								<a class="profile_article_main" href="./book_info">미리보는 영화</a> <a
-									href="./read"
-								>
-									<h3>[말레피센트 2] 어둠의 요정이 디즈니에서 살아남는 법</h3>
-									<p class="article_cont">말레피센트 2 2014년 개봉한 말레피센트는 동화에서 악역을
-										맡았던 어둠의 요정의 시선에서 재구성한 이야기다. 저주를 풀고 진정한 사랑과 평화를 추구했던 ...</p>
-								</a>
-							</div> <span></span>
-						</li>
+				</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -151,14 +152,16 @@
 				<h3 class="hide_font">매거진</h3>
 				<!-- 공감과 추천한 숫자를 지정 -->
 				<div id="" class="Magazine_list jm_list ">
+				<c:forEach var="i" begin="1" end="5" step="1">
 					<div class="box_contents">
-						<div class="cover_book">
 							<a href="./book_info">
+						<div class="cover_book">
+								<img class="cover_img"src="./resources/img/a.jpg" class="magazin_img"> 
 								<div class="info_cover">
 									<strong class="tit_cover">미리보는 영화</strong>
-								</div> <img src="./resources/img/a.jpg" class="magazin_img"> <span
-								class="book_line"
-							></span> <span></span>
+								 <span>by 영화보는 남자</span>
+								</div> 
+								<span class="book_line"></span>
 							</a>
 						</div>
 						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리
@@ -176,156 +179,7 @@
 							<dd class="box_contents_num">61</dd>
 						</dl>
 					</div>
-					<div class="box_contents">
-						<div class="cover_book">
-							<a href="./book_info">
-								<div class="info_cover">
-									<strong class="tit_cover">미리보는 영화</strong>
-								</div> <img src="./resources/img/a.jpg" class="magazin_img"> <span
-								class="book_line"
-							></span> <span></span>
-							</a>
-						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리
-							보는 영화</a>
-						<dl class="j_list_info">
-							<dt>
-								<span class="article_icon"></span>
-							</dt>
-							<dd class="box_contents_num">
-								<b>142</b>
-							</dd>
-							<dt>
-								<span class="relate"></span>
-							</dt>
-							<dd class="box_contents_num">61</dd>
-						</dl>
-					</div>
-					<div class="box_contents">
-						<div class="cover_book">
-							<a href="./book_info">
-								<div class="info_cover">
-									<strong class="tit_cover">미리보는 영화</strong>
-								</div> <img src="./resources/img/a.jpg" class="magazin_img"> <span
-								class="book_line"
-							></span> <span></span>
-							</a>
-						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리
-							보는 영화</a>
-						<dl class="j_list_info">
-							<dt>
-								<span class="article_icon"></span>
-							</dt>
-							<dd class="box_contents_num">
-								<b>142</b>
-							</dd>
-							<dt>
-								<span class="relate"></span>
-							</dt>
-							<dd class="box_contents_num">61</dd>
-						</dl>
-					</div>
-					<div class="box_contents">
-						<div class="cover_book">
-							<a href="./book_info">
-								<div class="info_cover">
-									<strong class="tit_cover">미리보는 영화</strong>
-								</div> <img src="./resources/img/a.jpg" class="magazin_img"> <span
-								class="book_line"
-							></span> <span></span>
-							</a>
-						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리
-							보는 영화</a>
-						<dl class="j_list_info">
-							<dt>
-								<span class="article_icon"></span>
-							</dt>
-							<dd class="box_contents_num">
-								<b>142</b>
-							</dd>
-							<dt>
-								<span class="relate"></span>
-							</dt>
-							<dd class="box_contents_num">61</dd>
-						</dl>
-					</div>
-					<div class="box_contents">
-						<div class="cover_book">
-							<a href="./book_info">
-								<div class="info_cover">
-									<strong class="tit_cover">미리보는 영화</strong>
-								</div> <img src="./resources/img/a.jpg" class="magazin_img"> <span
-								class="book_line"
-							></span> <span></span>
-							</a>
-						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리
-							보는 영화</a>
-						<dl class="j_list_info">
-							<dt>
-								<span class="article_icon"></span>
-							</dt>
-							<dd class="box_contents_num">
-								<b>142</b>
-							</dd>
-							<dt>
-								<span class="relate"></span>
-							</dt>
-							<dd class="box_contents_num">61</dd>
-						</dl>
-					</div>
-					<div class="box_contents">
-						<div class="cover_book">
-							<a href="./book_info">
-								<div class="info_cover">
-									<strong class="tit_cover">미리보는 영화</strong>
-								</div> <img src="./resources/img/a.jpg" class="magazin_img"> <span
-								class="book_line"
-							></span> <span></span>
-							</a>
-						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리
-							보는 영화</a>
-						<dl class="j_list_info">
-							<dt>
-								<span class="article_icon"></span>
-							</dt>
-							<dd class="box_contents_num">
-								<b>142</b>
-							</dd>
-							<dt>
-								<span class="relate"></span>
-							</dt>
-							<dd class="box_contents_num">61</dd>
-						</dl>
-					</div>
-					<div class="box_contents">
-						<div class="cover_book">
-							<a href="./book_info">
-								<div class="info_cover">
-									<strong class="tit_cover">미리보는 영화</strong>
-								</div> <img src="./resources/img/a.jpg" class="magazin_img"> <span
-								class="book_line"
-							></span> <span></span>
-							</a>
-						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">미리
-							보는 영화</a>
-						<dl class="j_list_info">
-							<dt>
-								<span class="article_icon"></span>
-							</dt>
-							<dd class="box_contents_num">
-								<b>142</b>
-							</dd>
-							<dt>
-								<span class="relate"></span>
-							</dt>
-							<dd class="box_contents_num">61</dd>
-						</dl>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
