@@ -39,4 +39,13 @@ public class BookController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("book_edit")
+	public ModelAndView user_book_edit() { // 책 수정 (노시현이 함)
+		ModelAndView mv=new ModelAndView();
+		
+		mv.setViewName("jsp/book_edit");
+		
+		return mv;
+	}
 }

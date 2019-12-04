@@ -187,7 +187,6 @@
 .new_book_banner_book_image_container {
 	display: table;
 	height: auto;
-	position: relative;
 }
 
 .new_book_banner_book_image {
@@ -405,4 +404,7 @@
 	background: #000;
 	top: 0;
 	opacity: 0.03;
+}
+.button:active{
+	outline: none;
 }
