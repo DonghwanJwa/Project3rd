@@ -21,6 +21,13 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO idCheck(String id) {
 		return this.sqlSession.selectOne("mem_idcheck",id);
 	}
+
+	@Override
+	public MemberVO loginCheck(String login_id) {
+		return this.sqlSession.selectOne("mem_logincheck",login_id);
+	}
+	
+	
 	
 	
 	

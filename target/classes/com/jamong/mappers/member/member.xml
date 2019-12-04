@@ -19,4 +19,9 @@
  	#{mem_gender},sysdate,#{profile_photo},#{profile_cont},#{mem_nickname},
  	#{mem_fav1},#{mem_fav2},#{mem_fav3})
  </insert>
+ 
+ <!-- 로그인 -->
+ <select id="mem_logincheck" parameterType="String" resultType="m">
+ 	select * from member where mem_id=#{mem_id} and mem_state=0
+ </select>
 </mapper>

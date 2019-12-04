@@ -11,34 +11,45 @@
 </head>
 <body>
 <div id ="login_main_wrap">
-<form id="login_main_form" action="#" method="post" onsubmit="return login();">
+<form id="login_main_form" action="login_ok" method="post" onsubmit="return login();">
 		<div id="login_main_div">
 			<div id="login_logo_wrap">
-			 <a href="./"><img id="login_img_logo" src="./resources/img/logo2.png"/></a>
+				 <a href="./">
+			 	<img id="login_img_logo" src="./resources/img/logo2.png"/>
+			 </a>
 			</div>
 			
 			<div id="login_mid">
 			
 				<!-- ---------------------아이디필드------------------------------------------ -->
 				
-				<div class="login_color"><input id="login_id" type="text" placeholder="아이디" ></div> 
+				<div class="login_color">
+					<input id="login_id" name="login_id" type="text" placeholder="아이디" >
+				</div> 
 				<div class="login_error" id="login_id_error"></div>
 
 				
 				<!-- ---------------------비밀번호 필드------------------------------------------ -->
 								
-				<div class="login_color"><input id="login_pass" type="text" placeholder="비밀번호" onblur="checkempty(this)"></div>
-				<div class="login_error" id="login_pass_error"></div>
+				<div class="login_color">
+					<input type="password" id="login_pwd" name="login_pwd" type="text" placeholder="비밀번호" onblur="checkempty(this)"/>
+				</div>
+				<div class="login_error" id="login_pwd_error"></div>
 				
 				<!-- ---------------------버튼------------------------------------------ -->
 								
-				<button class="login_btn_color" id="login_btn" type="submit" onclick="#">로그인</button>
-				<button class="login_btn_color" id="login_btn_join_membership" type="submit" onclick="location.href='join_membership'">회원가입</button>
+				<input type="submit" class="login_btn_color" id="login_btn" value="로그인"/>
+				<input type="button" class="login_btn_color" id="login_btn_join_membership" value="회원가입" onclick="location.href='join_membership'"/>
 			
 			</div>
 			
 			<div id="login_bottom">
-				<div class="login_bottom_link"><a href="./find_id">계정을 잃어버리셨나요?</a></div> <div class="login_bottom_link"><a href="./find_pass">비밀번호를 잊으셨나요?</a></div>
+				<div class="login_bottom_link">
+					<a href="./find_id">계정을 잃어버리셨나요?</a>
+				</div> 
+				<div class="login_bottom_link">
+					<a href="./find_pass">비밀번호를 잊으셨나요?</a>
+				</div>
 			</div>
 			</div>
 	</form>
