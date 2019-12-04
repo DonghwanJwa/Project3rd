@@ -35,7 +35,7 @@
 	3. text/plain 이 형식을 인코딩을 하지않은 문자 상태로 전송
 	--%>
 			<!--  onsubmit="return false"를 사용하면 action이 실행되지않음 -->
-			<form onsubmit="return false;" method="post" autocomplete="off">
+			<form onsubmit="return profileCheck();" method="post" autocomplete="off">
 				<div>
 					<div>
 						<div>
@@ -62,7 +62,7 @@
 						<h3 class="profile_edit_font">자기소개</h3>
 					</div>
 					<div class="profile_editor_box">
-						<textarea class="profile_edit_info e" placeholder="자신을 소개해보세요(90자 이내로)" maxlength="90"></textarea>
+						<textarea id="pf_info" class="profile_edit_info e" placeholder="자신을 소개해보세요(90자 이내로)" maxlength="90"></textarea>
 					</div>
 					<div id="profile_info_error"></div>
 				<!-- 여기서부터는 작가항목입니다 -->
@@ -89,7 +89,7 @@
 				<div id="profile_edit_button">
 					<!-- 경고문 띄우기 -->
 					<button type="button" class="profile_edit_btn1">취소하기</button>
-					<button type="button" class="profile_edit_btn2">저장하기</button>
+					<button type="submit" class="profile_edit_btn2">저장하기</button>
 				</div>
 			</form>
 		</article>

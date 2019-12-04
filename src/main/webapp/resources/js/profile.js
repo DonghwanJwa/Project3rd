@@ -68,24 +68,22 @@ $(document).ready(function() {
 			return word !== "";
 		});
 	}
-	// 작가명 엔터 키 제한
-	$('#profile_editor').on("keypress",function(e){
+	
+	$('#profile_editor').on("focusout",function(e){
 		var p_edit =$(this).val();
-		if(e.keyCode == 13){
-			alert('작가이름은 줄바꿈을 사용할 수 없습니다!');
-			return false;
+		if(p_edit.length >0){
+			if(p_edit.match(s_word)){
+				p_edit = p_edit.replace(s_word,"");
+				$('#profile_editor_error').text('특수문자는 입력할 수 없습니다.');
+				p_edit;
+			}else{
+				$('#profile_editor_error').text('');
+			}
+			$(this).val(p_edit);
 		}
 	});
 	
-	// 자기소개 엔터키 제한
-	$('.e').on("keypress",function(e){
-		var p_edit =$(this).val();
-		if(e.keyCode == 13){
-			alert('자기소개는 줄바꿈을 사용할 수 없습니다!');
-			return false;
-		}
-	});
-
+	
 	// keypress : 글자가 입력되었을때 이벤트 실행, keyup : 키 입력 후 발생되는 이벤트
 	$("#keyword_tag").on("keypress", function(e) {
 		var self = $(this);
@@ -132,7 +130,7 @@ $(document).ready(function() {
 			if (tagValue !== "") { // 값이 없으면 동작 안하게
 
 				if (tagValue.match(s_word) || tagValue.match(k_word) || tagValue.match(n_word)){
-					alert('특수문자,미완성된 한글,숫자는 입력할 수 없습니다.') 
+					$('#profile_error_keyword').text('특수문자,미완성된 한글,숫자는 입력할 수 없습니다.');
 					return self.val("");
 				}
 				// 같은 태그가 있는지 검사한다. 있다면 해당값이 array로 return한다.
@@ -145,11 +143,11 @@ $(document).ready(function() {
 						addTag(tagValue);
 						self.val("");
 					} else {
-						alert("키워드는 8개를 넘어갈 수 없습니다!");
+						$('#profile_error_keyword').text("키워드는 8개를 넘어갈 수 없습니다!");
 						self.val("");
 					}
 				} else {
-					alert("중복되는 키워드 입니다.");
+					$('#profile_error_keyword').text("중복되는 키워드 입니다.");
 					self.val("");
 				}
 			}
@@ -192,35 +190,67 @@ function profileImgSelect(e){
 		reader.readAsDataURL(f);
 	});
 }
-
-/*$(document).ready(function(){
-
-		if($.trim($('#profile_editor').val())==""){
-			$('#profile_info_error').text('자기소개를 작성해주세요!');
-			$("#profile_info").val("").focus();
-
-			return false;
-		}
-		if($.trim($('#profile_editor').val()).length < 30){
-			$('#profile_info_error').text('작가명은 30자 이하까지만 작성가능합니다!');
-			$("#profile_info").val("").focus();
+function profileCheck(){
 	
-			return false;
+	if($.trim($('#profile_editor').val())==""){
+		$('#profile_editor_error').text('작가명을 작성해주세요!');
+		$("#profile_editor").val("").focus();
+		return false;
+	}else{
+		$('#profile_editor_error').text('');
+		
 	}
-		if ($.trim($('#profile_edit_info').val()) == "") {//기본 텍스트
-			$('#profile_info_error').text('작가명을 입력해주세요!');//에러택스트
-			$('#profile_info').val("").focus();
-			
-			return false;
-		}
-		if ($.trim($('#profile_edit_info').val()).length < 90) {//기본 텍스트
-			$('#profile_info_error').text('자기소개는 90자 이하까지만 작성가능합니다!');
-			$("#profile_info").val("").focus();
-			
-			return false;
-		}
-})*/
 	
+	if ($.trim($('#pf_info').val()) == "") {//기본 텍스트
+		$('#profile_info_error').text('자기소개를 작성해주세요!');//에러택스트
+		$('#pf_info').val("").focus();
+		
+		return false;
+	}else{
+		$('#profile_editor_error').text('');
+		
+	}
+
+}	
+$(document).ready(function(){
+	$("#profile_editor").on("keypress", function(e) {
+	if($.trim($('#profile_editor').val()).length > 30){
+		$('#profile_editor_error').text('작가명은 30자 이하까지만 작성가능합니다!');
+		$("#profile_editor").val("").focus();
+		
+		return false;
+		
+	}else{
+		$('#profile_editor_error').text('');
+	}	
+	});
+	if ($.trim($('#pf_info').val()).length > 90) {//기본 텍스트
+		$('#profile_info_error').text('자기소개는 90자 이하까지만 작성가능합니다!');
+		$("#profile_info").val("").focus();
+		
+		return false;
+		
+	}else{
+		$('#pf_info').text('');
+	}
+	// 작가명 엔터 키 제한
+	$('#profile_editor').on("keypress",function(e){
+		var p_edit =$(this).val();
+		if(e.keyCode == 13){
+			alert('작가이름은 줄바꿈을 사용할 수 없습니다!');
+			return false;
+		}
+	});
+	
+	// 자기소개 엔터키 제한
+	$('.e').on("keypress",function(e){
+		var p_edit =$(this).val();
+		if(e.keyCode == 13){
+			alert('자기소개는 줄바꿈을 사용할 수 없습니다!');
+			return false;
+		}
+	});
+})
 
 		
 
