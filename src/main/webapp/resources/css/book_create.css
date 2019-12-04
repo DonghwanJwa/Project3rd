@@ -1,60 +1,118 @@
 @charset "UTF-8";
 
-#book_create_wrap{
+#book_create_wrap {
 	padding-left: auto;
 	padding-right: auto;
+	background-image: url("../img/background_img/login_pattern1.png");
+	background-repeat: repeat;
 }
+
 #book_create_list {
 	border: 1px solid black;
-	display:inline-block;
 	width: 940px;
 	margin-right: auto;
 	margin-left: auto;
+	background-color: #fff;
 }
 
-#post_list {
+.ui-sortable {
+	padding-left: 0;
+}
+
+#post_list_ul {
 	border: 1px solid red;
+	border-radius: 20px;
 	margin: 10px;
 	display: inline-block;
 	width: 40%;
 	padding-left: 0;
-	min-height:600px;
+	min-height: 1200px;
 	vertical-align: top;
+	background-image: url("../img/background_img/login_page.png");
 }
-#book_create_btn{
-	width:14.2%;
+
+#book_create_btn {
+	width: 14.2%;
 	display: inline-block;
 }
+
 #book_create_function {
 	position: fixed;
+	top: 50%;
+}
+
+#check_btn {
+	text-align: center;
 }
 
 .btn {
-	margin: 8px;
+	width: 65px;
+	height: 40px;
+	border-radius: 22px;
+	border: 1px solid orange;
+	margin: 5px 0px 5px 0px;
+	background-color: #fff;
+	outline: none;
+	cursor: pointer;
+	color: #363636;
+	z-index: 100000000;
 }
 
-#create_list {
+.btn.checkAll, .btn.releaseAll {
+	display: inline-block;
+	width: 85px;
+	height: 40px;
+	border-radius: 22px;
+	border: 1px solid orange;
+	margin: 5px auto;
+	background-color: #fff;
+	outline: none;
+	cursor: pointer;
+	color: #363636;
+	width: 85px;
+}
+
+.btn:hover {
+	border: 2px solid orange;
+}
+
+.btn:active {
+	border: 2px solid orange;
+	background-color: #ffda6a;
+}
+
+#create_list_ul {
+	border-radius: 20px;
 	border: 1px solid blue;
 	margin: 10px;
 	display: inline-block;
 	width: 40%;
 	padding-left: 0;
-	min-height:600px;
+	min-height: 1200px;
+	background-image: url("../img/background_img/login_page.png");
 }
 
-.post_list_cont{
-	border:1px solid black;
-	margin:5px;
-	padding:5px;
+.post_list_cont {
+	border: 1px solid black;
+	margin: 5px;
+	padding: 5px;
+	background-color: #fff;
 }
 
-input[type="checkbox"]{
-	display:none;
+input[type="checkbox"] {
+	display: none;
 }
 
-.ui-state-default{
+input[type="checkbox"]:checked+div.post_list_cont {
+	border: 2px solid black; transform : scale( 0.92, 0.87);
+	background-color: #ffff80;
+	transform: scale(0.92, 0.87);
+}
+
+.ui-state-default {
 	list-style: none;
 }
-.selected{
-	background-color: #ff80ff;
+
+#create_book {
+	display: inline-block;
 }
