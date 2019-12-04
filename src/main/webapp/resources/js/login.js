@@ -13,25 +13,40 @@ var getName= RegExp(/^[가-힣]+$/);						//이름
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
 
 function login() {
-	if ($.trim($('#login_id').val()) == "") {//기본 텍스트
-		$('#login_id_error').text('아이디를 입력해주세요!');//에러택스트
+	var login_id = $('#login_id').val();
+	var login_pwd = $('#login_pwd').val();
+	
+	$('.login_error').text('');//에러택스트 초기화
+	
+	//아이디 공백 검증
+	if ($.trim($('#login_id').val()) == "") {
+		$('#login_id_error').text('아이디를 입력해주세요!');
 		$("#login_id").val("").focus();
-		
 		return false;
-	}else{
-		$('#login_id_error').text('');//에러택스트
-		$("#login_pass").focus();
-		
 	}
-	if ($.trim($('#login_psss').val())=="") {
-		$('#login_pass_error').text('비밀번호를 입력해주세요!');
-		$("#login_pass").val("").focus();
+	
+	//비밀번호 공백 검증
+	if ($.trim($('#login_pwd').val())=="") {
+		$('#login_pwd_error').text('비밀번호를 입력해주세요!');
+		$("#login_pwd").val("").focus();
 		return false;
-	}else{
-		$('#login_pass_error').text('asdasdasd');
-		
 	}
-
+	
+	$.ajax({
+        type:"POST",
+        url:"login_ok", 
+        data: {"login_id":login_id ,"login_pwd":login_pwd},
+        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
+        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
+      	  if(data==1){					//아이디가없거나 비밀번호가 틀리다면
+      		$('#login_pwd_error').text('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.!');
+          	return false;
+      	  }  
+        },
+    	error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
+    		alert("data error");
+    	}
+      });
 }
 
 $(document).ready(function(){
@@ -347,7 +362,7 @@ $(document).ready(function(){
 		$.ajax({
 	        type:"POST",
 	        url:"join_membership_idcheck", 
-	        data: {"id":id},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
+	        data: {"id":id},  				//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
 	        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
 	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
 	      	  if(data==1){	//중복 아이디가 있다면
@@ -642,12 +657,6 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_tel').text('');
-	});
-	
-	$('').on("focusout", function() {
-		
-	}).on("keyup", function() {
-		
 	});
 	
 	/*프로필 미리보기 이미지 변경 - 등록메서드 실행*/
