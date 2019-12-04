@@ -1,5 +1,5 @@
 -- 회원 테이블 구성
-CREATE member(
+CREATE table member(
 mem_no NUMBER(38) PRIMARY KEY,		  -- 회원번호
 mem_id VARCHAR2(100) UNIQUE,		  -- 아이디
 mem_pwd VARCHAR2(200) NOT NULL,	 	  -- 비밀번호
