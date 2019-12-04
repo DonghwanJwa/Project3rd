@@ -526,9 +526,11 @@ padding: 10px;
     border-bottom: 1px solid #eee;
     width: 37%;
 	}
-	/*#profile_editor:focus{
-	border-bottom: 1px solid #F57C68;
-	}*/
+	#profile_editor_error{
+	padding-left:15px;
+	font-size: 10px;
+	color: red;
+	}
 	.profile_editor_box{
 	    overflow: hidden;
     border: 1px solid #EEE;
@@ -548,7 +550,12 @@ padding: 10px;
 	resize: none;
 	height: 40px;
 	}
-
+#profile_info_error{
+	padding-left:15px;
+	font-size: 10px;
+	color: red;
+	
+}
  #profile_edit_keyword {
 	outline: none;
     border: 1px solid;
@@ -564,6 +571,11 @@ padding: 10px;
 	padding:7px 0 0px 15px;
 	height:20px;
 	border-bottom: 1px solid #eee;
+	}
+	#profile_keyword_error{
+	padding-left:15px;
+	font-size: 10px;
+	color: red;
 	}
 	.keyword_button{
 	outline: none;
