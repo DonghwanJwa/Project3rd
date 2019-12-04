@@ -49,6 +49,20 @@ public class MemberController {
 		return "jsp/join_membership";
 	}
 	
+	@RequestMapping("join_membership_idcheck")
+	public String member_idcheck(String id,	HttpServletResponse response)throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		MemberVO check_id=this.memberService.idCheck(id);	//아이디 중복검색
+		int re=-1;//중복아이디가 없을때 반환값
+		if(check_id != null) {//중복아이디가 있을때
+			re=1;
+		}
+		out.println(re);//값을 반환
+		return null;
+	}//member_idcheck()
+	
 	@RequestMapping("join_membership_ok")
 	public String user_membership_ok(MemberVO m,HttpServletRequest request, 
 			HttpServletResponse response) throws Exception {//회원가입에서 가입하기 버튼 클릭 시
