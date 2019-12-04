@@ -3,9 +3,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="./resources/css/admin.css" />
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/admin.js"></script>
 </head>
 <%@include file="../include/admin_header.jsp" %>
 	<%-- 관리자 페이지 중단 (BODY) 시작 --%>

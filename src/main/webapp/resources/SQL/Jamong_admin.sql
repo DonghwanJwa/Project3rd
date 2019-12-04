@@ -22,9 +22,9 @@ commit;
 -- 공지사항 테이블
 create table adm_notice (
     noti_no number(38) primary key
-    ,noti_title varchar2(50) not null
-    ,noti_name varchar2(50) not null
-    ,noti_pwd varchar2(30) not null
+    ,noti_title varchar2(500) not null
+    ,noti_name varchar2(500) not null
+    ,noti_pwd varchar2(100) not null
     ,noti_cont varchar2(4000) not null
     ,noti_hit number(38) default 0
     ,noti_date date
@@ -33,5 +33,7 @@ create table adm_notice (
 drop table adm_notice;
 
 select * from adm_notice;
+
+drop sequence adm_noti_seq;
 
 create sequence adm_noti_seq start with 1 increment by 1 nocache;

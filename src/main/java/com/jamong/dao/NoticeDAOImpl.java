@@ -27,4 +27,20 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public void noticeInsert(NoticeVO n) {
 		this.sqlSession.insert("n_insert",n);
 	}
+
+	@Override
+	public NoticeVO noticeCont(int no) {
+		return this.sqlSession.selectOne("n_cont",no);
+	}
+
+	@Override
+	public void noticeEdit(NoticeVO n) {
+		this.sqlSession.update("n_edit",n);
+	}
+
+	@Override
+	public void noticeDel(int no) {
+		this.sqlSession.delete("n_del",no);
+	}
+
 }

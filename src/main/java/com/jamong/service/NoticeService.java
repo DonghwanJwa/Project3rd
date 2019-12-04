@@ -12,4 +12,11 @@ public interface NoticeService {
 
 	void noticeInsert(NoticeVO n);
 
+	NoticeVO getNoticeCont(int no);
+
+	void noticeEdit(NoticeVO n);
+
+	void noticeDel(int no);
+
+
 }
