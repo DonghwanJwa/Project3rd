@@ -133,6 +133,7 @@
 											<label for="join_membership_profile_editor"	class="join_membership_profile_font">작가명</label> 
 										</h3>
 										<textarea id="join_membership_profile_editor" name="mem_nickname" placeholder="이름을 입력해주세요(30자 이내)" maxlength="30"></textarea>
+										<b class="join_membership_profile_anoun">작가명을 입력하지 않으시면 아이디로 지정이 됩니다.</b>
 									</div>
 								</div>
 							</div>
@@ -145,6 +146,7 @@
 								<div class="join_membership_profile_editor_box">
 									<textarea class="join_membership_profile_info" name="profile_cont" placeholder="자신을 소개해보세요(90자 이내)"></textarea>
 								</div>
+								<b class="join_membership_profile_anoun">자기소개는 프로필 페이지에서 수정이 가능합니다.</b>
 								<!-- 경고문 띄우기 -->
 								<div class="join_membership_button_container">
 									<input type="button" id="join_membership_before_btn2" value="이전으로"/> 
@@ -163,6 +165,9 @@
 
 					<div id="join_membership_category-wrap">
 						<div id="join_membership_category-frame">
+							<b class="join_membership_category-anoun">
+								관심있는 카테고리를 선택해 주세요.(최대 3개)
+							</b>	
 							<ul id="join_membership_category-list">
 								<li class="join_membership_category-item" value="여행">
 									<span class="join_membership_category-span">여행</span>

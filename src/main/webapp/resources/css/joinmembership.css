@@ -7,21 +7,21 @@ body{
 	list-style: none;
 	}
 #join_membership_main_wrap{
-    padding: calc((100vh - 490px) / 2) 0;
+    padding: calc((100vh - 550px) / 2) 0;
     background-image: url(../img/background_img/login_pattern1.png);
     background-size: cover;
 }
 #join_membership_main_div{
 	background-color:white;
 	width:840px;
-	height: 490px;
+	height: 550px;
 	margin: 0 auto;
 
 }
 
 #join_membership_img_logo{
 	display:flex;
-	margin-bottom: 30px;
+	margin-bottom: 55px;
 }
 
 #join_membership_img_logo a{
@@ -66,14 +66,14 @@ body{
 #join_membership_sub_div_1{
 	display: inline-block;
 	width: 320px;
-	height: 250px;
+	height: 300px;
 	margin-top: 20px;
 	margin-left: 100px;
 }
 #join_membership_sub_div_2{
 	display: inline-block;
 	width: 320px;
-	height: 250px;
+	height: 300px;
 	vertical-align: top;
 	margin-top: 20px;
 }
@@ -267,8 +267,8 @@ body{
 	font-size: 12px;
 	text-align:left;
 	line-height: 20px;
-	margin-top: 10px;
-	margin-bottom: 5px;
+	margin-top: 5px;
+	margin-bottom: 20px;
 }
 
 /*---------------프로필 설정----------------*/
@@ -285,7 +285,7 @@ body{
 	line-height:1.2;
 	position: relative; 
 	width:545px;
-	height: 282px;
+	height: 300px;
 	padding: 15px 30px;
 	margin-left:50%; margin-right:50%;
 	transform: translate(-50%);
@@ -382,6 +382,13 @@ body{
 	resize: none;
 	height: 40px;
 }
+.join_membership_profile_anoun{
+	font-weight: normal;
+	font-size:9px;
+	color: #c0c0c0;
+	padding-left:15px;
+	margin-top:5px;
+}
 
 .join_membership_button_container{
 	display:flex;
@@ -389,13 +396,13 @@ body{
 }
 #join_membership_before_btn2, #join_membership_next_btn2{
 	border: solid 2px orange;
-	width: 200px;
+	min-width: 200px;
 	height: 50px;
 	background-color: white;
 	cursor: pointer;
 	outline: 0;
 	margin:0 45px;
-	margin-top: 30px;
+	margin-top: 13px;
 }
 #join_membership_before_btn2:hover{
 	background-color: orange;
@@ -414,11 +421,20 @@ body{
 }
 
 #join_membership_category-frame{
-	height:220px;
-	display:flex;
-	justify-content: center;
-	align-items: center;
+	height:270px;
 }
+
+.join_membership_category-anoun{
+	display: block;
+	width:470px;
+	font-weight: normal;
+	font-size:14px;
+	padding-left: 55px;
+	color:#3d3d3d;
+	margin:0 85px;
+	margin-bottom:10px;	
+}
+
 #join_membership_category-list{
 	width:470px;
 	list-style: none;
@@ -461,7 +477,7 @@ body{
 	cursor: pointer;
 	outline: 0;
 	margin:0 45px;
-	margin-top: 30px;
+	margin-top: 5px;
 }
 #join_membership_before_btn3:hover{
 	background-color: orange;

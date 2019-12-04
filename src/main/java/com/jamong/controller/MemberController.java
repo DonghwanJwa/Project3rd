@@ -1,11 +1,16 @@
 package com.jamong.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jamong.domain.MemberVO;
 import com.jamong.service.MemberService;
+
+import pwdconv.PwdChange;
 
 @Controller
 public class MemberController {
@@ -35,6 +40,13 @@ public class MemberController {
 	public String user_membership() { // 회원가입
 		
 		return "jsp/join_membership";
+	}
+	
+	@RequestMapping("join_membership_ok")
+	public String user_membership_ok(MemberVO m, HttpServletResponse response) {//회원가입에서 가입하기 버튼 클릭 시
+		m.setMem_pwd(PwdChange.getPassWordToXEMD5String(m.getMem_pwd()));//비밀번호 암호화
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping("pass_modify")
