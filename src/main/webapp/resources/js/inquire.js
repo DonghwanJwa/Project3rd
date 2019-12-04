@@ -28,8 +28,9 @@ function inq(){
 		$('#info').focus();
 		return false;
 	}
-	
+		
 }
+	/* phone 번호에 번호이외에 것이 들어가면 삭제 */
 	$(document).ready(function(){
 		$("#phone").on("focus",function(){
 		var x = $(this).val();
@@ -48,3 +49,13 @@ function inq(){
 
 
 
+
+	$(document).ready(function(){
+	$("#info").on("keyup",function(){
+		if($('#info').val().length > $(this).attr('maxlength')){
+		 $('#inq_vali_info').text('최대글자수를 초과하셨습니다.');
+		 $('#info').focus();
+		 return false;
+	}
+	});	
+	});

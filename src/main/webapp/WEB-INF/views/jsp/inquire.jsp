@@ -116,9 +116,9 @@
   	    </dt>
   	    <dd>
   	     <div class="inq_wrap_item2">
-  	     	<textarea class="inq_inp_info2" cols="24" rows="6" id="info"
-  	     	name="contents" required="required" style="line-height: normal"
-  	     	aria-required="true"></textarea>
+  	     	<textarea class="inq_inp_info2" placeholder="문의 내용을 입력해 주세요(최대 200자)" cols="24" rows="6" 
+  	     	id="info" name="contents" required="required" style="line-height: normal"
+  	     	aria-required="true" maxlength="200" type="text"></textarea>
   	     </div>
   	     <div class="inq_vali_date" id="inq_vali_info"></div>
   	    </dd>
