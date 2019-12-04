@@ -63,8 +63,12 @@
         <i id="write_title_center_icon"></i>
        </button>
       </div>
+      <div class="write_button_wrap write_cover_delete">
+       <button type="button" class="write_icon_btn" id="write_cover_delete" title="삭제">
+        <i id="write_coverimg_delete_icon"></i>
+       </button>
+      </div> 
      </div>
-   </div>
   </div>
    
   <!-- 글 내용 부분 --> 

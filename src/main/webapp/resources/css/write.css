@@ -24,6 +24,7 @@ h1, h2, h3, h4{
 	top:auto;
 	bottom:50%;
 	right:50%;
+	z-index:2;
 	transform: translate(50%,50%);
     -webkit-transform: translate(50%,50%);
 	text-align:center;
@@ -39,6 +40,7 @@ h1, h2, h3, h4{
 	width:700px;
 	bottom:0px;
 	right:50%;
+	z-index:2;
 	transform: translate(50%,-50%);
     -webkit-transform: translate(50%,-50%);
 	text-align:left;
@@ -75,7 +77,10 @@ h1, h2, h3, h4{
 }
 .write_bg_title_option:empty::before{
 	color:#FFF;
-	opacity:0.8;		
+	opacity:0.8;
+}
+.write_bg_title_option{
+	color:#FFF;
 }
 [contenteditable], [contenteditable]:focus{
 	outline:0px; /* 컨텐츠에디터블 박스포커스 파란 선 제거 */
@@ -114,7 +119,19 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 .write_button_wrap button.write_icon_btn{
 	border:0px;
 }
+.write_cover_delete{
+	display:none;
+}
 /* 상단 타이틀부 배경색 지정 아이콘 색상 변경값 */
+#write_coverimg_delete_icon{
+	outline:none;
+	background-position:-2px 0px;
+	display:inline-block;
+	width:25px;
+	height:25px;
+	
+	background-image:url(../img/writepage_icon/w_del.png);
+}
 #write_title_coverimage_bg{
 	outline:none;
 	background-position:-2px 0px;
@@ -147,6 +164,15 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	height:25px;
 	
 	background-image:url(../img/writepage_icon/w_bottom.png);
+}
+#write_coverimg_delete_icon:hover{
+	outline:none;
+	background-position:-2px 0px;
+	display:inline-block;
+	width:25px;
+	height:25px;
+	
+	background-image:url(../img/writepage_icon/j_del.png);
 }
 #write_title_coverimage_bg:hover{
 	background-position:-2px 0px;
@@ -275,6 +301,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	left:0px;
 	outline:0px;
 	width:100%;
+	z-index:1;
 	transition: height,opacity,200ms;
 	-webkit-transition: height,opacity,200ms;
 }
@@ -456,6 +483,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	font-size:14px;
 }
 .write_save_panel caption{
+	padding-top:0px;
 	fonx-size:15px;
 }
 .write_save_choice_panel{
@@ -464,7 +492,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	margin:0px auto;
 	text-align:left;
 	border:2px solid #FBA621;
-	padding:2px 0px;
+	padding:2px 20px;
 }
 .write_type_choice_panel{
 	display:inline-block;
@@ -472,10 +500,10 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	margin:20px auto 0px auto;
 	text-align:left;
 	border:2px solid #FBA621;
-	padding:2px 0px;
+	padding:2px 20px;
 }
 .write_choice_btn_panel{
-	margin:20px auto 0px auto;
+	margin:5px auto 0px auto;
 }
 .write_choice_save_btn{
 	border:1px solid #F57C68;
@@ -503,7 +531,24 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 }
 .write_choice_close_btn:active{
 	background-color:#FBA621;
+	border-bottom:1px solid #DDD;
+	border-top:none;
+	border-left:none;
+	border-right:none;
 	color:#FFF;
+}
+/* summernote toolbar panel */
+.panel-default > .panel-heading.note-toolbar{
+	background-color:#FFF;
+	border-radius:unset;
+}
+.note-editor.note-frame .note-statusbar.locked{
+	background-color:#FFF;
+	border:none;
+	border-radius:unset;
+}
+.note-editor.note-frame.panel-default{
+	border:none;
 }
 /* 페이드인 애니메이션부 */
 @keyframes fadein{

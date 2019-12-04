@@ -13,8 +13,6 @@ var toggleIndex4 = "true"; // 에디터 토글 인덱스
 var sel_file; // 이미지 미리보기 변수
 
 $(document).ready(function(){
-	// 이미지 미리보기 구현
-	$("#write_cover_file").on("change", handleImgFileSelect);
 	$(".write_cont_area").summernote({
 		toolbar:[
 			['style', ['style']],
@@ -174,11 +172,47 @@ $(document).ready(function(){
 			}
 		}
 	});
+	// 이미지 미리보기 구현
+	$("#write_cover_file").on("change", handleImgFileSelect);
+
+	// 미리보기 이미지 삭제 / 취소
+	$(".write_cover_delete").click(function(){
+		$(".write_main_title").removeClass('write_bg_title_option');
+		$(".write_sub_title").removeClass('write_bg_title_option');
+
+		$("#write_title_cover_img").css("height","250px");
+		$("#write_title_cover_img").css("background-image","none");			
+		$("#write_title_center_bg").attr('id','write_title_center_icon');
+		$("#write_title_bottom_bg").attr('id','write_title_bottom_icon');
+		$("#write_title_coverimage_bg").attr('id','write_cover_file');
+
+		$(".write_background_icon").css("display","block");
+		$(".write_cover_delete").css("display","none");
+
+		$("#write_cover_file").val("");
+	});
 });
 function handleImgFileSelect(e){
 	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);
-	
+
+	// 커버이미지 선택시
+	$(".write_main_title").addClass('write_bg_title_option');
+	$(".write_sub_title").addClass('write_bg_title_option');
+
+	$(".write_background_icon").css("display","none");
+	$(".write_cover_delete").css("display","block");
+	$("#write_cover_file").attr('id','write_title_coverimage_bg');
+	$("#write_title_center_icon").attr('id','write_title_center_bg');
+	$("#write_title_bottom_icon").attr('id','write_title_bottom_bg');
+
+	$("#write_title_area_bg").css('background-color','#FFF');
+	$("#write_title_area_bg").css('height','250px');
+
+	$("#write_background_change_btn").css('display','none');
+
+	$("#write_title_background_bg").attr('id','write_title_background_icon');
+
 	filesArr.forEach(function(f){
 		if(!f.type.match("image.*")){
 			alert('확장자는 이미지 확장자만 가능합니다!');
@@ -206,7 +240,7 @@ function writeCheck(){ // 저장버튼 클릭시 작성체크
 		$(".write_main_title").text("").focus();
 		return false;
 	}// if
-	if($.trim($(".write_cont_area").text())==""){
+	if($.trim($(".note-editable").text())==""){
 		$(".write_title_error").addClass('write_top_error');
 		$(".write_error_message").text("내용을 입력하세요!");
 		$(".write_cont_save").attr("disabled",true);
@@ -214,7 +248,7 @@ function writeCheck(){ // 저장버튼 클릭시 작성체크
 			$(".write_title_error").removeClass('write_top_error');
 			$(".write_cont_save").attr("disabled",false);
 		},3000);
-		$(".write_cont_area").text("").focus();
+		$(".note-editable").text("").focus();
 		return false;
 	}// if
 	var screenWidth = $(document).width();
