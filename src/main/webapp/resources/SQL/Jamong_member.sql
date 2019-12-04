@@ -1,5 +1,5 @@
 -- 회원 테이블 구성
-CREATE member(
+CREATE table member(
 mem_no NUMBER(38) PRIMARY KEY,		  -- 회원번호
 mem_id VARCHAR2(100) UNIQUE,		  -- 아이디
 mem_pwd VARCHAR2(200) NOT NULL,	 	  -- 비밀번호
@@ -22,7 +22,7 @@ mem_nickname VARCHAR2(100) UNIQUE,    -- 회원 닉네임(필명, 예명)
 mem_keyword VARHCHAR2(400), 		  -- 작가 키워드 ※ 카테고리아님
 mem_fav1 VARCHAR2(50), 				  -- 관심 카테고리 (선호하는 장르 선택)
 mem_fav2 VARCHAR2(50),
-mem_fav3 VARCHAR2(50),
+mem_fav3 VARCHAR2(50)
 );
 
 SELECT * FROM member ORDER BY mem_no DESC;
