@@ -76,16 +76,7 @@ $(document).ready(function() {
 			return false;
 		}
 	});
-	// 작가명 특수문자 제한
-	$('#profile_editor').on("focusout",function(e){
-		var p_edit =$(this).val();
-		if(p_edit.length >0){
-			if(p_edit.match(s_word)){
-				alert('특수문자는 입력할 수 없습니다.')
-				return false;
-			}
-		}
-	});
+	
 	// 자기소개 엔터키 제한
 	$('.e').on("keypress",function(e){
 		var p_edit =$(this).val();
@@ -196,12 +187,42 @@ function profileImgSelect(e){
 		var reader = new FileReader();
 		reader.onload = function(e){
 			$("#profile_edit_img").css("background-image",'url(\"'+e.target.result+'\")');
-		$("#profile_edit_img").css("height","450px");
+		$("#profile_edit_img").css("height","100px");
 		}
 		reader.readAsDataURL(f);
 	});
 }
 
+/*$(document).ready(function(){
+
+		if($.trim($('#profile_editor').val())==""){
+			$('#profile_info_error').text('자기소개를 작성해주세요!');
+			$("#profile_info").val("").focus();
+
+			return false;
+		}
+		if($.trim($('#profile_editor').val()).length < 30){
+			$('#profile_info_error').text('작가명은 30자 이하까지만 작성가능합니다!');
+			$("#profile_info").val("").focus();
+	
+			return false;
+	}
+		if ($.trim($('#profile_edit_info').val()) == "") {//기본 텍스트
+			$('#profile_info_error').text('작가명을 입력해주세요!');//에러택스트
+			$('#profile_info').val("").focus();
+			
+			return false;
+		}
+		if ($.trim($('#profile_edit_info').val()).length < 90) {//기본 텍스트
+			$('#profile_info_error').text('자기소개는 90자 이하까지만 작성가능합니다!');
+			$("#profile_info").val("").focus();
+			
+			return false;
+		}
+})*/
+	
+
+		
 
 
 
