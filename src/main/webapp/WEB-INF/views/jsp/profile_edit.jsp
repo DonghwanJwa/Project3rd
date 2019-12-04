@@ -16,8 +16,8 @@
 		</div>
 		<article id="profile_main_edit_article">
 			<div>
-				<img id="profile_edit_img" />
-				<form target="write_frame_1" enctype="multipart/form-data" method="post" action="edit_img_ok">
+				<div id="profile_edit_img" >
+				<form target="" enctype="multipart/form-data" method="post" >
 					<span id="profile_img_edit_button"> 
 					<label for="profile_img" class="profile_font_hide"></label>
 					 <input id="pf_input" class="profile_input_hide" type="file" name="file" accept="image/*"
@@ -27,6 +27,7 @@
 					(IE10이상에서 사용가능 및 HTML 4와 5의 값 차이가 있음)--%>
 					</span>
 				</form>
+				</div>
 			</div>
 			<%-- enctype전송되는 데이터 형식을 설정함. 종류는 총3가지
 	1. application/www-form-urlencoded(default값 폼데이터는 서버로 전송되기전에 URL-Encode 됨)
@@ -47,7 +48,7 @@
 							<input id="profile_editor" name="" placeholder="이름을 입력해주세요(30자 이내로)"
 								maxlength="30"
 							/>
-							<div id="pf_edit_e"></div>
+							<div id="profile_editor_error"></div>
 						</div>
 					</div>
 				</div>
@@ -63,6 +64,7 @@
 					<div class="profile_editor_box">
 						<textarea class="profile_edit_info e" placeholder="자신을 소개해보세요(90자 이내로)" maxlength="90"></textarea>
 					</div>
+					<div id="profile_info_error"></div>
 				<!-- 여기서부터는 작가항목입니다 -->
 				<c:if test="${mem_author}">
 					<div>
@@ -71,6 +73,7 @@
 					<div class="">
 						<input type="text" id="keyword_tag" class="keyword_box"
 							placeholder="엔터로 원하는 키워드를 입력해주세요(8자 이내로)" maxlength="8"	>
+							<div id="profile_error_keyword"></div>
 							<button class="keyword_button"></button>
 						<ul id="edit_tag_list">
 						</ul>
