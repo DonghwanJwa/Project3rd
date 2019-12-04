@@ -17,7 +17,7 @@ mem_date DATE, 						  -- 가입날짜
 mem_author NUMBER(38) DEFAULT 0, 	  -- 작가, 비작가 구분
 mem_state NUMBER(38) DEFAULT 0, 	  -- 가입회원, 정지회원, 탈퇴회원 구분
 profile_photo VARCHAR2(200) NOT NULL, -- 프로필사진 경로
-profile_cont VARCHAR2(4000) NOT NULL, -- 프로필 내용
+profile_cont VARCHAR2(4000), -- 프로필 내용
 mem_nickname VARCHAR2(100) UNIQUE,    -- 회원 닉네임(필명, 예명)
 mem_keyword VARCHAR2(400), 		  -- 작가 키워드 ※ 카테고리아님
 mem_fav1 VARCHAR2(50), 				  -- 관심 카테고리 (선호하는 장르 선택)
@@ -25,6 +25,8 @@ mem_fav2 VARCHAR2(50),
 mem_fav3 VARCHAR2(50),
 mem_portfolio CLOB		  			  -- 작가 포트폴리오 내용 (12/03 추가)
 );
+
+DROP table member;
 
 SELECT * FROM member ORDER BY mem_no DESC;
 
