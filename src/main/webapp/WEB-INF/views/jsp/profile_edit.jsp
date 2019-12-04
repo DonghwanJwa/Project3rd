@@ -9,7 +9,7 @@
 <link rel=stylesheet type="text/css" href="./resources/css/profile.css">
 <title></title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 	<div id="profile_main_edit">
 		<div id="profile_edit_title">
 			<h3 id="edit_text">프로필 편집</h3>
@@ -46,7 +46,7 @@
 								<span></span>
 							</h3>
 							<input id="profile_editor" name="" placeholder="이름을 입력해주세요(30자 이내로)"
-								maxlength="30"
+								maxlength="30" value=""
 							/>
 							<div id="profile_editor_error"></div>
 						</div>
