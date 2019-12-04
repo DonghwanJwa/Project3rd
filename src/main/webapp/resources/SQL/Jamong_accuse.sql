@@ -8,7 +8,7 @@ ac_result VARCHAR2(50),			  -- 신고 결과
 ac_member NUMBER(38),			  -- 신고자 참조 컬럼
 mem_no NUMBER(38),				  -- 피신고자 참조 컬럼
 bo_no NUMBER(38),				  -- 게시글 참조 컬럼
-rep_no NUMBER(38),				  -- 덧글 참조 컬럼
+rep_no NUMBER(38)				  -- 덧글 참조 컬럼
 );
 
 CREATE SEQUENCE ac_no_seq
