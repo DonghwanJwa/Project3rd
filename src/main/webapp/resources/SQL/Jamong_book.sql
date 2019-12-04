@@ -5,7 +5,7 @@ book_name VARCHAR2(100) NOT NULL, -- 책 이름
 book_date DATE,                   -- 책 발간일
 book_editdate DATE,					  -- 책 수정일
 fav_no NUMBER(38),				  -- 카테고리 참조 컬럼
-mem_no NUMBER(38), 				  -- 회원 참조 컬럼
+mem_no NUMBER(38) 				  -- 회원 참조 컬럼
 );
 
 -- 참조컬럼 참조키 설정

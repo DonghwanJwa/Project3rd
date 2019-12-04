@@ -7,7 +7,7 @@ rep_ref NUMBER(38),				 -- 덧글&답글 묶을번호
 rep_step NUMBER(38),			 -- n번째 답글
 rep_level NUMBER(38),			 -- 덧글&답글 순서 정렬
 bo_no NUMBER(38),				 -- 게시글번호 참조 컬럼
-mem_no NUMBER(38),				 -- 회원번호 참조 컬럼
+mem_no NUMBER(38)				 -- 회원번호 참조 컬럼
 );
 
 CREATE SEQUENCE rep_no_seq
