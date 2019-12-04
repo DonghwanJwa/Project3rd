@@ -274,18 +274,18 @@ $(document).ready(function(){
 	
 	//카테고리 선택시 class,name 추가(form에 post전달하기 위해서 name값에 숫자 추가)
 	$(".join_membership_category-span").click(function(){
-		
 		if($(this).parent().hasClass("member_category_check")){
 			$(this).parent().removeClass("member_category_check");
-			$(this).parent().removeAttr("name");
+			$(this).next().removeAttr("name");
 			category_count-=1;
 		}else{
 			if(category_count<3){
 				category_count+=1;
 				$(this).parent().addClass("member_category_check");
-				$(this).parent().attr("name","mem_fav"+category_count);
+				$(this).next().attr("name","mem_fav"+category_count);
 			}
 		}
+		console.log($(".member_category_check").val());
 	});
 	
 	/*프로필 미리보기 이미지 변경 - 등록메서드 실행*/

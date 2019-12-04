@@ -4,6 +4,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+ <settings>
+  <setting name="jdbcTypeForNull" value="NULL"/>
+  <!-- view에서 전달되는 인자값이 null값일때 mappers 내 xml에서 받아들일 수 있게 처리하는 setting    -->
+  <!-- 참고사이트 : https://cmleo.tistory.com/36 -->
+ </settings>
  <typeAliases>
   <typeAlias type="com.jamong.domain.AccuseVO" alias="ac"/> <!-- 신고하기 -->
   <typeAlias type="com.jamong.domain.AuthorVO" alias="aut"/> <!-- 작가신청 -->
