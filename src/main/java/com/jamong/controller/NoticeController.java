@@ -90,8 +90,13 @@ public class NoticeController {
 			out.println("location='admin_login';");
 			out.println("</script>");
 		}else {
+			int page=1;
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));
+			}
 			ModelAndView m=new ModelAndView();
-			m.setViewName("admin_notice_write");
+			m.addObject("page",page); // 목록가기로 돌아 갔을 때 책갈피 기능
+			m.setViewName("jsp/admin_notice_write");
 			
 			return m;
 		}
@@ -102,7 +107,113 @@ public class NoticeController {
 	@RequestMapping("admin_notice_insert")
 	public ModelAndView admin_notice_insert(NoticeVO n) throws Exception {
 		this.noticeService.noticeInsert(n);
-		
 		return new ModelAndView("redirect:/admin_notice");
+	}
+	
+	/* 공지사항 내용보기 +수정 폼 일괄처리 */
+	@RequestMapping("admin_notice_cont")
+	public ModelAndView admin_notice_cont(HttpSession session, HttpServletRequest request, HttpServletResponse response, int no, String state, NoticeVO n) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		session=request.getSession();
+		
+		String adm_id=(String)session.getAttribute("adm_id");
+		
+		if(adm_id == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='admin_login';");
+			out.println("</script>");
+		}else {
+			int page=1;
+			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
+			
+			n=this.noticeService.getNoticeCont(no);
+			
+			String noti_cont=n.getNoti_cont().replace("\n", "<br/>");
+			
+			ModelAndView m=new ModelAndView();
+			
+			m.addObject("n",n);
+			m.addObject("noti_cont",noti_cont);
+			m.addObject("page",page);
+			
+			if(state.equals("cont")) {
+				m.setViewName("jsp/admin_notice_cont");
+			}else if(state.equals("edit")) {
+				m.setViewName("jsp/admin_notice_edit");
+			}else if(state.equals("del")) {
+				m.setViewName("jsp/admin_notice_del");
+			}
+			return m;
+		}
+		return null;
+	} // admin_notice_cont()
+	
+	/* 공지사항 수정 기능 */
+	@RequestMapping("admin_notice_edit")
+	public ModelAndView admin_notice_edit(NoticeVO n, int page, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		session=request.getSession();
+		PrintWriter out=response.getWriter();
+		
+		NoticeVO db_pwd=this.noticeService.getNoticeCont(n.getNoti_no());
+		
+		String adm_id=(String)session.getAttribute("adm_id");
+		String noti_pwd=request.getParameter("noti_pwd");
+		
+		if(adm_id == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='admin_login';");
+			out.println("</script>");
+		}else {
+			if(!noti_pwd.equals(db_pwd.getNoti_pwd())) {
+				out.println("<script>");
+				out.println("alert('게시글 비밀번호가 다릅니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			} else {
+				this.noticeService.noticeEdit(n);
+				
+				ModelAndView m=new ModelAndView("redirect:/admin_notice_cont?no="+n.getNoti_no()+"&page="+page+"&state=cont");
+				
+				return m;
+			}
+		}
+		return null;
+	} // admin_notice_edit()
+	
+	/* 공지사항 삭제 */
+	@RequestMapping("admin_notice_del") 
+	public ModelAndView admin_notice_del(HttpSession session, HttpServletRequest request, HttpServletResponse response, int page, NoticeVO n) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		session=request.getSession();
+		
+		String adm_id = (String)session.getAttribute("adm_id");
+		
+		NoticeVO db_pwd=this.noticeService.getNoticeCont(n.getNoti_no());
+		String noti_pwd=request.getParameter("noti_pwd");
+		
+		if(adm_id == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='admin_login';");
+			out.println("</script>");
+		}else {
+			if(!noti_pwd.equals(db_pwd.getNoti_pwd())) {
+				out.println("<script>");
+				out.println("alert('게시글 비밀번호가 다릅니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			} else {
+				this.noticeService.noticeDel(n.getNoti_no());
+				ModelAndView m=new ModelAndView("redirect:/admin_notice?page="+page);
+				
+				return m;
+			}
+		}
+		return null;
 	}
 }

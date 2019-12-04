@@ -27,4 +27,20 @@ public class NoticeServiceImpl implements NoticeService {
 	public void noticeInsert(NoticeVO n) {
 		this.noticeDao.noticeInsert(n);
 	}
+
+	@Override
+	public NoticeVO getNoticeCont(int no) {
+		return this.noticeDao.noticeCont(no);
+	}
+
+	@Override
+	public void noticeEdit(NoticeVO n) {
+		this.noticeDao.noticeEdit(n);
+	}
+
+	@Override
+	public void noticeDel(int no) {
+		this.noticeDao.noticeDel(no);
+	}
+
 }

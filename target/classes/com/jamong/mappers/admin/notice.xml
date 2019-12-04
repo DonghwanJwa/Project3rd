@@ -50,5 +50,21 @@
 	<!-- 공지사항 저장 -->
 	<insert id="n_insert">
 		insert into adm_notice(noti_no,noti_title,noti_name,noti_pwd,noti_cont,noti_date)
+		values(adm_noti_seq.nextval,#{noti_title},#{noti_name},#{noti_pwd},#{noti_cont},sysdate)
 	</insert>
+	
+	<!-- 공지사항 내용보기 -->
+	<select id="n_cont" resultType="notice">
+		select * from adm_notice where noti_no=#{no}
+	</select>
+	
+	<!-- 공지사항 수정하기 -->
+	<update id="n_edit">
+		update adm_notice set noti_name=#{noti_name}, noti_title=#{noti_title}, noti_cont=#{noti_cont} where noti_no=#{noti_no}
+	</update>
+	
+	<!-- 공지사항 삭제하기 -->
+	<delete id="n_del">
+		delete adm_notice where noti_no=#{no}
+	</delete>
 </mapper>

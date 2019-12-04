@@ -12,4 +12,11 @@ public interface NoticeDAO {
 
 	void noticeInsert(NoticeVO n);
 
+	NoticeVO noticeCont(int no);
+
+	void noticeEdit(NoticeVO n);
+
+	void noticeDel(int no);
+
+
 }
