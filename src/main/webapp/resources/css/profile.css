@@ -550,6 +550,8 @@ padding: 10px;
 	resize: none;
 	height: 40px;
 	}
+	.e{overflow-y: hidden;	}
+	
 #profile_info_error{
 	padding-left:15px;
 	font-size: 10px;

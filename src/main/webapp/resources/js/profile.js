@@ -192,6 +192,15 @@ function profileImgSelect(e){
 }
 function profileCheck(){
 	
+	if(($.trim($('#pf_info').val()) !== "") && ($.trim($('#profile_editor').val()) !== "")){
+		var result = confirm('저장하시겠습니까?');
+		$('.profile_edit_btn2').click(function() {
+			if (result) {
+				location.replace('./profile');
+			} else {}
+		});
+		return false;
+	} 
 	if($.trim($('#profile_editor').val())==""){
 		$('#profile_editor_error').text('작가명을 작성해주세요!');
 		$("#profile_editor").val("").focus();
@@ -207,34 +216,38 @@ function profileCheck(){
 		
 		return false;
 	}else{
-		$('#profile_editor_error').text('');
+		$('#profile_info_error').text('');
 		
 	}
+	
 
 }	
 $(document).ready(function(){
-	$("#profile_editor").on("keypress", function(e) {
-	if($.trim($('#profile_editor').val()).length > 30){
+	
+	var k_word = /[ㄱ-ㅎㅏ-ㅣ]/gi;
+	
+	$("#profile_editor").on("keyup", function(e) {
+	if($.trim($('#profile_editor').val()).length > $(this).attr('maxlength')){
 		$('#profile_editor_error').text('작가명은 30자 이하까지만 작성가능합니다!');
-		$("#profile_editor").val("").focus();
 		
+		$("#profile_info").val("").focus();
 		return false;
-		
 	}else{
 		$('#profile_editor_error').text('');
 	}	
 	});
-	if ($.trim($('#pf_info').val()).length > 90) {//기본 텍스트
+		$("#pf_info").on("keyup",function(e){
+			
+	if ($.trim($('#pf_info').val()).length > $(this).attr('maxlength')) {//기본 텍스트
 		$('#profile_info_error').text('자기소개는 90자 이하까지만 작성가능합니다!');
 		$("#profile_info").val("").focus();
-		
 		return false;
-		
 	}else{
-		$('#pf_info').text('');
+		$('#profile_info_error').text('');
 	}
+		})
 	// 작가명 엔터 키 제한
-	$('#profile_editor').on("keypress",function(e){
+	$('#profile_editor').on("keyup",function(e){
 		var p_edit =$(this).val();
 		if(e.keyCode == 13){
 			alert('작가이름은 줄바꿈을 사용할 수 없습니다!');
@@ -250,6 +263,7 @@ $(document).ready(function(){
 			return false;
 		}
 	});
+	
 })
 
 		
