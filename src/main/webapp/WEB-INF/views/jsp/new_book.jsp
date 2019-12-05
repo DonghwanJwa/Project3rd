@@ -212,8 +212,10 @@
    </ul>
   </div>
  </div>
- <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide prev on"></button>
- <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide next on"></button>
+ <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide prev on"
+ onclick="scrollmove('#gradeItmeList_all','slideleft')"></button>
+ <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide next on"
+ onclick="scrollmove('.slide_work_list','slideright')"></button>
 </section>
 
 <%-- section open --%>
