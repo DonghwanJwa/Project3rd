@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="./resources/css/request_author.css"/>
 <title>글에 꿈을 담다, 자몽</title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 
 <div id="req_wrap">
 	<div id="req_auth_wrap">

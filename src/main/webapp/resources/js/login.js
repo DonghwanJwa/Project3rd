@@ -13,6 +13,20 @@ var getName= RegExp(/^[가-힣]+$/);						//이름
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
 
 $(document).ready(function(){
+	
+	/*엔터로 로그인진행*/
+	$('#login_id').on("keyup", function(key) {
+		if (key.keyCode == 13) {
+			$("#login_pwd").focus();
+		}
+	});
+	
+	$("#login_pwd").on("keyup", function(key){
+		if (key.keyCode == 13) {
+			$("#login_btn").trigger("click");
+		}
+	});
+	
 	/*로그인창에서 로그인 버튼 클릭시 */
 	$("#login_btn").click(function() {
 		var login_id = $('#login_id').val();
@@ -345,7 +359,7 @@ $(document).ready(function(){
 	    	  }
 	      });
 		
-	}).on("keyup", function() {//타이핑 할때
+	}).on("keyup", function(key) {//타이핑 할때
 		var id = $(this).val();
 		if ($.trim($('#join_membership_id').val()) == "") {//기본 텍스트
 			$('#join_membership_error_id').text('아이디를 입력해주세요!');//에러택스트
@@ -379,6 +393,10 @@ $(document).ready(function(){
 	      });
 		
 		$('#join_membership_error_id').text('');
+		
+		if (key.keyCode == 13) {
+			$("#join_membership_pass").focus();
+		}
 	});
 	
 	/*비밀번호 검사*/
@@ -401,7 +419,7 @@ $(document).ready(function(){
 			return false; 
 		}
 		$('#join_membership_error_pass').text('');
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_pass').val())=="") {
 			$('#join_membership_error_pass').text('비밀번호를 입력해주세요!');
 			return false;
@@ -420,6 +438,10 @@ $(document).ready(function(){
 			return false; 
 		}
 		$('#join_membership_error_pass').text('');
+		
+		if (key.keyCode == 13) {
+			$("#join_membership_pass_check").focus();
+		}
 	});
 	
 	/*비밀번호 확인 유효성 검증*/
@@ -433,7 +455,7 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_pass_check').text('');
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_pass_check').val())=="") {
 			$('#join_membership_error_pass_check').text('비밀번호 확인을 입력해주세요!');
 			return false;
@@ -443,6 +465,9 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_pass_check').text('');
+		if (key.keyCode == 13) {
+			$('#join_membership_name').focus();
+		}
 	});
 	
 	/*이름 유효성 검증*/
@@ -457,7 +482,7 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_name').text('');
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_name').val())=="") {
 			$('#join_membership_error_name').text('이름을 입력해주세요!');
 			return false;
@@ -468,6 +493,9 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_name').text('');
+		if (key.keyCode == 13) {
+			$('#join_membership_birth_year').focus();
+		}
 	});
 	
 	/*생년월일 : 년 유효성 검증*/
@@ -486,7 +514,7 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_birth').text('');
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_birth_year').val())=="") {
 			$('#join_membership_error_birth').text('생년월일을 입력해 주세요!');
 			return false;
@@ -501,6 +529,9 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_birth').text('');
+		if (key.keyCode == 13) {
+			$('#join_membership_birth_month').focus();
+		}
 	});
 	
 	/*생년월일 : 월 유효성검증*/
@@ -520,7 +551,7 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_birth').text('');
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_birth_month').val())=="") {
 			$('#join_membership_error_birth').text('생년월일을 입력해 주세요!');
 			return false;
@@ -536,6 +567,9 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_birth').text('');
+		if (key.keyCode == 13) {
+			$('#join_membership_birth_date').focus();
+		}
 	});
 	
 	/*생년월일 : 일 유효성 검증*/
@@ -555,7 +589,7 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_birth').text('');
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_birth_date').val())=="") {
 			$('#join_membership_error_birth').text('생년월일을 입력해 주세요!');
 			return false;
@@ -571,6 +605,9 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_birth').text('');
+		if (key.keyCode == 13) {
+			$('#join_membership_select_gender').focus();
+		}
 	});
 	
 	/*성별 유효성 검증*/
@@ -586,6 +623,10 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_birth').text('');
+	}).on("keyup", function(key) {
+		if (key.keyCode == 13) {
+			$('#join_membership_email').focus();
+		}
 	});
 	
 	/*이메일 id 유효성 검증*/
@@ -594,12 +635,15 @@ $(document).ready(function(){
 			$('#join_membership_error_email_domain').text('이메일을 입력해주세요!');
 			return false;
 		}
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_email').val())=="") {
 			$('#join_membership_error_email_domain').text('이메일을 입력해주세요!');
 			return false;
 		}
 		$('#join_membership_error_email_domain').text('');
+		if (key.keyCode == 13) {
+			$('#join_membership_email_datalist').focus();
+		}
 	});
 	
 	/*이메일 도메인 유효성 검증*/
@@ -613,7 +657,7 @@ $(document).ready(function(){
 			$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
 			return false;
 		}
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_email_datalist').val())=="") {
 			$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
 			return false;
@@ -624,6 +668,9 @@ $(document).ready(function(){
 			return false;
 		}
 		$('#join_membership_error_email_domain').text('');
+		if (key.keyCode == 13) {
+			$('#join_membership_tel1').focus();
+		}
 	});
 	
 	/*핸드폰 번호1*/
@@ -632,12 +679,15 @@ $(document).ready(function(){
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_tel1').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
 		$('#join_membership_error_tel').text('');
+		if (key.keyCode == 13) {
+			$('#join_membership_tel2').focus();
+		}
 	});
 	
 	/*핸드폰 번호2*/
@@ -646,12 +696,15 @@ $(document).ready(function(){
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_tel2').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
 		$('#join_membership_error_tel').text('');
+		if (key.keyCode == 13) {
+			$('#join_membership_tel3').focus();
+		}
 	});
 
 	/*핸드폰 번호3*/
@@ -660,12 +713,15 @@ $(document).ready(function(){
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
-	}).on("keyup", function() {
+	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_tel3').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
 		$('#join_membership_error_tel').text('');
+		if (key.keyCode == 13) {
+			$("#join_membership_next_btn").trigger("click");
+		}
 	});
 	
 	/*프로필 미리보기 이미지 변경 - 등록메서드 실행*/
@@ -690,6 +746,15 @@ function handleImgFileSelect(e){
 		reader.readAsDataURL(f);
 	});
 }
+
+/*로그인 , 회원가입창에서 엔터치면 텝키효과 나타나도록 효과주기 */
+function captureReturnKey(e) { 
+    if(e.keyCode==13 && e.srcElement.type != 'textarea') {
+    	e.preventDefault();
+    }
+} 
+
+
 
 
 

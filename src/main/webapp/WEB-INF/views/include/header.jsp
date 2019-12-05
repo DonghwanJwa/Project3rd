@@ -13,7 +13,7 @@
 <script type="text/javascript" src="./resources/js/main.js"></script>
 <title>글에 꿈을 담다, 자몽</title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 <%@ include file="../jsp/request_author.jsp" %>
 <%@ include file="../jsp/accuse.jsp" %>
   <%-- 해드 메뉴바 --%>
@@ -266,10 +266,10 @@
      </div>
      <a href="./profile" id="head-profile-info-wrap">
       <div id="head-profile-info-img-wrap">
-       <img id="head-profile-info-img" src="./resources/img/profile_logout.png">
+       <img id="head-profile-info-img" src="${m.profile_photo}">
       </div>
       <div id="head-profile-name-wrap">
-       <strong>프로필명</strong>
+       <strong>${m.mem_nickname}</strong>
       </div>
      </a>
      <div id="head-profile-service-wrap">

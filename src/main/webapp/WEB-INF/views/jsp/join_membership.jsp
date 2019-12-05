@@ -12,10 +12,10 @@
 <script src="./resources/js/login.js"></script>
 <title>회원가입 페이지입니다</title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 	<div id="join_membership_main_wrap">
 
-		<form name="m" method="post" enctype="multipart/form-data" action="join_membership_ok">
+		<form name="m" method="post" enctype="multipart/form-data" onkeydown="return captureReturnKey(event)" autocomplete="off" action="join_membership_ok">
 			<div id="join_membership_main_div">
 				<!-------------------------------로고------------------------------------>
 				<div id="join_membership_img_logo">
@@ -43,21 +43,21 @@
 					<div id="join_membership_sub_div_1">
 
 						<input placeholder="아이디" class="join_membership_text"
-							id="join_membership_id" name="mem_id" tabindex="1" />
+							id="join_membership_id" name="mem_id" tabindex="1"   />
 						<div class="join_membership_error" id="join_membership_error_id"></div>
 
 
 						<input type="password" placeholder="비밀번호" tabindex="2"
-							class="join_membership_text" id="join_membership_pass" name="mem_pwd">
+							class="join_membership_text" id="join_membership_pass" name="mem_pwd"  >
 						<div class="join_membership_error" id="join_membership_error_pass"></div>
 
 						<input type="password" placeholder="비밀번호 확인" tabindex="3"
-							class="join_membership_text" id="join_membership_pass_check">
+							class="join_membership_text" id="join_membership_pass_check"  >
 						<div class="join_membership_error"
 							id="join_membership_error_pass_check"></div>
 
 						<input placeholder="이름" class="join_membership_text" tabindex="4"
-							id="join_membership_name" name="mem_name">
+							id="join_membership_name" name="mem_name"  >
 						<div class="join_membership_error" id="join_membership_error_name"></div>
 
 					</div>
@@ -67,11 +67,11 @@
 					<div id="join_membership_sub_div_2">
 
 						<span id="join_membership_birth_span"> 
-							<input placeholder="년" class="join_membership_birth numberOnly"	id="join_membership_birth_year" name="mem_birth1" tabindex="5" maxlength="4">
-							<input placeholder="월" class="join_membership_birth numberOnly" id="join_membership_birth_month" name="mem_birth2" tabindex="6" maxlength="2">
-							<input placeholder="일" class="join_membership_birth numberOnly" id="join_membership_birth_date" name="mem_birth3" tabindex="7" maxlength="2">
+							<input placeholder="년" class="join_membership_birth numberOnly"	id="join_membership_birth_year" name="mem_birth1" tabindex="5" maxlength="4"  >
+							<input placeholder="월" class="join_membership_birth numberOnly" id="join_membership_birth_month" name="mem_birth2" tabindex="6" maxlength="2"  >
+							<input placeholder="일" class="join_membership_birth numberOnly" id="join_membership_birth_date" name="mem_birth3" tabindex="7" maxlength="2"  >
 						</span> 
-						<select id="join_membership_select_gender" name="mem_gender" tabindex="8">
+						<select id="join_membership_select_gender" name="mem_gender" tabindex="8"  >
 							<option value="	성별">성별</option>
 							<option value=" 남자">남자</option>
 							<option value=" 여자">여자</option>
@@ -82,25 +82,25 @@
 
 						<div class="join_membership_email_class">
 							<input class="join_membership_email" tabindex="9"
-								id="join_membership_email" name="email_id" placeholder="이메일">
+								id="join_membership_email" name="email_id" placeholder="이메일"  >
 						</div>
 						<b id="join_membership_email_atMark">@</b> 
 						<input type="text" list="browsers" id="join_membership_email_datalist"
-							name="email_domain" placeholder="도메인" tabindex="10">
+							name="email_domain" placeholder="도메인" tabindex="10"  >
 						<datalist id=browsers>
 							<option value="naver.com">
 							<option value="daum.com">
 							<option value="gmail.com">
 							<option value="nate.com">
 						</datalist>
-						<button id="join_membership_certified_btn" tabindex="11">인증</button>
+						<button id="join_membership_certified_btn" tabindex="11"  >인증</button>
 						<div class="join_membership_error"
 							id="join_membership_error_email_domain"></div>
 
 						<div id="join_membership_tel_color">
 							<div class="join_membership_tel_hover_focus">
-								<input class="join_membership_tel numberOnly" id="join_membership_tel1"	name="mem_phone01" placeholder="010" maxlength="3" tabindex="12"
-								>-<input class="join_membership_tel numberOnly" id="join_membership_tel2" name="mem_phone02" placeholder="0000" maxlength="4" tabindex="13"
+								<input class="join_membership_tel numberOnly" id="join_membership_tel1"	name="mem_phone01" placeholder="010" maxlength="3" tabindex="12"  
+								>-<input class="join_membership_tel numberOnly" id="join_membership_tel2" name="mem_phone02" placeholder="0000" maxlength="4" tabindex="13"  
 								>-<input class="join_membership_tel numberOnly" id="join_membership_tel3" name="mem_phone03" placeholder="0000" maxlength="4" tabindex="14">
 							</div>
 							<div class="join_membership_error" id="join_membership_error_tel"></div>
