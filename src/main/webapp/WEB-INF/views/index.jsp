@@ -333,10 +333,10 @@
      </div>
      <a href="./profile" id="head-profile-info-wrap">
       <div id="head-profile-info-img-wrap">
-       <img id="head-profile-info-img" src="./resources/img/profile_logout.png">
+       <img id="head-profile-info-img" src="${m.profile_photo}">
       </div>
       <div id="head-profile-name-wrap">
-       <strong>프로필명</strong>
+       <strong>${m.mem_nickname}</strong>
       </div>
      </a>
      <div id="head-profile-service-wrap">
@@ -371,7 +371,7 @@
         </a>
        </li>
        <li id="head-profile-service-logout" class="head-profile-stat-login">
-        <a href="#">
+        <a href="./logout">
          <span class="head-profile-service-bar-left"></span>
     	   	<b>로그아웃</b>
          <span class="head-profile-service-bar-right"></span>

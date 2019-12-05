@@ -35,11 +35,11 @@ public class MemberController {
 	
 	@RequestMapping("login_ok")
 	@ResponseBody
-	public int member_login_ok(String login_id, String login_pwd,MemberVO m,
+	public int member_login_ok(String page,String login_id, String login_pwd,MemberVO m,
 			HttpServletResponse response,HttpServletRequest request,
 			HttpSession session) throws Exception{
 		session=request.getSession();
- 
+		
 		MemberVO dm=this.memberService.loginCheck(login_id);//로그인 인증
 		int re=1;
 		if(dm!=null) {		
@@ -47,6 +47,7 @@ public class MemberController {
 				re=-1;
 				m.setMem_no(dm.getMem_no());
 				m.setMem_id(dm.getMem_id());
+				m.setMem_nickname(dm.getMem_nickname());
 				m.setMem_author(dm.getMem_author());
 				m.setMem_state(dm.getMem_state());
 				m.setProfile_photo(dm.getProfile_photo());
@@ -58,6 +59,13 @@ public class MemberController {
 		}
 		return re;
 	}//member_login_ok()
+	
+	@RequestMapping("logout")
+	public String member_logout(HttpSession session)throws Exception {
+		session.invalidate();//세션만료
+		return "redirect:/";
+	}
+	
 	
 	@RequestMapping("find_id")
 	public String user_find_id() { // 아이디 찾기
@@ -78,17 +86,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping("join_membership_idcheck")
-	public String member_idcheck(String id,	HttpServletResponse response)throws Exception{
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out=response.getWriter();
+	@ResponseBody
+	public int member_idcheck(String id, HttpServletResponse response)throws Exception{
 		
 		MemberVO check_id=this.memberService.idCheck(id);	//아이디 중복검색
 		int re=-1;//중복아이디가 없을때 반환값
 		if(check_id != null) {//중복아이디가 있을때
 			re=1;
 		}
-		out.println(re);//값을 반환
-		return null;
+		return re;
 	}//member_idcheck()
 	
 	@RequestMapping("join_membership_ok")
@@ -98,12 +104,12 @@ public class MemberController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		String saveFolder = request.getRealPath("/resources/upload");//프로필 이미지 저장 경로
+		String saveFolder = request.getRealPath("/resources/upload/profile");//프로필 이미지 저장 경로
 		/*c:\spring_work\.metadata\.plugins\org.eclipse.wst.server.core\
 		 * 	tmp0\wtbwebapps\project\resources\ upload\profile
 		 */ 
 		
-		int fileSize = 10*1024*1024;			//첨부파일 최대크기 (10M)
+		int fileSize = 100*1024*1024;			//첨부파일 최대크기 (100M)
 		MultipartRequest multi=null;			//첨부파일을 가져오는 api
 		multi = new MultipartRequest(request,saveFolder,fileSize,"UTF-8");//post 요청을 multi에 저장
 		
@@ -139,13 +145,13 @@ public class MemberController {
 			int index=fileName.lastIndexOf(".");				//확장자에 붙어있는 .의 index값을 가져옴
 			String fileExtendsion=fileName.substring(index+1);	//index값을 이용해서 확장자를 구함
 			
-			String refilename=mem_id+year+month+date+random+"."+fileExtendsion;//새로운 파일명을 저장
+			String refilename=mem_id+year+month+date+random;//새로운 파일명을 저장
 			//id+년월일+난수+.확장자 (ex midnight90402019120419284856.jpg)
 			
 			String encryptionName=PwdChange.getPassWordToXEMD5String(refilename);//파일명을 암호화시킴
-			String fileDBName="/"+encryptionName;	//DB에 저장될 레코드값(파일명)
+			String fileDBName="/resources/upload/profile/"+encryptionName+"."+fileExtendsion;	//DB에 저장될 레코드값(경로/파일명)
 			
-			UpFile.renameTo(new File(saveFolder+"/"+refilename));//바뀌어진 첨부파일명으로 업로드
+			UpFile.renameTo(new File(saveFolder+"/"+encryptionName+"."+fileExtendsion));//바뀌어진 첨부파일명으로 업로드
 			
 			m.setProfile_photo(fileDBName);
 		}else {

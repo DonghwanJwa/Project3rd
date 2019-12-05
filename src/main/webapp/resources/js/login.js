@@ -13,6 +13,7 @@ var getName= RegExp(/^[가-힣]+$/);						//이름
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
 
 $(document).ready(function(){
+	/*로그인창에서 로그인 버튼 클릭시 */
 	$("#login_btn").click(function() {
 		var login_id = $('#login_id').val();
 		var login_pwd = $('#login_pwd').val();
