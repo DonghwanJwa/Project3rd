@@ -191,6 +191,14 @@ public class MemberController {
 		
 		return mv;
 	}
+	@RequestMapping("member_modify")
+	public ModelAndView user_member_modify() { // 회원정보수정
+		ModelAndView mv=new ModelAndView();
+		
+		mv.setViewName("jsp/member_modify");
+		
+		return mv;
+	}
 	
 	@RequestMapping("profile")
 	public ModelAndView user_profile() {
