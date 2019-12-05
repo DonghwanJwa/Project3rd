@@ -12,4 +12,15 @@ public class IndexController {
 		
 		return "index";
 	}
+	
+	@RequestMapping("policy_terms")
+	public String policy_terms() {
+		return "policy_terms";
+	}
+	
+	@RequestMapping("policy_privacy")
+	public String policy_privacy() {
+		return "policy_privacy";
+	}
+	
 }
