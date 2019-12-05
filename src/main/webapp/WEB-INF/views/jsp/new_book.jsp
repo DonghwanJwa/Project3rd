@@ -7,7 +7,7 @@
 <section class="new_book_list_banner">
  <div class="new_book_banner" style="display: block;">
 
-  <div id="new_book_banner_item1" class="item_banner showing" style="background-color: #ffb590; top: 0px;">
+  <div id="new_book_banner_item1" class="item_banner showing" style="background-color: #ef844f; top: 0px;">
    <a target="_blank" href="#">
     <div class="new_book_banner_book">
      <div class="new_book_banner_book_info">
@@ -39,7 +39,7 @@
    </a>
   </div>
   
-  <div id="new_book_banner_item2" class="item_banner" style="background-color: #feddbe; top: 400px;">
+  <div id="new_book_banner_item2" class="item_banner" style="background-color: #388e80; top: 400px;">
    <a target="_blank" href="#">
     <div class="new_book_banner_book">
      <div class="new_book_banner_book_info">
@@ -71,7 +71,7 @@
    </a>
   </div>
   
-  <div id="new_book_banner_item3" class="item_banner" style="background-color: #fef1be; top: 400px;">
+  <div id="new_book_banner_item3" class="item_banner" style="background-color: #ea6262; top: 400px;">
    <a target="_blank" href="#">
     <div class="new_book_banner_book">
      <div class="new_book_banner_book_info">
@@ -103,7 +103,7 @@
    </a>
   </div>
   
-  <div id="new_book_banner_item4" class="item_banner" style="background-color: #eafebe; top: 400px;">
+  <div id="new_book_banner_item4" class="item_banner" style="background-color: #6a8c1e; top: 400px;">
    <a target="_blank" href="#">
     <div class="new_book_banner_book">
      <div class="new_book_banner_book_info">
@@ -135,7 +135,7 @@
    </a>
   </div>
   
-  <div id="new_book_banner_item5" class="item_banner" style="background-color: #bef3fe; top: 400px;">
+  <div id="new_book_banner_item5" class="item_banner" style="background-color: #005365; top: 400px;">
    <a target="_blank" href="#">
     <div class="new_book_banner_book">
      <div class="new_book_banner_book_info">
@@ -195,12 +195,12 @@
   <div class="new_book_list_item">
    <ul id="gradeItemList_all" style="width: 21840px;" class="slide_work_list visible" data-page="1">
     <c:forEach begin="1" end="22" step="1">
-     <li class="item_work open">
+     <li class="item_work <%-- open --%>">
       <div class="new_book_item_work_cover">
        <img class="img_cover" src="./resources/img/book_img.jpg">
        <div class="border_left"></div>
       </div>
-      <p class="title">오늘부터 그림</p>
+      <p class="title">안 느끼한 산문집</p>
       <p class="author">
        <span class="by">by</span>
        "&nbsp;"
@@ -212,8 +212,57 @@
    </ul>
   </div>
  </div>
- <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide prev on"></button>
- <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide next on"></button>
+ <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide prev on"
+ onclick="scrollmove('#gradeItmeList_all','slideleft')"></button>
+ <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide next on"
+ onclick="scrollmove('.slide_work_list','slideright')"></button>
+</section>
+
+<%-- section open --%>
+<section class="new_book_info <%-- open --%>">
+ <div class="new_book_inner_info">
+  <div class="new_book">
+   <div class="new_book_title">
+    <h3 class="title_book">안 느끼한 산문집</h3>
+   </div>
+   <div class="new_book_desc">
+    <div class="new_book_desc_buy">
+     <p class="new_book_description">
+      그림을 그려보고 싶은데 어디서부터 어떻게 시작해야 할지 막막한 초보자를 위한 가이드북입니다.
+      힘 들이지 않고, 못 그려도 즐겁게, '야매스케치' 마음가짐으로 오늘부터 그림! 같이 시작해봐요.
+     </p>
+    <a href="#" target="_blank" class="#buybook">
+     <button class="btn_buy_book">책 구경하기</button>
+    </a>
+    </div>
+    <a href="#" target="_blank" class="#buybook">
+     <div class="new_book_image" style="background-image:url(./resources/img/book_img.jpg)">
+      <div class="border_left"></div>
+     </div>
+    </a>
+    <div class="new_book_share_sentence">
+     <div class="new_book_share"></div>
+     <div class="new_book_sentence" style="background-image:url(./resources/img/background_img/adm_back.jpg)">
+      <p class="layer_dimmed"></p>
+      <img src="./resources/img/quotation.png" class="quotation">
+      <p class="new_book_text_sentence">뭐, 어차피 취미일 뿐인데 좀 못 그리면 어때?</p>
+      <p class="ment_sentence">작가가 사랑한 한 문장</p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <a href="./profile" target="_blank">
+   <div class="new_book_author">
+    <div class="new_book_user_image" style="background-image: url(./resources/img/cat_writer_face2.jpg)"></div>
+    <div class="new_book_user_name">콧수염 아저씨</div>
+    <span class="publisher_book">먼진 아재들</span>
+    <div class="new_book_user_description">
+    콧수염이 매력적인 작가, 콧수염 아저씨입니다. IT업계에서 UX디자이너로 일합니다. 취미로 사부작 사부작 그림을 그리고 글을 씁니다. 초보 헬창으로 매일 운동하며 삽니다.
+    </div>
+    <div class="new_book_user_follow">작가 구독하기</div>
+   </div>
+  </a>
+ </div>
 </section>
 
 <%@ include file="../include/footer.jsp"%>

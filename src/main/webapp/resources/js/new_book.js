@@ -39,7 +39,7 @@ $(document).ready(function() {
 				
 				/* 배너 넘기는 효과 */
 				$("#new_book_banner_item1").animate({top:"0px"},500);
-				$("#new_book_banner_item2").animate({top:"400px"},500);
+				$("#new_book_banner_item2").css("top","400px");
 				$("#new_book_banner_item3").animate({top:"400px"},500);
 			};
 			//4번째 배너가 보여져 있는 경우
@@ -54,8 +54,8 @@ $(document).ready(function() {
 				
 				/* 배너 넘기는 효과 */
 				$("#new_book_banner_item1").animate({top:"0px"},500);
-				$("#new_book_banner_item2").animate({top:"400px"},500);
-				$("#new_book_banner_item3").animate({top:"400px"},500);
+				$("#new_book_banner_item2").css("top","400px");
+				$("#new_book_banner_item3").css("top","400px");
 				$("#new_book_banner_item4").animate({top:"400px"},500);
 			};
 			//5번째 배너가 보여져 있는 경우
@@ -70,9 +70,9 @@ $(document).ready(function() {
 				
 				/* 배너 넘기는 효과 */
 				$("#new_book_banner_item1").animate({top:"0px"},500);
-				$("#new_book_banner_item2").animate({top:"400px"},500);
-				$("#new_book_banner_item3").animate({top:"400px"},500);
-				$("#new_book_banner_item4").animate({top:"400px"},500);
+				$("#new_book_banner_item2").css("top","400px");
+				$("#new_book_banner_item3").css("top","400px");
+				$("#new_book_banner_item4").css("top","400px");
 				$("#new_book_banner_item5").animate({top:"400px"},500);
 			};
 		};
@@ -104,7 +104,7 @@ $(document).ready(function() {
 				$("#new_book_banner_item3").removeClass("showing");
 				
 				/* 배너 넘기는 효과 */
-				$("#new_book_banner_item1").animate({top:"-400px"},500);
+				$("#new_book_banner_item1").css("top","-400px");
 				$("#new_book_banner_item2").animate({top:"0px"},500);
 				$("#new_book_banner_item3").animate({top:"400px"},500);
 			};
@@ -119,9 +119,9 @@ $(document).ready(function() {
 				$("#new_book_banner_item4").removeClass("showing");
 				
 				/* 배너 넘기는 효과 */
-				$("#new_book_banner_item1").animate({top:"-400px"},500);
+				$("#new_book_banner_item1").css("top","-400px");
 				$("#new_book_banner_item2").animate({top:"0px"},500);
-				$("#new_book_banner_item3").animate({top:"400px"},500);
+				$("#new_book_banner_item3").css("top","400px");
 				$("#new_book_banner_item4").animate({top:"400px"},500);
 			};
 			//5번째 배너가 보이는 경우
@@ -135,10 +135,10 @@ $(document).ready(function() {
 				$("#new_book_banner_item5").removeClass("showing");
 				
 				/* 배너 넘기는 효과 */
-				$("#new_book_banner_item1").animate({top:"-400px"},500);
+				$("#new_book_banner_item1").css("top","-400px");
 				$("#new_book_banner_item2").animate({top:"0px"},500);
-				$("#new_book_banner_item3").animate({top:"400px"},500);
-				$("#new_book_banner_item4").animate({top:"400px"},500);
+				$("#new_book_banner_item3").css("top","400px");
+				$("#new_book_banner_item4").css("top","400px");
 				$("#new_book_banner_item5").animate({top:"400px"},500);
 			};
 		};
@@ -157,7 +157,7 @@ $(document).ready(function() {
 				
 				/* 배너 넘기는 효과 */
 				$("#new_book_banner_item1").animate({top:"-400px"},500);
-				$("#new_book_banner_item2").animate({top:"-400px"},1000);
+				$("#new_book_banner_item2").css("top","-400px");
 				$("#new_book_banner_item3").animate({top:"0px"},500);
 			};
 			//2번째 배너가 보이는 경우
@@ -200,7 +200,7 @@ $(document).ready(function() {
 				
 				/* 배너 넘기는 효과 */
 				$("#new_book_banner_item3").animate({top:"0px"},500);
-				$("#new_book_banner_item4").animate({top:"400px"},500);
+				$("#new_book_banner_item4").css("top","400px");
 				$("#new_book_banner_item5").animate({top:"400px"},500);
 			};
 		};
@@ -219,8 +219,8 @@ $(document).ready(function() {
 				
 				/* 배너 넘기는 효과 */
 				$("#new_book_banner_item1").animate({top:"-400px"},500);
-				$("#new_book_banner_item2").animate({top:"-400px"},1000);
-				$("#new_book_banner_item3").animate({top:"-400px"},1000);
+				$("#new_book_banner_item2").css("top","-400px");
+				$("#new_book_banner_item3").css("top","-400px");
 				$("#new_book_banner_item4").animate({top:"0px"},500);
 			};
 			//2번째 배너가 보이는 경우
@@ -235,7 +235,7 @@ $(document).ready(function() {
 				
 				/* 배너 넘기는 효과 */
 				$("#new_book_banner_item2").animate({top:"-400px"},500);
-				$("#new_book_banner_item3").animate({top:"-400px"},1000);
+				$("#new_book_banner_item3").css("top","-400px");
 				$("#new_book_banner_item4").animate({top:"0px"},500);
 			};
 			//3번째 배너가 보이는 경우
@@ -282,9 +282,9 @@ $(document).ready(function() {
 				
 				/* 배너 넘기는 효과 */
 				$("#new_book_banner_item1").animate({top:"-400px"},500);
-				$("#new_book_banner_item2").animate({top:"-400px"},1000);
-				$("#new_book_banner_item3").animate({top:"-400px"},1000);
-				$("#new_book_banner_item4").animate({top:"-400px"},1000);
+				$("#new_book_banner_item2").css("top","-400px");
+				$("#new_book_banner_item3").css("top","-400px");
+				$("#new_book_banner_item4").css("top","-400px");
 				$("#new_book_banner_item5").animate({top:"0px"},500);
 			};
 			//2번째 배너가 보이는 경우
@@ -298,9 +298,9 @@ $(document).ready(function() {
 				$("#new_book_banner_item2").removeClass("showing");
 				
 				/* 배너 넘기는 효과 */
-				$("#new_book_banner_item2").animate({top:"-400px"},700);
-				$("#new_book_banner_item3").animate({top:"-400px"},1000);
-				$("#new_book_banner_item4").animate({top:"-400px"},1000);
+				$("#new_book_banner_item2").animate({top:"-400px"},500);
+				$("#new_book_banner_item3").css("top","-400px");
+				$("#new_book_banner_item4").css("top","-400px");
 				$("#new_book_banner_item5").animate({top:"0px"},500);
 			};
 			//3번째 배너가 보이는 경우
@@ -315,7 +315,7 @@ $(document).ready(function() {
 				
 				/* 배너 넘기는 효과 */
 				$("#new_book_banner_item3").animate({top:"-400px"},500);
-				$("#new_book_banner_item4").animate({top:"-400px"},1000);
+				$("#new_book_banner_item4").css("top","-400px");
 				$("#new_book_banner_item5").animate({top:"0px"},500);
 			};
 			//4번째 배너가 보이는 경우
@@ -356,5 +356,16 @@ $(document).ready(function() {
 		$("#essay").addClass("visible");
 		$("#all").removeClass("visible");
 		$("#column").removeClass("visible");
+	});
+});
+
+$(document).ready(function(){
+	/* 책 상세 띄우기 */
+	$(".item_work").click(function(){
+		$(".item_work").removeClass("open");
+		$(this).addClass("open");
+		$(".new_book_info").addClass("open");
+		var offset=$(".open_marker").offset();
+		$("html, body").animate({scrollTop : offset.top},500);
 	});
 });
