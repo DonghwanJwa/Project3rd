@@ -384,7 +384,8 @@ body{
 }
 
 #head-profile-service-hr{ /*프로필 중앙선 li*/
-	paddding:10px 0;
+	padding:10px 0;
+	margin:30px 20px !important;
 }
 
 .head-profile-service-bar{
