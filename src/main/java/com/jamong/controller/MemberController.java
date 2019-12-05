@@ -104,7 +104,7 @@ public class MemberController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		String saveFolder = request.getRealPath("/resources/upload/profile");//프로필 이미지 저장 경로
+		String saveFolder = request.getRealPath("/resources/upload");//프로필 이미지 저장 경로
 		/*c:\spring_work\.metadata\.plugins\org.eclipse.wst.server.core\
 		 * 	tmp0\wtbwebapps\project\resources\ upload\profile
 		 */ 
@@ -140,6 +140,8 @@ public class MemberController {
 			int month=c.get(Calendar.MONTH)+1;
 			int date=c.get(Calendar.DATE);
 			
+			String homedir = saveFolder+"/profile";
+			
 			Random r = new Random();
 			int random=r.nextInt(100000000);					//random숫자
 			int index=fileName.lastIndexOf(".");				//확장자에 붙어있는 .의 index값을 가져옴
@@ -149,9 +151,9 @@ public class MemberController {
 			//id+년월일+난수+.확장자 (ex midnight90402019120419284856.jpg)
 			
 			String encryptionName=PwdChange.getPassWordToXEMD5String(refilename);//파일명을 암호화시킴
-			String fileDBName="/resources/upload/profile/"+encryptionName+"."+fileExtendsion;	//DB에 저장될 레코드값(경로/파일명)
+			String fileDBName="./resources/upload/profile/"+encryptionName+"."+fileExtendsion;	//DB에 저장될 레코드값(경로/파일명)
 			
-			UpFile.renameTo(new File(saveFolder+"/"+encryptionName+"."+fileExtendsion));//바뀌어진 첨부파일명으로 업로드
+			UpFile.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));//바뀌어진 첨부파일명으로 업로드
 			
 			m.setProfile_photo(fileDBName);
 		}else {
