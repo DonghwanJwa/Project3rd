@@ -22,7 +22,11 @@ NOCACHE;
 
 -- 참조키 설정
 ALTER TABLE offer
-ADD CONSTRAINT off_mem_no_fk FOREIGN KEY (mem_no,off_id)
+ADD CONSTRAINT off_mem_no_fk FOREIGN KEY (mem_no)
+REFERENCES member(mem_no)
+
+ALTER TABLE offer
+ADD CONSTRAINT off_off_id_fk FOREIGN KEY (off_id)
 REFERENCES member(mem_no)
 
 SELECT * FROM offer ORDER BY off_no DESC;

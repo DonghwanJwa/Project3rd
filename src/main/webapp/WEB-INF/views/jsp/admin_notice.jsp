@@ -84,7 +84,6 @@
 					<a href="admin_notice?page=${page+1}">다음 ></a>
 				</c:if>
 			</c:if>
-			
 			<%-- 검색전 페이징 끝 --%>
 			
 			<%-- 검색후 페이징 --%>
