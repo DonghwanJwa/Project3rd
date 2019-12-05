@@ -275,7 +275,7 @@
     
     <%-- profile --%>
      <%-- 로그인 전 --%>
-    <c:if test="${empty id}">
+    <c:if test="${empty m}">
     <div id="head-page-profile-wrap">
      <div id="head-profile-menu">
      </div>
@@ -324,7 +324,7 @@
     </c:if>
     
     <%-- 로그인 후 --%>
-    <c:if test="${!empty id}">
+    <c:if test="${!empty m}">
     <div id="head-page-profile-wrap">
      <div id="head-profile-menu">
       <a href="./feed" class="head-feed-button">

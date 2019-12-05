@@ -31,7 +31,7 @@
       <div class="new_book_banner_book_image">
        <div class="border_left"></div>
        <div class="book_image">
-        <img src="./resources/img/book_img.jpg">
+        <img src="./resources/img/book_img.jpg" alt="책 커버 이미지">
        </div>
       </div>
      </div>
@@ -93,13 +93,6 @@
      </div>
      <div class="new_book_banner_book_image_container">
       <div class="new_book_banner_book_image">
-      <div class="new_book_banner_book_image_top">
-        <strong>강아지와 지내는 건 어때?</strong>
-        <span>by 멍뭉이</span>
-       </div>
-       <div class="new_book_banner_book_image_bottom">
-        <span>Jamong Book</span>
-       </div>
        <div class="border_left"></div>
        <div class="book_image">
         <img src="./resources/img/bookCover.jpg">

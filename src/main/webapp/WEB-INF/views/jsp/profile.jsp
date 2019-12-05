@@ -9,7 +9,7 @@
 <script src="./resources/js/jquery.js"></script>
 <title></title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" >
 	<div id="profile_main">
 		<div id="profile_padding">
 			<div id="profile_content">
@@ -124,6 +124,7 @@
 					- 문화뉴스 칼럼 연재(2015~2017) '영읽남의 오르되브르'
 				</p>
 			</div>
+		
 			<div id="article" style="display: none;">
 				<div class="author_intro">
 					<h3 class="hide_font">글목록</h3>

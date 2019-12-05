@@ -187,7 +187,6 @@
 .new_book_banner_book_image_container {
 	display: table;
 	height: auto;
-	position: relative;
 }
 
 .new_book_banner_book_image {
@@ -245,22 +244,26 @@
 	background: url(../img/off-prev.png) no-repeat;
 	left: 30px;
 	z-index: 100;
+	outline: none;
 }
 
 .new_book_list_work .btn_move_slide.prev.on {
 	background: url(../img/on-prev.png) no-repeat;
 	cursor: pointer;
+	outline: none;
 }
 
 .new_book_list_work .btn_move_slide.next {
 	background: url(../img/off-next.png) no-repeat;
 	right: 30px;
 	z-index: 100;
+	outline: none;
 }
 
 .new_book_list_work .btn_move_slide.next.on {
 	background: url(../img/on-next.png) no-repeat;
 	cursor: pointer;
+	outline: none;
 }
 
 .new_book_list_work .new_book_list_work_title {
@@ -405,4 +408,8 @@
 	background: #000;
 	top: 0;
 	opacity: 0.03;
+}
+
+.button:active {
+	outline: none;
 }

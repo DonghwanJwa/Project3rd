@@ -19,7 +19,7 @@
     top: 0;
     left: 0;
     overflow: auto;
-    padding-top:3%;
+    padding-top:1%;
     
 }
 #acc_report_base{
@@ -79,14 +79,14 @@
 }
 .acc_accuse_label{
 	padding-left: 6px;
-    cursor: pointer;
+    cursor: default;
     font-size:13px;
 }
 #acc_reason_text{
 	width:378px;
 	height:122px;
 	position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     border: 1px solid #dfdfdf;
     background: #fff;
     margin-top:8px;
@@ -109,6 +109,16 @@
     height: 65px;
     border: 0 none
 }
+.acc_vali_date{
+	width:280px;
+	height:20px;
+	border:0px solid #333;
+	display: inline-block;
+	margin: 0px 0px 0px 0px;
+	color:#fe5458;
+	font-size: 13px;
+    line-height: 1.5;
+}
 #acc_choice_comm{
 	display: inline-block;
     width: 49%;
@@ -124,7 +134,7 @@
     cursor: pointer;
 }
 .acc_write{
-	padding-bottom: 35px;
+	padding-bottom: 15px;
     font-size: 12px;
     line-height: 24px;
     color: #959595;
@@ -144,6 +154,35 @@
     outline:0px;
 }
 #acc_write_reason{
-	font-size:14px;
+	font-size:13px;
 	line-height:1.5;
 }
+.acc_radio_button{
+	cursor : pointer;
+}
+.acc_link_more{
+	color: #2c91ef;
+}
+
+/* placeholder 클릭만 해도 placeholder 내용 없애는 코드 */
+/* 4가지 브라우저를 호환합니다 우리는 개발자니깐요 */ 
+
+input:focus::-webkit-input-placeholder, 
+textarea:focus::-webkit-input-placeholder {/* WebKit browsers */ 
+color:transparent; 
+} 
+
+input:focus:-moz-placeholder, 
+textarea:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color:transparent; 
+}
+
+ input:focus::-moz-placeholder, 
+ textarea:focus::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:transparent; 
+  } 
+ 
+ input:focus:-ms-input-placeholder,
+ textarea:focus:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+ color:transparent; 
+ }

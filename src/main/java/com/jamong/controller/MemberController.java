@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,39 @@ public class MemberController {
 		return "jsp/login";
 	}
 	
+	@RequestMapping("login_ok")
+	public String member_login_ok(String login_id, String login_pwd,MemberVO m,
+			HttpServletResponse response,HttpServletRequest request,
+			HttpSession session) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		session=request.getSession();
+ 
+		MemberVO dm=this.memberService.loginCheck(login_id);//로그인 인증
+		int re=1;	//로그인 가능 유무 변수 ( -1: 가능 , 1 : 불가능 ) 
+		if(dm==null) {
+			out.println(re);
+		}else {
+			if(!dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))){
+				out.println(re);
+			}else {
+				re=-1; 
+				m.setMem_no(dm.getMem_no());
+				m.setMem_id(dm.getMem_id());
+				m.setMem_author(dm.getMem_author());
+				m.setMem_state(dm.getMem_state());
+				m.setProfile_photo(dm.getProfile_photo());
+				m.setMem_fav1(dm.getMem_fav1());
+				m.setMem_fav2(dm.getMem_fav2());
+				m.setMem_fav3(dm.getMem_fav3());
+				session.setAttribute("m", m);
+				
+				return "redirect:/";
+			}
+		}
+		return null;
+	}//member_login_ok()
+	
 	@RequestMapping("find_id")
 	public String user_find_id() { // 아이디 찾기
 		
@@ -48,6 +82,20 @@ public class MemberController {
 		
 		return "jsp/join_membership";
 	}
+	
+	@RequestMapping("join_membership_idcheck")
+	public String member_idcheck(String id,	HttpServletResponse response)throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+		MemberVO check_id=this.memberService.idCheck(id);	//아이디 중복검색
+		int re=-1;//중복아이디가 없을때 반환값
+		if(check_id != null) {//중복아이디가 있을때
+			re=1;
+		}
+		out.println(re);//값을 반환
+		return null;
+	}//member_idcheck()
 	
 	@RequestMapping("join_membership_ok")
 	public String user_membership_ok(MemberVO m,HttpServletRequest request, 

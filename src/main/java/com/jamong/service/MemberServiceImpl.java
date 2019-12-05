@@ -16,6 +16,18 @@ public class MemberServiceImpl implements MemberService {
 	public void insertMember(MemberVO m) {
 		this.memberDao.insertMember(m);
 	}
+
+	@Override
+	public MemberVO idCheck(String id) {
+		return this.memberDao.idCheck(id); 
+	}
+
+	@Override
+	public MemberVO loginCheck(String login_id) {
+		return this.memberDao.loginCheck(login_id);
+	}
+	
+	
 	
 	
 }

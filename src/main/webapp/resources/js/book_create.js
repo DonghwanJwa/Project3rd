@@ -2,29 +2,28 @@
  *  book_create.js
  */
 $(document).ready(function() {
-	/* 선택 된 div css 변경 */
-	$("input:checkbox").on("click",function(){
-		if($(this).prop("checked")){
-			$(this).next().addClass("selected");
-		}else{
-			$(this).next().removeClass("selected");
-		}
+	
+	/* post_list의 li 전체 선택 / 전체 해제 */
+	$("#post_list_checkAll").click(function(){
+		$("#post_list [type=checkbox]").prop("checked",true);
+	});
+	$("#post_list_releaseAll").click(function() {
+		$("#post_list [type=checkbox]").prop("checked",false);
 	});
 	
-	/* 추가/삭제 */
+	/* create_list의 li 전체 선택 / 전체 해제 */
+	$("#create_list_checkAll").click(function(){
+		$("#create_list [type=checkbox]").prop("checked",true);
+	});
+	$("#create_list_releaseAll").click(function() {
+		$("#create_list [type=checkbox]").prop("checked",false);
+	});
+	
+	/* 추가 / 삭제 */
 	$("#add").click(function(){
 		if($("input").is(":checked")){
 			$(":checked").closest('li').remove().appendTo("#create_list");
 			$("input").prop("checked",false).next().removeClass("selected");
-			
-			/* 선택 된 div css 변경 */
-			$("input:checkbox").on("click",function(){
-				if($(this).prop("checked")){
-					$(this).next().addClass("selected");
-				}else{
-					$(this).next().removeClass("selected");
-				}
-			});
 		};
 	});
 	
@@ -32,15 +31,6 @@ $(document).ready(function() {
 		if($("input").is(":checked")){
 			$(":checked").closest('li').remove().appendTo("#post_list");
 			$("input").prop("checked",false).next().removeClass("selected");
-			
-			/* 선택 된 div css 변경 */
-			$("input:checkbox").on("click",function(){
-				if($(this).prop("checked")){
-					$(this).next().addClass("selected");
-				}else{
-					$(this).next().removeClass("selected");
-				}
-			});
 		};
 	});
 	

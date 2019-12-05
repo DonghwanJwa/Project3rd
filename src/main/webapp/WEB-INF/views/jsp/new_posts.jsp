@@ -11,7 +11,7 @@
  <div id="new_post_loading">
   <c:forEach begin="1" end="10" step="1">
    <div id="new_post_loading_cont">
-    <img id="new_post_loading_cont_img" src="./resources/img/bookshelve_back.jpg">
+    <img id="new_post_loading_cont_img" src="./resources/img/bookCover.jpg">
     <div id="new_post_loading_cont_text">
      <div id="new_post_loading_cont_text_title">게으름뱅이의 고백</div>
      <div id="new_post_loading_cont_text_cont">내 일상을 어떤 색으로 채우고싶나 | 회사를 그만두고 가장 힘들었던 일 중의 하나는
