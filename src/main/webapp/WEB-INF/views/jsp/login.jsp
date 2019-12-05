@@ -11,7 +11,6 @@
 </head>
 <body>
 <div id ="login_main_wrap">
-<form id="login_main_form" action="login_ok" method="post" onsubmit="return login();">
 		<div id="login_main_div">
 			<div id="login_logo_wrap">
 				 <a href="./">
@@ -32,13 +31,13 @@
 				<!-- ---------------------비밀번호 필드------------------------------------------ -->
 								
 				<div class="login_color">
-					<input type="password" id="login_pwd" name="login_pwd" type="text" placeholder="비밀번호" onblur="checkempty(this)"/>
+					<input type="password" id="login_pwd" name="login_pwd" type="text" placeholder="비밀번호" />
 				</div>
 				<div class="login_error" id="login_pwd_error"></div>
 				
 				<!-- ---------------------버튼------------------------------------------ -->
 								
-				<input type="submit" class="login_btn_color" id="login_btn" value="로그인"/>
+				<input type="button" class="login_btn_color" id="login_btn" value="로그인"/>
 				<input type="button" class="login_btn_color" id="login_btn_join_membership" value="회원가입" onclick="location.href='join_membership'"/>
 			
 			</div>
@@ -52,7 +51,6 @@
 				</div>
 			</div>
 			</div>
-	</form>
 </div>
 </body>
 </html>
