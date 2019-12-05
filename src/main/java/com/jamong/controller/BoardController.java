@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
@@ -110,8 +112,41 @@ public class BoardController {
 			UpFile1.renameTo(new File(saveFolder+"/"+refileName));
 			
 			b.setBo_thumbnail(fileDBName);
-		}
+		}// if => 파일이 있을 때
 		return null;
+	}
+	@RequestMapping("image_ok")
+	public void imageUpload(
+			MultipartFile file,
+			HttpServletResponse response,
+			HttpServletRequest request) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");		
+		String saveFolder = request.getRealPath("resources/upload/user");
+		
+		if(file != null) {
+		Calendar c = Calendar.getInstance();
+		int year = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH)+1;
+		int date = c.get(Calendar.DATE);
+		
+		UUID uuid = UUID.randomUUID(); // 랜덤한 이름 명명
+		
+		String org_fileName = file.getOriginalFilename(); // 원본 파일명
+		String str_fileName = uuid.toString()+org_fileName; // DB 업로드 파일명
+		
+		String homedir = saveFolder + "/photo/" + year + "-" + month + "-" + date;		
+		File path = new File(homedir);
+		if(!(path.exists())) {
+			path.mkdir(); // 폴더생성
+		}// if => 경로가 없을때
+		int index = org_fileName.lastIndexOf(".");
+		String fileExtendsion = org_fileName.substring(index+1);
+		
+		String refileName = str_fileName+year+month+date+"."+fileExtendsion;
+		String fileDBName = "/"+refileName;
+		
+		file.transferTo(new File(saveFolder+"/"+refileName));
+		}// 업로드한 파일이 있을때
 	}
 	
 	@RequestMapping("new_posts")
