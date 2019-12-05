@@ -308,7 +308,6 @@ $(document).ready(function(){
 				$(this).next().attr("name","mem_fav"+category_count);
 			}
 		}
-		console.log($(".member_category_check").val());
 	});
 	
 	/*input 포커스아웃 혹은 글씨 쓸때마다 유효성검사 시키기*/
@@ -401,6 +400,7 @@ $(document).ready(function(){
 			$('#join_membership_error_pass').text('아이디와 비밀번호가 같습니다');
 			return false; 
 		}
+		$('#join_membership_error_pass').text('');
 	}).on("keyup", function() {
 		if ($.trim($('#join_membership_pass').val())=="") {
 			$('#join_membership_error_pass').text('비밀번호를 입력해주세요!');
@@ -456,6 +456,7 @@ $(document).ready(function(){
 			$('#join_membership_error_name').text('이름을 입력해주세요!');
 			return false;
 		}
+		$('#join_membership_error_name').text('');
 	}).on("keyup", function() {
 		if ($.trim($('#join_membership_name').val())=="") {
 			$('#join_membership_error_name').text('이름을 입력해주세요!');
@@ -484,6 +485,7 @@ $(document).ready(function(){
 			$('#join_membership_error_birth').text('유효한 년도를 입력해 주세요!');
 			return false;
 		}
+		$('#join_membership_error_birth').text('');
 	}).on("keyup", function() {
 		if ($.trim($('#join_membership_birth_year').val())=="") {
 			$('#join_membership_error_birth').text('생년월일을 입력해 주세요!');
@@ -517,6 +519,7 @@ $(document).ready(function(){
 			$('#join_membership_error_birth').text('유효한 월을 입력해 주세요!');
 			return false;
 		}
+		$('#join_membership_error_birth').text('');
 	}).on("keyup", function() {
 		if ($.trim($('#join_membership_birth_month').val())=="") {
 			$('#join_membership_error_birth').text('생년월일을 입력해 주세요!');
@@ -551,6 +554,7 @@ $(document).ready(function(){
 			$('#join_membership_error_birth').text('유효한 일을 입력해 주세요!');
 			return false;
 		}
+		$('#join_membership_error_birth').text('');
 	}).on("keyup", function() {
 		if ($.trim($('#join_membership_birth_date').val())=="") {
 			$('#join_membership_error_birth').text('생년월일을 입력해 주세요!');
@@ -570,12 +574,13 @@ $(document).ready(function(){
 	});
 	
 	/*성별 유효성 검증*/
-	$('#join_membership_select_gender').on("focusout", function() {
+	$('#join_membership_select_gender').on("focus", function() {
 		if ($.trim($('#join_membership_select_gender option:selected').val())=='성별') {
 			$('#join_membership_error_birth').text('성별을 선택해 주세요!');
 			return false;
 		}
-	}).on("keyup", function() {
+		$('#join_membership_error_birth').text('');
+	}).on("focusout", function() {
 		if ($.trim($('#join_membership_select_gender option:selected').val())=='성별') {
 			$('#join_membership_error_birth').text('성별을 선택해 주세요!');
 			return false;
