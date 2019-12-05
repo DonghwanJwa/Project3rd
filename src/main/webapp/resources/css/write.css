@@ -459,19 +459,19 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	left:0;
 	background-color:RGB(0,0,0,0.6);
 	display:none;
-	z-index:15000;
+	z-index:10020;
 	animation: fadein 1s;
 	-webkit-animation: fadein 1s;
 }
 .write_save_panel{
 	text-align:center;
-	width:300px;
-	height:300px;
+	width:500px;
+	height:470px;
 	background-color:#FFF;
 	margin:auto;
 	z-index:10;
-	transform:translateY(80%);
-	-webkit-transform:translateY(80%);
+	transform:translateY(50%);
+	-webkit-transform:translateY(50%);
 	animation: fadein 1s;
 	-webkit-animation: fadein 1s;
 }
@@ -483,7 +483,8 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	font-size:14px;
 }
 .write_save_panel caption{
-	padding-top:0px;
+	padding-top:2px;
+	padding-bottom:2px;
 	fonx-size:15px;
 }
 .write_save_choice_panel{
@@ -491,19 +492,19 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	width:250px;
 	margin:0px auto;
 	text-align:left;
-	border:2px solid #FBA621;
-	padding:2px 20px;
+	border:1px solid #FBAE35;
+	padding:5px 20px;
 }
 .write_type_choice_panel{
 	display:inline-block;
 	width:250px;
 	margin:20px auto 0px auto;
 	text-align:left;
-	border:2px solid #FBA621;
-	padding:2px 20px;
+	border:1px solid #FBAE35;
+	padding:5px 20px;
 }
 .write_choice_btn_panel{
-	margin:5px auto 0px auto;
+	margin:25px auto 0px auto;
 }
 .write_choice_save_btn{
 	border:1px solid #F57C68;
@@ -531,11 +532,35 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 }
 .write_choice_close_btn:active{
 	background-color:#FBA621;
-	border-bottom:1px solid #DDD;
-	border-top:none;
-	border-left:none;
-	border-right:none;
 	color:#FFF;
+}
+/* 저장분류 카테고리 선택부 */
+#join_membership_category-list{
+	width:470px;
+	list-style: none;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap:wrap;
+	margin:0 auto;
+	padding:0;
+}
+.join_membership_category-item{
+	margin: 5px 5px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.join_membership_category-item span{
+	border:1px solid #F3AAAA;
+	width:80px;
+	border-radius:30px;
+	cursor:pointer;
+}
+.member_category_check{
+	background-color:#F3AAAA;
+	color:#FFF;
+	border-radius:30px;
 }
 /* summernote toolbar panel */
 .panel-default > .panel-heading.note-toolbar{
@@ -559,6 +584,11 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	from{ opacity:0; }
 	to  { opacity:1; }
 }
-
-
-
+@keyframes fadeout{
+	from{ opacity:1; }
+	to  { opacity:0; }
+}
+@-webkit-keyframes fadeout{
+    from{ opacity:1; }
+    to  { opacity:0; }
+}
