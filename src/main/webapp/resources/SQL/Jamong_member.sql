@@ -27,6 +27,7 @@ mem_portfolio CLOB		  			  -- 작가 포트폴리오 내용 (12/03 추가)
 );
 
 DROP table member;
+DROP SEQUENCE mem_no_seq;
 
 SELECT * FROM member ORDER BY mem_no DESC;
 
@@ -36,6 +37,8 @@ START WITH 0
 INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
+
+SELECT mem_no_seq.nextval FROM DUAL;
 
 -- 회원 테이블에 작가 포트폴리오 내용 추가
 ALTER mem ADD (mem_portflio CLOB);
