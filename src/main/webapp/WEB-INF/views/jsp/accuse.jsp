@@ -4,7 +4,8 @@
 <script src="./resources/js/accuse.js"></script>
    <div id=acc_wrap>
 	<div id=acc_base>
-	  <div id=acc_report_base>
+	  <div id=acc_report_base oncontextmenu="return false" ondragstart="return false" 
+	  onselectstart="return false">
 	  	<h3>신고하기
 	  	<a class="acc_close" id="acc_close" onclick="accuseHide()">
 	  	  <img src="./resources/img/close_x.png">

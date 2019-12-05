@@ -5,4 +5,9 @@
 
 <mapper namespace="accuse">
 
+<insert id="acc_insert">
+ insert into accuse(ac_no,ac_reason,ac_cont,ac_date,
+ ac_item,ac_result,
+ )
+</insert>
 </mapper>
