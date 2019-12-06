@@ -88,8 +88,7 @@
  
  <!-- 저장팝업 -->
  <div class="write_choice_wrap">
-  <div class="write_save_panel">
-  
+  <div class="write_save_panel">  
 					<div id="join_membership_category-wrap">
 						<div id="join_membership_category-frame">
 							<h3 class="join_membership_category-anoun">
