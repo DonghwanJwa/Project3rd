@@ -151,13 +151,13 @@ public class MemberController {
 			//id+년월일+난수+.확장자 (ex midnight90402019120419284856.jpg)
 			
 			String encryptionName=PwdChange.getPassWordToXEMD5String(refilename);//파일명을 암호화시킴
-			String fileDBName="./resources/upload/profile/"+encryptionName+"."+fileExtendsion;	//DB에 저장될 레코드값(경로/파일명)
+			String fileDBName="/jamong.com/resources/upload/profile/"+encryptionName+"."+fileExtendsion;	//DB에 저장될 레코드값(경로/파일명)
 			
 			UpFile.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));//바뀌어진 첨부파일명으로 업로드
 			
 			m.setProfile_photo(fileDBName);
 		}else {
-			m.setProfile_photo("./resources/img/profile_logout.png");//프로필사진 등록 안했을때 로고로 대체
+			m.setProfile_photo("/jamong.com/resources/img/profile_logout.png");//프로필사진 등록 안했을때 로고로 대체
 		}
 		
 		//입력된 값들을 MemberVO객체 m에 저장
@@ -180,9 +180,10 @@ public class MemberController {
 		
 		out.println("<script>");
 		out.println("alert('회원가입이 되셨습니다!');");
+		out.println("location='login';");
 		out.println("</script>");
 		
-		return "redirect:/";
+		return null;
 	}
 	
 	@RequestMapping("pass_modify")
