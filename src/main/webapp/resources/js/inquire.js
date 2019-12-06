@@ -24,24 +24,33 @@ function inq(){
 		return false;
 	}
 	if($('#info').val() == ""){
-		$('#inq_vali_info').text('문의내용을 입력해 주세요.')
+		$('#inq_vali_info').text('문의내용을 입력해 주세요.');
 		$('#info').focus();
+		return false;
+	}
+	if($('#agree').is(":checked") == true){
+		onsole.log('체크된 상태');
+	}
+	
+	if($('#agree').is(":checked") == false){
+		$('#inq_vali_check').text('개인정보처리 방침에 동의해 주세요.');
+		$('#agree').focus();
 		return false;
 	}
 		
 }
 	/* phone 번호에 번호이외에 것이 들어가면 삭제 */
-	$(document).ready(function(){
-		$("#phone").on("focus",function(){
+$(document).ready(function(){
+	$("#phone").on("focus",function(){
 		var x = $(this).val();
 		$(this).val(x);
-		}).on("focusout", function(){
+	}).on("focusout", function(){
 			var x = $(this).val();
-		if(x && x.length > 0){
-			if(!$.isNumberic(x)){
-				x = x.replace(/[^0-9]/g,"");
+			if(x && x.length > 0){
+				if(!$.isNumberic(x)){
+					x = x.replace(/[^0-9]/g,"");
+				}
 			}
-		}
 	}).on("keyup", function(){
 		$(this).val($(this).val().replace(/[^0-9]/g,""));
 	});
@@ -59,3 +68,6 @@ function inq(){
 	}
 	});	
 	});
+	
+
+	
