@@ -1,6 +1,7 @@
 package com.jamong.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,10 +10,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.AdminVO;
+import com.jamong.domain.NoticeVO;
 import com.jamong.service.AdminService;
 
 @Controller
@@ -63,7 +64,7 @@ public class AdminController {
 	} // admin_login_ok()
 	
 	@RequestMapping("admin_main")
-	public ModelAndView admin_main(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView admin_main(HttpSession session, HttpServletRequest request, HttpServletResponse response, NoticeVO n) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		session=request.getSession();
@@ -77,7 +78,17 @@ public class AdminController {
 			out.println("location='admin_login';");
 			out.println("</script>");
 		}else {
-			return new ModelAndView("/jsp/admin_main");
+			// 최신공지 띄우기
+			List<NoticeVO> newNotice=this.adminService.newNotice(n);
+			
+			ModelAndView m=new ModelAndView();
+			
+			m.addObject("newNotice",newNotice);
+			m.addObject("n",n);
+			
+			m.setViewName("jsp/admin_main");
+			
+			return m;
 		}
 		
 		return null;
@@ -99,5 +110,4 @@ public class AdminController {
 		
 		return null;
 	}
-	
 }

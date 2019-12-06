@@ -7,4 +7,8 @@
 	<select id="adm_login" resultType="adm">
 		select * from jamong_admin where adm_id=#{adm_id}
 	</select>
+	
+	<select id="newNotice" resultType="notice">
+		select * from adm_notice order by noti_date desc
+	</select>
 </mapper>

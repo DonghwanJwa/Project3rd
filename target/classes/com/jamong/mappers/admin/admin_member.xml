@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminMem">
+	<select id="adm_mem_count" resultType="int">
+		select count(mem_no) from member
+		<where>
+			<if test="search_field_state == 'all' and search_field_author == 'all' and search_field_key == 'all'">
+				mem_state != 9
+			</if>
+			
+			<if test="search_field_state == 'active'">
+				and mem_state=0
+			</if>
+			<if test="search_field_state == 'banned'">
+				and mem_state=1
+			</if>
+			<if test="search_field_state == 'out'">
+				and mem_state=2
+			</if>
+			
+			<if test="search_field_author == 'normal'">
+				and mem_author=0
+			</if>
+			<if test="search_field_author == 'author'">
+				and mem_author=1
+			</if>
+			
+			<if test="search_field_key == 'all'"></if>
+			<if test="search_field_key == 'mem_id'">
+				and mem_id like #{search_name}
+			</if>
+			<if test="search_field_key == 'mem_nickname'">
+				and mem_nickname like #{search_name}
+			</if>
+			<if test="search_field_key == 'mem_nickname'">
+				and mem_name like #{search_name}
+			</if>
+		</where>
+	</select>
+
+	<select id="adm_mem_list" resultType="m">
+		select * from member
+				<where>
+			<if test="search_field_state == 'all' and search_field_author == 'all' and search_field_key == 'all'">
+				mem_state != 9
+			</if>
+			
+			<if test="search_field_state == 'active'">
+				and mem_state=0
+			</if>
+			<if test="search_field_state == 'banned'">
+				and mem_state=1
+			</if>
+			<if test="search_field_state == 'out'">
+				and mem_state=2
+			</if>
+			
+			<if test="search_field_author == 'normal'">
+				and mem_author=0
+			</if>
+			<if test="search_field_author == 'author'">
+				and mem_author=1
+			</if>
+			
+			<if test="search_field_key == 'all'">
+				and mem_id like #{search_name} or mem_nickname like #{search_name} or mem_name like #{search_name}
+			</if>
+			<if test="search_field_key == 'mem_id'">
+				and mem_id like #{search_name}
+			</if>
+			<if test="search_field_key == 'mem_nickname'">
+				and mem_nickname like #{search_name}
+			</if>
+			<if test="search_field_key == 'mem_nickname'">
+				and mem_name like #{search_name}
+			</if>
+		</where>
+		order by mem_no desc
+	</select>
+</mapper>

@@ -28,6 +28,14 @@ public class MemberVO {
 	private String mem_fav3;
 	private String mem_portfolio; // 12/03 회원 테이블 수정 후 VO에 추가 (getter,setter)
 	
+	/* 관리자페이지 회원관리 게시판 페이징,검색을 위한 변수 추가 (12/5) */
+	private int startrow;
+	private int endrow;
+	private String search_name;
+	private String search_field_state;
+	private String search_field_author;
+	private String search_field_key;
+	
 	// Setter
 	public void setMem_no(int mem_no) 				   {			this.mem_no = mem_no;					}
 	public void setMem_id(String mem_id) 			   {			this.mem_id = mem_id;					}
@@ -52,7 +60,14 @@ public class MemberVO {
 	public void setMem_fav1(String mem_fav1) 		   {			this.mem_fav1 = mem_fav1;				}
 	public void setMem_fav2(String mem_fav2) 		   {			this.mem_fav2 = mem_fav2;				}
 	public void setMem_fav3(String mem_fav3) 		   {			this.mem_fav3 = mem_fav3;				}
-	public void setMem_portfolio(String mem_portfolio)   {			this.mem_portfolio = mem_portfolio;		}
+	public void setMem_portfolio(String mem_portfolio) {			this.mem_portfolio = mem_portfolio;		}
+	public void setStartrow(int startrow)				{			this.startrow = startrow;				}
+	public void setEndrow(int endrow) 					{			this.endrow = endrow;					}
+	public void setSearch_name(String search_name) 		{			this.search_name = search_name;			}
+	public void setSearch_field_state(String search_field_state) {		this.search_field_state = search_field_state;	}
+	public void setSearch_field_author(String search_field_author) {		this.search_field_author = search_field_author;	}
+	public void setSearch_field_key(String search_field_key) {		this.search_field_key = search_field_key;	}
+	
 	
 	// Getter()
 	public int getMem_no() 			 {		return mem_no;			}
@@ -79,5 +94,11 @@ public class MemberVO {
 	public String getMem_fav2() 	 {		return mem_fav2;		}
 	public String getMem_fav3() 	 {		return mem_fav3;		}
 	public String getMem_portfolio()  {		return mem_portfolio;	}
+	public int getStartrow() 		 {		return startrow;		}
+	public int getEndrow() 			 {		return endrow;			}
+	public String getSearch_name() 	 {		return search_name;		}
+	public String getSearch_field_state() {		return search_field_state;	}
+	public String getSearch_field_author() {		return search_field_author;	}
+	public String getSearch_field_key() {		return search_field_key;	}
 	
 }
