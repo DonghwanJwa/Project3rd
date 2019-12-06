@@ -12,22 +12,7 @@ var toggleIndex3 = "true"; // 에디터 토글 인덱스
 var toggleIndex4 = "true"; // 에디터 토글 인덱스
 var sel_file; // 이미지 미리보기 변수
 var category_count = 0;
-function sendFile(file, el){
-	var form_data=new FormData();
-	form_data.append('file',file);
-	$.ajax({
-		data: form_data,
-		type: "POST",
-		url: '/image_ok',
-		cache: false,
-		contentType: false,
-		enctype: 'multipart/form-data',
-		processData: false,
-		success: function(url){
-			$(el).summernote('editor.insertImage', url);
-		}
-	});
-}
+
 $(document).ready(function(){
 	$(".write_cont_area").summernote({
 		toolbar:[
@@ -48,14 +33,14 @@ $(document).ready(function(){
 			fontNames:['NanumGothic','NanumMyeongjo','NanumSquareRound','NanumBarunGothic','NanumPen'],
 			fontNamesIgnoreCheck:[
 				'Arial'
-				],
-			callbacks: {
-				onImageUpload: function(files, editor, welEditable){
-					for(var i=files.length-1;i>=0;i--){
-						sendFile(files[i], this);
-					}
-				}
-			}
+				]
+//			callbacks: {
+//				onImageUpload: function(files, editor, welEditable){
+//					for(var i=files.length-1;i>=0;i--){
+//						sendFile(files[i], this);
+//					}
+//				}
+//			}
 	});
 	$("#write_title_align").click(function(){ // 타이틀정렬 버튼 클릭 시
 		if($("#write_title_parent_center").is(":visible")){ // 타이틀이 중앙에 있을 때
@@ -237,6 +222,22 @@ $(document).ready(function(){
 		$("#write_cover_file").val("");
 	});
 });
+//function sendFile(file, el){
+//	var form_data=new FormData();
+//	form_data.append('file',file);
+//	$.ajax({
+//		data: form_data,
+//		type: "POST",
+//		url: './imageUp',
+//		cache: false,
+//		contentType: false,
+//		enctype: 'multipart/form-data',
+//		processData: false,
+//		success: function(url){
+//			$(el).summernote('editor.insertImage', url);
+//		}
+//	});
+//}
 function handleImgFileSelect(e){
 	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);
@@ -273,7 +274,7 @@ function handleImgFileSelect(e){
 		reader.readAsDataURL(f);
 	});
 }
-function writeCheck(){ // 저장버튼 클릭시 작성체크
+function writeCheck(){ // 저장버튼 클릭시 작성체크	
 	if($.trim($(".write_main_title").text())==""){
 		$(".write_title_error").addClass('write_top_error');
 		$(".write_error_message").text("제목을 입력하세요!");
@@ -303,6 +304,10 @@ function writeCheck(){ // 저장버튼 클릭시 작성체크
 	$(".write_choice_wrap").css("display","inline-block");
 }
 function saveCheck(){
+	var main_title = $(".write_main_title").html();
+	var sub_title = $(".write_sub_title").html();
+	$("#bo_title").val(main_title);
+	$("#bo_subtitle").val(sub_title);
 	if(category_count == 0){
 		$(".write_title_error").addClass("write_top_error");
 		$(".write_error_message").text("카테고리를 선택해주세요!");
@@ -313,6 +318,5 @@ function saveCheck(){
 		},3000);
 		return false;
 	}
-	
-	window.location.replace("/jamong.com/write_ok");
+	window.location.replace("./write_ok");
 }
