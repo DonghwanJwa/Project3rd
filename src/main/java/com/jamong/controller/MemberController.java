@@ -105,7 +105,8 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 		
 		String saveFolder = request.getRealPath("/resources/upload");//프로필 이미지 저장 경로
-		/*c:\spring_work\.metadata\.plugins\org.eclipse.wst.server.core\
+		/*c:\spr
+		 * ing_work\.metadata\.plugins\org.eclipse.wst.server.core\
 		 * 	tmp0\wtbwebapps\project\resources\ upload\profile
 		 */ 
 		

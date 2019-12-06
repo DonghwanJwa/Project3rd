@@ -9,8 +9,8 @@
   <span class=inq_required>*필수입력 사항</span>
   <br/>
   <div class=inq_question_cont>
-  	<form id="inq_request" method="post"  action="inquire"
-  	 name="select_list" onsubmit="return inq();">
+  	<form id="inq_request" method="post"  action="inquire_ok" enctype="multipart/form-data"
+  	 name="select_list" onsubmit="return inq();" >
   	 <input type="hidden" id="serviceId" name="serviceId" value="54">
   	 <input type="hidden" id="serviceId" name="categoryId" value="30">
   	 <input type="hidden" id="locale" name="locale" value="ko">
@@ -50,7 +50,7 @@
   	     <dt>문의 분류 *</dt>
   	    <dd>
   	      <div class="inq_wrap_select">
-  	       <select class="inq_list_select" name="inq_select" id="listselect" onselect="return inq2();">
+  	       <select class="inq_list_select" name="inq_item1" id="listselect" onselect="return inq2();">
   	          <option value="none">선택</option>
   	          <option value="feedback" href="#none">개선/제안</option>
   	          <option value="normal">일반문의</option>
@@ -60,11 +60,11 @@
   	      </div>
   	       
   	       <div class="inq_wrap_select">
-  	       <select class="inq_list_select" name="inq_sub" id="listsub"style="display:;">
+  	       <select class="inq_list_select" name="inq_item2" id="listsub"style="display:;">
   	          <option value="none">선택</option>
-  	          <option value="">web</option>
-  	          <option value="">안드로이드</option>
-  	          <option value="">아이폰</option>
+  	          <option value="web">web</option>
+  	          <option value="안드로이드">안드로이드</option>
+  	          <option value="아이폰">아이폰</option>
   	       </select>
   	      </div>
   	       <div class="inq_vali_date" id="inq_vali_list"></div>
@@ -83,7 +83,7 @@
   	   <dd>
   	     <div class="inq_wrap_item">
   	    <input autocomplete="off" class="inq_email_info"
-  	    id="email" name="email" placeholder="Example@Jamong.com">
+  	    id="email" name="inq_email" placeholder="Example@Jamong.com">
   	     </div>
   	      <div class="inq_vali_date" id="inq_vali_email"></div>
   	    </dd>
@@ -99,7 +99,7 @@
   	    
   	    <dd>
   	     <div class="inq_wrap_phone">+82</div>
-  	     <input autocomplete="off" class="inq_nation" id="phone"
+  	     <input autocomplete="off" class="inq_nation" name="inq_phone" id="phone"
   	      type="text" placeholder="01012345678">
   	     <div class="inq_vali_date" id="inq_vali_phone"></div>
   	    </dd>
@@ -116,7 +116,7 @@
   	    <dd>
   	     <div class="inq_wrap_item2">
   	     	<textarea class="inq_inp_info2" placeholder="문의 내용을 입력해 주세요(최대 200자)" cols="24" rows="6" 
-  	     	id="info" name="contents" style="line-height: normal" maxlength="200" type="text"></textarea>
+  	     	id="inq_cont" name="inq_cont" style="line-height: normal" maxlength="200" type="text"></textarea>
   	     </div>
   	     <div class="inq_vali_date" id="inq_vali_info"></div>
   	    </dd>
@@ -137,8 +137,7 @@
   	      
   	      <span class="inq_iso_cs"></span>
   	      
-  	      <input class="inq_inp_file" id="infoFile" name="ieFile[]"
-  	      type="file">
+  	      <input class="inq_inp_file" id="inq_cont" name="inq_file1" type="file">
   	     </div>
   	     
   	     <div class="inq_wrap_upload">
@@ -204,7 +203,7 @@
   	   
   	   <!-- 문의접수 BUTTON -->
   	   <div class="inq_wrap_btn">
-  	    <button class="inq_btn_cs" type="submit" >
+  	    <button class="inq_btn_cs" type="submit" onclick="showPopup();" >
   	    	문의접수 
   	    </button>
   	   </div>
