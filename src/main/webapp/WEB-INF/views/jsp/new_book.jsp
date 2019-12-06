@@ -192,19 +192,19 @@
    </span>
    <span class="sub_title">JaMong-Book Project</span>
   </div>
-  <div class="new_book_list_item">
+  <div class="new_book_list_item" id="new_book_list">
    <ul id="gradeItemList_all" style="width: 21840px;" class="slide_work_list visible" data-page="1">
-    <c:forEach begin="1" end="22" step="1">
+    <c:forEach var="w" begin="1" end="22" step="1">
      <li class="item_work <%-- open --%>">
       <div class="new_book_item_work_cover">
        <img class="img_cover" src="./resources/img/book_img.jpg">
        <div class="border_left"></div>
       </div>
-      <p class="title">안 느끼한 산문집</p>
+      <p class="title">안 느끼한 산문집${w}</p>
       <p class="author">
        <span class="by">by</span>
-       "&nbsp;"
-       <a target="_blank" href="#">흔디</a>
+       &nbsp;
+       <a target="_blank" href="#">"흔디"</a>
       </p>
       <span class="open_marker"></span>
      </li>
@@ -212,10 +212,8 @@
    </ul>
   </div>
  </div>
- <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide prev on"
- onclick="scrollmove('#gradeItmeList_all','slideleft')"></button>
- <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide next on"
- onclick="scrollmove('.slide_work_list','slideright')"></button>
+ <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide prev on"></button>
+ <button type="button" data-grade="all" class="btnMoveWorkSlide btn_move_slide next on"></button>
 </section>
 
 <%-- section open --%>
