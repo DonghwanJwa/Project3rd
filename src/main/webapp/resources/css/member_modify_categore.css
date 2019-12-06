@@ -1,0 +1,79 @@
+@charset "EUC-KR";
+
+/*카테고리*/
+
+#member_modify_category-wrap{
+	margin:0 100px;
+}
+
+#member_modify_category-frame{
+	height:281px;
+}
+
+.member_modify_category-anoun{
+	display: block;
+	width:470px;
+	font-weight: normal;
+	font-size:14px;
+	padding-left: 55px;
+	color:#3d3d3d;
+	margin:0 85px;
+	margin-bottom:10px;	
+}
+
+#member_modify_category-list{
+	width:470px;
+	list-style: none;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap:wrap;
+	margin:0 auto;
+	padding:0;
+}
+.member_modify_category-item{
+	margin: 5px 5px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.member_modify_category-item span{
+	height:70px;
+	width:70px;
+	font-size:13px;
+	text-align: center;
+	line-height:70px;
+	outline:1px solid #b1b1b1;
+	cursor: pointer;
+}
+.member_modify_category-item span:hover{
+	background-color: #fba621;
+	outline:none;
+}
+.member_category_check span{
+	background-color: #fba621;
+	outline:none;
+}
+
+#member_modify_before_btn2, 
+#member_modify_next_btn2{
+	border: solid 2px orange;
+	width: 200px;
+	height: 50px;
+	background-color: white;
+	cursor: pointer;
+	outline: 0;
+	margin:0 45px;
+	margin-top: 5px;
+}
+#member_modify_before_btn2:hover{
+	background-color: orange;
+	color:white;
+}
+#member_modify_next_btn2:hover{
+ 	background-color: orange;
+	color:white;
+}
+.member_modify_button_container{
+	text-align: center;
+}
