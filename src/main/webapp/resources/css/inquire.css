@@ -4,6 +4,12 @@ body{
 	font-family: 'NanumGothic', 'serif';
 	margin: 0px;
 	background-image: url(../img/background_img/login_page.png);
+	
+	oncontextmenu="return false"
+	 ondragstart="return false"
+	  onselectstart="return false"
+
+
 }
 .inq_vali_date{
 	width:280px;

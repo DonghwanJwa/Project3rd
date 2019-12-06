@@ -2,7 +2,8 @@
 <%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" type="text/css" href="./resources/css/category.css" />
 
- <div id=cat_empty>
+ <div id=cat_empty oncontextmenu="return false" ondragstart="return false"
+  onselectstart="return false">
   <div id=cat_title_name><strong>영화·평가</strong></div>
    <div id=cat_writer_block>
     <div id=cat_writer_title><b>추천작가</b></div>

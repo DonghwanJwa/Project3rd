@@ -5,6 +5,7 @@
 
 <div id="new_post_title">최신 글</div>
 
+<div id="new_post_maintt">
 <div id="new_post_contents">
 
  <%-- 최신 책 로드 --%>
@@ -31,5 +32,6 @@
 
  </div>
 
+</div>
 </div>
 <%@ include file="../include/footer.jsp"%>

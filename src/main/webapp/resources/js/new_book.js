@@ -334,10 +334,8 @@ $(document).ready(function() {
 			};
 		};
 	});
-});
 
-$(document).ready(function() {
-/* 최신 책 정렬 */
+	/* 최신 책 정렬 */
 	
 	//전체 선택
 	$("#all").click(function() {
@@ -357,9 +355,8 @@ $(document).ready(function() {
 		$("#all").removeClass("visible");
 		$("#column").removeClass("visible");
 	});
-});
 
-$(document).ready(function(){
+
 	/* 책 상세 띄우기 */
 	$(".item_work").click(function(){
 		$(".item_work").removeClass("open");
@@ -367,5 +364,25 @@ $(document).ready(function(){
 		$(".new_book_info").addClass("open");
 		var offset=$(".open_marker").offset();
 		$("html, body").animate({scrollTop : offset.top},500);
+	});
+	
+	/* 책 리스트 슬라이드 */
+	$(".next").click(function(){
+		$(".next").attr("disabled",true);
+		setTimeout(function() {
+			$(".next").attr("disabled",false);
+		},500);
+		var now = parseInt($(".slide_work_list").css("margin-left").replace("px",""));
+		var sum = now-500;
+		$(".slide_work_list").css("margin-left",sum+"px");
+	});
+	$(".prev").click(function(){
+		$(".prev").attr("disabled",true);
+		setTimeout(function() {
+			$(".prev").attr("disabled",false);
+		},500);
+		var now = parseInt($(".slide_work_list").css("margin-left").replace("px",""));
+		var sum = now+500;
+		$(".slide_work_list").css("margin-left",sum+"px");
 	});
 });

@@ -2,15 +2,15 @@
 <%@ include file="../include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="./resources/css/inquire.css"/>
-<script src="./resources/js/jquery.js"></script>
 <script src="./resources/js/inquire.js"></script>
-<article class=inq_main_art>
+<article class=inq_main_art oncontextmenu="return false" ondragstart="return false"
+ onselectstart="return false">
   <h3 class=inq_title>문의하기</h3>
   <span class=inq_required>*필수입력 사항</span>
   <br/>
   <div class=inq_question_cont>
-  	<form id="inq_request" method="post"  
-  	novalidate="novalidate" name="select_list" onsubmit="return inq();">
+  	<form id="inq_request" method="post"  action="inquire"
+  	 name="select_list" onsubmit="return inq();">
   	 <input type="hidden" id="serviceId" name="serviceId" value="54">
   	 <input type="hidden" id="serviceId" name="categoryId" value="30">
   	 <input type="hidden" id="locale" name="locale" value="ko">
@@ -83,8 +83,7 @@
   	   <dd>
   	     <div class="inq_wrap_item">
   	    <input autocomplete="off" class="inq_email_info"
-  	    id="email" name="email" required="required"
-  	    type="email" aria-required="true" placeholder="Example@Jamong.com">
+  	    id="email" name="email" placeholder="Example@Jamong.com">
   	     </div>
   	      <div class="inq_vali_date" id="inq_vali_email"></div>
   	    </dd>
@@ -117,8 +116,7 @@
   	    <dd>
   	     <div class="inq_wrap_item2">
   	     	<textarea class="inq_inp_info2" placeholder="문의 내용을 입력해 주세요(최대 200자)" cols="24" rows="6" 
-  	     	id="info" name="contents" required="required" style="line-height: normal"
-  	     	aria-required="true" maxlength="200" type="text"></textarea>
+  	     	id="info" name="contents" style="line-height: normal" maxlength="200" type="text"></textarea>
   	     </div>
   	     <div class="inq_vali_date" id="inq_vali_info"></div>
   	    </dd>
@@ -151,7 +149,7 @@
   	      <span class="inq_txt_upload">0MB</span>
   	     </div>
   	     <p class="inq_desc_info">
-  	     첨부파일은 최대 5개, 10MB까지 등록 가능하며
+  	     첨부파일은 최대 4개, 각 10MB까지 등록 가능하며
   	     <br>
   	     파일 형식은 jpg, gif, psd, png, tif, zip, ms office, 아래한글(hwp), pdf 만 가능합니다.
   	     </p>
@@ -194,20 +192,19 @@
   	    을 참고하시기 바랍니다.
   	    </p>
   	    <div class="inq_wrap_check">
-  	      <input class="inq_check_agreement" id="agree"
-  	     name="agree" required="required" type="checkbox" aria-required="true">
-  	      <label class="inq_lab_check" for="agree">
+  	      <input class="inq_check_agreement" type="checkbox" id="agree" name="agree" >
+  	      <label class="inq_lab_check" id="inq_check" for="agree">
   	             위 내용에 동의합니다.
   	      </label>
   	    </div>
-  	       <div class="inq_vali_date" id="inq_vali_check">문의분류를 선택해주세요</div>
+  	       <div class="inq_vali_date" id="inq_vali_check"></div>
   	   </div>
   	   <!-- 개인정보수집 DIV 끝 -->
   	   
   	   
   	   <!-- 문의접수 BUTTON -->
   	   <div class="inq_wrap_btn">
-  	    <button class="inq_btn_cs" type="submit">
+  	    <button class="inq_btn_cs" type="submit" >
   	    	문의접수 
   	    </button>
   	   </div>
