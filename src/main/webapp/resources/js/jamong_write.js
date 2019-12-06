@@ -11,6 +11,7 @@ var arrowIndex2 = "true"; // 에디터 화살표 인덱스
 var toggleIndex3 = "true"; // 에디터 토글 인덱스
 var toggleIndex4 = "true"; // 에디터 토글 인덱스
 var sel_file; // 이미지 미리보기 변수
+var category_count = 0;
 
 $(document).ready(function(){
 	$(".write_cont_area").summernote({
@@ -172,6 +173,28 @@ $(document).ready(function(){
 			}
 		}
 	});
+	// 카테고리 선택 토글
+	$(".join_membership_category-span").click(function(){
+		if($(this).parent().hasClass("member_category_check")){ // 있을때 누른거
+			$(this).parent().removeClass("member_category_check");
+			$(this).next().removeAttr("name");
+			category_count-=1;
+		}else{ // 없을때 누른거
+			if(category_count<1){				
+				category_count+=1;
+				$(this).parent().addClass("member_category_check");
+				$(this).next().attr("name","fav_no");
+			}else if(category_count == 1){
+				if($(".join_membership_category-item").hasClass("member_category_check")){ // 선택된게 있으면
+					$("#join_membership_category-list").children("li.member_category_check").children().next().removeAttr("name");
+					$("#join_membership_category-list").children("li.member_category_check").removeClass("member_category_check");
+					
+					$(this).parent().addClass("member_category_check");
+					$(this).next().attr("name","fav_no");
+				}// if...
+			}
+		}
+	});
 	// 이미지 미리보기 구현
 	$("#write_cover_file").on("change", handleImgFileSelect);
 
@@ -256,4 +279,18 @@ function writeCheck(){ // 저장버튼 클릭시 작성체크
 
 	$(".write_choice_wrap").css({'width':screenWidth,'height':screenHeight});
 	$(".write_choice_wrap").css("display","inline-block");
+}
+function saveCheck(){
+	if(category_count == 0){
+		$(".write_title_error").addClass("write_top_error");
+		$(".write_error_message").text("카테고리를 선택해주세요!");
+		$(".write_choice_save_btn").attr("disabled",true);
+		setTimeout(function(){
+			$(".write_title_error").removeClass("write_top_error");
+			$(".write_choice_save_btn").attr("disabled",false);
+		},3000);
+		return false;
+	}
+	
+	window.location.replace("/jamong.com/write_ok");
 }

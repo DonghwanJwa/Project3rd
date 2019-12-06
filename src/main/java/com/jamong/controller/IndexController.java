@@ -15,12 +15,12 @@ public class IndexController {
 	
 	@RequestMapping("policy_terms")
 	public String policy_terms() {
-		return "policy_terms";
+		return "jsp/policy_terms";
 	}
 	
 	@RequestMapping("policy_privacy")
 	public String policy_privacy() {
-		return "policy_privacy";
+		return "jsp/policy_privacy";
 	}
 	
 }
