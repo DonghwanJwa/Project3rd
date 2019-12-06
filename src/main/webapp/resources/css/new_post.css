@@ -7,9 +7,14 @@
 	border-bottom: 1px solid #ededed;
 }
 
-#new_post_contents {
-	background-image: url("../img/background_img/write_page.png");
+#new_post_maintt{
+	background-image: url("../img/background_img/login_pattern1.png");
 	background-repeat: repeat;
+	
+}
+
+#new_post_contents {
+	background-color:#fff;
 	width: 960px;
 	height: auto;
 	margin: 0 auto;
@@ -21,12 +26,12 @@
 }
 
 #new_post_loading_cont {
-/* 	border-top: 2px solid #808080; */
 	border-bottom: 2px solid #808080;
 	padding: 15px;
 }
 
 #new_post_loading_cont_text {
+	margin-left:15px;
 	display: inline-block;
 	width: 680px;
 	height: 180px;
@@ -34,11 +39,12 @@
 }
 #new_post_loading_cont_text_title{
 	font-size: 25px;
-	padding:5px;
+	padding:20px 0;
 }
 
 #new_post_loading_cont_text_writer {
 	display: inline-block;
+	color:#ff8040;
 }
 
 #new_post_loading_cont_text_writer i {
