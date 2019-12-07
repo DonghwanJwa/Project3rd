@@ -39,6 +39,8 @@ function inq(){
 	}
 		
 }
+
+
 	/* phone 번호에 번호이외에 것이 들어가면 삭제 */
 $(document).ready(function(){
 	$("#phone").on("focus",function(){

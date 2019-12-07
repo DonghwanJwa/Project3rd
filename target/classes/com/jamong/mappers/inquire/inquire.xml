@@ -5,4 +5,11 @@
 
 <mapper namespace="inquire">
 
+<!-- 문의하기 -->
+<insert id="inq_insert">
+ insert into inquire (inq_no,inq_item1,inq_item2,inq_email,inq_phone,
+ inq_cont,inq_file1,inq_date) values(inq_no_seq.nextval,#{inq_item1},#{inq_item2}
+ ,#{inq_email},#{inq_phone},#{inq_cont},#{inq_file1},sysdate)
+</insert>
+
 </mapper>

@@ -27,3 +27,4 @@ ADD CONSTRAINT inq_mem_no_fk FOREIGN KEY (mem_no)
 REFERENCES member(mem_no)
 
 SELECT * FROM inquire ORDER BY inq_no DESC;
+SELECT inq_no_seq.nextval FROM DUAL;
