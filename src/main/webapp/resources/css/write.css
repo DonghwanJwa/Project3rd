@@ -47,7 +47,7 @@ h1, h2, h3, h4{
 }
 .write_main_title:empty::before{
 	content:"제목을 입력하세요";
-	size:38pt;
+	font-size:30pt;
 	cursor:text;
 	color:#CCC;
 	font-family: '애플 SD 산돌고딕 Neo','Apple SD Gothic Neo', 'Helvetica Neue','Helvetica','나눔바른고딕', 'NanumBarunGothic','나눔바른고딕OTF','NanumBarunGothicOTF', 'Noto Sans','Noto+Sans','notokr-demilight','나눔고딕','NanumGothic', '맑은 고딕','Malgun Gothic','sans-serif';
@@ -62,6 +62,7 @@ h1, h2, h3, h4{
 	opacity:1;	
 }
 .write_main_title{
+	font-size:30pt;	
 	display:inline-block;
 	min-width:100px;
 	max-width:700px;

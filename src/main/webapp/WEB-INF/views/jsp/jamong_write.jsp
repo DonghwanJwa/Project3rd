@@ -20,6 +20,7 @@
 <title> </title>
 </head>
 <body>
+ <form method="post" action="write_ok" onsubmit="return saveCheck();" enctype="multipart/form-data">
  <div id="write_wrap">
   <div class="write_title_error">
    <span class="write_error_message"></span>
@@ -36,10 +37,12 @@
      <!-- 타이틀 텍스트 부분  -->
      <div id="write_title_parent_center" >
       <!-- 메인 타이틀 -->
-      <h1 class="write_main_title" name="bo_title" contenteditable="true"></h1>
+      <div class="write_main_title" contenteditable="true"></div>
+      <textarea name="bo_title" id="bo_title" style="display:none;"></textarea>
       <br/>
       <!-- 서브 타이틀 -->
       <div class="write_sub_title" name="bo_subtitle" contenteditable="true"></div>
+      <textarea name="bo_subtitle" id="bo_subtitle" style="display:none;"></textarea>
     </div>
      <!-- 우측 아이콘 부분 -->
      <div id="write_title_icon">
@@ -48,9 +51,7 @@
         <i id="write_title_coverimage_icon"></i>
        </button>
        <div class="write_file_form">
-        <form target="write_frame_1" enctype="multipart/form-data" encoding="multipart/form-data" action="write_cover_ok" method="post" id="write_upload_form_1">
          <input id="write_cover_file"type="file" name="bo_thumbnail" accept="image/*" title="커버 이미지" />
-        </form>
        </div>
       </div>
       <div class="write_button_wrap write_background_icon">
@@ -70,17 +71,17 @@
       </div> 
      </div>
   </div>
-   
+  
   <!-- 글 내용 부분 --> 
   <div id="write_cont">
    <div id="write_wrap_bg" style="min-width:940px;">
     <!-- 글쓰기 부분 -->
-    <div class="write_cont_area write_cont_align_left" name="bo_cont" style="min-height:300px;"></div> 
+    <textarea class="write_cont_area write_cont_align_left" name="bo_cont" style="min-height:300px;"></textarea> 
     <!-- 저장/취소or작가신청 버튼 -->
     <div class="write_cont_fix_wrap">
      <div class="write_cont_btn_wrap">
-      <button class="write_cont_save" onclick="location.href='#'; return writeCheck();">저장</button>
-      <button class="write_cont_cancle">취소</button>
+      <button type="button" class="write_cont_save" onclick="location.href='#'; return writeCheck();">저장</button>
+      <button type="button" class="write_cont_cancle">취소</button>
      </div>
     </div>
    </div>
@@ -149,12 +150,12 @@
     <caption>공개여부</caption>
      <tr>
   	  <td>
-      <input type="radio" value="open" name="bo_lock" id="write_open" checked /> 공개
+      <input type="radio" name="bo_lock" id="write_open" value="1" checked /> 공개
       </td>
      </tr>
      <tr>
       <td>
-      <input type="radio" value="close" name="bo_lock" id="write_close" /> 비공개
+      <input type="radio" name="bo_lock" id="write_close" value="0" /> 비공개
       </td>
      </tr>
     </table>
@@ -164,21 +165,22 @@
    <caption>글 종류</caption>
    <tr>
     <td>
-    <input type="radio" value="column" name="bo_type" id="write_column" value="0" checked /> 칼럼
+    <input type="radio" name="bo_type" id="write_column" value="0" checked /> 칼럼
     </td>   
    </tr>
    <tr>
     <td>
-    <input type="radio" value="essay" name="bo_type" id="write_essay" value="1" /> 에세이
+    <input type="radio" name="bo_type" id="write_essay" value="1" /> 에세이
     </td>
    </tr>
    </table>
    </div>
    <div class="write_choice_btn_panel">
-    <input type="button" class="write_choice_save_btn" value="확인" onclick="return saveCheck();" />
+    <input type="submit" class="write_choice_save_btn" value="확인" />
     <input type="button" class="write_choice_close_btn" value="취소" />
    </div>
   </div>
  </div>
+ </form>
 </body>
 </html>

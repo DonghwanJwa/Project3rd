@@ -64,7 +64,7 @@ public class BoardController {
 		return null;
 	}
 	@RequestMapping("write_ok")
-	public ModelAndView user_write_ok(BoardVO b,
+	public String user_write_ok(BoardVO b,
 			HttpServletResponse response,
 			HttpServletRequest request,
 			HttpSession session) throws Exception{
@@ -72,10 +72,12 @@ public class BoardController {
 		PrintWriter out=response.getWriter();
 		session=request.getSession();
 		
-		String saveFolder=request.getRealPath("/resources/upload/user");
+		String saveFolder=request.getRealPath("/resources/upload");
 		int fileSize=100*1024*1024; // 첨부파일 최대크기		
 		MultipartRequest multi=null;
 		multi = new MultipartRequest(request,saveFolder,fileSize,"UTF-8");
+		
+		UUID uuid = UUID.randomUUID(); // 랜덤한 이름값 생성
 		
 		// MultipartRequest로부터 각 파라미터값 저장
 		String bo_title = multi.getParameter("bo_title");
@@ -85,6 +87,9 @@ public class BoardController {
 		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
 		int fav_no = Integer.parseInt(multi.getParameter("fav_no"));
 		
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		int mem_no = m.getMem_no();
+		
 		File UpFile1 = multi.getFile("bo_thumbnail");
 		if(UpFile1 != null) {
 			String fileName = UpFile1.getName();
@@ -93,60 +98,42 @@ public class BoardController {
 			int month=c.get(Calendar.MONTH)+1;
 			int date=c.get(Calendar.DATE);
 			
-			String homedir=saveFolder+"/thumbnail"+"/"+year+"-"+month+"-"+date;
+			String homedir=saveFolder+"/thumbnail/"+year+"-"+month+"-"+date;
 			File path1 = new File(homedir);
 			if(!(path1.exists())) {
+				out.println("<script>");
+				out.println("alert('경로가 없습니다!');");
+				out.println("</script>");
 				path1.mkdir(); // 폴더 생성
-			}// 해당 폴더가 없을때
+			}// if => 해당 폴더가 없을때
 			
 			Random r = new Random();
-			int random=r.nextInt(100000000);
 			int index=fileName.lastIndexOf(".");
 			String fileExtendsion=fileName.substring(index+1);
 			
-			String refileName = fileName+year+month+date+random+"."+fileExtendsion;
+			String refileName = uuid.toString()+year+month+date;
 			// 업로드파일명 + 년월일 + 난수 + 확장자
 			String encryptionName = PwdChange.getPassWordToXEMD5String(refileName);
-			String fileDBName="/"+encryptionName;
+			String fileDBName="/jamong.com/"+encryptionName+"."+fileExtendsion;
 			
-			UpFile1.renameTo(new File(saveFolder+"/"+refileName));
+			UpFile1.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));
 			
 			b.setBo_thumbnail(fileDBName);
 		}// if => 파일이 있을 때
+		
+		b.setBo_title(bo_title); b.setBo_subtitle(bo_subtitle);
+		b.setBo_cont(bo_cont); b.setBo_lock(bo_lock);
+		b.setBo_type(bo_type); b.setFav_no(fav_no);
+		b.setMem_no(mem_no);
+		
+		this.boardService.insertBoard(b);
+		
+		out.println("<script>");
+		out.println("alert('글이 등록되었습니다!')");
+		out.println("location='/jamong.com/';");
+		out.println("</script>");
+		
 		return null;
-	}
-	@RequestMapping("image_ok")
-	public void imageUpload(
-			MultipartFile file,
-			HttpServletResponse response,
-			HttpServletRequest request) throws Exception{
-		response.setContentType("text/html;charset=UTF-8");		
-		String saveFolder = request.getRealPath("resources/upload/user");
-		
-		if(file != null) {
-		Calendar c = Calendar.getInstance();
-		int year = c.get(Calendar.YEAR);
-		int month = c.get(Calendar.MONTH)+1;
-		int date = c.get(Calendar.DATE);
-		
-		UUID uuid = UUID.randomUUID(); // 랜덤한 이름 명명
-		
-		String org_fileName = file.getOriginalFilename(); // 원본 파일명
-		String str_fileName = uuid.toString()+org_fileName; // DB 업로드 파일명
-		
-		String homedir = saveFolder + "/photo/" + year + "-" + month + "-" + date;		
-		File path = new File(homedir);
-		if(!(path.exists())) {
-			path.mkdir(); // 폴더생성
-		}// if => 경로가 없을때
-		int index = org_fileName.lastIndexOf(".");
-		String fileExtendsion = org_fileName.substring(index+1);
-		
-		String refileName = str_fileName+year+month+date+"."+fileExtendsion;
-		String fileDBName = "/"+refileName;
-		
-		file.transferTo(new File(saveFolder+"/"+refileName));
-		}// 업로드한 파일이 있을때
 	}
 	
 	@RequestMapping("new_posts")

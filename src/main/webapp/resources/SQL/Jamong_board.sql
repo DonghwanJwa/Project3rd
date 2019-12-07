@@ -24,6 +24,7 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+
 -- 카테고리 테이블 참조컬럼 생성
 ALTER TABLE board
 ADD CONSTRAINT bo_fav_no_fk FOREIGN KEY(fav_no)
@@ -40,5 +41,6 @@ ADD CONSTRAINT bo_book_no_fk FOREIGN KEY(book_no)
 REFERENCES book(book_no)
 
 SELECT * FROM board ORDER BY bo_no DESC;
+SELECT bo_no_seq.nextval FROM DUAL;
 
 

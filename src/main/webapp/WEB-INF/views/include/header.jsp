@@ -13,7 +13,7 @@
 <script type="text/javascript" src="./resources/js/main.js"></script>
 <title>글에 꿈을 담다, 자몽</title>
 </head>
-<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<body>
 <%@ include file="../jsp/request_author.jsp" %>
 <%@ include file="../jsp/accuse.jsp" %>
   <%-- 해드 메뉴바 --%>
