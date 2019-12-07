@@ -33,6 +33,7 @@ create table adm_notice (
 drop table adm_notice;
 
 select * from adm_notice;
+select * from adm_notice order by noti_date desc;
 
 drop sequence adm_noti_seq;
 
