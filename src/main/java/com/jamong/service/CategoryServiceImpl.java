@@ -3,11 +3,12 @@ package com.jamong.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jamong.dao.FavoriteDAO;
+import com.jamong.dao.CategoryDAO;
+
 
 @Service
-public class FavoriteServiceImpl implements FavoriteService {
+public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
-	private FavoriteDAO favDao;
+	private CategoryDAO catDao;
 }

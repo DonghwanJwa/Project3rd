@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   <typeAlias type="com.jamong.domain.AuthorVO" alias="aut"/> <!-- 작가신청 -->
   <typeAlias type="com.jamong.domain.BoardVO" alias="b"/> <!-- 게시판 -->
   <typeAlias type="com.jamong.domain.BookVO" alias="book"/> <!-- 책 -->
-  <typeAlias type="com.jamong.domain.FavoriteVO" alias="fav"/> <!-- 카테고리 -->
+  <typeAlias type="com.jamong.domain.CategoryVO" alias="cat"/> <!-- 카테고리 -->
   <typeAlias type="com.jamong.domain.InquireVO" alias="inq"/> <!-- 문의 -->
   <typeAlias type="com.jamong.domain.MemberVO" alias="m"/> <!-- 회원 -->
   <typeAlias type="com.jamong.domain.OfferVO" alias="off"/> <!-- 작가에게 제안하기 -->

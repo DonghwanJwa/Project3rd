@@ -5,13 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jamong.service.FavoriteService;
+import com.jamong.service.CategoryService;
+
 
 @Controller
-public class FavoriteController {
+public class CategoryController {
 
 	@Autowired
-	private FavoriteService favService;
+	private CategoryService catService;
 	
 	@RequestMapping("category")
 	public ModelAndView user_category(String directory) {
