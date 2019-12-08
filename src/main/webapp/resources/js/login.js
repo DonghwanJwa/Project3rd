@@ -2,7 +2,6 @@
  * login.jsp, join_membership.jsp,find_id,find_pass의 자바스크립트 기능들이 있습니다
  */
 var sel_file; // 이미지 미리보기 변수
-var category_count = 0;	//카테고리 선택갯수 제한변수
 
 /*정규식*/
 var regExpPw = RegExp(/^(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()\-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/);//비번
@@ -11,6 +10,24 @@ var getyear= RegExp(/^[0-9]{4}$/); 						//년
 var getmonth_date= RegExp(/^[0-9]{1,2}$/); 				//월,일
 var getName= RegExp(/^[가-힣]+$/);						//이름
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
+
+getCategorySelect();//카테고리선택란에 카테고리 넣기(하단에 메서드 존재)
+
+/*카테고리선택창의 카테고리 불러오기*/
+function getCategorySelect(){
+	  $.getJSON("/jamong.com/category_load/",function(data){
+		  var str="";
+		  $(data).each(function(){//each는 jQuery에서 반복함수
+			  str+='<li class="join_membership_category-item">'
+			  +'<span class="join_membership_category-span">'+this.cat_name+'</span>'
+			  +'<input type="hidden" value="'+this.cat_name+'"/>'
+			  +'</li>'
+		  });
+		  if ($("#join_membership_category-list").length > 0 ) {//해당 구역이 존재하면
+			  $('#join_membership_category-list').html(str);	//ul내부에 each내용을 넣어준다
+		  }
+	  });
+}
 
 $(document).ready(function(){
 	
@@ -311,15 +328,21 @@ $(document).ready(function(){
 	
 	//카테고리 선택시 class,name 추가(form에 post전달하기 위해서 name값에 숫자 추가)
 	$(".join_membership_category-span").click(function(){
+		console.log('됨1');
 		if($(this).parent().hasClass("member_category_check")){
 			$(this).parent().removeClass("member_category_check");
+			$(this).next().removeClass()
 			$(this).next().removeAttr("name");
-			category_count-=1;
 		}else{
-			if(category_count<3){
-				category_count+=1;
-				$(this).parent().addClass("member_category_check");
-				$(this).next().attr("name","mem_fav"+category_count);
+			console.log('됨2');
+			for(var i=1;i<=3;i++){
+				console.log('됨3');
+				if(!$('.join_membership_category-span').next().hasClass("member_fav"+i)){
+					$(this).parent().addClass("member_category_check");
+					$(this).next().addClass("member_fav"+i)
+					$(this).next().attr("name","mem_fav"+i);
+					return false
+				}
 			}
 		}
 	});

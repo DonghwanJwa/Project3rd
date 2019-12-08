@@ -1,6 +1,7 @@
 /*
  * index.jsp
  */
+getCategory();//js페이지가 로딩되면 메뉴에 카테고리를 불러옴(중단에 메서드 있음)
 
 function scrollmove(whereScroll,howMove){
 	/*스크롤움직임 버튼 ( 어느div인지,	어느쪽으로 움직이는지)*/
@@ -57,7 +58,23 @@ function hotscroll(where,number){
 	},1);
 }
 
+function getCategory(){
+	  $.getJSON("/jamong.com/category_load/",function(data){
+		  var str="";
+		  $(data).each(function(){//each는 jQuery에서 반복함수
+			  str+='<li class="head-page-category-item">'
+			  +'<a href="./category?directory=articles">'+this.cat_name+'</a>'
+			  +'</li>'
+		  });
+		  if ($("#head-page-category-list").length > 0 ) {	//header가 존재하면
+			  $('#head-page-category-list').html(str);	//ul내부에 each내용을 넣어준다
+		  }
+	  });
+}
+
 $(document).ready(function(){
+	
+	
 	/*검색버튼*/
 	$('#head-menu_search-button').click(function(){
 		if($('#head-menu_search-text').css('opacity')=='0'){//검색창 숨겨져있을 때
