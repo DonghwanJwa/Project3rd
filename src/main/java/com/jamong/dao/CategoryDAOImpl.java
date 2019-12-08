@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class FavoriteDAOImpl implements FavoriteDAO {
+public class CategoryDAOImpl implements CategoryDAO {
 
 	@Autowired
 	private SqlSession sqlSession;

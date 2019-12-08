@@ -1,5 +1,0 @@
-package com.jamong.dao;
-
-public interface FavoriteDAO {
-	
-}
