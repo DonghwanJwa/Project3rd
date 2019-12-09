@@ -326,27 +326,6 @@ $(document).ready(function(){
 		}
 	});
 	
-	//카테고리 선택시 class,name 추가(form에 post전달하기 위해서 name값에 숫자 추가)
-	$(".join_membership_category-span").click(function(){
-		console.log('됨1');
-		if($(this).parent().hasClass("member_category_check")){
-			$(this).parent().removeClass("member_category_check");
-			$(this).next().removeClass()
-			$(this).next().removeAttr("name");
-		}else{
-			console.log('됨2');
-			for(var i=1;i<=3;i++){
-				console.log('됨3');
-				if(!$('.join_membership_category-span').next().hasClass("member_fav"+i)){
-					$(this).parent().addClass("member_category_check");
-					$(this).next().addClass("member_fav"+i)
-					$(this).next().attr("name","mem_fav"+i);
-					return false
-				}
-			}
-		}
-	});
-	
 	/*input 포커스아웃 혹은 글씨 쓸때마다 유효성검사 시키기*/
 	/*아이디 유효성검사 & 중복검사*/
 	$("#join_membership_id").on("focusout", function() {//포커스가 나갈때
@@ -749,6 +728,28 @@ $(document).ready(function(){
 	
 	/*프로필 미리보기 이미지 변경 - 등록메서드 실행*/
 	$("#join_membership_profile_input_hide").on("change", handleImgFileSelect);
+});
+
+//카테고리 선택시 class,name 추가(form에 post전달하기 위해서 name값에 숫자 추가)
+//중요!! $(document).ready()안에 사용하지 않은 이유
+//		jQuery의 get이나 ajax방식으로 사용하는 경우 click 메서드가 요소를 인식하지 못한다.
+//		click의 조상격인 on을 사용하면 인식가능하므로 on을 사용하도록하자
+//		http://blog.freezner.com/archives/411
+$(document).on("click",".join_membership_category-span",function(){
+	if($(this).parent().hasClass("member_category_check")){
+		$(this).parent().removeClass("member_category_check");
+		$(this).next().removeClass()
+		$(this).next().removeAttr("name");
+	}else{
+		for(var i=1;i<=3;i++){
+			if(!$('.join_membership_category-span').next().hasClass("member_fav"+i)){
+				$(this).parent().addClass("member_category_check");
+				$(this).next().addClass("member_fav"+i)
+				$(this).next().attr("name","mem_fav"+i);
+				return false
+			}
+		}
+	}
 });
 
 /*프로필 미리보기 이미지 등록 메서드 */
