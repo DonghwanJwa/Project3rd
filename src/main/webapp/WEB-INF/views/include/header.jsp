@@ -236,7 +236,7 @@
         </a>
        </li>
        <li id="head-profile-service-setting" class="head-profile-stat-login">
-        <a href="./pass_modify">
+        <a href="./pass_modify_ok">
          <span class="head-profile-service-bar-left"></span>
         	<b>내 설정</b>
          <span class="head-profile-service-bar-right"></span>
