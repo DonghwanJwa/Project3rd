@@ -195,6 +195,29 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+    @RequestMapping("member_modify_ok")
+    public String pass_login_ok(String page,String pass_modify_id,String pass_modify_pass,MemberVO m,
+            HttpServletResponse response,HttpServletRequest request, HttpSession session)throws Exception {
+            response.setContentType("text/html;charset=UTF-8");
+            session=request.getSession();
+            PrintWriter out=response.getWriter();
+            
+            MemberVO dm=this.memberService.pwdCK(pass_modify_id);
+            int re=-1;
+            if(dm!=null) {
+                if(dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(pass_modify_pass))){
+                out.println("<script>");
+                out.println("alert('회원정보를 찾을 수 없습니다!');");
+                out.println("history.back();");
+                out.println("</script>");
+                re=1;
+            }
+        }
+            out.println(re);
+            session.setAttribute("m", m);
+            return null;
+    }//pass_login_ok
 	@RequestMapping("member_modify")
 	public ModelAndView user_member_modify() { // 회원정보수정
 		ModelAndView mv=new ModelAndView();
