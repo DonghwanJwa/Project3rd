@@ -226,20 +226,37 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping("profile")
-	public ModelAndView user_profile() {
-		ModelAndView mv=new ModelAndView();
+	@RequestMapping("profile/{mem_no}")
+	public ModelAndView user_profile( MemberVO mp,
+			HttpServletResponse response,
+			HttpServletRequest request,
+			HttpSession session )throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out =response.getWriter();
+		session = request.getSession();
 		
-		mv.setViewName("jsp/profile");
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		
+		 mp = this.memberService.checkMember(m.getMem_no());
+				
+		ModelAndView mv=new ModelAndView("jsp/profile");
+		
+		mv.addObject("mp",mp);
 		
 		return mv;
 	}
 	
 	@RequestMapping("profile_edit")
-	public ModelAndView profile_edit() { // 프로필 편집 
-		ModelAndView mv=new ModelAndView(); 
+	public ModelAndView profile_edit(MemberVO mp,
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session) throws Exception { // 프로필 편집 
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		session = request.getSession();
+
 		
-		mv.setViewName("jsp/profile_edit");
+		ModelAndView mv = new ModelAndView("jsp/profile_edit"); 
 		
 		return mv;
 	}

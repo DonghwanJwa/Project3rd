@@ -29,4 +29,10 @@
 <select id="pwd_ck" resultType="m">
     select * from member where mem_id=#{mem_id} and mem_pwd=#{mem_pwd}
 </select>
+
+ <!--회원 찾기 -->
+<select id="mem_ck" resultType="m">
+	select * from member where mem_no=#{mem_no}
+</select>
+
 </mapper>

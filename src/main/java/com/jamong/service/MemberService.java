@@ -8,4 +8,5 @@ public interface MemberService {
 	MemberVO idCheck(String id);
 	MemberVO loginCheck(String login_id);
 	MemberVO pwdCK(String pass_modify_id);
+	MemberVO checkMember(int mem_no);
 }
