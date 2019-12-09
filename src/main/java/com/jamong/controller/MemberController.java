@@ -182,6 +182,11 @@ public class MemberController {
 		}else {
 			m.setProfile_photo("/jamong.com/resources/img/profile_logout.png");//프로필사진 등록 안했을때 로고로 대체
 		}
+		if(multi.getParameter("mem_nickname")==null) {//닉네임 등록 안했을때 아이디로 대체
+			m.setMem_nickname(mem_id);
+		}else {
+			m.setMem_nickname(mem_nickname);
+		}
 		
 		//입력된 값들을 MemberVO객체 m에 저장
 		m.setMem_id(mem_id);			m.setMem_pwd(mem_pwd);
@@ -190,14 +195,11 @@ public class MemberController {
 		m.setEmail_id(email_id);		m.setEmail_domain(email_domain);
 		m.setMem_phone01(mem_phone01);	m.setMem_phone02(mem_phone02);
 		m.setMem_phone03(mem_phone03);	m.setMem_gender(mem_gender);
-		m.setProfile_cont(profile_cont);m.setMem_nickname(mem_nickname);
+		m.setProfile_cont(profile_cont);
 		m.setMem_fav1(mem_fav1);		m.setMem_fav2(mem_fav2);
 		m.setMem_fav3(mem_fav3);
 		
 		m.setMem_pwd(PwdChange.getPassWordToXEMD5String(m.getMem_pwd()));//비밀번호 암호화
-		if(m.getMem_nickname()==null) {//닉네임 등록 안했을때 아이디로 대체
-			m.setMem_nickname(m.getMem_id());
-		}
 				
 		this.memberService.insertMember(m);	//쿼리문 실행을 위한 메서드
 		

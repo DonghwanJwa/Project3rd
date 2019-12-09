@@ -65,9 +65,7 @@
 				and mem_author=1
 			</if>
 			
-			<if test="search_field_key == 'all'">
-				and mem_id like #{search_name} or mem_nickname like #{search_name} or mem_name like #{search_name}
-			</if>
+			<if test="search_field_key == 'all'"></if>
 			<if test="search_field_key == 'mem_id'">
 				and mem_id like #{search_name}
 			</if>

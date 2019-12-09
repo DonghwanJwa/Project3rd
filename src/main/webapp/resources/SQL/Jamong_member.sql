@@ -42,3 +42,5 @@ SELECT mem_no_seq.nextval FROM DUAL;
 
 -- 회원 테이블에 작가 포트폴리오 내용 추가
 ALTER mem ADD (mem_portflio CLOB);
+
+insert into member ()
