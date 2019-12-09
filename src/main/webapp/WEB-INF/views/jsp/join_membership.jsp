@@ -165,70 +165,9 @@
 
 					<div id="join_membership_category-wrap">
 						<div id="join_membership_category-frame">
-							<b class="join_membership_category-anoun">
-								관심있는 카테고리를 선택해 주세요.(최대 3개)
-							</b>	
+							<b class="join_membership_category-anoun">관심있는 카테고리를 선택해 주세요.(최대 3개)</b>	
 							<ul id="join_membership_category-list">
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">여행</span>
-									<input type="hidden" value="여행"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">감성·에세이</span>
-									<input type="hidden" value="감성에세이"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">시사·이슈</span>
-									<input type="hidden" value="시사이슈"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">IT 트렌드</span>
-									<input type="hidden" value="IT트렌드"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">사진·촬영</span>
-									<input type="hidden" value="사진촬영"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">영화 리뷰</span>
-									<input type="hidden" value="영화리뷰"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">음악</span>
-									<input type="hidden" value="음악"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">글쓰기 코치</span>
-									<input type="hidden" value="글쓰기"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">문화·예술</span>
-									<input type="hidden" value="문화예술"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">육아 이야기</span>
-									<input type="hidden" value="육아이야기"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">요리·레시피</span>
-									<input type="hidden" value="요리레시피"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">건강·운동</span>
-									<input type="hidden" value="건강운동"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">심리 탐구</span>
-									<input type="hidden" value="심리탐구"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">건축·설계</span>
-									<input type="hidden"  value="건축설계"/>
-								</li>
-								<li class="join_membership_category-item">
-									<span class="join_membership_category-span">인문학·철학</span>
-									<input type="hidden" value="인문학철학"/>
-								</li>
+								<%-- 카테고리 입력되는란 --%>
 							</ul>
 						</div>
 					</div>
