@@ -24,3 +24,4 @@ insert into category values(13,'음악');
 insert into category values(14,'인문학·철학');
 insert into category values(15,'IT');
 
+commit;

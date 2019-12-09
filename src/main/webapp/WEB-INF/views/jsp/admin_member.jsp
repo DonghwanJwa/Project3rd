@@ -60,7 +60,7 @@
 	<%-- 회원목록 시작 --%>
 	<table id="adm_mem_table">
 		<tr>
-			<td colspan="5"><b>${mcount}</b>건의 회원정보가 있습니다.</td>
+			<td colspan="5" align="right" class="adm_member_count"><b>${mcount}</b>건의 회원정보가 있습니다.</td>
 		</tr>
 		
 		<tr>
@@ -74,28 +74,28 @@
 		<c:if test="${!empty mlist}">
 			<c:forEach var="m" items="${mlist}">
 				<tr>
-					<td align="center">${m.mem_no}</td>
-					<td align="center">${m.mem_id}</td>
-					<td align="center">${m.mem_nickname}</td>
+					<td align="center" class="list_underline">${m.mem_no}</td>
+					<td align="center" class="list_underline">${m.mem_id}</td>
+					<td align="center" class="list_underline">${m.mem_nickname}</td>
 					
 					<%-- 계정상태 분기 시작 --%>
 					<c:if test="${m.mem_state == 0}">
-						<td align="center"><font color="blue">활동</font></td>
+						<td align="center" class="list_underline"><font color="blue">활동</font></td>
 					</c:if>
 					<c:if test="${m.mem_state == 1}">
-						<td align="center"><font color="red">정지</font></td>
+						<td align="center" class="list_underline"><font color="red">정지</font></td>
 					</c:if>
 					<c:if test="${m.mem_state == 2}">
-						<td align="center">탈퇴</td>
+						<td align="center" class="list_underline">탈퇴</td>
 					</c:if>
 					<%-- 계정상태 분기 끝 --%>
 					
 					<%-- 회원분류 분기 시작 --%>
 					<c:if test="${m.mem_author == 0}">
-						<td align="center">일반</td>
+						<td align="center" class="list_underline">일반</td>
 					</c:if>
 					<c:if test="${m.mem_author == 1}">
-						<td align="center">작가</td>
+						<td align="center" class="list_underline">작가</td>
 					</c:if>
 					<%-- 회원분류 분기 끝 --%>
 				</tr>

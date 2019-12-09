@@ -344,10 +344,52 @@ a:hover{text-decoration:underline;}
 }
 
 
+/* admin_member */
 
+#adm_member_wrap {
+	display: flex;
+    justify-content: center;
+    min-height: 500px;
+    width: 800px;
+    margin: 0 auto;
+}
 
+.adm_member_count {
+	padding:10px 0;
+}
 
+#adm_mem_table {
+    font-size: 12px;
+    width: 800px;
+}
 
+#adm_mem_table td{
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
+
+.list_underline {
+	border-bottom: .5px dotted gray;
+	padding: .5em .2em;
+}
+
+#paging {
+	padding: 1em .2em;
+}
+
+#mem_search_panel {
+	display:flex;
+	justify-content:center;
+}
+
+#search_name {
+	margin: 0 7px;
+}
+
+.search_field {
+	margin: 0 5px;
+}
 
 
 
