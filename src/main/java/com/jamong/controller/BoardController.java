@@ -3,6 +3,7 @@ package com.jamong.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.Enumeration;
 import java.util.Random;
 import java.util.UUID;
 
@@ -10,16 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.BoardService;
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import pwdconv.PwdChange;
 
@@ -85,7 +89,7 @@ public class BoardController {
 		String bo_cont = multi.getParameter("bo_cont");
 		int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
 		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
-		int fav_no = Integer.parseInt(multi.getParameter("fav_no"));
+		int cat_no = Integer.parseInt(multi.getParameter("cat_no"));
 		
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		int mem_no = m.getMem_no();
@@ -123,7 +127,7 @@ public class BoardController {
 		
 		b.setBo_title(bo_title); b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont); b.setBo_lock(bo_lock);
-		b.setBo_type(bo_type); b.setFav_no(fav_no);
+		b.setBo_type(bo_type); b.setFav_no(cat_no);
 		b.setMem_no(mem_no);
 		
 		this.boardService.insertBoard(b);
@@ -134,8 +138,26 @@ public class BoardController {
 		out.println("</script>");
 		
 		return null;
-	}
-	
+	}// user_write_ok() => 유저 글 등록
+	@PostMapping("imageUpload")
+	@ResponseBody
+	public void ImageUpload(
+			HttpServletResponse response,
+			HttpServletRequest request) throws Exception{
+		PrintWriter out = response.getWriter();
+		
+		String saveFolder = request.getRealPath("/resources/upload");
+		int fileSize = 100 * 1024 * 1024;		
+		MultipartRequest multi=null;
+		multi = new MultipartRequest(request,saveFolder,fileSize,"UTF-8", new DefaultFileRenamePolicy());
+		Enumeration files = multi.getFileNames();
+		String file = (String)files.nextElement();
+		String fileName = multi.getFilesystemName(file);
+		
+		String uploadPath = saveFolder+"/"+fileName;
+		
+		response.setContentType("application/json");
+	}// imageUp() => 썸머노트 이미지 업로드 이름변경
 	@RequestMapping("new_posts")
 	public ModelAndView user_new_posts() {
 		ModelAndView mv=new ModelAndView();
