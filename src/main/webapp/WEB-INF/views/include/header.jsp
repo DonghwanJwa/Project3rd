@@ -161,8 +161,8 @@
     </div>
     
     <%-- profile --%>
-    <%-- 로그인 전 --%>
-    <c:if test="${empty id}">
+   <%-- 로그인 전 --%>
+    <c:if test="${empty m}">
     <div id="head-page-profile-wrap">
      <div id="head-profile-menu">
      </div>
@@ -210,8 +210,8 @@
     </div>
     </c:if>
     
-    <%-- 로그인 후 --%>
-    <c:if test="${!empty id}">
+     <%-- 로그인 후 --%>
+    <c:if test="${!empty m}">
     <div id="head-page-profile-wrap">
      <div id="head-profile-menu">
       <a href="./feed" class="head-feed-button">
@@ -258,7 +258,7 @@
         </a>
        </li>
        <li id="head-profile-service-logout" class="head-profile-stat-login">
-        <a href="#">
+        <a href="./logout">
          <span class="head-profile-service-bar-left"></span>
     	   	<b>로그아웃</b>
          <span class="head-profile-service-bar-right"></span>
