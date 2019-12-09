@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* admin_inquire.jsp */
+
+
+.admin_inq_main{
+	position: relative;
+	width: 940px;
+	min-height: 700px;
+	margin:0px auto;
+	margin-bottom: 62px;
+	background-color: white;
+}

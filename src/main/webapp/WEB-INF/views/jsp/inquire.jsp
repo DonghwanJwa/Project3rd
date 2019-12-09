@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <link rel="stylesheet" type="text/css" href="./resources/css/inquire.css"/>
 <script src="./resources/js/inquire.js"></script>
 <article class=inq_main_art oncontextmenu="return false" ondragstart="return false"
@@ -10,7 +11,7 @@
   <br/>
   <div class=inq_question_cont>
   	<form id="inq_request" method="post"  action="inquire_ok" enctype="multipart/form-data"
-  	 name="select_list" onsubmit="return inq();" >
+  	 name="inq_request" onsubmit="return inq();" >
   	 <input type="hidden" id="serviceId" name="serviceId" value="54">
   	 <input type="hidden" id="serviceId" name="categoryId" value="30">
   	 <input type="hidden" id="locale" name="locale" value="ko">
@@ -136,9 +137,16 @@
   	      <span class="inq_text_placeholder">첨부파일 추가</span>
   	      
   	      <span class="inq_iso_cs"></span>
-  	      
-  	      <input class="inq_inp_file" id="inq_cont" name="inq_file1" type="file">
-  	     </div>
+  	     <p class="file_1">
+  	      <input class="inq_inp_file" name="file_1" type="file">
+  	 	  <a href="#this" class="btn" id="delete" name="delete">삭제</a>
+  	     </p>
+  	    </div>
+  	  
+  	  	<br/><br/>
+  	  	<a href="#this" class="btn" id="addfile">파일추가</a>
+  	  	<a href="#this" class="btn" id="write">작성하기</a>
+  	  	<a href="#this" class="btn" id="list">목록으로</a>
   	     
   	     <div class="inq_wrap_upload">
   	      <strong class="inq_screen_out">업로드된 용량</strong>
@@ -186,7 +194,7 @@
   	    </table>
   	    <p class="inq_desc_more">
   	    더 자세한 내용에 대해서는
-  	    <a class="inq_link_more" href="./"
+  	    <a class="inq_link_more" href="./policy_privacy"
   	    target="_blank">자몽 개인정보처리방침</a>
   	    을 참고하시기 바랍니다.
   	    </p>
@@ -203,7 +211,7 @@
   	   
   	   <!-- 문의접수 BUTTON -->
   	   <div class="inq_wrap_btn">
-  	    <button class="inq_btn_cs" type="submit" onclick="showPopup();" >
+  	    <button class="inq_btn_cs" type="submit" >
   	    	문의접수 
   	    </button>
   	   </div>
