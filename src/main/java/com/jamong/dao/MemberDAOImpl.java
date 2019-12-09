@@ -28,7 +28,10 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	
 	
-	
+    @Override
+    public MemberVO pwdCK(String pass_modify_id) {
+        return this.sqlSession.selectOne("pwd_ck", pass_modify_id);
+    }
 	
 	
 }

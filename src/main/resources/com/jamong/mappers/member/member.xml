@@ -24,4 +24,9 @@
  <select id="mem_logincheck" parameterType="String" resultType="m">
  	select * from member where mem_id=#{mem_id} and mem_state=0
  </select>
+ 
+  <!-- 비번찾기=> 회원정보 검색 -->
+<select id="pwd_ck" resultType="m">
+    select * from member where mem_id=#{mem_id} and mem_pwd=#{mem_pwd}
+</select>
 </mapper>

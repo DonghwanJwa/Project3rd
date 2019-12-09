@@ -26,7 +26,10 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO loginCheck(String login_id) {
 		return this.memberDao.loginCheck(login_id);
 	}
-	
+    @Override
+    public MemberVO pwdCK(String pass_modify_id) {
+        return this.memberDao.pwdCK(pass_modify_id);
+    }
 	
 	
 	
