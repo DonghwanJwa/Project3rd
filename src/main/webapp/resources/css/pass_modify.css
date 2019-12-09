@@ -39,7 +39,10 @@ body{
 	margin-top: 50px;
 	margin-bottom: 20px;
 }
-
+#pass_modify_id{
+	cursor: default;
+	pointer-event:none;
+}
 .pass_modify_text{
 	
 	width: 230px;
@@ -53,11 +56,11 @@ body{
 	border-top: none;
 }
 
-.pass_modify_text:hover{
+#pass_modify_pass:hover{
 	
 	border-bottom: 2px solid orange;	
 }
-.pass_modify_text:focus{
+#pass_modify_pass:focus{
 	border-bottom: 2px solid orange;
 }
 .pass_modify_error{
@@ -77,6 +80,7 @@ body{
 	outline: 0;
 	color:gray;
 	margin-top: 10px; 
+	cursor: pointer;
 }
 #pass_modify_lastbtn:hover{
 	background-color: orange;

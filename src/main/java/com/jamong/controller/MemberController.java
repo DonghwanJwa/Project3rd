@@ -1,5 +1,7 @@
 package com.jamong.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.Calendar;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,7 +46,7 @@ public class MemberController {
 		
 		MemberVO dm=this.memberService.loginCheck(login_id);//로그인 인증
 		int re=1;
-		if(dm!=null) {		
+		if(dm!=null) {		//안에 디비값이 있을떄
 			if(dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))){
 				re=-1;
 				m.setMem_no(dm.getMem_no());
@@ -96,6 +100,25 @@ public class MemberController {
 		}
 		return re;
 	}//member_idcheck()
+	
+	@RequestMapping("member_modify_ok")
+    public String pass_login_ok(String pass_modify_id,String pass_modify_pass,HttpServletResponse response)throws Exception {		
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			
+			MemberVO checp_pass=this.memberService.pwdcheck(pass_modify_id);
+			if(checp_pass != null) {//비어 있지 않을때
+				if(checp_pass.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(pass_modify_pass))) {
+					System.out.println(checp_pass);
+					return "redirect:/member_modify";
+				}
+			}else {
+				out.println("<script>");
+				out.println("alert('회원정보를 찾을 수 없습니다!');");
+				out.println("</script>");
+			}
+			return "redirect:/pass_modify";
+    }//pass_login_ok
 	
 	@RequestMapping("join_membership_ok")
 	public String user_membership_ok(MemberVO m,HttpServletRequest request, 
@@ -197,26 +220,8 @@ public class MemberController {
 		return mv;
 	}
 	
-    @RequestMapping("member_modify_ok")
-    public String pass_login_ok(String page,String pass_modify_id,String pass_modify_pass,MemberVO m,
-            HttpServletResponse response,HttpServletRequest request, HttpSession session)throws Exception {
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out=response.getWriter();
-            
-            MemberVO dm=this.memberService.pwdCK(pass_modify_id);
-            int re=-1;
-            if(dm!=null) {
-                if(dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(pass_modify_pass))){
-                out.println("<script>");
-                out.println("alert('비밀번호가 맞지 않습니다!');");
-                out.println("history.back();");
-                out.println("</script>");
-                re=1;
-            }
-        }
-            out.println(re);
-            return null;
-    }//pass_login_ok
+    
+    
 	@RequestMapping("member_modify")
 	public ModelAndView user_member_modify() { // 회원정보수정
 		ModelAndView mv=new ModelAndView();

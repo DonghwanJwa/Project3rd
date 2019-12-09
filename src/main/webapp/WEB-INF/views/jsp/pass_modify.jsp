@@ -10,7 +10,8 @@
 <script src="./resources/js/pass_modify.js"></script>
 <title>비밀번호수정페이지입니다</title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+	<form method="post" action="member_modify_ok">
 	<div id ="pass_modify_main_wrap">
 		<div id="pass_modify_main_div">
 				<!-----------------로고------------------------>
@@ -30,13 +31,14 @@
 						<div class="pass_modify_error" id="pass_modify_error_pass"></div>						
 						
 						<div class="pass_modify_color">
-                        <input id="pass_modify_pass" name="pass_modify_pass" class="pass_modify_text" placeholder="비밀번호" type="password"></div>
+                        <input tabindex="1" id="pass_modify_pass" name="pass_modify_pass" class="pass_modify_text" placeholder="비밀번호" type="password"></div>
 						<div class="pass_modify_error" id="pass_modify_error_pass_check"></div>						
 
                 <input type="submit" id="pass_modify_lastbtn" value="비밀번호 확인">
 			</div>
 		</div>
 	</div>
+	</form>
 </body>
 </html>
 <%@ include file="../include/footer.jsp"%>
