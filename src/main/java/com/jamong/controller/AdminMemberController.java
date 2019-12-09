@@ -36,10 +36,9 @@ public class AdminMemberController {
 			out.println("</script>");
 		}else {
 			int page=1;
-			int limit=10;
-			
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));
+			int limit=10; // 한 페이지에 보여지는 목록 개수
+			if(request.getParameter("page") != null) { // get 방식으로 전달된 쪽번호가 있는 경우
+				page=Integer.parseInt(request.getParameter("page")); // 전달된 쪽번호를 정수 숫자로 바꾼다.
 			}
 			
 			String search_name=request.getParameter("search_name");
@@ -54,18 +53,22 @@ public class AdminMemberController {
 			
 			int mcount=this.admMemService.memCount(me); // 회원 수
 			
-			me.setStartrow((page-1)*10+1);
-			me.setEndrow(me.getStartrow()+limit-1);
+			me.setStartrow((page-1)*10+1); // 시작 행 번호
+			me.setEndrow(me.getStartrow()+limit-1); // 끝 행 번호
 			
 			List<MemberVO> mlist=this.admMemService.memList(me);
 			
+			// 총 페이지
 			int maxpage=(int)((double)mcount/limit+0.95);
+			// 시작페이지
 			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+			// 마지막 페이지
 			int endpage=maxpage;
-			if (endpage > startpage+10-1) endpage=startpage+10-1;
+			if(endpage > startpage+10-1) endpage=startpage+10-1;
 			
 			ModelAndView m=new ModelAndView();
 			
+			m.addObject("me",me);
 			m.addObject("mlist",mlist);
 			m.addObject("mcount",mcount);
 			m.addObject("page",page);
