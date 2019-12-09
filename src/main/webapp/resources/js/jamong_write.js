@@ -33,14 +33,14 @@ $(document).ready(function(){
 			fontNames:['NanumGothic','NanumMyeongjo','NanumSquareRound','NanumBarunGothic','NanumPen'],
 			fontNamesIgnoreCheck:[
 				'Arial'
-				]
-//			callbacks: {
-//				onImageUpload: function(files, editor, welEditable){
-//					for(var i=files.length-1;i>=0;i--){
-//						sendFile(files[i], this);
-//					}
-//				}
-//			}
+				],
+				callbacks: {
+				onImageUpload: function(files, editor, welEditable){
+					for(var i=files.length-1; i>=0; i--){
+						sendFile(files[i], this);
+					}
+				}
+			}
 	});
 	$("#write_title_align").click(function(){ // 타이틀정렬 버튼 클릭 시
 		if($("#write_title_parent_center").is(":visible")){ // 타이틀이 중앙에 있을 때
@@ -195,7 +195,7 @@ $(document).ready(function(){
 				if($(".join_membership_category-item").hasClass("member_category_check")){ // 선택된게 있으면
 					$("#join_membership_category-list").children("li.member_category_check").children().next().removeAttr("name");
 					$("#join_membership_category-list").children("li.member_category_check").removeClass("member_category_check");
-					
+
 					$(this).parent().addClass("member_category_check");
 					$(this).next().attr("name","fav_no");
 				}// if...
@@ -222,22 +222,22 @@ $(document).ready(function(){
 		$("#write_cover_file").val("");
 	});
 });
-//function sendFile(file, el){
-//	var form_data=new FormData();
-//	form_data.append('file',file);
-//	$.ajax({
-//		data: form_data,
-//		type: "POST",
-//		url: './imageUp',
-//		cache: false,
-//		contentType: false,
-//		enctype: 'multipart/form-data',
-//		processData: false,
-//		success: function(url){
-//			$(el).summernote('editor.insertImage', url);
-//		}
-//	});
-//}
+function sendFile(file, editor){
+	var form_data=new FormData();
+	form_data.append('file',file);
+	$.ajax({
+		data: form_data,
+		type: "POST",
+		url: 'imageUpload',
+		cache: false,
+		contentType: false,
+		enctype: "multipart/form-data",
+		processData: false,
+		success: function(url){
+			$(editor).summernote('editor.insertImage', url);
+		}
+	});
+}
 function handleImgFileSelect(e){
 	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);
