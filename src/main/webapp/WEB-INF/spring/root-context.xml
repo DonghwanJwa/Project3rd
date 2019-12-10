@@ -63,6 +63,25 @@
   3.컨트롤러와 모델 DAO를 연결하는 중간 매개체 역할 -->
   <context:component-scan base-package="com.jamong.service" />
   
+  <!-- Gmail -->
+  <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />	<!-- 구글 STMP 호스트주소 -->
+    <property name="port" value="587" />			<!-- 구글 STMP 포트번호 -->
+    <property name="username" value="projectJamong@gmail.com" />
+    <property name="password" value="jamong2019!" />
+    <property name="javaMailProperties">
+    <props>
+    	<prop key="mail.transport.protocol">smtp</prop>
+		<prop key="mail.debug">true</prop>
+      	<prop key="mail.smtp.auth">true</prop>
+      	<prop key="mail.smtp.starttls.enable">true</prop>
+    </props>
+    </property>
+  </bean>
+  <bean id="mailService" class="mailHandler.MailServiceImpl">
+	<property name="javaMailSender" ref="javaMailSender" />
+  </bean>
+  
   <!-- AOP xml 환경설정 -->
   <aop:config />
 </beans>
