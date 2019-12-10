@@ -61,6 +61,9 @@ public class MemberController {
 				m.setMem_fav1(dm.getMem_fav1());
 				m.setMem_fav2(dm.getMem_fav2());
 				m.setMem_fav3(dm.getMem_fav3());
+				if(dm.getMem_state()==9) {	//관리자일경우 이름값을 저장 ->관리자페이지에서 필요하여 넣었습니다.
+					m.setMem_name(dm.getMem_name());
+				}
 				session.setAttribute("m", m);
 			}
 		}
@@ -132,10 +135,10 @@ public class MemberController {
 		
 		String subject = "회원가입 인증 코드 발급 안내 입니다.";
 		StringBuilder sb = new StringBuilder();
-		sb.append("<h4>안녕하세요. 자몽입니다.<br/>");
-		sb.append("귀하의 인증 코드는 <h2>" + authCode + "</h2>입니다.<br/>");
-		sb.append("해당 코드를 인증란에 입력해주시기 바랍니다<br/>.");
-		sb.append("감사합니다.</h4>");
+		sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
+		sb.append("귀하의 인증 코드는 </h3><h2>" + authCode + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
+		sb.append("해당 코드를 인증란에 입력해주시기 바랍니다.<br/>");
+		sb.append("감사합니다.</h3>");
 		
 		return mailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail, null, request);
 	}

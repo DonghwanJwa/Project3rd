@@ -47,8 +47,8 @@ public class AdminController {
 			out.println("alert('허용 된 관리자 정보가 없습니다.');");
 			out.println("history.back();");
 			out.println("</script>");
-		}else {
-			if(!adm_pwd.equals(db_adm.getMem_pwd())) {
+		}else {		
+			if(!adm_pwd.equals(db_adm.getMem_pwd())) {	/** 추후!!!!!!비번암호화해서 비교해야됨 **/
 				out.println("<script>");
 				out.println("alert('관리자 비밀번호가 일치하지 않습니다.');");
 				out.println("history.go(-1);");
@@ -56,6 +56,7 @@ public class AdminController {
 			} else {
 				m.setMem_no(db_adm.getMem_no());
 				m.setMem_id(db_adm.getMem_id());
+				m.setMem_name(db_adm.getMem_name());
 				m.setMem_nickname(db_adm.getMem_nickname());
 				m.setMem_author(db_adm.getMem_author());
 				m.setMem_state(db_adm.getMem_state());

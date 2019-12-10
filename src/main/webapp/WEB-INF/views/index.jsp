@@ -9,6 +9,17 @@
 <script src="./resources/js/jquery.js"></script>
 <script type="text/javascript" src="./resources/js/main.js"></script>
 <script src="./resources/js/request_author.js"></script>
+<script>
+//메인페이지에서 각메뉴에 좌우스크롤이 키보드로 작동되는것을 방지
+$(document).keydown(function(e){
+    if (e.keyCode == 37) { 
+        e.preventDefault();
+    }
+    if (e.keyCode == 39) {
+        e.preventDefault();
+    }
+});
+</script>
 <link rel="stylesheet" type="text/css" href="./resources/css/request_author.css"/>
 <title>글에 꿈을 담다, 자몽</title>
 </head>

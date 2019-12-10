@@ -14,6 +14,11 @@
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 	<div id="join_membership_main_wrap">
+	 <div class="wrap-loading" style="display:none">
+      <div>
+       <img src="./resources/img/loading1.gif" />
+      </div>
+	 </div>
 
 		<form name="m" method="post" enctype="multipart/form-data" onkeydown="return captureReturnKey(event)" autocomplete="off" action="join_membership_ok">
 			<div id="join_membership_main_div">
@@ -108,8 +113,8 @@
 						<div class="join_membership_error" id="join_membership_error_email_domain"></div>
 						
 						<div id="join_membership_emailcheck_div" style="display:none;" >
-							<input type="number" placeholder="인증번호 입력란" tabindex="15" maxlength="6"
-							class="join_membership_emailcheck" id="join_membership_emailcheck"/>
+							<input type="text" placeholder="인증번호 입력란" tabindex="15" maxlength="6"
+							class="join_membership_emailcheck numberOnly" id="join_membership_emailcheck"/>
 							<button type="button" id="join_membership_emailcheck_btn" tabindex="16">확인</button>
 						<div class="join_membership_error" id="join_membership_error_email_check"></div>
 						</div>
