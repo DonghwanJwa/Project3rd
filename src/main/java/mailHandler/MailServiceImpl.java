@@ -39,7 +39,7 @@ public class MailServiceImpl implements MailService {
 				// org.springframework.mail.javamail.MimeMessageHelper
 				
 				//메일에 헤드이미지
-				String contents = text + "<br><br><img src=\"cid:logo2.png \">";
+				String contents = "<br><br><img src=\"cid:logo2.png\">" + text;
 				FileSystemResource imgFile = 
 						new FileSystemResource(new File(imgFolder+"/logo2.png"));
 				
