@@ -10,4 +10,6 @@ public interface AdminMemDAO {
 	
 	List<MemberVO> memList(MemberVO me);
 
+	MemberVO memInfo(int no);
+
 }

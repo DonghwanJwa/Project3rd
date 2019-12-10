@@ -8,6 +8,7 @@
 <%@include file="../include/admin_header.jsp" %>
 <div id="adm_member_wrap">
 <form action="admin_member">
+	<div id="adm_page_title"><h3 class="adm_page_title">회원관리</h3></div>
 	<%-- 검색기능 패널 --%>
 	<div id="mem_search_panel">
 		<select id="search_field_state" name="search_field_state" class="search_field">
@@ -74,7 +75,7 @@
 				<tr>
 					<td align="center" class="list_underline">${m.mem_no}</td>
 					<td align="center" class="list_underline">
-						<a href="admin_member_cont?no=${m.mem_no}&page=${page}">${m.mem_id}</a>
+						<a href="admin_member_info?no=${m.mem_no}&page=${page}">${m.mem_id}</a>
 					</td>
 					<td align="center" class="list_underline">${m.mem_nickname}</td>
 					

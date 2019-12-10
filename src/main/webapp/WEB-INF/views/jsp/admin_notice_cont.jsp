@@ -6,7 +6,6 @@
 <title></title>
 </head>
 <%@include file="../include/admin_header.jsp" %>
-
 <div id="notice_cont_wrap">
 	<div id="cont_title_wrap">
 		<h3>${n.noti_title}</h3>
