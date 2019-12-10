@@ -8,4 +8,5 @@ public interface MemberDAO {
 	MemberVO idCheck(String id);
 	MemberVO loginCheck(String login_id);
 	MemberVO pwdcheck(String pass_modify_id);
+	MemberVO emailCheck(MemberVO m);
 }
