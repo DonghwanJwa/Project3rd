@@ -102,12 +102,9 @@ public class BoardController {
 			int month=c.get(Calendar.MONTH)+1;
 			int date=c.get(Calendar.DATE);
 			
-			String homedir=saveFolder+"/thumbnail/"+year+"-"+month+"-"+date;
+			String homedir=saveFolder+"\\"+"thumbnail"+"\\"+year+"-"+month+"-"+date;
 			File path1 = new File(homedir);
 			if(!(path1.exists())) {
-				out.println("<script>");
-				out.println("alert('경로가 없습니다!');");
-				out.println("</script>");
 				path1.mkdirs(); // 폴더 생성
 			}// if => 해당 폴더가 없을때
 			
