@@ -61,12 +61,13 @@ public class BoardController {
 			out.println("location='login';");
 			out.println("</script>");
 		}else {
-			mv.setViewName("jsp/jamong_write");			
+			mv.setViewName("jsp/jamong_write");
 			return mv;
 		}// if else => 로그인 전 / 후
 		
 		return null;
 	}
+	
 	@RequestMapping("write_ok")
 	public String user_write_ok(BoardVO b,
 			HttpServletResponse response,
@@ -102,13 +103,10 @@ public class BoardController {
 			int month=c.get(Calendar.MONTH)+1;
 			int date=c.get(Calendar.DATE);
 			
-			String homedir=saveFolder+"/thumbnail/"+year+"-"+month+"-"+date;
+			String homedir=saveFolder+"\\"+"thumbnail"+"\\"+year+"-"+month+"-"+date;
 			File path1 = new File(homedir);
 			if(!(path1.exists())) {
-				out.println("<script>");
-				out.println("alert('경로가 없습니다!');");
-				out.println("</script>");
-				path1.mkdir(); // 폴더 생성
+				path1.mkdirs(); // 폴더 생성
 			}// if => 해당 폴더가 없을때
 			
 			Random r = new Random();
@@ -118,7 +116,7 @@ public class BoardController {
 			String refileName = uuid.toString()+year+month+date;
 			// 업로드파일명 + 년월일 + 난수 + 확장자
 			String encryptionName = PwdChange.getPassWordToXEMD5String(refileName);
-			String fileDBName="/jamong.com/"+encryptionName+"."+fileExtendsion;
+			String fileDBName="/jamong.com/"+homedir+"/"+encryptionName+"."+fileExtendsion;
 			
 			UpFile1.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));
 			
@@ -139,25 +137,49 @@ public class BoardController {
 		
 		return null;
 	}// user_write_ok() => 유저 글 등록
+	
 	@PostMapping("imageUpload")
 	@ResponseBody
 	public void ImageUpload(
 			HttpServletResponse response,
 			HttpServletRequest request) throws Exception{
+		
 		PrintWriter out = response.getWriter();
-		
 		String saveFolder = request.getRealPath("/resources/upload");
-		int fileSize = 100 * 1024 * 1024;		
-		MultipartRequest multi=null;
-		multi = new MultipartRequest(request,saveFolder,fileSize,"UTF-8", new DefaultFileRenamePolicy());
-		Enumeration files = multi.getFileNames();
-		String file = (String)files.nextElement();
-		String fileName = multi.getFilesystemName(file);
+		int fileSize = 10 * 1024 * 1024;
 		
-		String uploadPath = saveFolder+"/"+fileName;
+		MultipartRequest multi = new MultipartRequest(request,saveFolder,fileSize,"UTF-8");
 		
-		response.setContentType("application/json");
+		UUID uuid = UUID.randomUUID();
+		
+		File UpFile = multi.getFile("file");
+		if(UpFile != null) {
+			String fileName = UpFile.getName();
+			Calendar c = Calendar.getInstance();
+			int year = c.get(Calendar.YEAR);
+			int month = c.get(Calendar.MONTH)+1;
+			int date = c.get(Calendar.DATE);
+			
+			String homedir = saveFolder + "\\" + "user" + "\\" + year + "-" + month + "-" + date;
+			
+			File path = new File(homedir);
+			if(!(path.exists())) {
+				path.mkdirs();
+			} // if => 폴더 경로 생성
+			
+			int index = fileName.lastIndexOf(".");
+			String fileExtendsion = fileName.substring(index+1);
+			
+			String refileName = uuid.toString()+year+month+date;
+			String encryptionName = PwdChange.getPassWordToXEMD5String(refileName);
+			String fileUpName = "/jamong.com/resources/upload/user/"+year+"-"+month+"-"+date+"/"+encryptionName+"."+fileExtendsion;
+			
+			UpFile.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));
+			
+			out.println(fileUpName);
+		}
 	}// imageUp() => 썸머노트 이미지 업로드 이름변경
+	
 	@RequestMapping("new_posts")
 	public ModelAndView user_new_posts() {
 		ModelAndView mv=new ModelAndView();

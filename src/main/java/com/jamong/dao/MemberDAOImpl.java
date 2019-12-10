@@ -37,6 +37,5 @@ public class MemberDAOImpl implements MemberDAO{
 		return this.sqlSession.selectOne("mem_emailcheck",m);
 	}
 	
- 
 	
 }

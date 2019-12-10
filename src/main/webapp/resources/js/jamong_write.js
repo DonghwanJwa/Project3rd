@@ -190,14 +190,14 @@ $(document).ready(function(){
 			if(category_count<1){				
 				category_count+=1;
 				$(this).parent().addClass("member_category_check");
-				$(this).next().attr("name","fav_no");
+				$(this).next().attr("name","cat_no");
 			}else if(category_count == 1){
 				if($(".join_membership_category-item").hasClass("member_category_check")){ // 선택된게 있으면
 					$("#join_membership_category-list").children("li.member_category_check").children().next().removeAttr("name");
 					$("#join_membership_category-list").children("li.member_category_check").removeClass("member_category_check");
 
 					$(this).parent().addClass("member_category_check");
-					$(this).next().attr("name","fav_no");
+					$(this).next().attr("name","cat_no");
 				}// if...
 			}
 		}
