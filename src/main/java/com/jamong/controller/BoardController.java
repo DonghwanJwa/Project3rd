@@ -3,7 +3,7 @@ package com.jamong.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.Calendar;
-import java.util.Enumeration;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +23,6 @@ import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.BoardService;
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import pwdconv.PwdChange;
 
@@ -69,59 +68,60 @@ public class BoardController {
 	}
 	
 	@RequestMapping("write_ok")
-	public String user_write_ok(BoardVO b,
-			HttpServletResponse response,
-			HttpServletRequest request,
-			HttpSession session) throws Exception{
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out=response.getWriter();
-		session=request.getSession();
-		
-		String saveFolder=request.getRealPath("/resources/upload");
-		int fileSize=100*1024*1024; // 첨부파일 최대크기		
-		MultipartRequest multi=null;
-		multi = new MultipartRequest(request,saveFolder,fileSize,"UTF-8");
-		
-		UUID uuid = UUID.randomUUID(); // 랜덤한 이름값 생성
-		
-		// MultipartRequest로부터 각 파라미터값 저장
-		String bo_title = multi.getParameter("bo_title");
-		String bo_subtitle = multi.getParameter("bo_subtitle");
-		String bo_cont = multi.getParameter("bo_cont");
-		int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
-		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
-		int cat_no = Integer.parseInt(multi.getParameter("cat_no"));
-		
-		MemberVO m = (MemberVO)session.getAttribute("m");
-		int mem_no = m.getMem_no();
-		
-		File UpFile1 = multi.getFile("bo_thumbnail");
-		if(UpFile1 != null) {
-			String fileName = UpFile1.getName();
-			Calendar c = Calendar.getInstance();
-			int year=c.get(Calendar.YEAR);
-			int month=c.get(Calendar.MONTH)+1;
-			int date=c.get(Calendar.DATE);
-			
-			String homedir=saveFolder+"\\"+"thumbnail"+"\\"+year+"-"+month+"-"+date;
-			File path1 = new File(homedir);
-			if(!(path1.exists())) {
-				path1.mkdirs(); // 폴더 생성
-			}// if => 해당 폴더가 없을때
-			
-			Random r = new Random();
-			int index=fileName.lastIndexOf(".");
-			String fileExtendsion=fileName.substring(index+1);
-			
-			String refileName = uuid.toString()+year+month+date;
-			// 업로드파일명 + 년월일 + 난수 + 확장자
-			String encryptionName = PwdChange.getPassWordToXEMD5String(refileName);
-			String fileDBName="/jamong.com/"+homedir+"/"+encryptionName+"."+fileExtendsion;
-			
-			UpFile1.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));
-			
-			b.setBo_thumbnail(fileDBName);
-		}// if => 파일이 있을 때
+	   public String user_write_ok(BoardVO b,
+	         HttpServletResponse response,
+	         HttpServletRequest request,
+	         HttpSession session) throws Exception{
+	      response.setContentType("text/html;charset=UTF-8");
+	      PrintWriter out=response.getWriter();
+	      session=request.getSession();
+	      
+	      String saveFolder=request.getRealPath("/resources/upload");
+	      int fileSize=100*1024*1024; // 첨부파일 최대크기      
+	      MultipartRequest multi=null;
+	      multi = new MultipartRequest(request,saveFolder,fileSize,"UTF-8");
+	      
+	      UUID uuid = UUID.randomUUID(); // 랜덤한 이름값 생성
+	      
+	      // MultipartRequest로부터 각 파라미터값 저장
+	      String bo_title = multi.getParameter("bo_title");
+	      String bo_subtitle = multi.getParameter("bo_subtitle");
+	      String bo_cont = multi.getParameter("bo_cont");
+	      int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
+	      int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
+	      int cat_no = Integer.parseInt(multi.getParameter("cat_no"));
+	      
+	      MemberVO m = (MemberVO)session.getAttribute("m");
+	      int mem_no = m.getMem_no();
+	      
+	      File UpFile1 = multi.getFile("bo_thumbnail");
+	      if(UpFile1 != null) {
+	         String fileName = UpFile1.getName();
+	         Calendar c = Calendar.getInstance();
+	         int year=c.get(Calendar.YEAR);
+	         int month=c.get(Calendar.MONTH)+1;
+	         int date=c.get(Calendar.DATE);
+	         
+	         String homedir=saveFolder+"\\"+"thumbnail"+"\\"+year+"-"+month+"-"+date;
+	         String DBdir="/jamong.com/resources/upload/thumbnail/"+year+"-"+month+"-"+date;
+	         File path1 = new File(homedir);
+	         if(!(path1.exists())) {
+	            path1.mkdirs(); // 폴더 생성
+	         }// if => 해당 폴더가 없을때
+	         
+	         Random r = new Random();
+	         int index=fileName.lastIndexOf(".");
+	         String fileExtendsion=fileName.substring(index+1);
+	         
+	         String refileName = uuid.toString()+year+month+date;
+	         // 업로드파일명 + 년월일 + 난수 + 확장자
+	         String encryptionName = PwdChange.getPassWordToXEMD5String(refileName);
+	         String fileDBName=DBdir+"/"+encryptionName+"."+fileExtendsion;
+	         
+	         UpFile1.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));
+	         
+	         b.setBo_thumbnail(fileDBName);
+	      }// if => 파일이 있을 때
 		
 		b.setBo_title(bo_title); b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont); b.setBo_lock(bo_lock);
@@ -181,7 +181,9 @@ public class BoardController {
 	}// imageUp() => 썸머노트 이미지 업로드 이름변경
 	
 	@RequestMapping("new_posts")
-	public ModelAndView user_new_posts() {
+	public ModelAndView user_new_posts(Model m,BoardVO b) {
+		List<BoardVO> bList = this.boardService.getListAll(b);
+		m.addAttribute("bList", bList);	
 		ModelAndView mv=new ModelAndView();
 		
 		mv.setViewName("jsp/new_posts");
