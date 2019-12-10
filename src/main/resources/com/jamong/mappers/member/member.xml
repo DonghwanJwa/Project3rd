@@ -26,8 +26,8 @@
  </select>
  
   <!-- 비번찾기=> 회원정보 검색 -->
-<select id="pwd_ck" resultType="m">
-    select * from member where mem_id=#{mem_id} and mem_pwd=#{mem_pwd}
+<select id="mem_pwdck" resultType="m">
+    select * from member where mem_id=#{mem_id}
 </select>
 
  <!--회원 찾기 -->

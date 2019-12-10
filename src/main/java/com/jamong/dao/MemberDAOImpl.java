@@ -26,17 +26,10 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO loginCheck(String login_id) {
 		return this.sqlSession.selectOne("mem_logincheck",login_id);
 	}
-	
-	
-    @Override
-    public MemberVO pwdCK(String pass_modify_id) {
-        return this.sqlSession.selectOne("pwd_ck", pass_modify_id);
-    }
 
 	@Override
-	public MemberVO memCheck(int mem_no) {
-		return this.sqlSession.selectOne("mem_ck",mem_no);
+	public MemberVO pwdcheck(String pass_modify_id) {
+		return this.sqlSession.selectOne("mem_pwdck", pass_modify_id);
 	}
-	
 	
 }

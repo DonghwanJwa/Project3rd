@@ -96,6 +96,7 @@
 					<a href="admin_notice?page=${page-1}&search_field=${search_field}&search_name=${search_name}">< 이전</a>&nbsp;
 				</c:if>
 				
+				<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
 				<c:if test="${a==page}"> <%-- 선택된 쪽번호 --%>
 					<b>${a}</b>&nbsp;
 				</c:if>
@@ -103,6 +104,7 @@
 				<c:if test="${a != page}">
 					<a href="admin_notice?page=${a}&search_field=${search_field}&search_name=${search_name}">${a}</a>&nbsp;
 				</c:if>
+				</c:forEach>
 				
 				<c:if test="${page >= maxpage}">
 					다음 >
