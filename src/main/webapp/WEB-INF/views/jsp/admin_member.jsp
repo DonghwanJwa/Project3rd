@@ -38,9 +38,6 @@
 		</select>
 		
 		<select id="search_field_key" name="search_field_key" class="search_field">
-			<option value="all" selected>
-				검색분류
-			</option>
 			<option value="mem_id" <c:if test="${search_field_key == 'mem_id'}">${'selected'}</c:if>>
 				ID
 			</option>
@@ -60,7 +57,7 @@
 	<%-- 회원목록 시작 --%>
 	<table id="adm_mem_table">
 		<tr>
-			<td colspan="5" align="right" class="adm_member_count"><b>${mcount}</b>건의 회원정보가 있습니다.</td>
+			<td colspan="6" align="right" class="adm_member_count"><b>${mcount}</b>건의 회원정보가 있습니다.</td>
 		</tr>
 		
 		<tr>
@@ -69,13 +66,16 @@
 			<th>닉네임</th>
 			<th>계정상태</th>
 			<th>회원분류</th>
+			<th>가입날짜</th>
 		</tr>
 		
 		<c:if test="${!empty mlist}">
 			<c:forEach var="m" items="${mlist}">
 				<tr>
 					<td align="center" class="list_underline">${m.mem_no}</td>
-					<td align="center" class="list_underline">${m.mem_id}</td>
+					<td align="center" class="list_underline">
+						<a href="admin_member_cont?no=${m.mem_no}&page=${page}">${m.mem_id}</a>
+					</td>
 					<td align="center" class="list_underline">${m.mem_nickname}</td>
 					
 					<%-- 계정상태 분기 시작 --%>
@@ -98,21 +98,23 @@
 						<td align="center" class="list_underline">작가</td>
 					</c:if>
 					<%-- 회원분류 분기 끝 --%>
+					
+					<td align="center" class="list_underline">${m.mem_date}</td>
 				</tr>
 			</c:forEach>
 		</c:if>
 		
 		<c:if test="${empty mlist}">
 			<tr>
-				<th colspan="5">결과가 없습니다.</th>
+				<th colspan="6">결과가 없습니다.</th>
 			</tr>
 		</c:if>
 		
 		<%-- 회원 목록 페이징 시작 --%>
 		<tr>
-			<td colspan="5" align="center" id="paging">
+			<td colspan="6" align="center" id="paging">
 			<%-- 검색 전(전체리스트) --%>
-			<c:if test="${(search_field_state == 'all') && (search_field_author == 'all') && (search_field_key == 'all') && (empty search_name)}">
+			<c:if test="${(empty search_field_state) && (empty search_field_author) && (empty search_field_key) && (empty search_name)}">
 				<c:if test="${page<=1}">	
 					< 이전&nbsp;
 				</c:if>
@@ -141,29 +143,31 @@
 			<%-- 검색전 페이징 끝 --%>
 			
 			<%-- 검색후 페이징 --%>
-			<c:if test="${(search_field_state != 'all') || (search_field_author != 'all') || (search_field_key != 'all') || (!empty search_name)}">
+			<c:if test="${(!empty search_field_state) || (!empty search_field_author) || (!empty search_field_key) || (!empty search_name)}">
 				<c:if test="${page<=1}"> <%-- 이전 비활성 --%>
 					< 이전&nbsp;
 				</c:if>
 				
 				<c:if test="${page > 1}"> <%-- 이전 활성화 --%>
-					<a href="admin_member?page=${page-1}&search_field=${search_field}&search_name=${search_name}">< 이전</a>&nbsp;
+					<a href="admin_member?page=${page-1}&search_field_state=${search_field_state}&search_field_author=${search_field_author}&search_field_key=${search_field_key}&search_name=${search_name}">< 이전</a>&nbsp;
 				</c:if>
 				
+				<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
 				<c:if test="${a==page}"> <%-- 선택된 쪽번호 --%>
 					<b>${a}</b>&nbsp;
 				</c:if>
 				
 				<c:if test="${a != page}">
-					<a href="admin_member?page=${a}&search_field=${search_field}&search_name=${search_name}">${a}</a>&nbsp;
+					<a href="admin_member?page=${a}&search_field_state=${search_field_state}&search_field_author=${search_field_author}&search_field_key=${search_field_key}&search_name=${search_name}">${a}</a>&nbsp;
 				</c:if>
+				</c:forEach>
 				
 				<c:if test="${page >= maxpage}">
 					다음 >
 				</c:if>
 				
 				<c:if test="${page < maxpage}">
-					<a href="admin_member?page=${page+1}&search_field=${search_field}&search_name=${search_name}">다음 ></a>
+					<a href="admin_member?page=${page+1}&search_field_state=${search_field_state}&search_field_author=${search_field_author}&search_field_key=${search_field_key}&search_name=${search_name}">다음 ></a>
 				</c:if>
 			</c:if>
 		<%-- 회원 목록 페이징 끝 --%>

@@ -34,7 +34,18 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO getMemberID(int mem_no) {
 		return this.memberDao.getMemberID(mem_no);
 	}
-	
-	
-	
+  @Override
+	public MemberVO pwdcheck(String pass_modify_id) {
+		return this.memberDao.pwdcheck(pass_modify_id);
+	}
+
+	@Override
+	public MemberVO emailCheck(MemberVO m) {
+		return this.memberDao.emailCheck(m);
+	}
+
+	@Override
+	public MemberVO adminLogin(String adm_id) {
+		return this.memberDao.adminLogin(adm_id);
+	}		
 }

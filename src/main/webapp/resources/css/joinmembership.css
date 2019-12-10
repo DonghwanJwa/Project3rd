@@ -21,7 +21,7 @@ body{
 
 #join_membership_img_logo{
 	display:flex;
-	margin-bottom: 55px;
+	margin-bottom: 40px;
 }
 
 #join_membership_img_logo a{
@@ -66,14 +66,14 @@ body{
 #join_membership_sub_div_1{
 	display: inline-block;
 	width: 320px;
-	height: 300px;
+	height: 292px;
 	margin-top: 20px;
 	margin-left: 100px;
 }
 #join_membership_sub_div_2{
 	display: inline-block;
 	width: 320px;
-	height: 300px;
+	height: 292px;
 	vertical-align: top;
 	margin-top: 20px;
 }
@@ -157,6 +157,32 @@ body{
 }
 /* #F5F0F0 셀렉트박스에 넣을 회색 */
 
+
+#join_membership_tel_color{
+	height: 72px;
+}
+
+.join_membership_tel{
+	height: 23px;
+	width: 75px;
+	font-size:18px;
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	padding-left: 20px;
+	padding-bottom: 5px;
+}
+
+.join_membership_tel_hover_focus :hover{
+	border-bottom: 2px solid orange;
+}
+
+.join_membership_tel_hover_focus :focus{
+	border-bottom: 2px solid orange;
+}
+
+
 .join_membership_email_class{
 	display: inline;
 }
@@ -218,28 +244,36 @@ body{
 	color:white;
 }
 
-#join_membership_tel_color{
+.join_membership_emailcheck{
+	width: 233px;
 	height: 30px;
-}
-
-.join_membership_tel{
-	height: 23px;
-	width: 75px;
+	line-height:30px;
 	font-size:18px;
+	padding-left: 20px;
 	outline: 0;
 	border-left: none;
 	border-right: none;
 	border-top: none;
-	padding-left: 20px;
-	padding-bottom: 5px;
 }
 
-.join_membership_tel_hover_focus :hover{
+.join_membership_emailcheck:hover{
+	border-bottom: 2px solid orange;
+}
+.join_membership_emailcheck:focus{
 	border-bottom: 2px solid orange;
 }
 
-.join_membership_tel_hover_focus :focus{
-	border-bottom: 2px solid orange;
+#join_membership_emailcheck_btn{
+	width: 48px;
+	height: 34px;
+	background-color:white;
+	border: solid 2px orange;
+	outline: 0;
+	margin-left: 10px;
+}
+#join_membership_emailcheck_btn:hover{
+	background-color: orange;
+	color:white;
 }
 
 #join_membership_next_btn{
@@ -249,8 +283,7 @@ body{
 	background-color: white;
 	cursor: pointer;
 	outline: 0;
-	margin: 0px 60px;
-	margin-top: 30px;
+	margin: 0px 300px;
 }
 
 #join_membership_next_btn:hover{
@@ -260,15 +293,14 @@ body{
 
 .join_membership_error{
 	width:225px;
-	height: 20px;
-	line-height:20px;
+	height: 18px;
+	line-height:18px;
 	padding-left:20px;
 	color:#ff0000;
-	font-size: 12px;
-	text-align:left;
-	line-height: 20px;
-	margin-top: 5px;
-	margin-bottom: 20px;
+	font-size: 11px;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 /*---------------프로필 설정----------------*/
@@ -285,7 +317,7 @@ body{
 	line-height:1.2;
 	position: relative; 
 	width:545px;
-	height: 300px;
+	height: 320px;
 	padding: 15px 30px;
 	margin-left:50%; margin-right:50%;
 	transform: translate(-50%);
@@ -402,7 +434,7 @@ body{
 	cursor: pointer;
 	outline: 0;
 	margin:0 45px;
-	margin-top: 13px;
+	margin-top: 33px;
 }
 #join_membership_before_btn2:hover{
 	background-color: orange;
@@ -477,7 +509,7 @@ body{
 	cursor: pointer;
 	outline: 0;
 	margin:0 45px;
-	margin-top: 5px;
+	margin-top: 25px;
 }
 #join_membership_before_btn3:hover{
 	background-color: orange;
