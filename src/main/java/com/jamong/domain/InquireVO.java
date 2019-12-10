@@ -13,8 +13,17 @@ public class InquireVO {
 	private String inq_file2;
 	private String inq_file3;
 	private String inq_file4;
+	private int inq_hit;
 	private String inq_date;
 	private int mem_no;
+	
+	/* 페이징 변수 */
+	private int startrow;
+	private int endrow;
+	
+	/* 검색 변수 */
+	private String search_name;
+	private String search_field;
 	
 	// Setter()
 	public void setInq_no(int inq_no) 		   {		this.inq_no = inq_no;			}
@@ -29,19 +38,29 @@ public class InquireVO {
 	public void setInq_file4(String inq_file4) {		this.inq_file4 = inq_file4;		}
 	public void setInq_date(String inq_date)   {		this.inq_date = inq_date;		}
 	public void setMem_no(int mem_no) 		   {		this.mem_no = mem_no;			}
+	public void setStartrow(int startrow) 		{this.startrow = startrow;}
+	public void setEndrow(int endrow) 			{this.endrow = endrow;}
+	public void setSearch_name(String search_name) {this.search_name = search_name;}
+	public void setSearch_field(String search_field) {this.search_field = search_field;}
+	public void setInq_hit(int inq_hit) {this.inq_hit = inq_hit;}
 	
 	// Getter()
-	public int getInq_no() 		 {		return inq_no;		}
-	public String getInq_item1() {		return inq_item1;	}
-	public String getInq_item2() {		return inq_item2;	}
-	public String getInq_phone() {		return inq_phone;	}
-	public String getInq_cont()  {		return inq_cont;	}
-	public String getInq_email() {		return inq_email;	}
-	public String getInq_file1() {		return inq_file1;	}
-	public String getInq_file2() {		return inq_file2;	}
-	public String getInq_file3() {		return inq_file3;	}
-	public String getInq_file4() {		return inq_file4;	}
-	public String getInq_date()  {		return inq_date;	}
-	public int getMem_no() 		 {		return mem_no;		}
+	public int getInq_no() 			 {		return inq_no;		}
+	public String getInq_item1() 	{		return inq_item1;	}
+	public String getInq_item2() 	{		return inq_item2;	}
+	public String getInq_phone() 	{		return inq_phone;	}
+	public String getInq_cont()  	{		return inq_cont;	}
+	public String getInq_email() 	{		return inq_email;	}
+	public String getInq_file1() 	{		return inq_file1;	}
+	public String getInq_file2() 	{		return inq_file2;	}
+	public String getInq_file3() 	{		return inq_file3;	}
+	public String getInq_file4() 	{		return inq_file4;	}
+	public String getInq_date()  	{		return inq_date;	}
+	public int getMem_no() 		 	{		return mem_no;		}
+	public int getStartrow() 		{return startrow;}
+	public int getEndrow() 			{return endrow;}
+	public String getSearch_name()  {return search_name;}
+	public String getSearch_field() {return search_field;}
+	public int getInq_hit() 		{return inq_hit;}
 	
 }

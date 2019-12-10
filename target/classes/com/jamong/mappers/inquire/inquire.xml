@@ -7,9 +7,52 @@
 
 <!-- 문의하기 -->
 <insert id="inq_insert">
- insert into inquire (inq_no,inq_item1,inq_item2,inq_email,inq_phone,
- inq_cont,inq_file1,inq_date) values(inq_no_seq.nextval,#{inq_item1},#{inq_item2}
- ,#{inq_email},#{inq_phone},#{inq_cont},#{inq_file1},sysdate)
+ insert into inquire (inq_no,inq_item1,inq_item2,inq_email,inq_phone,inq_cont,inq_file1,inq_date) 
+ values(inq_no_seq.nextval,#{inq_item1},#{inq_item2},#{inq_email},#{inq_phone},#{inq_cont},#{inq_file1},sysdate)
 </insert>
 
+		<!-- 문의 개수 -->
+		<select id="inq_count" resultType="int">
+		 select count(inq_no) from inquire
+		 
+		 	<where>
+		 		<if test="search_field == ''"></if>
+		 		
+		 		<if test="search_field == 'inq_item1'">
+		 			inq_item1 like #{search_name}
+		 		</if>
+		 		
+		 		<if test="search_field == 'inq_cont'">
+		 			inq_cont like #{search_name}
+		 		</if>
+		 		
+		 		<if test="search_field == 'inq_phone'">
+		 			inq_phone like #{search_name}
+		 		</if>
+		 	</where>
+		</select>
+		
+		<!-- 공지 목록 -->
+		<select id="inq_list" resultType="inq">
+			select * from (select rowNum rNum,inq_no,inq_item1,inq_cont,inq_phone,inq_hit,inq_date 
+			from (select * from inquire
+			
+			<where>
+		 		<if test="search_field == ''"></if>
+		 		
+		 		<if test="search_field == 'inq_item1'">
+		 			inq_item1 like #{search_name}
+		 		</if>
+		 		
+		 		<if test="search_field == 'inq_cont'">
+		 			inq_cont like #{search_name}
+		 		</if>
+		 		
+		 		<if test="search_field == 'inq_phone'">
+		 			inq_phone like #{search_name}
+		 		</if>
+		 	</where>		
+			order by inq_date desc)) where rNum &gt; = #{startrow} and rNum &lt;= #{endrow}
+			
+		</select>
 </mapper>

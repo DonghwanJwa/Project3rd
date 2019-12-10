@@ -10,10 +10,12 @@ inq_file1 VARCHAR2(200),		  -- 파일
 inq_file2 VARCHAR2(200),
 inq_file3 VARCHAR2(200),
 inq_file4 VARCHAR2(200),
+inq_hit number(38),
 inq_date DATE,					  -- 문의날짜
 mem_no NUMBER(38)				  -- 회원번호 참조컬럼
 );
 
+DROP TABLE inquire;
 -- 시퀀스 생성
 CREATE SEQUENCE inq_no_seq
 START WITH 0
