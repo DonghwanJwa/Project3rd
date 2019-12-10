@@ -36,6 +36,18 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO emailCheck(MemberVO m) {	
 		return this.sqlSession.selectOne("mem_emailcheck",m);
 	}
-	
-	
+
+	@Override
+	public MemberVO adminLogin(String adm_id) {
+		return this.sqlSession.selectOne("mem_adminlogin",adm_id);
+	}
+    @Override
+    public MemberVO pwdCK(String pass_modify_id) {
+        return this.sqlSession.selectOne("pwd_ck", pass_modify_id);
+    }
+
+	@Override
+	public MemberVO getMemberID(int mem_no) {
+		return this.sqlSession.selectOne("mem_getID",mem_no);
+	}	
 }

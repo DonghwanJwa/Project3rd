@@ -8,4 +8,14 @@
   INSERT INTO board (bo_no,bo_title,bo_subtitle,bo_cont,bo_thumbnail,bo_date,bo_lock,bo_type,fav_no,mem_no)
   VALUES(bo_no_seq.nextval,#{bo_title},#{bo_subtitle},#{bo_cont},#{bo_thumbnail},sysdate,#{bo_lock},#{bo_type},#{fav_no},#{mem_no})
  </insert>
+ 
+ <select id="bo_cont" resultType="b">
+  SELECT * FROM board WHERE bo_no=#{bo_no};
+ </select>
+ 
+ <select id="bo_list" resultType="b">
+  <![CDATA[
+   select * from (select * from board where bo_no > 0 order by bo_date desc) where rownum <= 10
+  ]]>
+ </select>
 </mapper>
