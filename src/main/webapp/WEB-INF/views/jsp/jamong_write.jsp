@@ -96,51 +96,7 @@
 							글 카테고리를 선택해주세요!
 							</h3>
 							<ul id="join_membership_category-list">
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">여행</span> <input
-									type="hidden" value="1" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">감성·에세이</span> <input
-									type="hidden" value="2" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">시사·이슈</span> <input
-									type="hidden" value="3" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">IT 트렌드</span> <input
-									type="hidden" value="4" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">사진·촬영</span> <input
-									type="hidden" value="5" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">영화 리뷰</span> <input
-									type="hidden" value="6" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">음악</span> <input
-									type="hidden" value="7" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">글쓰기 코치</span> <input
-									type="hidden" value="8" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">문화·예술</span> <input
-									type="hidden" value="9" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">육아 이야기</span> <input
-									type="hidden" value="10" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">요리·레시피</span> <input
-									type="hidden" value="11" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">건강·운동</span> <input
-									type="hidden" value="12" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">심리 탐구</span> <input
-									type="hidden" value="13" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">건축·설계</span> <input
-									type="hidden" value="14" /></li>
-								<li class="join_membership_category-item"><span
-									class="join_membership_category-span">인문학·철학</span> <input
-									type="hidden" value="15" /></li>
+								<%-- 카테고리 AJAX처리 --%>
 							</ul>
 						</div>
 					</div>

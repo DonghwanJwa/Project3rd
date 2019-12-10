@@ -33,7 +33,7 @@ public class MemberController {
 	
 	@Autowired
 	private MailService mailService;
-	
+		
 	@RequestMapping("login")
 	public String user_login() { // 로그인 페이지
 		
@@ -72,7 +72,6 @@ public class MemberController {
 		session.invalidate();//세션만료
 		return "redirect:/";
 	}
-	
 	
 	@RequestMapping("find_id")
 	public String user_find_id() { // 아이디 찾기
@@ -281,9 +280,9 @@ public class MemberController {
 			return "redirect:/pass_modify";
     }
 	
-	@RequestMapping("profile")
-	public ModelAndView user_profile() {
-		ModelAndView mv=new ModelAndView();
+	//@RequestMapping("profile")
+	//public ModelAndView user_profile() {
+	//	ModelAndView mv=new ModelAndView();
 
 	@RequestMapping("profile/{mem_no}")
 	public ModelAndView user_profile( MemberVO mp,
@@ -296,7 +295,7 @@ public class MemberController {
 		
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		
-		 mp = this.memberService.checkMember(m.getMem_no());
+		// mp = this.memberService.checkMember(m.getMem_no());
 				
 		ModelAndView mv=new ModelAndView("jsp/profile");
 
