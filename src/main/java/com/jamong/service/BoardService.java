@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jamong.domain.BoardVO;
+import com.jamong.domain.MemberVO;
 
 public interface BoardService {
 
 	void insertBoard(BoardVO b);
+	BoardVO getUserBoardCont(int bo_no);
 
 	List<BoardVO> getListAll(BoardVO b);
 

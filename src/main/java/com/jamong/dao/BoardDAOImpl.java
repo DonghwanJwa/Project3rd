@@ -20,8 +20,10 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public BoardVO getUserBoardCont(int bo_no) {
+		return this.sqlSession.selectOne("bo_cont",bo_no);
+	}
 	public List<BoardVO> getListAll(BoardVO b) {
 		return this.sqlSession.selectList("bo_list", b);
 	}
-
 }

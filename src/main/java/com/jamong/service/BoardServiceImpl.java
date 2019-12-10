@@ -5,13 +5,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.jamong.dao.BoardDAO;
+import com.jamong.dao.MemberDAO;
 import com.jamong.domain.BoardVO;
+import com.jamong.domain.MemberVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -25,8 +25,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public BoardVO getUserBoardCont(int bo_no) {
+		return this.boardDao.getUserBoardCont(bo_no);
+	}
 	public List<BoardVO> getListAll(BoardVO b) {
 		return this.boardDao.getListAll(b);
 	}
-
 }
