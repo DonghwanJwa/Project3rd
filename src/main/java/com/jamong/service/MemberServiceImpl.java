@@ -31,4 +31,10 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO pwdcheck(String pass_modify_id) {
 		return this.memberDao.pwdcheck(pass_modify_id);
 	}
+
+	@Override
+	public MemberVO emailCheck(MemberVO m) {
+		return this.memberDao.emailCheck(m);
+	}	
+	
 }
