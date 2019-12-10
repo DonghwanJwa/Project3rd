@@ -39,19 +39,17 @@ public class BoardController {
 	
 	@RequestMapping("@{mem_id}/{bo_no}")
 	public String user_readCont(
-			@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo, Model model,
+			@PathVariable("mem_id") String mem_id, int bo_no,BoardVO bo, Model model,
 			HttpServletResponse response,
 			HttpServletRequest request,
 			HttpSession session) throws Exception{
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		bo = this.boardService.getUserBoardCont(bo_no);
-		MemberVO mem = this.memberService.getMemberID(bo.getMem_no());
+		bo = this.boardService.getUserBoardCont(bo_no);		
 		
 		model.addAttribute("bo",bo);
-		model.addAttribute("bo_no",bo_no);
-		model.addAttribute("mem_id",mem_id);
+		model.addAttribute("mem_id",mem_id);	
 		
 		return "jsp/read";
 	}
@@ -196,8 +194,10 @@ public class BoardController {
 	
 	@RequestMapping("new_posts")
 	public ModelAndView user_new_posts(Model m,BoardVO b) {
+		MemberVO mem = this.memberService.getMemberID(b.getMem_no());
 		List<BoardVO> bList = this.boardService.getListAll(b);
-		m.addAttribute("bList", bList);	
+		m.addAttribute("bList", bList);
+		m.addAttribute("mem",mem);
 		ModelAndView mv=new ModelAndView();
 		
 		mv.setViewName("jsp/new_posts");
