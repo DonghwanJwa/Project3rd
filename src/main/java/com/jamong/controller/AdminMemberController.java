@@ -86,4 +86,49 @@ public class AdminMemberController {
 		}
 		return null;
 	} // adm_mem_list()
+	
+	@RequestMapping("admin_member_info")
+	public ModelAndView admin_member_info (HttpSession session, HttpServletRequest request, HttpServletResponse response, int no) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		
+		PrintWriter out=response.getWriter();
+		session=request.getSession();
+		
+		String adm_id=(String)session.getAttribute("adm_id");
+		
+		if(adm_id == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='admin_login';");
+			out.println("</script>");
+		}else {
+			int page=1;
+			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
+
+			MemberVO me=this.admMemService.memberInfo(no);
+			
+			String profile_cont=me.getProfile_cont();
+			String mem_portfolio=me.getMem_portfolio();
+			
+			if(me.getMem_portfolio() != null) {
+				mem_portfolio=me.getMem_portfolio().replace("\n", "<br/>");
+			}
+			if(me.getProfile_cont() != null) {
+				profile_cont=me.getProfile_cont().replace("\n", "<br/>");
+			}
+			
+			ModelAndView m = new ModelAndView();
+			
+			m.setViewName("jsp/admin_member_info");
+			
+			m.addObject("me",me);
+			m.addObject("profile_cont",profile_cont);
+			m.addObject("mem_portfolio",mem_portfolio);
+			m.addObject("page",page);
+			
+			return m;
+		}
+		
+		return null;
+	}
 }

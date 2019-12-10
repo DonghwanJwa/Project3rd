@@ -8,6 +8,7 @@
 <body>
 <%@include file="../include/admin_header.jsp" %>
 <form action="admin_notice">
+<div id="adm_page_title"><h3 class="adm_page_title">공지사항</h3></div>
 <div id="adm_notice_wrap">
 	<table id="adm_notice_table">
 		<tr>
