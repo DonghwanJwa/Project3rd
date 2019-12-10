@@ -67,6 +67,7 @@ public class BoardController {
 		
 		return null;
 	}
+	
 	@RequestMapping("write_ok")
 	public String user_write_ok(BoardVO b,
 			HttpServletResponse response,
@@ -115,7 +116,7 @@ public class BoardController {
 			String refileName = uuid.toString()+year+month+date;
 			// 업로드파일명 + 년월일 + 난수 + 확장자
 			String encryptionName = PwdChange.getPassWordToXEMD5String(refileName);
-			String fileDBName="/jamong.com/"+encryptionName+"."+fileExtendsion;
+			String fileDBName="/jamong.com/"+homedir+"/"+encryptionName+"."+fileExtendsion;
 			
 			UpFile1.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));
 			
@@ -136,6 +137,7 @@ public class BoardController {
 		
 		return null;
 	}// user_write_ok() => 유저 글 등록
+	
 	@PostMapping("imageUpload")
 	@ResponseBody
 	public void ImageUpload(
