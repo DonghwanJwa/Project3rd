@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.BoardService;
+import com.jamong.service.MemberService;
 import com.oreilly.servlet.MultipartRequest;
 
 import pwdconv.PwdChange;
@@ -31,15 +33,27 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private MemberService memberService;
 	
-	@RequestMapping("read")
-	public ModelAndView user_readCont() {
-		ModelAndView mv=new ModelAndView();
+	
+	@RequestMapping("@{mem_id}/{bo_no}")
+	public String user_readCont(
+			@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo, Model model,
+			HttpServletResponse response,
+			HttpServletRequest request,
+			HttpSession session) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
+		bo = this.boardService.getUserBoardCont(bo_no);
+		MemberVO mem = this.memberService.getMemberID(bo.getMem_no());
 		
-		mv.setViewName("jsp/read");
+		model.addAttribute("bo",bo);
+		model.addAttribute("bo_no",bo_no);
+		model.addAttribute("mem_id",mem_id);
 		
-		return mv;
+		return "jsp/read";
 	}
 	
 	@RequestMapping("write")
