@@ -3,7 +3,6 @@ package com.jamong.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.Calendar;
-import java.util.Enumeration;
 import java.util.Random;
 import java.util.UUID;
 
@@ -11,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,8 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.BoardService;
+import com.jamong.service.MemberService;
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import pwdconv.PwdChange;
 
@@ -32,15 +32,27 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private MemberService memberService;
 	
-	@RequestMapping("read")
-	public ModelAndView user_readCont() {
-		ModelAndView mv=new ModelAndView();
+	
+	@RequestMapping("@{mem_id}/{bo_no}")
+	public String user_readCont(
+			@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo, Model model,
+			HttpServletResponse response,
+			HttpServletRequest request,
+			HttpSession session) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
+		bo = this.boardService.getUserBoardCont(bo_no);
+		MemberVO mem = this.memberService.getMemberID(bo.getMem_no());
 		
-		mv.setViewName("jsp/read");
+		model.addAttribute("bo",bo);
+		model.addAttribute("bo_no",bo_no);
+		model.addAttribute("mem_id",mem_id);
 		
-		return mv;
+		return "jsp/read";
 	}
 	
 	@RequestMapping("write")
@@ -104,6 +116,7 @@ public class BoardController {
 			int date=c.get(Calendar.DATE);
 			
 			String homedir=saveFolder+"\\"+"thumbnail"+"\\"+year+"-"+month+"-"+date;
+			String DBdir="/jamong.com/resources/upload/thumbnail/"+year+"-"+month+"-"+date;
 			File path1 = new File(homedir);
 			if(!(path1.exists())) {
 				path1.mkdirs(); // 폴더 생성
@@ -116,7 +129,7 @@ public class BoardController {
 			String refileName = uuid.toString()+year+month+date;
 			// 업로드파일명 + 년월일 + 난수 + 확장자
 			String encryptionName = PwdChange.getPassWordToXEMD5String(refileName);
-			String fileDBName="/jamong.com/"+homedir+"/"+encryptionName+"."+fileExtendsion;
+			String fileDBName="/jamong.com/"+DBdir+"/"+encryptionName+"."+fileExtendsion;
 			
 			UpFile1.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));
 			

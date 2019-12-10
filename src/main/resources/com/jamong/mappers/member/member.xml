@@ -29,4 +29,8 @@
 <select id="pwd_ck" resultType="m">
     select * from member where mem_id=#{mem_id} and mem_pwd=#{mem_pwd}
 </select>
+
+ <select id="mem_getID" resultType="m">
+  SELECT mem_id FROM member WHERE mem_no=#{mem_no}
+ </select>
 </mapper>

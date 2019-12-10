@@ -16,4 +16,9 @@ public class BoardDAOImpl implements BoardDAO {
 	public void insertBoard(BoardVO b) {
 		this.sqlSession.insert("bo_insert",b);
 	}
+
+	@Override
+	public BoardVO getUserBoardCont(int bo_no) {
+		return this.sqlSession.selectOne("bo_cont",bo_no);
+	}
 }
