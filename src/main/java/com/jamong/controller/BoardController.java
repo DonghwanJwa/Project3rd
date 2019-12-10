@@ -61,7 +61,7 @@ public class BoardController {
 			out.println("location='login';");
 			out.println("</script>");
 		}else {
-			mv.setViewName("jsp/jamong_write");			
+			mv.setViewName("jsp/jamong_write");
 			return mv;
 		}// if else => 로그인 전 / 후
 		
@@ -170,7 +170,7 @@ public class BoardController {
 			
 			String refileName = uuid.toString()+year+month+date;
 			String encryptionName = PwdChange.getPassWordToXEMD5String(refileName);
-			String fileUpName = "/jamong.com/"+encryptionName+"."+fileExtendsion;
+			String fileUpName = "/jamong.com/resources/upload/user/"+year+"-"+month+"-"+date+"/"+encryptionName+"."+fileExtendsion;
 			
 			UpFile.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));
 			
