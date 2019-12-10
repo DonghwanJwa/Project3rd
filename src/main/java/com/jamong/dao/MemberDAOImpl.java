@@ -31,8 +31,5 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO pwdcheck(String pass_modify_id) {
 		return this.sqlSession.selectOne("mem_pwdck", pass_modify_id);
 	}
-
-	
- 
 	
 }
