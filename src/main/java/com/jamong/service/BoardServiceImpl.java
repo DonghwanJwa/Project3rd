@@ -1,6 +1,7 @@
 package com.jamong.service;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,4 +23,10 @@ public class BoardServiceImpl implements BoardService {
 	public void insertBoard(BoardVO b) {
 		this.boardDao.insertBoard(b);
 	}
+
+	@Override
+	public List<BoardVO> getListAll(BoardVO b) {
+		return this.boardDao.getListAll(b);
+	}
+
 }
