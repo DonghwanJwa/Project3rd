@@ -11,6 +11,7 @@
  
  <select id="bo_cont" resultType="b">
   SELECT * FROM board WHERE bo_no=#{bo_no};
+ </select>
  <select id="bo_list" resultType="b">
   <![CDATA[
    select * from (select * from board where bo_no > 0 order by bo_date desc) where rownum <= 10
