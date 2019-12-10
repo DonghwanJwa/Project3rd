@@ -13,6 +13,8 @@ var toggleIndex4 = "true"; // 에디터 토글 인덱스
 var sel_file; // 이미지 미리보기 변수
 var category_count = 0;
 
+getCategorySelect();//카테고리선택란에 카테고리 넣기(하단에 메서드 존재)
+
 $(document).ready(function(){
 	$(".write_cont_area").summernote({
 		toolbar:[
@@ -180,28 +182,7 @@ $(document).ready(function(){
 			}
 		}
 	});
-	// 카테고리 선택 토글
-	$(".join_membership_category-span").click(function(){
-		if($(this).parent().hasClass("member_category_check")){ // 있을때 누른거
-			$(this).parent().removeClass("member_category_check");
-			$(this).next().removeAttr("name");
-			category_count-=1;
-		}else{ // 없을때 누른거
-			if(category_count<1){				
-				category_count+=1;
-				$(this).parent().addClass("member_category_check");
-				$(this).next().attr("name","cat_no");
-			}else if(category_count == 1){
-				if($(".join_membership_category-item").hasClass("member_category_check")){ // 선택된게 있으면
-					$("#join_membership_category-list").children("li.member_category_check").children().next().removeAttr("name");
-					$("#join_membership_category-list").children("li.member_category_check").removeClass("member_category_check");
-
-					$(this).parent().addClass("member_category_check");
-					$(this).next().attr("name","cat_no");
-				}// if...
-			}
-		}
-	});
+	
 	// 이미지 미리보기 구현
 	$("#write_cover_file").on("change", handleImgFileSelect);
 
@@ -222,6 +203,30 @@ $(document).ready(function(){
 		$("#write_cover_file").val("");
 	});
 });
+
+//카테고리 선택 토글
+$(document).on("click",".join_membership_category-span",function(){
+	if($(this).parent().hasClass("member_category_check")){ // 있을때 누른거
+		$(this).parent().removeClass("member_category_check");
+		$(this).next().removeAttr("name");
+		category_count-=1;
+	}else{ // 없을때 누른거
+		if(category_count<1){				
+			category_count+=1;
+			$(this).parent().addClass("member_category_check");
+			$(this).next().attr("name","cat_no");
+		}else if(category_count == 1){
+			if($(".join_membership_category-item").hasClass("member_category_check")){ // 선택된게 있으면
+				$("#join_membership_category-list").children("li.member_category_check").children().next().removeAttr("name");
+				$("#join_membership_category-list").children("li.member_category_check").removeClass("member_category_check");
+
+				$(this).parent().addClass("member_category_check");
+				$(this).next().attr("name","cat_no");
+			}// if...
+		}
+	}
+});
+
 function sendFile(file, editor){
 	var form_data=new FormData();
 	form_data.append('file',file);
@@ -319,4 +324,22 @@ function saveCheck(){
 		return false;
 	}
 	window.location.replace("./write_ok");
+}
+
+
+
+/*카테고리선택창의 카테고리 불러오기*/
+function getCategorySelect(){
+	  $.getJSON("/jamong.com/category_load/",function(data){
+		  var str="";
+		  $(data).each(function(){//each는 jQuery에서 반복함수
+			  str+='<li class="join_membership_category-item">'
+			  +'<span class="join_membership_category-span">'+this.cat_name+'</span>'
+			  +'<input type="hidden" value="'+this.cat_no+'"/>'
+			  +'</li>'
+		  });
+		  if ($("#join_membership_category-list").length > 0 ) {//해당 구역이 존재하면
+			  $('#join_membership_category-list').html(str);	//ul내부에 each내용을 넣어준다
+		  }
+	  });
 }

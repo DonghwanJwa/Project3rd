@@ -9,4 +9,5 @@ public interface MemberService {
 	MemberVO loginCheck(String login_id);
 	MemberVO pwdcheck(String pass_modify_id);
 	MemberVO emailCheck(MemberVO m);
+	MemberVO adminLogin(String adm_id);
 }
