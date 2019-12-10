@@ -137,7 +137,7 @@ public class MemberController {
 		sb.append("해당 코드를 인증란에 입력해주시기 바랍니다<br/>.");
 		sb.append("감사합니다.</h4>");
 		
-		return mailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail, null);
+		return mailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail, null, request);
 	}
 
 	@RequestMapping("join_emailCert_ok")
