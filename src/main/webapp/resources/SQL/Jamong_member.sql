@@ -30,7 +30,7 @@ DROP table member;
 DROP SEQUENCE mem_no_seq;
 
 SELECT * FROM member ORDER BY mem_no DESC;
-
+update member set mem_state=9 where mem_no=2;
 -- 회원번호 시퀀스 생성
 CREATE SEQUENCE mem_no_seq
 START WITH 0
