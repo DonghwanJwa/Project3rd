@@ -64,6 +64,7 @@ function getCategory(){
 		  $(data).each(function(){//each는 jQuery에서 반복함수
 			  str+='<li class="head-page-category-item">'
 			  +'<a href="./category?directory=articles">'+this.cat_name+'</a>'
+			  +'<input type="hidden" value="'+this.cat_no+'"/>'
 			  +'</li>'
 		  });
 		  if ($("#head-page-category-list").length > 0 ) {	//header가 존재하면
