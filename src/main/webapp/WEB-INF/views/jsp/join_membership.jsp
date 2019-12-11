@@ -14,6 +14,11 @@
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 	<div id="join_membership_main_wrap">
+	 <div class="wrap-loading" style="display:none">
+      <div>
+       <img src="./resources/img/loading1.gif" />
+      </div>
+	 </div>
 
 		<form name="m" method="post" enctype="multipart/form-data" onkeydown="return captureReturnKey(event)" autocomplete="off" action="join_membership_ok">
 			<div id="join_membership_main_div">
@@ -80,33 +85,42 @@
 						<div class="join_membership_error"
 							id="join_membership_error_birth"></div>
 
+						<div id="join_membership_tel_color">
+							<div class="join_membership_tel_hover_focus">
+								<input class="join_membership_tel numberOnly" id="join_membership_tel1"	name="mem_phone01" placeholder="010" maxlength="3" tabindex="9"  
+								>-<input class="join_membership_tel numberOnly" id="join_membership_tel2" name="mem_phone02" placeholder="0000" maxlength="4" tabindex="10"  
+								>-<input class="join_membership_tel numberOnly" id="join_membership_tel3" name="mem_phone03" placeholder="0000" maxlength="4" tabindex="11">
+							</div>
+							<div class="join_membership_error" id="join_membership_error_tel"></div>
+						</div>
+						
+						<div>
 						<div class="join_membership_email_class">
-							<input class="join_membership_email" tabindex="9"
+							<input class="join_membership_email" tabindex="12"
 								id="join_membership_email" name="email_id" placeholder="이메일"  >
 						</div>
 						<b id="join_membership_email_atMark">@</b> 
 						<input type="text" list="browsers" id="join_membership_email_datalist"
-							name="email_domain" placeholder="도메인" tabindex="10"  >
+							name="email_domain" placeholder="도메인" tabindex="13"  >
 						<datalist id=browsers>
 							<option value="naver.com">
 							<option value="daum.com">
 							<option value="gmail.com">
 							<option value="nate.com">
 						</datalist>
-						<button id="join_membership_certified_btn" tabindex="11"  >인증</button>
-						<div class="join_membership_error"
-							id="join_membership_error_email_domain"></div>
-
-						<div id="join_membership_tel_color">
-							<div class="join_membership_tel_hover_focus">
-								<input class="join_membership_tel numberOnly" id="join_membership_tel1"	name="mem_phone01" placeholder="010" maxlength="3" tabindex="12"  
-								>-<input class="join_membership_tel numberOnly" id="join_membership_tel2" name="mem_phone02" placeholder="0000" maxlength="4" tabindex="13"  
-								>-<input class="join_membership_tel numberOnly" id="join_membership_tel3" name="mem_phone03" placeholder="0000" maxlength="4" tabindex="14">
-							</div>
-							<div class="join_membership_error" id="join_membership_error_tel"></div>
+						<button type="button" id="join_membership_certified_btn" tabindex="14">인증</button>
 						</div>
-
-						<input type="button" id="join_membership_next_btn" tabindex="15" value="다음으로" />
+						<div class="join_membership_error" id="join_membership_error_email_domain"></div>
+						
+						<div id="join_membership_emailcheck_div" style="display:none;" >
+							<input type="text" placeholder="인증번호 입력란" tabindex="15" maxlength="6"
+							class="join_membership_emailcheck numberOnly" id="join_membership_emailcheck"/>
+							<button type="button" id="join_membership_emailcheck_btn" tabindex="16">확인</button>
+						<div class="join_membership_error" id="join_membership_error_email_check"></div>
+						</div>
+					</div>
+					<div>
+						<input type="button" id="join_membership_next_btn" tabindex="17" value="다음으로" disabled />
 					</div>
 				</div>
 
@@ -178,6 +192,7 @@
 				</div>
 			</div>
 		</form>
+		<input type="hidden" id="join_membership_email_flag" value="1"/>
 	</div>
 </body>
 </html>

@@ -297,7 +297,17 @@ body{
 ::selection{
 	background:RGB(245,124,104,0.6);
 }
-
+.btn{
+	width: 73px;
+    display: inline-block;
+    height: 24px;
+    border: 1px solid black;
+    font-size: 13.3px;
+    align-content: center;
+    text-align: center;
+    background-color: blanchedalmond;
+    line-height: 24px;
+}
 
 
 

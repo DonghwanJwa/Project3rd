@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+ul li {
+	list-style: none;
+}
+
 #new_post_title {
 	font-family: "NanumPen", "serif";
 	font-size: 60px;
@@ -33,7 +37,7 @@
 #new_post_loading_cont_text {
 	margin-left:15px;
 	display: inline-block;
-	width: 680px;
+	width: 600px;
 	height: 180px;
 	line-height: 1.6em;
 }

@@ -9,6 +9,17 @@
 <script src="./resources/js/jquery.js"></script>
 <script type="text/javascript" src="./resources/js/main.js"></script>
 <script src="./resources/js/request_author.js"></script>
+<script>
+//메인페이지에서 각메뉴에 좌우스크롤이 키보드로 작동되는것을 방지
+$(document).keydown(function(e){
+    if (e.keyCode == 37) { 
+        e.preventDefault();
+    }
+    if (e.keyCode == 39) {
+        e.preventDefault();
+    }
+});
+</script>
 <link rel="stylesheet" type="text/css" href="./resources/css/request_author.css"/>
 <title>글에 꿈을 담다, 자몽</title>
 </head>
@@ -279,61 +290,123 @@
     
     <%-- 로그인 후 --%>
     <c:if test="${!empty m}">
-    <div id="head-page-profile-wrap">
-     <div id="head-profile-menu">
-      <a href="./feed" class="head-feed-button">
-       <img src="./resources/img/feed.png" alt="피드"/>
+     <c:if test="${m.mem_state==0}">
+     <div id="head-page-profile-wrap">
+      <div id="head-profile-menu">
+       <a href="./feed" class="head-feed-button">
+        <img src="./resources/img/feed.png" alt="피드"/>
+       </a>
+      </div>
+      <a href="./profile" id="head-profile-info-wrap">
+       <div id="head-profile-info-img-wrap">
+        <img id="head-profile-info-img" src="${m.profile_photo}">
+       </div>
+       <div id="head-profile-name-wrap">
+        <strong>${m.mem_nickname}</strong>
+       </div>
       </a>
-     </div>
-     <a href="./profile" id="head-profile-info-wrap">
-      <div id="head-profile-info-img-wrap">
-       <img id="head-profile-info-img" src="${m.profile_photo}">
-      </div>
-      <div id="head-profile-name-wrap">
-       <strong>${m.mem_nickname}</strong>
-      </div>
-     </a>
-     <div id="head-profile-service-wrap">
-      <ul>
-       <li id="head-profile-service-write" class="head-profile-stat-login">
-        <a href="./write">
-         <span class="head-profile-service-bar-left"></span>
-       		 <b>글쓰기</b>
-         <span class="head-profile-service-bar-right"></span>
-        </a>
-       </li>
-       <li id="head-profile-service-setting" class="head-profile-stat-login">
-        <a href="./pass_modify">
-         <span class="head-profile-service-bar-left"></span>
+      <div id="head-profile-service-wrap">
+       <ul>
+        <li id="head-profile-service-write" class="head-profile-stat-login">
+         <a href="./write">
+          <span class="head-profile-service-bar-left"></span>
+       	  <b>글쓰기</b>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+        <li id="head-profile-service-setting" class="head-profile-stat-login">
+         <a href="./pass_modify">
+          <span class="head-profile-service-bar-left"></span>
         	<b>내 설정</b>
-         <span class="head-profile-service-bar-right"></span>
-        </a>
-       </li>
-       <li id="head-profile-service-hr">―――――――</li>
-       <li id="head-profile-service-rec-writing">
-        <a href="./new_posts">
-         <span class="head-profile-service-bar-left"></span>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+        <li id="head-profile-service-hr">―――――――</li>
+        <li id="head-profile-service-rec-writing">
+         <a href="./new_posts">
+          <span class="head-profile-service-bar-left"></span>
        		 <b>최신 글</b>
-         <span class="head-profile-service-bar-right"></span>
-        </a>
-       </li>
-       <li id="head-profile-service-rec-book">
-        <a href="./new_book">
-         <span class="head-profile-service-bar-left"></span>
-        	<b>최신 책</b>
-         <span class="head-profile-service-bar-right"></span>
-        </a>
-       </li>
-       <li id="head-profile-service-logout" class="head-profile-stat-login">
-        <a href="./logout">
-         <span class="head-profile-service-bar-left"></span>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+        <li id="head-profile-service-rec-book">
+         <a href="./new_book">
+          <span class="head-profile-service-bar-left"></span>
+         	<b>최신 책</b>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+        <li id="head-profile-service-logout" class="head-profile-stat-login">
+         <a href="./logout">
+          <span class="head-profile-service-bar-left"></span>
     	   	<b>로그아웃</b>
-         <span class="head-profile-service-bar-right"></span>
-        </a>
-       </li>
-      </ul>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+       </ul>
+      </div>
      </div>
-    </div>
+     </c:if>
+     <c:if test="${m.mem_state==9}">
+     <div id="head-page-profile-wrap">
+      <div id="head-profile-menu">
+       <a href="./feed" class="head-feed-button">
+        <img src="./resources/img/feed.png" alt="피드"/>
+       </a>
+       <a href="./admin_main" class="head-feed-button">
+        <img src="./resources/img/admin_icon.png" alt="관리자">
+       </a>
+      </div>
+      <a href="./profile" id="head-profile-info-wrap">
+       <div id="head-profile-info-img-wrap">
+        <img id="head-profile-info-img" src="${m.profile_photo}">
+       </div>
+       <div id="head-profile-name-wrap">
+        <strong>${m.mem_nickname}</strong>
+       </div>
+      </a>
+      <div id="head-profile-service-wrap">
+       <ul>
+        <li id="head-profile-service-write" class="head-profile-stat-login">
+         <a href="./write">
+          <span class="head-profile-service-bar-left"></span>
+       	  <b>글쓰기</b>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+        <li id="head-profile-service-setting" class="head-profile-stat-login">
+         <a href="./pass_modify">
+          <span class="head-profile-service-bar-left"></span>
+        	<b>내 설정</b>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+        <li id="head-profile-service-hr">―――――――</li>
+        <li id="head-profile-service-rec-writing">
+         <a href="./new_posts">
+          <span class="head-profile-service-bar-left"></span>
+       		 <b>최신 글</b>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+        <li id="head-profile-service-rec-book">
+         <a href="./new_book">
+          <span class="head-profile-service-bar-left"></span>
+         	<b>최신 책</b>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+        <li id="head-profile-service-logout" class="head-profile-stat-login">
+         <a href="./logout">
+          <span class="head-profile-service-bar-left"></span>
+    	   	<b>로그아웃</b>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     </c:if>
     </c:if>
    </div> <%-- menu-page-wrap --%>
   </div> <%-- menu-page-wrap --%>
