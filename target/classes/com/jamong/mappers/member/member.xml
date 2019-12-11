@@ -22,7 +22,12 @@
  
  <!-- 로그인 -->
  <select id="mem_logincheck" parameterType="String" resultType="m">
- 	select * from member where mem_id=#{mem_id} and mem_state=0
+ 	select * from member where (mem_state=0 or mem_state=9) and  mem_id=#{mem_id}
+ </select>
+ 
+ <!-- admin 로그인 -->
+ <select id="mem_adminlogin" parameterType="String" resultType="m">
+ 	select * from member where mem_state=9 and  mem_id=#{mem_id}
  </select>
  
   <!-- 비번찾기=> 회원정보 검색 -->
@@ -40,4 +45,7 @@
 	select * from member where mem_no=#{mem_no}
 </select>
 
+ <select id="mem_getID" resultType="m">
+  SELECT mem_id FROM member WHERE mem_no=#{mem_no}
+ </select>
 </mapper>
