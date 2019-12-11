@@ -1,0 +1,33 @@
+@charset "UTF-8";
+/* admin_inquire.jsp */
+
+.admin_inq_title{
+	margin-left: 50px;
+}
+.admin_inq_main{
+	display: flex;
+    justify-content: center;
+    min-height: 500px;
+    width: 800px;
+    margin: 0 auto;
+}
+#adm_inquire_table td{
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
+.inq_list_underline {
+	border-bottom: .5px dotted gray;
+	padding: .5em .2em;
+}
+#inq_paging {
+	padding: 1em .2em;
+}
+#inq_search_interface {
+	display:flex;
+	justify-content:center;
+}
+#search_name {
+	margin: 0 7px;
+}
+

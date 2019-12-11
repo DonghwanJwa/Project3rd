@@ -1,0 +1,4 @@
+/**
+ * 	admin_inquire.jsp
+ */
+

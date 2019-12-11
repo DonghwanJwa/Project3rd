@@ -39,6 +39,15 @@ a:hover{text-decoration:underline;}
 	color:#fff;
 }
 
+#adm_page_title {
+	width:800px;
+	margin:0 auto;
+}
+
+.adm_page_title {
+	padding-left:5px;
+}
+
 /* admin_main */
 
 #adm_main_wrap {
@@ -323,6 +332,7 @@ a:hover{text-decoration:underline;}
 }
 
 #cont_button_wrap {
+	margin:10px 0;
 	display:flex;
 	justify-content:flex-end;
 }
@@ -391,12 +401,33 @@ a:hover{text-decoration:underline;}
 	margin: 0 5px;
 }
 
+/* admin_member_info (회원정보 열람) */
 
+#adm_mem_info_wrap {
+    min-height: 500px;
+    width: 800px;
+    margin: 0 auto;
+}
 
+.adm_member_table {
+	border-collapse:collapse;
+	border-color:gray;
+	width:800px;
+	font-size:14px;
+}
 
+.adm_member_table th {
+	height:30px;
+	background-color: aliceblue;
+}
 
+#adm_profile_field {
+	padding:5px;	
+	height:100px;
+}
 
-
-
-
+#adm_portfolio_field {
+	min-height:100px;
+	padding:5px;
+}
 

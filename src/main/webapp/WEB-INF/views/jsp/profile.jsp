@@ -17,14 +17,14 @@
 					<div>
 						<div id="p_menu" class="p_menu_button hide">
 						<%--신고  --%>
-							<c:if test ="${empty id}">
+							<c:if test ="${empty mp}">
 							<button id="warring_icon" class="accuse_page_open"
 								onclick="accuseShow();"	>
 								<!-- after 적용 -->
 							</button>
 							</c:if>
 							<%--편집 --%>
-							<c:if test ="${!empty id}">
+							<c:if test ="${!empty mp}">
 							<button id="pt_edit_icon" onclick="location='profile_edit';">
 								<!-- after 적용 -->
 							</button>
@@ -33,11 +33,11 @@
 						<div id="profile_cont">
 							<div class="pf_subscriber">
 								<img id="profile_img" alt="이미지"
-									src="./resources/img/profile.jpg"
+									src="${m.profile_photo}"
 								>
 								<!--  <input class="?" date-image="???">-->
 							</div>
-							<strong id="profile_name">영화 읽어주는 남자</strong>
+							<strong id="profile_name">${mp.mem_nickname}</strong>
 							<br>
 							<span class="profile_font_size">카노라이츠 편집장</span>
 						</div>
@@ -50,20 +50,20 @@
 								<dd>
 						<div id="profile_button">
 							<%--해당되는 아이디로 로그인 했을때 --%>
-							<c:if test="${!empty id}">
+							<c:if test="${!empty mp}">
 							<a href="./write" class="profile_button_type subscribe_check">글쓰기</a>
 							</c:if>
-							<c:if test="${mem_author}">
+							<c:if test="${mp.mem_author==2}">
 							<a href="./offer_author" class="profile_button_type">제안하기</a> 
 							</c:if>
-							<c:if test="${empty id}">
+							<c:if test="${empty mp}">
 							<span>
 							<button	class="profile_button_type2">구독하기</button>
 							</span>
 							</c:if>
 						</div>
 							</dl>
-							<c:if test="${mem_author}">
+							<c:if test="${mp.mem_author==2}">
 						<div id="profile_keyword_line">
 							<ul class="profile_keyword_link">
 								<li><a href="new_posts" class="profile_button_keyword profile_line">예술</a></li>
@@ -107,9 +107,9 @@
 				<h3 class="hide_font">작가소개</h3>
 				<div class="author_intro">
 					<strong class="profile_font_size">소개</strong>
-					<p class="profile_font_size">영화 비(非 혹은 悲)평가, 그리고 시네마 유토피아를 지향하는
-						영화 마피아. 즐겁게 보고, 열심히 해독하며, 치열하게 쓰는 영화 기록자.</p>
+					<p class="profile_font_size">${mp.profile_cont}</p>
 				</div>
+				<c:if test="${mp.mem_author == 2}">
 				<p class="profile_font_size">
 					<strong>기타 이력 및 포트폴리오</strong>
 					<br>
@@ -123,6 +123,7 @@
 					<br>
 					- 문화뉴스 칼럼 연재(2015~2017) '영읽남의 오르되브르'
 				</p>
+				</c:if>
 			</div>
 		
 			<div id="article" style="display: none;">

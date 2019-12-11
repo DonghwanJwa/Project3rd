@@ -29,4 +29,15 @@
 <select id="mem_pwdck" resultType="m">
     select * from member where mem_id=#{mem_id}
 </select>
+
+
+<select id="mem_emailcheck" resultType="m">
+	select * from member where email_id=#{email_id} and email_domain=#{email_domain}
+</select>
+
+ <!--회원 찾기 -->
+<select id="mem_ck" resultType="m">
+	select * from member where mem_no=#{mem_no}
+</select>
+
 </mapper>

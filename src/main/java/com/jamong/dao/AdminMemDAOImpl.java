@@ -23,4 +23,9 @@ public class AdminMemDAOImpl implements AdminMemDAO {
 		return this.sqlSession.selectList("adm_mem_list",me);
 	}
 
+	@Override
+	public MemberVO memInfo(int no) {
+		return this.sqlSession.selectOne("amd_mem_info",no);
+	}
+
 }

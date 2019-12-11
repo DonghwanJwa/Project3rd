@@ -39,9 +39,62 @@ function inq(){
 	}
 		
 }
-
-
-	/* phone 번호에 번호이외에 것이 들어가면 삭제 */
+	
+	$(document).ready(function(){
+		$("#list").on("click",function(e){
+			e.preventDefault();
+			fn_openBoardList();
+	});
+	$("#write").on("click",function(e){
+		e.preventDefault();
+		fn_insertBoard();
+	});
+	
+	$("#addfile").on("click",function(e){
+		e.preventDefault();
+		fn_addFile();			
+	});
+	
+	$("a[name='delete']").on("click",function(e){
+		e.preventDefault();
+		fn_deletefile($(this));
+	});
+	
+});
+	function fn_openBoardList(){
+		var comSubmit =new ComSubmit();
+		comSubmit.setUrl("<c:url value='/views/openBoardList.do'/>");
+		comSubmit.submit();
+	}
+	
+	function fn_insertBoard(){
+		var comSubmit = new ComSubmit("inq_request");
+		comSubmit.setUrl("<c:url value='/sample/insertBoard.do'/>");
+		comSubmit.submit();
+	}
+	
+	/** 첨부파일 추가가 4개까지만 가능하게 하는 js  -with 좌욷**/
+		function fn_addFile(){
+			for(var i=1;i<=4;i++){
+				if(!$('#fileinput').children().hasClass('file_'+i)){
+					var str = "<p class='file_"+i+"'><input type='file' name='file_"+i+"' class='inq_inp_file'><a href='#this' class='btn' name='delete'>삭제</p></a>";
+					$("#fileinput").append(str);
+					$("a[name='delete']").on("click",function(e){
+						e.preventDefault();
+						fn_deletefile($(this));
+					});
+					return false;
+				}
+			}
+		}
+		
+		function fn_deletefile(obj){
+			obj.parent().remove();
+		}
+	
+		
+		
+		/* phone 번호에 번호이외에 것이 들어가면 삭제 */
 $(document).ready(function(){
 	$("#phone").on("focus",function(){
 		var x = $(this).val();
