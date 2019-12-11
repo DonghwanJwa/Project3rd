@@ -17,8 +17,8 @@
                <th width="151px">대분류</th>
                <th width="285px">내용</th>
                <th width="145px">전화번호</th>
-               <th width="95px">조회수</th>
                <th width="137px">작성일자</th>
+               <th width="95px">처리여부</th>
      </tr>
      
      <c:if test="${!empty ilist}">
@@ -41,11 +41,11 @@
      	 	</td>
  
      	 	<td align="center" class="inq_list_underline">
-     	 	  ${i.inq_hit}
+     	 	  ${i.inq_date}
      	 	</td>
  
      	 	<td align="center" class="inq_list_underline">
-     	 	  ${i.inq_date}
+     	 	  ${i.inq_state}
      	 	</td>
      	 </tr>
      	</c:forEach>

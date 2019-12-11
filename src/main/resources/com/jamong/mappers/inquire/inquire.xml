@@ -7,8 +7,8 @@
 
 <!-- 문의하기 -->
 <insert id="inq_insert">
- insert into inquire (inq_no,inq_item1,inq_item2,inq_email,inq_phone,inq_cont,inq_file1,inq_date) 
- values(inq_no_seq.nextval,#{inq_item1},#{inq_item2},#{inq_email},#{inq_phone},#{inq_cont},#{inq_file1},sysdate)
+ insert into inquire (inq_no,inq_item1,inq_email,inq_phone,inq_cont,inq_file1,inq_date,inq_state) 
+ values(inq_no_seq.nextval,#{inq_item1},#{inq_email},#{inq_phone},#{inq_cont},#{inq_file1},sysdate,#{inq_state})
 </insert>
 
 		<!-- 문의 개수 -->
@@ -34,7 +34,7 @@
 		
 		<!-- 공지 목록 -->
 		<select id="inq_list" resultType="inq">
-			select * from (select rowNum rNum,inq_no,inq_item1,inq_cont,inq_phone,inq_hit,inq_date 
+			select * from (select rowNum rNum,inq_no,inq_item1,inq_cont,inq_phone,inq_date,inq_state 
 			from (select * from inquire
 			
 			<where>

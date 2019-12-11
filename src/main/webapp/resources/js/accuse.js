@@ -32,7 +32,8 @@ function accuseVali(){
 	}
 	if($('#acc_write_reason').val() == ""){
 		$('#acc_vali_field').text("신고내용을 입력해 주세요.")
-		$("#acc_write_reason").focus();
+		$('#acc_vali_list').text("")
+		$("#acc_reason_text").focus();
 		return false;
 	}
 }

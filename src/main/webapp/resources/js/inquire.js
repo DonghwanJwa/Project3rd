@@ -8,11 +8,6 @@ function inq(){
 		$("#listselect").focus();
 		return false;
 	}
-	if($("#listsub option:selected").val() == "none"){
-		$('#inq_vali_wrap').text('목록을 선택해주세요.');
-		$('#listsub').focus();
-		return false;
-	}
 	if($("#email").val() == ""){
 		$('#inq_vali_email').text('E-mail을 작성해 주세요.');
 		$('#email').focus();

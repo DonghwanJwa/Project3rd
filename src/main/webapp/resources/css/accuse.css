@@ -19,12 +19,14 @@
     top: 0;
     left: 0;
     overflow: auto;
-    padding-top:1%;
+	display:flex;
+	justify-content:center;
+	align-items:center;    
     
 }
 #acc_report_base{
 	width: 460px;
-    margin: 0px auto 0;
+	height:600px;
     background-color:snow;	
 }
 #acc_report_base h3{
