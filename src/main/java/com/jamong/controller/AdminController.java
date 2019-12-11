@@ -17,6 +17,8 @@ import com.jamong.domain.NoticeVO;
 import com.jamong.service.AdminService;
 import com.jamong.service.MemberService;
 
+import pwdconv.PwdChange;
+
 @Controller
 public class AdminController {
 	@Autowired
@@ -48,7 +50,7 @@ public class AdminController {
 			out.println("history.back();");
 			out.println("</script>");
 		}else {		
-			if(!adm_pwd.equals(db_adm.getMem_pwd())) {	/** 추후!!!!!!비번암호화해서 비교해야됨 **/
+			if(!PwdChange.getPassWordToXEMD5String(adm_pwd).equals(db_adm.getMem_pwd())) {	/** 추후!!!!!!비번암호화해서 비교해야됨 **/
 				out.println("<script>");
 				out.println("alert('관리자 비밀번호가 일치하지 않습니다.');");
 				out.println("history.go(-1);");
