@@ -273,6 +273,17 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		if($.trim($('#join_membership_birth_month').val()).length==1){
+			var birth_month = $('#join_membership_birth_month').val();
+			$('#join_membership_birth_month').val("0"+birth_month);
+		}
+		
+		if($.trim($('#join_membership_birth_date').val()).length==1){
+			var birth_date = $('#join_membership_birth_date').val();
+			$('#join_membership_birth_date').val("0"+birth_date);
+			
+		}
+		
 		//기본정보 -> 프로필
 		if($("#join_membership_page2").css("display") == "none"){
 			$("#join_membership_page1").hide();
@@ -310,6 +321,23 @@ $(document).ready(function(){
 	
 	//프로필 -> 카테고리 : 다음으로
 	$("#join_membership_next_btn2").click(function() {
+		var nickname = $("#join_membership_profile_editor").val();		
+		$.ajax({
+	        type:"POST",
+	        url:"join_membership_idcheck", 
+	        data: {"id":nickname},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
+	        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
+	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
+	      	  if(data==1){	//중복 아이디가 있다면
+	      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+	          	return false;
+	      	  }  
+	        },
+	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
+	    		  alert("data error");
+	    	  }
+	      });
+		$('#join_membership_profile_editor_error').text('');
 		if($("#join_membership_page3").css ("display") == "none"){
 			$("#join_membership_page2").hide();
 			$("#join_membership_sequence_list2").removeClass('membership_step');
@@ -625,19 +653,19 @@ $(document).ready(function(){
 			$('#join_membership_birth_month').focus();
 			return false;
 		}
-		if($.trim($('#join_membership_birth_month').val()).length=1){
+		if($.trim($('#join_membership_birth_month').val()).length==1){
 			var birth_month = $('#join_membership_birth_month').val();
 			$('#join_membership_birth_month').val("0"+birth_month);
-			
+			return false;
 		}
 	});
 	
 	/*성별 유효성 검증*/
 	$('#join_membership_select_gender').on("focus", function() {
-		if($.trim($('#join_membership_birth_date').val()).length=1){
+		if($.trim($('#join_membership_birth_date').val()).length==1){
 			var birth_date = $('#join_membership_birth_date').val();
 			$('#join_membership_birth_date').val("0"+birth_date);
-			
+			return false;
 		}
 		if ($.trim($('#join_membership_select_gender option:selected').val())=='성별') {
 			$('#join_membership_error_birth').text('성별을 선택해 주세요!');
@@ -790,6 +818,45 @@ $(document).ready(function(){
 		$('#join_membership_emailcheck_div').hide();
 		$('#join_membership_email_flag').val('1');
 		$('#join_membership_next_btn').attr('disabled', true);
+	});
+	
+	/*닉네임 유효성 검증*/
+	$("#join_membership_profile_editor").on("focusout", function() {//포커스가 나갈때
+		var nickname = $(this).val();		
+		$.ajax({
+	        type:"POST",
+	        url:"join_membership_idcheck", 
+	        data: {"id":nickname},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
+	        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
+	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
+	      	  if(data==1){	//중복 아이디가 있다면
+	      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+	          	return false;
+	      	  }  
+	        },
+	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
+	    		  alert("data error");
+	    	  }
+	      });
+		$('#join_membership_profile_editor_error').text('');
+	}).on("keyup", function(key) {//타이핑 할때
+		var nickname = $(this).val();		
+		$.ajax({
+	        type:"POST",
+	        url:"join_membership_idcheck", 
+	        data: {"id":nickname},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
+	        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
+	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
+	      	  if(data==1){	//중복 아이디가 있다면
+	      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+	          	return false;
+	      	  }  
+	        },
+	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
+	    		  alert("data error");
+	    	  }
+	      });
+		$('#join_membership_profile_editor_error').text('');
 	});
 	
 	/*프로필 미리보기 이미지 변경 - 등록메서드 실행*/
