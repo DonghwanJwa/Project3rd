@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -245,43 +246,6 @@ public class MemberController {
 		
 		return null;
 	}
-	
-	@RequestMapping("pass_modify")
-	public ModelAndView user_pass_modify() { // 내설정
-		ModelAndView mv=new ModelAndView();
-		
-		mv.setViewName("jsp/pass_modify");
-		
-		return mv;
-	}
-    
-	@RequestMapping("member_modify")
-	public ModelAndView user_member_modify() { // 회원정보수정
-		ModelAndView mv=new ModelAndView();
-		
-		mv.setViewName("jsp/member_modify");
-		
-		return mv;
-	}
-	
-	@RequestMapping("member_modify_ok")
-    public String pass_login_ok(String pass_modify_id,String pass_modify_pass,HttpServletResponse response)throws Exception {		
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out=response.getWriter();
-			
-			MemberVO checp_pass=this.memberService.pwdcheck(pass_modify_id);
-			if(checp_pass != null) {//비어 있지 않을때
-				if(checp_pass.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(pass_modify_pass))) {
-					System.out.println(checp_pass);
-					return "redirect:/member_modify";
-				}
-			}else {
-				out.println("<script>");
-				out.println("alert('회원정보를 찾을 수 없습니다!');");
-				out.println("</script>");
-			}
-			return "redirect:/pass_modify";
-    }
 	
 	//@RequestMapping("profile")
 	//public ModelAndView user_profile() {

@@ -10,13 +10,10 @@ var getmonth_date= RegExp(/^[0-9]{1,2}$/); 				//월,일
 var getName= RegExp(/^[가-힣]+$/);						//이름
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
 //var fa1 = '<c:out value="${mv.mem_fav1 }"/>';
-var chDate = '<c:out value="${checkDate}"/>';
 getCategorySelect();//카테고리선택란에 카테고리 넣기(하단에 메서드 존재)
 
 /*카테고리선택창의 카테고리 불러오기*/
 function getCategorySelect(){
-	var re = '<c:out value="${mem_fa1}"/>';
-	alert(re);
 
 	  $.getJSON("/jamong.com/category_load/",function(data){
 		  var str="";

@@ -13,19 +13,8 @@
 <script src="./resources/js/member_modify.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
-
-<%-- ${mv.mem_fav1 }<br/>
-${mv.mem_fav2 }<br>
-${mv.mem_fav3 }<br>
-<c:set var="fa1" value="${mv.mem_fav1}" />
-첫번째 값: ${fa1}<hr/>
-
-
-<script>
-var re_fa1='<c:out value="${fa1}"/>';
-alert(re_fa1);
-</script> --%>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<form method="post" action="member_modify_ok">
 <div id="member_modify_main_wrap">
 	<div id="member_modify_main_div">
 		<!-------------------------------로고------------------------------------>
@@ -48,14 +37,14 @@ alert(re_fa1);
 				<!-------------------------------아이디, 비번, 비번확인, 이름,------------------------------------>
 				<div id="member_modify_page1" >
 					<div id="member_modify_sub_div_1">
-						<input type="password" placeholder="비밀번호" tabindex="2"class="member_modify_text" 
+						<input type="password" placeholder="비밀번호" tabindex="1"class="member_modify_text" 
 						id="member_modify_pass" name="mem_pwd">
 						<div class="member_modify_error" id="member_modify_error_pass"></div>
 
-						<input type="password" placeholder="비밀번호 확인" tabindex="3"class="member_modify_text" id="member_modify_pass_check">
+						<input type="password" placeholder="비밀번호 확인" tabindex="1"class="member_modify_text" id="member_modify_pass_check">
 						<div class="member_modify_error"id="member_modify_error_pass_check"></div>
 
-						<input placeholder="이름" class="member_modify_text" value="${mv.mem_name}" tabindex="4"id="member_modify_name" name="mem_name">
+						<input placeholder="이름" class="member_modify_text" value="${mv.mem_name}" tabindex="3"id="member_modify_name" name="mem_name">
 						<div class="member_modify_error" id="member_modify_error_name"></div>
 					</div>
 
@@ -64,37 +53,37 @@ alert(re_fa1);
 					<div id="member_modify_sub_div_2">
 
 						<span id="member_modify_birth_span"> 
-							<input placeholder="년" value="${mv.mem_birth1 }" class="member_modify_birth number2Only" id="member_modify_birth_year" name="mem_birth1" tabindex="5" maxlength="4">
-							<input placeholder="월" value="${mv.mem_birth2 }" class="member_modify_birth number2Only" id="member_modify_birth_month" name="mem_birth2" tabindex="6" maxlength="2">
-							<input placeholder="일" value="${mv.mem_birth3 }" class="member_modify_birth number2Only" id="member_modify_birth_date" name="mem_birth3" tabindex="7" maxlength="2">
+							<input placeholder="년" value="${mv.mem_birth1 }" class="member_modify_birth number2Only" id="member_modify_birth_year" name="mem_birth1" tabindex="4" maxlength="4">
+							<input placeholder="월" value="${mv.mem_birth2 }" class="member_modify_birth number2Only" id="member_modify_birth_month" name="mem_birth2" tabindex="5" maxlength="2">
+							<input placeholder="일" value="${mv.mem_birth3 }" class="member_modify_birth number2Only" id="member_modify_birth_date" name="mem_birth3" tabindex="6" maxlength="2">
 						</span> 
 					
 						<div class="member_modify_error"id="member_modify_error_birth"></div>
 
 						<div class="member_modify_email_class">
-							<input class="member_modify_email" value="${mv.email_id }" tabindex="9"id="member_modify_email" name="email_id" placeholder="이메일">
+							<input class="member_modify_email" value="${mv.email_id }" tabindex="7"id="member_modify_email" name="email_id" placeholder="이메일">
 						</div>
 						<b id="member_modify_email_atMark">@</b> 
-						<input type="text" list="browsers" value="${mv.email_domain }" id="member_modify_email_datalist"name="email_domain" placeholder="도메인" tabindex="10">
+						<input type="text" list="browsers" value="${mv.email_domain }" id="member_modify_email_datalist"name="email_domain" placeholder="도메인" tabindex="8">
 						<datalist id=browsers>
 							<option value="naver.com">
 							<option value="daum.com">
 							<option value="gmail.com">
 							<option value="nate.com">
 						</datalist>
-						<button id="member_modify_certified_btn" tabindex="11">인증</button>
+						<button id="member_modify_certified_btn" tabindex="9">인증</button>
 						<div class="member_modify_error"id="member_modify_error_email_domain"></div>
 
 						<div id="member_modify_tel_color">
 							<div class="member_modify_tel_hover_focus">
-								  <input class="member_modify_tel number2Only" id="member_modify_tel1" value="${mv.mem_phone01 }" name="mem_phone01" placeholder="010" maxlength="3" tabindex="12"
-								>-<input class="member_modify_tel number2Only" id="member_modify_tel2" value="${mv.mem_phone02 }" name="mem_phone02" placeholder="0000" maxlength="4" tabindex="13"
-								>-<input class="member_modify_tel number2Only" id="member_modify_tel3" value="${mv.mem_phone03 }" name="mem_phone03" placeholder="0000" maxlength="4" tabindex="14">
+								  <input class="member_modify_tel number2Only" id="member_modify_tel1" value="${mv.mem_phone01 }" name="mem_phone01" placeholder="010" maxlength="3" tabindex="10"
+								>-<input class="member_modify_tel number2Only" id="member_modify_tel2" value="${mv.mem_phone02 }" name="mem_phone02" placeholder="0000" maxlength="4" tabindex="11"
+								>-<input class="member_modify_tel number2Only" id="member_modify_tel3" value="${mv.mem_phone03 }" name="mem_phone03" placeholder="0000" maxlength="4" tabindex="12">
 							</div>
 							<div class="member_modify_error" id="member_modify_error_tel"></div>
 						</div>
 					</div>
-						<input type="button" id="member_modify_next_btn" tabindex="15" value="넘어가기" />
+						<input type="button" id="member_modify_next_btn" tabindex="13" value="넘어가기" />
 				</div>
 			
 			<!-- 카테고리 --------------------------------------------------------------------------------------->
@@ -116,6 +105,7 @@ alert(re_fa1);
 				</div>
 			</div>
 	</div>
+	</form>
 </body>
 </html>
 <%@ include file="../include/footer.jsp"%>
