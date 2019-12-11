@@ -95,9 +95,9 @@ public class AdminMemberController {
 		PrintWriter out=response.getWriter();
 		session=request.getSession();
 		
-		String adm_id=(String)session.getAttribute("adm_id");
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
-		if(adm_id == null) {
+		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
 			out.println("location='admin_login';");

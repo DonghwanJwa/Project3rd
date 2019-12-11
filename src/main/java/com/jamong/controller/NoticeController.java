@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jamong.domain.MemberVO;
 import com.jamong.domain.NoticeVO;
 import com.jamong.service.NoticeService;
 
@@ -27,9 +28,9 @@ public class NoticeController {
 		PrintWriter out=response.getWriter();
 		session=request.getSession();
 		
-		String adm_id=(String)session.getAttribute("adm_id");
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
-		if(adm_id == null) {
+		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
 			out.println("location='admin_login';");
@@ -82,9 +83,9 @@ public class NoticeController {
 		PrintWriter out=response.getWriter();
 		session=request.getSession();
 		
-		String adm_id=(String)session.getAttribute("adm_id");
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
-		if(adm_id == null) {
+		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
 			out.println("location='admin_login';");
@@ -117,9 +118,9 @@ public class NoticeController {
 		PrintWriter out=response.getWriter();
 		session=request.getSession();
 		
-		String adm_id=(String)session.getAttribute("adm_id");
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
-		if(adm_id == null) {
+		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
 			out.println("location='admin_login';");
@@ -159,10 +160,10 @@ public class NoticeController {
 		
 		NoticeVO db_pwd=this.noticeService.getNoticeCont(n.getNoti_no());
 		
-		String adm_id=(String)session.getAttribute("adm_id");
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		String noti_pwd=request.getParameter("noti_pwd");
 		
-		if(adm_id == null) {
+		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
 			out.println("location='admin_login';");
@@ -191,12 +192,12 @@ public class NoticeController {
 		PrintWriter out=response.getWriter();
 		session=request.getSession();
 		
-		String adm_id = (String)session.getAttribute("adm_id");
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
 		NoticeVO db_pwd=this.noticeService.getNoticeCont(n.getNoti_no());
 		String noti_pwd=request.getParameter("noti_pwd");
 		
-		if(adm_id == null) {
+		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
 			out.println("location='admin_login';");
