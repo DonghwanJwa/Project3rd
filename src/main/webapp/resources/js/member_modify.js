@@ -1,5 +1,5 @@
 /**
- * login2.js
+ * member_modify.js
  */
 
 /*정규식*/
@@ -9,6 +9,28 @@ var getyear= RegExp(/^[0-9]{4}$/); 						//년
 var getmonth_date= RegExp(/^[0-9]{1,2}$/); 				//월,일
 var getName= RegExp(/^[가-힣]+$/);						//이름
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
+//var fa1 = '<c:out value="${mv.mem_fav1 }"/>';
+var chDate = '<c:out value="${checkDate}"/>';
+getCategorySelect();//카테고리선택란에 카테고리 넣기(하단에 메서드 존재)
+
+/*카테고리선택창의 카테고리 불러오기*/
+function getCategorySelect(){
+	var re = '<c:out value="${mem_fa1}"/>';
+	alert(re);
+
+	  $.getJSON("/jamong.com/category_load/",function(data){
+		  var str="";
+		  $(data).each(function(){//each는 jQuery에서 반복함수
+			  str+='<li class="member_modify_category-item">'+
+			  '<span class="member_modify_category-span">'+this.cat_name+'</span>'
+			  +'<input type="hidden" value="'+this.cat_no+'"/>'
+			  +'</li>'
+		  });
+		  if ($("#member_modify_category-list").length > 0 ) {//해당 구역이 존재하면
+			  $('#member_modify_category-list').html(str);	//ul내부에 each내용을 넣어준다
+		  }
+	  });
+}
 
 $(document).ready(function(){
 $("#member_modify_next_btn").click(function() {
@@ -553,6 +575,27 @@ $("#member_modify_before_btn2").click(function() {
 		$("#member_modify_sequence_list1").addClass('membership_step');
 		$("#member_modify_sequence_list1").show('membership_step');
 
+	}
+});
+//카테고리 선택시 class,name 추가(form에 post전달하기 위해서 name값에 숫자 추가)
+//중요!! $(document).ready()안에 사용하지 않은 이유
+//		jQuery의 get이나 ajax방식으로 사용하는 경우 click 메서드가 요소를 인식하지 못한다.
+//		click의 조상격인 on을 사용하면 인식가능하므로 on을 사용하도록하자
+//		http://blog.freezner.com/archives/411
+$(document).on("click",".member_modify_category-span",function(){
+	if($(this).parent().hasClass("member_category_check")){
+		$(this).parent().removeClass("member_category_check");
+		$(this).next().removeClass()
+		$(this).next().removeAttr("name");
+	}else{
+		for(var i=1;i<=3;i++){
+			if(!$('.member_modify_category-span').next().hasClass("member_fav"+i)){
+				$(this).parent().addClass("member_category_check");
+				$(this).next().addClass("member_fav"+i)
+				$(this).next().attr("name","mem_fav"+i);
+				return false
+			}
+		}
 	}
 });
 });
