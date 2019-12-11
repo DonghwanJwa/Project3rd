@@ -246,21 +246,57 @@ public class MemberController {
 		return null;
 	}
 	
+	@RequestMapping("pass_modify_ok")
+	public ModelAndView pass_login_ok(@ModelAttribute MemberVO m,String pass_modify_id,
+		String pass_modify_pass,HttpServletResponse response,HttpSession session)throws Exception {		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		ModelAndView view = new ModelAndView();
+		
+		MemberVO ck=this.memberService.pwdcheck(pass_modify_id);
+		if(ck != null) {//비어 있지 않을때
+			if(ck.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(pass_modify_pass))) {
+
+				m.setMem_name(ck.getMem_name());
+				m.setMem_birth1(ck.getMem_birth1());
+				m.setMem_birth2(ck.getMem_birth2());
+				m.setMem_birth3(ck.getMem_birth3());
+				m.setMem_gender(ck.getMem_gender());
+				m.setEmail_id(ck.getEmail_id());
+				m.setEmail_domain(ck.getEmail_domain());
+				m.setMem_phone01(ck.getMem_phone01());
+				m.setMem_phone02(ck.getMem_phone02());
+				m.setMem_phone03(ck.getMem_phone03());
+				m.setMem_fav1(ck.getMem_fav1());
+				m.setMem_fav2(ck.getMem_fav2());
+				m.setMem_fav3(ck.getMem_fav3());
+				
+				view.addObject("mv",m );
+				view.setViewName("jsp/member_modify");
+				return view;
+			}
+		}else {
+			out.println("<script>");
+			out.println("alert('회원정보를 찾을 수 없습니다!');");
+			out.println("</script>");
+			view.setViewName("jsp/pass_modify");
+		}
+		
+		return view;
+	}//pass_login_ok
+	
 	@RequestMapping("pass_modify")
 	public ModelAndView user_pass_modify() { // 내설정
 		ModelAndView mv=new ModelAndView();
-		
 		mv.setViewName("jsp/pass_modify");
-		
 		return mv;
 	}
-    
+  
 	@RequestMapping("member_modify")
-	public ModelAndView user_member_modify() { // 회원정보수정
+	public ModelAndView user_member_modify(MemberVO vo,Model model) { // 회원정보수정
+		model.addAttribute("vo",vo);
 		ModelAndView mv=new ModelAndView();
-		
 		mv.setViewName("jsp/member_modify");
-		
 		return mv;
 	}
 	
