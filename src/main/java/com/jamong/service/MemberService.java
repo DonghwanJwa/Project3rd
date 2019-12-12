@@ -12,4 +12,5 @@ public interface MemberService {
 	MemberVO pwdcheck(String pass_modify_id);
 	MemberVO emailCheck(MemberVO m);
 	MemberVO adminLogin(String adm_id);
+	MemberVO profileCheck(int mem_no);
 }

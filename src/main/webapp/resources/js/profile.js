@@ -62,7 +62,7 @@ $(document).ready(function() {
 		keyword_tag[counter] = value; // 태그를 Object 안에 추가
 		counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
 	}
-	//공백이 아니게
+	//공백이 아니게 
 	function marginTag() {
 		return Object.values(keyword_tag).filter(function(word) {
 			return word !== "";
@@ -107,7 +107,7 @@ $(document).ready(function() {
 				})
 
 				if (result.length == 0) { // 태그 중복 검사
-
+					// siblings() 자신을 제외한 형제요소를 찾는 함수							
 					if ($(".tag_item").siblings().length <= 7) {// 태그 생성 제한
 						$("#edit_tag_list").append("<li class='tag_item'>" + tagValue + "<span class='del_btn' idx='" + counter + "'></span></li>").hide().fadeIn('2000');
 						addTag(tagValue);
