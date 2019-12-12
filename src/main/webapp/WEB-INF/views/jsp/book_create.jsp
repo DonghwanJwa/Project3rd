@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<script src="./resources/js/book_create.js"></script>
-<script src="./resources/js/jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css" href="./resources/css/book_create.css">
+<script src="/jamong.com/resources/js/book_create.js"></script>
+<script src="/jamong.com/resources/js/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/book_create.css">
 
 <div id="book_create_wrap">
  <div id="book_create_list">

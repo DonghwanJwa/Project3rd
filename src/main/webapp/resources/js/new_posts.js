@@ -1,6 +1,10 @@
 /**
  * new_posts.js
  */
+$(document).ready(function(){
+	var editorContent = CKEDITOR.instances.editor.getData();
+	var convertContent = editorContent.replace(/(<([^>]+)>)/ig,"");
+});
 var lastScrollTop=0;
 var easeEffect='easeInQuint';
 

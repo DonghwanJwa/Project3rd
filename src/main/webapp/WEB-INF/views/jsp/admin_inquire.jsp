@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <meta charset="UTF-8">
 <%@ include file="../include/admin_header.jsp" %>
-<link rel="stylesheet" type="text/css" href="./resources/css/admin_inquire.css"/>
-<script src="./resources/js/admin_inquire.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/admin_inquire.css"/>
+<script src="/jamong.com/resources/js/admin_inquire.js"></script>
 
  <h3 class=admin_inq_title>문의하기</h3>
 <form action="admin_inquire">
@@ -14,9 +14,9 @@
      
      <tr>
                <th width="40px">번호</th>
-               <th width="151px">대분류</th>
+               <th width="151px">분류</th>
                <th width="285px">내용</th>
-               <th width="145px">전화번호</th>
+               <th width="145px">회원구분</th>
                <th width="137px">작성일자</th>
                <th width="95px">처리여부</th>
      </tr>
