@@ -19,7 +19,7 @@
        <li class="foot-inner-menu-item"><a href="#">공지사항</a></li>
        <li class="foot-inner-menu-item"><a href="#">자몽 이용안내</a></li>
        <li class="foot-inner-menu-item"><a onclick="offerToggle();">작가신청</a></li>
-       <li class="foot-inner-menu-item"><a href="./inquire">고객센터</a></li>
+       <li class="foot-inner-menu-item"><a href="./inquire">문의하기</a></li>
        <li class="foot-inner-menu-item"><a href="./policy_terms">이용약관</a></li>
        <li class="foot-inner-menu-item"><a href="./policy_privacy">개인정보 처리방침</a></li>
       </ul>

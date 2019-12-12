@@ -15,4 +15,5 @@ public interface MemberDAO {
 	MemberVO adminLogin(String adm_id);
 	MemberVO get(String mem_id);
 	void memberUpdate(MemberVO vo);
+	MemberVO profileCheck(int mem_no);
 }

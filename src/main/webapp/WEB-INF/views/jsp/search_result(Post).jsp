@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" type="text/css" href="./resources/css/search_result.css" />
-<script src="./resources/js/search.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/search_result.css" />
+<script src="/js/search.js"></script>
 
 <%-- 검색페이지 header --%>
 <div id="search_header">
@@ -30,7 +30,7 @@
   <c:forEach begin="1" end="10" step="1">
    <a href="./read">
     <div class="post_cont">
-     <img id="post_img" src="./resources/img/a.jpg" alt="그림 안나옴">
+     <img id="post_img" src="/img/a.jpg" alt="그림 안나옴">
      <div id="post_text">
       <div id="post_title">여기에 제목이 출력</div>
       <div id="post_cont">이곳에 간단한 줄거리를 작성합니다. 글자 크기는 15px정도로 테스트 해보겠습니다.이곳에 간단한 줄거리를 작성합니다.

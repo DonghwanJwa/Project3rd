@@ -53,11 +53,11 @@ public class InquireController {
 		
 		/* 입력값들을 multi 로부터 가져오는 역할을합니다 */
 		String inq_item1 = multi.getParameter("inq_item1");
-		String inq_item2 = multi.getParameter("inq_item2");
 		String inq_email = multi.getParameter("inq_email");
 		String inq_phone = multi.getParameter("inq_phone");
 		String inq_cont  = multi.getParameter("inq_cont");
 		String inq_date  = multi.getParameter("inq_date");
+		String inq_state  = multi.getParameter("inq_state");
 		
 		
 		
@@ -92,11 +92,11 @@ public class InquireController {
 		
 		/* 입력한 값들을 InquireVO객체 i에 저장 */
 		i.setInq_item1(inq_item1);
-		i.setInq_item2(inq_item2);
 		i.setInq_email(inq_email);
 		i.setInq_phone(inq_phone);
 		i.setInq_cont(inq_cont);
 		i.setInq_date(inq_date);
+		i.setInq_state(inq_state);
 		
 		this.inqService.insertInquire(i); //쿼리문 실행 메서드
 		

@@ -247,11 +247,7 @@ public class MemberController {
 		return null;
 	}
 	
-	//@RequestMapping("profile")
-	//public ModelAndView user_profile() {
-	//	ModelAndView mv=new ModelAndView();
-
-	@RequestMapping("profile/{mem_no}")
+	@RequestMapping("profile")
 	public ModelAndView user_profile( MemberVO mp,
 			HttpServletResponse response,
 			HttpServletRequest request,
@@ -261,9 +257,10 @@ public class MemberController {
 		session = request.getSession();
 		
 		MemberVO m = (MemberVO)session.getAttribute("m");
+
+		mp = this.memberService.profileCheck(m.getMem_no());
+//		List<BoardVO> bv = this.boardService.profileBoard(m.getMem_no());		
 		
-		// mp = this.memberService.checkMember(m.getMem_no());
-				
 		ModelAndView mv=new ModelAndView("jsp/profile");
 
 		
@@ -273,18 +270,41 @@ public class MemberController {
 	}
 	
 	@RequestMapping("profile_edit")
-	public ModelAndView profile_edit(MemberVO mp,
+	public ModelAndView profile_edit(
+//			int mem_no,
 			HttpServletRequest request,
 			HttpServletResponse response,
 			HttpSession session) throws Exception { // 프로필 편집 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		session = request.getSession();
-
+//		MemberVO mp = this.memberService.profileCheck(mem_no);
 		
-		ModelAndView mv = new ModelAndView("jsp/profile_edit"); 
-		
+		ModelAndView mv = new ModelAndView(); 
+//		mv.addObject("mp",mp);
+		mv.setViewName("jsp/profile_edit");
 		return mv;
+	}
+	
+	@RequestMapping("/profile_edit_ok")
+	public String profile_edit_ok( MemberVO mp,
+			HttpServletRequest requset,
+			HttpSession session) throws Exception{
+//		this.memberService.updateProfile(mp);
+//		if(id==null) {
+//			out.println("<script>");
+//			out.println("alert(잘못된 경로입니다!);");
+//			out.println("location='profile';");
+//			out.println("</script>");
+//		}else {
+//			
+//		out.println("<script>");
+//		out.println("alert(정보수정이 완료되었습니다!);");
+//		out.println("location='profile';");
+//		out.println("</script>");
+//		}
+//		
+		return "null";
 	}
 	
 	@RequestMapping("feed")

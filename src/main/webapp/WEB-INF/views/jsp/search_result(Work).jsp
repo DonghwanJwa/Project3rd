@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<link rel="stylesheet" type="text/css" href="./resources/css/search_result.css" />
-<script src="./resources/js/search.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/search_result.css" />
+<script src="/jamong.com/resources/js/search.js"></script>
 
 <%-- 검색페이지 header --%>
 <div id="search_header">
@@ -33,7 +33,7 @@
   <c:forEach begin="1" end="10" step="1">
   <a href="./book_info">
    <div class="work_cont">
-    <img id="work_img" src="./resources/img/b.jpg" alt="책 표지인데 안나옴;">
+    <img id="work_img" src="/jamong.com/resources/img/b.jpg" alt="책 표지인데 안나옴;">
     <div class="work_cont_view">
      <div class="work_cont_view_top">
       <strong>강아지와 지내는건 어때?</strong>

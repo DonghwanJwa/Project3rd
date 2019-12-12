@@ -88,8 +88,8 @@
 						<div id="join_membership_tel_color">
 							<div class="join_membership_tel_hover_focus">
 								<input class="join_membership_tel numberOnly" id="join_membership_tel1"	name="mem_phone01" placeholder="010" maxlength="3" tabindex="9"  
-								>-<input class="join_membership_tel numberOnly" id="join_membership_tel2" name="mem_phone02" placeholder="0000" maxlength="4" tabindex="10"  
-								>-<input class="join_membership_tel numberOnly" id="join_membership_tel3" name="mem_phone03" placeholder="0000" maxlength="4" tabindex="11">
+								><b class="join_membership_tel_bar">-</b><input class="join_membership_tel numberOnly" id="join_membership_tel2" name="mem_phone02" placeholder="0000" maxlength="4" tabindex="10"  
+								><b class="join_membership_tel_bar">-</b><input class="join_membership_tel numberOnly" id="join_membership_tel3" name="mem_phone03" placeholder="0000" maxlength="4" tabindex="11">
 							</div>
 							<div class="join_membership_error" id="join_membership_error_tel"></div>
 						</div>

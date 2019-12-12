@@ -39,11 +39,18 @@
 	select * from member where email_id=#{email_id} and email_domain=#{email_domain}
 </select>
 
- <!--회원 찾기 -->
-<select id="mem_ck" resultType="m">
-	select * from member where mem_no=#{mem_no}
+	 <!--회원 찾기 -->
+<select id="profile_ck" resultType="m">
+	select mem_no, mem_id, mem_author, profile_photo, mem_nickname, profile_cont, mem_keyword, mem_portfolio 
+	from member where mem_no = #{mem_no}
 </select>
-
+<!-- 
+<update id="profile_up" >
+ 	update member set  profile_photo=#{profile_photo}, profile_cont=#{profile_cont},
+ 	mem_nickname=#{mem_nickname}, mem_keyword=#{mem_keyword}, mem_portfolio=#{mem_portfolio}
+ 	where mem_no = #{mem_no}
+</update>
+ -->
  <select id="mem_getID" resultType="m">
   SELECT mem_id FROM member WHERE mem_no=#{mem_no}
  </select>
