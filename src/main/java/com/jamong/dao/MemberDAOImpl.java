@@ -49,5 +49,11 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public MemberVO getMemberID(int mem_no) {
 		return this.sqlSession.selectOne("mem_getID",mem_no);
+	}
+
+	@Override
+	public MemberVO profileCheck(int mem_no) {
+		return this.sqlSession.selectOne("profile_ck",mem_no);
 	}	
+	
 }

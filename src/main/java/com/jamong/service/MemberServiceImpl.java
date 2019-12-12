@@ -47,5 +47,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO adminLogin(String adm_id) {
 		return this.memberDao.adminLogin(adm_id);
-	}		
+	}
+
+	@Override
+	public MemberVO profileCheck(int mem_no) {
+		return this.memberDao.profileCheck(mem_no);
+	}	
+	
+	
 }
