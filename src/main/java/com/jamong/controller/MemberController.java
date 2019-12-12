@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,6 +62,9 @@ public class MemberController {
 				m.setMem_fav1(dm.getMem_fav1());
 				m.setMem_fav2(dm.getMem_fav2());
 				m.setMem_fav3(dm.getMem_fav3());
+				if(dm.getMem_state()==9) {	//관리자일경우 이름값을 저장 ->관리자페이지에서 필요하여 넣었습니다.
+					m.setMem_name(dm.getMem_name());
+				}
 				session.setAttribute("m", m);
 			}
 		}
@@ -101,7 +105,7 @@ public class MemberController {
 			re=1;
 		}
 		return re;
-	}//member_idcheck()
+	}//member_idcheck() 
 	
 	@RequestMapping("join_membership_emailcheck")
 	@ResponseBody
@@ -132,12 +136,12 @@ public class MemberController {
 		
 		String subject = "회원가입 인증 코드 발급 안내 입니다.";
 		StringBuilder sb = new StringBuilder();
-		sb.append("<h4>안녕하세요. 자몽입니다.<br/>");
-		sb.append("귀하의 인증 코드는 <h2>" + authCode + "</h2>입니다.<br/>");
-		sb.append("해당 코드를 인증란에 입력해주시기 바랍니다<br/>.");
-		sb.append("감사합니다.</h4>");
+		sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
+		sb.append("귀하의 인증 코드는 </h3><h2>" + authCode + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
+		sb.append("해당 코드를 인증란에 입력해주시기 바랍니다.<br/>");
+		sb.append("감사합니다.</h3>");
 		
-		return mailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail, null);
+		return mailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail, null, request);
 	}
 
 	@RequestMapping("join_emailCert_ok")
@@ -243,48 +247,7 @@ public class MemberController {
 		return null;
 	}
 	
-	@RequestMapping("pass_modify")
-	public ModelAndView user_pass_modify() { // 내설정
-		ModelAndView mv=new ModelAndView();
-		
-		mv.setViewName("jsp/pass_modify");
-		
-		return mv;
-	}
-    
-	@RequestMapping("member_modify")
-	public ModelAndView user_member_modify() { // 회원정보수정
-		ModelAndView mv=new ModelAndView();
-		
-		mv.setViewName("jsp/member_modify");
-		
-		return mv;
-	}
-	
-	@RequestMapping("member_modify_ok")
-    public String pass_login_ok(String pass_modify_id,String pass_modify_pass,HttpServletResponse response)throws Exception {		
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out=response.getWriter();
-			
-			MemberVO checp_pass=this.memberService.pwdcheck(pass_modify_id);
-			if(checp_pass != null) {//비어 있지 않을때
-				if(checp_pass.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(pass_modify_pass))) {
-					System.out.println(checp_pass);
-					return "redirect:/member_modify";
-				}
-			}else {
-				out.println("<script>");
-				out.println("alert('회원정보를 찾을 수 없습니다!');");
-				out.println("</script>");
-			}
-			return "redirect:/pass_modify";
-    }
-	
-	//@RequestMapping("profile")
-	//public ModelAndView user_profile() {
-	//	ModelAndView mv=new ModelAndView();
-
-	@RequestMapping("profile/{mem_no}")
+	@RequestMapping("profile")
 	public ModelAndView user_profile( MemberVO mp,
 			HttpServletResponse response,
 			HttpServletRequest request,
@@ -294,9 +257,10 @@ public class MemberController {
 		session = request.getSession();
 		
 		MemberVO m = (MemberVO)session.getAttribute("m");
+
+		mp = this.memberService.profileCheck(m.getMem_no());
+//		List<BoardVO> bv = this.boardService.profileBoard(m.getMem_no());		
 		
-		// mp = this.memberService.checkMember(m.getMem_no());
-				
 		ModelAndView mv=new ModelAndView("jsp/profile");
 
 		
@@ -306,18 +270,41 @@ public class MemberController {
 	}
 	
 	@RequestMapping("profile_edit")
-	public ModelAndView profile_edit(MemberVO mp,
+	public ModelAndView profile_edit(
+//			int mem_no,
 			HttpServletRequest request,
 			HttpServletResponse response,
 			HttpSession session) throws Exception { // 프로필 편집 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		session = request.getSession();
-
+//		MemberVO mp = this.memberService.profileCheck(mem_no);
 		
-		ModelAndView mv = new ModelAndView("jsp/profile_edit"); 
-		
+		ModelAndView mv = new ModelAndView(); 
+//		mv.addObject("mp",mp);
+		mv.setViewName("jsp/profile_edit");
 		return mv;
+	}
+	
+	@RequestMapping("/profile_edit_ok")
+	public String profile_edit_ok( MemberVO mp,
+			HttpServletRequest requset,
+			HttpSession session) throws Exception{
+//		this.memberService.updateProfile(mp);
+//		if(id==null) {
+//			out.println("<script>");
+//			out.println("alert(잘못된 경로입니다!);");
+//			out.println("location='profile';");
+//			out.println("</script>");
+//		}else {
+//			
+//		out.println("<script>");
+//		out.println("alert(정보수정이 완료되었습니다!);");
+//		out.println("location='profile';");
+//		out.println("</script>");
+//		}
+//		
+		return "null";
 	}
 	
 	@RequestMapping("feed")

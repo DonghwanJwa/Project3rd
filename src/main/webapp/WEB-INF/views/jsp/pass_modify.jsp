@@ -4,20 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="./resources/css/pass_modify.css" />
-<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/pass_modify.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/pass_modify.css" />
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>
+<script src="/jamong.com/resources/js/jquery.js"></script>
+<script src="/jamong.com/resources/js/pass_modify.js"></script>
 <title>비밀번호수정페이지입니다</title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
-	<form method="post" action="member_modify_ok">
+	<form method="post" action="pass_modify_ok">
 	<div id ="pass_modify_main_wrap">
 		<div id="pass_modify_main_div">
 				<!-----------------로고------------------------>
 				<div>
-					<a href="./"><img id="pass_modify_img_logo"
-						src="./resources/img/logo2.png" /></a>
+					<a href="/jamong.com/"><img id="pass_modify_img_logo"
+						src="/jamong.com/resources/img/logo2.png" /></a>
 				</div>
 				
 				<label id="pass_modify_label">비밀번호 확인</label>
@@ -31,7 +31,7 @@
 						<div class="pass_modify_error" id="pass_modify_error_pass"></div>						
 						
 						<div class="pass_modify_color">
-                        <input tabindex="1" id="pass_modify_pass" name="pass_modify_pass" class="pass_modify_text" placeholder="비밀번호" type="password"></div>
+                        <input tabindex="1" id="pass_modify_pass" name="pass_modify_pass" class="pass_modify_text" placeholder="비밀번호" type="password" ></div>
 						<div class="pass_modify_error" id="pass_modify_error_pass_check"></div>						
 
                 <input type="submit" id="pass_modify_lastbtn" value="비밀번호 확인">

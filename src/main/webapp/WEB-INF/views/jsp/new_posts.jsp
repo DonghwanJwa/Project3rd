@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
-<script src="./resources/js/new_book.js"></script>
-<link rel="stylesheet" type="text/css" href="./resources/css/new_post.css" />
+<script src="/jamong.com/resources/js/new_book.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/new_post.css" />
 
 <div id="new_post_title">최신 글</div>
 
@@ -26,10 +26,10 @@
          <div id="new_post_loading_cont_text_title">${b.bo_title}</div>
          <div id="new_post_loading_cont_text_cont">${b.bo_cont}</div>
          <div id="new_post_loading_cont_text_writer">
-          <i>by</i> ${m.mem_nickname}
+          <i>by</i> ${b.memberVO.mem_nickname}
          </div>
          <div id="new_post_loading_cont_text_tag">
-          <span>${m.mem_keyword}</span>
+          <span>${b.memberVO.mem_keyword}</span>
          </div>
          <div id="new_post_loading_cont_text_ago">${b.bo_date}</div>
         </div>

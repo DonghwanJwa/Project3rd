@@ -1,0 +1,86 @@
+@charset "EUC-KR";
+
+#my_info_main_wrap{
+	width: 900px;
+	height: 600px;
+	border:1px solid red;
+	margin: 0 auto;
+}
+#my_info_main_div{
+	border:1px solid blue;
+	margin: 50px 0;
+	display: inline-block;
+}
+
+/*------------카테고리-----------------*/
+
+#my_info_category_container{
+	display: inline-block;	
+	width: 600px;
+	border:1px solid green;
+}
+
+#my_info_category-wrap{
+	margin:0 100px;
+}
+
+#my_info_category-frame{
+	height:270px;
+}
+
+.my_info_category-anoun{
+	display: block;
+	width:470px;
+	font-weight: normal;
+	font-size:14px;
+	padding-left: 55px;
+	color:#3d3d3d;
+	margin:0 85px;
+	margin-bottom:10px;	
+}
+
+#my_info_category-list{
+	width:470px;
+	list-style: none;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap:wrap;
+	margin:0 auto;
+	padding:0;
+}
+.my_info_category-item{
+	margin: 5px 5px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.my_info_category-item span{
+	height:70px;
+	width:70px;
+	font-size:13px;
+	text-align: center;
+	line-height:70px;
+	outline:1px solid #b1b1b1;
+	cursor: pointer;
+}
+.my_info_category-item span:hover{
+	background-color: #fba621;
+	outline:none;
+}
+.member_category_check span{
+	background-color: #fba621;
+	outline:none;
+}
+.my_info_button_container{
+	display: inline-block;
+}
+
+#my_info_before_btn, 
+#my_info_next_btn{
+}
+#my_info_before_btn:hover{
+}
+#my_info_next_btn:hover{
+ 
+}

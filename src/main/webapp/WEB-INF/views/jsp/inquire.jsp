@@ -2,8 +2,8 @@
 <%@ include file="../include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" type="text/css" href="./resources/css/inquire.css"/>
-<script src="./resources/js/inquire.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/inquire.css"/>
+<script src="/jamong.com/resources/js/inquire.js"></script>
 <article class=inq_main_art oncontextmenu="return false" ondragstart="return false"
  onselectstart="return false">
   <h3 class=inq_title>문의하기</h3>
@@ -53,23 +53,15 @@
   	      <div class="inq_wrap_select">
   	       <select class="inq_list_select" name="inq_item1" id="listselect" onselect="return inq2();">
   	          <option value="none">선택</option>
-  	          <option value="feedback" href="#none">개선/제안</option>
-  	          <option value="normal">일반문의</option>
-  	          <option value="jaehyu">제휴/협업 문의</option> 
+  	          <option value="개선/제안" href="#none">개선/제안</option>
+  	          <option value="일반문의">일반문의</option>
+  	          <option value="제휴/협업 문의">제휴/협업 문의</option> 
   	       </select>
   	       
   	      </div>
   	       
-  	       <div class="inq_wrap_select">
-  	       <select class="inq_list_select" name="inq_item2" id="listsub"style="display:;">
-  	          <option value="none">선택</option>
-  	          <option value="web">web</option>
-  	          <option value="안드로이드">안드로이드</option>
-  	          <option value="아이폰">아이폰</option>
-  	       </select>
-  	      </div>
+  	    
   	       <div class="inq_vali_date" id="inq_vali_list"></div>
-  	       <div class="inq_vali_date" id="inq_vali_wrap"></div>
   	    </dd>
   	   </dl>
   	   <!-- 문의쪽 큰DIV 끝 -->
@@ -99,9 +91,8 @@
   	    </dt>
   	    
   	    <dd>
-  	     <div class="inq_wrap_phone">+82</div>
   	     <input autocomplete="off" class="inq_nation" name="inq_phone" id="phone"
-  	      type="text" placeholder="01012345678">
+  	      type="text" maxlength="11" placeholder=" -없이 숫자만 입력 ex)01012345678">
   	     <div class="inq_vali_date" id="inq_vali_phone"></div>
   	    </dd>
   	   </dl>
@@ -116,8 +107,8 @@
   	    </dt>
   	    <dd>
   	     <div class="inq_wrap_item2">
-  	     	<textarea class="inq_inp_info2" placeholder="문의 내용을 입력해 주세요(최대 200자)" cols="24" rows="6" 
-  	     	id="inq_cont" name="inq_cont" style="line-height: normal" maxlength="200" type="text"></textarea>
+  	     	<textarea class="inq_inp_info2" placeholder="문의 내용을 입력해 주세요(최대 400자)" cols="24" rows="6" 
+  	     	id="inq_cont" name="inq_cont" style="line-height: normal" maxlength="400" type="text"></textarea>
   	     </div>
   	     <div class="inq_vali_date" id="inq_vali_info"></div>
   	    </dd>
@@ -148,13 +139,6 @@
   	  	<a href="#this" class="btn" id="write">작성하기</a>
   	  	<a href="#this" class="btn" id="list">목록으로</a>
   	     
-  	     <div class="inq_wrap_upload">
-  	      <strong class="inq_screen_out">업로드된 용량</strong>
-  	      <span class="inq_info_range">
-  	        <span class="inq_range_on" style="width:0%"></span>
-  	      </span>
-  	      <span class="inq_txt_upload">0MB</span>
-  	     </div>
   	     <p class="inq_desc_info">
   	     첨부파일은 최대 4개, 각 10MB까지 등록 가능하며
   	     <br>
@@ -194,7 +178,7 @@
   	    </table>
   	    <p class="inq_desc_more">
   	    더 자세한 내용에 대해서는
-  	    <a class="inq_link_more" href="./policy_privacy"
+  	    <a class="inq_link_more" href="/jamong.com/policy_privacy"
   	    target="_blank">자몽 개인정보처리방침</a>
   	    을 참고하시기 바랍니다.
   	    </p>

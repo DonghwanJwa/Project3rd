@@ -22,4 +22,9 @@ public class AdminMemServiceImpl implements AdminMemService {
 	public List<MemberVO> memList(MemberVO me) {
 		return this.admMemDao.memList(me);
 	}
+
+	@Override
+	public MemberVO memberInfo(int no) {
+		return this.admMemDao.memInfo(no);
+	}
 }

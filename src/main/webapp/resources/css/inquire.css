@@ -192,16 +192,6 @@ body{
 	font-size: 15px;
 	z-index: 10;
 }
-.inq_wrap_phone{
-	float: left;
-	width: 45px;
-	height: 27px;
-	text-align: left;
-	border:1px solid #333;
-	padding-top: 7px;
-	padding-left: 15px;
-	border-right: 0px;
-}
 .inq_phone_out{
 	overflow: hidden;
     position: absolute;
@@ -248,10 +238,11 @@ body{
 }
 .inq_nation{
 	float:left;
-	width: 498px;
-	height: 32px;
+	width: 550px;
+	height: 38px;
 	font-size: 15px;
-	padding-left: 15px;
+	line-height:36px;
+	padding:0px 15px;
 	border: 1px solid black;
 	style= resize:none;
 }

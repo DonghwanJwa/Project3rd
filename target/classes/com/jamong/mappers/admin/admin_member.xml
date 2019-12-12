@@ -80,4 +80,8 @@
 		</where>
 		order by mem_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
 	</select>
+	
+	<select id="amd_mem_info" resultType="m">
+		select * from member where mem_no=#{no}
+	</select>
 </mapper>

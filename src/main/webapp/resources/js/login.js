@@ -20,7 +20,7 @@ function getCategorySelect(){
 		  $(data).each(function(){//each는 jQuery에서 반복함수
 			  str+='<li class="join_membership_category-item">'
 			  +'<span class="join_membership_category-span">'+this.cat_name+'</span>'
-			  +'<input type="hidden" value="'+this.cat_name+'"/>'
+			  +'<input type="hidden" value="'+this.cat_no+'"/>'
 			  +'</li>'
 		  });
 		  if ($("#join_membership_category-list").length > 0 ) {//해당 구역이 존재하면
@@ -273,10 +273,22 @@ $(document).ready(function(){
 			return false;
 		}
 		
+		if($.trim($('#join_membership_birth_month').val()).length==1){
+			var birth_month = $('#join_membership_birth_month').val();
+			$('#join_membership_birth_month').val("0"+birth_month);
+		}
+		
+		if($.trim($('#join_membership_birth_date').val()).length==1){
+			var birth_date = $('#join_membership_birth_date').val();
+			$('#join_membership_birth_date').val("0"+birth_date);
+			
+		}
+		
 		//기본정보 -> 프로필
 		if($("#join_membership_page2").css("display") == "none"){
 			$("#join_membership_page1").hide();
 			$("#join_membership_sequence_list1").removeClass('membership_step');
+			$("#join_membership_sequence_list1").addClass('membership_complete')
 			$("#join_membership_page2").show();
 			$("#join_membership_sequence_list2").addClass('membership_step');
 		}
@@ -304,15 +316,34 @@ $(document).ready(function(){
 			$("#join_membership_page2").hide();
 			$("#join_membership_sequence_list2").removeClass('membership_step');
 			$("#join_membership_page1").show();
+			$("#join_membership_sequence_list1").removeClass('membership_complete');
 			$("#join_membership_sequence_list1").addClass('membership_step');
 		}
 	});
 	
 	//프로필 -> 카테고리 : 다음으로
 	$("#join_membership_next_btn2").click(function() {
+		var nickname = $("#join_membership_profile_editor").val();		
+		$.ajax({
+	        type:"POST",
+	        url:"join_membership_idcheck", 
+	        data: {"id":nickname},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
+	        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
+	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
+	      	  if(data==1){	//중복 아이디가 있다면
+	      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+	          	return false;
+	      	  }  
+	        },
+	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
+	    		  alert("data error");
+	    	  }
+	      });
+		$('#join_membership_profile_editor_error').text('');
 		if($("#join_membership_page3").css ("display") == "none"){
 			$("#join_membership_page2").hide();
 			$("#join_membership_sequence_list2").removeClass('membership_step');
+			$("#join_membership_sequence_list2").addClass('membership_complete');
 			$("#join_membership_page3").show();
 			$("#join_membership_sequence_list3").addClass('membership_step');
 		}
@@ -325,6 +356,7 @@ $(document).ready(function(){
 			$("#join_membership_page3").hide();
 			$("#join_membership_sequence_list3").removeClass('membership_step');
 			$("#join_membership_page2").show();
+			$("#join_membership_sequence_list2").removeClass('membership_complete');
 			$("#join_membership_sequence_list2").addClass('membership_step');
 		}
 	});
@@ -510,7 +542,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		if(!getyear.test($('#join_membership_birth_year').val())){
+		if(!getyear.test($.trim($('#join_membership_birth_year').val()))){
 			$('#join_membership_error_birth').text('년을 입력해주세요!');
 			return false;
 		}
@@ -525,7 +557,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		if(!getyear.test($('#join_membership_birth_year').val())){
+		if(!getyear.test($.trim($('#join_membership_birth_year').val()))){
 			$('#join_membership_error_birth').text('년을 입력해주세요!');
 			return false;
 		}
@@ -551,7 +583,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		if ($.trim($('#join_membership_birth_month').val())>12 || $.trim($('#join_membership_birth_month').val())<1) {
+		if($.trim($('#join_membership_birth_month').val())>12 || $.trim($('#join_membership_birth_month').val())<1) {
 			$('#join_membership_error_birth').text('유효한 월을 입력해 주세요!');
 			return false;
 		}
@@ -574,6 +606,12 @@ $(document).ready(function(){
 		$('#join_membership_error_birth').text('');
 		if (key.keyCode == 13) {
 			$('#join_membership_birth_date').focus();
+		}
+	}).on("focus",function(){
+		if ($.trim($('#join_membership_birth_year').val())>2020 || $.trim($('#join_membership_birth_year').val())<1900) {
+			$('#join_membership_error_birth').text('유효한 년도를 입력해 주세요!');
+			$('#join_membership_birth_year').focus();
+			return false;
 		}
 	});
 	
@@ -613,10 +651,26 @@ $(document).ready(function(){
 		if (key.keyCode == 13) {
 			$('#join_membership_select_gender').focus();
 		}
+	}).on("focus",function(){
+		if ($.trim($('#join_membership_birth_month').val())>12 || $.trim($('#join_membership_birth_month').val())<1) {
+			$('#join_membership_error_birth').text('유효한 월을 입력해 주세요!');
+			$('#join_membership_birth_month').focus();
+			return false;
+		}
+		if($.trim($('#join_membership_birth_month').val()).length==1){
+			var birth_month = $('#join_membership_birth_month').val();
+			$('#join_membership_birth_month').val("0"+birth_month);
+			return false;
+		}
 	});
 	
 	/*성별 유효성 검증*/
 	$('#join_membership_select_gender').on("focus", function() {
+		if($.trim($('#join_membership_birth_date').val()).length==1){
+			var birth_date = $('#join_membership_birth_date').val();
+			$('#join_membership_birth_date').val("0"+birth_date);
+			return false;
+		}
 		if ($.trim($('#join_membership_select_gender option:selected').val())=='성별') {
 			$('#join_membership_error_birth').text('성별을 선택해 주세요!');
 			return false;
@@ -770,6 +824,45 @@ $(document).ready(function(){
 		$('#join_membership_next_btn').attr('disabled', true);
 	});
 	
+	/*닉네임 유효성 검증*/
+	$("#join_membership_profile_editor").on("focusout", function() {//포커스가 나갈때
+		var nickname = $(this).val();		
+		$.ajax({
+	        type:"POST",
+	        url:"join_membership_idcheck", 
+	        data: {"id":nickname},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
+	        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
+	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
+	      	  if(data==1){	//중복 아이디가 있다면
+	      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+	          	return false;
+	      	  }  
+	        },
+	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
+	    		  alert("data error");
+	    	  }
+	      });
+		$('#join_membership_profile_editor_error').text('');
+	}).on("keyup", function(key) {//타이핑 할때
+		var nickname = $(this).val();		
+		$.ajax({
+	        type:"POST",
+	        url:"join_membership_idcheck", 
+	        data: {"id":nickname},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
+	        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
+	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
+	      	  if(data==1){	//중복 아이디가 있다면
+	      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+	          	return false;
+	      	  }  
+	        },
+	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
+	    		  alert("data error");
+	    	  }
+	      });
+		$('#join_membership_profile_editor_error').text('');
+	});
+	
 	/*프로필 미리보기 이미지 변경 - 등록메서드 실행*/
 	$("#join_membership_profile_input_hide").on("change", handleImgFileSelect);
 });
@@ -827,6 +920,20 @@ $(function(){
 	$(document).on("click", "#join_membership_certified_btn", function(){
 		var email = $.trim($('#join_membership_email').val());				//이메일값
 		var domain = $.trim($('#join_membership_email_datalist').val());	//도메인값
+		$('#join_membership_error_email_domain').text('');
+		
+		if (email=="") {
+			$('#join_membership_error_email_domain').text('이메일을 입력해주세요!');
+			return false;
+		}
+		if (domain=="") {
+			$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
+			return false;
+		}
+		if (!emailCheck.test($('#join_membership_email_datalist').val())) {
+			$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
+			return false;
+		}
 		//이메일 중복 다시체크
 		$.ajax({
 	        type:"POST",
@@ -857,6 +964,14 @@ $(function(){
 				$('#join_membership_emailcheck').attr('readonly',false);
 				$('#join_membership_emailcheck_btn').attr('disabled',false);
 			},
+			beforeSend:function(){
+			        //(이미지 보여주기 처리)
+			        $('.wrap-loading').show();
+			},
+			complete:function(){
+			        //(이미지 감추기 처리)
+			        $('.wrap-loading').hide();
+			},
 			error: function(data){
 				alert("에러가 발생했습니다.");
 				return false;
@@ -883,6 +998,14 @@ $(function(){
 				}else if(data == "false"){
 					alert("인증번호를 잘못 입력하셨습니다.")
 				}
+			},
+			beforeSend:function(){
+		        //(이미지 보여주기 처리)
+		        $('.wrap-loading').show();
+			},
+			complete:function(){
+			    //(이미지 감추기 처리)
+			    $('.wrap-loading').hide();
 			},
 			error:function(data){
 				alert("에러가 발생했습니다.");

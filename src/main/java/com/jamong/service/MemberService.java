@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+
 import com.jamong.domain.MemberVO;
 
 public interface MemberService {
@@ -12,4 +13,7 @@ public interface MemberService {
 	MemberVO pwdcheck(String pass_modify_id);
 	MemberVO emailCheck(MemberVO m);
 	MemberVO adminLogin(String adm_id);
+	MemberVO get(String mem_id);
+	void memberUpdate(MemberVO vo);
+	MemberVO profileCheck(int mem_no);
 }

@@ -65,8 +65,8 @@
   
   <!-- Gmail -->
   <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-    <property name="host" value="smtp.gmail.com" />	<!-- 구글 STMP 호스트주소 -->
-    <property name="port" value="587" />			<!-- 구글 STMP 포트번호 -->
+    <property name="host" value="smtp.gmail.com" />	<!-- 구글 SMTP 호스트주소 -->
+    <property name="port" value="587" />			<!-- 구글 SMTP 포트번호 -->
     <property name="username" value="projectJamong@gmail.com" />
     <property name="password" value="jamong2019!" />
     <property name="javaMailProperties">

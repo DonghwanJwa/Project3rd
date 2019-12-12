@@ -6,7 +6,7 @@
 <mapper namespace="member">
  <!-- 아이디 중복체크 -->
  <select id="mem_idcheck" parameterType="String" resultType="m">
- 	select * from member where mem_id=#{mem_id}
+ 	select * from member where mem_id=#{mem_id} or mem_nickname=#{mem_id}
  </select>
 
  <!-- 회원가입 -->
@@ -35,17 +35,33 @@
     select * from member where mem_id=#{mem_id}
 </select>
 
-
 <select id="mem_emailcheck" resultType="m">
 	select * from member where email_id=#{email_id} and email_domain=#{email_domain}
 </select>
 
- <!--회원 찾기 -->
-<select id="mem_ck" resultType="m">
-	select * from member where mem_no=#{mem_no}
+	 <!--회원 찾기 -->
+<select id="profile_ck" resultType="m">
+	select mem_no, mem_id, mem_author, profile_photo, mem_nickname, profile_cont, mem_keyword, mem_portfolio 
+	from member where mem_no = #{mem_no}
 </select>
-
+<!-- 
+<update id="profile_up" >
+ 	update member set  profile_photo=#{profile_photo}, profile_cont=#{profile_cont},
+ 	mem_nickname=#{mem_nickname}, mem_keyword=#{mem_keyword}, mem_portfolio=#{mem_portfolio}
+ 	where mem_no = #{mem_no}
+</update>
+ -->
  <select id="mem_getID" resultType="m">
   SELECT mem_id FROM member WHERE mem_no=#{mem_no}
  </select>
+ 
+   <!-- 회원정보가져오기 -->
+<select id="mem_myinfo" resultType="m">
+    select * from member where mem_id=#{mem_id}
+</select>
+
+	<!-- 회원정보 수정 -->
+<update id="mem_update">
+	update member set
+</update>
 </mapper>

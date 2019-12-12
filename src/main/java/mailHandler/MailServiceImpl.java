@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -28,24 +29,25 @@ public class MailServiceImpl implements MailService {
 
 	
 	@Override
-	public boolean send(String subject, String text, String from, String to, String filePath) {
+	public boolean send(String subject, String text, String from, String to, String filePath, HttpServletRequest request) {
 		MimeMessage message = javaMailSender.createMimeMessage();
 		// javax.mail.internet.MimeMessage
-
+		String imgFolder = request.getRealPath("/resources/img");
+		
 		try {
 				MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 				// org.springframework.mail.javamail.MimeMessageHelper
 				
 				//메일에 헤드이미지
-				String contents = text + "<br><br><img src=\"cid:logo2.png \">";
+				String contents = "<br><br><img src=\"cid:logo2.png\">" + text;
 				FileSystemResource imgFile = 
-						new FileSystemResource(new File("C:/Project_workspace/Project3rd/src/main/webapp/resources/img/logo2.png"));
+						new FileSystemResource(new File(imgFolder+"/logo2.png"));
 				
 				helper.setSubject(subject);
 				helper.setText(contents, true);			//내용물
 				helper.setFrom(from);
 				helper.setTo(to);
-				helper.addInline("emailPic.png", imgFile);
+				helper.addInline("logo2.png", imgFile);
 			
 				// 첨부 파일 처리
 				if (filePath != null) {

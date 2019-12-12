@@ -3,18 +3,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="./resources/css/login.css" />
-<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>	
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/login.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/login.css" />
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>	
+<script src="/jamong.com/resources/js/jquery.js"></script>
+<script src="/jamong.com/resources/js/login.js"></script>
 <title>로그인 페이지입니다</title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 <div id ="login_main_wrap">
  <div id="login_main_div">
   <div id="login_logo_wrap">
-   <a href="./">
-    <img id="login_img_logo" src="./resources/img/logo2.png"/>
+   <a href="/jamong.com/">
+    <img id="login_img_logo" src="/jamong.com/resources/img/logo2.png"/>
    </a>
   </div>
   <div id="login_mid">
@@ -31,10 +31,10 @@
   </div>
   <div id="login_bottom">
    <div class="login_bottom_link">
-	<a href="./find_id">계정을 잃어버리셨나요?</a>
+	<a href="/jamong.com/find_id">계정을 잃어버리셨나요?</a>
    </div> 
    <div class="login_bottom_link">
-    <a href="./find_pass">비밀번호를 잊으셨나요?</a>
+    <a href="/jamong.com/find_pass">비밀번호를 잊으셨나요?</a>
    </div>
  </div>
  </div>

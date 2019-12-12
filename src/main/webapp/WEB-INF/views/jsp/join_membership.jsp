@@ -5,21 +5,26 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
-	href="./resources/css/joinmembership.css" />
-<link rel="stylesheet" type="text/css" href="./resources/css/font.css" />
-<link rel="stylesheet" type="text/css" href="./resources/css/header.css" />
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/login.js"></script>
+	href="/jamong.com/resources/css/joinmembership.css" />
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css" />
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/header.css" />
+<script src="/jamong.com/resources/js/jquery.js"></script>
+<script src="/jamong.com/resources/js/login.js"></script>
 <title>회원가입 페이지입니다</title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 	<div id="join_membership_main_wrap">
+	 <div class="wrap-loading" style="display:none">
+      <div>
+       <img src="/jamong.com/resources/img/loading1.gif" />
+      </div>
+	 </div>
 
 		<form name="m" method="post" enctype="multipart/form-data" onkeydown="return captureReturnKey(event)" autocomplete="off" action="join_membership_ok">
 			<div id="join_membership_main_div">
 				<!-------------------------------로고------------------------------------>
 				<div id="join_membership_img_logo">
-					<a href="./"><img src="./resources/img/logo2.png" /></a>
+					<a href="/jamong.com/"><img src="/jamong.com/resources/img/logo2.png" /></a>
 					<div id="join_membership_sequence_box">
 						<ol id="join_membership_sequence">
 							<li>
@@ -83,8 +88,8 @@
 						<div id="join_membership_tel_color">
 							<div class="join_membership_tel_hover_focus">
 								<input class="join_membership_tel numberOnly" id="join_membership_tel1"	name="mem_phone01" placeholder="010" maxlength="3" tabindex="9"  
-								>-<input class="join_membership_tel numberOnly" id="join_membership_tel2" name="mem_phone02" placeholder="0000" maxlength="4" tabindex="10"  
-								>-<input class="join_membership_tel numberOnly" id="join_membership_tel3" name="mem_phone03" placeholder="0000" maxlength="4" tabindex="11">
+								><b class="join_membership_tel_bar">-</b><input class="join_membership_tel numberOnly" id="join_membership_tel2" name="mem_phone02" placeholder="0000" maxlength="4" tabindex="10"  
+								><b class="join_membership_tel_bar">-</b><input class="join_membership_tel numberOnly" id="join_membership_tel3" name="mem_phone03" placeholder="0000" maxlength="4" tabindex="11">
 							</div>
 							<div class="join_membership_error" id="join_membership_error_tel"></div>
 						</div>
@@ -108,8 +113,8 @@
 						<div class="join_membership_error" id="join_membership_error_email_domain"></div>
 						
 						<div id="join_membership_emailcheck_div" style="display:none;" >
-							<input type="number" placeholder="인증번호 입력란" tabindex="15" maxlength="6"
-							class="join_membership_emailcheck" id="join_membership_emailcheck"/>
+							<input type="text" placeholder="인증번호 입력란" tabindex="15" maxlength="6"
+							class="join_membership_emailcheck numberOnly" id="join_membership_emailcheck"/>
 							<button type="button" id="join_membership_emailcheck_btn" tabindex="16">확인</button>
 						<div class="join_membership_error" id="join_membership_error_email_check"></div>
 						</div>
@@ -143,6 +148,7 @@
 										</h3>
 										<textarea id="join_membership_profile_editor" name="mem_nickname" placeholder="이름을 입력해주세요(30자 이내)" maxlength="30"></textarea>
 										<b class="join_membership_profile_anoun">작가명을 입력하지 않으시면 아이디로 지정이 됩니다.</b>
+										<div id="join_membership_profile_editor_error"></div>
 									</div>
 								</div>
 							</div>
