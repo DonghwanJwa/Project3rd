@@ -2,8 +2,8 @@
 <%@ include file="../include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" type="text/css" href="./resources/css/inquire.css"/>
-<script src="./resources/js/inquire.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/inquire.css"/>
+<script src="/jamong.com/resources/js/inquire.js"></script>
 <article class=inq_main_art oncontextmenu="return false" ondragstart="return false"
  onselectstart="return false">
   <h3 class=inq_title>문의하기</h3>
@@ -178,7 +178,7 @@
   	    </table>
   	    <p class="inq_desc_more">
   	    더 자세한 내용에 대해서는
-  	    <a class="inq_link_more" href="./policy_privacy"
+  	    <a class="inq_link_more" href="/jamong.com/policy_privacy"
   	    target="_blank">자몽 개인정보처리방침</a>
   	    을 참고하시기 바랍니다.
   	    </p>
