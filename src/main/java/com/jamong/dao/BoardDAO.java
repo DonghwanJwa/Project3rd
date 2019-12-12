@@ -7,9 +7,11 @@ import com.jamong.domain.BoardVO;
 public interface BoardDAO {
 
 	void insertBoard(BoardVO b);
+
 	BoardVO getUserBoardCont(int bo_no);
 
 	List<BoardVO> getListAll(BoardVO b);
 
+	List<BoardVO> infinitiScrollDown(int bo_no);
 
 }
