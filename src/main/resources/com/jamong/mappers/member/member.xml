@@ -35,7 +35,6 @@
     select * from member where mem_id=#{mem_id}
 </select>
 
-
 <select id="mem_emailcheck" resultType="m">
 	select * from member where email_id=#{email_id} and email_domain=#{email_domain}
 </select>
@@ -48,4 +47,14 @@
  <select id="mem_getID" resultType="m">
   SELECT mem_id FROM member WHERE mem_no=#{mem_no}
  </select>
+ 
+   <!-- 회원정보가져오기 -->
+<select id="mem_myinfo" resultType="m">
+    select * from member where mem_id=#{mem_id}
+</select>
+
+	<!-- 회원정보 수정 -->
+<update id="mem_update">
+	update member set
+</update>
 </mapper>
