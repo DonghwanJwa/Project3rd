@@ -64,11 +64,15 @@ public class MemberDAOImpl implements MemberDAO{
 		this.sqlSession.update("mem_update", vo);
 	}
 
-  @Override
+	@Override
 	public MemberVO profileCheck(int mem_no) {
 		return this.sqlSession.selectOne("profile_ck",mem_no);
-
 	}	
+	
+	@Override
+	public List<MemberVO> recomAuthor() {
+		return this.sqlSession.selectList("index_author");
+	}
 
 	@Override
 	public List<MemberVO> categoryMember() {
