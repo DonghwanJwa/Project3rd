@@ -24,11 +24,14 @@ body a {
 
 /* 샘플용 커버 이미지 */
 #write_title {
-	background:url(../img/bookCover.jpg);
+	background-position:50% 50%;
+	background-size:cover;
+	filter:brightness(0.7);
 }
 
-#write_title_parent_center {
+#write_title_area_bg #write_title_parent_center {
 	color:white;
+	top:100%;
 }
 
 /*배경*/

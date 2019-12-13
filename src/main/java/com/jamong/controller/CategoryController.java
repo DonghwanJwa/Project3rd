@@ -32,12 +32,14 @@ public class CategoryController {
 	public ModelAndView user_category(@PathVariable String cat_name) {
 		ModelAndView mv=new ModelAndView();
 		
-		List<MemberVO> mlist=this.memberService.categoryMember();		
+		List<MemberVO> mlist=this.memberService.categoryMember();
 		List<BoardVO> blist=this.boardService.categoryArticle(cat_name);
 		
 		mv.addObject("mlist",mlist);
 		mv.addObject("blist",blist);
+		
 		mv.addObject("cat_name",cat_name);
+		
 		mv.setViewName("jsp/category");
 		
 		return mv;

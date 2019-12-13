@@ -192,14 +192,6 @@ line-height: 42px;
 	padding:0 20px;
 	display:inline-block;
 }
-.cat_story_writer{
-	color:#f3f5f5;
-	font-size:12px;
-	text-align:center;
-	padding:0 20px;
-	display:inline-block;
-	margin-top:20px;
-}
 .cat_writing_bottom{
 	width:500px;
 	height:70px;
@@ -333,10 +325,12 @@ line-height: 42px;
 }
 .cat_story_writer{
     font-size:12px;
-    color:#959595;
+    font-weight:bold;
+    color:#FFF;
     width:100%;
     display:inline-block;
     margin-top:15px;
+    text-align:center;
 }
 .cat_book_inner{
 	width:150px;

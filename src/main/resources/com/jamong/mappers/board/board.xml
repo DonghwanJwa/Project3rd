@@ -56,7 +56,7 @@
  </insert>
  
  <select id="bo_cont" resultType="b">
-  SELECT * FROM board WHERE bo_no=#{bo_no};
+  SELECT * FROM board WHERE bo_no=#{bo_no}
  </select>
  
  <select id="index_author" resultMap="boardMap">
@@ -100,6 +100,14 @@
   WHERE b.bo_no <= #{b.bo_no}
   AND b.bo_no >= #{b.bo_no} - 10
  ]]>
+ </select>
+ 
+  <select id="cat_board" resultMap="boardMap">
+  SELECT *
+  FROM board b,member m
+  WHERE b.mem_no=m.mem_no
+  AND b.cat_name=#{cat_name}
+  ORDER BY b.bo_no DESC
  </select>
 
 </mapper>
