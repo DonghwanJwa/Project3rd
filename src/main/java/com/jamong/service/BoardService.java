@@ -16,6 +16,8 @@ public interface BoardService {
 	BoardVO getUserBoardCont(int bo_no);
 
 	List<BoardVO> getListAll(BoardVO b);
+	
+	List<BoardVO> infinitiScrollDown(int bo_no);
 
 
 }

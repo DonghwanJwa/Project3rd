@@ -1,8 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-
-<script src="/jamong.com/resources/js/new_book.js"></script>
+<script src="/jamong.com/resources/js/jquery-ui.min.js"></script>
+<script src="/jamong.com/resources/js/new_posts.js"></script>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/new_post.css" />
+
+  <div class="wrap-loading" style="display:none">
+      <div>
+       <img src="./resources/img/loading1.gif" />
+      </div>
+  </div>
 
 <div id="new_post_title">최신 글</div>
 

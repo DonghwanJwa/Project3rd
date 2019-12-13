@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -193,30 +194,30 @@ public class BoardController {
 	}// imageUp() => 썸머노트 이미지 업로드 이름변경
 	
 	@RequestMapping("new_posts")
-	public ModelAndView user_new_posts(Model m,BoardVO b) {
-		MemberVO mem = this.memberService.getMemberID(b.getMem_no());
+	public ModelAndView user_new_posts(BoardVO b) {
 		List<BoardVO> bList = this.boardService.getListAll(b);
-		m.addAttribute("bList", bList);
-		m.addAttribute("mem",mem);
 		ModelAndView mv=new ModelAndView();
-		
+		mv.addObject("bList", bList);
 		mv.setViewName("jsp/new_posts");
 		
 		return mv;
 	}
 	
+	@PostMapping("infinitiScrollDown")
+	@ResponseBody
+	public List<BoardVO> infinitiScrollDownPOST(String bo_no){
+		System.out.println(bo_no);
+		int bo_noToStart = Integer.parseInt(bo_no) -1;
+		return this.boardService.infinitiScrollDown(bo_noToStart);
+	}
+	
 	@RequestMapping("search")
-	public ModelAndView user_search(String result) {
+	public ModelAndView user_search(BoardVO b) {
 		ModelAndView mv=new ModelAndView();
+		List<BoardVO> bList = this.boardService.getListAll(b);
+		mv.addObject("bList", bList);
+		mv.setViewName("jsp/search_result");
 		
-		if(result.equals("post")) {
-			mv.setViewName("jsp/search_result(Post)");
-		}else if(result.equals("author")) {
-			mv.setViewName("jsp/search_result(Author)");
-		}else if(result.equals("work")) {
-			mv.setViewName("jsp/search_result(Work)");
-		}// if else
-		
-		return mv;		
+		return mv;	
 	}
 }

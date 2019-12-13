@@ -43,4 +43,21 @@
   AND rowNum <= 10
   ]]>
  </select>
+ 
+ <select id="infinitiScrollDown" resultMap="boardMap">
+ <![CDATA[
+   SELECT b.bo_no,
+         b.bo_title,
+         b.bo_subtitle,
+         b.bo_cont,
+         b.bo_thumbnail,
+         b.bo_date,
+         m.mem_id,
+         m.mem_nickname,
+         m.mem_keyword
+  FROM (SELECT * FROM board ORDER BY bo_no DESC)b, member m
+  WHERE b.bo_no <= #{b.bo_no}
+  AND b.bo_no >= #{b.bo_no} - 10
+ ]]>
+ </select>
 </mapper>

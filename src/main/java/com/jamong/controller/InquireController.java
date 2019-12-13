@@ -37,7 +37,7 @@ public class InquireController {
 	@RequestMapping("inquire_ok")
 	public String user_inquire_ok(InquireVO i,
 			HttpServletRequest request,
-			HttpServletResponse response,HttpSession session)
+			HttpServletResponse response)
 	throws Exception {
 		
 		response.setContentType("text/html;charset=UTF-8");
@@ -58,7 +58,7 @@ public class InquireController {
 		String inq_cont  = multi.getParameter("inq_cont");
 		String inq_date  = multi.getParameter("inq_date");
 		String inq_state  = multi.getParameter("inq_state");
-		MemberVO adm_m=session.get
+		
 		
 		
 		
