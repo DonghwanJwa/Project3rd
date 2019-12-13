@@ -5,26 +5,67 @@
 <mapper namespace="board">
  
  <resultMap type="b" id="boardMap">
-   <id column="bo_no" property="bo_no" />
+  <id column="bo_no" property="bo_no" />
   <result column="bo_title" property="bo_title" />
   <result column="bo_subtitle" property="bo_subtitle" />
   <result column="bo_cont" property="bo_cont" />
   <result column="bo_thumbnail" property="bo_thumbnail" />
+  <result column="bo_hit" property="bo_hit" />
   <result column="bo_date" property="bo_date" />
+  <result column="bo_editdate" property="bo_editdate" />
+  <result column="bo_lock" property="bo_lock" />
+  <result column="bo_type" property="bo_type" />
+  <result column="bo_like" property="bo_like" />
+  <result column="book_order" property="book_order" />
+  <result column="cat_no" property="cat_no" />
+  <result column="mem_no" property="mem_no" />
+  <result column="book_no" property="book_no" />
+  
  <association javaType="m" property="memberVO">
+  <id column="mem_no" property="mem_no" />
   <result column="mem_id" property="mem_id" />
+  <result column="mem_name" property="mem_name" />
+  <result column="mem_birth1" property="mem_birth1" />
+  <result column="mem_birth2" property="mem_birth2" />
+  <result column="mem_birth3" property="mem_birth3" />
+  <result column="email_id" property="email_id" />
+  <result column="email_domain" property="email_domain" />
+  <result column="mem_phone01" property="mem_phone01" />
+  <result column="mem_phone02" property="mem_phone02" />
+  <result column="mem_phone03" property="mem_phone03" />
+  <result column="mem_date" property="mem_date" />
+  <result column="mem_author" property="mem_author" />
+  <result column="mem_state" property="mem_state" />
+  <result column="profile_photo" property="profile_photo" />
+  <result column="profile_cont" property="profile_cont" />
+  <result column="mem_state" property="mem_state" />
   <result column="mem_nickname" property="mem_nickname" />
   <result column="mem_keyword" property="mem_keyword" />
+  <result column="mem_fav1" property="mem_fav1" />
+  <result column="mem_fav2" property="mem_fav2" />
+  <result column="mem_fav3" property="mem_fav3" />
+  <result column="mem_portfolio" property="mem_portfolio" />
  </association>
  </resultMap>
  
+
+ 
  <insert id="bo_insert">
-  INSERT INTO board (bo_no,bo_title,bo_subtitle,bo_cont,bo_thumbnail,bo_date,bo_lock,bo_type,fav_no,mem_no)
-  VALUES(bo_no_seq.nextval,#{bo_title},#{bo_subtitle},#{bo_cont},#{bo_thumbnail},sysdate,#{bo_lock},#{bo_type},#{fav_no},#{mem_no})
+  INSERT INTO board (bo_no,bo_title,bo_subtitle,bo_cont,bo_thumbnail,bo_date,bo_lock,bo_type,cat_no,mem_no)
+  VALUES(bo_no_seq.nextval,#{bo_title},#{bo_subtitle},#{bo_cont},#{bo_thumbnail},sysdate,#{bo_lock},#{bo_type},#{cat_no},#{mem_no})
  </insert>
  
  <select id="bo_cont" resultType="b">
   SELECT * FROM board WHERE bo_no=#{bo_no};
+ </select>
+ 
+ <select id="index_author" resultMap="boardMap">
+ <![CDATA[
+	SELECT * FROM board b
+	RIGHT JOIN (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM)m
+	ON b.mem_no=m.mem_no
+	WHERE rowNum <= 9
+]]>
  </select>
  
  <select id="bo_list" resultMap="boardMap">
@@ -39,7 +80,7 @@
          m.mem_nickname,
          m.mem_keyword
   FROM (SELECT * FROM board ORDER BY bo_no DESC)b, member m
-  WHERE b.mem_no=m.mem_no 
+  WHERE b.mem_no=m.mem_no
   AND rowNum <= 10
   ]]>
  </select>

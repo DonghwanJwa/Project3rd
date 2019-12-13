@@ -15,6 +15,7 @@ public interface BoardService {
 	void insertBoard(BoardVO b);
 	BoardVO getUserBoardCont(int bo_no);
 
+	List<BoardVO> recomAuthor();
 	List<BoardVO> getListAll(BoardVO b);
 
 
