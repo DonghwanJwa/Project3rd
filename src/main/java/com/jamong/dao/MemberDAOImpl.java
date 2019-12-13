@@ -1,5 +1,7 @@
 package com.jamong.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -54,6 +56,11 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public MemberVO profileCheck(int mem_no) {
 		return this.sqlSession.selectOne("profile_ck",mem_no);
-	}	
+	}
+
+	@Override
+	public List<MemberVO> categoryMember() {
+		return this.sqlSession.selectList("cat_member");
+	}
 	
 }

@@ -55,4 +55,10 @@
  <select id="mem_getID" resultType="m">
   SELECT mem_id FROM member WHERE mem_no=#{mem_no}
  </select>
+ 
+ <select id="cat_member" resultType="m">
+ <![CDATA[
+  SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) WHERE rowNum <= 5
+  ]]> 
+ </select>
 </mapper>
