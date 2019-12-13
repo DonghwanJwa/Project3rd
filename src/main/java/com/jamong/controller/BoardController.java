@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,14 +39,14 @@ public class BoardController {
 	
 	@RequestMapping("@{mem_id}/{bo_no}")
 	public String user_readCont(
-			@PathVariable("mem_id") String mem_id, int bo_no,BoardVO bo, Model model,
+			@PathVariable String mem_id,@PathVariable int bo_no,BoardVO bo, Model model,
 			HttpServletResponse response,
 			HttpServletRequest request,
 			HttpSession session) throws Exception{
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		bo = this.boardService.getUserBoardCont(bo_no);		
+		bo = this.boardService.getUserBoardCont(bo_no);
 		
 		model.addAttribute("bo",bo);
 		model.addAttribute("mem_id",mem_id);	
@@ -102,7 +101,7 @@ public class BoardController {
 	      String bo_cont = multi.getParameter("bo_cont");
 	      int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
 	      int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
-	      int cat_no = Integer.parseInt(multi.getParameter("cat_no"));
+	      String cat_name = multi.getParameter("cat_name");
 	      
 	      MemberVO m = (MemberVO)session.getAttribute("m");
 	      int mem_no = m.getMem_no();
@@ -138,7 +137,7 @@ public class BoardController {
 		
 		b.setBo_title(bo_title); b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont); b.setBo_lock(bo_lock);
-		b.setBo_type(bo_type); b.setCat_no(cat_no);
+		b.setBo_type(bo_type); b.setCat_name(cat_name);
 		b.setMem_no(mem_no);
 		
 		this.boardService.insertBoard(b);
@@ -196,19 +195,28 @@ public class BoardController {
 	@RequestMapping("new_posts")
 	public ModelAndView user_new_posts(BoardVO b) {
 		List<BoardVO> bList = this.boardService.getListAll(b);
+		for(int i=0;i<bList.size();i++) {
+			String htmlText = bList.get(i).getBo_cont();
+			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			bList.get(i).setBo_cont(normalText);
+		}
 		ModelAndView mv=new ModelAndView();
 		mv.addObject("bList", bList);
 		mv.setViewName("jsp/new_posts");
-		
 		return mv;
 	}
 	
 	@PostMapping("infinitiScrollDown")
 	@ResponseBody
 	public List<BoardVO> infinitiScrollDownPOST(String bo_no){
-		System.out.println(bo_no);
 		int bo_noToStart = Integer.parseInt(bo_no) -1;
-		return this.boardService.infinitiScrollDown(bo_noToStart);
+		List<BoardVO> data=this.boardService.infinitiScrollDown(bo_noToStart);
+		for(int i=0;i<data.size();i++) {
+			String htmlText = data.get(i).getBo_cont();
+			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			data.get(i).setBo_cont(normalText);
+		}
+		return data;
 	}
 	
 	@RequestMapping("search")

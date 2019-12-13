@@ -15,7 +15,7 @@ public class BoardVO {
 	private int bo_type;
 	private int bo_like;
 	private int book_order;
-	private int cat_no;
+	private String cat_name;
 	private int mem_no;
 	private int book_no;
 	
@@ -24,19 +24,13 @@ public class BoardVO {
 	
 	private MemberVO memberVO;
 	
-	public MemberVO getMemberVO() {
-		return memberVO;
-	}
-	public void setMemberVO(MemberVO memberVO) {
-		this.memberVO = memberVO;
-	}
 	// Setter()
 	public void setBo_date(String bo_date)		   	 {		this.bo_date = bo_date;				}
 	public void setBo_editdate(String bo_editdate) 	 {		this.bo_editdate = bo_editdate;		}
 	public void setBo_lock(int bo_lock) 		   	 {		this.bo_lock = bo_lock;				}
 	public void setBo_like(int bo_like) 		   	 {		this.bo_like = bo_like;				}
 	public void setBook_order(int book_order) 	   	 {		this.book_order = book_order;		}
-	public void setCat_no(int cat_no) 			   	 {		this.cat_no = cat_no;				}
+	public void setCat_name(String cat_name) 		 {		this.cat_name = cat_name;			}
 	public void setMem_no(int mem_no) 			   	 {		this.mem_no = mem_no;				}
 	public void setBook_no(int book_no) 		     {		this.book_no = book_no;				}
 	public void setBo_no(int bo_no) 			   	 {		this.bo_no = bo_no;					}
@@ -48,6 +42,7 @@ public class BoardVO {
 	public void setBo_type(int bo_type) 			 {		this.bo_type = bo_type;				}
 	public void setFind_field(String find_field)   	 {		this.find_field = find_field;		}
 	public void setFind_name(String find_name) 	   	 {		this.find_name = find_name;			}
+	public void setMemberVO(MemberVO memberVO) 		 {		this.memberVO = memberVO;			}
 	
 	// Getter()
 	public int getBo_no() 		   	{		return bo_no;			}
@@ -60,12 +55,13 @@ public class BoardVO {
 	public int getBo_lock() 	   	{		return bo_lock;			}
 	public int getBo_like() 	   	{		return bo_like;			}
 	public int getBook_order() 	   	{		return book_order;		}
-	public int getCat_no() 		   	{		return cat_no;			}
+	public String getCat_name() 	{		return cat_name;		}
 	public int getMem_no() 		   	{		return mem_no;			}
 	public int getBook_no() 	   	{		return book_no;			}
 	public String getBo_thumbnail() {		return bo_thumbnail;	}
 	public int getBo_type() 		{		return bo_type;			}
 	public String getFind_name()   	{		return find_name;		}
 	public String getFind_field()  	{		return find_field;		}
+	public MemberVO getMemberVO() 	{		return memberVO;		}
 		
 }

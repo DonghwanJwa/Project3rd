@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,18 +16,30 @@
  <div id="write_wrap">
   <div id="write_min-wrap" style="min-width:940px;">
    <!-- 타이틀 부분 -->
-   <div id="write_title" style="height:450px;">
+   <div id="write_title" style='height:450px; background-image:url("${bo.bo_thumbnail}");'>
+   </div>
     <div id="write_title_area_bg" style="height:250px;">
      <!-- 타이틀 텍스트 부분  -->
      <div id="write_title_parent_center" >
       <!-- 메인 타이틀 -->
-      <h1 class="write_main_title">${bo.Bo_title}</h1>
+      <c:if test="${!empty bo.bo_thumbnail}">
+      <h1 class="write_main_title" style="">${bo.bo_title}</h1>
       <br/>
       <!-- 서브 타이틀 -->
-      <div class="write_sub_title">${bo.Bo_subtitle}</div>
+      <c:if test="${!empty bo.bo_subtitle}">
+      <div class="write_sub_title" style="color:#FFF">${bo.bo_subtitle}</div>
+      </c:if>
+      </c:if>
+      <c:if test="${empty bo.bo_thumbnail}">
+      <h1 class="write_main_title" style="color:#000">${bo.bo_title}</h1>
+      <br/>
+      <!-- 서브 타이틀 -->
+      <c:if test="${!empty bo.bo_subtitle}">
+      <div class="write_sub_title" style="color:#000">${bo.bo_subtitle}</div>
+      </c:if>
+      </c:if>
     </div>
     </div>
-   </div>
   </div>
    
   <!-- 글 내용 부분 --> 

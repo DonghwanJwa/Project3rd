@@ -14,7 +14,6 @@
 <title>글에 꿈을 담다, 자몽</title>
 </head>
 <body>
-<%@ include file="../jsp/request_author.jsp" %>
 <%@ include file="../jsp/accuse.jsp" %>
   <%-- 해드 메뉴바 --%>
  <div id="head-header-wrap">

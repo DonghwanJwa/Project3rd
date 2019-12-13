@@ -38,4 +38,8 @@ public class BoardDAOImpl implements BoardDAO {
 		return this.sqlSession.selectList("infinitiScrollDown",bo_no);
 	}
 
+	@Override
+	public List<BoardVO> categoryArticle(String cat_name) {
+		return this.sqlSession.selectList("cat_board",cat_name);
+	}
 }
