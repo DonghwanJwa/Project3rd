@@ -101,7 +101,7 @@ $(document).ready(function(){
 	$('#head-menu_search-text').keyup(function(e) {
 		if(!$.trim($('#head-menu_search-text').val())==""){
 			if (e.keyCode == 13){			
-				location.href = "./search?result=post"
+				location.href = "./search"
 			}
 		}       
 	});

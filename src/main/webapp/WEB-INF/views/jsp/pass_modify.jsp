@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/pass_modify.css" />
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<script src="/jamong.com/resources/js/pass_modify.js"></script>
+<link rel="stylesheet" type="text/css" href="./resources/css/pass_modify.css" />
+<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
+<script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/pass_modify.js"></script>
 <title>비밀번호수정페이지입니다</title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
@@ -16,8 +16,8 @@
 		<div id="pass_modify_main_div">
 				<!-----------------로고------------------------>
 				<div>
-					<a href="/jamong.com/"><img id="pass_modify_img_logo"
-						src="/jamong.com/resources/img/logo2.png" /></a>
+					<a href="./"><img id="pass_modify_img_logo"
+						src="./resources/img/logo2.png" /></a>
 				</div>
 				
 				<label id="pass_modify_label">비밀번호 확인</label>

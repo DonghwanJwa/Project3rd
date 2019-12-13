@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/member_modify.css" />
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/member_modify_categore.css" />
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<script src="/jamong.com/resources/js/member_modify.js"></script>
+<link rel="stylesheet" type="text/css" href="./resources/css/member_modify.css" />
+<link rel="stylesheet" type="text/css" href="./resources/css/member_modify_categore.css" />
+<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
+<script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/member_modify.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
@@ -19,7 +19,7 @@
 	<div id="member_modify_main_div">
 		<!-------------------------------로고------------------------------------>
 				<div id="member_modify_img_logo">
-					<a href="/jamong.com/"><img src="/jamong.com/resources/img/logo2.png" /></a>
+					<a href="./"><img src="./resources/img/logo2.png" /></a>
 					<div id="member_modify_sequence_box">
 						<ol id="member_modify_sequence">
 							<li>

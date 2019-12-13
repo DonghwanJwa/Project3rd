@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/find_id.css" />
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<script src="/jamong.com/resources/js/login.js"></script>
+<link rel="stylesheet" type="text/css" href="./resources/css/find_id.css" />
+<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
+<script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/login.js"></script>
 <title>아이디찾기 페이지입니다</title>
 </head>
 <body >
@@ -17,7 +17,7 @@
 				<!-----------------로고------------------------>
 				<div>
 					<a href="./"><img id="find_id_img_logo"
-						src="/jamong.com/resources/img/logo2.png" /></a>
+						src="./resources/img/logo2.png" /></a>
 				</div>
 				<!--------------------링크 버튼 두개--------------------->
 					<label id="find_id_label">아이디 찾기</label>

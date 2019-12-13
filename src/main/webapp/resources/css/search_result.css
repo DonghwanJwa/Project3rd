@@ -44,25 +44,7 @@
 	background-color: #fee2c0;
 }
 
-.btn.type_btn.post {
-	width: 120px;
-	margin-top: 25px;
-	border-bottom: thick;
-	border-bottom-color: #fff;
-	border-radius: 15px 15px 0px 0px;
-	background-color: #fff;
-}
-
-.btn.type_btn.work {
-	width: 120px;
-	margin-top: 25px;
-	border-bottom: thick;
-	border-bottom-color: #fff;
-	border-radius: 15px 15px 0px 0px;
-	background-color: #fff;
-}
-
-.btn.type_btn.author {
+.btn.type_btn.view {
 	width: 120px;
 	margin-top: 25px;
 	border-bottom: thick;
@@ -92,16 +74,16 @@
 }
 /*배경 이미지*/
 #search_result_contents {
-	background-image: url("../img/background_img/login_page.png");
-	background-repeat: repeat;
-}
-/* '글' 검색 결과 */
-#search_result_post {
 	width: 940px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 50px;
 	border: 1px solid orange;
 	background: #fff;
+}
+/* '글' 검색 결과 */
+#search_result_post {
+/* 	display: none; */
 }
 
 #search_result_post_type {
@@ -168,11 +150,7 @@
 
 /* '작품' 검색 결과 */
 #search_result_work {
-	width: 940px;
-	margin-left: auto;
-	margin-right: auto;
-	border: 1px solid orange;
-	background: #fff;
+	display: none;
 }
 
 #search_result_work_type {
@@ -282,13 +260,7 @@
 
 /* '작가' 검색 결과 */
 #search_result_author {
-	width: 940px;
-	height: auto;
-	border: 1px solid orange;
-	margin-left: auto;
-	margin-right: auto;
-	height: auto;
-	background: #fff;
+	display: none;
 }
 
 #search_result_author_select {
