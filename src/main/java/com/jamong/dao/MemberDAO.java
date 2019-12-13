@@ -1,5 +1,7 @@
 package com.jamong.dao;
 
+import java.util.List;
+
 import com.jamong.domain.MemberVO;
 
 public interface MemberDAO {
@@ -13,4 +15,5 @@ public interface MemberDAO {
 	MemberVO emailCheck(MemberVO m);
 	MemberVO adminLogin(String adm_id);
 	MemberVO profileCheck(int mem_no);
+	List<MemberVO> categoryMember();
 }
