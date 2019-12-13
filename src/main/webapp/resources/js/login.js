@@ -20,7 +20,7 @@ function getCategorySelect(){
 		  $(data).each(function(){//each는 jQuery에서 반복함수
 			  str+='<li class="join_membership_category-item">'
 			  +'<span class="join_membership_category-span">'+this.cat_name+'</span>'
-			  +'<input type="hidden" value="'+this.cat_no+'"/>'
+			  +'<input type="hidden" value="'+this.cat_name+'"/>'
 			  +'</li>'
 		  });
 		  if ($("#join_membership_category-list").length > 0 ) {//해당 구역이 존재하면
