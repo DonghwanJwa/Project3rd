@@ -17,6 +17,8 @@ public interface BoardService {
 
 	List<BoardVO> recomAuthor();
 	List<BoardVO> getListAll(BoardVO b);
+	
+	List<BoardVO> infinitiScrollDown(int bo_no);
 
 
 }
