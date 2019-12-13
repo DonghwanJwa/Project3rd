@@ -102,7 +102,7 @@ public class BoardController {
 	      String bo_cont = multi.getParameter("bo_cont");
 	      int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
 	      int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
-	      int cat_no = Integer.parseInt(multi.getParameter("cat_no"));
+	      String cat_name = multi.getParameter("cat_name");
 	      
 	      MemberVO m = (MemberVO)session.getAttribute("m");
 	      int mem_no = m.getMem_no();
@@ -138,7 +138,7 @@ public class BoardController {
 		
 		b.setBo_title(bo_title); b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont); b.setBo_lock(bo_lock);
-		b.setBo_type(bo_type); b.setCat_no(cat_no);
+		b.setBo_type(bo_type); b.setCat_name(cat_name);
 		b.setMem_no(mem_no);
 		
 		this.boardService.insertBoard(b);

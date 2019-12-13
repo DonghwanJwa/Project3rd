@@ -24,6 +24,8 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+ALTER TABLE board ADD cat_name VARCHAR2(50)
+ALTER TABLE board DROP (fav_no);
 
 -- 카테고리 테이블 참조컬럼 생성
 ALTER TABLE board
