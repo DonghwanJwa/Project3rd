@@ -416,11 +416,16 @@ body{
 .main-title-text h3{
 	display:inline-block;
 	width:940px;
-	font-family: 'NanumPen','serif';
-	text-align:left;
-	font-size: 60px;
-	font-weight: normal;
-	margin:50px 0;
+	font-family: 'NanumMyeongjo','serif';
+	font-size: 55px;
+	margin-top:50px;
+	margin-bottom:0;
+}
+.main-title-text h5{
+	display:inline-block;
+	width:940px;
+	color:#9a9a9a;
+	margin-top:13px;
 }
 /*추천책 란*/
 #recom_book{
@@ -747,92 +752,6 @@ body{
 }
 
 
-/* 최신 글 란 */
-#recent_writting{
-	height:800px;
-}
-#recent_writting-cont{
-	height: 540px;
-	margin-bottom:95px;
-	overflow-x: auto;
-	overflow-y: hidden;
-	-ms-overflow-style: none; /* IE에서 스크롤바 감춤 */	
-}
-#recent_writting-cont::-webkit-scrollbar { 
-    display: none !important; /* 윈도우 크롬 등 */
-}
-#recent_writting-list{
-	list-style: none;
-	display:flex;
-	align-items: center;		/*상하정렬*/
-	width:8320px;
-	padding-left: 0;
-	margin-left:282px;	
-}
-.recent_writting-item{
-	border: 1.5px solid #c0c0c0;
-	margin: 15px 30px;
-	box-shadow: 12px 18px 13px #636569;
-}
-.recent_writting-item .link_item{
-	text-decoration: none;
-}
-.recent_writting-item-head{
-	color: black;
-
-}
-.recent_writting-item-head-inner{
-	height:430px;
-	width:350px;
-}
-
-.recent_writting-item-head-inner-cont{
-	text-align: center;
-}
-.recent_writting-item-head-inner-cont-img{
-	height: 238px;
-	margin: 15px;
-	background-image:url(../img/a.jpg);
-	background-size: cover;
-	border:1px solid #c0c0c0;
-}
-.recent_writting-item-head-inner-cont-hs{
-	height:140px;
-}
-.recent_writting-item-head-inner-cont-head{
-	max-height: 64px;
-	padding:0 20px;
-}
-.recent_writting-item-head-inner-cont-sub{
-	max-height: 100px;
-	padding:0 20px;
-	margin-top:10px;
-}
-.recent_writting-item-head-inner-cont-bottom{
-	height: 30px;
-}
-.recent_writting-item-head-inner-cont-head p{
-	display:inline-block;
-	margin:0;
-	max-height: 64px;
-	font-weight: bold;
-	font-size: 20px;
-	word-wrap: break-word;	
-}
-.recent_writting-item-head-inner-cont-sub span{
-	display:inline-block;
-	margin:0;
-	max-height: 100px;
-	font-size: 18px;
-	overflow:hidden;
-	white-space: normal;
-	word-wrap: break-word;
-	text-overflow: ellipsis;
-}/* 문자수를 제한해서 소제목을 보여줄 것*/
-.recent_writting-item-head-inner span{
-	display: block;
-	font-size: 14px;
-}
 /* footer 정보란*/
 #foot-main-footer{
 	height: 100px;

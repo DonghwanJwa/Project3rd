@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="/jamong.com/resources/css/joinmembership.css" />
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/joinmembership.css" />
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css" />
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/header.css" />
 <script src="/jamong.com/resources/js/jquery.js"></script>
@@ -13,6 +12,7 @@
 <title>회원가입 페이지입니다</title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+   <div id="join_membership_wrap">
 	<div id="join_membership_main_wrap">
 	 <div class="wrap-loading" style="display:none">
       <div>
@@ -195,5 +195,6 @@
 		</form>
 		<input type="hidden" id="join_membership_email_flag" value="1"/>
 	</div>
+   </div>
 </body>
 </html>
