@@ -1,15 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/request_author.js"></script>
-<link rel="stylesheet" type="text/css" href="./resources/css/request_author.css"/>
-<link rel="stylesheet" type="text/css" href="./resources/css/font.css" />
+<script src="/jamong.com/resources/js/jquery.js"></script>
+<script src="/jamong.com/resources/js/request_author.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/request_author.css"/>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css" />
 
 <div id="req_wrap">
 	<div id="req_auth_wrap">
 		<div id="req_auth_title">
 		<h1>자몽 작가신청</h1>
-		<a href="#" id="req_close" onclick="offerToggle();"><img src="./resources/img/close_x.png"/></a>
+		<a href="#" id="req_close" onclick="offerToggle();"><img src="/jamong.com/resources/img/close_x.png"/></a>
 	</div>
 		<div class="req_form">
 			

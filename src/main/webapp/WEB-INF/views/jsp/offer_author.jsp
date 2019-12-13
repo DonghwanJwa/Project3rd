@@ -5,16 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/offer_author.js"></script>
-<link rel="stylesheet" type="text/css"  href="./resources/css/offer_author.css" />
+<script src="/jamong.com/resources/js/jquery.js"></script>
+<script src="/jamong.com/resources/js/offer_author.js"></script>
+<link rel="stylesheet" type="text/css"  href="/jamong.com/resources/css/offer_author.css" />
 </head>
 <body>
 <div id="offer_back">
 <div id="offer_wrap">
 	<div id="offer_intro">
 		<h2><span class="offer_author_name">Name</span><br/> 작가님께 제안합니다.</h2>
-		<img class="offer_author_img" src="./resources/img/cat_writer_face1.jpg"/>
+		<img class="offer_author_img" src="/jamong.com/resources/img/cat_writer_face1.jpg"/>
 	</div>
 	
 	<div id="offer_tip">
