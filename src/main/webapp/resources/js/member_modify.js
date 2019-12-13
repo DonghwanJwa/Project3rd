@@ -512,6 +512,135 @@ $('#member_modify_email_datalist').on("focusout", function() {
 		$('#member_modify_tel1').focus();
 	}
 });
+
+//--------------------------------------------------------------------------------------------
+/*
+이메일 id 유효성 검증
+$('#join_membership_email').on("focusout", function() {
+	if ($.trim($('#join_membership_email').val())=="") {
+		$('#join_membership_error_email_domain').text('이메일을 입력해주세요!');
+		return false;
+	}
+}).on("keyup", function(key) {
+
+	$('#join_membership_certified_btn').attr("disabled",false);
+	$('#join_membership_emailcheck_div').hide();
+	$('#join_membership_email_flag').val('1');
+	$('#join_membership_next_btn').attr('disabled', true);
+	
+	if ($.trim($('#join_membership_email').val())=="") {
+		$('#join_membership_error_email_domain').text('이메일을 입력해주세요!');
+		return false;
+	}
+	$('#join_membership_error_email_domain').text('');
+	if (key.keyCode == 13) {
+		$('#join_membership_email_datalist').focus();
+	}
+	
+});
+
+이메일 도메인 유효성 검증
+$('#join_membership_email_datalist').on("focusout", function() {
+	var email = $.trim($('#join_membership_email').val());		
+	var domain = $.trim($('#join_membership_email_datalist').val());
+	
+	if ($.trim($('#join_membership_email_datalist').val())=="") {
+		$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
+		return false;
+	}
+	
+	if (!emailCheck.test($('#join_membership_email_datalist').val())) {
+		$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
+		return false;
+	}
+	
+	$.ajax({
+        type:"POST",
+        url:"join_membership_emailcheck", 
+        data: {"email":email,"domain":domain},  				
+        datatype:"int",					
+        success: function (data) {		
+      	  if(data==1){	
+      		$('#join_membership_error_email_domain').text('중복이메일 입니다!');
+          	return false;
+      	  }  
+        },
+    	  error:function(){
+    		  alert("data error");
+    	  }
+      });
+	$('#join_membership_error_email_domain').text('');
+}).on("keyup", function(key) {
+	var email = $.trim($('#join_membership_email').val());		
+	var domain = $.trim($('#join_membership_email_datalist').val());
+	
+	$('#join_membership_certified_btn').attr("disabled",false);
+	$('#join_membership_emailcheck_div').hide();
+	$('#join_membership_email_flag').val('1');
+	$('#join_membership_next_btn').attr('disabled', true);
+	
+	if ($.trim($('#join_membership_email_datalist').val())=="") {
+		$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
+		return false;
+	}
+	
+	if (!emailCheck.test($('#join_membership_email_datalist').val())) {
+		$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
+		return false;
+	}
+	
+	$('#join_membership_error_email_domain').text('');
+	if (key.keyCode == 13) {
+		$('#join_membership_certified_btn').focus();
+	}
+}).on("focus", function(){
+	$('#join_membership_certified_btn').attr("disabled",false);
+	$('#join_membership_emailcheck_div').hide();
+	$('#join_membership_email_flag').val('1');
+	$('#join_membership_next_btn').attr('disabled', true);
+});
+
+닉네임 유효성 검증
+$("#join_membership_profile_editor").on("focusout", function() {//포커스가 나갈때
+	var nickname = $(this).val();		
+	$.ajax({
+        type:"POST",
+        url:"join_membership_idcheck", 
+        data: {"id":nickname},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
+        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
+        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
+      	  if(data==1){	//중복 아이디가 있다면
+      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+          	return false;
+      	  }  
+        },
+    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
+    		  alert("data error");
+    	  }
+      });
+	$('#join_membership_profile_editor_error').text('');
+}).on("keyup", function(key) {//타이핑 할때
+	var nickname = $(this).val();		
+	$.ajax({
+        type:"POST",
+        url:"join_membership_idcheck", 
+        data: {"id":nickname},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
+        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
+        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
+      	  if(data==1){	//중복 아이디가 있다면
+      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+          	return false;
+      	  }  
+        },
+    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
+    		  alert("data error");
+    	  }
+      });
+	$('#join_membership_profile_editor_error').text('');
+});
+*/
+
+//--------------------------------------------------------------------------------------------
 //핸드폰 번호1
 $('#member_modify_tel1').on("focusout", function() {
 	if ($.trim($('#member_modify_tel1').val())=="") {
@@ -562,8 +691,7 @@ $('#member_modify_tel3').on("focusout", function() {
 		$("#member_modify_next_btn").trigger("click");
 	}
 });
-/*page3 버튼*/
-//카테고리 -> 기본정보 : 이전으로
+
 $("#member_modify_before_btn2").click(function() {
 	if($("#member_modify_page1").css ("display") == "none"){
 		$("#member_modify_page2").hide();

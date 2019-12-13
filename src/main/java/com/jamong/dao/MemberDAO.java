@@ -6,6 +6,7 @@ import com.jamong.domain.MemberVO;
 
 public interface MemberDAO {
 
+	void memberUpdate(MemberVO me);
 	void insertMember(MemberVO m);
 	MemberVO idCheck(String id);
 	MemberVO loginCheck(String login_id);
@@ -15,7 +16,6 @@ public interface MemberDAO {
 	MemberVO emailCheck(MemberVO m);
 	MemberVO adminLogin(String adm_id);
 	MemberVO get(String mem_id);
-	void memberUpdate(MemberVO vo);
 	MemberVO profileCheck(int mem_no);
 	List<MemberVO> recomAuthor();
 	List<MemberVO> categoryMember();

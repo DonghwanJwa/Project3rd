@@ -14,6 +14,11 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Override
+	public void memberUpdate(MemberVO me) {
+		this.sqlSession.update("mem_update", me);
+	}
 
 	@Override
 	public void insertMember(MemberVO m) {
@@ -57,11 +62,6 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public MemberVO get(String mem_id) {
 		return this.sqlSession.selectOne("mem_myinfo", mem_id);
-	}
-
-	@Override
-	public void memberUpdate(MemberVO vo) {
-		this.sqlSession.update("mem_update", vo);
 	}
 
 	@Override
