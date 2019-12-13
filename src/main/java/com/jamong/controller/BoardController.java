@@ -138,7 +138,7 @@ public class BoardController {
 		
 		b.setBo_title(bo_title); b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont); b.setBo_lock(bo_lock);
-		b.setBo_type(bo_type); b.setFav_no(cat_no);
+		b.setBo_type(bo_type); b.setCat_no(cat_no);
 		b.setMem_no(mem_no);
 		
 		this.boardService.insertBoard(b);

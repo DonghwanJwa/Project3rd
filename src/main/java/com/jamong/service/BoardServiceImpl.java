@@ -28,6 +28,11 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO getUserBoardCont(int bo_no) {
 		return this.boardDao.getUserBoardCont(bo_no);
 	}
+	@Override
+	public List<BoardVO> recomAuthor() {
+		return this.boardDao.recomAuthor();
+	}
+	@Override
 	public List<BoardVO> getListAll(BoardVO b) {
 		return this.boardDao.getListAll(b);
 	}
@@ -36,4 +41,5 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> infinitiScrollDown(int bo_no) {
 		return this.boardDao.infinitiScrollDown(bo_no);
 	}
+
 }
