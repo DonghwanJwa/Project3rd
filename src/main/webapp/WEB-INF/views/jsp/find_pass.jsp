@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="./resources/css/find_pass.css" />
-<link rel="stylesheet" type="text/css" href="./resources/css/font.css"/>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/find_pass.css" />
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>
 <title>비밀번호찾기 페이지입니다</title>
 </head>
 <body>
@@ -14,7 +14,7 @@
 		<div id="find_pass_main_div">
 				<!-----------------로고------------------------>
 				<div id="find_pass_logo_wrap">
-					<a href="./"><img id="find_pass_img_logo"src="./resources/img/logo2.png" /></a>
+					<a href="/jamong.com/"><img id="find_pass_img_logo"src="/jamong.com/resources/img/logo2.png" /></a>
 				</div>
 				<!--------------------링크 버튼 두개--------------------->
 					<label id="find_pass_label">비밀번호 찾기</label>
