@@ -12,7 +12,7 @@ bo_lock NUMBER(38),          		-- 공개여부 / 비공개 0, 공개 1
 bo_type NUMBER(38),                 -- 글타입 설정 / 칼럼 0, 에세이 1
 bo_like NUMBER(38) DEFAULT 0, 		-- 추천 (좋아요)
 book_order NUMBER(38), 				-- 책으로 묶었을때 순서
-fav_no NUMBER(38),					-- 카테고리 테이블 시퀀스 참조
+cat_no NUMBER(38),					-- 카테고리 테이블 시퀀스 참조
 mem_no NUMBER(38),					-- 회원 테이블 시퀀스 참조
 book_no NUMBER(38) 				    -- 책 테이블 시퀀스 참조
 );
@@ -29,8 +29,8 @@ ALTER TABLE board DROP (fav_no);
 
 -- 카테고리 테이블 참조컬럼 생성
 ALTER TABLE board
-ADD CONSTRAINT bo_fav_no_fk FOREIGN KEY(fav_no)
-REFERENCES favorit(fav_no)
+ADD CONSTRAINT bo_cat_no_fk FOREIGN KEY(cat_no)
+REFERENCES category(cat_no)
 
 -- 회원 테이블 참조컬럼 생성
 ALTER TABLE board
@@ -46,7 +46,7 @@ SELECT * FROM board ORDER BY bo_no DESC;
 SELECT bo_no_seq.nextval FROM DUAL;
 
 SELECT *
-FROM board b, member m
-WHERE b.mem_no=m.mem_no
-AND b.cat_name='IT'
-ORDER BY b.bo_no DESC;
+FROM board b
+RIGHT JOIN (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM)m
+ON b.mem_no=m.mem_no
+WHERE rowNum <= 9

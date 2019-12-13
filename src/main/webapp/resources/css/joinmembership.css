@@ -6,10 +6,19 @@ body{
 	text-decoration: none;
 	list-style: none;
 	}
+#join_membership_wrap{
+	width:100vw;
+	height:100vh;
+	display:flex;
+	background-color:rgb(249, 249, 245);
+	justify-content:center;
+	align-items: center;	
+}
+	
 #join_membership_main_wrap{
-    padding: calc((100vh - 550px) / 2) 0;
-    background-image: url(../img/background_img/login_pattern1.png);
-    background-size: cover;
+	outline: 1px solid #fee1b6;
+	width:840px;
+	height: 550px;
 }
 #join_membership_main_div{
 	background-color:white;

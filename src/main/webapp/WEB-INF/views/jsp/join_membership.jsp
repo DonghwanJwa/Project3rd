@@ -4,19 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="./resources/css/joinmembership.css" />
-<link rel="stylesheet" type="text/css" href="./resources/css/font.css" />
-<link rel="stylesheet" type="text/css" href="./resources/css/header.css" />
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/login.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/joinmembership.css" />
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css" />
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/header.css" />
+<script src="/jamong.com/resources/js/jquery.js"></script>
+<script src="/jamong.com/resources/js/login.js"></script>
 <title>회원가입 페이지입니다</title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+   <div id="join_membership_wrap">
 	<div id="join_membership_main_wrap">
 	 <div class="wrap-loading" style="display:none">
       <div>
-       <img src="./resources/img/loading1.gif" />
+       <img src="/jamong.com/resources/img/loading1.gif" />
       </div>
 	 </div>
 
@@ -24,7 +24,7 @@
 			<div id="join_membership_main_div">
 				<!-------------------------------로고------------------------------------>
 				<div id="join_membership_img_logo">
-					<a href="./"><img src="./resources/img/logo2.png" /></a>
+					<a href="/jamong.com/"><img src="/jamong.com/resources/img/logo2.png" /></a>
 					<div id="join_membership_sequence_box">
 						<ol id="join_membership_sequence">
 							<li>
@@ -195,5 +195,6 @@
 		</form>
 		<input type="hidden" id="join_membership_email_flag" value="1"/>
 	</div>
+   </div>
 </body>
 </html>

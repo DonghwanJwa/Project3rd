@@ -116,7 +116,7 @@
        
 		<c:forEach var="i" begin="1" end="5" step="1">			
 	    <li class="head-page-hot-item">
-	     <a href="./read" class="head-page-link">
+	     <a href="/jamong.com/read" class="head-page-link">
 	      <c:if test="${i%2==1}">
 	       <img src="/jamong.com/resources/img/a.jpg"/>
 	      </c:if>

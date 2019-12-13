@@ -28,6 +28,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public List<BoardVO> recomAuthor() {	
+		return this.sqlSession.selectList("index_author");
+	}
+
+	@Override
 	public List<BoardVO> infinitiScrollDown(int bo_no) {
 		return this.sqlSession.selectList("infinitiScrollDown",bo_no);
 	}
