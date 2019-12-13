@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,6 +65,11 @@ public class MemberServiceImpl implements MemberService {
   @Override
 	public MemberVO profileCheck(int mem_no) {
 		return this.memberDao.profileCheck(mem_no);
+	}
+
+	@Override
+	public List<MemberVO> categoryMember() {
+		return this.memberDao.categoryMember();
 	}	
 	
 
