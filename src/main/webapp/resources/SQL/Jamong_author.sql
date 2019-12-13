@@ -23,6 +23,6 @@ NOCACHE;
 -- 참조키 설정
 ALTER TABLE author
 ADD CONSTRAINT aut_mem_no_fk FOREIGN KEY (mem_no)
-REFERENCES member(mem_no)
+REFERENCES member(mem_no);
 
 SELECT * FROM author ORDER BY aut_no DESC;

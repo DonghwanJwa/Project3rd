@@ -3,12 +3,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
 </head>
-<body>
 <%@include file="../include/admin_header.jsp" %>
-<form action="admin_notice">
 <div id="adm_page_title"><h3 class="adm_page_title">공지사항</h3></div>
+<form action="admin_notice">
 <div id="adm_notice_wrap">
 	<table id="adm_notice_table">
 		<tr>
@@ -25,13 +23,13 @@
 		
 		<c:if test="${!empty nlist}">
 			<c:forEach var="n" items="${nlist}">
-			<tr>	
+			<tr onclick="location='admin_notice_cont?no=${n.noti_no}&page=${page}&state=cont';" id="to_info">	
 				<td align="center" class="list_underline">
 					${n.noti_no}
 				</td>
 				
 				<td class="list_underline">
-					<a href="admin_notice_cont?no=${n.noti_no}&page=${page}&state=cont">${n.noti_title}</a>
+					${n.noti_title}
 				</td>
 				
 				<td align="center" class="list_underline">
@@ -126,7 +124,8 @@
 		</tr>
 	</table>
 </div>
-	<div id="search_interface">
+	<%-- 검색기능 패널 --%>
+	<div id="search_panel">
 		<select name="search_field">
 			<option value="noti_title" <c:if test="${search_field == 'noti_title'}">${'selected'}</c:if>>
 				제목
@@ -139,9 +138,9 @@
 			</option>
 		</select>
 		<input name="search_name" id="search_name" size="15" value="${search_name}" />
-		<input type="submit" value="검색"/>
+		<input type="submit" value="검색" class="notice_btn"/>
 	</div>
+	<%-- 검색기능 패널 끝 --%>
 </form>
 <%@include file="../include/admin_footer.jsp" %>
-</body>
 </html>

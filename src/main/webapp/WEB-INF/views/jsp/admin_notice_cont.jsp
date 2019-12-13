@@ -3,7 +3,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
 </head>
 <%@include file="../include/admin_header.jsp" %>
 <div id="notice_cont_wrap">

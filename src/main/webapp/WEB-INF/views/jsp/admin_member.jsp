@@ -3,65 +3,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
 </head>
 <%@include file="../include/admin_header.jsp" %>
-<div id="adm_member_wrap">
+<div id="adm_page_title"><h3 class="adm_page_title">회원관리</h3></div>
 <form action="admin_member">
-	<div id="adm_page_title"><h3 class="adm_page_title">회원관리</h3></div>
-	<%-- 검색기능 패널 --%>
-	<div id="mem_search_panel">
-		<select id="search_field_state" name="search_field_state" class="search_field">
-			<option value="all" selected>
-				계정상태
-			</option>
-			<option value="active" <c:if test="${search_field_state == 'active'}">${'selected'}</c:if>>
-				활동
-			</option>
-			<option value="banned" <c:if test="${search_field_state == 'banned'}">${'selected'}</c:if>>
-				정지
-			</option>
-			<option value="out" <c:if test="${search_field_state == 'out'}">${'selected'}</c:if>>
-				탈퇴
-			</option>
-		</select>
-		
-		<select id="search_field_author" name="search_field_author" class="search_field">
-			<option value="all" selected>
-				회원분류
-			</option>
-			<option value="normal" <c:if test="${search_field_author == 'normal'}">${'selected'}</c:if>>
-				일반회원
-			</option>
-			<option value="author" <c:if test="${search_field_author == 'author'}">${'selected'}</c:if>>
-				작가
-			</option>
-		</select>
-		
-		<select id="search_field_key" name="search_field_key" class="search_field">
-			<option value="mem_id" <c:if test="${search_field_key == 'mem_id'}">${'selected'}</c:if>>
-				ID
-			</option>
-			<option value="mem_nickname" <c:if test="${search_field_key == 'mem_nickname'}">${'selected'}</c:if>>
-				닉네임
-			</option>
-			<option value="mem_name" <c:if test="${search_field_key == 'mem_name'}">${'selected'}</c:if>>
-				이름
-			</option>
-		</select>
-		
-		<input name="search_name" id="search_name" value="${search_name}" />
-		<input type="submit" class="notice_btn" value="검색" />
-	</div>
-	<%-- 검색기능 패널 끝 --%>
-	
+<div id="adm_member_wrap">
 	<%-- 회원목록 시작 --%>
 	<table id="adm_mem_table">
 		<tr>
 			<td colspan="6" align="right" class="adm_member_count"><b>${mcount}</b>건의 회원정보가 있습니다.</td>
 		</tr>
 		
-		<tr>
+		<tr id="table_column">
 			<th>번호</th>
 			<th>회원ID</th>
 			<th>닉네임</th>
@@ -71,36 +24,37 @@
 		</tr>
 		
 		<c:if test="${!empty mlist}">
-			<c:forEach var="m" items="${mlist}">
-				<tr>
-					<td align="center" class="list_underline">${m.mem_no}</td>
-					<td align="center" class="list_underline">
-						<a href="admin_member_info?no=${m.mem_no}&page=${page}">${m.mem_id}</a>
-					</td>
-					<td align="center" class="list_underline">${m.mem_nickname}</td>
+			<c:forEach var="me" items="${mlist}">
+				<tr onclick="location='admin_member_info?no=${me.mem_no}&page=${page}';" id="to_info">
+					<td align="center" class="list_underline">${me.mem_no}</td>
+					<td align="center" class="list_underline">${me.mem_id}</td>
+					<td align="center" class="list_underline">${me.mem_nickname}</td>
 					
 					<%-- 계정상태 분기 시작 --%>
-					<c:if test="${m.mem_state == 0}">
+					<c:if test="${me.mem_state == 0 || me.mem_state == 9}">
 						<td align="center" class="list_underline"><font color="blue">활동</font></td>
 					</c:if>
-					<c:if test="${m.mem_state == 1}">
+					<c:if test="${me.mem_state == 1}">
 						<td align="center" class="list_underline"><font color="red">정지</font></td>
 					</c:if>
-					<c:if test="${m.mem_state == 2}">
+					<c:if test="${me.mem_state == 2}">
 						<td align="center" class="list_underline">탈퇴</td>
 					</c:if>
 					<%-- 계정상태 분기 끝 --%>
 					
 					<%-- 회원분류 분기 시작 --%>
-					<c:if test="${m.mem_author == 0}">
+					<c:if test="${me.mem_state == 9 && (me.mem_author == 0 || me.mem_author == 1) }">
+						<td align="center" class="list_underline"><b>관리자</b></td>
+					</c:if>
+					<c:if test="${me.mem_author == 0 && me.mem_state != 9}">
 						<td align="center" class="list_underline">일반</td>
 					</c:if>
-					<c:if test="${m.mem_author == 1}">
+					<c:if test="${me.mem_author == 1 && me.mem_state != 9}">
 						<td align="center" class="list_underline">작가</td>
 					</c:if>
 					<%-- 회원분류 분기 끝 --%>
 					
-					<td align="center" class="list_underline">${m.mem_date}</td>
+					<td align="center" class="list_underline">${me.mem_date}</td>
 				</tr>
 			</c:forEach>
 		</c:if>
@@ -174,7 +128,56 @@
 		<%-- 회원 목록 페이징 끝 --%>
 	</table>
 	<%-- 회원목록 끝 --%>
-</form>	
 </div>
+
+	<%-- 검색기능 패널 --%>
+	<div id="search_panel">
+		<select id="search_field_state" name="search_field_state" class="search_field">
+			<option value="all" selected>
+				계정상태
+			</option>
+			<option value="active" <c:if test="${search_field_state == 'active'}">${'selected'}</c:if>>
+				활동
+			</option>
+			<option value="banned" <c:if test="${search_field_state == 'banned'}">${'selected'}</c:if>>
+				정지
+			</option>
+			<option value="out" <c:if test="${search_field_state == 'out'}">${'selected'}</c:if>>
+				탈퇴
+			</option>
+			<option value="admin" <c:if test="${search_field_state == 'admin'}">${'selected'}</c:if>>
+				관리자
+			</option>
+		</select>
+		
+		<select id="search_field_author" name="search_field_author" class="search_field">
+			<option value="all" selected>
+				회원분류
+			</option>
+			<option value="normal" <c:if test="${search_field_author == 'normal'}">${'selected'}</c:if>>
+				일반회원
+			</option>
+			<option value="author" <c:if test="${search_field_author == 'author'}">${'selected'}</c:if>>
+				작가
+			</option>
+		</select>
+		
+		<select id="search_field_key" name="search_field_key" class="search_field">
+			<option value="mem_id" <c:if test="${search_field_key == 'mem_id'}">${'selected'}</c:if>>
+				ID
+			</option>
+			<option value="mem_nickname" <c:if test="${search_field_key == 'mem_nickname'}">${'selected'}</c:if>>
+				닉네임
+			</option>
+			<option value="mem_name" <c:if test="${search_field_key == 'mem_name'}">${'selected'}</c:if>>
+				이름
+			</option>
+		</select>
+		
+		<input name="search_name" id="search_name" value="${search_name}" />
+		<input type="submit" class="notice_btn" value="검색" />
+	</div>
+	<%-- 검색기능 패널 끝 --%>
+</form>	
 <%@include file="../include/admin_footer.jsp" %>
 </html>

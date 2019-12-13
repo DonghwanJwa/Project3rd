@@ -21,8 +21,9 @@
 		<%-- 메뉴 --%>
 		<div id="adm_main_menu">
 			<div id="adm_main_welcome">
-				${m.mem_name}님 환영합니다.&nbsp;
-				<a name="adm_logout" id="adm_logout" href="admin_logout">로그아웃</a>
+				${m.mem_name}님 환영합니다.&nbsp;&nbsp;&nbsp;
+				<a name="adm_logout" id="adm_logout" href="admin_logout">로그아웃</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				<a name="jamong_main_page" id="jamong_main_page" href="/jamong.com/">메인으로</a>
 			</div>
 			<nav>
 			<ul>

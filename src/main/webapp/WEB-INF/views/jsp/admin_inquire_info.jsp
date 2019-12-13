@@ -3,7 +3,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> </title>
 </head>
 <%@include file="../include/admin_header.jsp" %>
 <div id="adm_inq_title"><h3 class="adm_inq_title">문의내용 열람</h3></div>
