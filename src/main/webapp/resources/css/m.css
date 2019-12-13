@@ -414,17 +414,17 @@ body{
 }
 
 .main-title-text h3{
-	display:inline-block;
 	width:940px;
 	font-family: 'NanumMyeongjo','serif';
-	font-size: 55px;
+	font-size: 45px;
+	margin:0 auto;
 	margin-top:50px;
 	margin-bottom:0;
 }
 .main-title-text h5{
-	display:inline-block;
 	width:940px;
 	color:#9a9a9a;
+	margin:0 auto;
 	margin-top:13px;
 }
 /*추천책 란*/
@@ -614,7 +614,6 @@ body{
 .writting-item-head-inner-cont-img{
 	height: 238px;
 	margin: 15px;
-	background-image:url(../img/a.jpg);
 	background-size: cover;
 	border:1px solid #c0c0c0;
 }

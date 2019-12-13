@@ -23,13 +23,14 @@ public class BoardDAOImpl implements BoardDAO {
 	public BoardVO getUserBoardCont(int bo_no) {
 		return this.sqlSession.selectOne("bo_cont",bo_no);
 	}
+	
 	public List<BoardVO> getListAll(BoardVO b) {
 		return this.sqlSession.selectList("bo_list", b);
 	}
-
+	
 	@Override
-	public List<BoardVO> recomAuthor() {	
-		return this.sqlSession.selectList("index_author");
+	public List<BoardVO> recomArticle() {	
+		return this.sqlSession.selectList("board.index_article");
 	}
 
 	@Override

@@ -62,9 +62,14 @@ public class MemberServiceImpl implements MemberService {
 		this.memberDao.memberUpdate(vo);
 	}
 
-  @Override
+	@Override
 	public MemberVO profileCheck(int mem_no) {
 		return this.memberDao.profileCheck(mem_no);
+	}
+  
+	@Override
+	public List<MemberVO> recomAuthor() {	
+		return this.memberDao.recomAuthor();
 	}
 
 	@Override

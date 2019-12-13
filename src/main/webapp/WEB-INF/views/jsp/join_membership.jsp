@@ -120,7 +120,8 @@
 						</div>
 					</div>
 					<div>
-						<input type="button" id="join_membership_next_btn" tabindex="17" value="다음으로" disabled />
+					<%-- 메일인증 구현해야됨!!! --%> 
+						<input type="button" id="join_membership_next_btn" tabindex="17" value="다음으로" />
 					</div>
 				</div>
 

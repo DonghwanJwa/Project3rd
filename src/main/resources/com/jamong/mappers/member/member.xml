@@ -56,6 +56,12 @@
   SELECT mem_id FROM member WHERE mem_no=#{mem_no}
  </select>
  
+ <select id="index_author" resultType="m">
+ <![CDATA[
+  SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) WHERE rowNum <= 9
+  ]]> 
+ </select>
+ 
  <select id="cat_member" resultType="m">
  <![CDATA[
   SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) WHERE rowNum <= 5

@@ -59,12 +59,12 @@
   SELECT * FROM board WHERE bo_no=#{bo_no};
  </select>
  
- <select id="index_author" resultMap="boardMap">
+ <select id="index_article" resultMap="boardMap">
  <![CDATA[
 	SELECT * FROM board b
-	RIGHT JOIN (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM)m
+	INNER JOIN (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM)m
 	ON b.mem_no=m.mem_no
-	WHERE rowNum <= 9
+	WHERE rowNum <= 20
 ]]>
  </select>
  

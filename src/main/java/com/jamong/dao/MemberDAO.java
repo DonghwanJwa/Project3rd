@@ -17,5 +17,6 @@ public interface MemberDAO {
 	MemberVO get(String mem_id);
 	void memberUpdate(MemberVO vo);
 	MemberVO profileCheck(int mem_no);
+	List<MemberVO> recomAuthor();
 	List<MemberVO> categoryMember();
 }

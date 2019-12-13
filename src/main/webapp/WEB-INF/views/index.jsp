@@ -432,26 +432,26 @@ $(document).keydown(function(e){
 	
      <ul id="recom_writting-list">
      
- 	  <c:forEach begin="1" end="20" step="1">
+ 	  <c:forEach var="blist" items="${blist}">
        <li>
         <div class="recom_writting-item">
-         <a href="/jamong.com/read" class="link_item">
+         <a href="/jamong.com/@${blist.memberVO.mem_id}/${blist.bo_no}" class="link_item">
           <div class="recom_writting-item-head">
            <div class="writting-item-head-inner">
             <div class="writting-item-head-inner-cont">
-             <div class="writting-item-head-inner-cont-img">
+             <div class="writting-item-head-inner-cont-img" style="background-image:url(${blist.bo_thumbnail})">
               <%-- 이미지 div --%>
              </div>
              <div class="writting-item-head-inner-cont-hs">
               <div class="writting-item-head-inner-cont-head">
-               <p>캐나다의 밤은 서울보다 조용히 흐른다.</p>
+               <p>${blist.bo_title}</p>
               </div>
               <div class="writting-item-head-inner-cont-sub">
-               <span>중국 회사에서 인턴을 하며 알게 된 프랑스 친구와 파리에서 3년 만에 만나 이야기를</span>
+               <span>${blist.bo_cont}</span>
               </div>
              </div>
              <div class="writting-item-head-inner-cont-bottom">
-              <span>by 글쓴이</span>
+              <span>by ${blist.memberVO.mem_nickname}</span>
              </div>
             </div>
            </div>
@@ -538,23 +538,22 @@ $(document).keydown(function(e){
     <div id="recom_author-cont">
      <ul id="recom_author-list">
 
-	  <c:forEach begin="1" end="9" step="1">
+	  <c:forEach var="mlist" items="${mlist}">
 	  <li class="recom_author-item">
 	   <div class="recom_author-item-inner">
 	   	<a href="/jamong.com/profile" class="recom_author-item-link">
 		 <div class="recom_author-item-intro">
-		  <strong>김지아</strong>
-		  <span class="recom-author-job">일상담소 강사</span>
-		  <span class="recom-author-intro">일의 선택에 필요한 정보/경험을 상담으로 제공합니다. 자신을 빛내는 자소서 글쓰기, 진로 선택을 위한 취준/이직 상담, 워크숍을 주력으로 하고 있습니다.</span>
+		  <strong>${mlist.mem_nickname}</strong><%-- 와드! mem_nickname --%>
+		  <span class="recom-author-intro">${mlist.profile_cont}</span>
 		 </div>	  
 	   	 <div class="recom_author-item-img">
-		  <img src="/jamong.com/resources/img/profile.jpg" alt="프로필 사진"/>
+		  <img src="${mlist.profile_photo}" alt="프로필 사진"/>
 		 </div>
 	   	</a>		  	
 	    <div class="recom_author-keyword">
-	     <button class="keyword1">취업</button>
-	     <button class="keyword2">상담사</button>
-	     <button class="keyword3">컨설턴트</button>
+	     <button class="keyword1">${mlist.mem_fav1}</button>
+	     <button class="keyword2">${mlist.mem_fav2}</button>
+	     <button class="keyword3">${mlist.mem_fav3}</button>
 	    </div>
 	   </div>
 	  </li>

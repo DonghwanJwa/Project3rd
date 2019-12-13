@@ -10,9 +10,11 @@ public interface BoardDAO {
 
 	BoardVO getUserBoardCont(int bo_no);
 
-	List<BoardVO> recomAuthor();
 	List<BoardVO> getListAll(BoardVO b);
 
+	List<BoardVO> recomArticle();
+	
 	List<BoardVO> infinitiScrollDown(int bo_no);
+
 
 }
