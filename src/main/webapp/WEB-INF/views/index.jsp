@@ -422,61 +422,11 @@ $(document).keydown(function(e){
     
    </div>
   
-   <%-- 메인-추천책 주황--%>
-   <div id="recom_book">
-    <div class="main-title-text">
-     <h3>추천 작품</h3>
-    </div>
-    <div id="recom_book-cont">
-     <ul id="recom_book-list">
-     
-	  <c:forEach begin="1" end="20" step="1">
-       <li>
-        <div class="recom_book-item">
-         <a href="/jamong.com/book_info" class="link_item">
-          <div class="recom_book-item-head">
-           <div class="book-item-head-inner">
-            <img class="book-item-head-inner-img" src="/jamong.com/resources/img/write2.jpg">
-            <div class="book-item-head-inner-cont">
-             <div class="book-item-head-inner-cont-top">
-              <strong>강아지와 지내는건 어때?</strong>
-              <span>by 멍뭉이</span>
-             </div>
-             <div class="book-item-head-inner-cont-bottom">
-              <span>Jamong Book</span>
-             </div>
-            </div>
-            <span class="book-item-head-inner-line"></span>
-           </div>
-          </div>
-         </a>
-        </div> 
-       </li>
-      </c:forEach>
-      
-     </ul>
-     <div id="recom_book-item-shelveback"></div>
-     <div class="clear"></div>
- 	 <div id="recom_book-item-shelve"></div>
-    </div>
-     <div class="slide-button">
-      <a href="javascript:;" id="recom_book-cont-slideleft" class="slide-left" onclick="scrollmove('recom_book-cont','slideleft');"
-      	style="visibility:hidden;">
-       <img src="/jamong.com/resources/img/writepage_icon/prev_btn.png" alt="왼쪽스크롤버튼"/>
-      </a>
-      <a href="javascript:;" id="recom_book-cont-slideright" class="slide-right" onclick="scrollmove('recom_book-cont','slideright');"
-      	style="visibility:visible;">
-       <img src="/jamong.com/resources/img/writepage_icon/next_btn.png" alt="오른쪽스크롤버튼"/>
-      </a>
-     </div>
-   </div>
-   
-   <div class="clear"></div>
-   
-   <%-- 메인-공감글 노랑--%>
+  <%-- 메인-공감글 노랑--%>
    <div id="recom_writting">
     <div class="main-title-text">
-     <h3>공감 글</h3>
+     <h3>SYMPATHETIC ARTICLE</h3>
+     <h5>당신을 공감시킬 글모음</h5>
     </div>
 	<div id="recom_writting-cont">
 	
@@ -524,11 +474,66 @@ $(document).keydown(function(e){
       </a>     
     </div>   
    </div>
+  
+   <div class="clear"></div>
+  
+   <%-- 메인-추천책 주황--%>
+   <div id="recom_book">
+    <div class="main-title-text">
+     <h3>RECOMMENED BOOKS</h3>
+     <h5>자몽 작가들의 특별한 출간</h5>
+    </div>
+    <div id="recom_book-cont">
+     <ul id="recom_book-list">
+     
+	  <c:forEach begin="1" end="20" step="1">
+       <li>
+        <div class="recom_book-item">
+         <a href="/jamong.com/book_info" class="link_item">
+          <div class="recom_book-item-head">
+           <div class="book-item-head-inner">
+            <img class="book-item-head-inner-img" src="/jamong.com/resources/img/write2.jpg">
+            <div class="book-item-head-inner-cont">
+             <div class="book-item-head-inner-cont-top">
+              <strong>강아지와 지내는건 어때?</strong>
+              <span>by 멍뭉이</span>
+             </div>
+             <div class="book-item-head-inner-cont-bottom">
+              <span>Jamong Book</span>
+             </div>
+            </div>
+            <span class="book-item-head-inner-line"></span>
+           </div>
+          </div>
+         </a>
+        </div> 
+       </li>
+      </c:forEach>
+      
+     </ul>
+     <div id="recom_book-item-shelveback"></div>
+     <div class="clear"></div>
+ 	 <div id="recom_book-item-shelve"></div>
+    </div>
+     <div class="slide-button">
+      <a href="javascript:;" id="recom_book-cont-slideleft" class="slide-left" onclick="scrollmove('recom_book-cont','slideleft');"
+      	style="visibility:hidden;">
+       <img src="/jamong.com/resources/img/writepage_icon/prev_btn.png" alt="왼쪽스크롤버튼"/>
+      </a>
+      <a href="javascript:;" id="recom_book-cont-slideright" class="slide-right" onclick="scrollmove('recom_book-cont','slideright');"
+      	style="visibility:visible;">
+       <img src="/jamong.com/resources/img/writepage_icon/next_btn.png" alt="오른쪽스크롤버튼"/>
+      </a>
+     </div>
+   </div>
+   
+   <div class="clear"></div>
     
    <%-- 메인-추천 작가 초록--%>
    <div id="recom_author">
     <div class="main-title-text">
-     <h3>추천 작가</h3>
+     <h3>JAMONG AUTHORS</h3>
+     <h5>다양한 작가들을 만나보세요</h5>
     </div>
     <div id="recom_author-cont">
      <ul id="recom_author-list">
@@ -560,60 +565,6 @@ $(document).keydown(function(e){
    </div>
    
    <div class="clear"></div>
-   
-   <%-- 메인-최신글 청록--%>
-   <div id="recent_writting">
-    <div class="main-title-text">
-     <h3>최신 글</h3>
-    </div>
-    <div id="recent_writting-cont">
-     <ul id="recent_writting-list">
-
-	 <c:forEach begin="1" end="20" step="1">
-     <li>
-       <div class="recent_writting-item">
-        <a href="/jamong.com/read" class="link_item">
-         <div class="recent_writting-item-head">
-          <div class="recent_writting-item-head-inner">
-           <div class="recent_writting-item-head-inner-cont">
-            <div class="recent_writting-item-head-inner-cont-img">
-             <%-- 이미지 div --%>
-            </div>
-            <div class="recent_writting-item-head-inner-cont-hs">
-             <div class="recent_writting-item-head-inner-cont-head">
-              <p>캐나다의 밤은 서울보다 조용히 흐른다.</p>
-             </div>
-             <div class="recent_writting-item-head-inner-cont-sub">
-              <span>중국 회사에서 인턴을 하며 알게 된 프랑스 친구와 파리에서 3년 만에 만나 이야기를</span>
-             </div>
-            </div>
-            <div class="recent_writting-item-head-inner-cont-bottom">
-             <span>by 글쓴이</span>
-            </div>
-           </div>
-          </div>
-         </div>
-        </a>
-       </div> 
-      </li>
-	  </c:forEach>
-	 
-     </ul>
-    </div>
-     <div class="slide-button">
-     <a href="javascript:;" id="recent_writting-cont-slideleft" class="slide-left" onclick="scrollmove('recent_writting-cont','slideleft');"
-      style="visibility:hidden;">
-      <img src="/jamong.com/resources/img/writepage_icon/prev_btn.png" alt="왼쪽스크롤버튼"/>
-     </a>
-     <a href="javascript:;" id="recent_writting-cont-slideright" class="slide-right" onclick="scrollmove('recent_writting-cont','slideright');"
-     	style="visibility:visible;">
-      <img src="/jamong.com/resources/img/writepage_icon/next_btn.png" alt="오른쪽스크롤버튼"/>
-     </a>     
-    </div>
-   </div>
-  </div>
-  
-  <div class="clear"></div>
 
   <%-- 정보란 파랑--%>
  <footer id="foot-main-footer">
