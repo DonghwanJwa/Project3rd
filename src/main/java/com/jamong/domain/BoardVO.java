@@ -24,12 +24,6 @@ public class BoardVO {
 	
 	private MemberVO memberVO;
 	
-	public MemberVO getMemberVO() {
-		return memberVO;
-	}
-	public void setMemberVO(MemberVO memberVO) {
-		this.memberVO = memberVO;
-	}
 	// Setter()
 	public void setBo_date(String bo_date)		   	 {		this.bo_date = bo_date;				}
 	public void setBo_editdate(String bo_editdate) 	 {		this.bo_editdate = bo_editdate;		}
@@ -48,6 +42,7 @@ public class BoardVO {
 	public void setBo_type(int bo_type) 			 {		this.bo_type = bo_type;				}
 	public void setFind_field(String find_field)   	 {		this.find_field = find_field;		}
 	public void setFind_name(String find_name) 	   	 {		this.find_name = find_name;			}
+	public void setMemberVO(MemberVO memberVO) 		 {		this.memberVO = memberVO;			}
 	
 	// Getter()
 	public int getBo_no() 		   	{		return bo_no;			}
@@ -67,5 +62,6 @@ public class BoardVO {
 	public int getBo_type() 		{		return bo_type;			}
 	public String getFind_name()   	{		return find_name;		}
 	public String getFind_field()  	{		return find_field;		}
+	public MemberVO getMemberVO() 	{		return memberVO;		}
 		
 }

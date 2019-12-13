@@ -1,22 +1,18 @@
 /**
  * new_posts.js
  */
-$(document).ready(function(){
+// 새로고침 시 스크롤 맨 위로 이동
+$(window).on("beforeunload",function(){
 	$("html").scrollTop(0);
 });
 
-var lastScrollTop=0;
-var easeEffect='easeInQuint';
 
 //스크롤 이벤트 발생
 $(window).scroll(function(){
-	var currentScrollTop = $(window).scrollTop();
 	
 	/* 스크롤 다운 중 */
-	if(currentScrollTop-lastScrollTop > 0){
-		//down-scroll:현재 게시글 다음의 글을 불러온다.
 		//현재 스크롤의 top 좌표가 > (게시글을 불러온 화면 높이 - 윈도우창의 높이) 되는 순간
-		if(currentScrollTop>=($(document).height()-$(window).height())){//현재 스크롤의 위치가 화면의 보이는 위치보다 크다면
+		if($(window).scrollTop()>=($(document).height()-$(window).height())){//현재 스크롤의 위치가 화면의 보이는 위치보다 크다면
 			//현재 로딩이된 게시글의 마지막 bo_no값을 읽어옴
 			var lastbo_no=$(".scrolling:last").attr("data-no");
 			//ajax를 이용하여 현재 로딩 된 게시글의 마지막 bo_no를 서버로 보내어 그 다음 10개의 게시물 데이터를 받아온다.
@@ -43,7 +39,7 @@ $(window).scroll(function(){
 									+	  "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
 									+	  "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
 									+	  "<div id='new_post_loading_cont_text_writer'>"
-									+	   "<i>by</i>" + this.memberVO.mem_nickname
+									+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
 									+	  "</div>"
 									+	  "<div id='new_post_loading_cont_text_tag'>"
 									+	   "<span>" + this.memberVO.mem_keyword + "</span>"
@@ -68,10 +64,6 @@ $(window).scroll(function(){
 //				}
 			});//ajax
 			
-//			var position = $("#new_post_list:first").offset();
-			
-			lastScrollTop=currentScrollTop;
 		}//if: 현재 스크롤의 top 좌표가 > (게시글을 불러온 화면 높이 - 윈도우창의 높이) 되는 순간
 		
-	}//if: 스크롤 다운 중 
 }); //스크롤 이벤트

@@ -58,7 +58,7 @@ public class InquireController {
 		String inq_cont  = multi.getParameter("inq_cont");
 		String inq_date  = multi.getParameter("inq_date");
 		String inq_state  = multi.getParameter("inq_state");
-		MemberVO adm_m=session.get
+//		MemberVO adm_m=session.get
 		
 		
 		

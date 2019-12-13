@@ -21,6 +21,17 @@
     <c:forEach var="b" items="${bList}">
      <li class="scrolling" data-no="${b.bo_no}"><a href="./read">
        <div id="new_post_loading_cont">
+        <div id="new_post_loading_cont_text">
+         <div id="new_post_loading_cont_text_title">${b.bo_title}</div>
+         <div id="new_post_loading_cont_text_cont">${b.bo_cont}</div>
+         <div id="new_post_loading_cont_text_writer">
+          <i>by&nbsp;&nbsp;</i>${b.memberVO.mem_nickname}
+         </div>
+         <div id="new_post_loading_cont_text_tag">
+          <span>${b.memberVO.mem_keyword}</span>
+         </div>
+         <div id="new_post_loading_cont_text_ago">${b.bo_date}</div>
+        </div>
         <c:set var="img" value="${b.bo_thumbnail}"/>
         <c:if test="${not empty img}">
         <img id="new_post_loading_cont_img" src="${b.bo_thumbnail}">
@@ -28,17 +39,6 @@
         <c:if test="${empty img}">
         <div id='new_post_loading_cont_img'></div>
         </c:if>
-        <div id="new_post_loading_cont_text">
-         <div id="new_post_loading_cont_text_title">${b.bo_title}</div>
-         <div id="new_post_loading_cont_text_cont">${b.bo_cont}</div>
-         <div id="new_post_loading_cont_text_writer">
-          <i>by</i> ${b.memberVO.mem_nickname}
-         </div>
-         <div id="new_post_loading_cont_text_tag">
-          <span>${b.memberVO.mem_keyword}</span>
-         </div>
-         <div id="new_post_loading_cont_text_ago">${b.bo_date}</div>
-        </div>
        </div>
      </a></li>
     </c:forEach>

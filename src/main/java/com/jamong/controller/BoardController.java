@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -196,19 +195,28 @@ public class BoardController {
 	@RequestMapping("new_posts")
 	public ModelAndView user_new_posts(BoardVO b) {
 		List<BoardVO> bList = this.boardService.getListAll(b);
+		for(int i=0;i<bList.size();i++) {
+			String htmlText = bList.get(i).getBo_cont();
+			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			bList.get(i).setBo_cont(normalText);
+		}
 		ModelAndView mv=new ModelAndView();
 		mv.addObject("bList", bList);
 		mv.setViewName("jsp/new_posts");
-		
 		return mv;
 	}
 	
 	@PostMapping("infinitiScrollDown")
 	@ResponseBody
 	public List<BoardVO> infinitiScrollDownPOST(String bo_no){
-		System.out.println(bo_no);
 		int bo_noToStart = Integer.parseInt(bo_no) -1;
-		return this.boardService.infinitiScrollDown(bo_noToStart);
+		List<BoardVO> data=this.boardService.infinitiScrollDown(bo_noToStart);
+		for(int i=0;i<data.size();i++) {
+			String htmlText = data.get(i).getBo_cont();
+			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			data.get(i).setBo_cont(normalText);
+		}
+		return data;
 	}
 	
 	@RequestMapping("search")
