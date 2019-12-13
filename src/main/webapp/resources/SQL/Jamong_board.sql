@@ -24,6 +24,8 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+ALTER TABLE board ADD cat_name VARCHAR2(50)
+ALTER TABLE board DROP (fav_no);
 
 -- 카테고리 테이블 참조컬럼 생성
 ALTER TABLE board
@@ -43,4 +45,8 @@ REFERENCES book(book_no)
 SELECT * FROM board ORDER BY bo_no DESC;
 SELECT bo_no_seq.nextval FROM DUAL;
 
-
+SELECT *
+FROM board b, member m
+WHERE b.mem_no=m.mem_no
+AND b.cat_name='IT'
+ORDER BY b.bo_no DESC;

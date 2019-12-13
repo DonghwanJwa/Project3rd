@@ -36,4 +36,9 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> infinitiScrollDown(int bo_no) {
 		return this.boardDao.infinitiScrollDown(bo_no);
 	}
+
+	@Override
+	public List<BoardVO> categoryArticle(String cat_name) {
+		return this.boardDao.categoryArticle(cat_name);
+	}
 }

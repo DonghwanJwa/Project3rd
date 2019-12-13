@@ -12,12 +12,11 @@ import com.jamong.domain.MemberVO;
 
 public interface BoardService {
 
-	void insertBoard(BoardVO b);
+	void insertBoard(BoardVO b);	
 	BoardVO getUserBoardCont(int bo_no);
-
-	List<BoardVO> getListAll(BoardVO b);
-	
+	List<BoardVO> getListAll(BoardVO b);	
 	List<BoardVO> infinitiScrollDown(int bo_no);
+	List<BoardVO> categoryArticle(String cat_name);
 
 
 }
