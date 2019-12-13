@@ -40,19 +40,25 @@
 	<div class=cat_writing_block>
 	 <div class=cat_writing>
 	  <div class="cat_writing_img-div">
-	   <img class="cat_writing_img" src="/jamong.com/resources/img/joker.jpg" alt="글" />
+	   <img class="cat_writing_img" src="${blist.bo_thumbnail}" alt="글" />
 	  </div>
 	 <a class=cat_write_top href="/jamong.com/read">
 	  <div class=cat_writing_top>
 	  	<p class=cat_write_title><strong>${blist.bo_title}</strong></p>
 	  	<span class=cat_story_cont>${blist.bo_cont}</span>
-	  	<span class=cat_story_writer>By ${blist.memverVO.mem_id}</span>
+	  	<span class=cat_story_writer><i>by</i> ${blist.memberVO.mem_nickname}</span>
 	  </div>
 	</a>
 	  <div class=cat_writing_bottom>
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>${blist.memverVO.mem_fav1}</b></button>
-	   <button class=cat_writing_button2 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>${blist.memverVO.mem_fav2}</b></button>
-	   <button class=cat_writing_button3 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'"><b>${blist.memverVO.mem_fav3}</b></button>
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <b>${blist.memberVO.mem_fav1}</b>
+	   </button>
+	   <button class=cat_writing_button2 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <b>${blist.memberVO.mem_fav2}</b>	   
+	   </button>
+	   <button class=cat_writing_button3 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <b>${blist.memberVO.mem_fav3}</b>
+	   </button>
 	  </div>
 	 </div>
 	</div>

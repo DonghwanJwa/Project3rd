@@ -40,14 +40,14 @@ public class BoardController {
 	
 	@RequestMapping("@{mem_id}/{bo_no}")
 	public String user_readCont(
-			@PathVariable("mem_id") String mem_id, int bo_no,BoardVO bo, Model model,
+			@PathVariable String mem_id,@PathVariable int bo_no,BoardVO bo, Model model,
 			HttpServletResponse response,
 			HttpServletRequest request,
 			HttpSession session) throws Exception{
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		bo = this.boardService.getUserBoardCont(bo_no);		
+		bo = this.boardService.getUserBoardCont(bo_no);
 		
 		model.addAttribute("bo",bo);
 		model.addAttribute("mem_id",mem_id);	

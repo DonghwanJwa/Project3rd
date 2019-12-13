@@ -19,7 +19,7 @@
   <div id="new_post_loading">
    <ul id="new_post_list">
     <c:forEach var="b" items="${bList}">
-     <li class="scrolling" data-no="${b.bo_no}"><a href="./read">
+     <li class="scrolling" data-no="${b.bo_no}"><a href="/jamong.com/@${b.memberVO.mem_id}/${b.bo_no}">
        <div id="new_post_loading_cont">
         <c:set var="img" value="${b.bo_thumbnail}"/>
         <c:if test="${not empty img}">
