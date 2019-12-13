@@ -14,9 +14,9 @@ insert into category values(5,'문화·예술');
 
 insert into category values(6,'사진·촬영');
 insert into category values(7,'시사·이슈');
-insert into category values(8,'심리 탐구');
+insert into category values(8,'심리');
 insert into category values(9,'여행');
-insert into category values(10,'영화 리뷰');
+insert into category values(10,'영화');
 
 insert into category values(11,'요리·레시피');
 insert into category values(12,'육아');

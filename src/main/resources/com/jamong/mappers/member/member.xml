@@ -58,7 +58,9 @@
  
  <select id="index_author" resultType="m">
  <![CDATA[
-  SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) WHERE rowNum <= 9
+  SELECT * 
+  FROM (SELECT * FROM member where mem_state=0 ORDER BY DBMS_RANDOM.RANDOM) 
+  WHERE rowNum <= 9
   ]]> 
  </select>
  

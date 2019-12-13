@@ -288,8 +288,7 @@ $(document).ready(function(){
 		if($("#join_membership_page2").css("display") == "none"){
 			$("#join_membership_page1").hide();
 			$("#join_membership_sequence_list1").removeClass('membership_step');
-			//메일인증 복구해야됨!!!!!!
-			/*$("#join_membership_sequence_list1").addClass('membership_complete');*/
+			$("#join_membership_sequence_list1").addClass('membership_complete');
 			$("#join_membership_page2").show();
 			$("#join_membership_sequence_list2").addClass('membership_step');
 		}

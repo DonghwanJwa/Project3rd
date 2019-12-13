@@ -61,10 +61,10 @@
  
  <select id="index_article" resultMap="boardMap">
  <![CDATA[
-	SELECT * FROM board b
-	INNER JOIN (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM)m
+	SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM)b
+	INNER JOIN member m
 	ON b.mem_no=m.mem_no
-	WHERE rowNum <= 20
+	WHERE rowNum <= 20 and bo_lock=1
 ]]>
  </select>
  
