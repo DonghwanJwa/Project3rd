@@ -1,7 +1,10 @@
 package com.jamong.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.MemberDAO;
 import com.jamong.domain.MemberVO;
@@ -11,6 +14,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDAO memberDao;
+	
+	@Override
+	public void memberUpdate(MemberVO me) {
+		this.memberDao.memberUpdate(me);
+	}
 
 	@Override
 	public void insertMember(MemberVO m) {
@@ -47,5 +55,27 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO adminLogin(String adm_id) {
 		return this.memberDao.adminLogin(adm_id);
-	}		
+	}
+
+	@Override
+	public MemberVO get(String mem_id) {
+		return this.memberDao.get(mem_id);
+	}
+
+	@Override
+	public MemberVO profileCheck(int mem_no) {
+		return this.memberDao.profileCheck(mem_no);
+	}
+  
+	@Override
+	public List<MemberVO> recomAuthor() {	
+		return this.memberDao.recomAuthor();
+	}
+
+	@Override
+	public List<MemberVO> categoryMember() {
+		return this.memberDao.categoryMember();
+	}	
+	
+
 }

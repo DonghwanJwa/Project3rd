@@ -6,10 +6,19 @@ body{
 	text-decoration: none;
 	list-style: none;
 	}
+#join_membership_wrap{
+	width:100vw;
+	height:100vh;
+	display:flex;
+	background-color:rgb(249, 249, 245);
+	justify-content:center;
+	align-items: center;	
+}
+	
 #join_membership_main_wrap{
-    padding: calc((100vh - 550px) / 2) 0;
-    background-image: url(../img/background_img/login_pattern1.png);
-    background-size: cover;
+	outline: 1px solid #fee1b6;
+	width:840px;
+	height: 550px;
 }
 #join_membership_main_div{
 	background-color:white;
@@ -21,7 +30,7 @@ body{
 
 #join_membership_img_logo{
 	display:flex;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
 
 #join_membership_img_logo a{
@@ -62,6 +71,9 @@ body{
 .membership_step{
 	border:2px solid orange;
 }
+.membership_complete{
+	border:2px solid #00ff00;
+}
 
 #join_membership_sub_div_1{
 	display: inline-block;
@@ -80,11 +92,11 @@ body{
 
 
 .join_membership_text{	/* 인풋박스 설정 */
-	width: 265px;
+	width: 270px;
 	height: 30px;
 	line-height:30px;
-	font-size:18px;
-	padding-left: 20px;
+	font-size:16px;
+	padding-left: 15px;
 	outline: 0;
 	border-left: none;
 	border-right: none;
@@ -99,8 +111,15 @@ body{
 }
 
 .join_membership_birth{
-	width: 200px;
-	height: 30px;
+	width: 60px;
+	height: 29px;
+	font-size:16px;	
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	padding:0;
+	padding-left: 15px;
 }
 .join_membership_birth:hover{
 	border-bottom: 2px solid orange;
@@ -115,10 +134,9 @@ body{
 	-moz-appearance:none;
 	appearance:none;
 	width: 75px;
-	height: 35px;
+	height: 34px;
 	padding-left:15px;
-	padding-bottom: 5px;
-	font-size:18px;
+	font-size:16px;
 	color:gray;
 	border: 2px solid #F5F0F0;
 	outline: 0;
@@ -133,28 +151,7 @@ body{
 #join_membership_select_gender:focus{
 		border-bottom: 2px solid orange;
 }
-.join_membership_birth{
-	width: 55px;
-	height: 30px;
-	font-size:18px;	
-	outline: 0;
-	border-left: none;
-	border-right: none;
-	border-top: none;
-	padding-left: 20px;
-	padding-bottom: 2px;
-}
-#join_membership_birth{
-	width: 210px;
-	height: 35px;
-	font-size:18px;
-	color:gray;
-	outline:0;
-	border-left: none;
-	border-right: none;
-	border-top: none;
-	padding-left: 20px;
-}
+
 /* #F5F0F0 셀렉트박스에 넣을 회색 */
 
 
@@ -163,15 +160,15 @@ body{
 }
 
 .join_membership_tel{
-	height: 23px;
-	width: 75px;
-	font-size:18px;
+	height: 32px;
+	width: 79px;
+	font-size:16px;
+	padding:0;
 	outline: 0;
 	border-left: none;
 	border-right: none;
 	border-top: none;
-	padding-left: 20px;
-	padding-bottom: 5px;
+	padding-left: 15px;
 }
 
 .join_membership_tel_hover_focus :hover{
@@ -182,9 +179,14 @@ body{
 	border-bottom: 2px solid orange;
 }
 
+.join_membership_tel_bar{
+	font-size:16px;
+	font-weight:normal;
+	margin:0 5px;
+}
 
 .join_membership_email_class{
-	display: inline;
+	display: inline-block;
 }
 
 .join_membership_email_class :hover{
@@ -201,10 +203,11 @@ body{
 	border-right: none;
 	border-top: none;
 	height: 30px;
-	width: 90px;
-	font-size:18px;
+	width: 111px;
+	font-size:16px;
 	outline: 0;
-	padding-left: 20px;
+	padding: 0px;
+	padding-left: 15px;
 }
 
 #join_membership_email_atMark{
@@ -215,10 +218,11 @@ body{
 	-webkit-appearance:none;/* 네이티브 외형 감추기 */
 	-moz-appearance:none;
 	appearance:none;
-	width: 108px;
+	width: 97px;
 	height: 30px;
+	padding:0px;
 	padding-left: 10px;
-	font-size:18px;
+	font-size:16px;
 	outline: 0;
 	border-left: none;
 	border-right: none;
@@ -237,19 +241,21 @@ body{
 	background-color:white;
 	border: solid 2px orange;
 	outline: 0;
-	margin-left: 10px;
+	margin-left: 5px;
+	cursor: pointer;
 }
-#join_membership_certified_btn:hover{
+#join_membership_certified_btn:active{
+	border:none;
 	background-color: orange;
 	color:white;
 }
 
 .join_membership_emailcheck{
-	width: 233px;
-	height: 30px;
+	width: 243px;
+	height: 28px;
 	line-height:30px;
-	font-size:18px;
-	padding-left: 20px;
+	font-size:16px;
+	padding-left: 15px;
 	outline: 0;
 	border-left: none;
 	border-right: none;
@@ -269,9 +275,11 @@ body{
 	background-color:white;
 	border: solid 2px orange;
 	outline: 0;
-	margin-left: 10px;
+	margin-left: 5px;
+	cursor: pointer;
 }
-#join_membership_emailcheck_btn:hover{
+#join_membership_emailcheck_btn:active{
+	border:none;
 	background-color: orange;
 	color:white;
 }
@@ -286,7 +294,7 @@ body{
 	margin: 0px 300px;
 }
 
-#join_membership_next_btn:hover{
+#join_membership_next_btn:active{
 	background-color: orange;
 	color:white;
 }
@@ -317,7 +325,7 @@ body{
 	line-height:1.2;
 	position: relative; 
 	width:545px;
-	height: 320px;
+	height: 350px;
 	padding: 15px 30px;
 	margin-left:50%; margin-right:50%;
 	transform: translate(-50%);
@@ -392,7 +400,7 @@ body{
 }
 
 #join_membership_profile_editor_error{
-	display:inline;
+	display:inline-block;
 	width:240px;
 	height:11px;
 	line-height:11px;
@@ -428,6 +436,7 @@ body{
 	height: 40px;
 }
 .join_membership_profile_anoun{
+	display:inline-block;
 	font-weight: normal;
 	font-size:9px;
 	color: #c0c0c0;
@@ -447,13 +456,13 @@ body{
 	cursor: pointer;
 	outline: 0;
 	margin:0 45px;
-	margin-top: 33px;
+	margin-top: 25px
 }
-#join_membership_before_btn2:hover{
+#join_membership_before_btn2:active{
 	background-color: orange;
 	color:white;
 }
-#join_membership_next_btn2:hover{
+#join_membership_next_btn2:active{
 	background-color: orange;
 	color:white;
 }
@@ -522,13 +531,13 @@ body{
 	cursor: pointer;
 	outline: 0;
 	margin:0 45px;
-	margin-top: 25px;
+	margin-top: 37px;
 }
-#join_membership_before_btn3:hover{
+#join_membership_before_btn3:active{
 	background-color: orange;
 	color:white;
 }
-#join_membership_next_btn3:hover{
+#join_membership_next_btn3:active{
  	background-color: orange;
 	color:white;
 }

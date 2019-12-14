@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<script src="./resources/js/new_book.js"></script>
-<link rel="stylesheet" type="text/css" href="./resources/css/new_book.css">
+<script src="/jamong.com/resources/js/new_book.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/new_book.css">
 
 <%-- 상단 슬라이드 배너 --%>
 <section class="new_book_list_banner">
@@ -18,7 +18,7 @@
              해서 나는, 두근거림에도 연습이 필요하다고 믿는다.
       </p>
       <div class="text_banner_author">
-       <img src="./resources/img/profile1.jpg">
+       <img src="/jamong.com/resources/img/profile1.jpg">
        <div class="text_banner_author_desc">
         <p class="text_banner_author_user">강이슬</p>
         <span class="publisher_name">웨일북(whalebooks)</span>
@@ -31,7 +31,7 @@
       <div class="new_book_banner_book_image">
        <div class="border_left"></div>
        <div class="book_image">
-        <img src="./resources/img/book_img.jpg" alt="책 커버 이미지">
+        <img src="/jamong.com/resources/img/book_img.jpg" alt="책 커버 이미지">
        </div>
       </div>
      </div>
@@ -50,7 +50,7 @@
              어쩌면 진짜 어른이 되기 위해선 아이의 태도를 떠올려야 하는 게 아닐까?
       </p>
       <div class="text_banner_author">
-       <img src="./resources/img/profile1.jpg">
+       <img src="/jamong.com/resources/img/profile1.jpg">
        <div class="text_banner_author_desc">
         <p class="text_banner_author_user">손화신</p>
         <span class="publisher_name">웨일북(whalebooks)</span>
@@ -63,7 +63,7 @@
       <div class="new_book_banner_book_image">
        <div class="border_left"></div>
        <div class="book_image">
-        <img src="./resources/img/book_img2.jpg">
+        <img src="/jamong.com/resources/img/book_img2.jpg">
        </div>
       </div>
      </div>
@@ -82,7 +82,7 @@
              혼자 번역하고 책을 만들고 싶은 이를 위한 기록
       </p>
       <div class="text_banner_author">
-       <img src="./resources/img/profile1.jpg">
+       <img src="/jamong.com/resources/img/profile1.jpg">
        <div class="text_banner_author_desc">
         <p class="text_banner_author_user">더라인북스</p>
         <span class="publisher_name">웨일북(whalebooks)</span>
@@ -95,7 +95,7 @@
       <div class="new_book_banner_book_image">
        <div class="border_left"></div>
        <div class="book_image">
-        <img src="./resources/img/bookCover.jpg">
+        <img src="/jamong.com/resources/img/bookCover.jpg">
        </div>
       </div>
      </div>
@@ -114,7 +114,7 @@
              어쩌면 진짜 어른이 되기 위해선 아이의 태도를 떠올려야 하는 게 아닐까?
       </p>
       <div class="text_banner_author">
-       <img src="./resources/img/profile1.jpg">
+       <img src="/jamong.com/resources/img/profile1.jpg">
        <div class="text_banner_author_desc">
         <p class="text_banner_author_user">손화신</p>
         <span class="publisher_name">웨일북(whalebooks)</span>
@@ -127,7 +127,7 @@
       <div class="new_book_banner_book_image">
        <div class="border_left"></div>
        <div class="book_image">
-        <img src="./resources/img/book_img.jpg">
+        <img src="/jamong.com/resources/img/book_img.jpg">
        </div>
       </div>
      </div>
@@ -146,7 +146,7 @@
              어쩌면 진짜 어른이 되기 위해선 아이의 태도를 떠올려야 하는 게 아닐까?
       </p>
       <div class="text_banner_author">
-       <img src="./resources/img/profile1.jpg">
+       <img src="/jamong.com/resources/img/profile1.jpg">
        <div class="text_banner_author_desc">
         <p class="text_banner_author_user">손화신</p>
         <span class="publisher_name">웨일북(whalebooks)</span>
@@ -159,7 +159,7 @@
       <div class="new_book_banner_book_image">
        <div class="border_left"></div>
        <div class="book_image">
-        <img src="./resources/img/book_img.jpg">
+        <img src="/jamong.com/resources/img/book_img.jpg">
        </div>
       </div>
      </div>
@@ -197,7 +197,7 @@
     <c:forEach var="w" begin="1" end="22" step="1">
      <li class="item_work <%-- open --%>">
       <div class="new_book_item_work_cover">
-       <img class="img_cover" src="./resources/img/book_img.jpg">
+       <img class="img_cover" src="/jamong.com/resources/img/book_img.jpg">
        <div class="border_left"></div>
       </div>
       <p class="title">안 느끼한 산문집${w}</p>
@@ -234,15 +234,15 @@
     </a>
     </div>
     <a href="#" target="_blank" class="#buybook">
-     <div class="new_book_image" style="background-image:url(./resources/img/book_img.jpg)">
+     <div class="new_book_image" style="background-image:url(/jamong.com/resources/img/book_img.jpg)">
       <div class="border_left"></div>
      </div>
     </a>
     <div class="new_book_share_sentence">
      <div class="new_book_share"></div>
-     <div class="new_book_sentence" style="background-image:url(./resources/img/background_img/adm_back.jpg)">
+     <div class="new_book_sentence" style="background-image:url(/jamong.com/resources/img/background_img/adm_back.jpg)">
       <p class="layer_dimmed"></p>
-      <img src="./resources/img/quotation.png" class="quotation">
+      <img src="/jamong.com/resources/img/quotation.png" class="quotation">
       <p class="new_book_text_sentence">뭐, 어차피 취미일 뿐인데 좀 못 그리면 어때?</p>
       <p class="ment_sentence">작가가 사랑한 한 문장</p>
      </div>
@@ -251,7 +251,7 @@
   </div>
   <a href="./profile" target="_blank">
    <div class="new_book_author">
-    <div class="new_book_user_image" style="background-image: url(./resources/img/cat_writer_face2.jpg)"></div>
+    <div class="new_book_user_image" style="background-image: url(/jamong.com/resources/img/cat_writer_face2.jpg)"></div>
     <div class="new_book_user_name">콧수염 아저씨</div>
     <span class="publisher_book">먼진 아재들</span>
     <div class="new_book_user_description">

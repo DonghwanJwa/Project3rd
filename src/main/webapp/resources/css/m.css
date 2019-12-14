@@ -410,17 +410,23 @@ body{
 .main-title-text{
 	text-align:center;
 	margin-top:25px;
-	margin-bottom:25px;
+	margin-bottom:45px;
 }
 
 .main-title-text h3{
 	display:inline-block;
 	width:940px;
-	font-family: 'NanumPen','serif';
-	text-align:left;
-	font-size: 60px;
-	font-weight: normal;
-	margin:50px 0;
+	font-family: 'NanumMyeongjo','serif';
+	font-size: 45px;
+	margin:0 auto;
+	margin-top:50px;
+	margin-bottom:0;
+}
+.main-title-text h5{
+	width:940px;
+	color:#9a9a9a;
+	margin:0 auto;
+	margin-top:13px;
 }
 /*추천책 란*/
 #recom_book{
@@ -609,7 +615,6 @@ body{
 .writting-item-head-inner-cont-img{
 	height: 238px;
 	margin: 15px;
-	background-image:url(../img/a.jpg);
 	background-size: cover;
 	border:1px solid #c0c0c0;
 }
@@ -621,6 +626,7 @@ body{
 	padding:0 20px;
 }
 .writting-item-head-inner-cont-sub{
+	font-family: 'NanumMyeongjo','serif';
 	max-height: 100px;
 	padding:0 20px;
 	margin-top:10px;
@@ -640,13 +646,20 @@ body{
 .writting-item-head-inner-cont-sub span{
 	display:inline-block;
 	margin:0;
-	max-height: 100px;
+	margin-top: 17px;
+	height:80px;
+	max-height: 80px;
+	line-height:20px;
 	font-size: 18px;
 	overflow: hidden;		/*내용이 넘어가면 숨김*/
 	white-space: normal;	/*줄바꿈 처리 : width넘어가면 엔터처리*/ 
 	word-wrap: break-word;	/*엔터처리시에 단어단위로 끊어서 사용-현재적용안됨..*/
 	text-overflow: ellipsis;/*문자 over되는거 ...처리*/
+	display: -webkit-box; 
+	-webkit-line-clamp: 4; /* 라인수 */ 
+	-webkit-box-orient: vertical;
 }/* 문자수를 제한해서 소제목을 보여줄 것*/
+
 .writting-item-head-inner span{
 	display: block;
 	font-size: 14px;
@@ -655,6 +668,7 @@ body{
 /* 추천 작가 란 */
 #recom_author{
 	background:rgb(245,124,104,0.1);
+	height:860px;
 }
 #recom_author-cont{
 	height: 620px;
@@ -697,8 +711,8 @@ body{
 }
 
 .recom_author-item-intro{
-	margin-right:10px;
-	margin-left:10px;
+	margin-right:15px;
+	margin-left:15px;
 }
 .recom_author-item-intro strong{
 	font-size:20px;
@@ -714,6 +728,7 @@ body{
 }
 .recom-author-intro{
 	font-size:12px;
+	width:160px;
 	color:#797979;
 	overflow: hidden;		/*내용이 넘어가면 숨김*/
 	white-space: normal;	/*줄바꿈 처리 : width넘어가면 엔터처리*/ 
@@ -747,92 +762,6 @@ body{
 }
 
 
-/* 최신 글 란 */
-#recent_writting{
-	height:800px;
-}
-#recent_writting-cont{
-	height: 540px;
-	margin-bottom:95px;
-	overflow-x: auto;
-	overflow-y: hidden;
-	-ms-overflow-style: none; /* IE에서 스크롤바 감춤 */	
-}
-#recent_writting-cont::-webkit-scrollbar { 
-    display: none !important; /* 윈도우 크롬 등 */
-}
-#recent_writting-list{
-	list-style: none;
-	display:flex;
-	align-items: center;		/*상하정렬*/
-	width:8320px;
-	padding-left: 0;
-	margin-left:282px;	
-}
-.recent_writting-item{
-	border: 1.5px solid #c0c0c0;
-	margin: 15px 30px;
-	box-shadow: 12px 18px 13px #636569;
-}
-.recent_writting-item .link_item{
-	text-decoration: none;
-}
-.recent_writting-item-head{
-	color: black;
-
-}
-.recent_writting-item-head-inner{
-	height:430px;
-	width:350px;
-}
-
-.recent_writting-item-head-inner-cont{
-	text-align: center;
-}
-.recent_writting-item-head-inner-cont-img{
-	height: 238px;
-	margin: 15px;
-	background-image:url(../img/a.jpg);
-	background-size: cover;
-	border:1px solid #c0c0c0;
-}
-.recent_writting-item-head-inner-cont-hs{
-	height:140px;
-}
-.recent_writting-item-head-inner-cont-head{
-	max-height: 64px;
-	padding:0 20px;
-}
-.recent_writting-item-head-inner-cont-sub{
-	max-height: 100px;
-	padding:0 20px;
-	margin-top:10px;
-}
-.recent_writting-item-head-inner-cont-bottom{
-	height: 30px;
-}
-.recent_writting-item-head-inner-cont-head p{
-	display:inline-block;
-	margin:0;
-	max-height: 64px;
-	font-weight: bold;
-	font-size: 20px;
-	word-wrap: break-word;	
-}
-.recent_writting-item-head-inner-cont-sub span{
-	display:inline-block;
-	margin:0;
-	max-height: 100px;
-	font-size: 18px;
-	overflow:hidden;
-	white-space: normal;
-	word-wrap: break-word;
-	text-overflow: ellipsis;
-}/* 문자수를 제한해서 소제목을 보여줄 것*/
-.recent_writting-item-head-inner span{
-	display: block;
-	font-size: 14px;
-}
 /* footer 정보란*/
 #foot-main-footer{
 	height: 100px;

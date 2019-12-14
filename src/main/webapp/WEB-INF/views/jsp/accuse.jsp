@@ -8,7 +8,7 @@
 	  onselectstart="return false">
 	  	<h3>신고하기
 	  	<a class="acc_close" id="acc_close" onclick="accuseHide()">
-	  	  <img src="./resources/img/close_x.png">
+	  	  <img src="/jamong.com/resources/img/close_x.png">
 	  	</a>
 	  	</h3>
 	  	<br/>

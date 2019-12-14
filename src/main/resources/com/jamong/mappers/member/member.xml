@@ -4,30 +4,46 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="member">
+
+	<!-- 회원정보 업데이트 -->
+<update id="mem_update">
+	update member set 
+	mem_pwd=#{mem_pwd},mem_name=#{mem_name},
+	mem_birth1=#{mem_birth1},mem_birth2=#{mem_birth2},mem_birth3=#{mem_birth3},
+	email_id=#{email_id},email_domain=#{email_domain},
+	mem_phone01=#{mem_phone01},mem_phone02=#{mem_phone02},mem_phone03=#{mem_phone03}
+	where mem_no=#{mem_no}
+</update>
+
+   <!-- 회원정보가져오기 -->
+<select id="mem_myinfo" resultType="m">
+    select * from member where mem_id=#{mem_id}
+</select>
+
  <!-- 아이디 중복체크 -->
  <select id="mem_idcheck" parameterType="String" resultType="m">
- 	select * from member where mem_id=#{mem_id} or mem_nickname=#{mem_id}
+     select * from member where mem_id=#{mem_id} or mem_nickname=#{mem_id}
  </select>
 
  <!-- 회원가입 -->
  <insert id="mem_insert" parameterType="m">
- 	insert into member (mem_no,mem_id,mem_pwd,mem_name,mem_birth1,mem_birth2,mem_birth3,
- 	email_id,email_domain,mem_phone01,mem_phone02,mem_phone03,mem_gender,mem_date,profile_photo,
- 	profile_cont,mem_nickname,mem_fav1,mem_fav2,mem_fav3) 
- 	values (mem_no_seq.nextval,#{mem_id},#{mem_pwd},#{mem_name},#{mem_birth1},#{mem_birth2},
- 	#{mem_birth3},#{email_id},#{email_domain},#{mem_phone01},#{mem_phone02},#{mem_phone03},
- 	#{mem_gender},sysdate,#{profile_photo},#{profile_cont},#{mem_nickname},
- 	#{mem_fav1},#{mem_fav2},#{mem_fav3})
+     insert into member (mem_no,mem_id,mem_pwd,mem_name,mem_birth1,mem_birth2,mem_birth3,
+     email_id,email_domain,mem_phone01,mem_phone02,mem_phone03,mem_gender,mem_date,profile_photo,
+     profile_cont,mem_nickname,mem_fav1,mem_fav2,mem_fav3) 
+     values (mem_no_seq.nextval,#{mem_id},#{mem_pwd},#{mem_name},#{mem_birth1},#{mem_birth2},
+     #{mem_birth3},#{email_id},#{email_domain},#{mem_phone01},#{mem_phone02},#{mem_phone03},
+     #{mem_gender},sysdate,#{profile_photo},#{profile_cont},#{mem_nickname},
+     #{mem_fav1},#{mem_fav2},#{mem_fav3})
  </insert>
  
  <!-- 로그인 -->
  <select id="mem_logincheck" parameterType="String" resultType="m">
- 	select * from member where (mem_state=0 or mem_state=9) and  mem_id=#{mem_id}
+     select * from member where (mem_state=0 or mem_state=9) and  mem_id=#{mem_id}
  </select>
  
  <!-- admin 로그인 -->
  <select id="mem_adminlogin" parameterType="String" resultType="m">
- 	select * from member where mem_state=9 and  mem_id=#{mem_id}
+     select * from member where mem_state=9 and  mem_id=#{mem_id}
  </select>
  
   <!-- 비번찾기=> 회원정보 검색 -->
@@ -37,15 +53,36 @@
 
 
 <select id="mem_emailcheck" resultType="m">
-	select * from member where email_id=#{email_id} and email_domain=#{email_domain}
+    select * from member where email_id=#{email_id} and email_domain=#{email_domain}
 </select>
 
- <!--회원 찾기 -->
-<select id="mem_ck" resultType="m">
-	select * from member where mem_no=#{mem_no}
+     <!--회원 찾기 -->
+<select id="profile_ck" resultType="m">
+    select mem_no, mem_id, mem_author, profile_photo, mem_nickname, profile_cont, mem_keyword, mem_portfolio 
+    from member where mem_no = #{mem_no}
 </select>
-
+<!-- 
+<update id="profile_up" >
+     update member set  profile_photo=#{profile_photo}, profile_cont=#{profile_cont},
+     mem_nickname=#{mem_nickname}, mem_keyword=#{mem_keyword}, mem_portfolio=#{mem_portfolio}
+     where mem_no = #{mem_no}
+</update>
+ -->
  <select id="mem_getID" resultType="m">
   SELECT mem_id FROM member WHERE mem_no=#{mem_no}
+ </select>
+ 
+ <select id="index_author" resultType="m">
+ <![CDATA[
+  SELECT * 
+  FROM (SELECT * FROM member where mem_state=0 ORDER BY DBMS_RANDOM.RANDOM) 
+  WHERE rowNum <= 9
+  ]]> 
+ </select>
+ 
+ <select id="cat_member" resultType="m">
+ <![CDATA[
+  SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) WHERE rowNum <= 5
+  ]]> 
  </select>
 </mapper>

@@ -2,20 +2,23 @@
 
 body{
 	margin: 0px;
+	padding:0px;
 }
 
 #login_main_wrap {
     width: 100%;
-    padding: calc((100vh - 570px) / 2) 0;
-    background-image: url(../img/background_img/login_pattern1.png);
+    height:100vh;
+    background-image: url(../img/background_img/background_on.png);
     background-size: cover;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #login_main_form{
 	background-color: #fff;
 	width:450px;
 	height: 570px;
-	margin:0 auto;
 }
 
 #login_main_div{
@@ -25,13 +28,17 @@ body{
     text-align: center;
 }
 
+#login_logo_wrap{
+}
+
 #login_logo_wrap a{
 	display: inline-block;
+	margin: 20px;
+	margin-bottom: 40px;
 }
 
 #login_img_logo{
-	margin: 20px;
-	margin-bottom: 40px;
+	
 }
 
 #login_mid{

@@ -62,7 +62,7 @@ $(document).ready(function() {
 		keyword_tag[counter] = value; // 태그를 Object 안에 추가
 		counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
 	}
-	//공백이 아니게
+	//공백이 아니게 
 	function marginTag() {
 		return Object.values(keyword_tag).filter(function(word) {
 			return word !== "";
@@ -97,7 +97,7 @@ $(document).ready(function() {
 			var tagValue = self.val(); // 값 가져오기
 			if (tagValue !== "" ) { // 값이 없으면 동작 안하게
 				if (tagValue.match(s_word) || tagValue.match(k_word) || tagValue.match(n_word)){
-					alert('특수문자,미완성된 한글,숫자는 입력할 수 없습니다.') 
+					$('#profile_error_keyword').text('특수문자,미완성된 한글,숫자는 입력할 수 없습니다.') 
 					return self.val("");
 				}
 
@@ -107,20 +107,18 @@ $(document).ready(function() {
 				})
 
 				if (result.length == 0) { // 태그 중복 검사
-
+					// siblings() 자신을 제외한 형제요소를 찾는 함수							
 					if ($(".tag_item").siblings().length <= 7) {// 태그 생성 제한
 						$("#edit_tag_list").append("<li class='tag_item'>" + tagValue + "<span class='del_btn' idx='" + counter + "'></span></li>").hide().fadeIn('2000');
 						addTag(tagValue);
 						self.val("");
 					} else {
-						alert("키워드는 8개를 넘어갈 수 없습니다!");
-						self.val("");
+						$('#profile_error_keyword').text("키워드는 8개를 넘어갈 수 없습니다!");
 					}
 				} else {
-					alert("중복되는 키워드 입니다.");
-					self.val("");
+					$('#profile_error_keyword').text("중복되는 키워드 입니다.");
 				}
-				e.preventDefault;
+				return false;
 			}
 		}
 		// 키워드 버튼 클릭
@@ -143,12 +141,10 @@ $(document).ready(function() {
 						addTag(tagValue);
 						self.val("");
 					} else {
-						$('#profile_error_keyword').text("키워드는 8개를 넘어갈 수 없습니다!");
-						self.val("");
+						$('#profile_error_keyword').text("키워드는 8개를 넘어갈 수 없습니다!")
 					}
 				} else {
-					$('#profile_error_keyword').text("중복되는 키워드 입니다.");
-					self.val("");
+					$('#profile_error_keyword').text("중복되는 키워드 입니다.")
 				}
 			}
 		}));
@@ -161,8 +157,7 @@ $(document).ready(function() {
 		$(this).parent().remove();
 	});
 	$("#flio_b").click(function() {	
-		$("#pf_folio").toggle();
-			});
+		$("#pf_folio").toggle(); });
 
 	$('.profile_edit_btn1').click(function() {
 		var result = confirm('편집 중인 내용을 저장하지 않고 나가시겠습니까?');
@@ -171,6 +166,7 @@ $(document).ready(function() {
 		} else {}
 	});
 });
+
 
 function profileImgSelect(e){
 	var files = e.target.files;
@@ -200,7 +196,7 @@ function profileCheck(){
 			} else {}
 		});
 		return false;
-	} 
+	} kert
 	if($.trim($('#profile_editor').val())==""){
 		$('#profile_editor_error').text('작가명을 작성해주세요!');
 		$("#profile_editor").val("").focus();
@@ -253,6 +249,7 @@ $(document).ready(function(){
 			alert('작가이름은 줄바꿈을 사용할 수 없습니다!');
 			return false;
 		}
+		e.preventDefault;
 	});
 	
 	// 자기소개 엔터키 제한
@@ -262,6 +259,7 @@ $(document).ready(function(){
 			alert('자기소개는 줄바꿈을 사용할 수 없습니다!');
 			return false;
 		}
+		e.preventDefault;
 	});
 	
 })

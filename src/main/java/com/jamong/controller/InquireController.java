@@ -64,8 +64,11 @@ MultipartRequest multi=null;
 		String inq_file3 = multi.getParameter("inq_file3");
 		String inq_file4 = multi.getParameter("inq_file4");
 		String inq_date  = multi.getParameter("inq_date");
+
 		MemberVO user=(MemberVO) session.getAttribute("m");
-		
+
+		String inq_state  = multi.getParameter("inq_state");
+
 		
 		
 		File UpFile = multi.getFile("inq_file1");

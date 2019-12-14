@@ -1,32 +1,45 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title> </title>
-<link rel="stylesheet" type="text/css" href="./resources/css/read.css"/>
-<link rel="stylesheet" type="text/css" href="./resources/css/write.css" />
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/read.js"></script>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/read.css"/>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/write.css" />
+<script src="/jamong.com/resources/js/jquery.js"></script>
+<script src="/jamong.com/resources/js/read.js"></script>
 </head>
 <body>
 	<%-- 본문 구역 쓰기 페이지와 같음 --%>
  <div id="write_wrap">
   <div id="write_min-wrap" style="min-width:940px;">
    <!-- 타이틀 부분 -->
-   <div id="write_title" style="height:450px;">
+   <div id="write_title" style='height:450px; background-image:url("${bo.bo_thumbnail}");'>
+   </div>
     <div id="write_title_area_bg" style="height:250px;">
      <!-- 타이틀 텍스트 부분  -->
      <div id="write_title_parent_center" >
       <!-- 메인 타이틀 -->
-      <h1 class="write_main_title">${bo.Bo_title}</h1>
+      <c:if test="${!empty bo.bo_thumbnail}">
+      <h1 class="write_main_title" style="">${bo.bo_title}</h1>
       <br/>
       <!-- 서브 타이틀 -->
-      <div class="write_sub_title">${bo.Bo_subtitle}</div>
+      <c:if test="${!empty bo.bo_subtitle}">
+      <div class="write_sub_title" style="color:#FFF">${bo.bo_subtitle}</div>
+      </c:if>
+      </c:if>
+      <c:if test="${empty bo.bo_thumbnail}">
+      <h1 class="write_main_title" style="color:#000">${bo.bo_title}</h1>
+      <br/>
+      <!-- 서브 타이틀 -->
+      <c:if test="${!empty bo.bo_subtitle}">
+      <div class="write_sub_title" style="color:#000">${bo.bo_subtitle}</div>
+      </c:if>
+      </c:if>
     </div>
     </div>
-   </div>
   </div>
    
   <!-- 글 내용 부분 --> 
@@ -50,21 +63,21 @@
 	<div id="read_back">
 	<div id="border_line_wrap">
 		<hr class="border_line"/>
-		<img src="./resources/img/logo.png"/>
+		<img src="/jamong.com/resources/img/logo.png"/>
 		<hr class="border_line"/>
 	</div>
 		<div id="white_back">	
 		<%-- 작가 프로필 --%>
 		<div id="author_profile">
 			<%-- 프로필사진, 이름 --%>
-			<a href="./profile"><img class="author_img" src=./resources/img/a.jpg width="90" height="90" alt="글쓴이 프로필사진"/></a>
-			<a href="./profile"><span><strong>글쓴이 프로필 명</strong></span></a>
+			<a href="/jamong.com/profile"><img class="author_img" src=/jamong.com/resources/img/a.jpg width="90" height="90" alt="글쓴이 프로필사진"/></a>
+			<a href="/jamong.com/profile"><span><strong>글쓴이 프로필 명</strong></span></a>
 			
 			<%-- 작가 키워드 --%>
 			<div class="author_keyword">
-				<a href="./search?result=post">작가키워드1</a>
-				<a href="./search?result=post">작가키워드2</a>
-				<a href="./search?result=post">작가키워드3</a>
+				<a href="/jamong.com/search?result=post">작가키워드1</a>
+				<a href="/jamong.com/search?result=post">작가키워드2</a>
+				<a href="/jamong.com/search?result=post">작가키워드3</a>
 			</div>
 			
 			<%-- 작가 소개 --%>
@@ -80,8 +93,8 @@
 			<%-- 구독/제안 버튼부 --%>
 			<div class="author_button_wrap">
 				<a href="#" class="subscribe">구독하기</a>
-				<a href="./offer_author" class="offer">제안하기</a>
-				<a class="accuse_page_open" onclick="accuseShow();" title="신고하기"><img src="./resources/img/warring.png" /></a>
+				<a href="/jamong.com/offer_author" class="offer">제안하기</a>
+				<a class="accuse_page_open" onclick="accuseShow();" title="신고하기"><img src="/jamong.com/resources/img/warring.png" /></a>
 			</div>
 		</div>
 		
@@ -92,8 +105,8 @@
 			</div>
 			<div class="hide_comment" style="display:none;">
 				<div class="comment_frame">
-					<a href="./profile"><img class="comment_user_img" src=./resources/img/a.jpg width="50" height="50"/></a>
-					<a href="./profile" class="comment_user_name"><span >사용자 1</span></a>
+					<a href="/jamong.com/profile"><img class="comment_user_img" src=/jamong.com/resources/img/a.jpg width="50" height="50"/></a>
+					<a href="/jamong.com/profile" class="comment_user_name"><span >사용자 1</span></a>
 					<p class="comment_cont">댓글입니다.</p><br/>
 					<span class="comment_date">2019-10-15 00:00:00</span>
 					<div class="reply_hide_wrap"><a class="comment_reply" onclick="replyHide();">답글</a></div>
@@ -127,21 +140,21 @@
 		<%-- 리스트 반복문으로 처리 할 것. --%>	
 			<a href="#">
 			<div class="list">
-				<img src="./resources/img/a.jpg" width="250" height="100">
+				<img src="/jamong.com/resources/img/a.jpg" width="250" height="100">
 				<p>이전글, 다음글 리스트 입니다.</p>
 			</div>
 			</a>
 			
 			<a href="#">
 			<div class="list">
-				<img src="./resources/img/a.jpg" width="250" height="100">
+				<img src="/jamong.com/resources/img/a.jpg" width="250" height="100">
 				<p>이전글, 다음글 리스트 입니다.</p>
 			</div>
 			</a>
 			
 			<a href="#">
 			<div class="list">
-				<img src="./resources/img/a.jpg" width="250" height="100">
+				<img src="/jamong.com/resources/img/a.jpg" width="250" height="100">
 				<p>이전글, 다음글 리스트 입니다.</p>
 			</div>
 			</a>
@@ -154,7 +167,7 @@
 				<h3>같은 카테고리 다른 글</h3>
 				<a href="#">
 					<div class="another_cover">
-						<img src="./resources/img/a.jpg" width="700" height="250"/>
+						<img src="/jamong.com/resources/img/a.jpg" width="700" height="250"/>
 						<div class="another_title">
 						<p><strong>캐나다의 밤은 서울의 밤보다 천천히 흐른다.</strong></p>
 						</div>
@@ -180,7 +193,7 @@
 				
 				<a href="#">
 					<div class="another_cover">
-						<img src="./resources/img/a.jpg" width="700" height="250"/>
+						<img src="/jamong.com/resources/img/a.jpg" width="700" height="250"/>
 						<div class="another_title">
 						<p><strong>캐나다의 밤은 서울의 밤보다 천천히 흐른다.</strong></p>
 						</div>
@@ -206,7 +219,7 @@
 				
 				<a href="#">
 					<div class="another_cover">
-						<img src="./resources/img/a.jpg" width="700" height="250"/>
+						<img src="/jamong.com/resources/img/a.jpg" width="700" height="250"/>
 						<div class="another_title">
 						<p><strong>캐나다의 밤은 <br/>서울의 밤보다 천천히 흐른다.</strong></p>
 						</div>

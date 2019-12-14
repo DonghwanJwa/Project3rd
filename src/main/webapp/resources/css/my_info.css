@@ -1,0 +1,172 @@
+@charset "EUC-KR";
+
+body{
+	margin: 0 0;
+	padding: 0 0;
+}
+#my_info_main_wrap{
+	min-width: 100%;
+	min-height: 100%;
+	text-align: center;
+	padding-bottom: 105px
+}
+#my_info_main_wrap-2{
+	width: 860px;
+	margin: 0 auto;
+}
+
+#my_info_h1_div{
+	border-bottom: 3px solid black;
+	text-align: left;
+	margin-top: 79px;
+	margin-bottom: 40px;
+}
+#my_info_h1{
+	font-size: 20px;
+}
+.my_info_table{
+	display: inline-block;
+	text-align: center;
+}
+#my_info_table{
+	margin-left:15px; 
+	margin-right:15px; 
+	padding: 0 0;
+	display: inline-block;
+	text-align: left;
+}
+
+.my_info_table.n-table-row th{
+	    font-weight: normal;
+}
+.my_info_table.n-table-row th,
+.my_info_table.n-table-row td{
+	padding: 15px 0;
+    box-sizing: border-box;
+    border-top: 1px solid #f1f1f1;
+    font-size: 14px;
+    text-align: left;
+}
+.my_info_table.n-table-row tr:first-child th,
+.my_info_table.n-table-row tr:first-child td{
+	border-top:none;
+}
+#my_info_tbody{
+	margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+    background: transparent;
+}
+#my_info_main_div{
+	background-color: white;
+	display: inline-block;	
+	text-align: center;
+	
+}
+.my_info_th{
+	padding: 13px 0;
+}
+.my_info_text{
+	margin: 0 0;
+}
+#my_info_btn{
+	background-color:white;
+	border:2px solid orange;
+	cursor:pointer;
+	font-size: 20px;
+	text-align: right;
+	margin-top: 15px;
+}
+#my_info_btn:hover{
+	background-color: orange;
+	color: white;
+	outline: none;
+}
+/*------------카테고리-----------------*/
+
+#my_info_category_container{
+	display: inline-block;	
+	width: 468px;
+	background-color: white;
+	border:1px solid gray;
+	vertical-align: top;
+	border-top:none;
+	border-right:none;
+	border-bottom:none;
+	
+}
+
+#my_info_category-wrap{
+	margin:0 50px; 
+}
+
+.my_info_category-anoun{
+	display: block;
+	font-weight: normal;
+	font-size:14px;
+	color:#3d3d3d;
+	text-align: center;
+	padding-bottom: 20px;
+	padding-top: 10px;
+	margin-left: 56px;
+}
+
+#my_info_category-list{
+	width:400px;
+	list-style: none;
+	display:flex;
+	align-items: center;
+	flex-wrap:wrap;
+	margin:0 auto;
+	padding:0;
+}
+.my_info_category-item{
+	margin: 5px 5px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.my_info_category-item span{
+	height:70px;
+	width:70px;
+	font-size:13px;
+	text-align: center;
+	line-height:70px;
+	outline:1px solid #b1b1b1;
+	cursor: pointer;
+}
+.my_info_category-item span:hover{
+	background-color: #fba621;
+	outline:none;
+}
+.member_category_check span{
+	background-color: #fba621;
+	outline:none;
+}
+.my_info_button_container{
+	display: inline-block;
+	text-align: right;
+	margin-top: 30px;
+    margin-left: 44px;
+}
+
+#my_info_before_btn, 
+#my_info_next_btn{
+	
+	background-color:white;
+	border:2px solid orange;
+	cursor:pointer;
+	font-size: 20px;
+	margin: 0 10px;
+}
+.my_info_p{
+	text-align: left;
+}
+#my_info_before_btn:hover, 
+#my_info_next_btn:hover{
+	background-color: orange;
+	color: white;
+	outline: none;
+}

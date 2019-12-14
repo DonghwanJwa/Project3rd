@@ -1,39 +1,36 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/request_author.css"/>
+<script src="/jamong.com/resources/js/request_author.js"></script>
 
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/request_author.js"></script>
-<link rel="stylesheet" type="text/css" href="./resources/css/request_author.css"/>
-<link rel="stylesheet" type="text/css" href="./resources/css/font.css" />
-
-<div id="req_wrap">
-	<div id="req_auth_wrap">
+<form action="request_author_in" onsubmit="req_check();" method="post" enctype="Multipart/form-data">
+<div id="req_auth_wrap">
 		<div id="req_auth_title">
 		<h1>자몽 작가신청</h1>
-		<a href="#" id="req_close" onclick="offerToggle();"><img src="./resources/img/close_x.png"/></a>
 	</div>
 		<div class="req_form">
 			
 			<p class="req_form_Mtitle"><b>01. 작가님은 누구신가요?</b><br/></p>
+			
 			<p class="req_form_Stitle">
 				자몽에선 누구나 언제든 글을 쓸 수 있습니다.<br/>
 				하지만, 본격적으로 글에 꿈을 담으려는 작가님이 궁금합니다.<br/>
 				작가님을 이해하고 앞으로의 활동을 기대할 수 있게 해주세요. 
 			</p>
 			
-			<div id="req_form_intro" class="req_form_textarea" contenteditable="true">
-			</div>
+			<textarea id="req_form_intro" class="req_form_textarea" name="aut_intro"></textarea>
 		</div>
 		
 		<div class="req_form">
 			<p class="req_form_Mtitle"><b>02. 글에 담을 꿈을 이야기 해주세요.</b><br/></p>
+			
 			<p class="req_form_Stitle">
 				자몽에선 모든 글에 글쓴이의 꿈이 담겨있다고 믿습니다.<br/>
 				에세이,여행기,일상,그림 무엇이든 좋아요.<br/>
 				작가님이 자몽에 싣고 싶은 글에 무엇이 담길지 앞으로의 계획을 알려주세요.
 			</p>
 			
-			<div id="req_form_plan" class="req_form_textarea" contenteditable="true">
-			</div>
+			<textarea id="req_form_plan" class="req_form_textarea" name="aut_plan"></textarea>
 		</div>
 		
 		<div class="req_form">
@@ -45,28 +42,30 @@
 				<b>* URL은 최대 3개 까지, 파일형식은 ... ...만 가능합니다.</b> 
 			</p>
 			
-			<div id="req_form_work" class="req_form_textarea" contenteditable="true">
-			</div>
-			
 			<div id="req_form_upload">
 				<div class="req_form_url" >
-					<input class="req_url_box" size="67" placeholder="URL을 입력하세요."/>
-					<input class="req_url_box" size="67" placeholder="URL을 입력하세요."/>
-					<input class="req_url_box" size="67" placeholder="URL을 입력하세요."/>
+					<input class="req_url_box" size="67" placeholder="URL을 입력하세요." name="aut_url1"/>
+					<input class="req_url_box" size="67" placeholder="URL을 입력하세요." name="aut_url2"/>
+					<input class="req_url_box" size="67" placeholder="URL을 입력하세요." name="aut_url3"/>
 					
 				</div>
 			
 				<div class="req_form_file">
-					<div class="req_form_file_name">파일명.pdf<br/>파일명.png<br/>파일명.jpg</div>
+					<%-- <div class="req_form_file_name">파일명.pdf<br/>파일명.png<br/>파일명.jpg</div>
 					<a class="req_form_file_add">파일 추가</a>
+					--%>
+					<input type="file" name="aut_file1" id="aut_file1" class="aut_file"><br/>
+					<input type="file" name="aut_file2" id="aut_file2" class="aut_file"><br/>
+					<input type="file" name="aut_file3" id="aut_file3" class="aut_file">
 				</div>
 			</div>
 		</div>
 		
 		<div id="req_auth_btn_wrap">
-			<a onclick="offerCheck();">신청하기</a>
-			<a onclick="offerToggle();">돌아가기</a>
+			<input type="submit" value="신청하기" class="req_button" />
+			<input type="button" value="돌아가기" class="req_button" onclick="history.back();" />
 		</div>
-	</div>
 </div>
+</form>
 
+<%@ include file="../include/footer.jsp" %>

@@ -6,11 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jamong.domain.BoardVO;
 import com.jamong.domain.CategoryVO;
+import com.jamong.domain.MemberVO;
+import com.jamong.service.BoardService;
 import com.jamong.service.CategoryService;
+import com.jamong.service.MemberService;
 
 
 @Controller
@@ -18,17 +23,25 @@ public class CategoryController {
 
 	@Autowired
 	private CategoryService catService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private BoardService boardService;
 	
-	@RequestMapping("category")
-	public ModelAndView user_category(String directory) {
+	@RequestMapping("category/{cat_name}")
+	public ModelAndView user_category(@PathVariable String cat_name) {
 		ModelAndView mv=new ModelAndView();
 		
-		if(directory.equals("articles")) {
+		List<MemberVO> mlist=this.memberService.categoryMember();
+		List<BoardVO> blist=this.boardService.categoryArticle(cat_name);
+		
+		mv.addObject("mlist",mlist);
+		mv.addObject("blist",blist);
+		
+		mv.addObject("cat_name",cat_name);
+		
 		mv.setViewName("jsp/category");
-		}else if(directory.equals("books")) {
-			mv.setViewName("jsp/category(book)");
-		}// if else if
-			
+		
 		return mv;
 	}
 	
@@ -38,13 +51,11 @@ public class CategoryController {
 		ResponseEntity<List<CategoryVO>> entity = null;
 		
 		try {
-			entity = new ResponseEntity<>(this.catService.listCategory(),HttpStatus.OK);
-					
+			entity = new ResponseEntity<>(this.catService.listCategory(),HttpStatus.OK);					
 		}catch(Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		
+		}		
 		return entity;
 	}
 }

@@ -63,7 +63,8 @@ function getCategory(){
 		  var str="";
 		  $(data).each(function(){//each는 jQuery에서 반복함수
 			  str+='<li class="head-page-category-item">'
-			  +'<a href="./category?directory=articles">'+this.cat_name+'</a>'
+			  +'<a href="/jamong.com/category/'+this.cat_name+'">'+this.cat_name+'</a>'
+			  +'<input type="hidden" value="'+this.cat_no+'"/>'
 			  +'</li>'
 		  });
 		  if ($("#head-page-category-list").length > 0 ) {	//header가 존재하면
@@ -83,7 +84,7 @@ $(document).ready(function(){
 			setTimeout(function(){$('#head-menu_search-text').focus();},400);
 		}else{//검색창이 드러나있을 때
 			if(!$.trim($('#head-menu_search-text').val())==""){	
-				location.href = "./search?result=post"
+				location.href = "/jamong.com/search?result=post"
 				$('#head-menu_search-text').val('');
 	    	}       
 		}
@@ -100,7 +101,7 @@ $(document).ready(function(){
 	$('#head-menu_search-text').keyup(function(e) {
 		if(!$.trim($('#head-menu_search-text').val())==""){
 			if (e.keyCode == 13){			
-				location.href = "./search?result=post"
+				location.href = "/jamong.com/search"
 			}
 		}       
 	});
