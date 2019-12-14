@@ -14,21 +14,20 @@
      
      <tr>
                <th width="40px">번호</th>
-               <th width="151px">분류</th>
-               <th width="285px">내용</th>
-               <th width="145px">회원구분</th>
+               <th width="131px">분류</th>
+               <th width="255px">내용</th>
+               <th width="125px">회원구분</th>
                <th width="137px">작성일자</th>
-               <th width="95px">처리여부</th>
+               <th width="85px">처리여부</th>
      </tr>
      
      <c:if test="${!empty ilist}">
-     	<c:forEach var="i" items="${ilist}">
-     	 <tr>
+     	<c:forEach var="i" items="${ilist}">   	 	
+     	 <tr onclick="location.href='/jamong.com/admin_inquire_info?no=${i.inq_no}&page=${page}'">
      	 	<td align="center" class="inq_list_underline">
      	 	  ${i.inq_no}
      	 	</td>
-     	 	
-     	 	<td class="inq_list_underline">
+     	 	<td align="center" class="inq_list_underline">
      	 		${i.inq_item1}
      	 	</td>
      	 	
@@ -37,7 +36,12 @@
      	 	</td>
     
      	 	<td align="center" class="inq_list_underline">
-     	 	  ${i.inq_phone}
+     	 	  <c:if test="${i.mem_no != 0}">
+     	 	  	<font color="blue">회원</font>
+     	 	  </c:if>
+     	 	  <c:if test="${i.mem_no == 0}">
+     	 	   	<font color="red">비회원</font>
+     	 	  </c:if>
      	 	</td>
  
      	 	<td align="center" class="inq_list_underline">
@@ -45,12 +49,16 @@
      	 	</td>
  
      	 	<td align="center" class="inq_list_underline">
-     	 	  ${i.inq_state}
-     	 	</td>
-     	 </tr>
-     	</c:forEach>
-     </c:if>
-     
+     	 	  <c:if test="${i.inq_state == 1}">
+     	 	  	<font color="blue">처리완료</font>
+     	 	  </c:if>
+     	 	  <c:if test="${i.inq_state == 0}">
+     	 	  	<font color="red">처리대기</font>
+     	 	  </c:if>
+     	 	</td>     	   
+    </tr>
+     		</c:forEach>
+     	</c:if>
      <c:if test="${empty ilist}">
           <tr>
           	<th colspan="6">문의사항 목록이 없습니다.</th>

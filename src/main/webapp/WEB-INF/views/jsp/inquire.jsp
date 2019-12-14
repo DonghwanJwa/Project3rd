@@ -130,15 +130,11 @@
   	      <span class="inq_iso_cs"></span>
   	     <p class="file_1">
   	      <input class="inq_inp_file" name="file_1" type="file">
-  	 	  <a href="#this" class="btn" id="delete" name="delete">삭제</a>
   	     </p>
   	    </div>
   	  
   	  	<br/><br/>
   	  	<a href="#this" class="btn" id="addfile">파일추가</a>
-  	  	<a href="#this" class="btn" id="write">작성하기</a>
-  	  	<a href="#this" class="btn" id="list">목록으로</a>
-  	     
   	     <p class="inq_desc_info">
   	     첨부파일은 최대 4개, 각 10MB까지 등록 가능하며
   	     <br>

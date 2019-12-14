@@ -12,4 +12,6 @@ public interface InquireService {
 
 	List<InquireVO> getInquireList(InquireVO i);
 
+	InquireVO getInquireCont(int no);
+
 }
