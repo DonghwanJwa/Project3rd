@@ -128,9 +128,10 @@ body{
     position: relative;
     margin: 0;
     border: 1px solid #919191;
-    width: 282px;
+    width: 581px;
     height: 38px;
-    margin: 0px 0px 0px 6px;
+    margin: 0px 0px 0px 0px;
+    border:1px solid black;
   
 }
 .inq_email_info{

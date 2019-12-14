@@ -7,8 +7,8 @@
 
 <!-- 문의하기 -->
 <insert id="inq_insert">
- insert into inquire (inq_no,inq_item1,inq_email,inq_phone,inq_cont,inq_file1,inq_date,inq_state) 
- values(inq_no_seq.nextval,#{inq_item1},#{inq_email},#{inq_phone},#{inq_cont},#{inq_file1},sysdate,#{inq_state})
+ insert into inquire (inq_no,inq_item1,inq_email,inq_phone,inq_cont,inq_file1,inq_file2,inq_file3,inq_file4,inq_date,mem_no) 
+ values(inq_no_seq.nextval,#{inq_item1},#{inq_email},#{inq_phone},#{inq_cont},#{inq_file1},#{inq_file2},#{inq_file3},#{inq_file4},sysdate,#{mem_no})
 </insert>
 
 		<!-- 문의 개수 -->
@@ -34,7 +34,7 @@
 		
 		<!-- 공지 목록 -->
 		<select id="inq_list" resultType="inq">
-			select * from (select rowNum rNum,inq_no,inq_item1,inq_cont,inq_phone,inq_date,inq_state 
+			select * from (select rowNum rNum,inq_no,inq_item1,inq_cont,inq_phone,inq_date,mem_no 
 			from (select * from inquire
 			
 			<where>
@@ -53,6 +53,10 @@
 		 		</if>
 		 	</where>		
 			order by inq_date desc)) where rNum &gt; = #{startrow} and rNum &lt;= #{endrow}
-			
+		</select>
+		
+		<!-- 공지사항 내용보기 -->
+		<select id="inq_cont" resultType="inq">
+			select * from inquire where inq_no=#{no}
 		</select>
 </mapper>

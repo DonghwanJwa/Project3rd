@@ -30,4 +30,9 @@ public class InquireDAOImpl implements InquireDAO {
 		return this.sqlSession.selectList("inq_list",i);
 		
 	}
+
+	@Override
+	public InquireVO getInquireCont(int no) {
+		return this.sqlSession.selectOne("inq_cont",no);
+	}
 }
