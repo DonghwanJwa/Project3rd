@@ -15,6 +15,14 @@ public class AuthorVO {
 	private String aut_date;
 	private int mem_no;
 	
+	/* 페이징 변수 */
+	private int startrow;
+	private int endrow;
+	
+	/* 검색 변수 */
+	private String search_name;
+	private String search_field;
+	
 	// Setter()
 	public void setAut_no(int aut_no)		   {		this.aut_no = aut_no;			}
 	public void setAut_intro(String aut_intro) {		this.aut_intro = aut_intro;		}
@@ -27,6 +35,10 @@ public class AuthorVO {
 	public void setAut_file3(String aut_file3) {		this.aut_file3 = aut_file3;		}
 	public void setAut_date(String aut_date)   {		this.aut_date = aut_date;		}
 	public void setMem_no(int mem_no) 		   {		this.mem_no = mem_no;			}
+	public void setStartrow(int startrow)		{		this.startrow = startrow;	}
+	public void setEndrow(int endrow) 			{		this.endrow = endrow;	}
+	public void setSearch_name(String search_name) {		this.search_name = search_name;	}
+	public void setSearch_field(String search_field) {		this.search_field = search_field;	}
 
 	// Getter()
 	public int getAut_no() 		 {		return aut_no;		}
@@ -40,5 +52,9 @@ public class AuthorVO {
 	public String getAut_file3() {		return aut_file3;	}
 	public String getAut_date()  {		return aut_date;	}
 	public int getMem_no() 		 {		return mem_no;		}
+	public int getStartrow()	 {		return startrow;	}
+	public int getEndrow()		 {		return endrow;		}
+	public String getSearch_name() {		return search_name;	}
+	public String getSearch_field() {		return search_field;	}
 	
 }

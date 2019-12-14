@@ -4,7 +4,7 @@ body {margin:0;	padding:0; background-color:bisque;}
 a:link{text-decoration:none; color:gray;}
 a:active{text-decoration:none;}
 a:visited{text-decoration:none;}
-a:hover{text-decoration:underline;}
+a:hover{text-decoration:underline; color:#F57C68;}
 
 .clear {
 	clear:both;
@@ -160,7 +160,7 @@ a:hover{text-decoration:underline;}
 #adm_main_footer {
     border-top: dotted 2px gray;
     width: 800px;
-    margin: 25px auto;
+    margin: 100px auto 10px auto;
     display: flex;
     justify-content: space-around;
     padding-top: 25px;
@@ -181,7 +181,7 @@ a:hover{text-decoration:underline;}
 #adm_notice_wrap {
 	display: flex;
     justify-content: center;
-    min-height: 500px;
+    min-height: 400px;
     width: 800px;
     margin: 0 auto;
 }
@@ -193,6 +193,7 @@ a:hover{text-decoration:underline;}
 #adm_notice_table {
     font-size: 12px;
     width: 800px;
+    border-collapse:collapse;
 }
 
 #adm_notice_table td{
@@ -202,7 +203,7 @@ a:hover{text-decoration:underline;}
 }
 
 .list_underline {
-	border-bottom: .5px dotted gray;
+	
 	padding: .5em .2em;
 }
 
@@ -210,10 +211,6 @@ a:hover{text-decoration:underline;}
 	padding: 1em .2em;
 }
 
-#search_interface {
-	display:flex;
-	justify-content:center;
-}
 
 #search_name {
 	margin: 0 7px;
@@ -359,7 +356,7 @@ a:hover{text-decoration:underline;}
 #adm_member_wrap {
 	display: flex;
     justify-content: center;
-    min-height: 500px;
+    min-height: 400px;
     width: 800px;
     margin: 0 auto;
 }
@@ -371,6 +368,17 @@ a:hover{text-decoration:underline;}
 #adm_mem_table {
     font-size: 12px;
     width: 800px;
+    border-collapse:collapse;
+}
+#adm_mem_table th, #adm_notice_table th{
+	padding-bottom:10px;
+}
+
+#to_info {
+    cursor:pointer;
+}
+#to_info:hover{
+    background-color:aliceblue;
 }
 
 #adm_mem_table td{
@@ -379,16 +387,11 @@ a:hover{text-decoration:underline;}
 	text-overflow: ellipsis;
 }
 
-.list_underline {
-	border-bottom: .5px dotted gray;
-	padding: .5em .2em;
-}
-
 #paging {
 	padding: 1em .2em;
 }
 
-#mem_search_panel {
+#search_panel {
 	display:flex;
 	justify-content:center;
 }

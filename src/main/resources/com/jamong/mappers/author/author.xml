@@ -3,5 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="author">
-
+	<insert id="sendAuthor">
+		insert into author (aut_no,aut_intro,aut_plan,aut_url1,aut_url2,aut_url3,aut_file1,aut_file2,aut_file3,aut_date,mem_no)
+		values (aut_no_seq.nextval,#{aut_intro},#{aut_plan},#{aut_url1},#{aut_url2},#{aut_url3},#{aut_file1},#{aut_file2},#{aut_file3},sysdate,#{mem_no})
+	</insert>
+	
+	<select id="req_count" resultType="int">
+		select count(aut_no) from author
+	</select>
+	
+	<select id="req_list" resultType="aut">
+		select * from author
+	</select>
 </mapper>
