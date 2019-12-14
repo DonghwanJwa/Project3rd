@@ -14,6 +14,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDAO memberDao;
+	
+	@Override
+	public void memberUpdate(MemberVO me) {
+		this.memberDao.memberUpdate(me);
+	}
 
 	@Override
 	public void insertMember(MemberVO m) {
@@ -55,11 +60,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO get(String mem_id) {
 		return this.memberDao.get(mem_id);
-	}
-
-	@Override
-	public void memberUpdate(MemberVO vo) {
-		this.memberDao.memberUpdate(vo);
 	}
 
 	@Override

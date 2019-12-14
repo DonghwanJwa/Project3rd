@@ -4,6 +4,22 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="member">
+
+	<!-- 회원정보 업데이트 -->
+<update id="mem_update">
+	update member set 
+	mem_pwd=#{mem_pwd},mem_name=#{mem_name},
+	mem_birth1=#{mem_birth1},mem_birth2=#{mem_birth2},mem_birth3=#{mem_birth3},
+	email_id=#{email_id},email_domain=#{email_domain},
+	mem_phone01=#{mem_phone01},mem_phone02=#{mem_phone02},mem_phone03=#{mem_phone03}
+	where mem_no=#{mem_no}
+</update>
+
+   <!-- 회원정보가져오기 -->
+<select id="mem_myinfo" resultType="m">
+    select * from member where mem_id=#{mem_id}
+</select>
+
  <!-- 아이디 중복체크 -->
  <select id="mem_idcheck" parameterType="String" resultType="m">
      select * from member where mem_id=#{mem_id} or mem_nickname=#{mem_id}
