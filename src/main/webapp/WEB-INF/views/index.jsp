@@ -19,7 +19,6 @@ $(document).keydown(function(e){
     }
 });
 </script>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/request_author.css"/>
 <title>글에 꿈을 담다, 자몽</title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
