@@ -56,7 +56,7 @@
 					
 					<tr>
 					<th></th>
-					<td><a href="/jamong.com/pass_modify_ok"><button id="my_info_btn">수정하기</button></a></td>
+					<td><a href="/jamong.com/pass_modify"><button id="my_info_btn">수정하기</button></a></td>
 					</tr>
 					</tbody>
 				</table>
