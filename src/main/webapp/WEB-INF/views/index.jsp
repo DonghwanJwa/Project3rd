@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/m.css"/>
 <script src="/jamong.com/resources/js/jquery.js"></script>
+<script src="/jamong.com/resources/js/jquery.word-break-keep-all.min.js"></script>
 <script type="text/javascript" src="/jamong.com/resources/js/main.js"></script>
 <script>
 //메인페이지에서 각메뉴에 좌우스크롤이 키보드로 작동되는것을 방지
@@ -87,8 +88,10 @@ $(document).keydown(function(e){
 	      <c:if test="${i%2!=1}">
 	       <img src="/jamong.com/resources/img/b.jpg"/>
 	      </c:if>
-	      <div class="head-page-cont">	      
+	      <div class="head-page-cont">
+	      <div class="head-page-main-title-wrap">	      
 	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
+	      </div>
 	       <span class="head-page-sub-title">경력 10년차에 퇴사하고 캐나다로 떠난 여행</span>	     	    
 	       <span class="head-page-author">by 누구누구</span>
 	      </div>
@@ -103,8 +106,13 @@ $(document).keydown(function(e){
 	    
 	     <c:forEach var="i" begin="1" end="5" step="1">
 		 <li class="head-item-scroll-item">
-		  <a class="head-item-scroll-link${i}" onclick="hotscroll('best',${i});">
-		   <span>&nbsp;</span>
+		  <a class="head-item-scroll-link${i} best-scroll" onclick="hotscroll('best',${i});">
+	       <c:if test="${i == 1}">
+		    <span class="head-checked">&nbsp;</span>
+		   </c:if>
+		   <c:if test="${i!=1}">
+		    <span>&nbsp;</span>
+		   </c:if>
 		  </a>
 		 </li>		
 		</c:forEach>
@@ -113,48 +121,27 @@ $(document).keydown(function(e){
 	  </div>
      </div>
      
-    <%-- hot --%>
-     <div id="head-page-hot">
-      <div id="head-page-hot-title">
-       <strong>Hot</strong>
+     <%-- Notice --%>
+     <div id="head-page-notice">
+      <div id="head-page-notice-title">
+       <strong>Notice</strong>
       </div>
-      <div id="head-page-hot-list-frame">
-       <ul id="head-page-hot-list">
+      <div id="head-page-notice-list-frame">
+       <ul id="head-page-notice-list">
        
 		<c:forEach var="i" begin="1" end="5" step="1">			
-	    <li class="head-page-hot-item">
-	     <a href="/jamong.com/read" class="head-page-link">
-	      <c:if test="${i%2==1}">
-	       <img src="/jamong.com/resources/img/a.jpg"/>
-	      </c:if>
-	      <c:if test="${i%2!=1}">
-	       <img src="/jamong.com/resources/img/b.jpg"/>
-	      </c:if>
-	      <div class="head-page-cont">	      
-	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
-	       <span class="head-page-sub-title">경력 10년차에 퇴사하고 캐나다로 떠난 여행</span>	     	    
-	       <span class="head-page-author">by 누구누구</span>
-	      </div>
+	    <li class="head-page-notice-item">
+	     <a>
+	      <span class="head-page-notice-title">공지사항 예시입니다</span>
+	      <span class="head-page-notice-date">2019.12.15</span>
 	     </a>
 	    </li>
 		</c:forEach>
 		
 	   </ul>
-	   </div>
-	   <div class="head-item-scroll">
-	    <ul class="head-item-scroll-list"> 
-	    
-	    <c:forEach var="i" begin="1" end="5" step="1">
-		 <li class="head-item-scroll-item">
-		  <a class="head-item-scroll-link${i}" onclick="hotscroll('hot',${i});">
-		   <span>&nbsp;</span>
-		  </a>
-		 </li>		
-		</c:forEach>
-		
-	   </ul>
 	  </div>
      </div>
+     
     </div>
     
     <%-- category --%>
@@ -360,7 +347,7 @@ $(document).keydown(function(e){
 	
      <ul id="recom_writting-list">
      
- 	  <c:forEach var="blist" items="${blist}">
+ 	  <c:forEach var="blist" items="${blist}" varStatus="status">
        <li>
         <div class="recom_writting-item">
          <a href="/jamong.com/@${blist.memberVO.mem_id}/${blist.bo_no}" class="link_item">
@@ -368,6 +355,7 @@ $(document).keydown(function(e){
            <div class="writting-item-head-inner">
             <div class="writting-item-head-inner-cont">
              <div class="writting-item-head-inner-cont-img" style="background-image:url(${blist.bo_thumbnail})">
+              <img class="writting-item-head-inner-cont-tape" src="/jamong.com/resources/img/recom_masking/masking${tlist[status.index]}.png">
               <%-- 이미지 div --%>
              </div>
              <div class="writting-item-head-inner-cont-hs">
@@ -375,7 +363,7 @@ $(document).keydown(function(e){
                <p>${blist.bo_title}</p>
               </div>
               <div class="writting-item-head-inner-cont-sub">
-               <span>${blist.bo_cont}</span>
+               <div>${blist.bo_cont}</div>
               </div>
              </div>
              <div class="writting-item-head-inner-cont-bottom">
@@ -424,7 +412,7 @@ $(document).keydown(function(e){
             <div class="book-item-head-inner-cont">
              <div class="book-item-head-inner-cont-top">
               <strong>강아지와 지내는건 어때?</strong>
-              <span>by 멍뭉이</span>
+              <i>by 멍뭉이</i>
              </div>
              <div class="book-item-head-inner-cont-bottom">
               <span>Jamong Book</span>

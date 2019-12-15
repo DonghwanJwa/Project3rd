@@ -80,8 +80,10 @@
 	      <c:if test="${i%2!=1}">
 	       <img src="/jamong.com/resources/img/b.jpg"/>
 	      </c:if>
-	      <div class="head-page-cont">	      
+	      <div class="head-page-cont">
+	      <div class="head-page-main-title-wrap">	      
 	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
+	      </div>
 	       <span class="head-page-sub-title">경력 10년차에 퇴사하고 캐나다로 떠난 여행</span>	     	    
 	       <span class="head-page-author">by 누구누구</span>
 	      </div>
@@ -96,8 +98,13 @@
 	    
 	     <c:forEach var="i" begin="1" end="5" step="1">
 		 <li class="head-item-scroll-item">
-		  <a class="head-item-scroll-link${i}" onclick="hotscroll('best',${i});">
-		   <span>&nbsp;</span>
+		  <a class="head-item-scroll-link${i} best-scroll" onclick="hotscroll('best',${i});">
+		   <c:if test="${i == 1}">
+		    <span class="head-checked">&nbsp;</span>
+		   </c:if>
+		   <c:if test="${i!=1}">
+		    <span>&nbsp;</span>
+		   </c:if>
 		  </a>
 		 </li>		
 		</c:forEach>
@@ -106,48 +113,27 @@
 	  </div>
      </div>
      
-    <%-- hot --%>
-     <div id="head-page-hot">
-      <div id="head-page-hot-title">
-       <strong>Hot</strong>
+     <%-- Notice --%>
+     <div id="head-page-notice">
+      <div id="head-page-notice-title">
+       <strong>Notice</strong>
       </div>
-      <div id="head-page-hot-list-frame">
-       <ul id="head-page-hot-list">
+      <div id="head-page-notice-list-frame">
+       <ul id="head-page-notice-list">
        
 		<c:forEach var="i" begin="1" end="5" step="1">			
-	    <li class="head-page-hot-item">
-	     <a href="/jamong.com/read" class="head-page-link">
-	      <c:if test="${i%2==1}">
-	       <img src="/jamong.com/resources/img/a.jpg"/>
-	      </c:if>
-	      <c:if test="${i%2!=1}">
-	       <img src="/jamong.com/resources/img/b.jpg"/>
-	      </c:if>
-	      <div class="head-page-cont">	      
-	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
-	       <span class="head-page-sub-title">경력 10년차에 퇴사하고 캐나다로 떠난 여행</span>	     	    
-	       <span class="head-page-author">by 누구누구</span>
-	      </div>
+	    <li class="head-page-notice-item">
+	     <a>
+	      <span class="head-page-notice-title">공지사항 예시입니다</span>
+	      <span class="head-page-notice-date">2019.12.15</span>
 	     </a>
 	    </li>
 		</c:forEach>
 		
 	   </ul>
-	   </div>
-	   <div class="head-item-scroll">
-	    <ul class="head-item-scroll-list"> 
-	    
-	    <c:forEach var="i" begin="1" end="5" step="1">
-		 <li class="head-item-scroll-item">
-		  <a class="head-item-scroll-link${i}" onclick="hotscroll('hot',${i});">
-		   <span>&nbsp;</span>
-		  </a>
-		 </li>		
-		</c:forEach>
-		
-	   </ul>
 	  </div>
      </div>
+     
     </div>
     
    <%-- category --%>

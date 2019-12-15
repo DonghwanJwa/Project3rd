@@ -1,5 +1,7 @@
 package com.jamong.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +31,24 @@ public class IndexController {
 		List<BoardVO> blist = this.boardService.recomArticle();
 		for(int i=0;i<blist.size();i++) {		//cont값을 html에서 text로 변환
 			String htmlText = blist.get(i).getBo_cont();
-			String strippedText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " "); 
-			blist.get(i).setBo_cont(strippedText);
+			String strippedText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");//태그 모두 없앰
+			String oneSpace = strippedText.replaceAll("&nbsp; "," ");					//&nbsp;를 모두 자바의 띄어쓰기로 바꿈(단어단위로 끊어주는 기능때문에 &nbsp;없애야됨)
+			String hundredText = oneSpace.substring(0,100);								//100글자만 홈페이지에 노출되도록 변경
+			blist.get(i).setBo_cont(hundredText);
 		}
 		
-		/*2.추천 작가*/
+		//공감글의 Masking Tape random하게 붙이기
+		List<Integer> tlist = new ArrayList<>();
+		for(int i=0;i<20;i++) {
+			tlist.add(i,i+1);	//1~20숫자넣기
+		}
+		Collections.shuffle(tlist);//Random하게 섞는다.
+		
+		/*3.추천 작가*/
 		List<MemberVO> mlist = this.memberService.recomAuthor();
 		
 		m.addAttribute("blist",blist);
+		m.addAttribute("tlist",tlist);
 		m.addAttribute("mlist",mlist);
 		
 		
