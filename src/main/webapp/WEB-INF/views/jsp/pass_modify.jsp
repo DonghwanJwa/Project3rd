@@ -34,7 +34,7 @@
                         <input tabindex="1" id="pass_modify_pass" name="pass_modify_pass" class="pass_modify_text" placeholder="비밀번호" type="password" ></div>
 						<div class="pass_modify_error" id="pass_modify_error_pass_check"></div>						
 
-                <input type="submit" id="pass_modify_lastbtn" value="비밀번호 확인">
+               <input type="submit" id="pass_modify_lastbtn" value="비밀번호 확인">
 			</div>
 		</div>
 	</div>

@@ -29,4 +29,9 @@ public class InquireServiceImpl implements InquireService {
 	public List<InquireVO> getInquireList(InquireVO i) {
 		return this.inqDao.getInquireList(i);
 	}
+
+	@Override
+	public InquireVO getInquireCont(int no) {
+		return this.inqDao.getInquireCont(no);
+	}
 }

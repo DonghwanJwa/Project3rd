@@ -3,7 +3,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
 </head>
 <%@include file="../include/admin_header.jsp" %>
 <form method="post" action="admin_notice_edit" onsubmit="return notice_check();">

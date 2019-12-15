@@ -43,4 +43,22 @@ SELECT mem_no_seq.nextval FROM DUAL;
 -- 회원 테이블에 작가 포트폴리오 내용 추가
 ALTER member ADD (mem_portflio CLOB);
 
-insert into member ()
+select * from(
+    select * from member
+    order by DBMS_RANDOM.RANDOM
+) where rownum < 10;
+
+update member set mem_state=9 where mem_no=15;
+
+SELECT *
+FROM board b
+RIGHT JOIN member m
+ON b.mem_no=m.mem_no;
+
+SELECT *
+FROM board b
+RIGHT JOIN (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) m
+ON b.mem_no=m.mem_no
+WHERE rowNum <= 9;
+
+commit;

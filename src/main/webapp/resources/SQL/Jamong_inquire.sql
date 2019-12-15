@@ -26,6 +26,7 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+DROP SEQUENCE inq_no_seq;
 -- 참조키 설정
 ALTER TABLE inquire
 ADD CONSTRAINT inq_mem_no_fk FOREIGN KEY (mem_no)

@@ -3,7 +3,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
 </head>
 <%@include file="../include/admin_header.jsp" %>
 
@@ -14,15 +13,16 @@
 		<tr>
 			<th align="center">회원상태</th>
 			<td align="center">
-				<c:if test="${me.mem_state == 0}"><font color="blue">활동</font></c:if>
+				<c:if test="${me.mem_state == 0 || me.mem_state == 9}"><font color="blue">활동</font></c:if>
 				<c:if test="${me.mem_state == 1}"><font color="red">정지</font></c:if>
 				<c:if test="${me.mem_state == 2}">탈퇴</c:if>
 			</td>
 			
 			<th align="center">회원구분</th>
 			<td align="center">
-				<c:if test="${me.mem_author == 0}">일반</c:if>
-				<c:if test="${me.mem_author == 1}"><b>작가</b></c:if>
+				<c:if test="${me.mem_author == 0 && me.mem_state != 9}">일반</c:if>
+				<c:if test="${me.mem_author == 1 && me.mem_state != 9}"><b>작가</b></c:if>
+				<c:if test="${me.mem_state == 9 && (me.mem_author == 0 || me.mem_author == 1) }"><b>관리자</b></c:if>
 			</td>
 			
 			<th align="center">가입일자</th>
