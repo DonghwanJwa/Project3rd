@@ -142,22 +142,23 @@ body{
 }
 
 /*우측사이드창 - best hot*/
-#head-page-best, #head-page-hot{
+#head-page-best, #head-page-notice{
 	width:calc(43.24vw - 140px);
 	min-width:320px;
 	height:250px;
 }
-#head-page-best-title, #head-page-hot-title{
+#head-page-best-title, #head-page-notice-title{
 	height:40px;
 	text-align:center;
 	font-size:20px;
 	color:#fff;
 }
-#head-page-best-title strong, #head-page-hot-title strong{
+#head-page-best-title strong, #head-page-notice-title strong{
 	line-height:40px;
 }
 
-#head-page-best-list-frame, #head-page-hot-list-frame{
+/*best*/
+#head-page-best-list-frame{
 	width:320px;
 	min-width:320px;
 	list-style: none;
@@ -172,11 +173,8 @@ body{
 #head-page-best-list-frame::-webkit-scrollbar { 
     display: none !important; 
 } 
-#head-page-hot-list-frame::-webkit-scrollbar { 
-    display: none !important;
-} 
 
-#head-page-best-list, #head-page-hot-list{
+#head-page-best-list{
 	list-style: none;
 	display:flex;
 	align-items: center;		/*상하정렬*/
@@ -185,11 +183,11 @@ body{
 	padding:0;
 }
 
-.head-page-best-item, .head-page-hot-list{
+.head-page-best-item{
 	height:180px; /*215*/
 	width: 320px; /*298*/
-
 }
+
 .head-page-link{
 	position:relative;
 	height:180px; 
@@ -202,7 +200,9 @@ body{
 	height:180px;
 	width: 320px;
 	object-fit: cover;
+	filter: brightness(0.8);
 }
+
 .head-page-cont{
 	position:absolute;
 	display:inline;
@@ -210,19 +210,51 @@ body{
 	width:320px;
 	left: 50%;
 	transform: translate(-50%);
-	padding-top:50px;
-	bottom:0;
+	padding-top:40px;
+	bottom:10px;
 }
+
+.head-page-main-title-wrap{
+	display: table-cell;
+    vertical-align: middle;
+    height:62px;
+    line-height: 31px;
+}
+
 .head-page-cont strong{
-	display:block;
+	width:300px;
+	padding:0 10px;
+	font-family: 'NanumMyeongjo','serif';
 	text-align:center;
-	font-size:27px;
+	font-size:23px;
+    overflow: hidden;		/*내용이 넘어가면 숨김*/
+	white-space: normal;	/*줄바꿈 처리 : width넘어가면 엔터처리*/ 
+	word-wrap: break-word;	/*엔터처리시에 단어단위로 끊어서 사용-현재적용안됨..*/
+	text-overflow: ellipsis;/*문자 over되는거 ...처리*/
+	display: -webkit-box; 
+	-webkit-line-clamp: 2; /* 라인수 */ 
+	-webkit-box-orient: vertical;
 }
-.head-page-cont span{
-	margin-top:8px;
+
+.head-page-sub-title{
+	margin-top: 13px;
+	font-size:14px;
+	text-align:center;
+	height:19px;
+	line-height:19px;
+	overflow: hidden;		/*내용이 넘어가면 숨김*/
+	white-space: normal;	/*줄바꿈 처리 : width넘어가면 엔터처리*/ 
+	word-wrap: break-word;	/*엔터처리시에 단어단위로 끊어서 사용-현재적용안됨..*/
+	text-overflow: ellipsis;/*문자 over되는거 ...처리*/
+	display: -webkit-box; 
+	-webkit-line-clamp: 1; /* 라인수 */ 
+	-webkit-box-orient: vertical;
+}
+.head-page-author{
+	font-size: 13px;
+	margin-top: 15px;
 	display:block;
 	text-align:center;
-	
 }
 
 .head-item-scroll{
@@ -249,6 +281,65 @@ body{
 	border-radius: 100%;
 	margin:10px 10px;
 }
+.head-item-scroll-item .head-checked{
+	background-color:#f79482;
+}
+
+/*notice*/
+#head-page-notice-list-frame{
+	width:320px;
+	min-width:320px;
+	display:flex;
+	height:180px;
+	padding:0;
+	margin:0 auto;
+}
+
+#head-page-notice-list{
+	font-size:14px;
+	color:#fff;
+	list-style: none;
+	padding:0;
+	margin:0;
+}
+
+.head-page-notice-item{
+	border-bottom:0.5px dotted #fff;
+	width:320px;
+	height:36px;
+	display:flex;
+}
+
+.head-page-notice-item:nth-child(5){
+	border-bottom:none;
+}
+
+.head-page-notice-item a{
+	width:320px;
+	height:34px;
+	padding:1px 0;
+	display: inherit;	
+}
+
+.head-page-notice-item a:hover{
+ 	color:#FBA621;
+ 	font-weight:bold;
+}	
+.head-page-notice-title{
+	text-align:left;
+	width:200px;
+	padding-left:20px;
+	height:36px;
+	line-height:36px;
+}
+.head-page-notice-date{
+	text-align:right;
+	width:100px;
+	height:36px;
+	line-height:36px;
+}
+
+
 /*우측사이드창 - category*/
 #head-page-category-frame{
 	width:calc(56.76vw - 180px);
@@ -343,9 +434,10 @@ body{
 	width:200px;
 }
 #head-profile-service-wrap{
-	height:270px;
+	height:269.5px;
 	width:200px;
 	margin-top:40px;
+	border-bottom: 0.5px solid #d4d4d4;
 }
 #head-profile-service-wrap ul{
 	list-style: none;
@@ -500,6 +592,7 @@ body{
 }
 
 .book-item-head-inner-cont-top strong{
+	font-family: 'NanumMyeongjo','serif';
     display: block;
     margin: 0;
     padding: 0px 15px;
@@ -507,12 +600,18 @@ body{
     font-size: 23px;
     height: 150px;
 }
+
 .book-item-head-inner-cont-top span{
+	line-height: 35px;
+}
+
+.book-item-head-inner-cont-top i{
 	display: block;
 	margin:0;
 	padding: 0px 15px;
 	height:40px;
-	font-size:16px;
+	font-size:14px;
+	font-style:normal;
 	line-height: 40px;
 }
 .book-item-head-inner-cont-bottom{
@@ -575,6 +674,7 @@ body{
 }
 #recom_writting-cont{
 	height: 540px;
+	padding-top: 30px;
 	margin-bottom:75px;
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -618,52 +718,60 @@ body{
 	background-size: cover;
 	border:1px solid #c0c0c0;
 }
+
+.writting-item-head-inner-cont-tape{
+	position:relative;
+	height:47px;
+	width:98px;
+	bottom:20%;
+	transform: rotate(98deg);
+}
+
 .writting-item-head-inner-cont-hs{
 	height:140px;
 }
 .writting-item-head-inner-cont-head{
-	max-height: 64px;
+	font-family: 'NanumMyeongjo','serif';
+	max-height: 50px;
+    height: 50px;
+    line-height:29px;
 	padding:0 20px;
+	width: 310px;
+    display: table-cell;
+    vertical-align: middle;
 }
 .writting-item-head-inner-cont-sub{
-	font-family: 'NanumMyeongjo','serif';
 	max-height: 100px;
 	padding:0 20px;
 	margin-top:10px;
-	item-align:center;
 }
 .writting-item-head-inner-cont-bottom{
 	height: 30px;
+	font-size:14px;
 }
 .writting-item-head-inner-cont-head p{
 	display:inline-block;
 	margin:0;
-	max-height: 64px;
 	font-weight: bold;
 	font-size: 20px;
-	word-wrap: break-word;	
+	word-wrap: break-word;
 }
-.writting-item-head-inner-cont-sub span{
-	display:inline-block;
+.writting-item-head-inner-cont-sub div{
 	margin:0;
-	margin-top: 17px;
-	height:80px;
-	max-height: 80px;
+	margin-top: 10px;
+	height:60px;
 	line-height:20px;
-	font-size: 18px;
+	font-size: 14px;
 	overflow: hidden;		/*내용이 넘어가면 숨김*/
 	white-space: normal;	/*줄바꿈 처리 : width넘어가면 엔터처리*/ 
 	word-wrap: break-word;	/*엔터처리시에 단어단위로 끊어서 사용-현재적용안됨..*/
 	text-overflow: ellipsis;/*문자 over되는거 ...처리*/
 	display: -webkit-box; 
-	-webkit-line-clamp: 4; /* 라인수 */ 
+	-webkit-line-clamp: 3; /* 라인수 */ 
 	-webkit-box-orient: vertical;
 }/* 문자수를 제한해서 소제목을 보여줄 것*/
 
-.writting-item-head-inner span{
-	display: block;
-	font-size: 14px;
-}
+
 
 /* 추천 작가 란 */
 #recom_author{
@@ -715,6 +823,7 @@ body{
 	margin-left:15px;
 }
 .recom_author-item-intro strong{
+	font-family: 'NanumMyeongjo','serif';
 	font-size:20px;
 	color:#333;
 	display:block;

@@ -56,6 +56,9 @@ function hotscroll(where,number){
 			window.clearInterval(hotSlideTimer);			
 		}
 	},1);
+	$('.best-scroll').children().removeClass();
+	$('.head-item-scroll-link'+number).children('span').addClass("head-checked");
+	
 }
 
 function getCategory(){
@@ -120,6 +123,12 @@ $(document).ready(function(){
 		$('#head-menu_page').css('left','100%');
 	});
 	
+	/*한글 단어단위로 끊어주는 메서드*/
+	$('.writting-item-head-inner-cont-head').children().wordBreakKeepAll();
+	$('.writting-item-head-inner-cont-sub').children().wordBreakKeepAll();
+	$('.book-item-head-inner-cont-top').children('strong').wordBreakKeepAll();
+	$('.head-page-sub-title').wordBreakKeepAll();
+	$('.head-page-main-title').wordBreakKeepAll();
 });
 
 /*메뉴오픈 후 바깥 클릭시 닫힘*/
