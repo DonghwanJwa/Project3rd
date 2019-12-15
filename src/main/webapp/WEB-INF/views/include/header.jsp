@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/> <%-- 폰트 적용 css --%>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/header.css" />
-
 <script src="/jamong.com/resources/js/jquery.js"></script>
+<script src="/jamong.com/resources/js/jquery.word-break-keep-all.min.js"></script>
 <script type="text/javascript" src="/jamong.com/resources/js/main.js"></script>
 <title>글에 꿈을 담다, 자몽</title>
 </head>
