@@ -11,6 +11,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.MemberVO;
@@ -21,6 +22,13 @@ import pwdconv.PwdChange;
 @Controller
 public class MemberModifyController {
 
+	
+	
+	// my_info페이지 접속 안되면 프로젝트에서 클린 한번하고 다시 접속하기
+	// jsp에서 name값이 있어야 값을 가져올수 있다. 없다면 값을 가져올수 없다.
+	
+	
+	
 	@Autowired
 	private MemberService memberService;
 	
@@ -36,7 +44,29 @@ public class MemberModifyController {
 		view.setViewName("jsp/my_info");
 		return view;
 	}
-
+	
+	@RequestMapping("pass_modify")
+	public ModelAndView user_pass_modify(MemberVO vo,HttpSession session,
+			HttpServletRequest response,HttpServletRequest request) { // 로그인 페이지
+		ModelAndView view = new ModelAndView();
+		session = request.getSession();
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		MemberVO vov = this.memberService.get(m.getMem_id());
+		
+		view.addObject("vo", vov);
+		view.setViewName("jsp/pass_modify");
+		return view;
+	}
+	//index페이지에서 내 설정을 누르면 하이퍼링크로 my_info로 넘어간다 넘어갈 때 my_info의 매핑을 타고 그 컨트롤러 안에 있는
+	//메서드를 수행하고 리턴하는 값으로 넘어간다
+	
+	//자기 페이지의 매핑경로가 아닌 다른 페이지의 매핑경로에 정보를 보내면?
+	
+	//pass_modify에서 비밀번호 확인을 하면 pass_modify_ok를 거쳐서 member_modify로 가야한다
+	//근데 지금은 pass_modify에서 확인을 하면 member_modify의 페이지에서 pass_modify_ok주소를 보여준다
+	
+	//pass_modify에서 submit을 하면 pass_modify의 정보를 pass_modify_ok에 보낸다  pass_modify_ok controller를
+	//수행하고 리턴 값으로 맞으면 member_modify 틀리면 pass_modify로 와야 한다
 	@RequestMapping("pass_modify_ok")
 	public ModelAndView pass_login_ok(@ModelAttribute MemberVO m, 
 			String pass_modify_id, String pass_modify_pass,
@@ -49,13 +79,6 @@ public class MemberModifyController {
 		ModelAndView view = new ModelAndView();
 		MemberVO session_m = (MemberVO) session.getAttribute("m");
 
-		/* 세션 유효성 검증 */
-		if (session_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login';");
-			out.println("</script>");
-		} else {
 
 			MemberVO ck = this.memberService.pwdcheck(pass_modify_id);
 			//아이디를 기준으로 sql문에서 아이디를 조회해서 맞으면 그 아이디에 맞는 회원정보를 가져온 것을 담은 것이 ck
@@ -80,18 +103,19 @@ public class MemberModifyController {
 					view.addObject("mv", m);
 					//m객체를 mv에 담고 view에 담는다
 					//view를 리턴하면 jsp에서 view에 담긴 값들을 사용할수 있다
-					view.setViewName("jsp/member_modify");
+					view.setViewName("redirect:/member_modify");
+					System.out.println(view);
+					return view;
+				}else {
+					view.setViewName("redirect:/pass_modify");
 					return view;
 				}
-			} else {
-				out.println("<script>");
-				out.println("alert('회원정보를 찾을 수 없습니다!');");
-				out.println("</script>");
-				view.setViewName("jsp/pass_modify");
 			}
-		}
-		return view;
+				return null;
 	}// pass_login_ok
+			
+			
+	// 회원가입 페이지에서 폼으로 회원가입ok로 보낸다 맞으면 로그인을 보내고 아니면 
 	
 	//회원번호값은 session에 담겨있다.
 	//vo로 파라미터값과 디비값을 비교하고 m에 있는 no값을 where절로 비교한다
@@ -107,6 +131,19 @@ public class MemberModifyController {
 	//회원정보가 업데이트가 되면 새션을 바꿔주라고 했는데 맞는건지
 	//세션에 있는 m값이 존재하는지, 웹이 켜지면 세션은 항상 존재함 세션 안에 m이 있는지 없는지 확인을 해야함
 
+	
+	@RequestMapping("member_modify")
+	public ModelAndView user_member_modify(MemberVO vo,HttpSession session,
+			HttpServletRequest response,HttpServletRequest request) { // 로그인 페이지
+		ModelAndView view = new ModelAndView();
+		session = request.getSession();
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		MemberVO vov = this.memberService.get(m.getMem_id());
+		
+		view.addObject("vo", vov);
+		view.setViewName("jsp/member_modify");
+		return view;
+	}
 
 	@RequestMapping("member_modify_ok") //회원정보수정
 	public ModelAndView member_modify_ok(MemberVO me,
@@ -123,6 +160,21 @@ public class MemberModifyController {
 	    view.setViewName("redirect:/login");
 		return view;
 	}//member_modify_ok()
+	
+	@RequestMapping("member_modify_emailcheck")
+	@ResponseBody
+	public int member_emailcheck(String email, String domain, MemberVO m, HttpServletResponse response)throws Exception{
+		
+		m.setEmail_id(email);
+		m.setEmail_domain(domain);
+		MemberVO check_id=this.memberService.emailCheck(m);	//이메일 중복검색
+		int re=-1;				//중복이메일이 없을 때
+		if(check_id != null) {	//중복이메일이 있을 때
+			re=1;
+		}
+		return re;
+	}//member_idcheck()
+	
 }//MemberModifyController
 
 
