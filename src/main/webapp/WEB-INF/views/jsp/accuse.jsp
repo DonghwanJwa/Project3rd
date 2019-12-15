@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/accuse.css"/>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>
-<script src="./resources/js/accuse.js"></script>
+<script src="/jamong.com/resources/js/accuse.js"></script>
    <div id=acc_wrap>
 	<div id=acc_base>
 	  <div id=acc_report_base oncontextmenu="return false" ondragstart="return false" 
