@@ -18,6 +18,7 @@ import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.InquireService;
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
 public class InquireController {
@@ -31,27 +32,28 @@ public class InquireController {
 		return "jsp/inquire";
 	}
 	
+	/* cos.jar를 활용한 첨부파일 추가 방법 */
+	/* 문의하기 보내기 */
 	@RequestMapping("inquire_ok")
-	public String user_inquire_ok(InquireVO i,
+	public ModelAndView user_inquire_ok(InquireVO i,
 			HttpServletRequest request,
-			HttpServletResponse response,HttpSession session, int maxSize, String systemFile)
+			HttpServletResponse response,
+			HttpSession session)
 	throws Exception {
 		
+		session=request.getSession();
+		
+		MemberVO user=(MemberVO) session.getAttribute("m");
+
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out =response.getWriter();
-		session=request.getSession();
 		
-		/* cos.jar를 활용한 첨부파일 추가 방법 */
-		/* https://blog.naver.com/heartflow89/221009083830  참고*/
-		String realFolder="";
+		int maxSize = 10*1024*1024; // 10MB 제한
+		String filePath=request.getServletContext().getRealPath("resources/upload/inquire/");
+	
+		MultipartRequest multi = new MultipartRequest(request, filePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
-		String saveFolder =request.getRealPath("/resources/upload"); //프로필 이미지 저장경로
- 		String encType="utf-8";
- 		int filesize = 10*1024*1024;
-
-MultipartRequest multi=null;
-		multi = new MultipartRequest(request,saveFolder,filesize,"UTF-8");
 		
 		/* 입력값들을 multi 로부터 가져오는 역할을합니다 */
 		
@@ -59,18 +61,24 @@ MultipartRequest multi=null;
 		String inq_email = multi.getParameter("inq_email");
 		String inq_phone = multi.getParameter("inq_phone");
 		String inq_cont  = multi.getParameter("inq_cont");
-		String inq_file1 = multi.getParameter("inq_file1");
-		String inq_file2 = multi.getParameter("inq_file2");
-		String inq_file3 = multi.getParameter("inq_file3");
-		String inq_file4 = multi.getParameter("inq_file4");
 		String inq_date  = multi.getParameter("inq_date");
 
-		MemberVO user=(MemberVO) session.getAttribute("m");
 
 		String inq_state  = multi.getParameter("inq_state");
-
+		
+		String fileName1 = multi.getFilesystemName("file_1");
+		String fileName2 = multi.getFilesystemName("file_2");
+		String fileName3 = multi.getFilesystemName("file_3");
+		String fileName4 = multi.getFilesystemName("file_4");
 		
 		
+		String inq_file1 = "/jamong.com/resources/upload/inquire/"+fileName1;
+		String inq_file2 = "/jamong.com/resources/upload/inquire/"+fileName2;
+		String inq_file3 = "/jamong.com/resources/upload/inquire/"+fileName3;
+		String inq_file4 = "/jamong.com/resources/upload/inquire/"+fileName4;
+		
+		
+				
 		File UpFile = multi.getFile("inq_file1");
 		if(UpFile != null) {//첨부파일이 있는 경우
 			String fileName = UpFile.getName();//첨부한 파일명
@@ -80,7 +88,6 @@ MultipartRequest multi=null;
 			int month=c.get(Calendar.MONTH)+1;
 			int date=c.get(Calendar.DATE);
 			
-			String homedir = saveFolder+"/inquire";
 		
 		
 			
@@ -106,7 +113,7 @@ MultipartRequest multi=null;
 		
 		out.println("<script>");
 		out.println("alert('문의가 접수되었습니다!');");
-		out.println("location='/jamong.com/';");
+		out.println("location='/jamong.com';");
 		out.println("</script>");
 		
 		return null;
