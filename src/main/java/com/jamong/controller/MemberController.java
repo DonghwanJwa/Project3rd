@@ -4,6 +4,7 @@ package com.jamong.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.service.BoardService;
 import com.jamong.service.MemberService;
 import com.oreilly.servlet.MultipartRequest;
 
@@ -31,7 +34,7 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-	
+	private BoardService boardSercvice;
 	@Autowired
 	private MailService mailService;
 		
@@ -247,8 +250,9 @@ public class MemberController {
 		return null;
 	}
 	
-	@RequestMapping("profile")
-	public ModelAndView user_profile( MemberVO mp,
+	@RequestMapping("@{mem_id}")
+	public ModelAndView user_profile( 
+			@PathVariable("mem_id") String mem_id, MemberVO mp,
 			HttpServletResponse response,
 			HttpServletRequest request,
 			HttpSession session )throws Exception {
@@ -256,16 +260,16 @@ public class MemberController {
 		PrintWriter out =response.getWriter();
 		session = request.getSession();
 		
-		MemberVO m = (MemberVO)session.getAttribute("m");
-
-		mp = this.memberService.profileCheck(m.getMem_no());
-//		List<BoardVO> bv = this.boardService.profileBoard(m.getMem_no());		
 		
 		ModelAndView mv=new ModelAndView("jsp/profile");
-
+			MemberVO m = (MemberVO)session.getAttribute("m");
+			
+			mp = this.memberService.profileCheck(mem_id);
+			// 포트폴리오 항목 띄어쓰기 적용되게
+			String portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
 		
-		mv.addObject("mp",mp);
-		
+			mv.addObject("mp",mp);
+			mv.addObject(portfolio);
 		return mv;
 	}
 	
@@ -279,7 +283,6 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 		session = request.getSession();
 //		MemberVO mp = this.memberService.profileCheck(mem_no);
-		
 		ModelAndView mv = new ModelAndView(); 
 //		mv.addObject("mp",mp);
 		mv.setViewName("jsp/profile_edit");
