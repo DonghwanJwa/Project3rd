@@ -203,7 +203,6 @@ a:hover{text-decoration:underline; color:#F57C68;}
 }
 
 .list_underline {
-	
 	padding: .5em .2em;
 }
 
@@ -434,3 +433,40 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	padding:5px;
 }
 
+/* admin_author 작가신청 리스트 */
+#adm_author_wrap {
+	display: flex;
+    justify-content: center;
+    min-height: 400px;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.adm_author_count {
+	padding-bottom:10px;
+}
+
+#adm_aut_table {
+    font-size: 12px;
+    width: 800px;
+    border-collapse:collapse;
+}
+
+#adm_aut_table td{
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
+
+.list_underline {
+	padding: .5em .2em;
+}
+
+#paging {
+	padding: 1em .2em;
+}
+
+
+#search_name {
+	margin: 0 7px;
+}

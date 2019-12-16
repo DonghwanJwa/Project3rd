@@ -10,7 +10,9 @@ aut_file1 VARCHAR2(200),		   -- 제출 파일
 aut_file2 VARCHAR2(200),
 aut_file3 VARCHAR2(200),
 aut_date DATE, 					   -- 신청일
-mem_no NUMBER(38)				   -- 회원번호 참조컬럼
+mem_no NUMBER(38),  			   -- 회원번호 참조컬럼
+aut_state NUMBER(38) DEFAULT 0,    -- 처리결과
+aut_update DATE                    -- 처리날짜
 );
 
 -- 시퀀스 생성
@@ -26,3 +28,12 @@ ADD CONSTRAINT aut_mem_no_fk FOREIGN KEY (mem_no)
 REFERENCES member(mem_no);
 
 SELECT * FROM author ORDER BY aut_no DESC;
+
+ALTER TABLE author ADD aut_state NUMBER(38) DEFAULT 0;
+ALTER TABLE author ADD aut_update DATE;
+
+DROP SEQUENCE aut_no_seq;
+
+DELETE FROM author WHERE aut_no=2;
+
+commit;
