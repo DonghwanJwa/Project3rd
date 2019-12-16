@@ -22,8 +22,22 @@
      <li class="scrolling" data-no="${b.bo_no}"><a href="/jamong.com/@${b.memberVO.mem_id}/${b.bo_no}">
        <div id="new_post_loading_cont">
         <div id="new_post_loading_cont_text">
-         <div id="new_post_loading_cont_text_title">${b.bo_title}</div>
-         <div id="new_post_loading_cont_text_cont">${b.bo_cont}</div>
+         <div id="new_post_loading_cont_text_title">
+         <c:if test="${fn:length(b.bo_title)>20}">
+          ${fn:substring(b.bo_title,0,20)}...
+         </c:if>
+         <c:if test="${fn:length(b.bo_title)<20}">
+          ${b.bo_title}
+         </c:if>
+         </div>
+         <div id="new_post_loading_cont_text_cont">
+         <c:if test="${fn:length(b.bo_cont)>100}">
+          ${fn:substring(b.bo_cont,0,100)}...
+         </c:if>
+         <c:if test="${fn:length(b.bo_cont)<100}">
+          ${b.bo_cont}
+         </c:if>
+         </div>
          <div id="new_post_loading_cont_text_writer">
           <i>by&nbsp;&nbsp;</i>${b.memberVO.mem_nickname}
          </div>

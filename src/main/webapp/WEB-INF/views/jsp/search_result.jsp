@@ -26,24 +26,48 @@
 
   <%-- 검색 결과 내용 --%>
   <div id="search_result_post_main">
-  <c:forEach var="b" items="${bList}">
-   <a href="./read">
-    <div class="post_cont">
-     <img id="post_img" src="${b.bo_thumbnail}" alt="그림 안나옴">
-     <div id="post_text">
-      <div id="post_title">${b.bo_title}</div>
-      <div id="post_cont">${b.bo_cont}</div>
-       <div id="post_writer">${b.memberVO.mem_nickname}</div>
-      <div id="post_tag">
-       <span>${b.memberVO.mem_keyword }</span>
+   <ul id="search_result_post_list">
+    <c:forEach var="b" items="${bList}">
+     <li class="scrolling" data-no="${b.bo_no}"><a href="/jamong.com/@${b.memberVO.mem_id}/${b.bo_no}">
+      <div class="post_cont">
+       <div id="post_text">
+        <div id="post_title">
+        <c:if test="${fn:length(b.bo_title)>20}">
+        ${fn:substring(b.bo_title,0,20)}...
+        </c:if>
+        <c:if test="${fn:length(b.bo_title)<20}">
+        ${b.bo_title}
+        </c:if>
+        </div>
+        <div id="post_cont">
+        <c:if test="${fn:length(b.bo_cont)>100}">
+         ${fn:substring(b.bo_cont,0,100)}...
+        </c:if>
+        <c:if test="${fn:length(b.bo_cont)<100}">
+         ${b.bo_cont}
+         </c:if>
+        </div>
+        <div id="post_writer"><i>by&nbsp;&nbsp;</i>${b.memberVO.mem_nickname}</div>
+        <div id="post_tag">
+         <span>${b.memberVO.mem_keyword}</span>
+        </div>
+        <div id="post_ago">${b.bo_date}</div>
+       </div>
+       <c:set var="img" value="${b.bo_thumbnail}" />
+       <c:if test="${not empty img}">
+        <img id="post_img" src="${b.bo_thumbnail}" alt="그림 안나옴">
+       </c:if>
+       <c:if test="${empty img}">
+        <div id='post_img'></div>
+       </c:if>
       </div>
-     </div>
-    </div>
-   </a>
-  </c:forEach>
+     </a></li>
+    </c:forEach>
+   </ul>
   </div>
- </div><%-- 글 검색 결과 --%>
- 
+ </div>
+ <%-- 글 검색 결과 --%>
+
  <%-- 검색 페이지 '작품' 검색 결과 --%>
  <div id="search_result_work">
 
@@ -58,25 +82,25 @@
 
   <%-- 검색 결과 내용 --%>
   <div id="search_result_work_main">
-  <c:forEach begin="1" end="10" step="1">
-  <a href="./book_info">
-   <div class="work_cont">
-    <img id="work_img" src="/jamong.com/resources/img/b.jpg" alt="책 표지인데 안나옴;">
-    <div class="work_cont_view">
-     <div class="work_cont_view_top">
-      <strong>강아지와 지내는건 어때?</strong>
-      <span>by 멍뭉이</span>
+   <c:forEach begin="1" end="10" step="1">
+    <a href="./book_info">
+     <div class="work_cont">
+      <img id="work_img" src="/jamong.com/resources/img/b.jpg" alt="책 표지인데 안나옴;">
+      <div class="work_cont_view">
+       <div class="work_cont_view_top">
+        <strong>강아지와 지내는건 어때?</strong> <span>by 멍뭉이</span>
+       </div>
+       <div class="work_cont_view_bottom">
+        <span>Jamong Book</span>
+       </div>
+      </div>
      </div>
-     <div class="work_cont_view_bottom">
-      <span>Jamong Book</span>
-     </div>
-    </div>
-   </div>
-  </a>
-  </c:forEach>
+    </a>
+   </c:forEach>
   </div>
- </div><%-- 작품 검색 결과 --%>
- 
+ </div>
+ <%-- 작품 검색 결과 --%>
+
  <%-- 검색 페이지 '작가' 검색 결과 --%>
  <div id="search_result_author">
 
@@ -95,7 +119,9 @@
     <c:forEach begin="1" end="10" step="1">
      <a href="./profile">
       <div id="search_result_author_profile">
-       <img id="search_result_author_profile_img" src="/jamong.com/resources/img/profile.jpg" alt="프로필 사진">
+       <img id="search_result_author_profile_img" src="/jamong.com/resources/img/profile.jpg"
+        alt="프로필 사진"
+       >
        <div id="search_result_author_profile_info">
         <div id="search_result_author_name">김 누구누구</div>
         <div id="search_result_author_introduce">당신의 심리상태를 가장 정확하게 진단해주는 차세대....당신의 심리상태를 가장
@@ -112,7 +138,8 @@
 
   </div>
 
- </div><%-- 작가 검색 결과 --%>
- 
+ </div>
+ <%-- 작가 검색 결과 --%>
+
 </div>
 <jsp:include page="../include/footer.jsp"></jsp:include>
