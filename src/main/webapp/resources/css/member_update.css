@@ -1,0 +1,8 @@
+@charset "EUC-KR";
+
+
+#member_update_inner_text_div{
+	margin: 0 auto;
+	width: 900px;
+	border:1px solid red;
+}

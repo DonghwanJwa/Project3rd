@@ -6,6 +6,7 @@ import com.jamong.domain.MemberVO;
 
 public interface MemberDAO {
 
+	MemberVO mem_emailCheck(MemberVO m);
 	void memberUpdate(MemberVO me);
 	void insertMember(MemberVO m);
 	MemberVO idCheck(String id);
