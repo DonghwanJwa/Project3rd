@@ -23,7 +23,7 @@
      
      <c:if test="${!empty ilist}">
      	<c:forEach var="i" items="${ilist}">   	 	
-     	 <tr onclick="location.href='/jamong.com/admin_inquire_info?no=${i.inq_no}&page=${page}'">
+     	 <tr onclick="location.href='/jamong.com/admin_inquire_info?no=${i.inq_no}&page=${page}'" class="inq_adm_tr">
      	 	<td align="center" class="inq_list_underline">
      	 	  ${i.inq_no}
      	 	</td>

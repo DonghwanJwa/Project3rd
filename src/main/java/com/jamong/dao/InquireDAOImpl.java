@@ -32,7 +32,7 @@ public class InquireDAOImpl implements InquireDAO {
 	}
 
 	@Override
-	public InquireVO getInquireCont(int no) {
-		return this.sqlSession.selectOne("inq_cont",no);
+	public InquireVO getInquireMem(int no) {
+		return this.sqlSession.selectOne("inq_cont_mem",no);
 	}
 }

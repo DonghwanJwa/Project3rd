@@ -5,6 +5,52 @@
 
 <mapper namespace="inquire">
 
+<!-- Join 하기 -->
+ <resultMap type="inq" id="inquireMap">
+  <id column="inq_no" property="inq_no" />
+  <result column="inq_item1" property="inq_item1" />
+  <result column="inq_phone" property="inq_phone" />
+  <result column="inq_cont" property="inq_cont" />
+  <result column="inq_email" property="inq_email" />
+  <result column="inq_file1" property="inq_file1" />
+  <result column="inq_file2" property="inq_file2" />
+  <result column="inq_file3" property="inq_file3" />
+  <result column="inq_file4" property="inq_file4" />
+  <result column="inq_state" property="inq_state" />
+  <result column="inq_date" property="inq_date" />
+  <result column="mem_no" property="mem_no" />
+  
+  <association javaType="m" property="memberVO">
+  	<id column="mem_no" property="mem_no" />
+  	<result column="mem_id" property="mem_id" />
+  	<result column="mem_name" property="mem_name" />
+  	<result column="mem_birth1" property="mem_birth1" />
+  	<result column="mem_birth2" property="mem_birth2" />
+  	<result column="mem_birth3" property="mem_birth3" />
+  	<result column="email_id" property="email_id" />
+  	<result column="email_domain" property="email_domain" />
+  	<result column="mem_phone01" property="mem_phone01" />
+  	<result column="mem_phone02" property="mem_phone02" />
+  	<result column="mem_phone03" property="mem_phone03" />
+  	<result column="mem_date" property="mem_date" />
+  	<result column="mem_author" property="mem_author" />
+  	<result column="mem_state" property="mem_state" />
+  	<result column="profile_photo" property="profile_photo" />
+  	<result column="profile_cont" property="profile_cont" />
+  	<result column="mem_state" property="mem_state" />
+  	<result column="mem_nickname" property="mem_nickname" />
+  	<result column="mem_keyword" property="mem_keyword" />
+  	<result column="mem_fav1" property="mem_fav1" />
+  	<result column="mem_fav2" property="mem_fav2" />
+  	<result column="mem_fav3" property="mem_fav3" />
+  	<result column="mem_portfolio" property="mem_portfolio" />
+  	<result column="mem_gender" property="mem_gender" />
+  
+  </association>
+ </resultMap>
+ 
+
+
 <!-- 문의하기 -->
 <insert id="inq_insert">
  insert into inquire (inq_no,inq_item1,inq_email,inq_phone,inq_cont,inq_file1,inq_file2,inq_file3,inq_file4,inq_date,mem_no) 
@@ -58,5 +104,35 @@
 		<!-- 공지사항 내용보기 -->
 		<select id="inq_cont" resultType="inq">
 			select * from inquire where inq_no=#{no}
+		</select>
+		
+		<!-- 공지사항 내용안에 회원정보 보여지게하기 -->
+		<select id="inq_cont_mem" resultMap="inquireMap">
+		
+		SELECT inq.inq_no,
+			   inq.inq_state,
+			   inq.inq_date,
+			   inq.inq_item1,
+			   inq.inq_phone,
+			   inq.inq_email,
+			   inq.inq_cont,
+			   inq.inq_file1,
+			   inq.inq_file2,
+			   inq.inq_file3,
+			   inq.inq_file4,
+			   inq.mem_no,
+			   m.mem_no,
+			   m.mem_id,
+			   m.mem_name,
+			   m.mem_gender,
+			   m.mem_birth1,
+			   m.mem_birth2,
+			   m.mem_birth3,
+			   m.mem_date
+		FROM inquire inq
+		LEFT JOIN member m
+		ON inq.mem_no = m.mem_no
+		WHERE inq.inq_no = #{no}
+		
 		</select>
 </mapper>
