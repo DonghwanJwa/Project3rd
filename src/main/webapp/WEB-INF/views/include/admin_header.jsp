@@ -28,7 +28,7 @@
 			<nav>
 			<ul>
 				<li><a href="admin_notice">공지사항</a></li>
-				<li><a href="admin_request">작가신청</a></li>
+				<li><a href="admin_author">작가신청</a></li>
 				<li><a href="admin_offer">작가제안</a></li>
 				<li><a href="admin_inquire">문의사항</a></li>
 				<li><a href="admin_accuse">신고사항</a></li>
