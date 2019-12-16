@@ -48,8 +48,6 @@
  </association>
  </resultMap>
  
-
- 
  <insert id="bo_insert">
   INSERT INTO board (bo_no,bo_title,bo_subtitle,bo_cont,bo_thumbnail,bo_date,bo_lock,bo_type,cat_name,mem_no)
   VALUES(bo_no_seq.nextval,#{bo_title},#{bo_subtitle},#{bo_cont},#{bo_thumbnail},sysdate,#{bo_lock},#{bo_type},#{cat_name},#{mem_no})
