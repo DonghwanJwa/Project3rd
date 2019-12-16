@@ -70,8 +70,8 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public MemberVO profileCheck(int mem_no) {
-		return this.sqlSession.selectOne("profile_ck",mem_no);
+	public MemberVO profileCheck(String mem_id) {
+		return this.sqlSession.selectOne("profile_ck",mem_id);
 	}	
 	
 	@Override
@@ -84,6 +84,4 @@ public class MemberDAOImpl implements MemberDAO{
 		return this.sqlSession.selectList("cat_member");
 	}
 
-	
-	
 }

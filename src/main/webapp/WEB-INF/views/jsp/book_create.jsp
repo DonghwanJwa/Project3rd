@@ -13,15 +13,26 @@
     <input type="button" id="post_list_releaseAll" class="btn releaseAll" value="전체 해제">
    </div>
    <ul id="post_list" class="ui-sortable">
-    <c:forEach var="i" begin="1" end="29">
-     <li class="ui-state-default">
-      <label for="chk${i}" class="ckeck_label">
-       <input type="checkbox" id="chk${i}" class="check_list">
-       <div class="post_list_cont" data-order="${i}">
-        <div class="post_list_cont_title">게으름뱅이의 고백&nbsp;${i}</div>
+    <c:forEach var="b" items="${bList}">
+     <li class="ui-state-default" data-no="${i.bo_no}">
+      <label for="chk${b}" class="ckeck_label">
+       <input type="checkbox" id="chk${b}" class="check_list">
+       <div class="post_list_cont" data-order="${b}">
+        <div class="post_list_cont_title">
+         <c:if test="${fn:length(b.bo_title)>20}">
+          ${fn:substring(b.bo_title,0,20)}...
+         </c:if>
+         <c:if test="${fn:length(b.bo_title)<20}">
+          ${b.bo_title}
+         </c:if>
+        </div>
         <div class="post__list_cont_text">
-         내 일상을 어떤 색으로 채우고싶나 | 회사를 그만두고 가장 힘들었던 일 중의 하나는 시간
-         관리였습니다. 오롯이 펼처진 자유의 시간 속에 게으름뱅이가 되어버린 느낌입니다 아니면 말구
+        <c:if test="${fn:length(b.bo_cont)>100}">
+          ${fn:substring(b.bo_cont,0,100)}...
+         </c:if>
+         <c:if test="${fn:length(b.bo_cont)<100}">
+          ${b.bo_cont}
+         </c:if>
         </div>
        </div>
       </label>
