@@ -46,6 +46,7 @@ public class MemberModifyController {
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		MemberVO vov = this.memberService.get(m.getMem_id());
 		
+		System.out.println(vov.getMem_fav1());
 		view.addObject("vo", vov);
 		view.setViewName("jsp/my_info");
 		return view;
@@ -146,7 +147,6 @@ public class MemberModifyController {
 		ModelAndView view = new ModelAndView();
 		session = request.getSession();
 		
-		int ran = new Random().nextInt(900000) + 100000;
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		MemberVO vov = this.memberService.get(m.getMem_id());
 		
@@ -217,6 +217,13 @@ public class MemberModifyController {
 		}else {
 			return new ResponseEntity<String>("false", HttpStatus.OK);
 		}
+	}
+	@RequestMapping("member_update")
+	public ModelAndView user_member_update() { // 로그인 페이지
+		ModelAndView view = new ModelAndView();
+		
+		view.setViewName("jsp/member_update");
+		return view;
 	}
 
 	
