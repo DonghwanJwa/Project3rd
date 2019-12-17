@@ -79,19 +79,6 @@ public class MemberController {
 		session.invalidate();//세션만료
 		return "redirect:/";
 	}
-	
-	@RequestMapping("find_id")
-	public String user_find_id() { // 아이디 찾기
-		
-		return "jsp/find_id";
-	}
-	
-	@RequestMapping("find_pass")
-	public String user_find_pass() { // 비밀번호 찾기
-		
-		return "jsp/find_pass";
-	}
-	
 	@RequestMapping("join_membership")
 	public String user_membership() { // 회원가입
 		

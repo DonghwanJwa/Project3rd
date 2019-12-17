@@ -185,6 +185,9 @@ public class MemberModifyController {
 		return re;
 	}//member_idcheck()
 	
+	
+	//지금 한건 입력한 메일 주소로 메일을 발송하는건데
+	//문제는 회원정보를 담아서 보내야 한다 그럴러면 회원정보를 먼저 가져와야한다
 	@RequestMapping("modify_emailCert")//이메일 인증번호 체크
 	@ResponseBody
 	public boolean createEmailCheck(String email,String domain, HttpServletRequest request){
@@ -218,14 +221,49 @@ public class MemberModifyController {
 			return new ResponseEntity<String>("false", HttpStatus.OK);
 		}
 	}
-	@RequestMapping("member_update")
-	public ModelAndView user_member_update() { // 로그인 페이지
-		ModelAndView view = new ModelAndView();
-		
-		view.setViewName("jsp/member_update");
-		return view;
-	}
 
+	@RequestMapping("find_id")
+	public String user_find_id() { // 회원가입
+		
+		return "jsp/find_id";
+	}
+	
+	@RequestMapping("find_id_emailCert")//이메일 인증번호 체크
+	@ResponseBody
+	public boolean find_id_createEmailCheck(MemberVO vo,String name,String email,String domain, HttpServletRequest request){
+		
+		String userEmail = email + "@" + domain; //받는 사람 이메일 주소
+		String Email = email;
+		String Domain = domain;
+		String Name = name;
+		vo.setEmail_id(Email);
+		vo.setEmail_domain(Domain);
+		vo.setMem_name(Name);
+		System.out.println(vo.getEmail_id());
+		System.out.println(vo.getEmail_domain());
+		System.out.println(vo.getMem_name());
+		MemberVO member = this.memberService.memberSelect_id(vo);
+		vo.setMem_id(member.getMem_id());
+		//회원정보를 가져와야 한다
+		HttpSession session = request.getSession(true);		
+		String authCode = String.valueOf(vo.getMem_id());				//생성한 값을 어스코드에 담고
+		session.setAttribute("authCode", authCode);			//세션에 인증번호값 저장
+		
+		String subject = "JAMONG 아이디 찾기";
+		StringBuilder sb = new StringBuilder();
+		sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
+		sb.append("귀하의 아이디는 </h3><h2>" + authCode + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
+		sb.append("해당 아이디로 로그인해주세요.<br/>");
+		sb.append("감사합니다.</h3>");
+		
+		return MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request);
+	}
+	
+	@RequestMapping("find_pass")
+	public String user_find_pass() { // 회원가입
+		
+		return "jsp/find_pass";
+	}
 	
 }//MemberModifyController
 

@@ -42,6 +42,11 @@
   <result column="mem_no" property="mem_no"/>
  </association>
 </resultMap>
+
+<select id="mem_select_id" resultType="m">
+	select * from member where email_id=#{email_id} and email_domain=#{email_domain} and mem_name=#{mem_name}
+</select>
+  
 <select id="mem_email" resultType="m">
 	select * from member where email_id=#{email_id} and email_domain=#{email_domain}
 </select>

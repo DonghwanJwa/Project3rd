@@ -16,6 +16,11 @@ public class MemberDAOImpl implements MemberDAO{
 	private SqlSession sqlSession;
 	
 	@Override
+	public MemberVO memberSelect_id(MemberVO vo) {
+		return this.sqlSession.selectOne("mem_select_id", vo);
+	}
+
+	@Override
 	public MemberVO mem_emailCheck(MemberVO m) {
 		return this.sqlSession.selectOne("mem_email", m);
 	}
@@ -83,5 +88,7 @@ public class MemberDAOImpl implements MemberDAO{
 	public List<MemberVO> categoryMember() {
 		return this.sqlSession.selectList("cat_member");
 	}
+
+
 
 }

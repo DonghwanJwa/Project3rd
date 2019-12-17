@@ -55,8 +55,8 @@
 					</tr>
 					
 					<tr>
+					<th></th>
 					<td><a href="/jamong.com/pass_modify"><button id="my_info_btn">회원정보수정</button></a></td>
-					<td><a href="/jamong.com/member_update"><button id="my_info_btn">회원탈퇴</button></a></td>
 					</tr>
 					</tbody>
 				</table>
@@ -78,11 +78,55 @@
 			   </div>
 			</div>  
 			   </div>
-			   
-			   <p class="my_info_p">-아이디, 닉네임은 수정이 불가능합니다.</p>
-			   <p class="my_info_p">-이메일, 변경 시 반드시 인증을 거쳐야 합니다.</p>
-			   </div>
+		<!-- 링크를 눌렀을 때 메인 랩이  -->	   
+		<div id="my_info_p_div">
+			   <p class="my_info_p">- 아이디, 닉네임은 수정이 불가능합니다.</p>
+			   <p class="my_info_p">- 이메일, 변경 시 반드시 인증을 거쳐야 합니다.</p>
+			   <button id="my_info_leave">- 회원탈퇴</button>
 		</div>
+	</div>
+</div>
+		
+		
+		
+		
+		<!-- 회원탈퇴페이지 -->
+<div id="my_info_layerLeave">
+	<button class="img_ico link_close text_hide">닫기</button>
+	<div id="my_info_pop">
+		<h2 id="my_info_leave_h2">자몽 탈퇴하기</h2>
+			<div id="my_info_desc">
+			탈퇴하시면 이용 중인 자몽 내 서비스가 중지되며,<b>모든 데이터는 복구가 불가능합니다.</b><br>
+			아래 사항을 확인하신 후에 신중하게 결정해주세요.
+			</div>
+			<ul>
+			<li>
+			<span class="my_info_dot"></span>
+			작성한 글, 책, 첨부파일 등 모든 정보가 삭제됩니다.</li>
+			<li>
+			<span class="my_info_dot"></span>
+			자몽 프로필 및 연결된 SNS 정보 등이 모두 삭제됩니다.</li>
+			<li>
+			<span class="my_info_dot"></span>
+			현재 아이디로 자몽 주소를 다시 사용할 수 없습니다.</li>
+			<li>
+			<span class="my_info_dot"></span>
+			작성한 댓글은 삭제되지 않고 남게 되오니 탈퇴 전 미리 확인하시기 바랍니다.</li>
+			</ul>
+			<div class="check_label_div">
+			<input class="my_info_check" type="checkbox" name="agree" id="leaveagree">
+			<label class="my_info_label_com">안내 사항을 모두 확인하였으며,이에 동의합니다.</label>
+			</div>
+			<button type="submit" class="my_info_confirm_btn" id="my_info_leaveFormSubmit">탈퇴하기</button>
+	</div>
+</div>
+		
+		
+		
+		
+		
+		
+		
 </body>
 </html>
 <%@ include file="../include/footer.jsp"%>
