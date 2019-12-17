@@ -35,4 +35,10 @@ public class InquireDAOImpl implements InquireDAO {
 	public InquireVO getInquireMem(int no) {
 		return this.sqlSession.selectOne("inq_cont_mem",no);
 	}
+
+	@Override
+	public void updateInquire(InquireVO inq) {
+		this.sqlSession.update("inq_update",inq);
+	}
+	
 }

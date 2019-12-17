@@ -117,12 +117,14 @@
 		<input type="button" id="inq_re_btn" class="inq_button" value="답변하기" action="inq_adm_re" />	
 	</div>
 
-	<form class="inq_adm_request" method="post"  action="inq_adm_request"  name="inq_adm_request" >
+	<form class="inq_adm_request" method="post"  action="admin_inquire_info_ok"  name="inq_adm_request" >
 		<h3>문의하기</h3>
+		<input type="hidden" name="inq_no" value="${i.inq_no}"/>
+		<input type="hidden" name="inq_email" value="${i.inq_email}">
 		<div>
-		 <textarea id="inq_adm_remail" name="inq_adm_remail" placeholder="문의 답변 입력해주세요(최대400자)"
+		 <textarea id="inq_adm_remail" name="inq_reply" placeholder="문의 답변 입력해주세요(최대400자)"
 		  cols="24" rows="6" maxlength="400" type="text"></textarea>
-		 <input type="button" id="inq_request_btn" class="inq_button" value="답변완료" type="submit" />
+		 <input type="submit" id="inq_request_btn" class="inq_button" value="답변완료" />
 		</div> 
 	</form>
 	

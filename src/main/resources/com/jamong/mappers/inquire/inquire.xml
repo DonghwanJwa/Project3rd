@@ -135,4 +135,10 @@
 		WHERE inq.inq_no = #{no}
 		
 		</select>
+		
+		<!-- 문의하기 답변시 update문 -->
+		<update id="inq_update">
+			update inquire set inq_state=1,inq_reply=#{inq_reply},inq_sender=#{inq_sender},
+			inq_replydate=sysdate
+		</update>
 </mapper>
