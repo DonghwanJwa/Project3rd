@@ -2,8 +2,28 @@
 <%@ include file="../include/header.jsp" %>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/request_author.css"/>
 <script src="/jamong.com/resources/js/request_author.js"></script>
-
-<form action="request_author_in" onsubmit="req_check();" method="post" enctype="Multipart/form-data">
+<script>
+function req_check() {
+	
+	if($.trim($('#req_form_intro').val())=="") {
+		alert('작가님의 소개를 적어주세요.');
+		$('#req_form_intro').val('').focus();
+		return false;
+	}
+	if($.trim($('#req_form_plan').val())=="") {
+		alert('작가님의 계획을 적어주세요.');
+		$('#req_form_plan').val('').focus();
+		return false;
+	}
+	
+	var con=confirm('작가신청 후 내용을 수정할 수 없습니다.\n정말로 신청하시겠습니까?');
+	
+	if(con === false) {
+		return false;
+	}
+}
+</script>
+<form action="request_author_in" onsubmit="return req_check();" method="post" enctype="Multipart/form-data">
 <div id="req_auth_wrap">
 		<div id="req_auth_title">
 		<h1>자몽 작가신청</h1>

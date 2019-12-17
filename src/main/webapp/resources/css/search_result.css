@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
+a {
+	text-decoration: none;
+	color: #333333;
+}
+
+ul li {
+	list-style: none;
+}
+
 /* 검색 결과 페이지 해더 부분 */
 #search_header {
 	width: 100%;
@@ -91,27 +100,25 @@
 }
 
 #search_result_post_main {
-	margin: 9px 9px 130px 9px;
+	margin: 9px;
 }
 
 #search_result_post_main .post_cont {
 	width: 800px;
-	height: 230px;
+	height: 210px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border-top: 2px solid #c0c0c0;
-	border-bottom: 2px solid #c0c0c0;
 }
 
 #post_img {
 	width: 200px;
-	height: 130px;
+	height: 170px;
 	object-fit: cover;
-	filter: brightness(50%);
 	display: inline-block;
-	margin: 33px 0px;
+	vertical-align: bottom;
 }
 
 #post_text {
@@ -131,20 +138,36 @@
 	width: 500px;
 	height: 85px;
 	padding: 4px;
-	font-size: 15px;
-	line-height: 1.5;
+	line-height: 22px;
+	margin: 0;
+	font-size: 18px;
+	overflow: hidden;
+	white-space: normal;
+	word-spacing: break-word;
+	text-overflow: elipsis;
 }
 
 #post_writer {
-	font-size: 14px;
+	font-size: 18px;
+	text-align: right;
+	padding: 2px;
+	display:inline-block;
+	color:#ff8040;
+}
+
+#post_writer i{
+	font-family: "NanumPen", "serif";
+}
+
+#post_tag {
+	display:inline-block;
+	font-size: 12px;
 	text-align: right;
 	padding: 2px;
 }
 
-#post_tag {
-	font-size: 12px;
-	text-align: right;
-	padding: 2px;
+#post_ago {
+	display:inline-block;
 }
 /* '글' 검색 결과 */
 

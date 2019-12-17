@@ -13,6 +13,8 @@ public class AuthorVO {
 	private String aut_file2;
 	private String aut_file3;
 	private String aut_date;
+	private String aut_state;
+	private String aut_update;
 	private int mem_no;
 	
 	/* 페이징 변수 */
@@ -21,7 +23,10 @@ public class AuthorVO {
 	
 	/* 검색 변수 */
 	private String search_name;
-	private String search_field;
+	private String search_field1;
+	private String search_field2;
+	
+	private MemberVO memberVO; // 조인검색을 위한 MemberVO 변수 선언
 	
 	// Setter()
 	public void setAut_no(int aut_no)		   {		this.aut_no = aut_no;			}
@@ -34,11 +39,15 @@ public class AuthorVO {
 	public void setAut_file2(String aut_file2) {		this.aut_file2 = aut_file2;		}
 	public void setAut_file3(String aut_file3) {		this.aut_file3 = aut_file3;		}
 	public void setAut_date(String aut_date)   {		this.aut_date = aut_date;		}
+	public void setAut_state(String aut_state) {		this.aut_state = aut_state;	}
+	public void setAut_update(String aut_update) {		this.aut_update = aut_update;	}
 	public void setMem_no(int mem_no) 		   {		this.mem_no = mem_no;			}
 	public void setStartrow(int startrow)		{		this.startrow = startrow;	}
 	public void setEndrow(int endrow) 			{		this.endrow = endrow;	}
 	public void setSearch_name(String search_name) {		this.search_name = search_name;	}
-	public void setSearch_field(String search_field) {		this.search_field = search_field;	}
+	public void setSearch_field1(String search_field1) {		this.search_field1 = search_field1;	}
+	public void setSearch_field2(String search_field2) {		this.search_field1 = search_field2;	}
+	public void setMemberVO(MemberVO memberVO) {		this.memberVO = memberVO;	}
 
 	// Getter()
 	public int getAut_no() 		 {		return aut_no;		}
@@ -51,10 +60,14 @@ public class AuthorVO {
 	public String getAut_file2() {		return aut_file2;	}
 	public String getAut_file3() {		return aut_file3;	}
 	public String getAut_date()  {		return aut_date;	}
+	public String getAut_state() {		return aut_state;	}
+	public String getAut_update() {		return aut_update;	}
 	public int getMem_no() 		 {		return mem_no;		}
 	public int getStartrow()	 {		return startrow;	}
 	public int getEndrow()		 {		return endrow;		}
 	public String getSearch_name() {		return search_name;	}
-	public String getSearch_field() {		return search_field;	}
+	public String getSearch_field1() {		return search_field1;	}
+	public String getSearch_field2() {		return search_field2;	}
+	public MemberVO getMemberVO() {		return memberVO;	}
 	
 }

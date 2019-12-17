@@ -42,6 +42,9 @@
   <result column="mem_no" property="mem_no"/>
  </association>
 </resultMap>
+<select id="mem_email" resultType="m">
+	select * from member where email_id=#{email_id} and email_domain=#{email_domain}
+</select>
 
 	<!-- 회원정보 업데이트 -->
 <update id="mem_update">

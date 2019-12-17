@@ -6,7 +6,6 @@ $(window).on("beforeunload",function(){
 	$("html").scrollTop(0);
 });
 
-
 //스크롤 이벤트 발생
 $(window).scroll(function(){
 	
@@ -25,29 +24,318 @@ $(window).scroll(function(){
 				},
 				success:function(data){//ajax가 성공했을시에 수행 될 function
 					var str="";
-					
 					//받아온 데이터가 "" 이거나 null이 아닌경우 DOM handling을 해준다.
 					if(data!=""){
 						//서버로부터 받아온 data가 list이므로 each문을 사용하여 접근
 						$(data).each(
 							//새로운 데이터를 html 코드 형태의 문자열로 만듦.
 							function(){
-								str += "<li class='scrolling' data-no='" + this.bo_no + "'>" + "<a href='./read'>"
-									+	"<div id='new_post_loading_cont'>"
-									+	 "<img id='new_post_loading_cont_img' src='" + this.bo_thumbnail + "'>"
-									+	 "<div id='new_post_loading_cont_text'>"
-									+	  "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
-									+	  "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
-									+	  "<div id='new_post_loading_cont_text_writer'>"
-									+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
-									+	  "</div>"
-									+	  "<div id='new_post_loading_cont_text_tag'>"
-									+	   "<span>" + this.memberVO.mem_keyword + "</span>"
-									+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
-									+	 "</div>"
-									+	"</div>"
-									+  "</a></li>"
-							
+								var titlesub=this.bo_title.substring(0,20);
+								var contsub=this.bo_cont.substring(0,100);
+								var title=titlesub+"...";
+								var cont=contsub+"...";
+								if(this.memberVO.mem_keyword != null){
+								if(this.bo_thumbnail != null & this.bo_title.length > 20 & this.bo_cont.length > 100){
+									//썸네일이 있고 제목이 20글자 이상에 본문이 100글자 이상일 때
+									str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+										+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+										+	"<div id='new_post_loading_cont'>"
+										+	 "<div id='new_post_loading_cont_text'>"
+										+	  "<div id='new_post_loading_cont_text_title'>" + title + "</div>"
+										+	  "<div id='new_post_loading_cont_text_cont'>" + cont + "</div>"
+										+	  "<div id='new_post_loading_cont_text_writer'>"
+										+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_tag'>"
+										+	   "<span>" + this.memberVO.mem_keyword + "</span>"
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+										+	"</div>"
+										+	 "<img id='new_post_loading_cont_img' src='" + this.bo_thumbnail + "'>"
+										+	"</div>"
+										+  "</a></li>"
+								}else if(this.bo_thumbnail != null & this.bo_title.length > 20){
+									//썸네일이 있고 제목이 20글자 이상일 때
+									str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+										+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+										+	"<div id='new_post_loading_cont'>"
+										+	 "<div id='new_post_loading_cont_text'>"
+										+	  "<div id='new_post_loading_cont_text_title'>" + title + "</div>"
+										+	  "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
+										+	  "<div id='new_post_loading_cont_text_writer'>"
+										+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_tag'>"
+										+	   "<span>" + this.memberVO.mem_keyword + "</span>"
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+										+	"</div>"
+										+	 "<img id='new_post_loading_cont_img' src='" + this.bo_thumbnail + "'>"
+										+	"</div>"
+										+  "</a></li>"
+								}else if(this.bo_thumbnail != null & this.bo_cont.length > 100){
+									//썸네일이 있고 본문이 100글자 이상일 때
+									str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+										+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+										+	"<div id='new_post_loading_cont'>"
+										+	 "<div id='new_post_loading_cont_text'>"
+										+	  "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
+										+	  "<div id='new_post_loading_cont_text_cont'>" + cont + "</div>"
+										+	  "<div id='new_post_loading_cont_text_writer'>"
+										+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_tag'>"
+										+	   "<span>" + this.memberVO.mem_keyword + "</span>"
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+										+	"</div>"
+										+	 "<img id='new_post_loading_cont_img' src='" + this.bo_thumbnail + "'>"
+										+	"</div>"
+										+  "</a></li>"
+								}else if(this.bo_thumbnail == null & this.bo_title.length > 20 & this.bo_cont.length > 100){
+									//썸네일이 없고 제목이 20글자 이상에 본문이 100글자 이상일 때
+									str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+										+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+										+	"<div id='new_post_loading_cont'>"
+										+	 "<div id='new_post_loading_cont_text'>"
+										+	  "<div id='new_post_loading_cont_text_title'>" + title + "</div>"
+										+	  "<div id='new_post_loading_cont_text_cont'>" + cont + "</div>"
+										+	  "<div id='new_post_loading_cont_text_writer'>"
+										+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_tag'>"
+										+	   "<span>" + this.memberVO.mem_keyword + "</span>"
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+										+	"</div>"
+										+	 "<div id='new_post_loading_cont_img'></div>"
+										+	"</div>"
+										+  "</a></li>"
+								}else if(this.bo_thumbnail == null & this.bo_title.length > 20){
+									//썸네일이 없고 제목이 20글자 이상일 때
+									str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+										+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+										+	"<div id='new_post_loading_cont'>"
+										+	 "<div id='new_post_loading_cont_text'>"
+										+	  "<div id='new_post_loading_cont_text_title'>" + title + "</div>"
+										+	  "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
+										+	  "<div id='new_post_loading_cont_text_writer'>"
+										+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_tag'>"
+										+	   "<span>" + this.memberVO.mem_keyword + "</span>"
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+										+	"</div>"
+										+	 "<div id='new_post_loading_cont_img'></div>"
+										+	"</div>"
+										+  "</a></li>"
+								}else if(this.bo_thumbnail == null & this.bo_cont.length > 100){
+									//썸네일이 없고 본문이 100글자 이상일 때
+									str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+										+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+										+	"<div id='new_post_loading_cont'>"
+										+	 "<div id='new_post_loading_cont_text'>"
+										+	  "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
+										+	  "<div id='new_post_loading_cont_text_cont'>" + cont + "</div>"
+										+	  "<div id='new_post_loading_cont_text_writer'>"
+										+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_tag'>"
+										+	   "<span>" + this.memberVO.mem_keyword + "</span>"
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+										+	"</div>"
+										+	 "<div id='new_post_loading_cont_img'></div>"
+										+	"</div>"
+										+  "</a></li>"
+								}else if(this.bo_thumbnail != null){
+									//썸네일이 있을 때
+									str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+										+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+										+	"<div id='new_post_loading_cont'>"
+										+	 "<div id='new_post_loading_cont_text'>"
+										+	  "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
+										+	  "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
+										+	  "<div id='new_post_loading_cont_text_writer'>"
+										+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_tag'>"
+										+	   "<span>" + this.memberVO.mem_keyword + "</span>"
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+										+	"</div>"
+										+	  "<img id='new_post_loading_cont_img' src='" + this.bo_thumbnail + "'>"
+										+	"</div>"
+										+  "</a></li>"
+								}else{
+									//썸네일이 없을 때
+									str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+										+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+										+	"<div id='new_post_loading_cont'>"
+										+	 "<div id='new_post_loading_cont_text'>"
+										+	  "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
+										+	  "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
+										+	  "<div id='new_post_loading_cont_text_writer'>"
+										+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_tag'>"
+										+	   "<span>" + this.memberVO.mem_keyword + "</span>"
+										+	  "</div>"
+										+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+										+	"</div>"
+										+	 "<div id='new_post_loading_cont_img'></div>"
+										+	"</div>"
+										+  "</a></li>"
+								}
+								}//키워드가 있을 때
+								else{
+									if(this.bo_thumbnail != null & this.bo_title.length > 20 & this.bo_cont.length > 100){
+										//썸네일이 있고 제목이 20글자 이상에 본문이 100글자 이상일 때
+										str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+											+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+											+	"<div id='new_post_loading_cont'>"
+											+	 "<div id='new_post_loading_cont_text'>"
+											+	  "<div id='new_post_loading_cont_text_title'>" + title + "</div>"
+											+	  "<div id='new_post_loading_cont_text_cont'>" + cont + "</div>"
+											+	  "<div id='new_post_loading_cont_text_writer'>"
+											+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_tag'>"
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+											+	"</div>"
+											+	 "<img id='new_post_loading_cont_img' src='" + this.bo_thumbnail + "'>"
+											+	"</div>"
+											+  "</a></li>"
+									}else if(this.bo_thumbnail != null & this.bo_title.length > 20){
+										//썸네일이 있고 제목이 20글자 이상일 때
+										str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+											+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+											+	"<div id='new_post_loading_cont'>"
+											+	 "<div id='new_post_loading_cont_text'>"
+											+	  "<div id='new_post_loading_cont_text_title'>" + title + "</div>"
+											+	  "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
+											+	  "<div id='new_post_loading_cont_text_writer'>"
+											+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_tag'>"
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+											+	"</div>"
+											+	 "<img id='new_post_loading_cont_img' src='" + this.bo_thumbnail + "'>"
+											+	"</div>"
+											+  "</a></li>"
+									}else if(this.bo_thumbnail != null & this.bo_cont.length > 100){
+										//썸네일이 있고 본문이 100글자 이상일 때
+										str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+											+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+											+	"<div id='new_post_loading_cont'>"
+											+	 "<div id='new_post_loading_cont_text'>"
+											+	  "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
+											+	  "<div id='new_post_loading_cont_text_cont'>" + cont + "</div>"
+											+	  "<div id='new_post_loading_cont_text_writer'>"
+											+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_tag'>"
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+											+	"</div>"
+											+	 "<img id='new_post_loading_cont_img' src='" + this.bo_thumbnail + "'>"
+											+	"</div>"
+											+  "</a></li>"
+									}else if(this.bo_thumbnail == null & this.bo_title.length > 20 & this.bo_cont.length > 100){
+										//썸네일이 없고 제목이 20글자 이상에 본문이 100글자 이상일 때
+										str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+											+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+											+	"<div id='new_post_loading_cont'>"
+											+	 "<div id='new_post_loading_cont_text'>"
+											+	  "<div id='new_post_loading_cont_text_title'>" + title + "</div>"
+											+	  "<div id='new_post_loading_cont_text_cont'>" + cont + "</div>"
+											+	  "<div id='new_post_loading_cont_text_writer'>"
+											+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_tag'>"
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+											+	"</div>"
+											+	 "<div id='new_post_loading_cont_img'></div>"
+											+	"</div>"
+											+  "</a></li>"
+									}else if(this.bo_thumbnail == null & this.bo_title.length > 20){
+										//썸네일이 없고 제목이 20글자 이상일 때
+										str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+											+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+											+	"<div id='new_post_loading_cont'>"
+											+	 "<div id='new_post_loading_cont_text'>"
+											+	  "<div id='new_post_loading_cont_text_title'>" + title + "</div>"
+											+	  "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
+											+	  "<div id='new_post_loading_cont_text_writer'>"
+											+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_tag'>"
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+											+	"</div>"
+											+	 "<div id='new_post_loading_cont_img'></div>"
+											+	"</div>"
+											+  "</a></li>"
+									}else if(this.bo_thumbnail == null & this.bo_cont.length > 100){
+										//썸네일이 없고 본문이 100글자 이상일 때
+										str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+											+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+											+	"<div id='new_post_loading_cont'>"
+											+	 "<div id='new_post_loading_cont_text'>"
+											+	  "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
+											+	  "<div id='new_post_loading_cont_text_cont'>" + cont + "</div>"
+											+	  "<div id='new_post_loading_cont_text_writer'>"
+											+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_tag'>"
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+											+	"</div>"
+											+	 "<div id='new_post_loading_cont_img'></div>"
+											+	"</div>"
+											+  "</a></li>"
+									}else if(this.bo_thumbnail != null){
+										//썸네일이 있을 때
+										str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+											+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+											+	"<div id='new_post_loading_cont'>"
+											+	 "<div id='new_post_loading_cont_text'>"
+											+	  "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
+											+	  "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
+											+	  "<div id='new_post_loading_cont_text_writer'>"
+											+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_tag'>"
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+											+	"</div>"
+											+	  "<img id='new_post_loading_cont_img' src='" + this.bo_thumbnail + "'>"
+											+	"</div>"
+											+  "</a></li>"
+									}else{
+										//썸네일이 없을 때
+										str += "<li class='scrolling' data-no='" + this.bo_no + "'>"
+											+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"
+											+	"<div id='new_post_loading_cont'>"
+											+	 "<div id='new_post_loading_cont_text'>"
+											+	  "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
+											+	  "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
+											+	  "<div id='new_post_loading_cont_text_writer'>"
+											+	   "<i>by&nbsp;&nbsp;</i>" + this.memberVO.mem_nickname
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_tag'>"
+											+	  "</div>"
+											+	  "<div id='new_post_loading_cont_text_ago'>" + this.bo_date + "</div>"
+											+	"</div>"
+											+	 "<div id='new_post_loading_cont_img'></div>"
+											+	"</div>"
+											+  "</a></li>"
+									}
+								}//키워드가 없을 때
 						});//each
 						//이전까지 로딩된 데이터를 비워주고 바로 밑에 str을 불러온다
 						$(".scrolling:last").after(str);

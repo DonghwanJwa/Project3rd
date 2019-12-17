@@ -1,6 +1,7 @@
 package com.jamong.controller;
 
 import java.io.PrintWriter;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.MemberVO;
 import com.jamong.service.MemberService;
+import com.sun.mail.util.logging.MailHandler;
 
+import mailHandler.MailService;
 import pwdconv.PwdChange;
 
 @Controller
@@ -27,7 +32,8 @@ public class MemberModifyController {
 	// my_info페이지 접속 안되면 프로젝트에서 클린 한번하고 다시 접속하기
 	// jsp에서 name값이 있어야 값을 가져올수 있다. 없다면 값을 가져올수 없다.
 	
-	
+	@Autowired
+	private MailService MailService;
 	
 	@Autowired
 	private MemberService memberService;
@@ -40,6 +46,7 @@ public class MemberModifyController {
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		MemberVO vov = this.memberService.get(m.getMem_id());
 		
+		System.out.println(vov.getMem_fav1());
 		view.addObject("vo", vov);
 		view.setViewName("jsp/my_info");
 		return view;
@@ -99,12 +106,14 @@ public class MemberModifyController {
 					m.setMem_fav1(ck.getMem_fav1());
 					m.setMem_fav2(ck.getMem_fav2());
 					m.setMem_fav3(ck.getMem_fav3());
-
+					
+					System.out.println(m.getMem_name());
 					view.addObject("mv", m);
 					//m객체를 mv에 담고 view에 담는다
 					//view를 리턴하면 jsp에서 view에 담긴 값들을 사용할수 있다
 					view.setViewName("redirect:/member_modify");
 					System.out.println(view);
+					System.out.println(m);
 					return view;
 				}else {
 					view.setViewName("redirect:/pass_modify");
@@ -137,6 +146,7 @@ public class MemberModifyController {
 			HttpServletRequest response,HttpServletRequest request) { // 로그인 페이지
 		ModelAndView view = new ModelAndView();
 		session = request.getSession();
+		
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		MemberVO vov = this.memberService.get(m.getMem_id());
 		
@@ -161,19 +171,61 @@ public class MemberModifyController {
 		return view;
 	}//member_modify_ok()
 	
-	@RequestMapping("member_modify_emailcheck")
+	@RequestMapping("modify_emailcheck")//이메일 중복체크
 	@ResponseBody
 	public int member_emailcheck(String email, String domain, MemberVO m, HttpServletResponse response)throws Exception{
 		
 		m.setEmail_id(email);
 		m.setEmail_domain(domain);
-		MemberVO check_id=this.memberService.emailCheck(m);	//이메일 중복검색
+		MemberVO modify_email=this.memberService.mem_emailCheck(m);	//이메일 중복검색
 		int re=-1;				//중복이메일이 없을 때
-		if(check_id != null) {	//중복이메일이 있을 때
+		if(modify_email != null) {	//중복이메일이 있을 때
 			re=1;
 		}
 		return re;
 	}//member_idcheck()
+	
+	@RequestMapping("modify_emailCert")//이메일 인증번호 체크
+	@ResponseBody
+	public boolean createEmailCheck(String email,String domain, HttpServletRequest request){
+		
+		
+		String userEmail = email + "@" + domain; //받는 사람 이메일 주소
+		
+		//이메일 인증
+		int ran = new Random().nextInt(900000) + 100000;	//100000~999999 인증번호 랜덤 생성
+		HttpSession session = request.getSession(true);		
+		String authCode = String.valueOf(ran);				//생성한 값을 어스코드에 담고
+		session.setAttribute("authCode", authCode);			//세션에 인증번호값 저장
+		
+		String subject = "회원가입 인증 코드 발급 안내 입니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
+		sb.append("귀하의 인증 코드는 </h3><h2>" + authCode + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
+		sb.append("해당 코드를 인증란에 입력해주시기 바랍니다.<br/>");
+		sb.append("감사합니다.</h3>");
+		
+		return MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request);
+	}
+
+	@RequestMapping("modify_emailCert_ok")
+	@ResponseBody
+	public ResponseEntity<String> emailAuth(String authCode, HttpSession session){
+		String originalRandom = (String)session.getAttribute("authCode");
+		if( originalRandom.equals(authCode)) {
+			return new ResponseEntity<String>("complete", HttpStatus.OK);			
+		}else {
+			return new ResponseEntity<String>("false", HttpStatus.OK);
+		}
+	}
+	@RequestMapping("member_update")
+	public ModelAndView user_member_update() { // 로그인 페이지
+		ModelAndView view = new ModelAndView();
+		
+		view.setViewName("jsp/member_update");
+		return view;
+	}
+
 	
 }//MemberModifyController
 

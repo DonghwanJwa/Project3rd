@@ -185,6 +185,7 @@ public class InquireController {
 			HttpSession session)
 	throws Exception {
 		
+		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out =response.getWriter();
 		session=request.getSession();
@@ -200,7 +201,8 @@ public class InquireController {
 			int page=1;
 			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
 			
-			i=this.inqService.getInquireCont(no);
+			
+			i=this.inqService.getInquireMem(no);
 			
 			String inq_cont=i.getInq_cont().replace("\n", "<br/>");
 			
@@ -211,6 +213,7 @@ public class InquireController {
 			m.addObject("inq_cont",inq_cont);
 			m.addObject("page",page);
 			m.addObject("i",i);
+			
 			
 			return m;
 	}
