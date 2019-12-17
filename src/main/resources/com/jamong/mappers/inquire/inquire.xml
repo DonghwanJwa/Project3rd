@@ -78,9 +78,9 @@
 		 	</where>
 		</select>
 		
-		<!-- 공지 목록 -->
+		<!-- 문의 목록 -->
 		<select id="inq_list" resultType="inq">
-			select * from (select rowNum rNum,inq_no,inq_item1,inq_cont,inq_phone,inq_date,mem_no 
+			select * from (select rowNum rNum,inq_no,inq_item1,inq_cont,inq_phone,inq_date,mem_no,inq_state 
 			from (select * from inquire
 			
 			<where>
@@ -101,12 +101,12 @@
 			order by inq_date desc)) where rNum &gt; = #{startrow} and rNum &lt;= #{endrow}
 		</select>
 		
-		<!-- 공지사항 내용보기 -->
+		<!-- 문의 내용보기 -->
 		<select id="inq_cont" resultType="inq">
 			select * from inquire where inq_no=#{no}
 		</select>
 		
-		<!-- 공지사항 내용안에 회원정보 보여지게하기 -->
+		<!-- 문의 내용+회원정보 보여지게하기 -->
 		<select id="inq_cont_mem" resultMap="inquireMap">
 		
 		SELECT inq.inq_no,
@@ -139,6 +139,6 @@
 		<!-- 문의하기 답변시 update문 -->
 		<update id="inq_update">
 			update inquire set inq_state=1,inq_reply=#{inq_reply},inq_sender=#{inq_sender},
-			inq_replydate=sysdate
+			inq_replydate=sysdate where inq_no=#{inq_no}
 		</update>
 </mapper>

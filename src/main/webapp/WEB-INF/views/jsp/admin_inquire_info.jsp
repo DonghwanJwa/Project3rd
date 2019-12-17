@@ -7,6 +7,11 @@
 <%@include file="../include/admin_header.jsp" %>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/admin_inquire_info.css"/>
 <script src="/jamong.com/resources/js/admin_inquire_info.js"></script>
+<div class="wrap-loading" style="display:none">
+ <div>
+  <img src="/jamong.com/resources/img/loading1.gif" />
+ </div>
+</div>
 <div id="adm_inq_title"><h3 class="adm_inq_title">문의내용 열람</h3></div>
 <table border="1" class="adm_inq_table">
 	
@@ -119,11 +124,12 @@
 
 	<form class="inq_adm_request" method="post"  action="admin_inquire_info_ok"  name="inq_adm_request" >
 		<h3>문의하기</h3>
+		<input type="hidden" name="page" value="${page}"/>
 		<input type="hidden" name="inq_no" value="${i.inq_no}"/>
 		<input type="hidden" name="inq_email" value="${i.inq_email}">
 		<div>
 		 <textarea id="inq_adm_remail" name="inq_reply" placeholder="문의 답변 입력해주세요(최대400자)"
-		  cols="24" rows="6" maxlength="400" type="text"></textarea>
+		  cols="24" rows="6" maxlength="400"></textarea>
 		 <input type="submit" id="inq_request_btn" class="inq_button" value="답변완료" />
 		</div> 
 	</form>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -219,17 +220,14 @@ public class InquireController {
 			m.addObject("inq_cont",inq_cont);
 			m.addObject("page",page);
 			m.addObject("i",i);
-			
-			
-			
-			
+				
 			return m;
 	}
 		return null;
 	}
 	
 	@RequestMapping("admin_inquire_info_ok")
-	public ModelAndView admin_inquire_info_ok(int inq_no,String inq_reply,String inq_email,
+	public String admin_inquire_info_ok(int inq_no,String inq_reply,String inq_email,Model m,
 			HttpServletRequest request,
 			HttpServletResponse response,
 			HttpSession session)
@@ -242,9 +240,10 @@ public class InquireController {
 		int page = Integer.parseInt(request.getParameter("page"));
 		
 		MemberVO adm_m = (MemberVO)session.getAttribute("m");
-		
+		 
 		if(adm_m == null) {
 			out.println("<script>");
+			out.println("$('.wrap-loading').hide();");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
 			out.println("location='admin_login';");
 			out.println("</script>");
@@ -268,6 +267,7 @@ public class InquireController {
 			if(reply_ok) {
 				out.println("<script>");
 				out.println("alert('문의 답변이 완료되었습니다.');");
+				out.println("location='admin_inquire_info?no="+inq_no+"&page="+page+"';");
 				out.println("</script>");
 			}else {				
 				out.println("<script>");
@@ -275,13 +275,7 @@ public class InquireController {
 				out.println("history.back();");
 				out.println("</script>");
 			}
-			ModelAndView m = new ModelAndView();
-			m.addObject("page",page);
-			m.addObject("inq_no",inq_no);
-			m.setViewName("admin_inquire_info");
-			return m;
 		}
-		
 		return null;
 	}
 }

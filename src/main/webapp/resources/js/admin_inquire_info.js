@@ -1,5 +1,5 @@
 /**
- *  admin_inquire.info jsp
+ *  admin_inquire_info jsp
  */
 $(document).ready(function(){
 	$("#inq_re_btn").click(function(){
@@ -9,4 +9,9 @@ $(document).ready(function(){
 			$(".inq_adm_request").hide();						
 		}
 	});
+	
+	$('#inq_request_btn').click(function(){		
+		$('.wrap-loading').show();
+	});
+	
 });

@@ -4,7 +4,6 @@ package com.jamong.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.BoardService;
 import com.jamong.service.MemberService;
@@ -39,9 +37,23 @@ public class MemberController {
 	private MailService mailService;
 		
 	@RequestMapping("login")
-	public String user_login() { // 로그인 페이지
+	public String user_login(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session)throws Exception { // 로그인 페이지
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		session=request.getSession();
+		MemberVO m = (MemberVO)session.getAttribute("m");
 		
-		return "jsp/login";
+		if(m != null) {
+			out.println("<script>");
+			out.println("history.back();");
+			out.println("</script>");
+		}else {			
+			return "jsp/login";
+		}
+		return null;
 	}
 	
 	@RequestMapping("login_ok")
@@ -50,25 +62,32 @@ public class MemberController {
 			HttpServletResponse response,HttpServletRequest request,
 			HttpSession session) throws Exception{
 		session=request.getSession();
+		session.setMaxInactiveInterval(120*60);		//세션 유지시간 2시간
+		MemberVO mem_m = (MemberVO)session.getAttribute("m");
 		
-		MemberVO dm=this.memberService.loginCheck(login_id);//로그인 인증
-		int re=1;
-		if(dm!=null) {		//안에 디비값이 있을떄
-			if(dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))){
-				re=-1;
-				m.setMem_no(dm.getMem_no());
-				m.setMem_id(dm.getMem_id());
-				m.setMem_nickname(dm.getMem_nickname());
-				m.setMem_author(dm.getMem_author());
-				m.setMem_state(dm.getMem_state());
-				m.setProfile_photo(dm.getProfile_photo());
-				m.setMem_fav1(dm.getMem_fav1());
-				m.setMem_fav2(dm.getMem_fav2());
-				m.setMem_fav3(dm.getMem_fav3());
-				if(dm.getMem_state()==9) {	//관리자일경우 이름값을 저장 ->관리자페이지에서 필요하여 넣었습니다.
-					m.setMem_name(dm.getMem_name());
+		int re = 1;	//로그인 가능여부 변수 : 1 불가능, 2이미 로그인됨 , -1 가능
+		
+		if(mem_m != null) {
+			re = 2;
+		}else {			
+			MemberVO dm=this.memberService.loginCheck(login_id);//로그인 인증
+			if(dm!=null) {		//안에 디비값이 있을떄
+				if(dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))){
+					re=-1;
+					m.setMem_no(dm.getMem_no());
+					m.setMem_id(dm.getMem_id());
+					m.setMem_nickname(dm.getMem_nickname());
+					m.setMem_author(dm.getMem_author());
+					m.setMem_state(dm.getMem_state());
+					m.setProfile_photo(dm.getProfile_photo());
+					m.setMem_fav1(dm.getMem_fav1());
+					m.setMem_fav2(dm.getMem_fav2());
+					m.setMem_fav3(dm.getMem_fav3());
+					if(dm.getMem_state()==9) {	//관리자일경우 이름값을 저장 ->관리자페이지에서 필요하여 넣었습니다.
+						m.setMem_name(dm.getMem_name());
+					}
+					session.setAttribute("m", m);
 				}
-				session.setAttribute("m", m);
 			}
 		}
 		return re;
