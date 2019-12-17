@@ -24,4 +24,5 @@ MINVALUE 0
 NOCACHE;
 
 SELECT * FROM book ORDER BY book_no DESC;
-
+ALTER TABLE book DROP (fav_no);
+ALTER TABLE book ADD (cat_no NUMBER(38));

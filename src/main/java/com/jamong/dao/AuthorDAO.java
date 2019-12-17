@@ -12,4 +12,7 @@ public interface AuthorDAO {
 
 	List<AuthorVO> req_list(AuthorVO a);
 
+	AuthorVO req_info(int no);
+
+	int authorcheck(int no);
 }
