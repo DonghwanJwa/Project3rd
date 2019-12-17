@@ -21,6 +21,8 @@
 </head>
 <body>
  <form method="post" action="write_ok" onsubmit="return saveCheck();" enctype="multipart/form-data">
+ <input type="hidden" id="bo_titlespace" name="bo_titlespace" value="0" />
+ <input type="hidden" id="bo_color" name="bo_color" />
  <div id="write_wrap">
   <div class="write_title_error">
    <span class="write_error_message"></span>

@@ -2,8 +2,11 @@ package com.jamong.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
 
@@ -41,8 +44,15 @@ public class BoardController {
 			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-
+		
 		bo = this.boardService.getUserBoardCont(bo_no);
+		
+		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat title_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
+		Date format_date = org_format.parse(bo.getBo_date());
+		String title_date = title_format.format(format_date);
+		
+		bo.setBo_date(title_date);		
 
 		model.addAttribute("bo", bo);
 		model.addAttribute("mem_id", mem_id);
@@ -91,8 +101,10 @@ public class BoardController {
 		String bo_title = multi.getParameter("bo_title");
 		String bo_subtitle = multi.getParameter("bo_subtitle");
 		String bo_cont = multi.getParameter("bo_cont");
+		String bo_color = multi.getParameter("bo_color");
 		int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
 		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
+		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
 
 		MemberVO m = (MemberVO) session.getAttribute("m");
@@ -130,6 +142,8 @@ public class BoardController {
 		b.setBo_title(bo_title);
 		b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont);
+		b.setBo_color(bo_color);
+		b.setBo_titlespace(bo_titlespace);
 		b.setBo_lock(bo_lock);
 		b.setBo_type(bo_type);
 		b.setCat_name(cat_name);

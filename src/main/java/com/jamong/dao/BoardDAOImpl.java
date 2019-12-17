@@ -23,6 +23,11 @@ public class BoardDAOImpl implements BoardDAO {
 	public BoardVO getUserBoardCont(int bo_no) {
 		return this.sqlSession.selectOne("bo_cont",bo_no);
 	}
+
+	@Override
+	public void updateHit(int bo_no) {
+		this.sqlSession.update("bo_hit",bo_no);
+	}
 	
 	public List<BoardVO> getListAll(BoardVO b) {
 		return this.sqlSession.selectList("bo_list", b);
@@ -42,4 +47,5 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> categoryArticle(String cat_name) {
 		return this.sqlSession.selectList("cat_board",cat_name);
 	}
+
 }

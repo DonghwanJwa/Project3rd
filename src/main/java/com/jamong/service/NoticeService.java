@@ -18,5 +18,7 @@ public interface NoticeService {
 
 	void noticeDel(int no);
 
+	List<NoticeVO> headerNotice();
+
 
 }

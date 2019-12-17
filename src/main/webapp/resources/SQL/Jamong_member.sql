@@ -15,7 +15,7 @@ mem_phone03 VARCHAR2(10) NOT NULL, 	  -- 휴대폰번호 세번째 박스
 mem_gender VARCHAR2(10) NOT NULL, 	  -- 성별
 mem_date DATE, 						  -- 가입날짜
 mem_author NUMBER(38) DEFAULT 0, 	  -- 작가, 비작가 구분
-mem_state NUMBER(38) DEFAULT 0, 	  -- 가입회원, 정지회원, 탈퇴회원 구분
+mem_state NUMBER(38) DEFAULT 0, 	  -- 가입회원, 정지회원, 탈퇴회원 구분 0,1,2
 profile_photo VARCHAR2(200) NOT NULL, -- 프로필사진 경로
 profile_cont VARCHAR2(4000), -- 프로필 내용
 mem_nickname VARCHAR2(100) UNIQUE,    -- 회원 닉네임(필명, 예명)

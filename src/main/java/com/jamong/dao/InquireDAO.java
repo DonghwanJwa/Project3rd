@@ -12,6 +12,6 @@ public interface InquireDAO {
 
 	List<InquireVO> getInquireList(InquireVO i);
 
-	InquireVO getInquireCont(int no);
+	InquireVO getInquireMem(int no);
 
 }

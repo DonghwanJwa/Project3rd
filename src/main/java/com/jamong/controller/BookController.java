@@ -1,6 +1,11 @@
 package com.jamong.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
+import com.jamong.domain.BookVO;
+import com.jamong.domain.MemberVO;
 import com.jamong.service.BookService;
 
 @Controller
@@ -35,8 +42,15 @@ public class BookController {
 	}
 	
 	@RequestMapping("book_create")
-	public ModelAndView user_book_create(BoardVO b) { // 책 생성 (노시현이 만짐)
-		List<BoardVO> bList=this.bookService.getBList(b);
+	public ModelAndView user_book_create(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+			throws Exception { // 책 생성
+		response.setContentType("text/html;charset=UTF-8");
+		session = request.getSession();
+		
+		MemberVO m=(MemberVO)session.getAttribute("m");
+		String mem_id=m.getMem_id();
+		
+		List<BoardVO> bList = this.bookService.getBList(mem_id);
 		/* 수정사항 */
 		//메서드 전달인자가 세션에 있는 아이디 값이나, 맴버 번호 값을 가져와서 리스트 검색
 		for(int i=0;i<bList.size();i++) {
@@ -51,8 +65,16 @@ public class BookController {
 		return mv;
 	}
 	
+	@RequestMapping("book_create_ok")
+	public String book_create_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session,
+			BoardVO b) throws Exception {
+		String[] checkboxArr = request.getParameterValues("btn");
+		
+		return null;
+	}
+
 	@RequestMapping("book_edit")
-	public ModelAndView user_book_edit() { // 책 수정 (노시현이 함)
+	public ModelAndView user_book_edit() { // 책 수정
 		ModelAndView mv=new ModelAndView();
 		
 		mv.setViewName("jsp/book_edit");

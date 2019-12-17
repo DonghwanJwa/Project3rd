@@ -128,16 +128,7 @@ $(document).keydown(function(e){
       </div>
       <div id="head-page-notice-list-frame">
        <ul id="head-page-notice-list">
-       
-		<c:forEach var="i" begin="1" end="5" step="1">			
-	    <li class="head-page-notice-item">
-	     <a>
-	      <span class="head-page-notice-title">공지사항 예시입니다</span>
-	      <span class="head-page-notice-date">2019.12.15</span>
-	     </a>
-	    </li>
-		</c:forEach>
-		
+			<%-- Notice 내용 들어오는곳 : getJSON 처리 --%>
 	   </ul>
 	  </div>
      </div>
@@ -212,7 +203,7 @@ $(document).keydown(function(e){
         <img src="/jamong.com/resources/img/feed.png" alt="피드"/>
        </a>
       </div>
-      <a href="/jamong.com/profile" id="head-profile-info-wrap">
+      <a href="/jamong.com/@${mem_id}" id="head-profile-info-wrap">
        <div id="head-profile-info-img-wrap">
         <img id="head-profile-info-img" src="${m.profile_photo}">
        </div>
@@ -236,7 +227,7 @@ $(document).keydown(function(e){
           <span class="head-profile-service-bar-right"></span>
          </a>
         </li>
-        <li id="head-profile-service-hr">―――――――</li>
+        <li id="head-profile-service-hr"><span class="head-profile-service-bar"></span></li>
         <li id="head-profile-service-rec-writing">
          <a href="/jamong.com/new_posts">
           <span class="head-profile-service-bar-left"></span>
@@ -457,7 +448,7 @@ $(document).keydown(function(e){
 	  <c:forEach var="mlist" items="${mlist}">
 	  <li class="recom_author-item">
 	   <div class="recom_author-item-inner">
-	   	<a href="/jamong.com/profile" class="recom_author-item-link">
+	   	<a href="/jamong.com/@${mlist.mem_id}" class="recom_author-item-link">
 		 <div class="recom_author-item-intro">
 		  <strong>${mlist.mem_nickname}</strong><%-- 와드! mem_nickname --%>
 		  <span class="recom-author-intro">${mlist.profile_cont}</span>
@@ -498,9 +489,9 @@ $(document).keydown(function(e){
     <div id="foot-inner-right">
      <div id="foot-inner-menu">
       <ul id="foot-inner-menu-list">
-       <li class="foot-inner-menu-item"><a href="#">공지사항</a></li>
+       <li class="foot-inner-menu-item"><a href="/jamong.com/notice">공지사항</a></li>
        <li class="foot-inner-menu-item"><a href="#">자몽 이용안내</a></li>
-       <li class="foot-inner-menu-item"><a href="/jaming.com/request_author">작가신청</a></li>
+       <li class="foot-inner-menu-item"><a href="/jamong.com/request_author">작가신청</a></li>
        <li class="foot-inner-menu-item"><a href="/jamong.com/inquire">문의하기</a></li>
        <li class="foot-inner-menu-item"><a href="/jamong.com/policy_terms">이용약관</a></li>
        <li class="foot-inner-menu-item"><a href="/jamong.com/policy_privacy">개인정보 처리방침</a></li>

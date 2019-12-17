@@ -38,7 +38,7 @@ h1, h2, h3, h4{
 	content:"제목을 입력하세요";
 	position:absolute;
 	width:700px;
-	bottom:0px;
+	bottom:20px;
 	right:50%;
 	z-index:2;
 	transform: translate(50%,-50%);
@@ -328,6 +328,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	height:420px;
 	left:-75%;
 	cursor:pointer;
+	z-index:3;
 }
 .write_title_prev_btn:before{
 	background-image:url(../img/writepage_icon/prev_btn.png);
@@ -352,6 +353,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	width:21%;
 	height:420px;
 	left:78.5%;
+	z-index:3;
 	cursor:pointer;
 }
 .write_title_next_btn:before{
@@ -413,6 +415,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	position:relative;
 	padding:40px 0px 115px 0px;
 	word-wrap:break-word;
+	line-height: 20pt;
 }
 .write_cont_area::selection{
 	background:RGB(245,124,104,0.6);

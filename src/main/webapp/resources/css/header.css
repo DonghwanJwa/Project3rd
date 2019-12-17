@@ -323,19 +323,35 @@ body{
 .head-page-notice-item a:hover{
  	color:#FBA621;
  	font-weight:bold;
+ 	text-decoration: underline;
+ 	cursor: pointer;
 }	
+
+.head-page-notice-item a:hover > .head-page-notice-title{
+	color:#FBA621;
+}
+
+.head-page-notice-item a:hover > .head-page-notice-date{
+	color:#FBA621;
+}
+
 .head-page-notice-title{
 	text-align:left;
 	width:200px;
 	padding-left:20px;
 	height:36px;
 	line-height:36px;
+	color:#fff;
+	box-sizing:unset;
 }
 .head-page-notice-date{
 	text-align:right;
-	width:100px;
+	width:80px;
 	height:36px;
 	line-height:36px;
+	padding-right:20px;
+	color:#fff;
+	box-sizing:unset;
 }
 
 

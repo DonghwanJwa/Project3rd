@@ -28,10 +28,36 @@ body a {
 	background-size:cover;
 	filter:brightness(0.7);
 }
-
+.write_article_info_bottom{
+	font-size:12px;
+	transform:translateY(30px);
+}
+.write_article_info_center{
+	font-size:12px;
+	transform:translateY(140px);
+}
+.write_article_by{
+	font-style:italic;
+	opacity:0.5;
+	margin-right:3px;
+}
+.write_article_author{
+	font-weight:bold;
+	opacity:0.7;
+}
+.write_article_icon{
+	opacity:0.5;
+}
+.write_article_date{
+	opacity:0.7;
+}
 #write_title_area_bg #write_title_parent_center {
 	color:white;
 	top:100%;
+}
+#write_title_parent_bottom{
+	transform:translate(50%,250%) !important;
+	-webkit-transform:translate(50%,250%) !important;
 }
 
 /*배경*/

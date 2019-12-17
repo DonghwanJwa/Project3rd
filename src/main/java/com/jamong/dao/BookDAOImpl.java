@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jamong.domain.BoardVO;
+import com.jamong.domain.BookVO;
 
 @Repository
 public class BookDAOImpl implements BookDAO {
@@ -15,7 +16,8 @@ public class BookDAOImpl implements BookDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<BoardVO> getBList(BoardVO b) {
-		return this.sqlSession.selectList("book_list",b);
+	public List<BoardVO> getBList(String mem_id) {
+		return this.sqlSession.selectList("book_list",mem_id);
 	}
+
 }

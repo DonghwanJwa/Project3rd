@@ -112,12 +112,21 @@ margin: -5px 10px 15px 0;
 	font-weight: bold;
 	color:  #ff8040;
 }
-.article_cont{
-	    font-size: 14px;
-    line-height: 1.5;
-        padding-right: 15px;
-    
+.pf_bo_title{
+    opacity: 0.7;
+    color: #333;
 }
+.article_cont{
+	font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    font-style: normal;
+}
+.article_cont p{
+	padding: 0 0 0 15px;
+	
+}
+
 
 /*	profile 	*/
 #profile_main{

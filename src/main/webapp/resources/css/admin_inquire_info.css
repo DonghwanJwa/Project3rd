@@ -3,5 +3,61 @@
 /* admin_inquire_info */
 .adm_inq_file{
 	width:800px;
-	border:1px solid black;
 }
+.inq_button{
+	width:65px;
+	border: 1px solid lightgrey;
+    border-radius: 10px;
+    background-color: white;
+    padding: 4px;
+    cursor:pointer;
+    margin:0 3px;
+    margin-top:10px;
+}
+#inq_adm_button{
+	margin:10px 0;
+	display:flex;
+	justify-content:flex-end;
+}
+#inq_adm_remail{
+	width: 870px;
+	height: 230px;
+	padding: 14px;
+	resize: none;
+	border: 1px solid black;
+	float:left;
+
+}
+#inq_request_btn{
+	margin-left:832px;
+	margin-top:20px;
+}
+.inq_adm_request{
+	display:none;
+}
+#inq_re_btn{
+	margin-right:20px;
+}
+
+
+/* textarea 클릭만해도 placeholder 없애는 코드 */
+
+input:focus::-webkit-input-placeholder, 
+textarea:focus::-webkit-input-placeholder {/* WebKit browsers */ 
+color:transparent; 
+} 
+
+input:focus:-moz-placeholder, 
+textarea:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color:transparent; 
+}
+
+ input:focus::-moz-placeholder, 
+ textarea:focus::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:transparent; 
+  } 
+ 
+ input:focus:-ms-input-placeholder,
+ textarea:focus:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+ color:transparent; 
+ }
