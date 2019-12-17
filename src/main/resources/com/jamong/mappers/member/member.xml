@@ -86,7 +86,7 @@
  
  <select id="cat_member" resultType="m">
  <![CDATA[
-  SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) WHERE rowNum <= 5
+  SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) WHERE rowNum <= 4
   ]]> 
  </select>
 </mapper>

@@ -35,6 +35,12 @@ public class CategoryController {
 		List<MemberVO> mlist=this.memberService.categoryMember();
 		List<BoardVO> blist=this.boardService.categoryArticle(cat_name);
 		
+		for (int i = 0; i < blist.size(); i++) {
+			String htmlText = blist.get(i).getBo_cont();
+			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			blist.get(i).setBo_cont(normalText);
+		}
+		
 		mv.addObject("mlist",mlist);
 		mv.addObject("blist",blist);
 		

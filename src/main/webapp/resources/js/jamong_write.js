@@ -49,10 +49,12 @@ $(document).ready(function(){
 			$("#write_title_parent_center").attr('id','write_title_parent_bottom');
 			$("#write_title_center_icon").attr('id','write_title_bottom_icon');
 			$("#write_title_center_bg").attr('id','write_title_bottom_bg');
+			$("#bo_titlespace").val("1");
 		}else{ // 타이틀이 아래에 있을 때
 			$("#write_title_parent_bottom").attr('id','write_title_parent_center');
 			$("#write_title_bottom_icon").attr('id','write_title_center_icon');
 			$("#write_title_bottom_bg").attr('id','write_title_center_bg');
+			$("#bo_titlespace").val("0");
 		}
 	});
 	$("#write_title_background_icon").click(function(){ // 배경색 지정 버튼 클릭 시
@@ -62,6 +64,7 @@ $(document).ready(function(){
 			$("#write_title_area_bg").css('background-color','#FFF');
 			$("#write_title_area_bg").css('height','250px');
 
+			$("#bo_color").val("");
 			$("#write_background_change_btn").css('display','none');
 
 			$("#write_title_coverimage_bg").attr('id','write_cover_file');
@@ -76,7 +79,8 @@ $(document).ready(function(){
 			$("#write_title_area_bg").css('background-color','#fbb9ba');
 			$("#write_title_area_bg").css('height','450px');
 			$("#write_title_area_bg").css('opaticy','1');
-
+			
+			$("#bo_color").val("#FBB9BA");
 			$("#write_background_change_btn").css('display','block');
 
 			$("#write_cover_file").attr('id','write_title_coverimage_bg');
@@ -89,24 +93,34 @@ $(document).ready(function(){
 	$(".write_title_next_btn").click(function(){ // 배경색 지정 다음버튼 클릭 시
 		if(colorIndex==0){
 			$("#write_title_area_bg").css('background-color','#fbb9ba');
+			$("#bo_color").val("#FBB9BA");
 		}else if(colorIndex==1){
 			$("#write_title_area_bg").css('background-color','#fdd3ba');
+			$("#bo_color").val("#FDD3BA");
 		}else if(colorIndex==2){
 			$("#write_title_area_bg").css('background-color','#fcecb9');
+			$("#bo_color").val("#FCECB9");
 		}else if(colorIndex==3){
 			$("#write_title_area_bg").css('background-color','#c2fdb9');
+			$("#bo_color").val("#C2FDB9");
 		}else if(colorIndex==4){
 			$("#write_title_area_bg").css('background-color','#b9e8fc');
+			$("#bo_color").val("#B9E8FC");
 		}else if(colorIndex==5){
 			$("#write_title_area_bg").css('background-color','#c1bafd');
+			$("#bo_color").val("#C1BAFD");
 		}else if(colorIndex==6){
 			$("#write_title_area_bg").css('background-color','#eebbfe');
+			$("#bo_color").val("#EEBBFE");
 		}else if(colorIndex==7){
 			$("#write_title_area_bg").css('background-color','#cccccc');
+			$("#bo_color").val("#CCCCCC");
 		}else if(colorIndex==8){
 			$("#write_title_area_bg").css('background-color','#bf9b74');
+			$("#bo_color").val("#BF9B74");
 		}else if(colorIndex==9){
 			$("#write_title_area_bg").css('background-color','#89b589');
+			$("#bo_color").val("#89B589");
 			colorIndex=0;
 		}
 		colorIndex++;
@@ -114,25 +128,35 @@ $(document).ready(function(){
 	$(".write_title_prev_btn").click(function(){ // 배경색 지정 이전버튼 클릭 시		
 		if(colorIndex==0){ 
 			$("#write_title_area_bg").css('background-color','#fbb9ba');
+			$("#bo_color").val("#FBB9BA");
 			colorIndex=9;
 		}else if(colorIndex==1){
 			$("#write_title_area_bg").css('background-color','#fdd3ba');
+			$("#bo_color").val("#FDD3BA");
 		}else if(colorIndex==2){
 			$("#write_title_area_bg").css('background-color','#fcecb9');
+			$("#bo_color").val("#FCECB9");
 		}else if(colorIndex==3){
 			$("#write_title_area_bg").css('background-color','#c2fdb9');
+			$("#bo_color").val("#C2FDB9");
 		}else if(colorIndex==4){
 			$("#write_title_area_bg").css('background-color','#b9e8fc');
+			$("#bo_color").val("#B9E8FC");
 		}else if(colorIndex==5){
 			$("#write_title_area_bg").css('background-color','#c1bafd');
+			$("#bo_color").val("#C1BAFD");
 		}else if(colorIndex==6){
 			$("#write_title_area_bg").css('background-color','#eebbfe');
+			$("#bo_color").val("#EEBBFE");
 		}else if(colorIndex==7){
 			$("#write_title_area_bg").css('background-color','#cccccc');
+			$("#bo_color").val("#CCCCCC");
 		}else if(colorIndex==8){
 			$("#write_title_area_bg").css('background-color','#bf9b74');
+			$("#bo_color").val("#BF9B74");
 		}else if(colorIndex==9){
 			$("#write_title_area_bg").css('background-color','#89b589');
+			$("#bo_color").val("#89B589");
 		}
 		colorIndex--;
 	});
@@ -196,10 +220,11 @@ $(document).ready(function(){
 		$("#write_title_center_bg").attr('id','write_title_center_icon');
 		$("#write_title_bottom_bg").attr('id','write_title_bottom_icon');
 		$("#write_title_coverimage_bg").attr('id','write_cover_file');
-
+		
 		$(".write_background_icon").css("display","block");
 		$(".write_cover_delete").css("display","none");
 
+		$("#bo_color").val("");
 		$("#write_cover_file").val("");
 	});
 });

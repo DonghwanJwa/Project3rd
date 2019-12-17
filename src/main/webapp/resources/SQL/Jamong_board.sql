@@ -12,7 +12,7 @@ bo_lock NUMBER(38),          		-- 공개여부 / 비공개 0, 공개 1
 bo_type NUMBER(38),                 -- 글타입 설정 / 칼럼 0, 에세이 1
 bo_like NUMBER(38) DEFAULT 0, 		-- 추천 (좋아요)
 book_order NUMBER(38), 				-- 책으로 묶었을때 순서
-cat_name NUMBER(38),					-- 카테고리 테이블 시퀀스 참조
+cat_name NUMBER(38),				-- 카테고리 테이블 시퀀스 참조
 mem_no NUMBER(38),					-- 회원 테이블 시퀀스 참조
 book_no NUMBER(38) 				    -- 책 테이블 시퀀스 참조
 );
@@ -29,6 +29,8 @@ ALTER TABLE board ADD cat_name VARCHAR2(50);
 ALTER TABLE board DROP (fav_no);
 ALTER TABLE board ADD bo_thumbnail VARCHAR2(200);
 ALTER TABLE board ADD bo_type NUMBER(38);
+ALTER TABLE board ADD bo_titlespace NUMBER(38);
+ALTER TABLE board ADD bo_color VARCHAR2(100);
 commit;
 -- 카테고리 테이블 참조컬럼 생성
 ALTER TABLE board
@@ -48,6 +50,8 @@ REFERENCES book(book_no);
 SELECT * FROM board ORDER BY bo_no DESC;
 SELECT bo_no_seq.nextval FROM DUAL;
 
+ UPDATE board SET bo_hit=bo_hit+1 WHERE bo_no=10
+
 SELECT *
 FROM board b
 RIGHT JOIN (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM)m
@@ -55,3 +59,8 @@ ON b.mem_no=m.mem_no
 WHERE rowNum <= 9;
 
 select * from ALL_CONSTRAINTS WHERE TABLE_NAME='board';
+
+ SELECT *
+ FROM board b, member m
+ WHERE b.mem_no=m.mem_no
+ AND b.bo_no=10

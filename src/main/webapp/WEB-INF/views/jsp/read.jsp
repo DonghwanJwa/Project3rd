@@ -16,21 +16,32 @@
  <div id="write_wrap">
   <div id="write_min-wrap" style="min-width:940px;">
    <!-- 타이틀 부분 -->
+   <c:if test="${!empty bo.bo_thumbnail && empty bo.bo_color}">
    <div id="write_title" style='height:450px; background-image:url("${bo.bo_thumbnail}");'>
    </div>
+   </c:if>
+   <c:if test="${empty bo.bo_thumbnail && !empty bo.bo_color}">
+   <div id="write_title" style='height:450px; background-color:${bo.bo_color}; filter:none;'>
+   </div>
+   </c:if>
+   <c:if test="${empty bo.bo_thumbnail && empty bo.bo_color}">
+   <div id="write_title" style="height:450px;"></div>
+   </c:if>
     <div id="write_title_area_bg" style="height:250px;">
      <!-- 타이틀 텍스트 부분  -->
-     <div id="write_title_parent_center" >
-      <!-- 메인 타이틀 -->
-      <c:if test="${!empty bo.bo_thumbnail}">
-      <h1 class="write_main_title" style="">${bo.bo_title}</h1>
+     <c:if test="${bo.bo_titlespace == 0}">
+     <div id="write_title_parent_center">
+      <!-- 메인 타이틀 (썸네일이나 배경색상이 있을때)-->
+      <c:if test="${!empty bo.bo_thumbnail || !empty bo.bo_color}">
+      <h1 class="write_main_title" style="color:#FFF">${bo.bo_title}</h1>
       <br/>
       <!-- 서브 타이틀 -->
       <c:if test="${!empty bo.bo_subtitle}">
       <div class="write_sub_title" style="color:#FFF">${bo.bo_subtitle}</div>
       </c:if>
       </c:if>
-      <c:if test="${empty bo.bo_thumbnail}">
+      <!-- 메인 타이틀 (썸네일과 배경색상이 둘다 없을떄) -->
+      <c:if test="${empty bo.bo_thumbnail && empty bo.bo_color}">
       <h1 class="write_main_title" style="color:#000">${bo.bo_title}</h1>
       <br/>
       <!-- 서브 타이틀 -->
@@ -38,7 +49,65 @@
       <div class="write_sub_title" style="color:#000">${bo.bo_subtitle}</div>
       </c:if>
       </c:if>
+      <c:if test="${!empty bo.bo_thumbnail || !empty bo.bo_color}">
+      <div class="write_article_info_center" style="color:#FFF !important;">
+       <span class="write_article_by">by</span>
+       <span class="write_article_author">${bo.memberVO.mem_nickname}</span>
+       <span class="write_article_icon">·</span>
+       <span class="write_article_date">${bo.bo_date}</span>
+      </div>
+      </c:if>
+      <!-- 하단 정보  -->
+      <c:if test="${empty bo.bo_thumbnail && empty bo.bo_color}">
+      <div class="write_article_info_center" style="color:#333 !important;">
+       <span class="write_article_by">by</span>
+       <span class="write_article_author">${bo.memberVO.mem_nickname}</span>
+       <span class="write_article_icon">·</span>
+       <span class="write_article_date">${bo.bo_date}</span>
+      </div>
+      </c:if>
     </div>
+     </c:if>
+     <c:if test="${bo.bo_titlespace == 1}">
+     <div id="write_title_parent_bottom">
+      <!-- 메인 타이틀 (썸네일이나 배경색상이 있을때)-->
+      <c:if test="${!empty bo.bo_thumbnail || !empty bo.bo_color}">
+      <h1 class="write_main_title" style="color:#FFF">${bo.bo_title}</h1>
+      <br/>
+      <!-- 서브 타이틀 -->
+      <c:if test="${!empty bo.bo_subtitle}">
+      <div class="write_sub_title" style="color:#FFF">${bo.bo_subtitle}</div>
+      </c:if>
+      </c:if>
+      <!-- 메인 타이틀 (썸네일과 배경색상이 둘다 없을떄) -->
+      <c:if test="${empty bo.bo_thumbnail && empty bo.bo_color}">
+      <h1 class="write_main_title" style="color:#000">${bo.bo_title}</h1>
+      <br/>
+      <!-- 서브 타이틀 -->
+      <c:if test="${!empty bo.bo_subtitle}">
+      <div class="write_sub_title" style="color:#000">${bo.bo_subtitle}</div>
+      </c:if>
+      </c:if>
+      <!-- 하단정보 썸네일이나 배경색 있을 때 -->
+      <c:if test="${!empty bo.bo_thumbnail || !empty bo.bo_color}">
+      <div class="write_article_info_bottom" style="color:#FFF !important;">
+       <span class="write_article_by">by</span>
+       <span class="write_article_author">${bo.memberVO.mem_nickname}</span>
+       <span class="write_article_icon">·</span>
+       <span class="write_article_date">${bo.bo_date}</span>
+      </div>
+      </c:if>
+      <!-- 썸네일, 배경색 없을때 -->
+      <c:if test="${empty bo.bo_thumbnail && empty bo.bo_color}">
+      <div class="write_article_info_bottom" style="color:#333 !important;">
+       <span class="write_article_by">by</span>
+       <span class="write_article_author">${bo.memberVO.mem_nickname}</span>
+       <span class="write_article_icon">·</span>
+       <span class="write_article_date">${bo.bo_date}</span>
+      </div>
+      </c:if>
+    </div>
+     </c:if>
     </div>
   </div>
    

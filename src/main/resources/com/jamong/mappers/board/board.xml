@@ -20,6 +20,8 @@
   <result column="cat_no" property="cat_no" />
   <result column="mem_no" property="mem_no" />
   <result column="book_no" property="book_no" />
+  <result column="bo_titlespace" property="bo_titlespace" />
+  <result column="bo_color" property="bo_color" />
   
  <association javaType="m" property="memberVO">
   <id column="mem_no" property="mem_no" />
@@ -49,13 +51,20 @@
  </resultMap>
  
  <insert id="bo_insert">
-  INSERT INTO board (bo_no,bo_title,bo_subtitle,bo_cont,bo_thumbnail,bo_date,bo_lock,bo_type,cat_name,mem_no)
-  VALUES(bo_no_seq.nextval,#{bo_title},#{bo_subtitle},#{bo_cont},#{bo_thumbnail},sysdate,#{bo_lock},#{bo_type},#{cat_name},#{mem_no})
+  INSERT INTO board (bo_no,bo_title,bo_subtitle,bo_cont,bo_thumbnail,bo_date,bo_lock,bo_type,cat_name,mem_no,bo_titlespace,bo_color)
+  VALUES(bo_no_seq.nextval,#{bo_title},#{bo_subtitle},#{bo_cont},#{bo_thumbnail},sysdate,#{bo_lock},#{bo_type},#{cat_name},#{mem_no},#{bo_titlespace},#{bo_color})
  </insert>
  
- <select id="bo_cont" resultType="b">
-  SELECT * FROM board WHERE bo_no=#{bo_no}
+ <select id="bo_cont" resultMap="boardMap">
+  SELECT *
+  FROM board b, member m
+  WHERE b.mem_no=m.mem_no
+  AND bo_no=#{bo_no}
  </select>
+ 
+ <update id="bo_hit">
+  UPDATE board SET bo_hit=bo_hit+1 WHERE bo_no=#{bo_no}
+ </update>
  
  <select id="index_article" resultMap="boardMap">
  <![CDATA[
