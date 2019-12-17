@@ -75,7 +75,7 @@ body{
 	background-color:white;
 	border:2px solid orange;
 	cursor:pointer;
-	font-size: 20px;
+	font-size: 14px;
 	text-align: right;
 	margin-top: 15px;
 }
@@ -158,15 +158,141 @@ body{
 	background-color:white;
 	border:2px solid orange;
 	cursor:pointer;
-	font-size: 20px;
+	font-size: 14px;
 	margin: 0 10px;
 }
-.my_info_p{
-	text-align: left;
-}
+
 #my_info_before_btn:hover, 
 #my_info_next_btn:hover{
 	background-color: orange;
 	color: white;
 	outline: none;
 }
+#my_info_p_div{
+	border-top:1px solid gray;
+	margin-top: 50px;
+	width: 350px;
+	text-align: left;
+}
+.my_info_p{
+	text-align: left;
+	font-size: 12px;
+}
+
+/* È¸¿øÅ»Åð ÆäÀÌÁö */
+#my_info_leave{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    color: gray;
+    font-size: 12px;
+    padding: 0;
+    outline: none;
+}
+#my_info_layerLeave{
+	z-index:1000000000;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background-color: rgba(255, 255, 255, 1);
+	display: none;    
+}
+#my_info_layerLeave .link_close{
+	display: block;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 20px;
+    height: 20px;
+}
+#my_info_layerLeave .img_ico {
+    background: url(//t1.daumcdn.net/brunch/static/img/help/pc/ico_view_cover.v4.png) no-repeat;
+    background-position: -90px 0;
+    outline: none;
+    cursor: pointer;
+}
+.text_hide {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    text-indent: -9988px;
+    border:none;
+}
+#my_info_pop{
+    width: 450px;
+    height: 440px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -220px;
+    margin-left: -235px;
+}
+#my_info_leave_h2{
+	text-align: center;
+	margin-bottom: 10px;
+	    font-size: 30px;
+    color: #1b1b1b;
+    font-weight: 400;
+}
+#my_info_desc{
+	font-size: 12px;
+    color: #959595;
+    text-align: center;
+    line-height: 23px;
+}
+#my_info_desc b{
+	color: red;
+	font-weight: 400;
+}
+#my_info_layerLeave ul{
+	text-align: left;
+    border: solid 1px #dfdfdf;
+    width: 427px;
+    margin: 35px auto 24px;
+    padding: 17px 10px;
+    background-color: #fbfbfb;
+    list-style: none;
+}
+#my_info_layerLeave ul li{
+	font-size: 12px;
+    color: #959595;
+    height: 27px;
+    line-height: 27px;
+}
+#my_info_layerLeave .my_info_dot {
+    width: 2px;
+    height: 2px;
+    margin: 4px 10px;
+    background-color: #ccc;
+    display: inline-block;
+}
+#my_info_layerLeave .my_info_check{
+	position: absolute;
+    height: 18px;
+}
+#my_info_layerLeave .my_info_label_com{
+	font-size: 14px;
+    color: #666;
+    padding-left: 28px;
+	
+}
+#my_info_layerLeave .check_label_div{
+	text-align: center;
+}
+#my_info_layerLeave .my_info_confirm_btn{
+	width: 130px;
+    height: 40px;
+    border-radius: 22px;
+    border: solid 1px #00c3bd;
+    color: #00c3bd;
+    font-size: 16px;
+    margin-top: 31px;
+    background-color: white;
+    margin-left: 156px;
+    cursor: pointer;
+}
+
+

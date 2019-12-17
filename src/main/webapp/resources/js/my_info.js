@@ -2,7 +2,6 @@
  * my_info_
  */
 getCategorySelect();//카테고리선택란에 카테고리 넣기(하단에 메서드 존재)
-catselect()
 
 /*카테고리선택창의 카테고리 불러오기*/
 function getCategorySelect(){
@@ -19,17 +18,15 @@ function getCategorySelect(){
 		  }
 	  });
 }
+$(document).on("click","#my_info_leave",function(){
+	$("#my_info_layerLeave").css("display","block");
 
-	var A = $("#fav_cat1").val();
-	var B = $("#fav_cat2").val();
-	var C = $("#fav_cat3").val();
-function catselect(){
-		if(A == this.cat_name){
-		A.addclass("member_category_check");
-		return false;
-		alert(A);
-	}
-}
+});
+$(document).on("click",".link_close",function(){
+	$("#my_info_layerLeave").css("display","none");
+	
+});
+
 //카테고리 선택시 class,name 추가(form에 post전달하기 위해서 name값에 숫자 추가)
 //중요!! $(document).ready()안에 사용하지 않은 이유
 //		jQuery의 get이나 ajax방식으로 사용하는 경우 click 메서드가 요소를 인식하지 못한다.

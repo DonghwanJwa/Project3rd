@@ -16,6 +16,11 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDao;
 	
+	@Override
+	public MemberVO memberSelect_id(MemberVO vo) {
+		return this.memberDao.memberSelect_id(vo);
+	}
+	
 
 	@Override
 	public MemberVO mem_emailCheck(MemberVO m) {
@@ -83,5 +88,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> categoryMember() {
 		return this.memberDao.categoryMember();
 	}
+
+
 
 }
