@@ -17,7 +17,6 @@
      <div id="foot-inner-menu">
       <ul id="foot-inner-menu-list">
        <li class="foot-inner-menu-item"><a href="/jamong.com/notice">공지사항</a></li>
-       <li class="foot-inner-menu-item"><a href="#">자몽 이용안내</a></li>
        <li class="foot-inner-menu-item"><a href="/jamong.com/request_author">작가신청</a></li>
        <li class="foot-inner-menu-item"><a href="/jamong.com/inquire">문의하기</a></li>
        <li class="foot-inner-menu-item"><a href="/jamong.com/policy_terms">이용약관</a></li>

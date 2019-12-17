@@ -240,9 +240,7 @@ public class NoticeController {
 	
 	/* 공지사항 목록 */
 	@RequestMapping("notice")
-	public ModelAndView notice (HttpSession session, HttpServletRequest request, HttpServletResponse response, NoticeVO n) throws Exception {
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out=response.getWriter();
+	public ModelAndView notice (HttpServletRequest request, HttpServletResponse response, NoticeVO n) throws Exception {
 	
 			int page=1;
 			int limit=10;
@@ -287,5 +285,28 @@ public class NoticeController {
 			return m;
 	}
 	
-	
+	/*공지사항 내용*/
+	@RequestMapping("notice_cont")
+	public ModelAndView notice_cont(int no,String state,NoticeVO n,
+			HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		
+		int page=1;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		
+		n=this.noticeService.getNoticeCont(no);
+		String noti_cont=n.getNoti_cont().replace("\n", "<br/>");
+		
+		ModelAndView m=new ModelAndView();
+		m.addObject("n",n);
+		m.addObject("noti_cont",noti_cont);
+		m.addObject("page",page);
+		if(state.equals("main")) {
+			m.setViewName("jsp/notice_cont");
+		}else if(state.equals("pop")) {
+			m.setViewName("jsp/notice_cont(pop)");
+		}
+		return m;
+	}
 }
