@@ -35,6 +35,9 @@ public class MemberVO {
 	private String search_field_state;
 	private String search_field_author;
 	private String search_field_key;
+	/*프로필 내용을 가져오기 위한 BoardVO, MemberVO 추가(12/16)*/
+	private BoardVO boardVO;
+	private BookVO bookVO;
 	
 	// Setter
 	public void setMem_no(int mem_no) 				   {			this.mem_no = mem_no;					}
@@ -64,9 +67,11 @@ public class MemberVO {
 	public void setStartrow(int startrow)				{			this.startrow = startrow;				}
 	public void setEndrow(int endrow) 					{			this.endrow = endrow;					}
 	public void setSearch_name(String search_name) 		{			this.search_name = search_name;			}
-	public void setSearch_field_state(String search_field_state) {		this.search_field_state = search_field_state;	}
-	public void setSearch_field_author(String search_field_author) {		this.search_field_author = search_field_author;	}
-	public void setSearch_field_key(String search_field_key) {		this.search_field_key = search_field_key;	}
+	public void setSearch_field_state(String search_field_state) 	{		this.search_field_state = search_field_state;		}
+	public void setSearch_field_author(String search_field_author) 	{		this.search_field_author = search_field_author;		}
+	public void setSearch_field_key(String search_field_key) 		{		this.search_field_key = search_field_key;			}
+	public void setBoardVO(BoardVO boardVO) 		   				{		this.boardVO = boardVO;								}
+	public void setBookVO(BookVO bookVO)			   				{		this.bookVO = bookVO;								}
 	
 	
 	// Getter()
@@ -93,12 +98,14 @@ public class MemberVO {
 	public String getMem_fav1() 	 {		return mem_fav1;		}
 	public String getMem_fav2() 	 {		return mem_fav2;		}
 	public String getMem_fav3() 	 {		return mem_fav3;		}
-	public String getMem_portfolio()  {		return mem_portfolio;	}
+	public String getMem_portfolio() {		return mem_portfolio;	}
 	public int getStartrow() 		 {		return startrow;		}
 	public int getEndrow() 			 {		return endrow;			}
 	public String getSearch_name() 	 {		return search_name;		}
-	public String getSearch_field_state() {		return search_field_state;	}
-	public String getSearch_field_author() {		return search_field_author;	}
-	public String getSearch_field_key() {		return search_field_key;	}
+	public String getSearch_field_state() 	{		return search_field_state;		}
+	public String getSearch_field_author() 	{		return search_field_author;		}
+	public String getSearch_field_key() 	{		return search_field_key;		}
+	public BoardVO getBoardVO() 			{		return boardVO;					}
+	public BookVO getBookVO() 				{		return bookVO;					}
 	
 }

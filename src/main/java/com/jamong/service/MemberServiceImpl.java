@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.MemberDAO;
+import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 
 @Service
@@ -14,6 +15,12 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDAO memberDao;
+	
+
+	@Override
+	public MemberVO mem_emailCheck(MemberVO m) {
+		return this.memberDao.mem_emailCheck(m);
+	}	
 	
 	@Override
 	public void memberUpdate(MemberVO me) {
@@ -63,8 +70,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO profileCheck(int mem_no) {
-		return this.memberDao.profileCheck(mem_no);
+	public MemberVO profileCheck(String mem_id) {
+		return this.memberDao.profileCheck(mem_id);
 	}
   
 	@Override
@@ -75,7 +82,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberVO> categoryMember() {
 		return this.memberDao.categoryMember();
-	}	
-	
+	}
 
 }

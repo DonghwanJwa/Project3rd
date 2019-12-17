@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+a {
+	text-decoration: none;
+	color: #333333;
+}
+
 ul li {
 	list-style: none;
 }
@@ -11,14 +16,13 @@ ul li {
 	border-bottom: 1px solid #ededed;
 }
 
-#new_post_maintt{
+#new_post_maintt {
 	background-image: url("../img/background_img/login_pattern1.png");
 	background-repeat: repeat;
-	
 }
 
 #new_post_contents {
-	background-color:#fff;
+	background-color: #fff;
 	width: 960px;
 	height: auto;
 	margin: 0 auto;
@@ -35,20 +39,21 @@ ul li {
 }
 
 #new_post_loading_cont_text {
-	margin-left:15px;
+	margin-left: 15px;
 	display: inline-block;
 	width: 600px;
 	height: 180px;
 	line-height: 1.6em;
 }
-#new_post_loading_cont_text_title{
+
+#new_post_loading_cont_text_title {
 	font-size: 25px;
-	padding:20px 0;
+	padding: 20px 0;
 }
 
 #new_post_loading_cont_text_writer {
 	display: inline-block;
-	color:#ff8040;
+	color: #ff8040;
 }
 
 #new_post_loading_cont_text_writer i {
@@ -57,6 +62,9 @@ ul li {
 
 #new_post_loading_cont_text_tag {
 	display: inline-block;
+	width: 4px;
+	height: 4px;
+	padding:2px;
 }
 
 #new_post_loading_cont_text_ago {
@@ -67,25 +75,37 @@ ul li {
 	display: inline-block;
 	over-fit: cover;
 	width: 200px;
-	height: 160px;
+	height: 185px;
 	margin: 0;
-	vertical-align:top;
-	margin:auto 0px;
+	vertical-align: bottom;
+	margin: auto 0px;
+}
+
+#new_post_loading_cont_text_cont {
+	height: 100px;
+	margin: 0;
+	font-size: 18px;
+	overflow: hidden;
+	white-space: normal;
+	word-spacing: break-word;
+	text-overflow: elipsis;
+	padding-right:30px;
 }
 
 /*로딩화면을 위한 css*/
-.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
-    position: fixed;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    background: rgba(0,0,0,0.8);
+.wrap-loading { /*화면 전체를 어둡게 합니다.*/
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.8);
 }
-.wrap-loading div{ /*로딩 이미지*/
-    position: fixed;
-    top:50%;
-    left:50%;
-    margin-left: -21px;
-    margin-top: -21px;
+
+.wrap-loading div { /*로딩 이미지*/
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -21px;
+	margin-top: -21px;
 }

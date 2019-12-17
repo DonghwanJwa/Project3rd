@@ -52,4 +52,6 @@ SELECT *
 FROM board b
 RIGHT JOIN (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM)m
 ON b.mem_no=m.mem_no
-WHERE rowNum <= 9
+WHERE rowNum <= 9;
+
+select * from ALL_CONSTRAINTS WHERE TABLE_NAME='board';

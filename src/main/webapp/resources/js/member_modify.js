@@ -20,7 +20,7 @@ function getCategorySelect(){
 		  $(data).each(function(){//each는 jQuery에서 반복함수
 			  str+='<li class="member_modify_category-item">'+
 			  '<span class="member_modify_category-span">'+this.cat_name+'</span>'
-			  +'<input type="hidden" value="'+this.cat_no+'"/>'
+			  +'<input type="hidden" value="'+this.cat_name+'"/>'
 			  +'</li>'
 		  });
 		  if ($("#member_modify_category-list").length > 0 ) {//해당 구역이 존재하면
@@ -515,131 +515,6 @@ $('#member_modify_email_datalist').on("focusout", function() {
 
 //--------------------------------------------------------------------------------------------
 
- //이메일 id 유효성 검증
-$('#member_modify_email').on("focusout", function() {
-	if ($.trim($('#member_modify_email').val())=="") {
-		$('#join_membership_error_email_domain').text('이메일을 입력해주세요!');
-		return false;
-	}
-}).on("keyup", function(key) {
-
-	$('#join_membership_certified_btn').attr("disabled",false);
-	$('#join_membership_emailcheck_div').hide();
-	$('#join_membership_email_flag').val('1');
-	$('#join_membership_next_btn').attr('disabled', true);
-	
-	if ($.trim($('#join_membership_email').val())=="") {
-		$('#join_membership_error_email_domain').text('이메일을 입력해주세요!');
-		return false;
-	}
-	$('#join_membership_error_email_domain').text('');
-	if (key.keyCode == 13) {
-		$('#join_membership_email_datalist').focus();
-	}
-	
-});
-
- //이메일 도메인 유효성 검증
-$('#join_membership_email_datalist').on("focusout", function() {
-	var email = $.trim($('#join_membership_email').val());		
-	var domain = $.trim($('#join_membership_email_datalist').val());
-	
-	if ($.trim($('#join_membership_email_datalist').val())=="") {
-		$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
-		return false;
-	}
-	
-	if (!emailCheck.test($('#join_membership_email_datalist').val())) {
-		$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
-		return false;
-	}
-	
-	$.ajax({
-        type:"POST",
-        url:"member_modify_emailcheck", 
-        data: {"email":email,"domain":domain},  				
-        datatype:"int",					
-        success: function (data) {		
-      	  if(data==1){	
-      		$('#join_membership_error_email_domain').text('중복이메일 입니다!');
-          	return false;
-      	  }  
-        },
-    	  error:function(){
-    		  alert("data error");
-    	  }
-      });
-	$('#join_membership_error_email_domain').text('');
-}).on("keyup", function(key) {
-	var email = $.trim($('#join_membership_email').val());		
-	var domain = $.trim($('#join_membership_email_datalist').val());
-	
-	$('#join_membership_certified_btn').attr("disabled",false);
-	$('#join_membership_emailcheck_div').hide();
-	$('#join_membership_email_flag').val('1');
-	$('#join_membership_next_btn').attr('disabled', true);
-	
-	if ($.trim($('#join_membership_email_datalist').val())=="") {
-		$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
-		return false;
-	}
-	
-	if (!emailCheck.test($('#join_membership_email_datalist').val())) {
-		$('#join_membership_error_email_domain').text('도메인을 입력해주세요!');
-		return false;
-	}
-	
-	$('#join_membership_error_email_domain').text('');
-	if (key.keyCode == 13) {
-		$('#join_membership_certified_btn').focus();
-	}
-}).on("focus", function(){
-	$('#join_membership_certified_btn').attr("disabled",false);
-	$('#join_membership_emailcheck_div').hide();
-	$('#join_membership_email_flag').val('1');
-	$('#join_membership_next_btn').attr('disabled', true);
-});
-
- //닉네임 유효성 검증
-$("#join_membership_profile_editor").on("focusout", function() {//포커스가 나갈때
-	var nickname = $(this).val();		
-	$.ajax({
-        type:"POST",
-        url:"join_membership_idcheck", 
-        data: {"id":nickname},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
-        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
-        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
-      	  if(data==1){	//중복 아이디가 있다면
-      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
-          	return false;
-      	  }  
-        },
-    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
-    		  alert("data error");
-    	  }
-      });
-	$('#join_membership_profile_editor_error').text('');
-}).on("keyup", function(key) {//타이핑 할때
-	var nickname = $(this).val();		
-	$.ajax({
-        type:"POST",
-        url:"join_membership_idcheck", 
-        data: {"id":nickname},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
-        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
-        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
-      	  if(data==1){	//중복 아이디가 있다면
-      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
-          	return false;
-      	  }  
-        },
-    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
-    		  alert("data error");
-    	  }
-      });
-	$('#join_membership_profile_editor_error').text('');
-});
-
-
 //--------------------------------------------------------------------------------------------
 //핸드폰 번호1
 $('#member_modify_tel1').on("focusout", function() {
@@ -722,6 +597,110 @@ $(document).on("click",".member_modify_category-span",function(){
 			}
 		}
 	}
+});
+
+//이메일 인증 단계 복구해야됨!!
+$(function(){
+	//이메일 인증 버튼 클릭시 발생하는 이벤트 
+	$(document).on("click", "#member_modify_certified_btn", function(){
+		var email = $.trim($('#member_modify_email').val());				//이메일값
+		var domain = $.trim($('#member_modify_email_datalist').val());	//도메인값
+		$('#member_modify_error_email_domain').text('');
+		
+		if (email=="") {
+			$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
+			return false;
+		}
+		if (domain=="") {
+			$('#member_modify_error_email_domain').text('도메인을 입력해주세요!');
+			return false;
+		}
+		if (!emailCheck.test($('#member_modify_email_datalist').val())) {
+			$('#member_modify_error_email_domain').text('도메인을 입력해주세요!');
+			return false;
+		}
+		//이메일 중복 다시체크
+		$.ajax({
+	        type:"POST",
+	        url:"modify_emailcheck", 
+	        data: {"email":email,"domain":domain},  				
+	        datatype:"int",					
+	        success: function (data) {		
+	      	  if(data==1){	
+	      		$('#member_modify_error_email_domain').text('중복이메일 입니다!');
+	          	return false;
+	      	  }  
+	      	  	$('#member_modify_error_email_domain').text('');
+	        },
+	    	  error:function(){
+	    		  alert("data error");
+	    	  }
+	      });
+		
+		//이메일 중복 체크 후 메일 발송 비동기 처리 
+		$.ajax({
+			type:"POST",
+			url : "modify_emailCert",
+			data : {"email": email,"domain":domain},
+			success : function(data){
+				alert("입력하신 이메일로 인증번호가 발송되었습니다. 인증번호를 입력해주세요.");
+				$('#member_modify_certified_btn').attr("disabled",true);//disabled 태그 속성 활성화 true
+				$('#member_modify_emailcheck').val('');//이메일 인증체크 디브를 공백으로 만들어줌
+				$('#member_modify_emailcheck').attr('readonly',false);
+				//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
+				//readonly false면 값변경이 가능
+				//disabled 태그 속성 활성화 false 비활성화
+				$('#member_modify_emailcheck_btn').attr('disabled',false);
+			},
+			beforeSend:function(){
+			        //(이미지 보여주기 처리)
+			        $('.wrap-loading').show();
+			},
+			complete:function(){
+			        //(이미지 감추기 처리)
+			        $('.wrap-loading').hide();
+			},
+			error: function(data){
+				alert("에러가 발생했습니다.");
+				return false;
+			}
+		})
+		$('#member_modify_emailcheck_div').show();
+	});
+	//이메일 인증번호 입력 후 확인 버튼 클릭 이벤트
+	$(document).on("click", "#member_modify_emailcheck_btn", function(){
+		var authCode = $('#member_modify_emailcheck').val();
+		$.ajax({
+			type:"post",
+			url:"modify_emailCert_ok",
+			data:{"authCode":authCode},
+			success:function(data){
+				if(data=="complete"){
+					alert("인증이 완료되었습니다.");
+					$('#member_modify_email_flag').val('2');
+					$('#member_modify_next_btn').attr('disabled', false);//수정완료버튼 비활성화
+					$('#member_modify_emailcheck').attr('readonly',true);//이메일 체크 못쓰게함
+					$('#member_modify_emailcheck_btn').attr('disabled',true);//확인버튼 활성화
+					sessionStorage.removeItem('authCode');
+					//sessionStorage.removeItem('authCode'); 란 세션스토리지에 저장되어 있는 인증번호값을 리무브아이템으로 
+					//세션에 저장된 인증번호 값을 지운다 인증이 다 끝났으니깐 안지우면 다시 받을 때 문제가 될 것 같다.
+				}else if(data == "false"){
+					alert("인증번호를 잘못 입력하셨습니다.")
+				}
+			},
+			beforeSend:function(){
+		        //(이미지 보여주기 처리)
+		        $('.wrap-loading').show();
+			},
+			complete:function(){
+			    //(이미지 감추기 처리)
+			    $('.wrap-loading').hide();
+			},
+			error:function(data){
+				alert("에러가 발생했습니다.");
+			}
+		});
+	});
 });
 });
 
