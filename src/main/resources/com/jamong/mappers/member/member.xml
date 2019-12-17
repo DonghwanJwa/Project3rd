@@ -5,6 +5,43 @@
 
 <mapper namespace="member">
 
+<resultMap type="m" id="profileMap">
+  <id column="mem_no" property="mem_no" />
+  <result column="mem_id" property="mem_id" />
+  <result column="mem_author" property="mem_author" />
+  <result column="profile_photo" property="profile_photo" />
+  <result column="profile_cont" property="profile_cont" />
+  <result column="mem_nickname" property="mem_nickname" />
+  <result column="mem_keyword" property="mem_keyword" />
+  <result column="mem_portfolio" property="mem_portfolio" />
+  
+ <association javaType="b" property="boardVO">
+ <id column="bo_no" property="bo_no" />
+  <result column="bo_title" property="bo_title" />
+  <result column="bo_subtitle" property="bo_subtitle" />
+  <result column="bo_cont" property="bo_cont" />
+  <result column="bo_thumbnail" property="bo_thumbnail" />
+  <result column="bo_hit" property="bo_hit" />
+  <result column="bo_date" property="bo_date" />
+  <result column="bo_editdate" property="bo_editdate" />
+  <result column="bo_lock" property="bo_lock" />
+  <result column="bo_type" property="bo_type" />
+  <result column="bo_like" property="bo_like" />
+  <result column="book_order" property="book_order" />
+  <result column="cat_no" property="cat_no" />
+  <result column="mem_no" property="mem_no" />
+  <result column="book_no" property="book_no" />
+ </association>
+
+ <association javaType="book" property="bookVO">
+  <id column="book_no" property="book_no"/>
+  <result column="book_name" property="book_name"/>
+  <result column="book_date" property="book_date"/>
+  <result column="book_editdate"  property="book_editdate"/>
+  <result column="cat_no" property="cat_no"/>
+  <result column="mem_no" property="mem_no"/>
+ </association>
+</resultMap>
 <select id="mem_email" resultType="m">
 	select * from member where email_id=#{email_id} and email_domain=#{email_domain}
 </select>
@@ -61,9 +98,42 @@
 </select>
 
      <!--회원 찾기 -->
-<select id="profile_ck" resultType="m">
-    select mem_no, mem_id, mem_author, profile_photo, mem_nickname, profile_cont, mem_keyword, mem_portfolio 
-    from member where mem_no = #{mem_no}
+<select id="profile_ck" resultMap="profileMap">
+    SELECT m.mem_no,
+    	m.mem_id, 
+    	m.mem_author, 
+    	m.profile_photo, 
+    	m.profile_cont, 
+    	m.mem_nickname, 
+    	m.mem_keyword, 
+    	m.mem_portfolio,
+    	b.bo_no,
+    	b.bo_title,
+    	b.bo_subtitle,
+    	b.bo_cont,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	b.bo_date,
+    	b.bo_editdate,
+    	b.bo_lock,
+    	b.bo_type,
+    	b.bo_like,
+    	b.book_order,
+    	b.cat_name,
+    	b.mem_no,
+    	b.book_no,
+    	c.book_no,
+    	c.book_name,
+    	c.book_date,
+    	c.book_editdate,
+    	c.cat_no,
+    	c.mem_no
+    FROM member m
+    LEFT OUTER JOIN (SELECT * FROM board ORDER BY bo_date DESC) b 
+ 	ON m.mem_no = b.mem_no
+    LEFT OUTER JOIN (SELECT * FROM book ORDER BY book_date DESC) c
+    ON m.mem_no = c.mem_no
+    where m.mem_id = #{mem_id}
 </select>
 <!-- 
 <update id="profile_up" >
@@ -89,4 +159,5 @@
   SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) WHERE rowNum <= 5
   ]]> 
  </select>
+
 </mapper>
