@@ -18,5 +18,7 @@ public interface NoticeDAO {
 
 	void noticeDel(int no);
 
+	List<NoticeVO> headerNotice();
+
 
 }

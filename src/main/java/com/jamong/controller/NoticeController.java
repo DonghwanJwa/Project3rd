@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jamong.domain.CategoryVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.NoticeVO;
 import com.jamong.service.NoticeService;
@@ -221,6 +224,19 @@ public class NoticeController {
 	}
 	
 	/** 사용자단 공지사항 페이지 **/
+	
+	/*공지사항 헤더 메뉴 목록*/
+	@RequestMapping("header_notice")
+	public ResponseEntity<List<NoticeVO>> header_notice() {
+		ResponseEntity<List<NoticeVO>> entity = null;
+		try {
+			entity = new ResponseEntity<>(this.noticeService.headerNotice(),HttpStatus.OK);					
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}		
+		return entity;
+	}
 	
 	/* 공지사항 목록 */
 	@RequestMapping("notice")

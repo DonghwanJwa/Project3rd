@@ -67,4 +67,9 @@
 	<delete id="n_del">
 		delete adm_notice where noti_no=#{no}
 	</delete>
+	
+	<!-- 헤더메뉴 공지사항  리스트 가져오기 -->
+	<select id="cat_n_list" resultType="notice">
+		select noti_title,noti_date,noti_no from (select * from adm_notice order by noti_date desc) where rowNum &lt;= 5
+	</select>
 </mapper>

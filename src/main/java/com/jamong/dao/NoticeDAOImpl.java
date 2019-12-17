@@ -43,4 +43,9 @@ public class NoticeDAOImpl implements NoticeDAO {
 		this.sqlSession.delete("n_del",no);
 	}
 
+	@Override
+	public List<NoticeVO> headerNotice() {
+		return sqlSession.selectList("cat_n_list");
+	}
+
 }
