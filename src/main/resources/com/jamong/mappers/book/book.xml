@@ -50,10 +50,11 @@
  </resultMap>
  
  <select id="book_list" resultMap="boardMap">
-  SELECT b.bo_no,
-  		 b.bo_title,
-  		 b.bo_cont
-  FROM (SELECT * FROM board ORDER BY bo_no DESC)b, member m
-  WHERE b.mem_no=m.mem_no AND b.mem_no=#{b.mem_no}
+  SELECT *
+  FROM board b, member m
+  WHERE b.mem_no=m.mem_no
+  AND m.mem_id=#{mem_id}
+  ORDER BY b.bo_no DESC
  </select>
+ 
 </mapper>
