@@ -15,7 +15,28 @@ public class InquireVO {
 	private int inq_state;
 	private String inq_date;
 	private int mem_no;
+	private String inq_reply;
+	private String inq_sender;
+	private String inq_replydate;
 	
+	public String getInq_reply() {
+		return inq_reply;
+	}
+	public String getInq_sender() {
+		return inq_sender;
+	}
+	public String getInq_replydate() {
+		return inq_replydate;
+	}
+	public void setInq_reply(String inq_reply) {
+		this.inq_reply = inq_reply;
+	}
+	public void setInq_sender(String inq_sender) {
+		this.inq_sender = inq_sender;
+	}
+	public void setInq_replydate(String inq_replydate) {
+		this.inq_replydate = inq_replydate;
+	}
 	/* 페이징 변수 */
 	private int startrow;
 	private int endrow;
