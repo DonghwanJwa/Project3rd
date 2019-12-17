@@ -14,4 +14,6 @@ public interface InquireService {
 
 	InquireVO getInquireMem(int no);
 
+	void updateInquire(InquireVO inq);
+
 }

@@ -14,4 +14,6 @@ public interface InquireDAO {
 
 	InquireVO getInquireMem(int no);
 
+	void updateInquire(InquireVO inq);
+
 }

@@ -20,11 +20,17 @@ import com.jamong.service.InquireService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import mailHandler.MailService;
+
 @Controller
 public class InquireController {
 
 	@Autowired
 	private InquireService inqService;
+	
+	@Autowired
+	private MailService mailService;
+	
 	
 	@RequestMapping("inquire")
 	public String user_inquire() {
@@ -220,7 +226,62 @@ public class InquireController {
 			return m;
 	}
 		return null;
+	}
 	
-	
+	@RequestMapping("admin_inquire_info_ok")
+	public ModelAndView admin_inquire_info_ok(int inq_no,String inq_reply,String inq_email,
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session)
+	throws Exception {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out =response.getWriter();
+		session=request.getSession();
+		
+		int page = Integer.parseInt(request.getParameter("page"));
+		
+		MemberVO adm_m = (MemberVO)session.getAttribute("m");
+		
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='admin_login';");
+			out.println("</script>");
+		}else {
+			/*inq update문*/
+			InquireVO inq = new InquireVO();
+			inq.setInq_no(inq_no);
+			inq.setInq_reply(inq_reply);
+			inq.setInq_sender(adm_m.getMem_name());
+			this.inqService.updateInquire(inq);
+			
+			/*inq 메일 보내기*/		
+			String subject = "안녕하세요.자몽입니다. 문의드린 사항에 대한 답변을 드립니다.";
+			StringBuilder sb = new StringBuilder();
+			sb.append("<h3 style=\"font-weight:normal\">");
+			sb.append(inq_reply);
+			sb.append("</h3>");
+			
+			boolean reply_ok = mailService.send(subject, sb.toString(), "projectJamong@gmail.com", inq_email, null, request);
+			
+			if(reply_ok) {
+				out.println("<script>");
+				out.println("alert('문의 답변이 완료되었습니다.');");
+				out.println("</script>");
+			}else {				
+				out.println("<script>");
+				out.println("alert('처리과정중 에러가 발생하였습니다!');");
+				out.println("history.back();");
+				out.println("</script>");
+			}
+			ModelAndView m = new ModelAndView();
+			m.addObject("page",page);
+			m.addObject("inq_no",inq_no);
+			m.setViewName("admin_inquire_info");
+			return m;
+		}
+		
+		return null;
 	}
 }

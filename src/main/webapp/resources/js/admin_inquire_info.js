@@ -3,6 +3,10 @@
  */
 $(document).ready(function(){
 	$("#inq_re_btn").click(function(){
-		$(".inq_adm_request").css("display","block");
+		if($(".inq_adm_request").css("display")=="none"){
+			$(".inq_adm_request").show();			
+		}else{
+			$(".inq_adm_request").hide();						
+		}
 	});
 });

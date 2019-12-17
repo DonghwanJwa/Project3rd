@@ -19,6 +19,9 @@ mem_no NUMBER(38)				  -- 회원번호 참조컬럼
 );
 
 
+ALTER TABLE board ADD inq_reply VARCHAR2(4000);
+ALTER TABLE board ADD inq_sender VARCHAR2(100);
+
 DROP TABLE inquire;
 -- 시퀀스 생성
 CREATE SEQUENCE inq_no_seq
