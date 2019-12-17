@@ -12,50 +12,50 @@
 	
 		
 	<tr>
-		<th align="center" style="width:110px; height:40px">회원분류</th>
-		<td align="center" style="width:120px">
+		<th align="center" style="width:110px; height:40px;">회원분류</th>
+		<td align="center" style="width:120px;">
 			<c:if test="${i.memberVO.mem_state == 0}"><font color="grey">일반회원</font></c:if>
 			<c:if test="${i.memberVO.mem_state == 1}"><font color="blue">정지회원</font></c:if>
 		</td>
 		
-		<th align="center" style="width:150px">처리상태</th>
-		<td align="center" style="width:150px">
+		<th align="center" style="width:150px;">처리상태</th>
+		<td align="center" style="width:150px;">
 			<c:if test="${i.inq_state == 0}"><font color="blue">미처리</font></c:if>
 			<c:if test="${i.inq_state == 1}"><font color="red">처리</font></c:if>			
 		</td>
 		
-		<th align="center" style="width:105px">문의날짜</th>
-		<td align="center" style="width:205px">
+		<th align="center" style="width:105px;">문의날짜</th>
+		<td align="center" style="width:205px;">
 			${i.inq_date}
 		</td>
 	</tr>
 	
 	<tr>
-		<th align="center" style="width:110px; height:40px">문의분류</th>
-		<td align="center" style="width:120px">
+		<th align="center" style="width:110px; height:40px;">문의분류</th>
+		<td align="center" style="width:120px;">
 			<c:if test="${i.inq_item1 == '개선/제안'}">개선/제안</c:if>
 			<c:if test="${i.inq_item1 == '일반문의'}">일반문의</c:if>
 			<c:if test="${i.inq_item1 == '제휴/협업 문의'}">제휴/협업 문의</c:if>
 		</td>
 		
-		<th align="center" style="width:150px">PhoneNumber</th>
-		<td align="center" style="width:150px">
+		<th align="center" style="width:150px;">PhoneNumber</th>
+		<td align="center" style="width:150px;">
 			${i.inq_phone}
 		</td>
 		
-		<th align="center" style="width:105px">E-Mail</th>
-		<td align="center" style="width:205px">
+		<th align="center" style="width:105px;">E-Mail</th>
+		<td align="center" style="width:205px;">
 			${i.inq_email}
 		</td>	
 	</tr>
 	
 	<tr>
-		<th colspan="6" align="center" style="height:50px">
+		<th colspan="6" align="center" style="height:50px;">
 			문의하기 내용
 		</th>
 	</tr>
 	<tr>
-		<td colspan="6" id="adm_inq_field" style="height:175px">
+		<td colspan="6" id="adm_inq_field" style="height:175px;">
 			${inq_cont}
 		</td>
 	</tr>
@@ -80,22 +80,22 @@
 <h3 class="inq_mem_info">회원정보</h3>
 	<table border="1" class="inq_adm_table2">
 		<tr>
-			<th align="center" style="width:140px; height:40px">ID</th>
-			 <td align="center" style="width:150px">
+			<th align="center" style="width:140px; height:40px;">ID</th>
+			 <td align="center" style="width:150px;">
 			 	${i.memberVO.mem_id}
 			 </td>		
-			 <th align="center" style="width:140px">이름</th>
-			  <td align="center" style="width:180px">
+			 <th align="center" style="width:140px;">이름</th>
+			  <td align="center" style="width:180px;">
 			  	${i.memberVO.mem_name}
 			  </td>
-			 <th align="center" style="width:115px">성별</th>
-			  <td align="center" style="width:115px">
+			 <th align="center" style="width:115px;">성별</th>
+			  <td align="center" style="width:115px;">
 			  	${i.memberVO.mem_gender}
 			  </td>
 		</tr>
 		
 			<tr>
-				<th align="center" style="height:40px">생년월일</th>
+				<th align="center" style="height:40px;">생년월일</th>
 			 		<td align="center">
 					${i.memberVO.mem_birth1}-${i.memberVO.mem_birth2}-${i.memberVO.mem_birth3}
 			 		</td>
@@ -122,12 +122,27 @@
 		<div>
 		 <textarea id="inq_adm_remail" name="inq_adm_remail" placeholder="문의 답변 입력해주세요(최대400자)"
 		  cols="24" rows="6" maxlength="400" type="text"></textarea>
-		 <input type="button" id="inq_request_btn" class="inq_button" value="답변완료" action="inq_adm_request" />
+		 <input type="button" id="inq_request_btn" class="inq_button" value="답변완료" type="submit" />
 		</div> 
 	</form>
 	
-	<div class="inq_adm_complete">
-		<h3>답변내용</h3>
-	</div>
+	<table id="inq_adm_complete">
+		<tr>
+			<td align="right" colspan="5" class="inq_adm_readmin">처리자 : </td>
+			<td align="right" colspan="5" class="inq_adm_retime">처리날짜 : ${i.inq_date}</td>
+		</tr>
+		
+		<tr>
+			<th align="center" colspan="5" class="inq_adm_retitle">
+				답변내용
+			</th>
+		</tr>
+		
+		<tr>
+			<td align="center" colspan="5" class="inq_adm_recont">
+				${i.inq_reply}
+			</td>
+		</tr>
+	</table>
 <%@include file="../include/admin_footer.jsp" %>
 </html>
