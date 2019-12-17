@@ -21,6 +21,8 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	/** 관리자단 공지사항 페이지 **/
+	
 	/* 공지사항 목록 */
 	@RequestMapping("admin_notice")
 	public ModelAndView admin_notice (HttpSession session, HttpServletRequest request, HttpServletResponse response, NoticeVO n) throws Exception {
@@ -217,4 +219,57 @@ public class NoticeController {
 		}
 		return null;
 	}
+	
+	/** 사용자단 공지사항 페이지 **/
+	
+	/* 공지사항 목록 */
+	@RequestMapping("notice")
+	public ModelAndView notice (HttpSession session, HttpServletRequest request, HttpServletResponse response, NoticeVO n) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+	
+			int page=1;
+			int limit=10;
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));
+			}
+			String search_name=request.getParameter("search_name");
+			String search_field=request.getParameter("search_field");
+			
+			n.setSearch_name("%"+search_name+"%");
+			n.setSearch_field(search_field);
+			
+			int listcount=this.noticeService.getListCount(n);
+			
+			n.setStartrow((page-1)*10+1);
+			n.setEndrow(n.getStartrow()+limit-1);
+			
+			List<NoticeVO> nlist=this.noticeService.getNoticeList(n);
+			
+			for(int i=0;i<nlist.size();i++) {
+				String date = nlist.get(i).getNoti_date();
+				date = date.substring(0,10);
+				nlist.get(i).setNoti_date(date);
+			}
+			
+			int maxpage=(int)((double)listcount/limit+0.95);
+			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+			int endpage=maxpage;
+			if(endpage>startpage+10-1) endpage=startpage+10-1;
+			
+			ModelAndView m=new ModelAndView("jsp/notice");
+			
+			m.addObject("n",n);
+			m.addObject("nlist",nlist);
+			m.addObject("page",page);
+			m.addObject("startpage",startpage);
+			m.addObject("endpage",endpage);
+			m.addObject("maxpage",maxpage);
+			m.addObject("search_name",search_name);
+			m.addObject("search_field"+search_field);
+			
+			return m;
+	}
+	
+	
 }
