@@ -74,6 +74,8 @@ $(document).ready(function(){
 				if(data==1){					//아이디가없거나 비밀번호가 틀리다면
 					$('#login_pwd_error').text('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.!');
 					return false;
+				}else if(data==2){				//이미 로그인 되어진 상황이라면 이전페이지로
+					history.back();
 				}else{
 					window.location.replace("/jamong.com/");					
 				}
