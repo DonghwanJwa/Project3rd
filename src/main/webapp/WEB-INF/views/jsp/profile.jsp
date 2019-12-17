@@ -49,13 +49,13 @@
 								<dd>
 						<div id="profile_button">
 							<%--해당되는 아이디로 로그인 했을때 --%>
-							<c:if test="${session == mp.mem_id}">
+							<c:if test="${m.mem_id == mp.mem_id}">
 							<a href="./write" class="profile_button_type subscribe_check">글쓰기</a>
 							</c:if>
-							<c:if test="${mp.mem_author==2}">
+							<c:if test="${mp.mem_author == 2 && m.mem_id != mp.mem_id}">
 							<a href="./offer_author" class="profile_button_type">제안하기</a> 
 							</c:if>
-							<c:if test="${empty mp}">
+							<c:if test="${m.mem_id != mp.mem_id}">
 							<span>
 							<button	class="profile_button_type2">구독하기</button>
 							</span>
@@ -107,7 +107,7 @@
 				<h3 class="hide_font">작가소개</h3>
 				<div class="author_intro">
 					<strong class="profile_font_size">소개</strong>
-					<p class="profile_font_size">${mp.profile_cont}	</p>
+					<p class="profile_font_size">${mp.profile_cont}</p>
 				</div>
 				<c:if test="${mp.mem_author == 2 && mp.mem_portfolio != null}">
 				<p class="profile_font_size">
@@ -122,19 +122,24 @@
 				<div class="author_intro">
 					<h3 class="hide_font">글목록</h3>
 					<ul class="profile_writer_list">
-					<c:forEach var="b" items="${mplist}">
-						<li class="profile_articles" data-no="${b.bo_no}">
-							<div>
-								<a class="profile_article_main" href="./book_info">미리보는 영화</a>
-									<a	href="./@${mp.mem_id}/${b.bo_no}">
-										<h3>${b.bo_title}</h3>
-										<p class="article_cont">${b.bo_cont}</p>
+					
+					<c:forEach var="fp" items="${mplist}">
+						<li class="profile_articles" data-no="${fp}">
+							<div>							
+							<c:set var="book" value="${fp.book_name}" />
+							<c:if test="${not empty book}">
+								<a class="profile_article_main" href="./book_info">${book}</a>
+								</c:if>
+								<c:if test="${empty book}"></c:if>
+									<a	href="./@${mp.mem_id}/${fp.boardVO.bo_no}">
+										<strong class="pf_bo_title">${fp.boardVO.bo_title}</strong>
+										<em class="article_cont">${fp.boardVO.bo_cont}</em>
 									</a>
 							<div>
-							<c:set var="img" value="${b.bo_thumbnail}" />
+							<c:set var="img" value="${fp.boardVO.bo_thumbnail}" />
 							<c:if test="${not empty img}">
 								<img class="profile_post_img" alt="이미지 정보"
-									src="${b.bo_thumbnail}">
+									src="${fp.boardVO.bo_thumbnail}">
 								</c:if>
 								<c:if test="${empty img}">
 								</c:if>
@@ -142,6 +147,7 @@
 							</div> <span></span>
 						</li>
 				</c:forEach>
+				 
 					</ul>
 				</div>
 			</div>
@@ -149,25 +155,26 @@
 				<h3 class="hide_font">매거진</h3>
 				<!-- 공감과 추천한 숫자를 지정 -->
 				<div id="" class="Magazine_list jm_list ">
-				<c:forEach var="b" items="${mplist}">
+				<c:forEach var="c" items="${mplist}">
 					<div class="box_contents">
 							<a href="./book_info">
 						<div class="cover_book">
 								<img class="cover_img"src="./resources/img/a.jpg" class="magazin_img"> 
 								<div class="info_cover">
-									<strong class="tit_cover">${mplist.book_name}</strong>
-								 <span>by${mplist.mem_nickname}</span>
+									<strong class="tit_cover"></strong>
+								 <span>by${mp.mem_nickname}</span>
 								</div> 
 								<span class="book_line"></span>
 							</a>
 						</div>
-						<strong>Magazine</strong> <a class="profile_jm" href="./book_info">${mplist.bookname}</a>
+						<strong>Magazine</strong>
+					<a class="profile_jm" href="./book_info">${c.bookVO.book_name}</a>
 						<dl class="j_list_info">
 							<dt>
 								<span class="article_icon"></span>
 							</dt>
 							<dd class="box_contents_num">
-								<b>${mplist.bo_hit}</b>
+								<b></b>
 							</dd>
 							<dt>
 								<span class="relate"></span>
