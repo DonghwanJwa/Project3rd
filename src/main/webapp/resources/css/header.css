@@ -318,6 +318,7 @@ body{
 	height:34px;
 	padding:1px 0;
 	display: inherit;	
+	text-decoration: none;
 }
 
 .head-page-notice-item a:hover{

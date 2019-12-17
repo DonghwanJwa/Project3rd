@@ -280,7 +280,7 @@
           <span class="head-profile-service-bar-right"></span>
          </a>
         </li>
-        <li id="head-profile-service-hr">―――――――</li>
+        <li id="head-profile-service-hr"><span class="head-profile-service-bar"></span></li>
         <li id="head-profile-service-rec-writing">
          <a href="/jamong.com/new_posts">
           <span class="head-profile-service-bar-left"></span>

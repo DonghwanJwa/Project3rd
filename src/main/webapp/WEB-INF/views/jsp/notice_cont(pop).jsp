@@ -3,16 +3,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글에 꿈을 담다, 자몽</title>
+<title>공지</title>
 </head>
-<%@include file="../include/header.jsp" %>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/notice.css"/>
- <div class="notice_cont_page_wrap">
-  <div id="notice_cont_page_container">
-   <div id="notice_cont_page_title">
-    <h3>Notice</h3>
-   </div>
-   <div class="notice_cont_body">
+<script src="/jamong.com/resources/js/jquery.js"></script>
+<body>
+<div id="notice_cont_pop_container">
+   <div class="notice_cont_pop_body">
    
     <div class="notice_cont_head">
      <div class="notice_cont_writer">
@@ -29,13 +26,18 @@
     <div class="notice_cont_cont">
      ${noti_cont}
     </div>
-    
-    <div class="notice_cont_footer">
-     <input type="button" class="notice_btn" onclick="location='notice?page=${page}'" value="목록으로"/>
-    </div>
-    
+   </div>
+   <div class="notice_cont_footer">
+    <input type="button" id="notice_cont_pop_btn" class="notice_btn" value="목록으로"/>
    </div>
   </div>
- </div>
-<%@include file="../include/footer.jsp" %>
+</body>
+<script>
+ $(document).ready(function(){
+	 $('#notice_cont_pop_btn').click(function(){
+		 opener.document.location.href='notice'; //부모창을 공지사항리스트 페이지로 이동
+		 window.close();						 //현재페이지 닫기
+	 });
+ });
+</script>
 </html>

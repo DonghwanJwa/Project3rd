@@ -25,7 +25,7 @@
 			
 			<c:if test="${!empty nlist}">
 				<c:forEach var="n" items="${nlist}">
-				<tr onclick="location='notice_cont?no=${n.noti_no}&page=${page}&state=cont';" class="notice_page_info">	
+				<tr onclick="location='notice_cont?no=${n.noti_no}&page=${page}&state=main';" class="notice_page_info">	
 					<td align="center" class="list_underline">
 						${n.noti_no}
 					</td>

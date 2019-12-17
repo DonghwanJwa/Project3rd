@@ -65,9 +65,11 @@ function hotscroll(where,number){
 function getHeaderNotice(){
 	  $.getJSON("/jamong.com/header_notice/",function(data){
 		  var str="";
+		  var popupX = (window.screen.width / 2) - (720 / 2);
+		  var popupY= (window.screen.height / 2) - (550 / 2);
 		  $(data).each(function(){//each는 jQuery에서 반복함수
 			  str+='<li class="head-page-notice-item">'
-			  +'<a>'
+			  +'<a href="/jamong.com/notice_cont?no='+this.noti_no+'&state=pop" onclick="window.open(this.href,\'_blank\',\'location=no, resizable=no, status=no, toolbar=no, width=720, height=550 left='+popupX+', top='+popupY+' \');return false">'
 			  +'<span class="head-page-notice-title">'+this.noti_title+'</span>'
 			  +'<span class="head-page-notice-date">'+this.noti_date+'</span>'
 			  +'</a>'
