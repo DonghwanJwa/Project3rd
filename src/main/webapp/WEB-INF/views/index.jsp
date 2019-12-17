@@ -212,7 +212,7 @@ $(document).keydown(function(e){
         <img src="/jamong.com/resources/img/feed.png" alt="피드"/>
        </a>
       </div>
-      <a href="/jamong.com/profile" id="head-profile-info-wrap">
+      <a href="/jamong.com/@${mem_id}" id="head-profile-info-wrap">
        <div id="head-profile-info-img-wrap">
         <img id="head-profile-info-img" src="${m.profile_photo}">
        </div>
@@ -457,7 +457,7 @@ $(document).keydown(function(e){
 	  <c:forEach var="mlist" items="${mlist}">
 	  <li class="recom_author-item">
 	   <div class="recom_author-item-inner">
-	   	<a href="/jamong.com/profile" class="recom_author-item-link">
+	   	<a href="/jamong.com/@${mlist.mem_id}" class="recom_author-item-link">
 		 <div class="recom_author-item-intro">
 		  <strong>${mlist.mem_nickname}</strong><%-- 와드! mem_nickname --%>
 		  <span class="recom-author-intro">${mlist.profile_cont}</span>
