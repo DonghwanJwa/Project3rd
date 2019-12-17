@@ -7,7 +7,7 @@
 <%@include file="../include/admin_header.jsp" %>
 
 <div id="adm_page_title"><h3 class="adm_page_title">작가신청</h3></div>
-<form action="admin_request">
+<form action="admin_author">
 <div id="adm_author_wrap">
 	<%-- 회원목록 시작 --%>
 	<table id="adm_aut_table">
@@ -111,7 +111,7 @@
 				</c:if>
 				
 				<c:if test="${a != page}">
-					<a href="admin_member?page=${a}&search_field1=${search_field1}&search_field2=${search_field2}&search_name=${search_name}">${a}</a>&nbsp;
+					<a href="admin_author?page=${a}&search_field1=${search_field1}&search_field2=${search_field2}&search_name=${search_name}">${a}</a>&nbsp;
 				</c:if>
 				</c:forEach>
 				
@@ -137,10 +137,10 @@
 			<option value="waiting" <c:if test="${search_field1 == 'waiting'}">${'selected'}</c:if>>
 				심사대기
 			</option>
-			<option value="accept" <c:if test="${search_field_state == 'accept'}">${'selected'}</c:if>>
+			<option value="accept" <c:if test="${search_field1 == 'accept'}">${'selected'}</c:if>>
 				승인
 			</option>
-			<option value="reject" <c:if test="${search_field_state == 'reject'}">${'selected'}</c:if>>
+			<option value="reject" <c:if test="${search_field1 == 'reject'}">${'selected'}</c:if>>
 				거절
 			</option>
 		</select>

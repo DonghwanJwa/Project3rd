@@ -266,10 +266,10 @@ public class MemberController {
 			
 			mp = this.memberService.profileCheck(mem_id);
 			// 포트폴리오 항목 띄어쓰기 적용되게
-			String portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
+//			String portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
 		
 			mv.addObject("mp",mp);
-			mv.addObject(portfolio);
+//			mv.addObject(portfolio);
 		return mv;
 	}
 	

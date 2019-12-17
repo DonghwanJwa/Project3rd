@@ -38,8 +38,18 @@ public class AuthorController {
 			out.println("alert('로그인이 필요한 서비스입니다. 로그인 해주세요.');");
 			out.println("location='login';");
 			out.println("</script>");
-		} else {
-			return new ModelAndView("/jsp/request_author");
+		}else {
+			int no=adm_m.getMem_no();
+			int acheck=this.authorService.authorcheck(no);
+			
+			if(acheck != 0) {
+				out.println("<script>");
+				out.println("alert('심사중인 작가신청이 존재합니다.\\n결과를 기다려주세요!');");
+				out.println("history.back();");
+				out.println("</script>"); 
+			}else {
+				return new ModelAndView("jsp/request_author");
+			}
 		}
 		return null;
 	} // request_author()
@@ -59,7 +69,6 @@ public class AuthorController {
 		String aut_no=Integer.toString(a.getAut_no());
 		
 		String d_filePath=filePath+aut_no;
-		
 		
 		MultipartRequest multi = new MultipartRequest (request, filePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
@@ -87,7 +96,7 @@ public class AuthorController {
 		a.setAut_file3(aut_file3);
 		
 		this.authorService.sendAuthor(a);
-		
+			
 		out.println("<script>");
 		out.println("alert('작가신청이 완료되었습니다.');");
 		out.println("history.go(-2);");
@@ -134,9 +143,7 @@ public class AuthorController {
 			if(endpage>startpage+10-1) endpage=startpage+10-1;
 			
 			ModelAndView mv=new ModelAndView();
-			
-			mv.setViewName("jsp/admin_author");
-			
+						
 			mv.addObject("a",a);
 			mv.addObject("listcount",listcount);
 			mv.addObject("reqlist",reqlist);
@@ -148,8 +155,54 @@ public class AuthorController {
 			mv.addObject("search_field1",search_field1);
 			mv.addObject("search_field2",search_field2);
 			
+			mv.setViewName("jsp/admin_author");
+			
 			return mv;
 		}
 		return null;
 	} // admin_author()
+	
+	/* 관리자 페이지 작가신청 내용보기 */
+	@RequestMapping("admin_author_info")
+	public ModelAndView admin_author_cont(HttpSession session, HttpServletRequest request, HttpServletResponse response, int no) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		session=request.getSession();
+		PrintWriter out=response.getWriter();
+		
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
+		
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인 하세요.');");
+			out.println("location='login';");
+			out.println("</script>");
+		}else {
+			int page=1;
+			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
+			
+			AuthorVO a=this.authorService.req_info(no);
+			
+			String aut_intro=a.getAut_intro();
+			String aut_plan=a.getAut_plan();
+			
+			if(a.getAut_intro() != null) {
+				aut_intro=a.getAut_intro().replace("\n", "<br/>");
+			}
+			if(a.getAut_plan() != null) {
+				aut_plan=a.getAut_plan().replace("\n", "<br/>");
+			}
+			
+			ModelAndView mv=new ModelAndView();
+			mv.setViewName("jsp/admin_author_info");
+			
+			mv.addObject("a",a);
+			mv.addObject("page",page);
+			mv.addObject("aut_intro",aut_intro);
+			mv.addObject("aut_plan",aut_plan);
+			
+			return mv;
+		}
+		
+		return null;
+	} // admin_author_info()
 }

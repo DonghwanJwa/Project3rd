@@ -46,7 +46,10 @@
   <result column="mem_portfolio" property="mem_portfolio" />
  </association>
  </resultMap>
-
+	<select id="acheck" resultType="int">
+		SELECT COUNT(aut_no) FROM author where mem_no=#{no} and aut_state = 0
+	</select>
+	
 	<insert id="sendAuthor">
 		INSERT INTO author (aut_no, aut_intro, aut_plan, aut_url1, aut_url2, aut_url3, aut_file1, aut_file2, aut_file3, aut_date, mem_no)
 		VALUES (aut_no_seq.nextval, #{aut_intro}, #{aut_plan}, #{aut_url1}, #{aut_url2}, #{aut_url3}, #{aut_file1}, #{aut_file2}, #{aut_file3}, sysdate, #{mem_no})
@@ -54,9 +57,10 @@
 	
 	<select id="req_count" resultType="int">
 		SELECT COUNT(aut_no) 
-		FROM author aut, member m
+		FROM (SELECT rowNum AS rNum,aut_no,aut_intro,aut_plan,aut_url1,aut_url2,aut_url3,aut_file1,aut_file2,aut_file3,aut_date,mem_no,aut_state,aut_update FROM 
+		(SELECT * FROM author)) aut, member m
 		<where>
-			aut.mem_no=m.mem_no
+		aut.mem_no=m.mem_no 
 			<if test="search_field1 == 'all'"></if>
 			
 			<if test="search_field1 == 'waiting'">
@@ -82,36 +86,40 @@
 	</select>
 	
 	<select id="req_list" resultMap="authorMap">
-		SELECT *
-		FROM (SELECT rowNum AS rNum,aut_no,aut_intro,aut_plan,aut_url1,aut_url2,aut_url3,aut_file1,aut_file2,aut_file3,aut_date,mem_no,aut_state,aut_update
-			  FROM (SELECT * FROM author)) aut, member m
+		SELECT * FROM 
+		(SELECT rowNum AS rNum,aut_no,aut_intro,aut_plan,aut_url1,aut_url2,aut_url3,aut_file1,aut_file2,aut_file3,aut_date,mem_no,aut_state,aut_update FROM 
+		author) aut, member m
+		
 		<where>
-			aut.mem_no=m.mem_no
+		aut.mem_no=m.mem_no
+		
+		<choose>
+			<when test="search_field1 == 'all'"></when>
 			
-			<if test="search_field1 == 'all'"></if>
-			
-			<if test="search_field1 == 'waiting'">
-				and aut.aut_state=0
-			</if>
-			<if test="search_field1 == 'accept'">
+			<when test="search_field1 == 'waiting'">
+			</when>
+			<when test="search_field1 == 'accept'">
 				and aut.aut_state=1
-			</if>
-			<if test="search_field1 == 'reject'">
+			</when>
+			<when test="search_field1 == 'reject'">
 				and aut.aut_state=2
-			</if>
+			</when>
 			
-			<if test="search_field2 == 'mem_id'">
+			<when test="search_field2 == 'mem_id'">
 				and m.mem_id like #{search_name}
-			</if>
-			<if test="search_field2 == 'mem_nickname'">
+			</when>
+			<when test="search_field2 == 'mem_nickname'">
 				and m.mem_nickname like #{search_name}
-			</if>
-			<if test="search_field2 == 'mem_name'">
+			</when>
+			<when test="search_field2 == 'mem_name'">
 				and m.mem_name like #{search_name}
-			</if>
-			
-			and aut.rNum &gt;= #{startrow} and aut.rNum &lt;= #{endrow}
+			</when>
+		</choose> 
 		</where>
-		order by aut.aut_date desc
+		and aut.rNum &gt;= #{startrow} and aut.rNum &lt;= #{endrow} order by aut.aut_date desc
+	</select>
+	
+	<select id="req_info" resultMap="authorMap">
+		SELECT * FROM author aut, member m where aut.aut_no=#{no} and aut.mem_no=m.mem_no
 	</select>
 </mapper>

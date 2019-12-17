@@ -13,6 +13,11 @@ public class AuthorDAOImpl implements AuthorDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Override
+	public int authorcheck(int no) {
+		return this.sqlSession.selectOne("acheck",no);
+	}
 
 	@Override
 	public void sendAuthor(AuthorVO a) {
@@ -28,5 +33,11 @@ public class AuthorDAOImpl implements AuthorDAO {
 	public List<AuthorVO> req_list(AuthorVO a) {
 		return this.sqlSession.selectList("req_list",a);
 	}
+
+	@Override
+	public AuthorVO req_info(int no) {
+		return this.sqlSession.selectOne("req_info",no);
+	}
+
 	
 }

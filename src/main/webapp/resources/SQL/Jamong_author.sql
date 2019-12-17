@@ -14,6 +14,7 @@ mem_no NUMBER(38),  			   -- 회원번호 참조컬럼
 aut_state NUMBER(38) DEFAULT 0,    -- 처리결과
 aut_update DATE                    -- 처리날짜
 );
+DROP TABLE author;
 
 -- 시퀀스 생성
 CREATE SEQUENCE aut_no_seq
@@ -21,6 +22,8 @@ START WITH 0
 INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
+
+select aut_no_seq.nextval from dual;
 
 -- 참조키 설정
 ALTER TABLE author
@@ -35,5 +38,13 @@ ALTER TABLE author ADD aut_update DATE;
 DROP SEQUENCE aut_no_seq;
 
 DELETE FROM author WHERE aut_no=2;
+
+SELECT * FROM author aut, member m where aut.mem_no=m.mem_no order by aut.aut_date desc;
+
+SELECT * FROM (SELECT rowNum AS rNum,aut_no,aut_intro,aut_plan,aut_url1,aut_url2,aut_url3,aut_file1,aut_file2,aut_file3,aut_date,mem_no,aut_state,aut_update
+         FROM (SELECT * FROM author)) aut Inner join member m on aut.mem_no=m.mem_no and m.mem_id like '%tkd%' and aut.rNum >= 1 and aut.rNum <= 9 order by aut.aut_date desc;
+
+SELECT COUNT(aut_no) FROM author aut, member m where aut.mem_no=m.mem_no and aut.mem_no=16;
+SELECT COUNT(aut_no) FROM author where mem_no=18 and aut_state=0;
 
 commit;
