@@ -215,8 +215,12 @@ public class InquireController {
 			m.addObject("i",i);
 			
 			
+			
+			
 			return m;
 	}
 		return null;
+	
+	
 	}
 }

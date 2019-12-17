@@ -3,7 +3,6 @@
 <%@ include file="../include/admin_header.jsp" %>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/admin_inquire.css"/>
 <script src="/jamong.com/resources/js/admin_inquire.js"></script>
-
  <h3 class=admin_inq_title>문의하기</h3>
 <form action="admin_inquire">
  <div class=admin_inq_main>
