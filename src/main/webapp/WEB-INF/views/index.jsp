@@ -128,16 +128,7 @@ $(document).keydown(function(e){
       </div>
       <div id="head-page-notice-list-frame">
        <ul id="head-page-notice-list">
-       
-		<c:forEach var="i" begin="1" end="5" step="1">			
-	    <li class="head-page-notice-item">
-	     <a>
-	      <span class="head-page-notice-title">공지사항 예시입니다</span>
-	      <span class="head-page-notice-date">2019.12.15</span>
-	     </a>
-	    </li>
-		</c:forEach>
-		
+			<%-- Notice 내용 들어오는곳 : getJSON 처리 --%>
 	   </ul>
 	  </div>
      </div>
@@ -236,7 +227,7 @@ $(document).keydown(function(e){
           <span class="head-profile-service-bar-right"></span>
          </a>
         </li>
-        <li id="head-profile-service-hr">―――――――</li>
+        <li id="head-profile-service-hr"><span class="head-profile-service-bar"></span></li>
         <li id="head-profile-service-rec-writing">
          <a href="/jamong.com/new_posts">
           <span class="head-profile-service-bar-left"></span>

@@ -4,10 +4,10 @@
 /* main_notice (공지사항) */
 
 body {margin:0;	padding:0;}
-a:link{text-decoration:none; color:gray;}
+a:link{text-decoration:none;}
 a:active{text-decoration:none;}
 a:visited{text-decoration:none;}
-a:hover{text-decoration:underline; color:#F57C68;}
+a:hover{text-decoration:underline;}
 
 .clear {
 	clear:both;

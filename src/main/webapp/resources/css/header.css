@@ -342,6 +342,7 @@ body{
 	height:36px;
 	line-height:36px;
 	color:#fff;
+	box-sizing:unset;
 }
 .head-page-notice-date{
 	text-align:right;
@@ -350,6 +351,7 @@ body{
 	line-height:36px;
 	padding-right:20px;
 	color:#fff;
+	box-sizing:unset;
 }
 
 

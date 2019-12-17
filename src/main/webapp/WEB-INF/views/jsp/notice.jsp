@@ -17,8 +17,9 @@
 		<table id="main_notice_table">
 			<tr id="main_notice_table_title">
 				<th class="main_page_notice_title" width="40px">번호</th>
-				<th class="main_page_notice_title" width="310px">제목</th>
-				<th class="main_page_notice_title" width="95px">조회수</th>
+				<th class="main_page_notice_title" width="250px">제목</th>
+				<th class="main_page_notice_title" width="80px">작성자</th>
+				<th class="main_page_notice_title" width="75px">조회수</th>
 				<th class="main_page_notice_title" width="135px">작성일자</th>
 			</tr>
 			
@@ -32,7 +33,9 @@
 					<td class="list_underline notice_list_title">
 						${n.noti_title}
 					</td>
-					
+					<td align="center" class="list_underline">
+						자몽 운영팀
+					</td>
 					<td align="center" class="list_underline">
 						${n.noti_hit}
 					</td>	

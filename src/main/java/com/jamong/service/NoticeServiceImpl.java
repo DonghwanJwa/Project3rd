@@ -43,4 +43,17 @@ public class NoticeServiceImpl implements NoticeService {
 		this.noticeDao.noticeDel(no);
 	}
 
+	@Override
+	public List<NoticeVO> headerNotice() {
+		List<NoticeVO> nlist = this.noticeDao.headerNotice();
+		/*날짜 년월일만 나오게 자름*/
+		for(int i=0;i<nlist.size();i++) {
+			nlist.get(i).setNoti_date(nlist.get(i).getNoti_date().substring(0,10));
+		}
+		
+		return nlist;
+	}
+	
+	
+
 }

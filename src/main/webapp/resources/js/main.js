@@ -1,6 +1,7 @@
 /*
  * index.jsp
  */
+getHeaderNotice();//js페이지가 로딩괴면 메뉴에 공지사항을 불러옴(중단에 메서드 있음)
 getCategory();//js페이지가 로딩되면 메뉴에 카테고리를 불러옴(중단에 메서드 있음)
 
 function scrollmove(whereScroll,howMove){
@@ -59,6 +60,23 @@ function hotscroll(where,number){
 	$('.best-scroll').children().removeClass();
 	$('.head-item-scroll-link'+number).children('span').addClass("head-checked");
 	
+}
+
+function getHeaderNotice(){
+	  $.getJSON("/jamong.com/header_notice/",function(data){
+		  var str="";
+		  $(data).each(function(){//each는 jQuery에서 반복함수
+			  str+='<li class="head-page-notice-item">'
+			  +'<a>'
+			  +'<span class="head-page-notice-title">'+this.noti_title+'</span>'
+			  +'<span class="head-page-notice-date">'+this.noti_date+'</span>'
+			  +'</a>'
+			  +'</li>'
+		  });
+		  if ($('#head-page-notice-list').length > 0 ) {	//header가 존재하면
+			  $('#head-page-notice-list').html(str);	//ul내부에 each내용을 넣어준다
+		  }
+	  });
 }
 
 function getCategory(){
