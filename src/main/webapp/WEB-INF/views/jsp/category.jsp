@@ -20,9 +20,15 @@
        		<div id=cat_write_count1>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;25개</div>
        		<div id=cat_sub_count>구독자 : 121만</div>
       		 <div class=cat_writer_keyword_div>
+      			<c:if test="${!empty cat.mem_fav1}">
       		 	<button class="cat_writer_keyword" ><strong>${cat.mem_fav1}</strong></button>
+      		  	</c:if>
+      		    <c:if test="${!empty cat.mem_fav2}">
       		 	<button class="cat_writer_keyword" ><strong>${cat.mem_fav2}</strong></button>
+      		 	</c:if>
+      		 	 <c:if test="${!empty cat.mem_fav3}">
       		 	<button class="cat_writer_keyword" ><strong>${cat.mem_fav3}</strong></button>
+      		 	</c:if>
       		 </div>
       	</div>
        </a>
@@ -37,15 +43,32 @@
    
     <!-- 글 내용부분 -->
     <c:forEach var="blist" items="${blist}">
+	 <c:if test="${!empty blist.bo_thumbnail}">
 	<div class=cat_writing_block>
 	 <div class=cat_writing>
 	  <div class="cat_writing_img-div">
 	   <img class="cat_writing_img" src="${blist.bo_thumbnail}" alt="글" />
 	  </div>
-	 <a class=cat_write_top href="/jamong.com/read">
+	 <a class=cat_write_top href="/jamong.com/@${blist.memberVO.mem_id}/${blist.bo_no}">
 	  <div class=cat_writing_top>
-	  	<p class=cat_write_title><strong>${blist.bo_title}</strong></p>
-	  	<span class=cat_story_cont>${blist.bo_cont}</span>
+	  	<p class=cat_write_title>
+	  	<strong>
+	  	<c:if test="${fn:length(b.bo_title)>20}">
+          ${fn:substring(blist.bo_title,0,20)}
+         </c:if>
+         <c:if test="${fn:length(b.bo_title)<20}">
+          ${blist.bo_title}
+         </c:if>
+         </strong>
+         </p>
+	  	<span class=cat_story_cont>
+		 <c:if test="${fn:length(blist.bo_cont)>100}">
+          ${fn:substring(blist.bo_cont,0,100)}
+         </c:if>
+         <c:if test="${fn:length(blist.bo_cont)<100}">
+          ${blist.bo_cont}
+         </c:if>
+		</span>
 	  	<span class=cat_story_writer><i>by</i> ${blist.memberVO.mem_nickname}</span>
 	  </div>
 	</a>
@@ -53,15 +76,64 @@
 	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
 	   <b>${blist.memberVO.mem_fav1}</b>
 	   </button>
-	   <button class=cat_writing_button2 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
 	   <b>${blist.memberVO.mem_fav2}</b>	   
 	   </button>
-	   <button class=cat_writing_button3 onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
 	   <b>${blist.memberVO.mem_fav3}</b>
 	   </button>
 	  </div>
 	 </div>
 	</div>
+	  </c:if>
+	 <c:if test="${empty blist.bo_thumbnail}">
+	<div class=cat_writing_block>
+	 <div class=cat_writing style="border-bottom: 1px solid #DDD;">
+	  <div class="cat_writing_img-div">
+	  </div>
+	 <a class=cat_write_top href="/jamong.com/@${blist.memberVO.mem_id}/${blist.bo_no}">
+	  <div class=cat_writing_top>
+	  	<p class=cat_write_title>
+	  	<strong style="color:#333">
+	  	<c:if test="${fn:length(blist.bo_title)>20}">
+          ${fn:substring(blist.bo_title,0,20)}
+         </c:if>
+         <c:if test="${fn:length(blist.bo_title)<20}">
+          ${blist.bo_title}
+         </c:if>
+         </strong>
+         </p>
+	  	<span class=cat_story_cont style="color:#333">
+		 <c:if test="${fn:length(blist.bo_cont)>100}">
+          ${fn:substring(blist.bo_cont,0,100)}
+         </c:if>
+         <c:if test="${fn:length(blist.bo_cont)<100}">
+          ${blist.bo_cont}
+         </c:if>
+		</span>
+	  	<span class=cat_story_writer style="color:#333"><i>by</i> ${blist.memberVO.mem_nickname}</span>
+	  </div>
+	</a>
+	  <div class=cat_writing_bottom>
+	   <c:if test="${!empty blist.memberVO.mem_fav1}">
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <b style="color:#333">${blist.memberVO.mem_fav1}</b>
+	   </button>
+	   </c:if>
+	   <c:if test="${!empty blist.memberVO.mem_fav2}">
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <b style="color:#333">${blist.memberVO.mem_fav2}</b>	   
+	   </button>
+	   </c:if>
+	   <c:if test="${!empty blist.memberVO.mem_fav3}">
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <b style="color:#333">${blist.memberVO.mem_fav3}</b>
+	   </button>
+	   </c:if>
+	  </div>
+	 </div>
+	</div>
+	  </c:if>
 	</c:forEach>
 	
 	<!-- 책부분 시작 -->

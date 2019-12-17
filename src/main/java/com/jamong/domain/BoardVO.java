@@ -11,6 +11,8 @@ public class BoardVO {
 	private String bo_date;
 	private String bo_editdate;
 	private String bo_thumbnail;
+	private String bo_color;
+	private int bo_titlespace;
 	private int bo_lock;
 	private int bo_type;
 	private int bo_like;
@@ -43,6 +45,8 @@ public class BoardVO {
 	public void setFind_field(String find_field)   	 {		this.find_field = find_field;		}
 	public void setFind_name(String find_name) 	   	 {		this.find_name = find_name;			}
 	public void setMemberVO(MemberVO memberVO) 		 {		this.memberVO = memberVO;			}
+	public void setBo_color(String bo_color) 		 {		this.bo_color = bo_color;			}
+	public void setBo_titlespace(int bo_titlespace)  {		this.bo_titlespace = bo_titlespace;	}
 	
 	// Getter()
 	public int getBo_no() 		   	{		return bo_no;			}
@@ -63,5 +67,7 @@ public class BoardVO {
 	public String getFind_name()   	{		return find_name;		}
 	public String getFind_field()  	{		return find_field;		}
 	public MemberVO getMemberVO() 	{		return memberVO;		}
+	public String getBo_color() 	{		return bo_color;		}
+	public int getBo_titlespace() 	{		return bo_titlespace;	}
 		
 }
