@@ -9,7 +9,8 @@ inq_file1 VARCHAR2(200),		  -- 파일
 inq_file2 VARCHAR2(200),
 inq_file3 VARCHAR2(200),
 inq_file4 VARCHAR2(200),
-inq_state NUMBER(38) default 0,	  -- 처리여부 처리시 1 처리못했을땐 0
+inq_state NUMBER(38) default 0,
+-- 처리여부 처리시 1 처리못했을땐 0
 inq_reply VARCHAR2(4000),		  -- 문의하기 답변 처리 내용
 inq_sender VARCHAR2(100),		  -- 답변한 관리자명
 inq_replydate DATE,				  -- 답변날짜
@@ -35,3 +36,35 @@ REFERENCES member(mem_no)
 SELECT * FROM inquire ORDER BY inq_no DESC;
 
 SELECT inq_no_seq.nextval FROM DUAL;
+
+select * from inquire where inq_no=2;
+
+SELECT * FROM inquire i
+LEFT JOIN member m
+ON i.mem_no=m.mem_no
+WHERE inq_no=20;
+
+SELECT inq.inq_no,
+			   inq.inq_state,
+			   inq.inq_date,
+			   inq.inq_item1,
+			   inq.inq_phone,
+			   inq.inq_email,
+			   inq.inq_cont,
+			   inq.inq_file1,
+			   inq.inq_file2,
+			   inq.inq_file3,
+			   inq.inq_file4,
+			   inq.mem_no,
+			   m.mem_no,
+			   m.mem_id,
+			   m.mem_name,
+			   m.mem_gender,
+			   m.mem_birth1,
+			   m.mem_birth2,
+			   m.mem_birth3,
+			   m.mem_date
+		FROM inquire inq
+		LEFT JOIN member m
+		ON inq.mem_no = m.mem_no
+		WHERE inq.inq_no = 20;

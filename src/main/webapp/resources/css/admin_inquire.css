@@ -30,4 +30,9 @@
 #search_name {
 	margin: 0 7px;
 }
-
+.inq_adm_tr{
+	cursor:pointer;
+}
+.inq_adm_tr:hover{
+	background-color:aliceblue;
+}
