@@ -19,24 +19,6 @@ public class InquireVO {
 	private String inq_sender;
 	private String inq_replydate;
 	
-	public String getInq_reply() {
-		return inq_reply;
-	}
-	public String getInq_sender() {
-		return inq_sender;
-	}
-	public String getInq_replydate() {
-		return inq_replydate;
-	}
-	public void setInq_reply(String inq_reply) {
-		this.inq_reply = inq_reply;
-	}
-	public void setInq_sender(String inq_sender) {
-		this.inq_sender = inq_sender;
-	}
-	public void setInq_replydate(String inq_replydate) {
-		this.inq_replydate = inq_replydate;
-	}
 	/* 페이징 변수 */
 	private int startrow;
 	private int endrow;
@@ -65,6 +47,9 @@ public class InquireVO {
 	public void setSearch_name(String search_name) {this.search_name = search_name;}
 	public void setSearch_field(String search_field) {this.search_field = search_field;}
 	public void setMemberVO(MemberVO memberVO) {	this.memberVO = memberVO;}
+	public void setInq_reply(String inq_reply) {this.inq_reply = inq_reply;}
+	public void setInq_sender(String inq_sender) {this.inq_sender = inq_sender;	}
+	public void setInq_replydate(String inq_replydate) {this.inq_replydate = inq_replydate;	}
 	
 	// Getter()
 	public int getInq_no() 			 {		return inq_no;		}
@@ -84,5 +69,8 @@ public class InquireVO {
 	public String getSearch_field() {		return search_field;}
 	public int getInq_state() 		{		return inq_state;	}
 	public MemberVO getMemberVO() 	{		return memberVO;	}
+	public String getInq_reply() {return inq_reply;}
+	public String getInq_sender() {return inq_sender;}
+	public String getInq_replydate() {return inq_replydate;}
 	
 }
