@@ -50,7 +50,7 @@ h1, h2, h3, h4{
 	font-size:30pt;
 	cursor:text;
 	color:#CCC;
-	font-family: '애플 SD 산돌고딕 Neo','Apple SD Gothic Neo', 'Helvetica Neue','Helvetica','나눔바른고딕', 'NanumBarunGothic','나눔바른고딕OTF','NanumBarunGothicOTF', 'Noto Sans','Noto+Sans','notokr-demilight','나눔고딕','NanumGothic', '맑은 고딕','Malgun Gothic','sans-serif';
+	font-family: 'NanumMyeongjo','serif';
 	opacity:1;
 }
 .write_sub_title:empty::before{
@@ -58,11 +58,12 @@ h1, h2, h3, h4{
 	size:12pt;
 	cursor:text;
 	color:#ccc;
-	font-family: '애플 SD 산돌고딕 Neo','Apple SD Gothic Neo', 'Helvetica Neue','Helvetica','나눔바른고딕', 'NanumBarunGothic','나눔바른고딕OTF','NanumBarunGothicOTF', 'Noto Sans','Noto+Sans','notokr-demilight','나눔고딕','NanumGothic', '맑은 고딕','Malgun Gothic','sans-serif';
+	font-family: 'NanumMyeongjo','serif';
 	opacity:1;	
 }
 .write_main_title{
-	font-size:30pt;	
+	font-family:'NanumMyeongjo','serif';
+	font-size:30pt;
 	display:inline-block;
 	min-width:100px;
 	max-width:700px;
@@ -71,6 +72,7 @@ h1, h2, h3, h4{
 	word-wrap:break-word;
 }
 .write_sub_title{
+	font-family:'NanumMyeongjo','serif';
 	padding-top:10px;
 	display:inline-block;
 	min-width:100px;
@@ -95,7 +97,7 @@ h1[Attributes Style] {
 	width:41px;
 	top:50px;
 	left:50%;
-	z-index:5;_
+	z-index:5;
 	transform:translateX(450px);
 	-webkit-transform:translateX(450px);
 	transition: padding 200ms;
@@ -403,6 +405,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 #write_cont{
 	background-image:url(../img/background_img/login_page2.png);
 	background-repeat:x-repeat;
+	height:727px;
 }
 #write_wrap_bg{
 	width:1100px;

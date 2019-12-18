@@ -43,8 +43,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public List<BoardVO> getUserBoardCatArticle(String cat_name) {
+		return this.boardDao.getUserBoardCatArticle(cat_name);
+	}
+
+	@Override
 	public List<BoardVO> categoryArticle(String cat_name) {
 		return this.boardDao.categoryArticle(cat_name);
 	}
+
+	@Override
+	public List<BoardVO> getUserBoardContList(int mem_no) {
+		return this.boardDao.getUserBoardContList(mem_no);
+	}
+
 
 }
