@@ -11,40 +11,59 @@
 <title></title>
 </head>
 <body >
- <div class="wrap-loading" style="display:none">
-      <div>
+<form  method="post" action="find_pass_ok">
+
+<div id="find_id_main_wrap">
+<div class="wrap-loading" style="display:none">
+     <div>
        <img src="/jamong.com/resources/img/loading1.gif" />
-      </div>
-	 </div>
-		<div id="find_id_main_wrap">
-			<div id="find_id_main_div">
+     </div>
+</div>
+	<div id="find_id_main_div">
 				<div>
 					<a href="./"><img id="find_id_img_logo"src="/jamong.com/resources/img/logo2.png" /></a>
 				</div>
 				<div id="find_id_btn_box">
-				<a href="#" class="find_id_link1 active" >아이디 찾기</a><a href="#" class="find_id_link2">비밀번호 찾기</a>
+				<a class="find_id_link1 active" >아이디 찾기</a><a class="find_pass_link2">비밀번호 찾기</a>
 				</div>
 
 						<div id="find_id_sub_box_id">
-						<input class="find_id_text" id="find_id_name" name="mem_name" placeholder="이름" tabindex="1"/><div class="find_id_error" id="find_id_error_id"></div>
-						<input class="find_id_text1" id="find_id_email" name="email_id" placeholder="이메일" tabindex="2"/> @
-						<input class="find_id_text1" id="find_id_domain"name="email_domain" placeholder="도메인" tabindex="3"/>
+						<input class="find_id_text" id="find_id_name" name="mem_name" placeholder="이름" tabindex="1"/>
+						<div class="find_id_error" id="find_id_error_id"></div>
+						<input class="find_id_text_email" id="find_id_email" name="email_id" placeholder="이메일" tabindex="2"/> @
+						<input class="find_id_text_email" id="find_id_domain"name="email_domain" placeholder="도메인" tabindex="3"/>
 						<div class="find_id_error" id="find_id_error_pass"></div>
 						<button type="button" id="find_id_btn" >아이디 찾기</button>
+						</div>
+						
 						
 						<div id="find_id_sub_box_pass">
-						<input class="find_id_text" name="namew" placeholder="이름"/>
-						<div class="find_id_error" id="find_id_error_id"></div>
-						<input class="find_id_text1" id="find_id_email" name="email_id" placeholder="이메일" tabindex="2"/> @
-						<input class="find_id_text1" id="find_id_domain"name="email_domain" placeholder="도메인" tabindex="3"/>
-						<div class="find_id_error" id="find_id_error_pass"></div>
-						<button type="button" id="find_id_btn" >아이디 찾기</button>
+						<input class="find_id_pass_text" id="find_id_pass_id" name="mem_id" placeholder="아이디"/>
+						<div class="find_id_error" id="find_pass_error_id"></div>
+						<input class="find_id_pass_text" id="find_id_pass_name" name="mem_name" placeholder="이름">
+						<div class="find_id_error" id="find_pass_error_name"></div>
+						<input class="find_id_pass_email1" id="find_id_pass_email" name="email_id" placeholder="이메일" /> @
+						<input class="find_id_pass_email2" id="find_id_pass_domain"name="email_domain" placeholder="도메인"/>
+						<button type="button" id="find_id_pass_email_Certified_btn" >인증</button>
+						<div class="find_id_error" id="find_pass_error_email"></div>
+						<div id="hidde_box">
+						<input class="find_id_pass_Certified_text" id="find_id_pass_Certified" placeholder="인증번호">
+						<button type="button" id="find_id_pass_email_Certified_next_btn" >확인</button>
+						<div class="find_id_error" id="find_pass_error_Certified"></div>
+						<input type="password" class="find_id_pass_text" id="find_id_pass_pass" name="mem_pwd" placeholder="비밀번호 수정" />
+						<div class="find_id_error" id="find_pass_error_pass"></div>
+						<input type="password" class="find_id_pass_text" id="find_id_pass_pass_check" placeholder="비밀번호  수정 확인" />
+						<div class="find_id_error" id="find_pass_error_pass_check"></div>
+						</div>
+					
+						<input type="submit" value="비밀번호 찾기" > <%--id="find_id_btn"--%>
+						</div>
 						
 						
-						<!-- 아이디 찾기 페이지에서 비번찾기도 같이 하는 중  -->
-				</div>
-			</div>
-		</div>
+						<!-- 비밀번호 수정도  -->
+	</div>
+</div>  
+</form>
 </body>
 </html>
 
