@@ -3,7 +3,20 @@
  */
 /* 댓글 목록 숨김/나타내기 전환 */
 
-getSympathyState();		
+getSympathyState();
+
+function replyAdd(){
+	var para = document.location.href.split("/");
+	var reply_cont = $(".textarea").text();
+	$.ajax({
+		type:"POST",
+		data:{"reply_cont":reply_cont},
+		url:"/jamong.com/reply/"+para[5],
+		success:function(data){
+			
+		}
+	});
+}
 
 function showHide() {
 		if($('.hide_comment').css("display") == "none") {
@@ -31,7 +44,7 @@ function getSympathyState(){
 		url:"/jamong.com/sympathy_state/"+para[5], 
 		success: function (data) {
 			if(data==1){
-				$('.head-menu-heart-img').css('background-color','rgb(245,124,104)');;				
+				$('.head-menu-heart-img').css('background-color','rgb(245,124,104)');		
 			}
 		},
 		error:function(){
