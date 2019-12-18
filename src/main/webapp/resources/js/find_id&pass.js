@@ -50,4 +50,107 @@ $(function(){
 			}
 		})
 	});
+	
+	//비밀번호 찾기 인증번호 발송
+	$(document).on("click", "#find_id_pass_email_Certified_btn", function(){
+		var pass_email = $.trim($('#find_id_pass_email').val());	//이메일값
+		var pass_domain = $.trim($('#find_id_pass_domain').val());	//도메인값
+		var pass_name = $.trim($('#find_id_pass_name').val());
+		var pass_id = $.trim($('#find_id_pass_id').val());
+		
+		$('.find_id_error').text('');
+		
+		if (pass_id=="") {
+			$('#find_pass_error_id').text('아이디를 입력해주세요!');
+			return false;
+		}
+		if (pass_name=="") {
+			$('#find_pass_error_name').text('이름을 입력해주세요!');
+			return false;
+		}
+		if (pass_email=="") {
+			$('#find_pass_error_email').text('이메일을 입력해주세요!');
+			return false;
+		}
+		if (pass_domain=="") {
+			$('#find_pass_error_email').text('도메인을 입력해주세요!');
+			return false;
+		}
+		
+		//이메일 메일 발송 비동기 처리 
+		$.ajax({
+			type:"POST",
+			url : "find_pass_emailCert",
+			data : {"email": pass_email,"domain":pass_domain,"name":pass_name,"id":pass_id},
+			success : function(data){
+				alert("입력하신 이메일로 인증번호가 발송되었습니다.");
+				//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
+				//readonly false면 값변경이 가능
+				//disabled true가 비활성화 false가 활성화
+				$('#find_id_pass_email_Certified_btn').attr("disabled",true);//버튼을 못쓰게 막음
+				$('#hidde_box').css("display","block");
+				$('#find_id_pass_Certified').val('');
+				$('#find_id_pass_Certified').attr('readonly',false);//readonly false면 쓰기 가능 true면 글을 못씀
+				$('#find_id_pass_email_Certified_next_btn').attr('disabled',false);
+			},
+			beforeSend:function(){
+				//(이미지 보여주기 처리)
+				$('.wrap-loading').show();
+			},
+			complete:function(){
+				//(이미지 감추기 처리)
+				$('.wrap-loading').hide();
+				//비번찾기로 넘어가도 된다
+			},
+			error: function(data){
+				alert("입력하신 회원정보가 일치하지 않습니다.");
+				return false;
+			}
+		})
+	});
+	
+	//이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
+	$(document).on("click", "#find_id_pass_email_Certified_next_btn", function(){
+		var authCode = $('#find_id_pass_Certified').val();
+		$.ajax({
+			type:"post",
+			url:"find_pass_emailCert_ok",
+			data:{"authCode":authCode},
+			success:function(data){
+				if(data=="complete"){
+					alert("인증이 완료되었습니다.");
+					$('#find_id_pass_email_Certified_next_btn').attr('disabled', true);//비활성화
+					$('#find_id_pass_Certified').attr('readonly',true);
+					$('#find_id_pass_email_Certified_btn').attr('disabled',false);
+					sessionStorage.removeItem('authCode');
+				}else if(data == "false"){
+					alert("인증번호를 잘못 입력하셨습니다.")
+				}
+			},
+			beforeSend:function(){
+		        //(이미지 보여주기 처리)
+		        $('.wrap-loading').show();
+			},
+			complete:function(){
+			    //(이미지 감추기 처리)
+			    $('.wrap-loading').hide();
+			},
+			error:function(data){
+				alert("에러가 발생했습니다.");
+			}
+		});
+	});
+
+	$(document).on("click",".find_id_link1",function(){
+		if($("#find_id_sub_box_id").css("display","none")){
+			$("#find_id_sub_box_pass").css("display","none");
+			$("#find_id_sub_box_id").css("display","block");
+		}
+	});
+	$(document).on("click",".find_pass_link2",function(){
+		if($("#find_id_sub_box_pass").css("display","none")){
+			$("#find_id_sub_box_id").css("display","none");
+			$("#find_id_sub_box_pass").css("display","block");
+		}
+	});
 });

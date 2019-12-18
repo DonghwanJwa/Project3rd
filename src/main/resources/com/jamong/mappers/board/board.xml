@@ -17,7 +17,7 @@
   <result column="bo_type" property="bo_type" />
   <result column="bo_like" property="bo_like" />
   <result column="book_order" property="book_order" />
-  <result column="cat_no" property="cat_no" />
+  <result column="cat_name" property="cat_name" />
   <result column="mem_no" property="mem_no" />
   <result column="book_no" property="book_no" />
   <result column="bo_titlespace" property="bo_titlespace" />
@@ -60,6 +60,21 @@
   FROM board b, member m
   WHERE b.mem_no=m.mem_no
   AND bo_no=#{bo_no}
+ </select>
+ 
+ <select id="bo_contlist" resultType="b">
+ <![CDATA[
+  SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM) WHERE mem_no=#{mem_no} AND rowNum <= 3
+ ]]>
+ </select>
+ 
+ <select id="bo_catcontlist" resultMap="boardMap">
+  <![CDATA[
+  SELECT *
+  FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM) b,member m
+  WHERE b.mem_no=m.mem_no
+  AND b.cat_name=#{cat_name} AND rowNum <= 3
+  ]]>
  </select>
  
  <update id="bo_hit">
@@ -121,6 +136,22 @@ SELECT m.mem_no,
   AND rowNum <= 10
   ]]>
  </select>
+ 
+ <!-- 공감 증가 -->
+ <update id="sym_up">
+  UPDATE board SET bo_like=bo_like+1 WHERE bo_no=#{bo_no}
+ </update>
+ 
+ <!-- 공감 감소 -->
+ <update id="sym_down">
+  UPDATE board SET bo_like=bo_like-1 WHERE bo_no=#{bo_no}  
+ </update>
+ 
+ <!-- 공감 개수 가져오기 -->
+ <select id="sym_count" resultType="int">
+  SELECT bo_like FROM board WHERE bo_no=#{bo_no}
+ </select>
+ 
  
  <select id="infinitiScrollDown" resultMap="boardMap">
  <![CDATA[

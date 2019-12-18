@@ -39,6 +39,10 @@ body{
 	width: auto;
 }
 
+#head-menu_search{
+	margin-top:5px;
+}
+
 #head-menu_search-button{
 	border:0;
 	background-color:transparent;
@@ -67,6 +71,10 @@ body{
 	-webkit-transition:width 0.33s linear, opacity 0.33s linear;
 }
 
+#head-menu_open_button{
+	margin-top:5px;
+}
+
 #head-menu-button{
 	border:0;
 	background-color:transparent;
@@ -84,8 +92,67 @@ body{
 }
 
 #head-menu-empty{
-	display:block;
+	display:flex;
 	width:87%;
+	height: 60px;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+#head-menu-readpage{
+	display:flex;
+	margin-top: 2px;
+}
+
+#head-menu-sym{
+	height:30px;
+	margin-right:20px;
+}
+
+.head-menu-sym-btn{
+	display:flex;
+	border: none;
+    outline: none;
+    height: 30px;
+    background-color: rgb(255,255,255);
+    padding: 0;
+    align-items: center;
+}
+
+.head-menu-heart-img{
+	cursor: pointer;
+    width: 23px;
+    height: 23px;
+    background-color: rgb(255,255,255);
+}
+
+.head-menu-heart-rate{
+	font-size: 15px;
+	height:30px;
+	line-height: 30px;
+	font-weight: bold;
+	margin-left:10px;
+}
+
+#head-menu-hit{
+	height:30px;
+	display:flex;
+	align-items: center;
+	margin-right:20px;
+}
+
+.head-menu-hit-img{
+	width: 28px;
+    height: 28px;
+    margin-bottom: 1px;
+}
+
+.head-menu-hit-rate{
+	font-size: 15px;
+	height:30px;
+	line-height: 30px;
+	font-weight: bold;
+	margin-left:10px;
 }
 
 #head-menu_search-empty{
@@ -211,6 +278,10 @@ body{
 	transform: translate(-50%);
 	padding-top:40px;
 	bottom:10px;
+	/*summernote와 충돌을 막기위한 조치*/
+	-webkit-box-sizing: unset !important;
+    -moz-box-sizing: unset !important;
+    box-sizing: unset !important;
 }
 
 .head-page-main-title-wrap{
@@ -454,7 +525,7 @@ body{
 
 /*우측사이드창 - profile*/
 #head-profile-menu{
-	width: 180px;
+	width: 200px;
 	height: 40px;
 	display:flex;
 	justify-content: space-between;

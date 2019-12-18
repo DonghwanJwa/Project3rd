@@ -16,6 +16,14 @@ public class MemberDAOImpl implements MemberDAO{
 	private SqlSession sqlSession;
 	
 	@Override
+	public void pass_update(MemberVO vo) {
+		this.sqlSession.update("mem_pwd_update", vo);
+	}
+	@Override
+	public MemberVO memberSelect_pwd(MemberVO vo) {
+		return this.sqlSession.selectOne("mem_select_pwd", vo);
+	}
+	@Override
 	public MemberVO memberSelect_id(MemberVO vo) {
 		return this.sqlSession.selectOne("mem_select_id", vo);
 	}
