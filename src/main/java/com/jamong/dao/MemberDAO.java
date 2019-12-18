@@ -21,6 +21,7 @@ public interface MemberDAO {
 	MemberVO adminLogin(String adm_id);
 	MemberVO get(String mem_id);
 	MemberVO profileCheck(String mem_id);
+	MemberVO getMemberFav(int mem_no);
 	List<MemberVO> recomAuthor();
 	List<MemberVO> categoryMember();
 }

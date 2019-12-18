@@ -1,6 +1,7 @@
 package com.jamong.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jamong.domain.CategoryVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.service.CategoryService;
 import com.jamong.service.MemberService;
-import com.sun.mail.util.logging.MailHandler;
 
 import mailHandler.MailService;
 import pwdconv.PwdChange;
@@ -38,6 +39,9 @@ public class MemberModifyController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	@RequestMapping("my_info")
 	public ModelAndView myinfo(@ModelAttribute MemberVO vo,HttpSession session,
 			HttpServletRequest response,HttpServletRequest request) { // 로그인 페이지
@@ -46,10 +50,65 @@ public class MemberModifyController {
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		MemberVO vov = this.memberService.get(m.getMem_id());
 		
-		System.out.println(vov.getMem_fav1());
 		view.addObject("vo", vov);
 		view.setViewName("jsp/my_info");
 		return view;
+	}
+	
+	/* 내정보 페이지에서 카테고리 선택되어진것을 토글처리되어진 상태로 보여주기 위한 메서드
+	 *  원래 AJAX를 사용하여 javascript로 가져온 데이터만으로 처리하려고 하였으나, text로만들어진 span,input 태그들을
+	 *  html형식으로 jsp페이지에 붙이면(append) javascript가 class,name등을 완전히 페이지가 로딩될때까지
+	 *  인식하지 못함. 따라서 선택되어진 상태의 html을 controller에서 작성하여 처리(물론 분기분을 나눠서 선택된것까지 표현)
+	 *  
+	 *   # 주의 : Mapping에 produces에 text 및 charset을 지정하지 않으면 한글이 모두 물음표 표시가됨
+	 *   그냥 기술적으로 안되는걸 물리적으로 찍어 눌러버렸다..
+	 */ 
+	@RequestMapping(value = "/member_fav", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String member_fav(HttpServletResponse response,HttpServletRequest request,
+		HttpSession session)throws Exception {
+		session=request.getSession();
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		int mem_no = m.getMem_no();
+		
+		MemberVO v = this.memberService.getMemberFav(mem_no);
+		List<CategoryVO> clist = this.categoryService.listCategory();
+		StringBuilder st = new StringBuilder();
+		for(int i=0;i<clist.size();i++) {
+			if(clist.get(i).getCat_name().equals(v.getMem_fav1())) {
+				st.append("<li class=\"my_info_category-item member_category_check\">");
+				st.append("<span class=\"my_info_category-span\">");
+				st.append(clist.get(i).getCat_name());
+				st.append("</span>");
+				st.append("<input type=\"hidden\" class=\"member_fav1\" name=\"mem_fav1\" value=\"");
+				st.append(clist.get(i).getCat_name()+"\"/>");
+				st.append("</li>");
+			}else if(clist.get(i).getCat_name().equals(v.getMem_fav2())) {
+				st.append("<li class=\"my_info_category-item member_category_check\">");
+				st.append("<span class=\"my_info_category-span\">");
+				st.append(clist.get(i).getCat_name());
+				st.append("</span>");
+				st.append("<input type=\"hidden\" class=\"member_fav2\" name=\"mem_fav2\" value=\"");
+				st.append(clist.get(i).getCat_name()+"\"/>");
+				st.append("</li>");
+			}else if(clist.get(i).getCat_name().equals(v.getMem_fav3())) {
+				st.append("<li class=\"my_info_category-item member_category_check\">");
+				st.append("<span class=\"my_info_category-span\">");
+				st.append(clist.get(i).getCat_name());
+				st.append("</span>");
+				st.append("<input type=\"hidden\" class=\"member_fav3\" name=\"mem_fav3\" value=\"");
+				st.append(clist.get(i).getCat_name()+"\"/>");
+				st.append("</li>");
+			}else {
+			st.append("<li class=\"my_info_category-item\">");
+			st.append("<span class=\"my_info_category-span\">");
+			st.append(clist.get(i).getCat_name());
+			st.append("</span>");
+			st.append("<input type=\"hidden\" value=\""+clist.get(i).getCat_name()+"\"/>");
+			st.append("</li>");
+			}
+		}
+		return st.toString();
 	}
 	
 	@RequestMapping("pass_modify")

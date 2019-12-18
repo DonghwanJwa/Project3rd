@@ -88,6 +88,11 @@ public class MemberDAOImpl implements MemberDAO{
 	}	
 	
 	@Override
+	public MemberVO getMemberFav(int mem_no) {
+		return this.sqlSession.selectOne("mem_getfav",mem_no);
+	}
+	
+	@Override
 	public List<MemberVO> recomAuthor() {
 		return this.sqlSession.selectList("index_author");
 	}

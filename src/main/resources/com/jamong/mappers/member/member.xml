@@ -144,4 +144,8 @@
   ]]> 
  </select>
 
+ <select id="mem_getfav" resultType="m">
+  SELECT mem_fav1,mem_fav2,mem_fav3 FROM member WHERE mem_no=#{mem_no}
+ </select>
+
 </mapper>
