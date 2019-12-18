@@ -42,7 +42,12 @@
   <result column="mem_no" property="mem_no"/>
  </association>
 </resultMap>
-
+<update id="mem_pwd_update">
+	update member set mem_pwd=#{mem_pwd} where mem_id=#{mem_id}
+</update>
+<select id="mem_select_pwd" resultType="m">
+	select * from member where email_id=#{email_id} and email_domain=#{email_domain} and mem_name=#{mem_name} and mem_id=#{mem_id}
+</select>
 <select id="mem_select_id" resultType="m">
 	select * from member where email_id=#{email_id} and email_domain=#{email_domain} and mem_name=#{mem_name}
 </select>

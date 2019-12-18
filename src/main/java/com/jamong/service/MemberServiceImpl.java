@@ -17,6 +17,14 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO memberDao;
 	
 	@Override
+	public void pass_update(MemberVO vo) {
+		this.memberDao.pass_update(vo);
+	}
+	@Override
+	public MemberVO memberSelect_pwd(MemberVO vo) {
+		return this.memberDao.memberSelect_pwd(vo);
+	}
+	@Override
 	public MemberVO memberSelect_id(MemberVO vo) {
 		return this.memberDao.memberSelect_id(vo);
 	}

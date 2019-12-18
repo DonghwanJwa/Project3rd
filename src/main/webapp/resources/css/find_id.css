@@ -53,7 +53,7 @@ display: inline-block;
     border-top: none;
     font-size: 14px;
 }
-.find_id_text1{
+.find_id_text_email{
 	width: 85px;
     height: 30px;
     padding-left: 20px;
@@ -67,8 +67,8 @@ display: inline-block;
 }
 .find_id_error{
 	width:250px;
-	height:20px;
-	line-height:20px;
+	height:15px;
+	line-height:15px;
 	padding-left:37px;
 	margin:5px;
 	color:#ff0000;
@@ -124,9 +124,76 @@ display: inline-block;
 
 #find_id_sub_box_pass{
 	display: none;
+	margin-top: 30px;
+}
+.find_id_pass_text{
+	width: 220px;
+    height: 15px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    /* padding: 20px; */
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 14px;
+}
+.find_id_pass_email1{
+	width: 90px;
+    height: 15px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    /* padding: 20px; */
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 14px;
+}
+.find_id_pass_email2{
+	width: 65px;
+    height: 15px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    /* padding: 20px; */
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 14px;
+}
+.find_id_pass_Certified_text{
+	width: 190px;
+    height: 15px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    /* padding: 20px; */
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 14px;
 }
 
-
+#find_id_pass_email_Certified_btn{
+	border:none;
+	background-color: lightgray;
+	border-radius: 100%;
+	width: 25px;
+    height: 25px;
+    font-size: 1px;
+}
+#find_id_pass_email_Certified_next_btn{
+	border:none;
+	background-color: lightgray;
+	border-radius: 100%;
+	width: 25px;
+    height: 25px;
+    font-size: 1px;
+}
+#hidde_box{
+	display: none;
+}
 
 
 
