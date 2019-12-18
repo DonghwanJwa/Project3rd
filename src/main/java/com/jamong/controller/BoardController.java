@@ -27,6 +27,7 @@ import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.BoardService;
 import com.jamong.service.MemberService;
+import com.jamong.service.SympathyService;
 import com.oreilly.servlet.MultipartRequest;
 
 import pwdconv.PwdChange;
@@ -214,6 +215,41 @@ public class BoardController {
 		return mv;
 	}
 
+	@PostMapping("sympathy_up/{bo_no}")
+	@ResponseBody
+	public int sympathy_up(@PathVariable int bo_no, 
+			HttpServletRequest request,
+			HttpSession session) {
+		session = request.getSession();
+		
+		MemberVO m = (MemberVO) session.getAttribute("m");
+		
+		int result =-1;
+		if(m!=null) {
+			BoardVO bo = new BoardVO();
+			bo.setBo_no(bo_no); bo.setMem_no(m.getMem_no());
+			result = this.boardService.sympathyUp(bo);
+		}
+		return result;
+	}
+	
+	@PostMapping("sympathy_down/{bo_no}")
+	@ResponseBody
+	public int sympathy_down(@PathVariable int bo_no, 
+			HttpServletRequest request,
+			HttpSession session) {
+		session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("m");
+		
+		int result =-1;
+		if(m!=null) {
+			BoardVO bo = new BoardVO();
+			bo.setBo_no(bo_no); bo.setMem_no(m.getMem_no());
+			result = this.boardService.sympathyDown(bo);
+		}
+		return result;
+	}
+	
 	@PostMapping("infinitiScrollDown")
 	@ResponseBody
 	public List<BoardVO> infinitiScrollDownPOST(String bo_no) {

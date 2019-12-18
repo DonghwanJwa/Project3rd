@@ -40,6 +40,10 @@ body{
 	width: auto;
 }
 
+#head-menu_search{
+	margin-top:5px;
+}
+
 #head-menu_search-button{
 	border:0;
 	background-color:transparent;
@@ -66,6 +70,10 @@ body{
 	opacity:0;
 	transition:width 0.33s linear, opacity 0.33s linear;
 	-webkit-transition:width 0.33s linear, opacity 0.33s linear;
+}
+
+#head-menu_open_button{
+	margin-top:5px;
 }
 
 #head-menu-button{
@@ -406,7 +414,7 @@ body{
 
 /*우측사이드창 - profile*/
 #head-profile-menu{
-	width: 180px;
+	width: 200px;
 	height: 40px;
 	display:flex;
 	justify-content: space-between;

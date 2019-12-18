@@ -28,7 +28,27 @@
  	 </a>
  	</div>
  	
- 	<div id="head-menu-empty"></div>
+ 	<div id="head-menu-empty">
+ 	<c:if test="${! empty bo}">
+ 	<div id="head-menu-readpage">
+ 	  <div id="head-menu-sym">
+ 	 <c:if test="${! empty m}">
+ 	  <button class="head-menu-sym-btn">
+ 	   <img class="head-menu-heart-img" src="/jamong.com/resources/img/heart.png">
+ 	   <span class="head-menu-heart-rate">${bo.bo_like}</span>
+ 	  </button>
+ 	 </c:if>
+ 	 <c:if test="${empty m}">
+ 	 
+ 	 </c:if>
+ 	  </div>
+	  <div id="head-menu-hit">
+	   <img class="head-menu-hit-img" src="/jamong.com/resources/img/hit.png">
+	   <span class="head-menu-hit-rate">${bo.bo_hit}</span>
+	  </div>
+	 </div>
+ 	</c:if>
+ 	</div>
  	
  	<input id="head-menu_search-text" placeholder="검색어 입력"/>
  	
@@ -214,7 +234,7 @@
          </a>
         </li>
         <li id="head-profile-service-setting" class="head-profile-stat-login">
-         <a href="/jamong.com/pass_modify">
+         <a href="/jamong.com/my_info">
           <span class="head-profile-service-bar-left"></span>
         	<b>내 설정</b>
           <span class="head-profile-service-bar-right"></span>
@@ -274,7 +294,7 @@
          </a>
         </li>
         <li id="head-profile-service-setting" class="head-profile-stat-login">
-         <a href="/jamong.com/pass_modify">
+         <a href="/jamong.com/my_info">
           <span class="head-profile-service-bar-left"></span>
         	<b>내 설정</b>
           <span class="head-profile-service-bar-right"></span>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.BoardDAO;
+import com.jamong.dao.SympathyDAO;
 import com.jamong.domain.BoardVO;
 
 @Service
@@ -15,6 +16,9 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO boardDao;
 
+	@Autowired
+	private SympathyDAO sympathyDao;
+	
 	@Override
 	public void insertBoard(BoardVO b) {
 		this.boardDao.insertBoard(b);
@@ -37,6 +41,22 @@ public class BoardServiceImpl implements BoardService {
 		return this.boardDao.recomArticle();
 	}
 	
+	@Transactional
+	@Override
+	public int sympathyUp(BoardVO bo) {
+		this.sympathyDao.sympathyUpInsert(bo);
+		this.boardDao.sympathyUpUpdate(bo);
+		return this.boardDao.sympathyNum(bo);
+	}
+	
+	@Transactional
+	@Override
+	public int sympathyDown(BoardVO bo) {
+		this.sympathyDao.sympathyDownDelete(bo);
+		this.boardDao.sympathyDownUpdate(bo);
+		return this.boardDao.sympathyNum(bo);
+	}	
+	
 	@Override
 	public List<BoardVO> infinitiScrollDown(int bo_no) {
 		return this.boardDao.infinitiScrollDown(bo_no);
@@ -46,5 +66,5 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> categoryArticle(String cat_name) {
 		return this.boardDao.categoryArticle(cat_name);
 	}
-
+	
 }

@@ -3,6 +3,7 @@ CREATE TABLE recommend(
 rec_no NUMBER(38) PRIMARY KEY, -- 추천 번호(seq)
 book_no NUMBER(38),			   -- 책번호 참조 컬럼
 mem_no NUMBER(38)			   -- 회원번호 참조 컬럼
+rec_date DATE				   -- 추천한 날짜
 );
 
 -- 시퀀스 생성

@@ -37,6 +37,21 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> recomArticle() {	
 		return this.sqlSession.selectList("board.index_article");
 	}
+	
+	@Override
+	public void sympathyUpUpdate(BoardVO bo) {
+		this.sqlSession.update("sym_up",bo);
+	}
+	
+	@Override
+	public void sympathyDownUpdate(BoardVO bo) {
+		this.sqlSession.update("sym_down",bo);
+	}
+
+	@Override
+	public int sympathyNum(BoardVO bo) {
+		return this.sqlSession.selectOne("sym_count", bo);
+	}
 
 	@Override
 	public List<BoardVO> infinitiScrollDown(int bo_no) {
@@ -47,5 +62,5 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> categoryArticle(String cat_name) {
 		return this.sqlSession.selectList("cat_board",cat_name);
 	}
-
+	
 }
