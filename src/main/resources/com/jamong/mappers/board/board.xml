@@ -17,7 +17,7 @@
   <result column="bo_type" property="bo_type" />
   <result column="bo_like" property="bo_like" />
   <result column="book_order" property="book_order" />
-  <result column="cat_no" property="cat_no" />
+  <result column="cat_name" property="cat_name" />
   <result column="mem_no" property="mem_no" />
   <result column="book_no" property="book_no" />
   <result column="bo_titlespace" property="bo_titlespace" />
@@ -62,9 +62,54 @@
   AND bo_no=#{bo_no}
  </select>
  
+ <select id="bo_contlist" resultType="b">
+ <![CDATA[
+  SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM) WHERE mem_no=#{mem_no} AND rowNum <= 3
+ ]]>
+ </select>
+ 
+ <select id="bo_catcontlist" resultMap="boardMap">
+  <![CDATA[
+  SELECT *
+  FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM) b,member m
+  WHERE b.mem_no=m.mem_no
+  AND b.cat_name=#{cat_name} AND rowNum <= 3
+  ]]>
+ </select>
+ 
  <update id="bo_hit">
   UPDATE board SET bo_hit=bo_hit+1 WHERE bo_no=#{bo_no}
  </update>
+ 
+ <select id="profileList" resultMap="boardMap">
+SELECT m.mem_no,
+    	m.mem_id, 
+    	m.mem_author, 
+    	m.profile_photo, 
+    	m.profile_cont, 
+    	m.mem_nickname, 
+    	m.mem_keyword, 
+    	m.mem_portfolio,
+    	b.bo_no,
+    	b.bo_title,
+    	b.bo_subtitle,
+    	b.bo_cont,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	b.bo_date,
+    	b.bo_editdate,
+    	b.bo_lock,
+    	b.bo_type,
+    	b.bo_like,
+    	b.book_order,
+    	b.cat_name,
+    	b.mem_no,
+    	b.book_no
+    FROM member m
+    INNER JOIN board b
+ 	ON m.mem_no = b.mem_no
+    AND m.mem_no = #{mem_no}
+</select>
  
  <select id="index_article" resultMap="boardMap">
  <![CDATA[
@@ -91,6 +136,22 @@
   AND rowNum <= 10
   ]]>
  </select>
+ 
+ <!-- 공감 증가 -->
+ <update id="sym_up">
+  UPDATE board SET bo_like=bo_like+1 WHERE bo_no=#{bo_no}
+ </update>
+ 
+ <!-- 공감 감소 -->
+ <update id="sym_down">
+  UPDATE board SET bo_like=bo_like-1 WHERE bo_no=#{bo_no}  
+ </update>
+ 
+ <!-- 공감 개수 가져오기 -->
+ <select id="sym_count" resultType="int">
+  SELECT bo_like FROM board WHERE bo_no=#{bo_no}
+ </select>
+ 
  
  <select id="infinitiScrollDown" resultMap="boardMap">
  <![CDATA[

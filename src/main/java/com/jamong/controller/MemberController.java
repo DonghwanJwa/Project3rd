@@ -4,6 +4,7 @@ package com.jamong.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.BoardService;
 import com.jamong.service.MemberService;
@@ -32,7 +34,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
-	private BoardService boardSercvice;
+	@Autowired
+	private BoardService boardService;
 	@Autowired
 	private MailService mailService;
 		
@@ -272,12 +275,25 @@ public class MemberController {
 			
 			mp = this.memberService.profileCheck(mem_id);
 			// 포트폴리오 항목 띄어쓰기 적용되게
+//			if(mp.getMem_portfolio() != null){
 //			String portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
-		
+//			}
+				
+			List<BoardVO> mplist = this.boardService.getProfile(mp.getMem_no());
+			
+//			for(int i=0; i < mplist.size(); i++) {
+//				String htmlText = mplist.get(i).getBoardVO().getBo_cont();
+//				String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+//				String oneSpace = nomalText.replaceAll("&nbsp; "," ");
+//			}
+			
+			mv.addObject("mplist",mplist);
 			mv.addObject("mp",mp);
 //			mv.addObject(portfolio);
 		return mv;
+//			return null;
 	}
+
 	
 	@RequestMapping("profile_edit")
 	public ModelAndView profile_edit(

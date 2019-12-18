@@ -3,6 +3,7 @@ CREATE TABLE subscribe(
 sub_no NUMBER(38) PRIMARY KEY, -- 구독 구분번호(seq)
 sub_member NUMBER(38), 		   -- 구독자
 mem_no NUMBER(38) 			   -- 회원 참조컬럼
+sub_date DATE				   -- 구독 날짜
 );
 
 -- 구독자 시퀀스 생성

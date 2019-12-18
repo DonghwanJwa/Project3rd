@@ -5,4 +5,20 @@
 
 <mapper namespace="sympathy">
 
+<!-- 공감 추가 -->
+<insert id="sym_insert" parameterType="b">
+ INSERT INTO sympathy (sym_no,bo_no,mem_no,sym_date)
+ VALUES (sym_no_seq.nextval,#{bo_no},#{mem_no},sysdate) 
+</insert>
+
+<!-- 공감 취소(삭제) -->
+<delete id="sym_delete" parameterType="b">
+ DELETE FROM sympathy WHERE mem_no=#{mem_no} and bo_no=#{bo_no}
+</delete>
+
+<!-- 공감 Count-->
+<select id="sym_select" resultType="sym">
+ SELECT * FROM sympathy WHERE mem_no=#{mem_no} and bo_no=#{bo_no}
+</select>
+
 </mapper>

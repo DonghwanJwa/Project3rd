@@ -112,12 +112,14 @@
   </div>
    
   <!-- 글 내용 부분 --> 
-  <div id="write_cont">
+  <div id="write_cont" style="height:auto;">
        <div id="write_wrap_bg" style="min-width:940px;">
+         <c:if test="${bo.memberVO.mem_no == m.mem_no}">
        		<div id="edit_del_wrap">
    				<i class="user_edit_btn" title="글 수정하기"></i>
    				<i class="user_del_btn" title="글 삭제하기"></i>
    			</div>
+   		 </c:if>
     <div class="write_cont_area write_cont_align_left" style="min-height:300px;">
     ${bo.bo_cont}
     </div> 
@@ -140,20 +142,25 @@
 		<div id="author_profile">
 			<%-- 프로필사진, 이름 --%>
 			<a href="/jamong.com/profile"><img class="author_img" src=/jamong.com/resources/img/a.jpg width="90" height="90" alt="글쓴이 프로필사진"/></a>
-			<a href="/jamong.com/profile"><span><strong>글쓴이 프로필 명</strong></span></a>
+			<a href="/jamong.com/profile"><span><strong>${bo.memberVO.mem_nickname}</strong></span></a>
 			
 			<%-- 작가 키워드 --%>
 			<div class="author_keyword">
-				<a href="/jamong.com/search?result=post">작가키워드1</a>
-				<a href="/jamong.com/search?result=post">작가키워드2</a>
-				<a href="/jamong.com/search?result=post">작가키워드3</a>
+			 <c:if test="${!empty bo.memberVO.mem_fav1}">
+				<a href="/jamong.com/search?result=post">${bo.memberVO.mem_fav1}</a>
+			 </c:if>
+			 <c:if test="${!empty bo.memberVO.mem_fav2}">
+				<a href="/jamong.com/search?result=post">${bo.memberVO.mem_fav2}</a>
+			 </c:if>
+			 <c:if test="${!empty bo.memberVO.mem_fav3}">
+				<a href="/jamong.com/search?result=post">${bo.memberVO.mem_fav3}</a>
+			 </c:if>
 			</div>
 			
 			<%-- 작가 소개 --%>
 			<div class="intro">
 				<p>
-				 작가소개란입니다.<br/>
-				 잘 부탁드립니다.
+				 ${bo.memberVO.profile_cont}
 				</p>
 			</div>
 			
@@ -185,48 +192,38 @@
 						답글! LOLEMIPSUM
 					</div>
 					<div class="reply_btn_wrap">
-						<a class="reply_btn">답글 달기</a>
+						<a class="reply_btn">답글 작성</a>
 					</div>
 				</div>
 				<div id="write_comment">
 					<div class="textarea" contenteditable="true"></div>
-					<div class="btn_wrap"><a class= write_comment_btn>댓글 쓰기</a></div> 
+					<div class="btn_wrap"><a class= write_comment_btn>댓글 작성</a></div> 
 				</div>
 			</div>
 		</div>
 		
 		<%-- 댓글 쓰기 form으로 감싸기 --%>
 
-		
 		<div class="clear"></div>
 		
-		<%-- 이전, 다음글 리스트 --%>
-		<div id="read_list">
 			<div class="remote_button">
 				<a href="#"> < 이전글 </a>
 				<a href="#"> 다음글 > </a>
 			</div>
-		<%-- 리스트 반복문으로 처리 할 것. --%>	
+		 <hr class="read_division_line">
+		<%-- 이전, 다음글 리스트 --%>
+		<div id="read_list">
+		<%-- 리스트 반복문으로 처리 할 것. --%>
+		<h3>같은 작가의 다른 글</h3>
+		 <c:forEach var="blist" items="${bList}">
 			<a href="#">
 			<div class="list">
-				<img src="/jamong.com/resources/img/a.jpg" width="250" height="100">
-				<p>이전글, 다음글 리스트 입니다.</p>
+				<p style="font-weight:bold;">${blist.bo_title}</p>
+				<span id="read_list_date">${blist.bo_date}</span>
+				<img src="${blist.bo_thumbnail}" width="250" height="100">
 			</div>
 			</a>
-			
-			<a href="#">
-			<div class="list">
-				<img src="/jamong.com/resources/img/a.jpg" width="250" height="100">
-				<p>이전글, 다음글 리스트 입니다.</p>
-			</div>
-			</a>
-			
-			<a href="#">
-			<div class="list">
-				<img src="/jamong.com/resources/img/a.jpg" width="250" height="100">
-				<p>이전글, 다음글 리스트 입니다.</p>
-			</div>
-			</a>
+		 </c:forEach>
 		</div>
 		
 		<%-- 같은 카테고리의 다른 글 --%>
@@ -234,83 +231,70 @@
 		<%-- 반복해서 프레임 배치 --%>
 			<div class="another_wrap">
 				<h3>같은 카테고리 다른 글</h3>
+				<c:forEach var="catList" items="${catList}">
 				<a href="#">
+				  <!-- 썸네일 있을때 -->
+				   <c:if test="${!empty catList.bo_thumbnail}">
 					<div class="another_cover">
-						<img src="/jamong.com/resources/img/a.jpg" width="700" height="250"/>
+						<img src="${catList.bo_thumbnail}" width="700" height="250"/>
 						<div class="another_title">
-						<p><strong>캐나다의 밤은 서울의 밤보다 천천히 흐른다.</strong></p>
+						<p><strong>${catList.bo_title}</strong></p>
 						</div>
 						
 						<div class="another_cont">
 						<p>
-							test본문입니다. LOLEMIPSUM <br/>
-							test본문입니다. LOLEMIPSUM
+						${catList.bo_cont}
 						</p>
 						</div>
 						
 						<div class="another_auth">
-						<span>by.작가</span>
+						<span style="font-style:italic;">by</span><span style="margin-left:5px;">${catList.memberVO.mem_nickname}</span>
 						</div>
 						
 						<div class="another_key">
-							<span>#키워드</span>
-							<span>#키워드</span>
-							<span>#키워드</span>
+							<c:if test="${!empty catList.memberVO.mem_fav1}">
+							<span>${catList.memberVO.mem_fav1}</span>
+							</c:if>
+							<c:if test="${!empty catList.memberVO.mem_fav2}">
+							<span>${catList.memberVO.mem_fav2}</span>
+							</c:if>
+							<c:if test="${!empty catList.memberVO.mem_fav3}">
+							<span>${catList.memberVO.mem_fav3}</span>
+							</c:if>
 						</div>
 					</div>
-				</a>
-				
-				<a href="#">
+				 </c:if>
+				  <!-- 썸네일 없을 때 -->
+				   <c:if test="${empty catList.bo_thumbnail}">
 					<div class="another_cover">
-						<img src="/jamong.com/resources/img/a.jpg" width="700" height="250"/>
+						<div style="width:700px; height:250px; background-color:#FAFAFA"/></div>
 						<div class="another_title">
-						<p><strong>캐나다의 밤은 서울의 밤보다 천천히 흐른다.</strong></p>
+						<p><strong style="color:#333;">${catList.bo_title}</strong></p>
 						</div>
 						
-						<div class="another_cont">
-						<p>
-							test본문입니다. LOLEMIPSUM <br/>
-							test본문입니다. LOLEMIPSUM
-						</p>
+						<div class="another_cont_noimg">
+						<p>${catList.bo_cont}</p>
 						</div>
 						
 						<div class="another_auth">
-						<span>by.작가</span>
+						<span style="color:#333; font-style:italic;">by</span><span style="color:#333; margin-left:5px">${catList.memberVO.mem_nickname}</span>
 						</div>
 						
 						<div class="another_key">
-							<span>#키워드</span>
-							<span>#키워드</span>
-							<span>#키워드</span>
+						 	<c:if test="${!empty catList.memberVO.mem_fav1}">
+							<span style="color:#333">${catList.memberVO.mem_fav1}</span>
+							</c:if>
+							<c:if test="${!empty catList.memberVO.mem_fav2}">
+							<span style="color:#333">${catList.memberVO.mem_fav2}</span>
+							</c:if>
+							<c:if test="${!empty catList.memberVO.mem_fav3}">
+							<span style="color:#333">${catList.memberVO.mem_fav3}</span>
+							</c:if>
 						</div>
 					</div>
+				 </c:if>
 				</a>
-				
-				<a href="#">
-					<div class="another_cover">
-						<img src="/jamong.com/resources/img/a.jpg" width="700" height="250"/>
-						<div class="another_title">
-						<p><strong>캐나다의 밤은 <br/>서울의 밤보다 천천히 흐른다.</strong></p>
-						</div>
-						
-						<div class="another_cont">
-						<p>
-							test본문입니다. LOLEMIPSUM <br/>
-							test본문입니다. LOLEMIPSUM	test본문입니다.
-						</p>
-						</div>
-						
-						<div class="another_auth">
-						<span>by.작가</span>
-						</div>
-						
-						<div class="another_key">
-							<span>#키워드</span>
-							<span>#키워드</span>
-							<span>#키워드</span>
-						</div>
-					</div>
-				</a>
+				</c:forEach>
 			</div>
 				
 			</div>
