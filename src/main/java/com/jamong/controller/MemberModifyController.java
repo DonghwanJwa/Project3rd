@@ -75,52 +75,30 @@ public class MemberModifyController {
 	//pass_modify에서 submit을 하면 pass_modify의 정보를 pass_modify_ok에 보낸다  pass_modify_ok controller를
 	//수행하고 리턴 값으로 맞으면 member_modify 틀리면 pass_modify로 와야 한다
 	@RequestMapping("pass_modify_ok")
-	public ModelAndView pass_login_ok(@ModelAttribute MemberVO m, 
+	@ResponseBody
+	public int pass_login_ok(MemberVO m, 
 			String pass_modify_id, String pass_modify_pass,
 			HttpServletResponse response, HttpSession session, 
 			HttpServletRequest request) throws Exception {
 		
-		response.setContentType("text/html;charset=UTF-8");
 		session = request.getSession();
-		PrintWriter out = response.getWriter();
-		ModelAndView view = new ModelAndView();
 		MemberVO session_m = (MemberVO) session.getAttribute("m");
-
-
+		System.out.println(session_m);
+		int re = 1;
+		if(session_m == null) {
+			re = 2;
+		}else {
 			MemberVO ck = this.memberService.pwdcheck(pass_modify_id);
 			//아이디를 기준으로 sql문에서 아이디를 조회해서 맞으면 그 아이디에 맞는 회원정보를 가져온 것을 담은 것이 ck
 			if (ck != null) {// 비어 있지 않을때
 				if (ck.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(pass_modify_pass))) {
-
-					m.setMem_name(ck.getMem_name());
-					//회원정보를 getMem_name으로 빼서 m 객체에 담는다
-					m.setMem_birth1(ck.getMem_birth1());
-					m.setMem_birth2(ck.getMem_birth2());
-					m.setMem_birth3(ck.getMem_birth3());
-					m.setMem_gender(ck.getMem_gender());
-					m.setEmail_id(ck.getEmail_id());
-					m.setEmail_domain(ck.getEmail_domain());
-					m.setMem_phone01(ck.getMem_phone01());
-					m.setMem_phone02(ck.getMem_phone02());
-					m.setMem_phone03(ck.getMem_phone03());
-					m.setMem_fav1(ck.getMem_fav1());
-					m.setMem_fav2(ck.getMem_fav2());
-					m.setMem_fav3(ck.getMem_fav3());
-					
-					System.out.println(m.getMem_name());
-					view.addObject("mv", m);
+					re= -1;
 					//m객체를 mv에 담고 view에 담는다
 					//view를 리턴하면 jsp에서 view에 담긴 값들을 사용할수 있다
-					view.setViewName("redirect:/member_modify");
-					System.out.println(view);
-					System.out.println(m);
-					return view;
-				}else {
-					view.setViewName("redirect:/pass_modify");
-					return view;
 				}
 			}
-				return null;
+		}
+		return re;
 	}// pass_login_ok
 			
 			

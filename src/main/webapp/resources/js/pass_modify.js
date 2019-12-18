@@ -9,8 +9,8 @@ $(document).ready(function(){
 		}
 	});
 	
-	/*확인버튼 클릭시*/
-	$("#pass_modify_lastbtn").click(function(){
+		/*확인버튼 클릭시*/
+		$("#pass_modify_lastbtn").click(function(){
 		var  pass_modify_id = $("#pass_modify_id").val();
 		var  pass_modify_pass = $("#pass_modify_pass").val();
 		
@@ -20,20 +20,28 @@ $(document).ready(function(){
 		$("#pass_modify_error_pass_check").text("비밀번호를 입력해주세요!")
 		$("#pass_modify_pass").val("").focus();
 		return false;
-	}
-		if($.trim($('#pass_modify_pass').val()).length<8 || $.trim($('#join_membership_pass').val()).length>50){
-			$('#pass_modify_error_pass_check').text('8자이상으로 설정해주세요!');
-			$("#pass_modify_pass").val("").focus();
-			return false;
 		}
-	
 
-		//비밀번호 정규식 = 영문,숫자,특수문자의 조합
-		if(!regExpPw.test($("#pass_modify_pass").val())){ 
-			$('#pass_modify_error_pass_check').text('영문,숫자,특수문자의 조합으로 입력해주세요!');
-			$("#pass_modify_pass").val("").focus();
-			return false; 
-		}
-	
+		$.ajax({
+			type:"POST",
+			url:"pass_modify_ok",
+			data: {"pass_modify_id":pass_modify_id,"pass_modify_pass":pass_modify_pass},
+			datatype:"int",
+			success: function (data){
+				if(data==1){
+					$('#pass_modify_error_pass_check').text('비밀번호가 일치하지 않습니다!');
+					return false;
+				}else if(data==2){
+					alert("로그인이 필요한 페이지입니다!");
+					window.location.replace("/jamong.com/login");
+				}else{
+				window.location.replace("/jamong.com/member_modify");					
+
+				}
+			},
+			error:function(){
+				alert("data error");
+			}
+		});
 	});
 });
