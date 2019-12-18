@@ -16,5 +16,7 @@ public interface BoardDAO {
 	List<BoardVO> infinitiScrollDown(int bo_no);
 	List<BoardVO> categoryArticle(String cat_name);
 	void updateHit(int bo_no);
+	List<BoardVO> getUserBoardContList(int mem_no);
+	List<BoardVO> getUserBoardCatArticle(String cat_name);
 
 }

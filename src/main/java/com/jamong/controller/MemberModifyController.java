@@ -159,12 +159,15 @@ public class MemberModifyController {
 	public ModelAndView member_modify_ok(MemberVO me,
 			HttpSession session,HttpServletResponse response,
 			HttpServletRequest request) throws Exception  {
+		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		
 		MemberVO m = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
 		me.setMem_no(m.getMem_no());//엠객체에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
 		me.setMem_pwd(PwdChange.getPassWordToXEMD5String(me.getMem_pwd()));//비밀번호를 암호화해서 넣는다
 		this.memberService.memberUpdate(me);//엠이에 디비값을 담는다
+		
 		ModelAndView view = new ModelAndView();
 		session.invalidate();//세션만료
 	    view.setViewName("redirect:/login");
@@ -221,11 +224,23 @@ public class MemberModifyController {
 			return new ResponseEntity<String>("false", HttpStatus.OK);
 		}
 	}
-
+	
+	//되면 이제 인풋들 검증하고 마지막에 비번 수정하고 버튼 클릭할때 문구 내주고 로그인으로
 	@RequestMapping("find_id")
-	public String user_find_id() { // 회원가입
+	public String user_find_id() { // 아이디 찾기 페이지
 		
 		return "jsp/find_id";
+	}
+	
+	//비번을 바꾸려면 아이디나 이메일이 필요함
+	@RequestMapping("find_pass_ok")
+	public String user_pass_update(MemberVO vo) { // 비밀번호 수정
+
+		vo.setMem_pwd(PwdChange.getPassWordToXEMD5String(vo.getMem_pwd()));
+		System.out.println(vo.getMem_id());
+		System.out.println(vo.getMem_pwd());
+		this.memberService.pass_update(vo);
+		return "jsp/login";
 	}
 	
 	@RequestMapping("find_id_emailCert")//이메일 인증번호 체크
@@ -258,11 +273,51 @@ public class MemberModifyController {
 		
 		return MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request);
 	}
-	
-	@RequestMapping("find_pass")
-	public String user_find_pass() { // 회원가입
+
+	@RequestMapping("find_pass_emailCert")//이메일 인증번호 체크
+	@ResponseBody
+	public boolean find_pass_createEmailCheck(MemberVO vo,String id,String name,String email,String domain, HttpServletRequest request){
 		
-		return "jsp/find_pass";
+		String userEmail = email + "@" + domain; //받는 사람 이메일 주소
+		String Email = email;
+		String Domain = domain;
+		String Name = name;
+		String Id = id;
+		vo.setEmail_id(Email);
+		vo.setEmail_domain(Domain);
+		vo.setMem_name(Name);
+		vo.setMem_id(Id);
+		System.out.println(vo.getEmail_id());
+		System.out.println(vo.getEmail_domain());
+		System.out.println(vo.getMem_name());
+		MemberVO member = this.memberService.memberSelect_pwd(vo);
+		//가지고 나온 비번이 암호화 되어 있다. 그럼 암호화를 풀고 원래 비번으로 바꿔서 담아야 한
+		//회원정보를 가져와야 한다
+		int ran = new Random().nextInt(900000) + 100000;	//100000~999999
+		HttpSession session = request.getSession(true);		
+		String authCode = String.valueOf(ran);				//생성한 값을 어스코드에 담고
+		session.setAttribute("authCode", authCode);			//세션에 인증번호값 저장
+		
+		String subject = "JAMONG 비밀번호 찾기";
+		StringBuilder sb = new StringBuilder();
+		sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
+		sb.append("귀하의 비밀번호는 </h3><h2>" + authCode + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
+		sb.append("해당 비밀번호로 로그인해주세요.<br/>");
+		sb.append("감사합니다.</h3>");
+		
+		return MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request);
+	}
+	
+	@RequestMapping("find_pass_emailCert_ok")
+	@ResponseBody
+	public ResponseEntity<String> pass_emailAuth(String authCode, HttpSession session){
+		
+		String originalRandom = (String)session.getAttribute("authCode");
+		if( originalRandom.equals(authCode)) {
+			return new ResponseEntity<String>("complete", HttpStatus.OK);			
+		}else {
+			return new ResponseEntity<String>("false", HttpStatus.OK);
+		}
 	}
 	
 }//MemberModifyController

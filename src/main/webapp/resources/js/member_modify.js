@@ -698,5 +698,10 @@ $(function(){
 		});
 	});
 });
+//수정이 완료되었을 시 경고창으로 수정이 완료되었습니다 출력
+$(document).on("click", "#member_modify_next_btn", function(){
+	alert("수정이 완료되었습니다");
+});
+
 });
 

@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.BoardService;
+import com.jamong.service.CategoryService;
 import com.jamong.service.MemberService;
 import com.jamong.service.SympathyService;
 import com.oreilly.servlet.MultipartRequest;
@@ -39,25 +40,40 @@ public class BoardController {
 	private BoardService boardService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private CategoryService catService;
 
 	@RequestMapping("@{mem_id}/{bo_no}")
 	public String user_readCont(@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo, Model model,
 			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		session=request.getSession();
+		
+		MemberVO readM = (MemberVO)session.getAttribute("m");
 		
 		bo = this.boardService.getUserBoardCont(bo_no);
+		List<BoardVO> catList = this.boardService.getUserBoardCatArticle(bo.getCat_name());
+		List<BoardVO> bList = this.boardService.getUserBoardContList(bo.getMem_no());
 		
+		// 날짜 출력타입 변경
 		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SimpleDateFormat title_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
 		Date format_date = org_format.parse(bo.getBo_date());
 		String title_date = title_format.format(format_date);
 		
-		bo.setBo_date(title_date);		
+		for(int i=0;i<bList.size();i++) {
+			Date bListFormat_date = org_format.parse(bList.get(i).getBo_date());
+			String bListTitle_date = title_format.format(bListFormat_date);
+			bList.get(i).setBo_date(bListTitle_date);
+		}
+		bo.setBo_date(title_date);
 
+		model.addAttribute("catList",catList);
+		model.addAttribute("bList",bList);
 		model.addAttribute("bo", bo);
 		model.addAttribute("mem_id", mem_id);
-
+		
 		return "jsp/read";
 	}
 

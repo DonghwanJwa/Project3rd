@@ -19,6 +19,8 @@ public interface BoardService {
 	int sympathyUp(BoardVO bo);
 	int sympathyDown(BoardVO bo);
 	List<BoardVO> infinitiScrollDown(int bo_no);
+	List<BoardVO> getUserBoardCatArticle(String cat_name);
 	List<BoardVO> categoryArticle(String cat_name);
+	List<BoardVO> getUserBoardContList(int mem_no);
 
 }
