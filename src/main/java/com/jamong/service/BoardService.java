@@ -17,6 +17,8 @@ public interface BoardService {
 	List<BoardVO> getListAll(BoardVO b);
 	List<BoardVO> recomArticle();
 	List<BoardVO> infinitiScrollDown(int bo_no);
+	List<BoardVO> getUserBoardCatArticle(String cat_name);
 	List<BoardVO> categoryArticle(String cat_name);
+	List<BoardVO> getUserBoardContList(int mem_no);
 
 }
