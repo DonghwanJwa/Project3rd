@@ -28,7 +28,6 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO memberSelect_id(MemberVO vo) {
 		return this.memberDao.memberSelect_id(vo);
 	}
-	
 
 	@Override
 	public MemberVO mem_emailCheck(MemberVO m) {
@@ -62,7 +61,7 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO getMemberID(int mem_no) {
 		return this.memberDao.getMemberID(mem_no);
 	}
-  @Override
+    @Override
 	public MemberVO pwdcheck(String pass_modify_id) {
 		return this.memberDao.pwdcheck(pass_modify_id);
 	}
@@ -87,6 +86,11 @@ public class MemberServiceImpl implements MemberService {
 		return this.memberDao.profileCheck(mem_id);
 	}
   
+	@Override
+	public MemberVO getMemberFav(int mem_no) {
+		return this.memberDao.getMemberFav(mem_no);
+	}
+	
 	@Override
 	public List<MemberVO> recomAuthor() {	
 		return this.memberDao.recomAuthor();

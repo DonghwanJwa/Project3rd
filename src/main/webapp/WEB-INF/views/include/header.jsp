@@ -39,7 +39,10 @@
  	  </button>
  	 </c:if>
  	 <c:if test="${empty m}">
- 	 
+ 	  <div class="head-menu-sym-div">
+ 	   <img class="head-menu-heart-img-disabled" src="/jamong.com/resources/img/heart.png">
+ 	   <span class="head-menu-heart-rate">${bo.bo_like}</span>
+ 	  </div>
  	 </c:if>
  	  </div>
 	  <div id="head-menu-hit">

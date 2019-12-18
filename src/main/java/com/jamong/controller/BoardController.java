@@ -68,6 +68,18 @@ public class BoardController {
 			bList.get(i).setBo_date(bListTitle_date);
 		}
 		bo.setBo_date(title_date);
+		
+		// html -> text
+		for(int i=0;i<bList.size();i++) {
+			String htmlText = bList.get(i).getBo_cont();
+			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			bList.get(i).setBo_cont(normalText);
+		}
+		for(int i=0;i<catList.size();i++) {
+			String htmlText = catList.get(i).getBo_cont();
+			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			catList.get(i).setBo_cont(normalText);
+		}
 
 		model.addAttribute("catList",catList);
 		model.addAttribute("bList",bList);
