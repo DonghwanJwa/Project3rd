@@ -52,7 +52,7 @@ background: url(../img/warring.png) no-repeat;
 }
 
 #profile_img{
-	margin-top: 25px;
+	margin-top: 10px;
 	border-radius:55px;
 	width:100px;
 	height: 100px;
@@ -102,15 +102,18 @@ ul.profile_keyword_link{
 	padding-bottom: 6px;
 }
 .profile_post_img{
-	float:left;
-width: 120px;
-height: 120px;
-margin: -5px 10px 15px 0;
+	float: right;
+    width: 110px;
+    height: 110px;
+    margin: -100px 10px 0px 0px;
+    display: inline-block;
 	}
 .profile_article_main{
+	display : flex;
 	font-size: 13px;
 	font-weight: bold;
 	color:  #ff8040;
+    padding-bottom: 10px;
 }
 .pf_bo_title{
     opacity: 0.7;
@@ -121,12 +124,26 @@ margin: -5px 10px 15px 0;
     line-height: 1.5;
     color: #333;
     font-style: normal;
+    letter-spacing: -1px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    width: 500px;
 }
 .article_cont p{
 	padding: 0 0 0 15px;
 	
 }
-
+.private{
+	float: right;
+    width: 25px;
+    margin: 0px 10px 0px 0px
+}
 
 /*	profile 	*/
 #profile_main{
@@ -311,7 +328,8 @@ margin: -5px 10px 15px 0;
 	     padding-right: 25px; 
 	     padding-bottom: 50px;
 	}
-	#profile_article{
+	.profile_articles{
+
 	}
 #article{
 	     padding-left: 25px; 

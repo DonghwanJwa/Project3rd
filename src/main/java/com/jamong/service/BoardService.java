@@ -15,6 +15,7 @@ public interface BoardService {
 	void insertBoard(BoardVO b);	
 	BoardVO getUserBoardCont(int bo_no);
 	List<BoardVO> getListAll(BoardVO b);
+	List<BoardVO> getProfile(int mem_no);
 	List<BoardVO> recomArticle();
 	int sympathyUp(BoardVO bo);
 	int sympathyDown(BoardVO bo);

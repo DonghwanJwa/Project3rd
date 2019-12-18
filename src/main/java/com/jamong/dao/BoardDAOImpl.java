@@ -73,4 +73,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return this.sqlSession.selectList("cat_board",cat_name);
 	}
 
+	@Override
+	public List<BoardVO> getProfile(int mem_no) {
+		return this.sqlSession.selectList("profileList",mem_no);
+	}
+
 }
