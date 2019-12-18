@@ -88,7 +88,4 @@ public class MemberDAOImpl implements MemberDAO{
 	public List<MemberVO> categoryMember() {
 		return this.sqlSession.selectList("cat_member");
 	}
-
-
-
 }

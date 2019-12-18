@@ -47,4 +47,9 @@ public class BoardServiceImpl implements BoardService {
 		return this.boardDao.categoryArticle(cat_name);
 	}
 
+	@Override
+	public List<BoardVO> getProfile(int mem_no) {
+		return this.boardDao.getProfile(mem_no);
+	}
+
 }

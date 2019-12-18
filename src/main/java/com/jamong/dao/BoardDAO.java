@@ -12,6 +12,7 @@ public interface BoardDAO {
 	List<BoardVO> getListAll(BoardVO b);
 	List<BoardVO> infinitiScrollDown(int bo_no);
 	List<BoardVO> categoryArticle(String cat_name);
+	List<BoardVO> getProfile(int mem_no);
 	void updateHit(int bo_no);
 
 }
