@@ -9,18 +9,18 @@
 <link rel=stylesheet type="text/css" href="./resources/css/profile.css">
 <title></title>
 </head>
-<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<body oncontextmenu="return false" ondragstart="return false" >
 	<div id="profile_main_edit">
 		<div id="profile_edit_title">
 			<h3 id="edit_text">프로필 편집</h3>
 		</div>
 		<article id="profile_main_edit_article">
 			<div>
-				<div id="profile_edit_img" >
-				<form target="" enctype="multipart/form-data" method="post" >
+				<div id="profile_edit_img">
+				<form  enctype="multipart/form-data"  method="post" >
 					<span id="profile_img_edit_button"> 
 					<label for="profile_img" class="profile_font_hide"></label>
-					 <input id="pf_input" class="profile_input_hide" type="file" name="file" accept="image/*"
+					 <input id="pf_input" class="profile_input_hide" type="file" name="profile_photo" accept="image/*"
 						> <%-- type="file" 파일을 업로드 하는기능
 					accept=""UI에서 해당되는 파일 목록만 접근시킨다.
 					image/*은 모든 이미지파일을 보여줌
@@ -45,9 +45,8 @@
 								<!--  for을 사용해서 라벨을 눌러도 텍스트 박스에 적용되도록 함(구조?) -->
 								<span></span>
 							</h3>
-							<input id="profile_editor" name="" placeholder="이름을 입력해주세요(30자 이내로)"
-								maxlength="30" value=""
-							/>
+							<input id="profile_editor" name="mem_nickname" placeholder="이름을 입력해주세요(30자 이내로)"	
+									maxlength="30" value="${mp.mem_nickname}"/>
 							<div id="profile_editor_error"></div>
 						</div>
 					</div>
@@ -62,28 +61,32 @@
 						<h3 class="profile_edit_font">자기소개</h3>
 					</div>
 					<div class="profile_editor_box">
-						<textarea id="pf_info" class="profile_edit_info e" placeholder="자신을 소개해보세요(90자 이내로)" maxlength="90"></textarea>
+						<textarea id="pf_info" class="profile_edit_info e" name="profile_cont" 
+						placeholder="자신을 소개해보세요(90자 이내로)" maxlength="90">${mp.profile_cont}</textarea>
 					</div>
 					<div id="profile_info_error"></div>
 				<!-- 여기서부터는 작가항목입니다 -->
-				<c:if test="${mem_author}">
+				<c:if test="${mp.mem_author == 2}">
 					<div>
 						<h3 class="profile_edit_font">키워드</h3>
 					</div>
 					<div class="">
 						<input type="text" id="keyword_tag" class="keyword_box"
 							placeholder="엔터로 원하는 키워드를 입력해주세요(8자 이내로)" maxlength="8"	>
-							<div id="profile_error_keyword"></div>
 							<button class="keyword_button"></button>
-						<ul id="edit_tag_list">
+							<div id="profile_error_keyword"></div>
+							
+						<ul id="edit_tag_list" >
 						</ul>
 					</div>
 				</div>
+				<div class="folio_font" >작가님의 경험을 이야기해 주세요
 				<button type="button" id="flio_b"> </button>
+				</div>
 				<div id="pf_folio"  style="display: none;">	
 				<h3 class="profile_edit_font">포트폴리오</h3>
-						<div id="profile_portflio" contenteditable="true" class="profile_edit_info" 
-						 placeholder=""></div>
+						<div id="profile_portflio" contenteditable="true" class="profile_edit_info" name="mem_portfolio"
+						 >${mp.mem_portfolio}</div>
 				</div>
 				</c:if>
 				<div id="profile_edit_button">

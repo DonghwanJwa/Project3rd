@@ -183,7 +183,7 @@ $(document).keydown(function(e){
         <img src="/jamong.com/resources/img/feed.png" alt="피드"/>
        </a>
       </div>
-      <a href="/jamong.com/@${mem_id}" id="head-profile-info-wrap">
+      <a href="/jamong.com/@${m.mem_id}" id="head-profile-info-wrap">
        <div id="head-profile-info-img-wrap">
         <img id="head-profile-info-img" src="${m.profile_photo}">
        </div>

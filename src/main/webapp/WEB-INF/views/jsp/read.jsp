@@ -141,8 +141,8 @@
 		<%-- 작가 프로필 --%>
 		<div id="author_profile">
 			<%-- 프로필사진, 이름 --%>
-			<a href="/jamong.com/profile"><img class="author_img" src=/jamong.com/resources/img/a.jpg width="90" height="90" alt="글쓴이 프로필사진"/></a>
-			<a href="/jamong.com/profile"><span><strong>${bo.memberVO.mem_nickname}</strong></span></a>
+			<a href="/jamong.com/@${bo.memberVO.mem_id}"><img class="author_img" src=/jamong.com/resources/img/a.jpg width="90" height="90" alt="글쓴이 프로필사진"/></a>
+			<a href="/jamong.com/@${bo.memberVO.mem_id}"><span><strong>${bo.memberVO.mem_nickname}</strong></span></a>
 			
 			<%-- 작가 키워드 --%>
 			<div class="author_keyword">
