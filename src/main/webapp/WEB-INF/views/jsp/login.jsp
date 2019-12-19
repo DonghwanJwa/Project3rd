@@ -28,7 +28,7 @@
    </div>
    <div class="login_error" id="login_pwd_error"></div>
    <input type="button" class="login_btn_color" id="login_btn" value="로그인" tabindex="3"/>
-   <input type="button" class="login_btn_color" id="login_btn_join_membership" value="회원가입" onclick="location.href='join_membership'"/>
+   <input type="button" class="login_btn_color" id="login_btn_join_membership" value="회원가입" onclick="location.href='/jamong.com/join_membership'"/>
   </div>
   <div id="login_bottom">
    <div class="login_bottom_link">
