@@ -180,24 +180,47 @@
 				<a class="comment_hide" onclick="showHide();">댓글(5)</a>
 			</div>
 			<div class="hide_comment" style="display:none;">
+			 <c:forEach var="r" items="${rList}">
+			  <!-- 답글이 아닐때 -->
+			  <c:if test="${r.rep_step == 0}">
 				<div class="comment_frame">
-					<a href="/jamong.com/profile"><img class="comment_user_img" src=/jamong.com/resources/img/a.jpg width="50" height="50"/></a>
-					<a href="/jamong.com/profile" class="comment_user_name"><span >사용자 1</span></a>
-					<p class="comment_cont">댓글입니다.</p><br/>
-					<span class="comment_date">2019-10-15 00:00:00</span>
-					<div class="reply_hide_wrap"><a class="comment_reply" onclick="replyHide();">답글</a></div>
+					<a href="/jamong.com/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="50" height="50"/></a>
+					<a href="/jamong.com/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
+					<p class="comment_cont">${r.rep_cont}</p><br/>
+					<span class="comment_date">${r.rep_date}</span>
+					<div class="reply_hide_wrap">
+					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					</div>
 				</div>
+				</c:if>
+				<!-- 답글일때 -->
+			  <c:if test="${r.rep_step != 0}">
+			   <c:forEach begin="1" end="1" step="1">
+			   
+			   </c:forEach>
+				<div class="comment_frame">
+					<span id="read_reply_icon">┗</span>
+					<a href="/jamong.com/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="50" height="50"/></a>
+					<a href="/jamong.com/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
+					<p class="comment_cont">${r.rep_cont}</p><br/>
+					<span class="comment_date">${r.rep_date}</span>
+					<div class="reply_hide_wrap">
+					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					</div>
+				</div>
+				</c:if>
+			 </c:forEach>
 				<div class="reply_wrap" style="display:none;">
 					<div class="reply_textarea" contenteditable="true">
 						답글! LOLEMIPSUM
 					</div>
 					<div class="reply_btn_wrap">
-						<a class="reply_btn">답글 작성</a>
+						<a class="reply_btn" onclick="addReply(event);">답글 작성</a>
 					</div>
 				</div>
 				<div id="write_comment">
 					<div class="textarea" contenteditable="true"></div>
-					<div class="btn_wrap"><a class= write_comment_btn>댓글 작성</a></div> 
+					<div class="btn_wrap"><a class= write_comment_btn onclick="addComment();">댓글 작성</a></div>
 				</div>
 			</div>
 		</div>

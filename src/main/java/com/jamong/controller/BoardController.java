@@ -28,10 +28,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.CategoryVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.ReplyVO;
 import com.jamong.service.BoardService;
 import com.jamong.service.CategoryService;
 import com.jamong.service.MemberService;
-import com.jamong.service.SympathyService;
+import com.jamong.service.ReplyService;
 import com.oreilly.servlet.MultipartRequest;
 
 import pwdconv.PwdChange;
@@ -41,6 +42,13 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private CategoryService catService;
+	@Autowired
+	private ReplyService repService;
+
 
 	@RequestMapping("@{mem_id}/{bo_no}")
 	public String user_readCont(@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo, Model model,
@@ -52,6 +60,7 @@ public class BoardController {
 		MemberVO readM = (MemberVO)session.getAttribute("m");
 		
 		bo = this.boardService.getUserBoardCont(bo_no);
+		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		List<BoardVO> catList = this.boardService.getUserBoardCatArticle(bo.getCat_name());
 		List<BoardVO> bList = this.boardService.getUserBoardContList(bo.getMem_no());
 		
@@ -91,7 +100,8 @@ public class BoardController {
 				catList.get(i).setBo_cont(oneSpace);
 			}
 		}
-
+		
+		model.addAttribute("rList",repList);
 		model.addAttribute("catList",catList);
 		model.addAttribute("bList",bList);
 		model.addAttribute("bo", bo);

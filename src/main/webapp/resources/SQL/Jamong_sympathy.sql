@@ -22,3 +22,4 @@ ADD CONSTRAINT sym_mem_no_fk FOREIGN KEY(mem_no)
 REFERENCES member(mem_no)
 
 SELECT * FROM sympathy ORDER BY sym_no;
+SELECT sym_no_seq.nextval FROM DUAL;
