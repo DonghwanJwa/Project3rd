@@ -41,6 +41,10 @@
   <result column="mem_no" property="mem_no"/>
  </collection> -->    
 </resultMap>
+
+<update id="mem_update_del">
+	update member set mem_Withdrawal_reason=#{mem_Withdrawal_reason},mem_state=2,mem_Withdrawal_reason_date=sysdate where mem_no=#{mem_no}
+</update>
 <update id="mem_pwd_update">
 	update member set mem_pwd=#{mem_pwd} where mem_id=#{mem_id}
 </update>

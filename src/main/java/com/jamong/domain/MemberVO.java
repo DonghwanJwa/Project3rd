@@ -29,6 +29,22 @@ public class MemberVO {
 	private String mem_fav2;
 	private String mem_fav3;
 	private String mem_portfolio; // 12/03 회원 테이블 수정 후 VO에 추가 (getter,setter)
+	private String mem_Withdrawal_reason;
+	private String mem_Withdrawal_reason_date;
+	
+	public String getMem_Withdrawal_reason() {
+		return mem_Withdrawal_reason;
+	}
+	public void setMem_Withdrawal_reason(String mem_Withdrawal_reason) {
+		this.mem_Withdrawal_reason = mem_Withdrawal_reason;
+	}
+	public String getMem_Withdrawal_reason_date() {
+		return mem_Withdrawal_reason_date;
+	}
+	public void setMem_Withdrawal_reason_date(String mem_Withdrawal_reason_date) {
+		this.mem_Withdrawal_reason_date = mem_Withdrawal_reason_date;
+	}
+	
 	
 	/* 관리자페이지 회원관리 게시판 페이징,검색을 위한 변수 추가 (12/5) */
 	private int startrow;
