@@ -36,6 +36,7 @@ import com.jamong.service.ReplyService;
 import com.oreilly.servlet.MultipartRequest;
 
 import pwdconv.PwdChange;
+import timeChanger.TIME_MAXIMUM;
 
 @Controller
 public class BoardController {
@@ -77,6 +78,11 @@ public class BoardController {
 		}
 		bo.setBo_date(title_date);
 		
+		for(int i=0;i<repList.size();i++) {
+			Date repListFormat_date = org_format.parse(repList.get(i).getRep_date());
+			String repList_date = TIME_MAXIMUM.formatTimeString(repListFormat_date);
+			repList.get(i).setRep_date(repList_date);
+		}
 		// html -> text
 		for(int i=0;i<bList.size();i++) {
 			String htmlText = bList.get(i).getBo_cont();

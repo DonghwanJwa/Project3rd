@@ -181,33 +181,32 @@
 			</div>
 			<div class="hide_comment" style="display:none;">
 			 <c:forEach var="r" items="${rList}">
-			  <!-- 답글이 아닐때 -->
+			 <%-- 댓글일 때 --%>
 			  <c:if test="${r.rep_step == 0}">
-				<div class="comment_frame">
-					<a href="/jamong.com/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="50" height="50"/></a>
+				<li class="comment_frame" onmouseenter="replyBtnShow(event);" onmouseleave="replyBtnHide(event);">
+					<a href="/jamong.com/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
+					<div class="comment_info_wrap">
 					<a href="/jamong.com/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
-					<p class="comment_cont">${r.rep_cont}</p><br/>
+					<span class="comment_info_icon">·</span>
 					<span class="comment_date">${r.rep_date}</span>
-					<div class="reply_hide_wrap">
 					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					<p class="comment_cont">${r.rep_cont}</p>
 					</div>
-				</div>
+				</li>
 				</c:if>
-				<!-- 답글일때 -->
+			 <%-- 답글일 때 --%>
 			  <c:if test="${r.rep_step != 0}">
-			   <c:forEach begin="1" end="1" step="1">
-			   
-			   </c:forEach>
-				<div class="comment_frame">
-					<span id="read_reply_icon">┗</span>
-					<a href="/jamong.com/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="50" height="50"/></a>
+			   <li class="comment_frame" onmouseenter="replyBtnShow(event);" onmouseleave="replyBtnHide(event);">
+			        <span class="comment_enter_icon">ㄴ</span><span class="comment_enter_re">RE:</span>
+					<a href="/jamong.com/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
+					<div class="comment_info_wrap">
 					<a href="/jamong.com/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
-					<p class="comment_cont">${r.rep_cont}</p><br/>
+					<span class="comment_info_icon">·</span>
 					<span class="comment_date">${r.rep_date}</span>
-					<div class="reply_hide_wrap">
 					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					<p class="comment_cont">${r.rep_cont}</p>
 					</div>
-				</div>
+			   	</li>
 				</c:if>
 			 </c:forEach>
 				<div class="reply_wrap" style="display:none;">
