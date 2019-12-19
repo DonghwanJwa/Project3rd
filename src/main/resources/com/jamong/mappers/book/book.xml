@@ -47,6 +47,15 @@
   <result column="mem_fav3" property="mem_fav3" />
   <result column="mem_portfolio" property="mem_portfolio" />
  </association>
+ 
+ <association javaType="book" property="bookVO">
+  <id column="book_no" property="book_no" />
+  <result column="book_name" property="book_name" />
+  <result column="book_date" property="book_date" />
+  <result column="book_editdate" property="book_editdate" />
+  <result column="cat_no" property="cat_no" />
+  <result column="mem_no" property="mem_no"	/>
+ </association>
  </resultMap>
  
  <select id="book_list" resultMap="boardMap">
@@ -56,5 +65,24 @@
   AND m.mem_id=#{mem_id}
   ORDER BY b.bo_no DESC
  </select>
+ 
+ <select id="create_list" resultMap="boardMap">
+  SELECT *
+  FROM board b
+  WHERE b.bo_no=#{bo_no}
+  ORDER BY b.bo_no DESC
+ </select>
+ 
+ <insert id="book_in">
+  INSERT
+  INTO book (book_no,book_name,book_date)
+  VALUES (book_no_seq.nextval,#{book_name},sysdate)
+ </insert>
+ 
+ <update id="board_book_up">
+  UPDATE board b, book book
+  SET b.book_no=book.book_no
+  WHERE b.bo_no = #{data_no}
+ </update>
  
 </mapper>

@@ -128,15 +128,24 @@ input[type="checkbox"]:checked+div.post_list_cont {
 
 .create_book_name {
 	position: absolute;
-	top:0;
-	left:0;
-	background-color: RGB(0,0,0,0.6);
-	display:none;
+	top: 0;
+	left: 0;
+	background-color: RGB(0, 0, 0, 0.6);
+	display: none;
 	z-index: 10020;
-	animation:fadein 1s;
-	-webkit-animation:fadein 1s;
+	animation: fadein 1s;
+	-webkit-animation: fadein 1s;
 }
 
 .create_book_panel {
-	
+	text-align: center;
+	width: 500px;
+	height: 470px;
+	background-color: #fff;
+	margin: auto;
+	z-index: 10;
+	transform: translateT(50%);
+	-webkit-transform: translateY(50%);
+	animation: fadein 1s;
+	-webkit-animation: fadein 1s;
 }

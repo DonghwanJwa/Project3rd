@@ -9,5 +9,8 @@ public interface BookService {
 
 	List<BoardVO> getBList(String mem_id);
 
+	void insertBook(BookVO b);
+
+	void book_noUP(String val);
 
 }

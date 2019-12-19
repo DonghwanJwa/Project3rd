@@ -21,4 +21,16 @@ public class BookServiceImpl implements BookService {
 		return this.bookDao.getBList(mem_id);
 	}
 
+	@Override
+	public void insertBook(BookVO b) {
+		this.bookDao.insertBook(b);
+	}
+	
+	@Transactional
+	@Override
+	public void book_noUP(String val) {
+//		this.bookDao.book_noSEL(val);
+//		this.bookDao.book_noUP(val);
+	}
+
 }
