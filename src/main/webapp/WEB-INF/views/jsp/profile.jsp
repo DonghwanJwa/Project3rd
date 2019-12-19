@@ -19,7 +19,7 @@
 							<%--신고  --%>
 							<c:if test="${m.mem_id != mp.mem_id}">
 								<button id="warring_icon" class="accuse_page_open"
-									onclick="accuseShow();"
+									onclick="accuseShow(1);"
 								>
 									<!-- after 적용 -->
 								</button>
@@ -135,7 +135,7 @@
 					<ul class="profile_writer_list">
 						<c:forEach var="fp" items="${mplist}">
 						<!-- 다른사람의 프로필을 들어갔을때 -->
-							<c:if test="${m.mem_id == null && fp.bo_lock != 1}">
+							<c:if test="${m.mem_id != mp.mem_id && fp.bo_lock != 0 && m.mem_id == null}">
 								<li class="profile_articles" data-no="">
 									<div>
 										<a class="profile_article_main" href="./book_info">...</a> 
@@ -157,10 +157,10 @@
 								</li>
 							</c:if>
 							<!-- 자신의 아이디로 로그인시 -->
-							<c:if test="${ m.mem_id == mp.mem_id }">
+							<c:if test="${ m.mem_id == mp.mem_id}">
 								<li class="profile_articles" data-no="">
 									<div>
-									<c:if test ="${fp.bo_lock == 1 }">
+									<c:if test ="${fp.bo_lock == 0 }">
 									<img class="private" src="./resources/img/lock.png">
 									</c:if>
 										<a class="profile_article_main" href="./book_info">...</a> <a

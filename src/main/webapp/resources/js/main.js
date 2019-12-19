@@ -1,8 +1,11 @@
 /*
  * index.jsp
  */
-getHeaderNotice();//js페이지가 로딩괴면 메뉴에 공지사항을 불러옴(중단에 메서드 있음)
-getCategory();//js페이지가 로딩되면 메뉴에 카테고리를 불러옴(중단에 메서드 있음)
+
+//js페이지가 로딩되면 메뉴에 요소들을 불러옴(중단에 메서드 있음)
+getCategory();
+getBestList();
+getHeaderNotice();
 
 function scrollmove(whereScroll,howMove){
 	/*스크롤움직임 버튼 ( 어느div인지,	어느쪽으로 움직이는지)*/
@@ -63,6 +66,7 @@ function hotscroll(where,number){
 }
 
 function getHeaderNotice(){
+	
 	  $.getJSON("/jamong.com/header_notice/",function(data){
 		  var str="";
 		  var popupX = (window.screen.width / 2) - (720 / 2);
@@ -92,6 +96,32 @@ function getCategory(){
 		  });
 		  if ($("#head-page-category-list").length > 0 ) {	//header가 존재하면
 			  $('#head-page-category-list').html(str);	//ul내부에 each내용을 넣어준다
+		  }
+	  });
+}
+
+function getBestList(){
+	//header가 존재하면
+	
+	  $.getJSON("/jamong.com/best_load/",function(data){
+		  var str="";
+		  $(data).each(function(){//each는 jQuery에서 반복함수
+			  str+='<li class="head-page-best-item">'
+			  +'<a href="/jamong.com/@'+this.memberVO.mem_id+'/'+this.bo_no+'" class="head-page-link">'
+			  +'<img src="'+this.bo_thumbnail+'"/>'
+			  +'<div class="head-page-cont">'
+			  +'<div class="head-page-main-title-wrap">'
+			  +'<strong class="head-page-main-title">'+this.bo_title+'</strong></div>'
+			  if(this.bo_subtitle==null){
+				  str+='<span class="head-page-sub-title"></span>'   	    				  				  
+			  }else{
+				  str+='<span class="head-page-sub-title">'+this.bo_subtitle+'</span>'   	    				  
+			  }
+		      str+='<span class="head-page-author">by '+this.memberVO.mem_nickname+'</span>'
+		      +'</div></a></li>'
+		  });
+		  if ($("#head-page-best-list").length > 0 ) {
+			  $('#head-page-best-list').html(str);	//ul내부에 each내용을 넣어준다 
 		  }
 	  });
 }

@@ -5,9 +5,28 @@
 
 <mapper namespace="accuse">
 
-<insert id="acc_insert">
- insert into accuse(ac_no,ac_reason,ac_cont,ac_date,
- ac_item,ac_result,
- )
+<insert id="insert_acc">
+ insert into accuse(ac_no,ac_reason,ac_cont,ac_date,mem_no)
+ values(ac_no_seq.nextval,#{ac_reason},#{ac_cont},sysdate,#{mem_no})
 </insert>
+
+<!-- 신고 개수 -->
+<select id="AccuseCount" resultType="int">
+ select count(ac_no) from accuse
+ 
+ 	<where>
+ 	
+ 	</where>
+</select>
+
+<!-- 신고 목록 -->
+<select id="getAccuseList" resultType="ac">
+	select * from (select rowNum rNum,ac_no,ac_reason,ac_cont,ac_item,ac_date,mem_no,ac_state
+	from (select * from accuse
+	
+	<where>
+	
+	</where>
+	order by ac_date desc)) where rNum &gt; = #{startrow} and rNum &lt;= #{endrow}
+</select>
 </mapper>

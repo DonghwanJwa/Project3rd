@@ -152,6 +152,15 @@ SELECT m.mem_no,
   SELECT bo_like FROM board WHERE bo_no=#{bo_no}
  </select>
  
+ <!-- 메뉴바 Best 글 가져오기 -->
+ <select id="best_list" resultMap="boardMap">
+  <![CDATA[
+	SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM)b
+	INNER JOIN member m
+	ON b.mem_no=m.mem_no
+	WHERE rowNum <= 5 and bo_lock=1
+	]]>
+ </select>
  
  <select id="infinitiScrollDown" resultMap="boardMap">
  <![CDATA[

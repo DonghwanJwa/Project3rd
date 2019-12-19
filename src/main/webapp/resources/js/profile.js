@@ -108,7 +108,7 @@ $(document).ready(function() {
 
 				if (result.length == 0) { // 태그 중복 검사
 					// siblings() 자신을 제외한 형제요소를 찾는 함수							
-					if ($(".tag_item").siblings().length <= 7) {// 태그 생성 제한
+					if ($(".tag_item").siblings().length <= 5) {// 태그 생성 제한
 						$("#edit_tag_list").append("<li class='tag_item'>" + tagValue + "<span class='del_btn' idx='" + counter + "'></span></li>").hide().fadeIn('2000');
 						addTag(tagValue);
 						self.val("");
@@ -136,8 +136,8 @@ $(document).ready(function() {
 					return word === tagValue;
 				})
 				if (result1.length == 0) { // 태그 중복 검사
-					if ($(".tag_item").siblings().length <= 7) {//태그 생성 제한
-						$("#edit_tag_list").append("<li class='tag_item'>" + tagValue + "<span class='del_btn' idx='" + counter + "'></span></li>").hide().fadeIn('2000');
+					if ($(".tag_item").siblings().length <= 5) {//태그 생성 제한
+						$("#edit_tag_list").append("<li class='tag_item' name='mem_keyword'>" + tagValue + "<span class='del_btn' idx='" + counter + "'></span></li>").hide().fadeIn('2000');
 						addTag(tagValue);
 						self.val("");
 					} else {
@@ -162,7 +162,7 @@ $(document).ready(function() {
 	$('.profile_edit_btn1').click(function() {
 		var result = confirm('편집 중인 내용을 저장하지 않고 나가시겠습니까?');
 		if (result) {
-			location.replace('./profile');
+			history.back('./profile');
 		} else {}
 	});
 });
@@ -192,7 +192,7 @@ function profileCheck(){
 		var result = confirm('저장하시겠습니까?');
 		$('.profile_edit_btn2').click(function() {
 			if (result) {
-				location.replace('./profile');
+				location.replace('./profile_edit_ok');
 			} else {}
 		});
 		return false;

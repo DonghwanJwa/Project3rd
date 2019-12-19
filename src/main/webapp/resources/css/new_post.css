@@ -47,6 +47,7 @@ ul li {
 }
 
 #new_post_loading_cont_text_title {
+	font-family: 'NanumMyeongjo','serif';
 	font-size: 25px;
 	padding: 20px 0;
 }
@@ -73,7 +74,7 @@ ul li {
 
 #new_post_loading_cont_img {
 	display: inline-block;
-	over-fit: cover;
+	object-fit: cover;
 	width: 200px;
 	height: 185px;
 	margin: 0;
@@ -84,7 +85,7 @@ ul li {
 #new_post_loading_cont_text_cont {
 	height: 100px;
 	margin: 0;
-	font-size: 18px;
+	font-size: 15px;
 	overflow: hidden;
 	white-space: normal;
 	word-spacing: break-word;

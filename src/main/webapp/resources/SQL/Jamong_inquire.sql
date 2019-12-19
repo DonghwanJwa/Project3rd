@@ -15,7 +15,7 @@ inq_reply VARCHAR2(4000),		  -- 문의하기 답변 처리 내용
 inq_sender VARCHAR2(100),		  -- 답변한 관리자명
 inq_replydate DATE,				  -- 답변날짜
 inq_date DATE,					  -- 문의날짜
-mem_no NUMBER(38)				  -- 회원번호 참조컬럼
+mem_no NUMBER(38)				  -- 회원번호 참조컬럼 0 비회원 0이아닐시 회원
 );
 
 

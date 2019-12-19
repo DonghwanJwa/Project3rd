@@ -2,7 +2,7 @@
 
 /* admin_inquire_info */
 .adm_inq_file{
-	width:800px;
+	width:858px;
 }
 .inq_button{
 	width:65px;
@@ -86,16 +86,16 @@ color:transparent;
     margin-top:60px;
 }
 #inq_adm_complete{
-    width: 900px;
-    margin: 0 auto;
+    width: 856px;
+   	margin-top:100px;
 }
 #adm_inq_replyname{
-	border:1px solid black;
-}
+
+	}
 #adm_inq_field{
 }
 .inq_adm_retime{
-	padding-bottom:10px;
+	padding-bottom:15px;
 	background-color:white;
 }
 .adm_table_div{
@@ -110,7 +110,7 @@ table{
     border-spacing: 1px;
     text-align: center;
     line-height: 1.5;
-    margin: 20px 10px;
+    margin: auto auto;
 }
 table th{
 	font-weight: bold;
