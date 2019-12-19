@@ -8,7 +8,7 @@ public class AccuseVO {
 	private String ac_cont;
 	private String ac_date;
 	private int ac_item;
-	private String ac_result;
+	private int ac_state;
 	private int ac_member;
 	private int mem_no;
 	private int bo_no;
@@ -21,6 +21,10 @@ public class AccuseVO {
 	/* 검색 변수 */
 	private String search_name;
 	private String search_field;
+	private String search_field_item;
+	private String search_field_handling;
+	private String search_field_info;
+	
 	
 	// Setter()
 	public void setAc_no(int ac_no)			   {		this.ac_no = ac_no;				}
@@ -28,7 +32,6 @@ public class AccuseVO {
 	public void setAc_cont(String ac_cont) 	   {		this.ac_cont = ac_cont;			}
 	public void setAc_date(String ac_date) 	   {		this.ac_date = ac_date;			}
 	public void setAc_item(int ac_item) 	   {		this.ac_item = ac_item;			}
-	public void setAc_result(String ac_result) {		this.ac_result = ac_result;		}
 	public void setAc_member(int ac_member)    {		this.ac_member = ac_member;		}
 	public void setMem_no(int mem_no) 		   {		this.mem_no = mem_no;			}
 	public void setRep_no(int rep_no) 		   {		this.rep_no = rep_no;			}	
@@ -37,6 +40,10 @@ public class AccuseVO {
 	public void setStartrow(int startrow) {	this.startrow = startrow;}
 	public void setEndrow(int endrow) {	this.endrow = endrow;}
 	public void setSearch_name(String search_name) {this.search_name = search_name;	}
+	public void setAc_state(int ac_state) {	this.ac_state = ac_state;}
+	public void setSearch_field_item(String search_field_item) {this.search_field_item = search_field_item;}
+	public void setSearch_field_handling(String search_field_handling) {this.search_field_handling = search_field_handling;}
+	public void setSearch_field_info(String search_field_info) {this.search_field_info = search_field_info;}
 	
 	// Getter()
 	public int getAc_no() 		 	{		return ac_no;		}
@@ -44,7 +51,6 @@ public class AccuseVO {
 	public String getAc_cont()   	{		return ac_cont;		}
 	public String getAc_date()   	{		return ac_date;		}
 	public int getAc_item() 	 	{		return ac_item;		}
-	public String getAc_result() 	{		return ac_result;	}
 	public int getAc_member() 	 	{		return ac_member;	}
 	public int getMem_no() 		 	{		return mem_no;		}
 	public int getBo_no() 		 	{		return bo_no;		}
@@ -53,5 +59,9 @@ public class AccuseVO {
 	public int getEndrow() 		 	{		return endrow;		}
 	public String getSearch_name()  {		return search_name;	}
 	public String getSearch_field() {		return search_field;}
+	public int getAc_state() {	return ac_state;	}
+	public String getSearch_field_item() {	return search_field_item;}
+	public String getSearch_field_handling() {	return search_field_handling;}
+	public String getSearch_field_info() {	return search_field_info;}
 	
 }

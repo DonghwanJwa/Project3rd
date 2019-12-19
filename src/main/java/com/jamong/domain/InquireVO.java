@@ -24,8 +24,11 @@ public class InquireVO {
 	private int endrow;
 	
 	/* 검색 변수 */
-	private String search_name;
+	private String search_field_item;
 	private String search_field;
+	private String search_field_handling;
+	private String search_field_info;
+	private String search_name;
 	
 	private MemberVO memberVO;
 	
@@ -44,12 +47,15 @@ public class InquireVO {
 	public void setMem_no(int mem_no) 		   {		this.mem_no = mem_no;			}
 	public void setStartrow(int startrow) 	   {this.startrow = startrow;}
 	public void setEndrow(int endrow) 		   {this.endrow = endrow;}
-	public void setSearch_name(String search_name) {this.search_name = search_name;}
-	public void setSearch_field(String search_field) {this.search_field = search_field;}
 	public void setMemberVO(MemberVO memberVO) {	this.memberVO = memberVO;}
 	public void setInq_reply(String inq_reply) {this.inq_reply = inq_reply;}
 	public void setInq_sender(String inq_sender) {this.inq_sender = inq_sender;	}
 	public void setInq_replydate(String inq_replydate) {this.inq_replydate = inq_replydate;	}
+	public void setSearch_field(String search_field) {this.search_field = search_field;}
+	public void setSearch_field_item(String search_field_item) {this.search_field_item = search_field_item;}
+	public void setSearch_field_handling(String search_field_handling) {this.search_field_handling = search_field_handling;}
+	public void setSearch_field_info(String search_field_info) {this.search_field_info = search_field_info;}
+	public void setSearch_name(String search_name) {this.search_name = search_name;}
 	
 	// Getter()
 	public int getInq_no() 			 {		return inq_no;		}
@@ -65,12 +71,15 @@ public class InquireVO {
 	public int getMem_no() 		 	{		return mem_no;		}
 	public int getStartrow() 		{		return startrow;	}
 	public int getEndrow() 			{		return endrow;		}
-	public String getSearch_name()  {		return search_name; }
-	public String getSearch_field() {		return search_field;}
 	public int getInq_state() 		{		return inq_state;	}
 	public MemberVO getMemberVO() 	{		return memberVO;	}
 	public String getInq_reply() {return inq_reply;}
 	public String getInq_sender() {return inq_sender;}
 	public String getInq_replydate() {return inq_replydate;}
+	public String getSearch_field() {		return search_field;}
+	public String getSearch_field_item() {	return search_field_item;}
+	public String getSearch_field_handling() {return search_field_handling;}
+	public String getSearch_field_info() {	return search_field_info;}
+	public String getSearch_name() {return search_name;}
 	
 }

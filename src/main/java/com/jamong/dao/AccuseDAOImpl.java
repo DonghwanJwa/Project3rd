@@ -1,10 +1,13 @@
 package com.jamong.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jamong.domain.AccuseVO;
+import com.jamong.domain.InquireVO;
 
 @Repository
 public class AccuseDAOImpl implements AccuseDAO {
@@ -13,8 +16,18 @@ public class AccuseDAOImpl implements AccuseDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public void accuse_insert(AccuseVO a) {
-		this.sqlSession.insert("acc_insert",a);
+	public void insertAccuse(AccuseVO a) {
+		this.sqlSession.insert("insert_acc",a);
 		
+	}
+
+	@Override
+	public int AccuseCount(AccuseVO a) {
+		return this.sqlSession.selectOne("AccuseCount",a);
+	}
+
+	@Override
+	public List<AccuseVO> getAccuseList(AccuseVO a) {
+		return this.sqlSession.selectList("getAccuseList",a);
 	}
 }
