@@ -76,6 +76,7 @@ public class MemberModifyController {
 		StringBuilder st = new StringBuilder();
 		for(int i=0;i<clist.size();i++) {
 			if(clist.get(i).getCat_name().equals(v.getMem_fav1())) {
+				//Withdrawal 탈퇴 reason 사유
 				st.append("<li class=\"my_info_category-item member_category_check\">");
 				st.append("<span class=\"my_info_category-span\">");
 				st.append(clist.get(i).getCat_name());
@@ -211,6 +212,7 @@ public class MemberModifyController {
 		return view;
 	}//member_modify_ok()
 	
+		
 	@RequestMapping("modify_emailcheck")//이메일 중복체크
 	@ResponseBody
 	public int member_emailcheck(String email, String domain, MemberVO m, HttpServletResponse response)throws Exception{
@@ -357,6 +359,28 @@ public class MemberModifyController {
 		}
 	}
 	
+	@RequestMapping("Withdrawal_ok") //회원정보수정
+	@ResponseBody
+	public int member_update(MemberVO vo,String my_info_leave_text_id,
+			HttpSession session,HttpServletResponse response,
+			HttpServletRequest request) throws Exception  {
+		
+		MemberVO m = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
+		MemberVO vov=this.memberService.get(m.getMem_id());
+		
+		int re = 0;
+		if(vov == null) {
+			 re = 2;
+			 
+		}else { 
+			vo.setMem_Withdrawal_reason(my_info_leave_text_id);
+			vo.setMem_no(m.getMem_no());//엠객체에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
+			this.memberService.mem_update_del(vo);//엠이에 디비값을 담는다
+			re = 1;
+			session.invalidate();
+		}
+		return re;
+	}//member_update()
 }//MemberModifyController
 
 

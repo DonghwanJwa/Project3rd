@@ -16,6 +16,10 @@ public class MemberDAOImpl implements MemberDAO{
 	private SqlSession sqlSession;
 	
 	@Override
+	public void mem_update_del(MemberVO vo) {
+		this.sqlSession.update("mem_update_del",vo);
+	}
+	@Override
 	public void pass_update(MemberVO vo) {
 		this.sqlSession.update("mem_pwd_update", vo);
 	}
