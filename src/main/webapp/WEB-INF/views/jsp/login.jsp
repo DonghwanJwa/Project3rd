@@ -17,6 +17,7 @@
     <img id="login_img_logo" src="/jamong.com/resources/img/logo2.png"/>
    </a>
   </div>
+  <input type="hidden" id="login_back_page" value="${ref}"/>
   <div id="login_mid">
    <div class="login_color">
     <input id="login_id" name="login_id" type="text" placeholder="아이디" autocomplete="off" tabindex="1">
@@ -27,7 +28,7 @@
    </div>
    <div class="login_error" id="login_pwd_error"></div>
    <input type="button" class="login_btn_color" id="login_btn" value="로그인" tabindex="3"/>
-   <input type="button" class="login_btn_color" id="login_btn_join_membership" value="회원가입" onclick="location.href='join_membership'"/>
+   <input type="button" class="login_btn_color" id="login_btn_join_membership" value="회원가입" onclick="location.href='/jamong.com/join_membership'"/>
   </div>
   <div id="login_bottom">
    <div class="login_bottom_link">

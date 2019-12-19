@@ -129,17 +129,64 @@
  </div>
 
 	<div id="inq_search_interface">
-		<select name="search_field">
-			<option value="inq_item1" <c:if test="${search_field == 'inq_item1'}">${'selected'}</c:if>>
-				제목
+		<select name="search_field_state" id="search_field_state">
+			<option value="all"  selected>
+				회원구분
 			</option>
-			<option value="inq_cont" <c:if test="${search_field == 'inq_cont'}">${'selected'}</c:if>>
-				내용
+			<option value="회원" <c:if test="${search_field_state == '회원'}">${'selected'}</c:if>>
+				회원
 			</option>
-			<option value="inq_phone" <c:if test="${search_field == 'inq_phone'}">${'selected'}</c:if>>
-				전화번호
+			<option value="비회원" <c:if test="${search_field_state == '비회원'}">${'selected'}</c:if>>
+				비회원
 			</option>
 		</select>
+		
+		<select name="search_field_item" id="search_field_item">
+			<option value="all" selected>
+			  문의분류
+			</option>
+			<option value="개선/제안" <c:if test="${search_field_item == '개선/제안'}">${'selected'}</c:if>>
+				개선/제안
+			</option>
+			<option value="일반문의" <c:if test="${search_field_item == '일반문의'}">${'selected'}</c:if>>
+				일반문의
+			</option>
+			<option value="제휴/협업문의" <c:if test="${search_field_item == '제휴/협업문의'}">${'selected'}</c:if>>
+				제휴/협업문의
+			</option>
+		</select>
+		
+		<select name="search_field_handling" id="search_field_handling">
+			<option value="all" selected>
+			 처리여부
+			</option>
+			<option value="처리" <c:if test="${search_field_handling == '처리'}">${'selected'}</c:if>>
+				처리
+			</option>
+			<option value="미처리" <c:if test="${search_field_handling == '미처리'}">${'selected'}</c:if>>
+				미처리
+			</option>
+		</select>
+			
+		<select name="search_field_info" id="search_field_info">
+			<option value="all" selected>
+			  상세검색
+			</option>
+			<option value="내용" <c:if test="${search_field_info == 'i.inq_cont'}">${'selected'}</c:if>>
+				내용
+			</option>
+			<option value="Phone" <c:if test="${search_field_info == 'i.inq_phone'}">${'selected'}</c:if>>
+				Phone
+			</option>
+			<option value="Email" <c:if test="${search_field_info == 'i.inq_email'}">${'selected'}</c:if>>
+				Email
+			</option>
+			<option value="Email" <c:if test="${search_field_info == 'i.inq_email'}">${'selected'}</c:if>>
+			
+			</option>
+		</select>	
+		
+		<!-- 검색 DIV -->
 		<input name="inq_search_name" id="inq_search_name" size="15" value="${search_name}" />
 		<input type="submit" value="검색"/>
 	</div>     

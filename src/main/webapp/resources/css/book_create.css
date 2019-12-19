@@ -104,7 +104,8 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked+div.post_list_cont {
-	border: 2px solid black; transform : scale( 0.92, 0.87);
+	border: 2px solid black;
+	transform: scale(0.92, 0.87);
 	background-color: #ffff80;
 	transform: scale(0.92, 0.87);
 }
@@ -117,10 +118,25 @@ input[type="checkbox"]:checked+div.post_list_cont {
 	display: inline-block;
 }
 
-#create_book{
-	position:relative;
-	width:290px;
+#create_book {
+	position: relative;
+	width: 290px;
 	height: 55px;
 	margin-left: 650px;
 	text-align: center;
+}
+
+.create_book_name {
+	position: absolute;
+	top:0;
+	left:0;
+	background-color: RGB(0,0,0,0.6);
+	display:none;
+	z-index: 10020;
+	animation:fadein 1s;
+	-webkit-animation:fadein 1s;
+}
+
+.create_book_panel {
+	
 }

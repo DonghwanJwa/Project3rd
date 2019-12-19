@@ -64,6 +64,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public List<BoardVO> bestList() {
+		return this.sqlSession.selectList("board.best_list");
+	}
+
+	@Override
 	public List<BoardVO> infinitiScrollDown(int bo_no) {
 		return this.sqlSession.selectList("infinitiScrollDown",bo_no);
 	}

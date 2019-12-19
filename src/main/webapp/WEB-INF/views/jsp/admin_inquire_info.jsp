@@ -13,14 +13,16 @@
  </div>
 </div>
 <div id="adm_inq_title"><h3 class="adm_inq_title">문의내용 열람</h3></div>
-<table border="1" class="adm_inq_table">
+<table class="adm_inq_table">
 	
-		
 	<tr>
 		<th align="center" style="width:110px; height:40px;">회원분류</th>
 		<td align="center" style="width:120px;">
-			<c:if test="${i.memberVO.mem_state == 0}"><font color="grey">일반회원</font></c:if>
-			<c:if test="${i.memberVO.mem_state == 1}"><font color="blue">정지회원</font></c:if>
+			<c:if test="${0 eq i.mem_no}"><font color="grey">비회원</font></c:if>
+			<c:if test="${0 ne i.mem_no}">
+			<c:if test="${i.memberVO.mem_state == 0}"><font color="black">가입회원</font></c:if>
+			<c:if test="${i.memberVO.mem_state == 1}"><font color="red">정지회원</font></c:if>
+			</c:if>
 		</td>
 		
 		<th align="center" style="width:150px;">처리상태</th>
@@ -61,7 +63,7 @@
 	</tr>
 	<tr>
 		<td colspan="6" id="adm_inq_field" style="height:175px;">
-			${inq_cont}
+			<p>${inq_cont}</p>
 		</td>
 	</tr>
 </table>
@@ -115,12 +117,6 @@
 	<c:if test="${i_mem_no == 0}">
 
 	</c:if>
-	
-	<!-- 목록으로, 답변하기 버튼 -->
-	<div id="inq_adm_button">
-		<input type="button" id="inq_list_btn" class="inq_button" value="목록으로" onclick="location='admin_inquire?page=${page}';"/>
-		<input type="button" id="inq_re_btn" class="inq_button" value="답변하기" action="inq_adm_re" />	
-	</div>
 
 	<form class="inq_adm_request" method="post"  action="admin_inquire_info_ok"  name="inq_adm_request" >
 		<h3>문의하기</h3>
@@ -134,23 +130,37 @@
 		</div> 
 	</form>
 	
+ <c:if test="${i.inq_state == 1}">
+   <div id="inq_complete_div">
 	<table id="inq_adm_complete">
 		<tr>
-			<td align="right" colspan="5" class="inq_adm_readmin">처리자 : </td>
-			<td align="right" colspan="5" class="inq_adm_retime">처리날짜 : ${i.inq_date}</td>
+			<td align="right" colspan="5" class="inq_adm_readmin">처리자 : ${i.inq_sender} </td>
+		</tr>
+		<tr>	
+			<td align="right" colspan="5" class="inq_adm_retime">처리날짜 : ${i.inq_replydate}</td>
 		</tr>
 		
-		<tr>
-			<th align="center" colspan="5" class="inq_adm_retitle">
-				답변내용
-			</th>
-		</tr>
-		
-		<tr>
-			<td align="center" colspan="5" class="inq_adm_recont">
-				${i.inq_reply}
-			</td>
-		</tr>
+			<tr>
+		<th colspan="6" id="adm_inq_replyname" align="center" style="height:50px;">
+			답변내용
+		</th>
+	</tr>
+	<tr>
+		<td colspan="6" id="adm_inq_field" style="height:175px;">
+			<p>${i.inq_reply}</p>
+		</td>
+	</tr>
 	</table>
+   </div>
+  </c:if>
+   
+   <!-- 목록으로, 답변하기 버튼 -->
+	<div id="inq_adm_button">
+		<input type="button" id="inq_list_btn" class="inq_button" value="목록으로" onclick="location='admin_inquire?page=${page}';"/>
+		<c:if test="${i.inq_state == 0}">
+		<input type="button" id="inq_re_btn" class="inq_button" value="답변하기" action="inq_adm_re" />
+		</c:if>	
+	</div>
+   
 <%@include file="../include/admin_footer.jsp" %>
 </html>

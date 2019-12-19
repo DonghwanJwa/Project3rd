@@ -78,4 +78,46 @@ color:transparent;
     margin-left: -21px;
     margin-top: -21px;
 }
- 
+#inq_complete_div{
+	display: flex;
+    justify-content: center;
+    width: 900px;
+    margin: 0 auto;
+    margin-top:60px;
+}
+#inq_adm_complete{
+    width: 900px;
+    margin: 0 auto;
+}
+#adm_inq_replyname{
+	border:1px solid black;
+}
+#adm_inq_field{
+}
+.inq_adm_retime{
+	padding-bottom:10px;
+	background-color:white;
+}
+.adm_table_div{
+	border:1px solid black;
+}
+.inq_adm_readmin{
+	background-color:white;
+	border:0px;
+}
+table{
+	border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin: 20px 10px;
+}
+table th{
+	font-weight: bold;
+	color:#fff;
+	background:#ce4869;
+}
+table td{
+	border-bottom: 1px solid #ccc;
+    background: #eee;
+}
