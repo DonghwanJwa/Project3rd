@@ -9,4 +9,6 @@ public interface BookDAO {
 
 	List<BoardVO> getBList(String mem_id);
 
+	void insertBook(BookVO b);
+
 }

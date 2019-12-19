@@ -25,7 +25,14 @@ public class BoardVO {
 	private String find_field;
 	
 	private MemberVO memberVO;
+	private BookVO bookVO;
 	
+	public BookVO getBookVO() {
+		return bookVO;
+	}
+	public void setBookVO(BookVO bookVO) {
+		this.bookVO = bookVO;
+	}
 	// Setter()
 	public void setBo_date(String bo_date)		   	 {		this.bo_date = bo_date;				}
 	public void setBo_editdate(String bo_editdate) 	 {		this.bo_editdate = bo_editdate;		}

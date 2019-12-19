@@ -20,4 +20,9 @@ public class BookDAOImpl implements BookDAO {
 		return this.sqlSession.selectList("book_list",mem_id);
 	}
 
+	@Override
+	public void insertBook(BookVO b) {
+		this.sqlSession.insert("book_in",b);
+	}
+
 }

@@ -4,7 +4,7 @@
 <script src="/jamong.com/resources/js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/book_create.css">
 
-<form method="post" action="book_create_ok" onsubmit="return create_bookCheck()">
+<form method="post" action="book_create_ok">
 <div id="book_create_wrap">
  <div id="book_create_list">
 
@@ -17,7 +17,7 @@
     <c:forEach var="b" items="${bookList}">
      <li class="ui-state-default" data-no="${b.bo_no}">
       <label for="chk${b}" class="ckeck_label">
-       <input type="checkbox" id="chk${b}" class="check_list">
+       <input type="checkbox" name ="book_create" id="chk${b}" value="${b.bo_no}" class="check_list">
        <div class="post_list_cont" data-order="${b.bo_no}">
         <div class="post_list_cont_title">
          <c:if test="${fn:length(b.bo_title)>20}">
@@ -68,9 +68,9 @@
 <!-- 저장 팝업 -->
 <div class="create_book_name">
  <div class="create_book_panel">
-  <input type="text" placeholder="책 제목 입력" maxlength="30"> 
+  <input type="text" id ="create_name_box" name="book_name" placeholder="책 제목 입력" maxlength="30"> 
   <input type="submit" value="만들기">
-  <input type="reset" value="취소">
+  <input type="button" class="create_name_close" value="취소">
  </div>
 </div>
 

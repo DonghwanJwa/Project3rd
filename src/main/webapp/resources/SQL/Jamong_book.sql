@@ -26,3 +26,7 @@ NOCACHE;
 SELECT * FROM book ORDER BY book_no DESC;
 ALTER TABLE book DROP (fav_no);
 ALTER TABLE book ADD (cat_no NUMBER(38));
+
+  INSERT
+  INTO book (book_no,book_name,book_date)
+  VALUES (book_no_seq.nextval,'안녕',sysdate);

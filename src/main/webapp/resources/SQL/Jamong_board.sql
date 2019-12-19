@@ -63,4 +63,8 @@ select * from ALL_CONSTRAINTS WHERE TABLE_NAME='board';
  SELECT *
  FROM board b, member m
  WHERE b.mem_no=m.mem_no
- AND b.bo_no=10
+ AND b.bo_no=10;
+ 
+  UPDATE board AS b ,book  AS bo
+  SET b.book_no=bo.book_no_seq.nextval, bo.book_name = '이거버그야'
+  WHERE b.bo_no=b.bo_no;

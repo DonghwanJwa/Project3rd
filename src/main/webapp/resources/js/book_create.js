@@ -39,4 +39,43 @@ $(document).ready(function() {
 	$("#post_list").disableSelection();
 	$("#create_list").sortable();
 	$("#create_list").disableSelection();
+	
+	$(".create_name_close").click(function(){
+		$(".create_book_name").css("display","none");
+	});
+	$(".create_book_name").click(function(i){
+		if($(".create_book_name").is(i.target)){//영역 밖 클릭 시
+			$(".create_book_name").css("display","none");
+		}
+	});
 });
+
+function createCheck(){
+	if($("#create_list").children().length == ""){
+		alert("책으로 만들 글을 선택해 주세요");
+		return false;
+	}
+	var screenWidth = $(document).width();
+	var screenHeight = $(document).height();
+	$(".create_book_name").css({'width':screenWidth,'height':screenHeight});
+	$(".create_book_name").css("display","inline-block");
+}
+
+function create_bookCheck(){
+	var checkArr = []; //배열 초기화
+	$(":checked").each(function(){
+		checkArr.push($(this).val());
+		console.log(checkArr);
+	});
+	
+	jQuery.ajaxSettings.tranditional = true;
+	
+	$.ajax({
+		url: "book_create_ok",
+		type: "get",
+		dataType: "text",
+		data: {
+			"create_list" : checkArr
+		}
+	});
+}

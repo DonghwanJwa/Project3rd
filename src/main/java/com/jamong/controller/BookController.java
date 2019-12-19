@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
@@ -64,11 +66,26 @@ public class BookController {
 		
 		return mv;
 	}
-	
+
 	@RequestMapping("book_create_ok")
+	@ResponseBody
 	public String book_create_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session,
-			BoardVO b) throws Exception {
-		String[] checkboxArr = request.getParameterValues("btn");
+			BookVO b) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		session = request.getSession();
+		
+		String book_name= request.getParameter("book_name");
+		System.out.println(book_name);
+		this.bookService.insertBook(b);
+		b.setBook_name(book_name);
+		
+		String[] bo_no=request.getParameterValues("book_create");
+		for(String val :(bo_no)) {
+			this.bookService.book_noUP(val);
+			System.out.println(val);
+		}
+		
 		
 		return null;
 	}
