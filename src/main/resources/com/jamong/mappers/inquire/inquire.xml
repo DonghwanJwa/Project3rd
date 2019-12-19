@@ -16,6 +16,9 @@
   <result column="inq_file2" property="inq_file2" />
   <result column="inq_file3" property="inq_file3" />
   <result column="inq_file4" property="inq_file4" />
+  <result column="inq_reply" property="inq_reply" />
+  <result column="inq_sender" property="inq_sender" />
+  <result column="inq_replydate" property="inq_replydate" />
   <result column="inq_state" property="inq_state" />
   <result column="inq_date" property="inq_date" />
   <result column="mem_no" property="mem_no" />
@@ -120,6 +123,9 @@
 			   inq.inq_file2,
 			   inq.inq_file3,
 			   inq.inq_file4,
+			   inq.inq_reply,
+			   inq.inq_sender,
+			   inq.inq_replydate,
 			   inq.mem_no,
 			   m.mem_no,
 			   m.mem_id,

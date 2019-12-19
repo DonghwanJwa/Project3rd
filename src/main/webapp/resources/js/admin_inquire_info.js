@@ -13,5 +13,4 @@ $(document).ready(function(){
 	$('#inq_request_btn').click(function(){		
 		$('.wrap-loading').show();
 	});
-	
 });

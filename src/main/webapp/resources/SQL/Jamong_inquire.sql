@@ -59,6 +59,9 @@ SELECT inq.inq_no,
 			   inq.inq_file3,
 			   inq.inq_file4,
 			   inq.mem_no,
+			   inq.inq_reply,
+			   inq.inq_sender,
+			   inq.inq_replydate,
 			   m.mem_no,
 			   m.mem_id,
 			   m.mem_name,
@@ -70,4 +73,4 @@ SELECT inq.inq_no,
 		FROM inquire inq
 		LEFT JOIN member m
 		ON inq.mem_no = m.mem_no
-		WHERE inq.inq_no = 20;
+		WHERE inq.inq_no = 21;
