@@ -378,6 +378,13 @@ body a {
 	background:grey;
 	color:white;
 }
+#read_reply_icon{
+	float: left;
+    width: 30px;
+    height: 150px;
+    margin-top: 15px;
+    font-size: 20px;
+}
 
 /* 이전, 다음글 */
 
