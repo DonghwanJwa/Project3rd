@@ -67,7 +67,7 @@
 
 <!-- 저장 팝업 -->
 <div class="create_book_name">
- <div class="create_book_pannel">
+ <div class="create_book_panel">
   <input type="text" placeholder="책 제목 입력" maxlength="30"> 
   <input type="submit" value="만들기">
   <input type="reset" value="취소">
