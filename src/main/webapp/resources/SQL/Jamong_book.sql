@@ -24,6 +24,7 @@ MINVALUE 0
 NOCACHE;
 
 SELECT * FROM book ORDER BY book_no DESC;
+SELECT book_no_seq.nextval FROM DUAL;
 ALTER TABLE book DROP (fav_no);
 ALTER TABLE book ADD (cat_no NUMBER(38));
 

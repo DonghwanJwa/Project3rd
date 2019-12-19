@@ -23,7 +23,9 @@ mem_keyword VARCHAR2(400), 		  -- 작가 키워드 ※ 카테고리아님
 mem_fav1 VARCHAR2(50), 				  -- 관심 카테고리 (선호하는 장르 선택)
 mem_fav2 VARCHAR2(50),
 mem_fav3 VARCHAR2(50),
-mem_portfolio CLOB		  			  -- 작가 포트폴리오 내용 (12/03 추가)
+mem_portfolio CLOB,		  			  -- 작가 포트폴리오 내용 (12/03 추가)
+mem_Withdrawal_reason VARCHAR2(2000),  -- 회원 탈퇴사유 (12/19 추가)
+mem_Withdrawal_reason_date DATE       -- 회원 탈퇴 날짜 (12/19 추가)
 );
 
 DROP table member;
@@ -40,8 +42,15 @@ NOCACHE;
 
 SELECT mem_no_seq.nextval FROM DUAL;
 
+update member 
+set mem_Withdrawal_reason='테스트입니다',mem_state=2,mem_Withdrawal_reason_date=sysdate 
+where mem_no=28
+
 -- 회원 테이블에 작가 포트폴리오 내용 추가
 ALTER member ADD (mem_portflio CLOB);
+ALTER table member ADD (mem_Withdrawal_reason VARCHAR2(100))
+ALTER table member ADD (mem_Withdrawal_reason_date DATE);
+
 
 select * from(
     select * from member
@@ -62,31 +71,3 @@ ON b.mem_no=m.mem_no
 WHERE rowNum <= 9;
 
 commit;
-
-SELECT m.mem_no,
-    	m.mem_id, 
-    	m.mem_author, 
-    	m.profile_photo, 
-    	m.profile_cont, 
-    	m.mem_nickname, 
-    	m.mem_keyword, 
-    	m.mem_portfolio,
-    	b.bo_no,
-    	b.bo_title,
-    	b.bo_subtitle,
-    	b.bo_cont,
-    	b.bo_thumbnail,
-    	b.bo_hit,
-    	b.bo_date,
-    	b.bo_editdate,
-    	b.bo_lock,
-    	b.bo_type,
-    	b.bo_like,
-    	b.book_order,
-    	b.cat_name,
-    	b.mem_no,
-    	b.book_no
-    FROM member m
-    INNER JOIN board b
-    ON m.mem_no = b.mem_no
-    AND m.mem_no = 4

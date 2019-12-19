@@ -36,4 +36,12 @@
 .inq_adm_tr:hover{
 	background-color:aliceblue;
 }
-
+#search_field{
+	height:24.4px;	
+}
+#search_field_item{
+	height:24.4px;
+}
+#search_field_handling{
+	height:24.4px;
+}

@@ -5,4 +5,64 @@
 
 <mapper namespace="reply">
 
+ <resultMap type="rep" id="replyMap">
+  <id column="rep_no" property="rep_no" />
+  <result column="rep_cont" property="rep_cont" />
+  <result column="rep_date" property="rep_date" />
+  <result column="rep_ref" property="rep_ref" />
+  <result column="rep_step" property="rep_step" />
+  <result column="rep_level" property="rep_level" />
+  <result column="bo_no" property="bo_no" />
+  <result column="mem_no" property="mem_no" />  
+  
+  <association javaType="m" property="memberVO">
+   <id column="mem_no" property="mem_no" />
+   <result column="mem_id" property="mem_id" />
+   <result column="mem_name" property="mem_name" />
+   <result column="mem_birth1" property="mem_birth1" />
+   <result column="mem_birth2" property="mem_birth2" />
+   <result column="mem_birth3" property="mem_birth3" />
+   <result column="email_id" property="email_id" />
+   <result column="email_domain" property="email_domain" />
+   <result column="mem_phone01" property="mem_phone01" />
+   <result column="mem_phone02" property="mem_phone02" />
+   <result column="mem_phone03" property="mem_phone03" />
+   <result column="mem_date" property="mem_date" />
+   <result column="mem_author" property="mem_author" />
+   <result column="mem_state" property="mem_state" />
+   <result column="profile_photo" property="profile_photo" />
+   <result column="profile_cont" property="profile_cont" />
+   <result column="mem_state" property="mem_state" />
+   <result column="mem_nickname" property="mem_nickname" />
+   <result column="mem_keyword" property="mem_keyword" />
+   <result column="mem_fav1" property="mem_fav1" />
+   <result column="mem_fav2" property="mem_fav2" />
+   <result column="mem_fav3" property="mem_fav3" />
+   <result column="mem_portfolio" property="mem_portfolio" />
+  </association>
+ </resultMap>
+
+ <insert id="com_add">
+  INSERT INTO reply (rep_no,rep_cont,rep_date,rep_ref,rep_step,rep_level,bo_no,mem_no)
+  VALUES (rep_no_seq.nextval,#{rep_cont},sysdate,rep_no_seq.nextval,0,0,#{bo_no},#{mem_no})
+ </insert>
+ 
+ <insert id="rep_add">
+  INSERT INTO reply (rep_no,rep_cont,rep_date,rep_ref,rep_step,rep_level,bo_no,mem_no)
+  VALUES (rep_no_seq.nextval,#{rep_cont},sysdate,#{rep_ref},#{rep_step}+1,#{rep_level}+1,#{bo_no},#{mem_no})
+ </insert>
+ 
+ <update id="rep_update">
+  <![CDATA[
+  UPDATE reply SET rep_level=rep_level+1 WHERE rep_ref=#{rep_ref} AND rep_level > #{rep_level}
+  ]]>
+ </update>
+ 
+  <select id="rep_boList" resultMap="replyMap">
+  SELECT *
+  FROM (SELECT * FROM reply ORDER BY rep_ref ASC,rep_level) r
+  INNER JOIN member m
+  ON r.mem_no=m.mem_no
+  WHERE r.bo_no=#{bo_no}
+  </select>
 </mapper>

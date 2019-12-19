@@ -273,6 +273,8 @@ function handleImgFileSelect(e){
 	var filesArr = Array.prototype.slice.call(files);
 
 	// 커버이미지 선택시
+	$("#bo_color").val("");
+	
 	$(".write_main_title").addClass('write_bg_title_option');
 	$(".write_sub_title").addClass('write_bg_title_option');
 

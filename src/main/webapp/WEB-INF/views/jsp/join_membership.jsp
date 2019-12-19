@@ -121,6 +121,13 @@
 					</div>
 					<div>
 					<%-- 메일인증 구현해야됨!!! --%> 
+						<div class="join_membership_policy_box">
+					 	 <input id="join_membership_check" type="checkbox" name="agree" >
+					 	 <label id="join_membership_check_comment" id="inq_check" for="agree">
+					 	   자몽의 <a href="/jamong.com/policy_terms" target="_blank">이용약관</a> 및 <a href="/jamong.com/policy_privacy" target="_blank">개인정보 처리방침</a>에 동의합니다.
+					 	 </label>
+					 	 <div class="join_membership_error" id="join_membership_policy_error"></div>
+					 	</div>
 						<input type="button" id="join_membership_next_btn" tabindex="17" value="다음으로" />
 					</div>
 				</div>

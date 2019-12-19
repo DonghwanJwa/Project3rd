@@ -641,6 +641,11 @@ span.del_btn {
     border-radius: 50%;
     border: 1px solid #eee;
 }
+.folio_font{
+	text-align: center;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.48);
+}
 #flio_b{
     float: right;
     outline: none;

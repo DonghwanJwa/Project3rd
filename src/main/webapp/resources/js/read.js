@@ -5,15 +5,46 @@
 
 getSympathyState();
 
-function replyAdd(){
+function addComment(){
 	var para = document.location.href.split("/");
-	var reply_cont = $(".textarea").text();
+	var com_cont = $(".textarea").text();
+
 	$.ajax({
 		type:"POST",
-		data:{"reply_cont":reply_cont},
+		data:{"com_cont":com_cont
+		},
+		url:"/jamong.com/comment/"+para[5],
+		success:function(data){
+			if(data == 1){
+				alert('댓글 작성에 성공했습니다!');
+				window.location.reload();
+			}else if(data == 2){
+				alert('로그인이 필요합니다!');
+			}
+		}
+	});
+}
+function addReply(e){
+	var para = document.location.href.split("/");
+	var rep_cont = $(".reply_textarea").text();
+	var rep_ref = e.target.getAttribute("data-ref");
+	var rep_step = e.target.getAttribute('data-step');
+	var rep_level = e.target.getAttribute('data-level');
+	$.ajax({
+		type:"POST",
+		data:{"rep_cont":rep_cont,
+			"rep_ref":rep_ref,
+			"rep_step":rep_step,
+			"rep_level":rep_level,	
+		},
 		url:"/jamong.com/reply/"+para[5],
 		success:function(data){
-			
+			if(data == 1){
+				alert('답글 작성에 성공했습니다!');
+				window.location.reload();
+			}else if(data == 2){
+				alert('로그인이 필요합니다!');
+			}
 		}
 	});
 }
@@ -29,9 +60,12 @@ function showHide() {
 		}
 }
 
-function replyHide() {
+function replyHide(e) {
 	if($('.reply_wrap').css("display") == "none") {
 		$('.reply_wrap').show();
+		$(".reply_btn").attr("data-ref",e.target.getAttribute("data-ref"));
+		$(".reply_btn").attr("data-step",e.target.getAttribute('data-step'));
+		$(".reply_btn").attr("data-level",e.target.getAttribute('data-level'));
 	}else {
 		$('.reply_wrap').hide();
 	}

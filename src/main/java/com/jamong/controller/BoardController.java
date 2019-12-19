@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,11 +26,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
+import com.jamong.domain.CategoryVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.ReplyVO;
 import com.jamong.service.BoardService;
 import com.jamong.service.CategoryService;
 import com.jamong.service.MemberService;
-import com.jamong.service.SympathyService;
+import com.jamong.service.ReplyService;
 import com.oreilly.servlet.MultipartRequest;
 
 import pwdconv.PwdChange;
@@ -42,6 +46,9 @@ public class BoardController {
 	private MemberService memberService;
 	@Autowired
 	private CategoryService catService;
+	@Autowired
+	private ReplyService repService;
+
 
 	@RequestMapping("@{mem_id}/{bo_no}")
 	public String user_readCont(@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo, Model model,
@@ -53,6 +60,7 @@ public class BoardController {
 		MemberVO readM = (MemberVO)session.getAttribute("m");
 		
 		bo = this.boardService.getUserBoardCont(bo_no);
+		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		List<BoardVO> catList = this.boardService.getUserBoardCatArticle(bo.getCat_name());
 		List<BoardVO> bList = this.boardService.getUserBoardContList(bo.getMem_no());
 		
@@ -73,14 +81,27 @@ public class BoardController {
 		for(int i=0;i<bList.size();i++) {
 			String htmlText = bList.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			bList.get(i).setBo_cont(normalText);
+			String oneSpace = normalText.replaceAll("&nbsp; "," ");
+			if(normalText.length()>100) {
+				String hundredText = oneSpace.substring(0,100);					
+				bList.get(i).setBo_cont(hundredText);
+			}else {
+				bList.get(i).setBo_cont(oneSpace);
+			}
 		}
 		for(int i=0;i<catList.size();i++) {
 			String htmlText = catList.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			catList.get(i).setBo_cont(normalText);
+			String oneSpace = normalText.replaceAll("&nbsp; "," ");
+			if(normalText.length()>100) {
+				String hundredText = oneSpace.substring(0,100);								
+				catList.get(i).setBo_cont(hundredText);
+			}else {
+				catList.get(i).setBo_cont(oneSpace);
+			}
 		}
-
+		
+		model.addAttribute("rList",repList);
 		model.addAttribute("catList",catList);
 		model.addAttribute("bList",bList);
 		model.addAttribute("bo", bo);
@@ -235,7 +256,8 @@ public class BoardController {
 		for (int i = 0; i < bList.size(); i++) {
 			String htmlText = bList.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			bList.get(i).setBo_cont(normalText);
+			String oneSpace = normalText.replaceAll("&nbsp; "," ");
+			bList.get(i).setBo_cont(oneSpace);
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("bList", bList);
@@ -276,6 +298,19 @@ public class BoardController {
 			result = this.boardService.sympathyDown(bo);
 		}
 		return result;
+	}
+	
+	@RequestMapping("best_load")
+	public ResponseEntity<List<BoardVO>> best_load(){
+		ResponseEntity<List<BoardVO>> entity = null;
+		
+		try {
+			entity = new ResponseEntity<>(this.boardService.bestList(),HttpStatus.OK);					
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}		
+		return entity;
 	}
 	
 	@PostMapping("infinitiScrollDown")
