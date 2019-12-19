@@ -242,9 +242,7 @@
 						</div>
 						
 						<div class="another_cont">
-						<p>
 						${catList.bo_cont}
-						</p>
 						</div>
 						
 						<div class="another_auth">

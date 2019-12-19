@@ -17,6 +17,7 @@
     <img id="login_img_logo" src="/jamong.com/resources/img/logo2.png"/>
    </a>
   </div>
+  <input type="hidden" id="login_back_page" value="${ref}"/>
   <div id="login_mid">
    <div class="login_color">
     <input id="login_id" name="login_id" type="text" placeholder="아이디" autocomplete="off" tabindex="1">

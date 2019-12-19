@@ -19,6 +19,7 @@ public interface BoardService {
 	List<BoardVO> recomArticle();
 	int sympathyUp(BoardVO bo);
 	int sympathyDown(BoardVO bo);
+	List<BoardVO> bestList();
 	List<BoardVO> infinitiScrollDown(int bo_no);
 	List<BoardVO> getUserBoardCatArticle(String cat_name);
 	List<BoardVO> categoryArticle(String cat_name);

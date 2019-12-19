@@ -78,27 +78,7 @@ $(document).keydown(function(e){
       </div>
       <div id="head-page-best-list-frame">
        <ul id="head-page-best-list">
-       
-		<c:forEach var="i" begin="1" end="5" step="1">	
-	    <li class="head-page-best-item">
-	     <a href="/jamong.com/read" class="head-page-link">
-	      <c:if test="${i%2==1}">
-	       <img src="/jamong.com/resources/img/a.jpg"/>
-	      </c:if>
-	      <c:if test="${i%2!=1}">
-	       <img src="/jamong.com/resources/img/b.jpg"/>
-	      </c:if>
-	      <div class="head-page-cont">
-	      <div class="head-page-main-title-wrap">	      
-	       <strong class="head-page-main-title">죽어도 못보냈다.</strong>	     	      
-	      </div>
-	       <span class="head-page-sub-title">경력 10년차에 퇴사하고 캐나다로 떠난 여행</span>	     	    
-	       <span class="head-page-author">by 누구누구</span>
-	      </div>
-	     </a>
-	    </li>
-		</c:forEach>
-		
+		<%-- Best 내용 들어오는 곳 : getJSON 처리 --%>
 	   </ul>
 	   </div>
 	   <div class="head-item-scroll">
@@ -161,7 +141,7 @@ $(document).keydown(function(e){
      <div id="head-profile-service-wrap">
       <ul>
        <li id="head-profile-service-login" class="head-profile-stat-logout">
-        <a href="/jamong.com/login">
+        <a href="/jamong.com/login/1">
          <span class="head-profile-service-bar-left"></span>
         	<b>로그인</b>
          <span class="head-profile-service-bar-right"></span>

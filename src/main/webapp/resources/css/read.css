@@ -490,10 +490,14 @@ body a {
 
 .another_cont {
 	min-width:400px;
+	max-height: 50px;
+    line-height: 25px;
 	font-family: 'NanumMyeongjo','serif';
 	position:absolute;
 	top:42%;
 	left:50%;
+	overflow:hidden;
+	color:white;
 	transform:translate(-50%);
 	text-align:center;
 }

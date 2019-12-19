@@ -64,10 +64,11 @@ $(document).ready(function(){
 			$("#login_pwd").val("").focus();
 			return false;
 		}
-	
+		var ref= $('#login_back_page').val();
+		var para = document.location.href.split("/");
 		$.ajax({
 			type:"POST",
-			url:"login_ok", 
+			url:"/jamong.com/login_ok/"+para[5], 
 			data: {"login_id":login_id ,"login_pwd":login_pwd},
 			datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
 			success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
@@ -76,8 +77,10 @@ $(document).ready(function(){
 					return false;
 				}else if(data==2){				//이미 로그인 되어진 상황이라면 이전페이지로
 					history.back();
-				}else{
-					window.location.replace("/jamong.com/");					
+				}else if(data==-1){
+					window.location=ref;
+				}else if(data==-2){
+					window.location.replace("/jamong.com/");										
 				}
 			},
 			error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
@@ -272,6 +275,12 @@ $(document).ready(function(){
 		if ($.trim($('#join_membership_tel3').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			$("#join_membership_tel3").focus();
+			return false;
+		}
+		
+		if($('#join_membership_check').is(":checked") == false){
+			$('#join_membership_policy_error').text('개인정보처리 방침에 동의해 주세요.');
+			$('#join_membership_check').focus();
 			return false;
 		}
 		
