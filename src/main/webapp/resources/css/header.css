@@ -540,7 +540,7 @@ body{
 
 /*우측사이드창 - profile*/
 #head-profile-menu{
-	width: 200px;
+	width: 180px;
 	height: 40px;
 	display:flex;
 	justify-content: space-between;
