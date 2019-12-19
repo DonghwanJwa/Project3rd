@@ -71,6 +71,17 @@ function replyHide(e) {
 	}
 }
 
+function replyBtnHide(e){
+	var target = $(e.target);
+	target.children().children(".comment_reply").css("display","none");
+	target.css("background-color","#FFF");
+}
+function replyBtnShow(e){
+	var target = $(e.target);
+	target.children().children(".comment_reply").css("display","block");
+	target.css("background-color","#FAFAFA");
+}
+
 function getSympathyState(){
 	var para = document.location.href.split("/");
 	$.ajax({
@@ -86,6 +97,7 @@ function getSympathyState(){
 		}
 	});
 }
+
 
 $(document).ready(function(){
 	
@@ -134,5 +146,5 @@ $(document).ready(function(){
 				}
 			});
 		}
-	});	
+	});
 });

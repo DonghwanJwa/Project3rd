@@ -175,13 +175,6 @@ $(document).ready(function(){
 			}// if
 		}// if
 	});
-	$(".write_main_title").keyup(function(e){ // 메인타이틀에 키 이벤트 입력
-		if(e.keyCode == '8'){ // 백스페이스 버튼 뗄 때
-			if($.trim($(".write_main_title").val())==""){
-				$(".write_main_title br").remove();
-			}// if
-		}// if
-	});
 	$(".write_cont_area").keydown(function(e){ // 키를 눌렀을 때 이벤트
 		if(e.keyCode == '13'){ // 엔터버튼을 눌렀을 때
 			$(document).scrollTop($(document).height());
@@ -192,7 +185,7 @@ $(document).ready(function(){
 		}
 	});
 	$(".write_main_title").keydown(function(e){
-		if(e.keycode != '8'){
+		if(e.keyCode != '8'){ // 백스페이스 이외 키를 눌렀을 때
 			if($(".write_main_title").text().length > 30){
 				$(".write_title_error").addClass('write_top_error');
 				$(".write_error_message").text("제목은 30자 이상 입력할 수 없습니다!");
@@ -201,9 +194,33 @@ $(document).ready(function(){
 					$(".write_title_error").removeClass('write_top_error');
 					$(".write_cont_save").attr("disabled",false);
 				},3000);
-				var titleText = $(".write_main_title").text().substring(0,30);
-				$(".write_main_title").focus().text(titleText);
+				var titleText = $(".write_main_title").text().substr(0,30);
+				$(".write_main_title").text(titleText);
+				$(".write_main_title").focus();
 			}
+		}// if
+		if(e.keyCode == '13'){ // 엔터키를 눌렀을 때
+			if($(".write_main_title br").length > 1){
+				$(".write_main_title br").remove();
+			}
+		}
+	});
+	$(".write_sub_title").keydown(function(e){
+		if(e.keyCode != '8'){ // 백스페이스 이외 키를 눌렀을 때
+			if($(".write_sub_title").text().length > 40){
+				$(".write_title_error").addClass('write_top_error');
+				$(".write_error_message").text("소제목은 40자 이상 입력할 수 없습니다!");
+				$(".write_cont_save").attr("disabled",true);
+				setTimeout(function(){
+					$(".write_title_error").removeClass('write_top_error');
+					$(".write_cont_save").attr("disabled",false);
+				},3000);
+				var titleText = $(".write_sub_title").text().substr(0,40);
+				$(".write_sub_title").text(titleText);
+			}
+		}// if
+		if(e.keyCode == '13'){ // 엔터키를 눌렀을 때
+				return false;
 		}
 	});
 	
@@ -352,8 +369,6 @@ function saveCheck(){
 	}
 	window.location.replace("./write_ok");
 }
-
-
 
 /*카테고리선택창의 카테고리 불러오기*/
 function getCategorySelect(){
