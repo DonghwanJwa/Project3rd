@@ -245,6 +245,7 @@ body{
 }
 
 .head-page-sub-title{
+	margin: 0 20px;
 	margin-top: 13px;
 	font-size:14px;
 	text-align:center;

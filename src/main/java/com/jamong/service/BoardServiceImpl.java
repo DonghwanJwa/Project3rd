@@ -58,6 +58,11 @@ public class BoardServiceImpl implements BoardService {
 	}	
 	
 	@Override
+	public List<BoardVO> bestList() {	
+		return this.boardDao.bestList();
+	}
+
+	@Override
 	public List<BoardVO> infinitiScrollDown(int bo_no) {
 		return this.boardDao.infinitiScrollDown(bo_no);
 	}

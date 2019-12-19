@@ -62,31 +62,3 @@ ON b.mem_no=m.mem_no
 WHERE rowNum <= 9;
 
 commit;
-
-SELECT m.mem_no,
-    	m.mem_id, 
-    	m.mem_author, 
-    	m.profile_photo, 
-    	m.profile_cont, 
-    	m.mem_nickname, 
-    	m.mem_keyword, 
-    	m.mem_portfolio,
-    	b.bo_no,
-    	b.bo_title,
-    	b.bo_subtitle,
-    	b.bo_cont,
-    	b.bo_thumbnail,
-    	b.bo_hit,
-    	b.bo_date,
-    	b.bo_editdate,
-    	b.bo_lock,
-    	b.bo_type,
-    	b.bo_like,
-    	b.book_order,
-    	b.cat_name,
-    	b.mem_no,
-    	b.book_no
-    FROM member m
-    INNER JOIN board b
-    ON m.mem_no = b.mem_no
-    AND m.mem_no = 4

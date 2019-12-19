@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,8 +40,8 @@ public class MemberController {
 	@Autowired
 	private MailService mailService;
 		
-	@RequestMapping("login")
-	public String user_login(
+	@RequestMapping("login/{page}")
+	public String user_login(@PathVariable("page") int page,Model mo,
 			HttpServletRequest request,
 			HttpServletResponse response,
 			HttpSession session)throws Exception { // 로그인 페이지
@@ -49,6 +50,8 @@ public class MemberController {
 		session=request.getSession();
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		
+		String ref = request.getHeader("Referer");
+		mo.addAttribute("ref", ref);
 		if(m != null) {
 			out.println("<script>");
 			out.println("history.back();");
@@ -59,16 +62,16 @@ public class MemberController {
 		return null;
 	}
 	
-	@RequestMapping("login_ok")
+	@RequestMapping("login_ok/{page}")
 	@ResponseBody
-	public int member_login_ok(String page,String login_id, String login_pwd,MemberVO m,
+	public int member_login_ok(@PathVariable("page") int page,String login_id, String login_pwd,MemberVO m,
 			HttpServletResponse response,HttpServletRequest request,
 			HttpSession session) throws Exception{
 		session=request.getSession();
 		session.setMaxInactiveInterval(120*60);		//세션 유지시간 2시간
 		MemberVO mem_m = (MemberVO)session.getAttribute("m");
 		
-		int re = 1;	//로그인 가능여부 변수 : 1 불가능, 2이미 로그인됨 , -1 가능
+		int re = 1;	//로그인 가능여부 변수 : 1 불가능, 2이미 로그인됨 , -1 & -2가능
 		
 		if(mem_m != null) {
 			re = 2;
@@ -76,7 +79,11 @@ public class MemberController {
 			MemberVO dm=this.memberService.loginCheck(login_id);//로그인 인증
 			if(dm!=null) {		//안에 디비값이 있을떄
 				if(dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))){
-					re=-1;
+					if(page==1) {	//메뉴에서 로그인 시도시
+						re=-1;						
+					}else {			//회원가입에서 로그인 시도시
+						re=-2;
+					}
 					m.setMem_no(dm.getMem_no());
 					m.setMem_id(dm.getMem_id());
 					m.setMem_nickname(dm.getMem_nickname());
@@ -253,7 +260,7 @@ public class MemberController {
 		
 		out.println("<script>");
 		out.println("alert('회원가입이 되셨습니다!');");
-		out.println("location='login';");
+		out.println("location='login/2';");
 		out.println("</script>");
 		
 		return null;
