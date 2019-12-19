@@ -4,7 +4,7 @@ ac_reason VARCHAR2(100) NOT NULL, -- 신고사유
 ac_cont VARCHAR2(4000) NOT NULL,  -- 신고 내용
 ac_date DATE,					  -- 신고일
 ac_item NUMBER(38),				  -- 신고 항목 1-회원, 2-게시글, 3-덧글
-ac_result VARCHAR2(50),			  -- 신고 결과
+ac_state NUMBER(38) DEFAULT 0,	  -- 신고 결과 0이면 미처리,1이면 처리
 ac_member NUMBER(38),			  -- 신고자 참조 컬럼
 mem_no NUMBER(38),				  -- 피신고자 참조 컬럼
 bo_no NUMBER(38),				  -- 게시글 참조 컬럼
@@ -16,6 +16,9 @@ START WITH 0
 INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
+
+DROP TABLE accuse;
+
 
 -- 참조 컬럼 외래키 설정
 ALTER TABLE accuse

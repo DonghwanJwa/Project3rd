@@ -14,40 +14,41 @@
 	  	<br/>
 	  	<div id=acc_report_body>
 	    	<div id=acc_box_accuse>
-	    		<form id=acc_form_accuse name="acc_list" method="post" onsubmit="return accuseVali();">
-	    		 	<span class=acc_accuse_list>
+	    		<form id=acc_form_accuse method="post" action="accuse_report_ok" onsubmit="return accuseVali();">
+	    		 	<span class=acc_accuse_list onkeydown="return captureReturnKey(event)">
+	    		  	
 	    		  	<input type="radio" class="acc_radio_button" 
-	    		  	name="list"  value="A" style=cursor:pointer; />
+	    		  	name="ac_reason"  value="영리목적" style=cursor:pointer; />
 	    		 	<label class=acc_accuse_label>영리목적/홍보성</label>
 	    		 	</span>
 	    		 <span class=acc_accuse_list>
 	    		  <input type="radio" class="acc_radio_button" 
-	    		  name="list" value="B" style=cursor:pointer; />
+	    		  name="ac_reason" value="불법정보" style=cursor:pointer; />
 	    		  <label class=acc_accuse_label>불법정보</label>
 	    		 </span>
 	    		 <span class=acc_accuse_list>
 	    		  <input type="radio" class="acc_radio_button" 
-	    		  name="list" value="C" style=cursor:pointer;  />
+	    		  name="ac_reason" value="욕설/인신공격" style=cursor:pointer;  />
 	    		 <label class=acc_accuse_label>욕설/인신공격</label>
 	    		 </span>
 	    		 <span class=acc_accuse_list>
 	    		  <input type="radio" class="acc_radio_button" 
-	    		  name="list" value="D" style=cursor:pointer; />
+	    		  name="ac_reason" value="음란/선정성" style=cursor:pointer; />
 	    		 <label class=acc_accuse_label>음란/선정성</label>
 	    		 </span>
 	    		 <span class=acc_accuse_list>
 	    		  <input type="radio" class="acc_radio_button" 
-	    		  name="list" value="E" style=cursor:pointer; />
+	    		  name="ac_reason" value="개인정보노출" style=cursor:pointer; />
 	    			<label class=acc_accuse_label>개인정보노출</label>
 	    		 </span>
 	    		 <span class=acc_accuse_list>
 	    		  <input type="radio" class="acc_radio_button" 
-	    		  name="list" value="F" style=cursor:pointer; />
+	    		  name="ac_reason" value="같은내용도배" style=cursor:pointer; />
 	    		  <label class=acc_accuse_label>같은내용도배</label>
 	    		 </span>
 	    		 <span class=acc_accuse_list>
 	    		  <input type="radio" class="acc_radio_button" 
-	    		  name="list" value="G" style=cursor:pointer; />
+	    		  name="ac_reason" value="권리침해신고" style=cursor:pointer; />
 	    		  <label class=acc_accuse_label>권리침해신고</label>
 	    		 </span>
 	    		 <span class=acc_accuse_list>
@@ -60,7 +61,7 @@
 	    		 
 	    		 <!-- 기타사유 텍스트필드 시작 -->
 	    		 <div id=acc_reason_text>
-	    		 	  <textarea id="acc_write_reason" class="acc_lab_reason" placeholder="신고 사유를 입력해 주세요(최대 200자)" 
+	    		 	  <textarea id="acc_write_reason" name="ac_cont" class="acc_lab_reason" placeholder="신고 사유를 입력해 주세요(최대 200자)" 
 	    		 	  style="resize:none;" cols="50" rows="6" name="reasonMention" maxlength="200"></textarea>	 
 	    		 </div>
 	    		 <div class="acc_vali_date" id="acc_vali_field"></div>

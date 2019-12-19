@@ -18,17 +18,17 @@
 	<tr>
 		<th align="center" style="width:110px; height:40px;">회원분류</th>
 		<td align="center" style="width:120px;">
-			<c:if test="${0 eq i.mem_no}"><font color="grey">비회원</font></c:if>
+			<c:if test="${0 eq i.mem_no}"><font color="red">비회원</font></c:if>
 			<c:if test="${0 ne i.mem_no}">
-			<c:if test="${i.memberVO.mem_state == 0}"><font color="black">가입회원</font></c:if>
-			<c:if test="${i.memberVO.mem_state == 1}"><font color="red">정지회원</font></c:if>
+			<c:if test="${i.memberVO.mem_state == 0}"><font color="blue">가입회원</font></c:if>
+			<c:if test="${i.memberVO.mem_state == 1}"><font color="grey">정지회원</font></c:if>
 			</c:if>
 		</td>
 		
 		<th align="center" style="width:150px;">처리상태</th>
 		<td align="center" style="width:150px;">
-			<c:if test="${i.inq_state == 0}"><font color="blue">미처리</font></c:if>
-			<c:if test="${i.inq_state == 1}"><font color="red">처리</font></c:if>			
+			<c:if test="${i.inq_state == 0}"><font color="red">처리대기</font></c:if>
+			<c:if test="${i.inq_state == 1}"><font color="blue">처리완료</font></c:if>			
 		</td>
 		
 		<th align="center" style="width:105px;">문의날짜</th>
@@ -68,24 +68,31 @@
 	</tr>
 </table>
 	
-	<div class="adm_inq_file">
+	 <table class="adm_inq_file"> 
 	<c:if test="${empty i.inq_file1 && empty i.inq_file2 && empty i.inq_file3 && empty i.inq_file4}">
-		
 	</c:if>
 	<c:if test="${!empty i.inq_file1 || !empty i.inq_file2 || !empty i.inq_file3 || !empty i.inq_file4}">
-	<h3>첨부파일</h3>
+	  <tr>
+		<th colspan="6" id="adm_inq_filename" align="center" style="height:50px;">
+			첨부파일
+		</th>
+	 </tr>
+	 
+	 <tr>
+	  <td colspan="6" id="adm_inq_field" style="height:175px;">
 		${i.inq_file1}
 		${i.inq_file2}
 		${i.inq_file3}
 		${i.inq_file4}
+	 </td>	
+	</tr>	
 		</c:if>
-	</div>		
+	</table>		
 
 <!-- 회원일때 문의하기 내용 밑에 회원정보 띄우기 -->
 
 <c:if test="${i.mem_no != 0}">
-<h3 class="inq_mem_info">회원정보</h3>
-	<table border="1" class="inq_adm_table2">
+	<table class="inq_adm_table2">
 		<tr>
 			<th align="center" style="width:140px; height:40px;">ID</th>
 			 <td align="center" style="width:150px;">
@@ -131,7 +138,6 @@
 	</form>
 	
  <c:if test="${i.inq_state == 1}">
-   <div id="inq_complete_div">
 	<table id="inq_adm_complete">
 		<tr>
 			<td align="right" colspan="5" class="inq_adm_readmin">처리자 : ${i.inq_sender} </td>
@@ -151,7 +157,6 @@
 		</td>
 	</tr>
 	</table>
-   </div>
   </c:if>
    
    <!-- 목록으로, 답변하기 버튼 -->

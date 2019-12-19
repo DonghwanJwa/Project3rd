@@ -1,12 +1,23 @@
 package com.jamong.controller;
 
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.AccuseVO;
+import com.jamong.domain.InquireVO;
+import com.jamong.domain.MemberVO;
 import com.jamong.service.AccuseService;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
 public class AccuseController {
@@ -18,11 +29,114 @@ public class AccuseController {
 	public ModelAndView accuse() {
 		return null;
 	}
-	@RequestMapping("accuse_report")
-	public ModelAndView accuse_report(AccuseVO a)
-	throws Exception{
-		this.accuseService.accuse_insert(a);
-		return null;
+
+	@RequestMapping("accuse_report_ok")
+	public ModelAndView accuse_report_ok(AccuseVO a,
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session)
+	throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out =response.getWriter();
+		
+		session=request.getSession();
+		
+		MemberVO user=(MemberVO) session.getAttribute("m");
+		
+		ModelAndView m=new ModelAndView();
+		
+		String ac_cont=request.getParameter("ac_cont");
+		String ac_reason=request.getParameter("ac_reason");
+		String ac_date=request.getParameter("ac_date");
+		
+		a.setAc_cont(ac_cont);
+		a.setAc_reason(ac_reason);
+		a.setAc_date(ac_date);
+		if(user != null) {
+			a.setMem_no(user.getMem_no());
+		}
+		
+		this.accuseService.insertAccuse(a);
+		
+		m.addObject("ac_cont",ac_cont);
+		m.addObject("a",a);
+		
+		
+		out.println("<script>");
+		out.println("alert('문의가 접수되었습니다!');");
+		out.println("location='/jamong.com';");
+		out.println("</script>");
+		
+		return null;		
 	}
+	/* 관리자 신고목록 페이지 */
+	@RequestMapping("admin_accuse")
+	public ModelAndView admin_accuse(AccuseVO a,
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session)
+	throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out =response.getWriter();
+		session=request.getSession();
 	
-}
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
+				
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='admin_login';");
+			out.println("</script>");
+		}else {
+			int page=1;
+			int limit=10;
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));
+			}
+			String search_field=request.getParameter("search_field");
+			String search_field_item=request.getParameter("search_field_item");
+			String search_field_handling=request.getParameter("search_field_handling");
+			String search_field_info=request.getParameter("search_field_info");
+			String search_name=request.getParameter("search_name");
+			
+			a.setSearch_name("%"+search_name+"%");
+			a.setSearch_field(search_field);
+			a.setSearch_field_item(search_field_item);
+			a.setSearch_field_handling(search_field_handling);
+			a.setSearch_field_info(search_field_info);
+			
+			
+			int listcount=this.accuseService.getListCount(a);
+			
+			a.setStartrow((page-1)*10+1);
+			a.setEndrow(a.getStartrow()+limit-1);
+			
+			List<AccuseVO> alist=this.accuseService.getAccuseList(a);
+			
+			int maxpage=(int)((double)listcount/limit+0.95);
+			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+			int endpage=maxpage;
+			if(endpage>startpage+10-1) endpage=startpage+10-1;
+		
+			ModelAndView m=new ModelAndView();
+			
+			m.addObject("alist",alist);
+			m.addObject("page",page);
+			m.addObject("startpage",startpage);
+			m.addObject("endpage",endpage);
+			m.addObject("maxpage",maxpage);
+			m.addObject("listcount",listcount);
+			m.addObject("search_field",search_field);		
+			m.addObject("search_field_item",search_field_item);
+			m.addObject("search_field_handling",search_field_handling);
+			m.addObject("search_field_info",search_field_info);
+			m.addObject("search_name",search_name);
+			
+			m.setViewName("jsp/admin_accuse");
+			
+			return m;
+		}	
+			return null;
+	}
+		
+	}

@@ -25,9 +25,9 @@ function accuseHide(){
 }
 
 function accuseVali(){
-	if($(':radio[name="list"]:checked').length <1 ){
+	if($(':radio[name="ac_reason"]:checked').length <1 ){
 		$('#acc_vali_list').text("신고종류를 선택해 주세요.")
-		$("#list").focus();
+		$("#ac_reason").focus();
 		return false;
 	}
 	if($('#acc_write_reason').val() == ""){
@@ -37,3 +37,8 @@ function accuseVali(){
 		return false;
 	}
 }
+function captureReturnKey(e) { 
+    if(e.keyCode==13 && e.srcElement.type != 'textarea') {
+       e.preventDefault();
+    }
+} 

@@ -99,7 +99,7 @@ public class InquireController {
 		
 			
 			
-		}
+	
 		
 		/* 입력한 값들을 InquireVO객체 i에 저장 */
 		i.setInq_item1(inq_item1);
@@ -122,9 +122,9 @@ public class InquireController {
 		out.println("alert('문의가 접수되었습니다!');");
 		out.println("location='/jamong.com';");
 		out.println("</script>");
-		
+		}
 		return null;
-	}
+		}
 	@RequestMapping("admin_inquire")
 	public ModelAndView admin_inquire(InquireVO i,
 			HttpServletRequest request,
@@ -148,11 +148,18 @@ public class InquireController {
 			if(request.getParameter("page") != null) {
 				page=Integer.parseInt(request.getParameter("page"));
 			}
-			String search_name=request.getParameter("search_name");
 			String search_field=request.getParameter("search_field");
+			String search_field_item=request.getParameter("search_field_item");
+			String search_field_handling=request.getParameter("search_field_handling");
+			String search_field_info=request.getParameter("search_field_info");
+			String search_name=request.getParameter("search_name");
 			
 			i.setSearch_name("%"+search_name+"%");
 			i.setSearch_field(search_field);
+			i.setSearch_field_item(search_field_item);
+			i.setSearch_field_handling(search_field_handling);
+			i.setSearch_field_info(search_field_info);
+			
 			
 			int listcount=this.inqService.getListCount(i);
 			
@@ -173,9 +180,12 @@ public class InquireController {
 			m.addObject("startpage",startpage);
 			m.addObject("endpage",endpage);
 			m.addObject("maxpage",maxpage);
-			m.addObject("search_name",search_name);
-			m.addObject("search_field",search_field);
 			m.addObject("listcount",listcount);
+			m.addObject("search_field",search_field);		
+			m.addObject("search_field_item",search_field_item);
+			m.addObject("search_field_handling",search_field_handling);
+			m.addObject("search_field_info",search_field_info);
+			m.addObject("search_name",search_name);
 			
 			m.setViewName("jsp/admin_inquire");
 			
