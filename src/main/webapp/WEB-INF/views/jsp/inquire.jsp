@@ -53,7 +53,7 @@
   	      <div class="inq_wrap_select">
   	       <select class="inq_list_select" name="inq_item1" id="listselect" onselect="return inq2();">
   	          <option value="none">선택</option>
-  	          <option value="개선/제안" href="#none">개선/제안</option>
+  	          <option value="개선/제안">개선/제안</option>
   	          <option value="일반문의">일반문의</option>
   	          <option value="제휴/협업 문의">제휴/협업 문의</option> 
   	       </select>
@@ -108,7 +108,7 @@
   	    <dd>
   	     <div class="inq_wrap_item2">
   	     	<textarea class="inq_inp_info2" placeholder="문의 내용을 입력해 주세요(최대 400자)" cols="24" rows="6" 
-  	     	id="inq_cont" name="inq_cont" style="line-height: normal" maxlength="400" type="text"></textarea>
+  	     	id="inq_cont" name="inq_cont" style="line-height: normal" maxlength="400"></textarea>
   	     </div>
   	     <div class="inq_vali_date" id="inq_vali_info"></div>
   	    </dd>
