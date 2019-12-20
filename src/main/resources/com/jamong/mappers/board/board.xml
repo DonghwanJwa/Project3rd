@@ -162,6 +162,24 @@ SELECT m.mem_no,
 	]]>
  </select>
  
+ <!-- 검색시 Article 첫페이지 -->
+ <select id="search_article" parameterType="String" resultMap="boardMap">
+  SELECT b.bo_no,
+         b.bo_title,
+         b.bo_subtitle,
+         b.bo_cont,
+         b.bo_thumbnail,
+         b.bo_date,
+         m.mem_id,
+         m.mem_nickname,
+         m.mem_keyword
+  FROM (SELECT * FROM board
+  WHERE REGEXP_LIKE(bo_title,#{texts}) OR REGEXP_LIKE(bo_subtitle,#{texts}) OR REGEXP_LIKE(bo_cont,#{texts})
+  ORDER BY REGEXP_COUNT(bo_title,#{texts}) DESC)b, member m
+  WHERE b.mem_no=m.mem_no
+  AND rowNum &lt;= 10
+ </select>
+ 
  <select id="infinitiScrollDown" resultMap="boardMap">
  <![CDATA[
    SELECT b.bo_no,

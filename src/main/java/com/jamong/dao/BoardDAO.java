@@ -14,6 +14,7 @@ public interface BoardDAO {
 	void sympathyDownUpdate(BoardVO bo);
 	int sympathyNum(BoardVO bo);
 	List<BoardVO> bestList();
+	List<BoardVO> getSearchArticle(String texts);
 	List<BoardVO> infinitiScrollDown(int bo_no);
 	List<BoardVO> categoryArticle(String cat_name);
 	List<BoardVO> getProfile(int mem_no);

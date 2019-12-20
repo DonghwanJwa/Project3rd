@@ -128,7 +128,6 @@ function getBestList(){
 
 $(document).ready(function(){
 	
-	
 	/*검색버튼*/
 	$('#head-menu_search-button').click(function(){
 		if($('#head-menu_search-text').css('opacity')=='0'){//검색창 숨겨져있을 때
@@ -137,8 +136,12 @@ $(document).ready(function(){
 			setTimeout(function(){$('#head-menu_search-text').focus();},400);
 		}else{//검색창이 드러나있을 때
 			if(!$.trim($('#head-menu_search-text').val())==""){	
-				location.href = "/jamong.com/search?result=post"
-				$('#head-menu_search-text').val('');
+				var otext = $('#head-menu_search-text').val();
+				for(var i=0;otext.search(/(\s){2,}/)!=-1;i){ //공백 2개가 있으면 
+					otext = otext.replace(/(\s){2,}/gi," "); //공백 하나로 바꿔줌 - 1개만 있을때까지
+				}
+				otext=otext.replace(/\s/gi,"+");			 //공백을 +로 표기 =>주소창에는 +표시지만 controller에서는 띄어쓰기로 인식된다.
+				location.href = "/jamong.com/search?q="+otext;
 	    	}       
 		}
 	});
@@ -154,7 +157,12 @@ $(document).ready(function(){
 	$('#head-menu_search-text').keyup(function(e) {
 		if(!$.trim($('#head-menu_search-text').val())==""){
 			if (e.keyCode == 13){			
-				location.href = "/jamong.com/search"
+				var otext = $('#head-menu_search-text').val();
+				for(var i=0;otext.search(/(\s){2,}/)!=-1;i){ //공백 2개가 있으면 
+					otext = otext.replace(/(\s){2,}/gi," "); //공백 하나로 바꿔줌 - 1개만 있을때까지
+				}
+				otext=otext.replace(/\s/gi,"+");			 //공백을 +로 표기 =>주소창에는 +표시지만 controller에서는 띄어쓰기로 인식된다.
+				location.href = "/jamong.com/search?q="+otext;
 			}
 		}       
 	});
