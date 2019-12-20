@@ -13,6 +13,7 @@ public class AccuseVO {
 	private int mem_no;
 	private int bo_no;
 	private int rep_no;
+	private String ac_href;
 	
 	/* 페이징 변수 */
 	private int startrow;
@@ -44,6 +45,7 @@ public class AccuseVO {
 	public void setSearch_field_item(String search_field_item) {this.search_field_item = search_field_item;}
 	public void setSearch_field_handling(String search_field_handling) {this.search_field_handling = search_field_handling;}
 	public void setSearch_field_info(String search_field_info) {this.search_field_info = search_field_info;}
+	public void setAc_href(String ac_href) {this.ac_href = ac_href;}
 	
 	// Getter()
 	public int getAc_no() 		 	{		return ac_no;		}
@@ -63,5 +65,6 @@ public class AccuseVO {
 	public String getSearch_field_item() {	return search_field_item;}
 	public String getSearch_field_handling() {	return search_field_handling;}
 	public String getSearch_field_info() {	return search_field_info;}
+	public String getAc_href() {return ac_href;}
 	
 }

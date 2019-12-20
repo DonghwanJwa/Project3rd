@@ -5,9 +5,54 @@
 
 <mapper namespace="accuse">
 
+<!-- Join 하기 -->
+ <resultMap type="ac" id="inquireMap">
+  <id column="ac_no" property="ac_no" />
+  <result column="ac_reason" property="ac_reason" />
+  <result column="ac_cont" property="ac_cont" />
+  <result column="ac_date" property="ac_date" />
+  <result column="ac_item" property="ac_item" />
+  <result column="ac_state" property="ac_state" />
+  <result column="ac_member" property="ac_member" />
+  <result column="ac_href" property="ac_href" />
+  <result column="mem_no" property="mem_no" />
+  <result column="bo_no" property="bo_no" />
+  <result column="rep_no" property="rep_no" />
+  
+  <association javaType="m" property="memberVO">
+  	<id column="mem_no" property="mem_no" />
+  	<result column="mem_id" property="mem_id" />
+  	<result column="mem_name" property="mem_name" />
+  	<result column="mem_birth1" property="mem_birth1" />
+  	<result column="mem_birth2" property="mem_birth2" />
+  	<result column="mem_birth3" property="mem_birth3" />
+  	<result column="email_id" property="email_id" />
+  	<result column="email_domain" property="email_domain" />
+  	<result column="mem_phone01" property="mem_phone01" />
+  	<result column="mem_phone02" property="mem_phone02" />
+  	<result column="mem_phone03" property="mem_phone03" />
+  	<result column="mem_date" property="mem_date" />
+  	<result column="mem_author" property="mem_author" />
+  	<result column="mem_state" property="mem_state" />
+  	<result column="profile_photo" property="profile_photo" />
+  	<result column="profile_cont" property="profile_cont" />
+  	<result column="mem_state" property="mem_state" />
+  	<result column="mem_nickname" property="mem_nickname" />
+  	<result column="mem_keyword" property="mem_keyword" />
+  	<result column="mem_fav1" property="mem_fav1" />
+  	<result column="mem_fav2" property="mem_fav2" />
+  	<result column="mem_fav3" property="mem_fav3" />
+  	<result column="mem_portfolio" property="mem_portfolio" />
+  	<result column="mem_gender" property="mem_gender" />
+  
+  </association>
+ </resultMap>
+ 
+ 
+<!-- 신고접수 -->
 <insert id="insert_acc">
- insert into accuse(ac_no,ac_reason,ac_cont,ac_date,mem_no)
- values(ac_no_seq.nextval,#{ac_reason},#{ac_cont},sysdate,#{mem_no})
+ insert into accuse(ac_no,ac_reason,ac_cont,ac_item,ac_date,mem_no,ac_member)
+ values(ac_no_seq.nextval,#{ac_reason},#{ac_cont},#{ac_item},sysdate,#{mem_no},#{ac_member})
 </insert>
 
 <!-- 신고 개수 -->

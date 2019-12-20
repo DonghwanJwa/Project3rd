@@ -2,10 +2,11 @@
  *  accuse.jsp 신고하기 페이지 js
  */
 
-function accuseShow() {
+function accuseShow(a) {
 		if($('#acc_wrap').css("display") == "none") {
 			$('#acc_wrap').show();
 			$('html').css("overflow-y","hidden");
+			$('#ac_item').val(a);
 		}
 }
 function accuseHide(){

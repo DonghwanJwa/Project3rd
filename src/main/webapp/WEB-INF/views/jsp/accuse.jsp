@@ -14,8 +14,10 @@
 	  	<br/>
 	  	<div id=acc_report_body>
 	    	<div id=acc_box_accuse>
-	    		<form id=acc_form_accuse method="post" action="accuse_report_ok" onsubmit="return accuseVali();">
+	    		<form id=acc_form_accuse method="post" action="/jamong.com/accuse_report_ok" onsubmit="return accuseVali();">
 	    		 	<span class=acc_accuse_list onkeydown="return captureReturnKey(event)">
+	    		  	
+	    		  	<input type="hidden" id="ac_item" name="ac_item" value="">
 	    		  	
 	    		  	<input type="radio" class="acc_radio_button" 
 	    		  	name="ac_reason"  value="영리목적" style=cursor:pointer; />

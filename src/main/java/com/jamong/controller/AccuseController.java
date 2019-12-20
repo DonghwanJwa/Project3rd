@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.AccuseVO;
-import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.AccuseService;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.jamong.service.MemberService;
 
 @Controller
 public class AccuseController {
@@ -29,8 +27,12 @@ public class AccuseController {
 	public ModelAndView accuse() {
 		return null;
 	}
-
+	
+	@Autowired
+	private MemberService memberService;
+	
 	@RequestMapping("accuse_report_ok")
+	
 	public ModelAndView accuse_report_ok(AccuseVO a,
 			HttpServletRequest request,
 			HttpServletResponse response,
@@ -47,24 +49,29 @@ public class AccuseController {
 		
 		String ac_cont=request.getParameter("ac_cont");
 		String ac_reason=request.getParameter("ac_reason");
-		String ac_date=request.getParameter("ac_date");
+		int ac_item= Integer.parseInt(request.getParameter("ac_item"));
+		//하늘아.. Integer.parseInt에 바로 ac_item을 넣는게 아니라 parameter를 가지고 와서 넣어야지...
 		
-		a.setAc_cont(ac_cont);
-		a.setAc_reason(ac_reason);
-		a.setAc_date(ac_date);
-		if(user != null) {
-			a.setMem_no(user.getMem_no());
-		}
+		String ref = request.getHeader("referer");
+		
+		String[] sid=ref.split("/");	//sid 라는 배열에 ref에 넣은 신고한페이지주소값을 /단위로 쪼개넣음
+		String ac_member=sid[4].substring(1,sid[4].length());
+		System.out.println(ac_member);
+
+		MemberVO mem=this.memberService.get(ac_member);
+		int mem_no=mem.getMem_no();
+		
+		a.setAc_member(mem_no);
+		a.setAc_cont(ac_cont);			//신고내용
+		a.setAc_reason(ac_reason);		//신고사유(버튼)
+		a.setAc_item(ac_item);			//신고페이지(1-프로필,2-글읽기)
+		a.setMem_no(user.getMem_no());	//신고자 NO값 
 		
 		this.accuseService.insertAccuse(a);
-		
-		m.addObject("ac_cont",ac_cont);
-		m.addObject("a",a);
-		
-		
+	
 		out.println("<script>");
 		out.println("alert('문의가 접수되었습니다!');");
-		out.println("location='/jamong.com';");
+		out.println("location='"+ref+"';");
 		out.println("</script>");
 		
 		return null;		
@@ -81,7 +88,11 @@ public class AccuseController {
 		session=request.getSession();
 	
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
-				
+		
+		
+		
+	
+		
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");

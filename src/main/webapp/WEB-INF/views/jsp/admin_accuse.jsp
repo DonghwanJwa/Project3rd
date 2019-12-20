@@ -8,7 +8,7 @@
  <div class=admin_acc_main>
   <table id="adm_accuse_table">
      <tr>
-      <td align="right" colspan="6" class="adm_accuse_count">${listcount} 개의 문의사항이 있습니다.</td>
+      <td align="right" colspan="6" class="adm_accuse_count">${listcount} 개의 신고사항이 있습니다.</td>
      </tr> 
      
      <tr>
@@ -40,9 +40,6 @@
      	 	  </c:if>
      	 	  <c:if test="${a.ac_item == 2}">
      	 	   	<font color="red">게시물신고</font>
-     	 	  </c:if>
-     	 	  <c:if test="${a.ac_item == 3}">
-     	 	   	<font color="red">댓글신고</font>
      	 	  </c:if>
      	 	</td>
  
@@ -78,7 +75,7 @@
      			< 이전&nbsp;
      		</c:if>
      		<c:if test="${page>1}">
-     			<a href="admin_inquire?page=${page-1}">< 이전</a>&nbsp;
+     			<a href="admin_accuse?page=${page-1}">< 이전</a>&nbsp;
      		</c:if>
      		
      		<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
@@ -136,48 +133,77 @@
   </table>
  </div>
 
-	<%--<div id="ac_search_interface">
+	<div id="ac_search_interface">
 	   <div class="select">
 		<select name="search_field" id="search_field" style="margin-right:5px;">
 			<option value="all"  selected>
 				회원구분
 			</option>
-			<option value="회원" <c:if test="${search_field == '회원'}">${'selected'}</c:if>>
-				회원
+			<option value="신고자" <c:if test="${search_field == '회원'}">${'selected'}</c:if>>
+				신고자
 			</option>
-			<option value="비회원" <c:if test="${search_field == '비회원'}">${'selected'}</c:if>>
-				비회원
+			<option value="피신고자" <c:if test="${search_field == '비회원'}">${'selected'}</c:if>>
+				피신고자
 			</option>
 		</select>
 	   </div>
 		
 	   <div class="select">
-		<select name="search_field_item" id="search_field_item" style="margin-right:5px;">
+		<select name="search_field_acc" id="search_field_acc" style="margin-right:5px;">
 			<option value="all" selected>
-			  문의분류
+			  신고구분
 			</option>
-			<option value="개선/제안" <c:if test="${search_field_item == '개선/제안'}">${'selected'}</c:if>>
-				개선/제안
+			<option value="회원신고" <c:if test="${search_field_acc == '회원신고'}">${'selected'}</c:if>>
+				회원신고
 			</option>
-			<option value="일반문의" <c:if test="${search_field_item == '일반문의'}">${'selected'}</c:if>>
-				일반문의
-			</option>
-			<option value="제휴/협업문의" <c:if test="${search_field_item == '제휴/협업문의'}">${'selected'}</c:if>>
-				제휴/협업문의
+			<option value="게시물신고" <c:if test="${search_field_acc == '게시글신고'}">${'selected'}</c:if>>
+				게시물신고
 			</option>
 		</select>
 	  </div>
+	  
+	  <div class="select">
+	    <select name="search_field_item" id="search_field_item" style="margin-right:5px;">
+	      <option value="all" selected>
+	        	신고목록
+	      </option>
+	      <option value="영리목적/홍보성"<c:if test="${search_field_item == '개선/제안'}">${'selected'}</c:if>>
+	      	영리목적/홍보성
+	      </option>
+	      <option value="불법정보"<c:if test="${search_field_item == '불법정보'}">${'selected'}</c:if>>
+	      	불법정보
+	      </option>
+	      <option value="욕설/인신공격"<c:if test="${search_field_item == '욕설/인신공격'}">${'selected'}</c:if>>
+	      	욕설/인신공격
+	      </option>
+	      <option value="음란/선정성"<c:if test="${search_field_item == '음란/선정성'}">${'selected'}</c:if>>
+	      	음란/선정성
+	      </option>
+	      <option value="개인정보노출"<c:if test="${search_field_item == '개인정보노출'}">${'selected'}</c:if>>
+	      	개인정보노출
+	      </option>
+	      <option value="같은내용도배"<c:if test="${search_field_item == '같은내용도배'}">${'selected'}</c:if>>
+	      	같은내용도배
+	      </option>
+	      <option value="권리침해신고"<c:if test="${search_field_item == '권리침해신고'}">${'selected'}</c:if>>
+	      	권리침해신고
+	      </option>
+	      <option value="기타"<c:if test="${search_field_item == '기타'}">${'selected'}</c:if>>
+	      	기타
+	      </option>
+	    </select>
+	   </div>
 		
 	  <div class="select">
 		<select name="search_field_handling" id="search_field_handling" style="margin-right:5px;">
 			<option value="all" selected>
 			 처리여부
 			</option>
-			<option value="처리" <c:if test="${search_field_handling == '처리'}">${'selected'}</c:if>>
-				처리
+			<option value="처리완료" <c:if test="${search_field_handling == '처리완료'}">${'selected'}</c:if>>
+				처리완료
 			</option>
-			<option value="미처리" <c:if test="${search_field_handling == '미처리'}">${'selected'}</c:if>>
-				미처리
+			<option value="미처리" <c:if test="${search_field_handling == '처리대기'}">${'selected'}</c:if>>
+				처리대기
 			</option>
 		</select>
 	  </div>
@@ -186,13 +212,16 @@
 			<option value="all" selected>
 			  상세검색
 			</option>
-			<option value="내용" <c:if test="${search_field_info == 'i.inq_cont'}">${'selected'}</c:if>>
+			<option value="ID" <c:if test="${search_field_info == 'a.memberVO.mem_id'}">${'selected'}</c:if>>
+				ID
+			</option>
+			<option value="내용" <c:if test="${search_field_info == 'a.ac_cont'}">${'selected'}</c:if>>
 				내용
 			</option>
-			<option value="Phone" <c:if test="${search_field_info == 'i.inq_phone'}">${'selected'}</c:if>>
+			<option value="Phone" <c:if test="${search_field_info == 'a.memberVO.mem_phone'}">${'selected'}</c:if>>
 				Phone
 			</option>
-			<option value="Email" <c:if test="${search_field_info == 'i.inq_email'}">${'selected'}</c:if>>
+			<option value="Email" <c:if test="${search_field_info == 'a.memberVO.mem_email}">${'selected'}</c:if>>
 				Email
 			</option>
 		</select>	
@@ -200,7 +229,7 @@
 		<!-- 검색 DIV -->
 		<input name="search_name" id="search_name" size="15" value="${search_name}" />
 		<input type="submit" value="검색"/>
-	</div>      --%>
+	</div>      
 </form>
 <%@include file="../include/admin_footer.jsp" %>
 </body>
