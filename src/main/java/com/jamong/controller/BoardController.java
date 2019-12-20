@@ -62,6 +62,7 @@ public class BoardController {
 		
 		bo = this.boardService.getUserBoardCont(bo_no);
 		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
+		int replyCount = this.repService.getUserReplyCount(bo_no);
 		List<BoardVO> catList = this.boardService.getUserBoardCatArticle(bo.getCat_name());
 		List<BoardVO> bList = this.boardService.getUserBoardContList(bo.getMem_no());
 		
@@ -78,6 +79,7 @@ public class BoardController {
 		}
 		bo.setBo_date(title_date);
 		
+		// 시간 계산 해서 방금, 몇분전 띄우기
 		for(int i=0;i<repList.size();i++) {
 			Date repListFormat_date = org_format.parse(repList.get(i).getRep_date());
 			String repList_date = TIME_MAXIMUM.formatTimeString(repListFormat_date);
@@ -107,6 +109,7 @@ public class BoardController {
 			}
 		}
 		
+		model.addAttribute("replyCount",replyCount);
 		model.addAttribute("rList",repList);
 		model.addAttribute("catList",catList);
 		model.addAttribute("bList",bList);
@@ -257,13 +260,18 @@ public class BoardController {
 	}// imageUp() => 썸머노트 이미지 업로드 이름변경
 
 	@RequestMapping("new_posts")
-	public ModelAndView user_new_posts(BoardVO b) {
+	public ModelAndView user_new_posts(BoardVO b) throws Exception{
 		List<BoardVO> bList = this.boardService.getListAll(b);
+		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		for (int i = 0; i < bList.size(); i++) {
 			String htmlText = bList.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String oneSpace = normalText.replaceAll("&nbsp; "," ");
 			bList.get(i).setBo_cont(oneSpace);
+			
+			Date org_date = org_format.parse(bList.get(i).getBo_date());
+			String changeDate = TIME_MAXIMUM.formatTimeString(org_date);
+			bList.get(i).setBo_date(changeDate);
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("bList", bList);

@@ -58,11 +58,19 @@
   ]]>
  </update>
  
-  <select id="rep_boList" resultMap="replyMap">
+ <select id="rep_count" resultType="int">
+  SELECT COUNT(rep_no) FROM reply WHERE bo_no=#{bo_no}
+ </select>
+ 
+ <update id="comment_edit">
+  UPDATE reply SET rep_cont=#{rep_cont} WHERE rep_no=#{rep_no}
+ </update>
+ 
+ <select id="rep_boList" resultMap="replyMap">
   SELECT *
   FROM (SELECT * FROM reply ORDER BY rep_ref ASC,rep_level) r
   INNER JOIN member m
   ON r.mem_no=m.mem_no
   WHERE r.bo_no=#{bo_no}
-  </select>
+ </select>
 </mapper>

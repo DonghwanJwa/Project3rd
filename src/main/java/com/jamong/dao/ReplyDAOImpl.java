@@ -30,4 +30,12 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public void updateLevel(ReplyVO rvo) {
 		this.sqlSession.update("rep_update",rvo);
 	}
+	@Override
+	public int getUserReplyCount(int bo_no) {
+		return this.sqlSession.selectOne("rep_count",bo_no);
+	}
+	@Override
+	public void editReply(ReplyVO rvo) {
+		this.sqlSession.update("comment_edit",rvo);
+	}
 }

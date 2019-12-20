@@ -1,7 +1,5 @@
 package com.jamong.controller;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -67,6 +65,31 @@ public class ReplyController {
 		}else { // 세션이 없을 때
 			flag = 2;
 		}// if else 
+		return flag;
+	}
+	
+	@PostMapping("replyedit")
+	@ResponseBody
+	public int editReply(int rep_no, String editCont, ReplyVO rvo,
+			HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception{
+		int flag = 0;
+		session = request.getSession();
+		
+		System.out.println(rep_no);
+		System.out.println(editCont);
+		
+		MemberVO repM = (MemberVO)session.getAttribute("m");
+		if(repM != null) {
+			rvo.setRep_no(rep_no);
+			rvo.setRep_cont(editCont);
+			
+			this.replyService.editReply(rvo);
+			
+			flag = 1;
+		}else {
+			flag = 2;
+		}
+		
 		return flag;
 	}
 }

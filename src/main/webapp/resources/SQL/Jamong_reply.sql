@@ -28,6 +28,8 @@ ALTER TABLE reply
 ADD CONSTRAINT rep_mem_no_fk FOREIGN KEY(mem_no)
 REFERENCES member(mem_no)
 
+SELECT count(rep_no) FROM reply WHERE bo_no=9;
+
 SELECT * FROM reply ORDER BY rep_no DESC;
 SELECT rep_no_seq.nextval FROM DUAL;
 

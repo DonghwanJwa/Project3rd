@@ -301,23 +301,50 @@ body a {
 	margin:0px;
 }
 .comment_reply {
+	cursor:pointer;
+}
+.comment_edit{
+	cursor:pointer;
+}
+.comment_del{
+	cursor:pointer;
+}
+.comment_menu{
 	display:none;
 	float:right;
-	cursor:pointer;
 }
 #write_comment {
 	width: 735px;
 	margin: 0 auto;
 }
 
-#write_comment .textarea {
-	min-height:120px;
+#write_comment .rep_textarea {
+	min-height:50px;
 	margin: auto;
 	margin-top:15px;
 	padding:10px;
 	border: 1px solid #DDD;
 }
-
+#comment_editarea{
+	display:inline-block;
+	width: 550px;
+    margin-top: 5px;
+    padding: 5px;
+    height: 50px;
+    border:1px solid #A9A9A9;
+}
+#comment_editCancle{
+	float: right;
+    cursor: pointer;
+    margin-right: 9px;
+    display:none;
+}
+#comment_editOK{
+	height: 62px;
+    vertical-align: top;
+    margin-top: 5px;
+    margin-left:2px;
+}
 .write_comment_btn {
 	font-size:14px;
 	position:flex;
@@ -341,29 +368,26 @@ body a {
 
 .reply_textarea {
 	margin:10px 0 0 0;
-	min-height:100px;
+	min-height:50px;
 	width:auto;
 	border: 1px solid #DDD;
-	border-bottom:none;
 	padding:10px;
 }
 
 .reply_btn_wrap {
-	border: 1px solid #DDD;
-	border-top:none;
 	display:flex;
-	flex-direction:row;
 	justify-content:flex-end;
 }
 
 .reply_btn {
 	border:1px solid grey;
 	border-radius:50px;
-	padding: 8px 13px;
-	margin: 0 10px 10px 0;
+	padding: 5px 10px;
+	margin: 5px 0px 10px 0;
 	box-sizing:border-box;
 	cursor:pointer;
-	font-size: 14px;
+	float:right;
+	font-size: 11px;
 }
 
 .reply_btn:hover{
