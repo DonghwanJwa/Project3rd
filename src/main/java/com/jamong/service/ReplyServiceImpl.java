@@ -32,4 +32,14 @@ public class ReplyServiceImpl implements ReplyService {
 		this.replyDao.addReply(rvo);
 	}
 
+	@Override
+	public int getUserReplyCount(int bo_no) {
+		return this.replyDao.getUserReplyCount(bo_no);
+	}
+
+	@Override
+	public void editReply(ReplyVO rvo) {
+		this.replyDao.editReply(rvo);
+	}
+
 }

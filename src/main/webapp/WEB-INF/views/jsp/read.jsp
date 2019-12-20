@@ -177,7 +177,7 @@
 		<%-- 댓글창 => 버튼눌러 감추거나 나타나게 하기 --%>	
 		<div id="read_comment">
 			<div class="comment_hide_button_wrap">
-				<a class="comment_hide" onclick="showHide();">댓글(5)</a>
+				<a class="comment_hide" onclick="showHide();">댓글(${replyCount})</a>
 			</div>
 			<div class="hide_comment" style="display:none;">
 			 <c:forEach var="r" items="${rList}">
@@ -189,9 +189,18 @@
 					<a href="/jamong.com/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
 					<span class="comment_info_icon">·</span>
 					<span class="comment_date">${r.rep_date}</span>
+					<a id='comment_editCancle' onclick='replyEditCancle(event)'>수정취소</a>
+					<span class="comment_menu">
 					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					· <a class="comment_edit" data-no="${r.rep_no}" onclick="replyEdit(event);">수정</a>
+					· <a class="comment_del">삭제</a>
+					</span>
 					<p class="comment_cont">${r.rep_cont}</p>
-					</div>
+					<div style="display:none">
+				     <div id='comment_editarea' contenteditable="true">${r.rep_cont}</div>
+	                 <button data-no="" id='comment_editOK' onclick='replyEditOK(event);'>수정완료</button>
+	                </div>
+				</div>
 				</li>
 				</c:if>
 			 <%-- 답글일 때 --%>
@@ -203,22 +212,18 @@
 					<a href="/jamong.com/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
 					<span class="comment_info_icon">·</span>
 					<span class="comment_date">${r.rep_date}</span>
+					<span class="comment_menu">
 					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					· <a class="comment_edit">수정</a>
+					· <a class="comment_del">삭제</a>
+					</span>
 					<p class="comment_cont">${r.rep_cont}</p>
 					</div>
 			   	</li>
 				</c:if>
 			 </c:forEach>
-				<div class="reply_wrap" style="display:none;">
-					<div class="reply_textarea" contenteditable="true">
-						답글! LOLEMIPSUM
-					</div>
-					<div class="reply_btn_wrap">
-						<a class="reply_btn" onclick="addReply(event);">답글 작성</a>
-					</div>
-				</div>
 				<div id="write_comment">
-					<div class="textarea" contenteditable="true"></div>
+					<div class="rep_textarea" contenteditable="true"></div>
 					<div class="btn_wrap"><a class= write_comment_btn onclick="addComment();">댓글 작성</a></div>
 				</div>
 			</div>

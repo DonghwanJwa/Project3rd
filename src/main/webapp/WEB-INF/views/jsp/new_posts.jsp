@@ -19,6 +19,8 @@
   <div id="new_post_loading">
    <ul id="new_post_list">
     <c:forEach var="b" items="${bList}">
+     <c:set var="img" value="${b.bo_thumbnail}"/>
+     <c:if test="${!empty img}">
      <li class="scrolling" data-no="${b.bo_no}"><a href="/jamong.com/@${b.memberVO.mem_id}/${b.bo_no}">
        <div id="new_post_loading_cont">
         <div id="new_post_loading_cont_text">
@@ -46,12 +48,36 @@
          </div>
          <div id="new_post_loading_cont_text_ago">${b.bo_date}</div>
         </div>
-        <c:set var="img" value="${b.bo_thumbnail}"/>
-        <c:if test="${not empty img}">
         <img id="new_post_loading_cont_img" src="${b.bo_thumbnail}">
         </c:if>
-        <c:if test="${empty img}">
-        <div id='new_post_loading_cont_img'></div>
+     <c:if test="${empty img}">
+     <li class="scrolling" data-no="${b.bo_no}"><a href="/jamong.com/@${b.memberVO.mem_id}/${b.bo_no}">
+       <div id="new_post_loading_cont">
+        <div id="new_post_loading_cont_text" style="width:unset;">
+         <div id="new_post_loading_cont_text_title">
+         <c:if test="${fn:length(b.bo_title)>20}">
+          ${fn:substring(b.bo_title,0,20)}...
+         </c:if>
+         <c:if test="${fn:length(b.bo_title)<20}">
+          ${b.bo_title}
+         </c:if>
+         </div>
+         <div id="new_post_loading_cont_text_cont">
+         <c:if test="${fn:length(b.bo_cont)>100}">
+          ${fn:substring(b.bo_cont,0,100)}...
+         </c:if>
+         <c:if test="${fn:length(b.bo_cont)<100}">
+          ${b.bo_cont}
+         </c:if>
+         </div>
+         <div id="new_post_loading_cont_text_writer">
+          <i>by&nbsp;&nbsp;</i>${b.memberVO.mem_nickname}
+         </div>
+         <div id="new_post_loading_cont_text_tag">
+          <span>${b.memberVO.mem_keyword}</span>
+         </div>
+         <div id="new_post_loading_cont_text_ago">${b.bo_date}</div>
+        </div>
         </c:if>
        </div>
      </a></li>
