@@ -519,7 +519,7 @@ padding: 10px;
 #profile_img_edit_button {
    position: absolute;
     box-shadow: 1px 1px 1px #eee;
-    top: 75px;
+    top: 100px;
     right: 60px;
     background: #fff url(../img/photo-camera.png) no-repeat;
     z-index: 1;
@@ -553,7 +553,7 @@ padding: 10px;
     border-bottom: 1px solid #eee;
     width: 37%;
 	}
-	#profile_editor_error{
+	.error_text{
 	padding-left:15px;
 	font-size: 10px;
 	color: red;
@@ -579,12 +579,7 @@ padding: 10px;
 	}
 	.e{overflow-y: hidden;	}
 	
-#profile_info_error{
-	padding-left:15px;
-	font-size: 10px;
-	color: red;
-	
-}
+
  #profile_edit_keyword {
 	outline: none;
     border: 1px solid;

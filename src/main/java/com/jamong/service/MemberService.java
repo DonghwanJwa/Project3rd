@@ -26,4 +26,5 @@ public interface MemberService {
 	MemberVO getMemberFav(int mem_no);
 	List<MemberVO> recomAuthor();
 	List<MemberVO> categoryMember();
+	void updateProfile(MemberVO mp);
 }
