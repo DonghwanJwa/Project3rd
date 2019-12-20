@@ -1,5 +1,6 @@
 package com.jamong.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
@@ -273,13 +274,16 @@ public class MemberModifyController {
 	
 	//비번을 바꾸려면 아이디나 이메일이 필요함
 	@RequestMapping("find_pass_ok")
-	public String user_pass_update(MemberVO vo) { // 비밀번호 수정
-
-		vo.setMem_pwd(PwdChange.getPassWordToXEMD5String(vo.getMem_pwd()));
-		System.out.println(vo.getMem_id());
-		System.out.println(vo.getMem_pwd());
-		this.memberService.pass_update(vo);
-		return "jsp/login";
+	public ModelAndView user_pass_update(MemberVO vo,HttpSession session,HttpServletResponse response) throws Exception { // 비밀번호 수정
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		ModelAndView view = new ModelAndView();
+		
+			out.println("<script>alert('비밀번호 수정이 완료 되었습니다. \n 로그인페이지로 이동합니다.');</script>");
+			vo.setMem_pwd(PwdChange.getPassWordToXEMD5String(vo.getMem_pwd()));
+			this.memberService.pass_update(vo);
+			view.setViewName("redirect:login/2");
+		return view;
 	}
 	
 	@RequestMapping("find_id_emailCert")//이메일 인증번호 체크
@@ -329,9 +333,12 @@ public class MemberModifyController {
 		System.out.println(vo.getEmail_id());
 		System.out.println(vo.getEmail_domain());
 		System.out.println(vo.getMem_name());
-		MemberVO member = this.memberService.memberSelect_pwd(vo);
-		//가지고 나온 비번이 암호화 되어 있다. 그럼 암호화를 풀고 원래 비번으로 바꿔서 담아야 한
-		//회원정보를 가져와야 한다
+		MemberVO pwd = this.memberService.memberSelect_pwd(vo);
+		System.out.println(pwd.getMem_id());
+		System.out.println(pwd.getEmail_id());
+		System.out.println(pwd.getEmail_domain());
+		System.out.println(pwd.getMem_name());
+		
 		int ran = new Random().nextInt(900000) + 100000;	//100000~999999
 		HttpSession session = request.getSession(true);		
 		String authCode = String.valueOf(ran);				//생성한 값을 어스코드에 담고

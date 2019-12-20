@@ -7,14 +7,17 @@ body{
 }
 #find_id_main_wrap{
 	background-color: #f5f5f5;;
+	width: 100%;
+    height: 100vh;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #find_id_main_div{
 	background-color:white;
-	width:300px;
-	height:689px;
+	width: 400px;
 	margin: 0px auto;
 	text-align: center;
-	padding: 60px 40px 0 40px;
 }
 
 #find_id_img_logo{
@@ -27,7 +30,7 @@ body{
 display: inline-block;
     border-top: 1px solid #f1f1f1;
     border-right: 1px solid #f1f1f1;
-    width: 40%;
+    width: 30%;
     height: 40px;
     line-height: 40px;
     background: #f1f1f1;
@@ -37,6 +40,10 @@ display: inline-block;
     cursor: pointer;
     box-sizing: border-box;
     text-decoration: none;
+}
+#find_id_btn_box .find_id_link1{
+		 background: orange;
+		 color:white;
 }
 #find_id_sub_box_id{
 	margin-top: 30px;
@@ -66,10 +73,10 @@ display: inline-block;
     font-size: 14px;
 }
 .find_id_error{
-	width:250px;
+	width:200px;
 	height:15px;
 	line-height:15px;
-	padding-left:37px;
+	padding-left:55px;
 	margin:5px;
 	color:#ff0000;
 	font-size:12px;	
@@ -91,17 +98,20 @@ display: inline-block;
 	border-bottom: 2px solid orange;
 }
 #find_id_btn{
-	width: 240px;
-    height: 50px;
+	width: 234px;
+    height: 45px;
     font-size: 1rem;
     margin-top: 10px;
-    background-color: black;
-    /* border: solid 2px orange; */
-    border: none;
-    color: white;
+    background-color: white;
+    border: solid 2px orange;
+    color: black;
     outline: 0;
     cursor: pointer;
-    color: white;
+    margin-bottom: 90px;
+}
+#find_id_btn:hover{
+	background-color: orange;
+	color: white;
 }
 /*로딩화면을 위한 css*/
 .wrap-loading{ /*화면 전체를 어둡게 합니다.*/
@@ -139,7 +149,7 @@ display: inline-block;
     font-size: 14px;
 }
 .find_id_pass_email1{
-	width: 90px;
+	width: 86px;
     height: 15px;
     padding-left: 5px;
     padding-bottom: 5px;
@@ -176,25 +186,36 @@ display: inline-block;
 }
 
 #find_id_pass_email_Certified_btn{
-	border:none;
-	background-color: lightgray;
-	border-radius: 100%;
-	width: 25px;
+	border: 2px solid orange;
+    background-color: white;
+    width: 32px;
     height: 25px;
     font-size: 1px;
+    outline: none;
 }
 #find_id_pass_email_Certified_next_btn{
-	border:none;
-	background-color: lightgray;
-	border-radius: 100%;
-	width: 25px;
+	border: 2px solid orange;
+    background-color: white;
+    width: 32px;
     height: 25px;
     font-size: 1px;
+    outline: none;
 }
 #hidde_box{
-	display: none;
+	visibility: hidden;
 }
-
+#find_pass_pass_modify{
+	width: 223px;
+    height: 45px;
+    font-size: 1rem;
+    margin-top: 10px;
+    background-color: white;
+    border: solid 2px orange;
+    color: black;
+    outline: 0;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
 
 
 
