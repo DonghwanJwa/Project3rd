@@ -3,6 +3,7 @@ package com.jamong.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
-import com.jamong.domain.CategoryVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.ReplyVO;
 import com.jamong.service.BoardService;
@@ -333,14 +333,20 @@ public class BoardController {
 	}
 
 	@RequestMapping("search")
-	public ModelAndView user_search(BoardVO b) {
-		List<BoardVO> bList = this.boardService.getListAll(b);
+	public ModelAndView user_search(HttpServletResponse response, HttpServletRequest request) {
+		String q = request.getParameter("q");	//url주소에 q값을 가져옴
+		String texts = q.replaceAll(" ", "\\|");
+		//+표시로 parameter값을 가져오면 띄어쓰기로 표현되는데, sql문으로써 이용하기 위해서 파이프라인(|)으로 replace해줌 
+		System.out.println(texts);
+		List<BoardVO> bList = this.boardService.getSearchArticle(texts);
 		for (int i = 0; i < bList.size(); i++) {
 			String htmlText = bList.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			bList.get(i).setBo_cont(normalText);
+			String oneSpace = normalText.replaceAll("&nbsp; "," ");
+			bList.get(i).setBo_cont(oneSpace);
 		}
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("q",q);
 		mv.addObject("bList", bList);
 		mv.setViewName("jsp/search_result");
 

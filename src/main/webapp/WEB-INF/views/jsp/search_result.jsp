@@ -5,7 +5,7 @@
 
 <%-- 검색페이지 header --%>
 <div id="search_header">
- <input id="search_keyword" placeholder="검색어 입력">
+ <input id="search_keyword" placeholder="검색어 입력" value="${q}">
  <div id="search_type">
   <input type="button" id="search_type_btn_post" class="btn type_btn view" value="글">
   <input type="button" id="search_type_btn_work" class="btn type_btn" value="작품">

@@ -64,6 +64,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public List<BoardVO> getSearchArticle(String texts) {
+		return this.sqlSession.selectList("search_article",texts);
+	}
+
+	@Override
 	public List<BoardVO> bestList() {
 		return this.sqlSession.selectList("board.best_list");
 	}

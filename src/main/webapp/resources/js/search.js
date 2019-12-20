@@ -3,7 +3,6 @@
  */
 // 새로고침 시 스크롤 맨 위로 이동
 $(window).on("beforeunload",function(){
-	console.log("안녕");
 	$("html").scrollTop(0);
 });
 
