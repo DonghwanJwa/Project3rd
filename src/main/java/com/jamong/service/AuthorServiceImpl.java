@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.AuthorDAO;
 import com.jamong.domain.AuthorVO;
+import com.jamong.domain.RequestAuthorVO;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -21,12 +21,12 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	public int req_count(AuthorVO a) {
+	public int req_count(RequestAuthorVO a) {
 		return this.autDao.req_count(a);
 	}
 
 	@Override
-	public List<AuthorVO> req_list(AuthorVO a) {
+	public List<AuthorVO> req_list(RequestAuthorVO a) {
 		return this.autDao.req_list(a);
 	}
 
@@ -38,5 +38,10 @@ public class AuthorServiceImpl implements AuthorService {
 	@Override
 	public int authorcheck(int no) {
 		return this.autDao.authorcheck(no);
+	}
+
+	@Override
+	public AuthorVO get_file(int no) {
+		return this.autDao.get_file(no);
 	}
 }
