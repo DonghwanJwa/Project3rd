@@ -3,8 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="author">
-
- <resultMap type="aut" id="authorMap">
+<resultMap type="aut" id="authorMap">
   <id column="aut_no" property="aut_no" />
   <result column="aut_intro" property="aut_intro" />
   <result column="aut_plan" property="aut_plan" />
@@ -45,7 +44,8 @@
   <result column="mem_fav3" property="mem_fav3" />
   <result column="mem_portfolio" property="mem_portfolio" />
  </association>
- </resultMap>
+</resultMap>
+
 	<select id="acheck" resultType="int">
 		SELECT COUNT(aut_no) FROM author where mem_no=#{no} and aut_state = 0
 	</select>
@@ -56,11 +56,9 @@
 	</insert>
 	
 	<select id="req_count" resultType="int">
-		SELECT COUNT(aut_no) 
-		FROM (SELECT rowNum AS rNum,aut_no,aut_intro,aut_plan,aut_url1,aut_url2,aut_url3,aut_file1,aut_file2,aut_file3,aut_date,mem_no,aut_state,aut_update FROM 
-		(SELECT * FROM author)) aut, member m
+		SELECT COUNT(aut_no) FROM (SELECT author.* FROM author order by aut_date desc) aut , member m
 		<where>
-		aut.mem_no=m.mem_no 
+		aut.mem_no=m.mem_no
 			<if test="search_field1 == 'all'"></if>
 			
 			<if test="search_field1 == 'waiting'">
@@ -85,41 +83,44 @@
 		</where>
 	</select>
 	
-	<select id="req_list" resultMap="authorMap">
-		SELECT * FROM 
-		(SELECT rowNum AS rNum,aut_no,aut_intro,aut_plan,aut_url1,aut_url2,aut_url3,aut_file1,aut_file2,aut_file3,aut_date,mem_no,aut_state,aut_update FROM 
-		author) aut, member m
-		
-		<where>
-		aut.mem_no=m.mem_no
-		
-		<choose>
-			<when test="search_field1 == 'all'"></when>
-			
-			<when test="search_field1 == 'waiting'">
-			</when>
-			<when test="search_field1 == 'accept'">
-				and aut.aut_state=1
-			</when>
-			<when test="search_field1 == 'reject'">
-				and aut.aut_state=2
-			</when>
-			
-			<when test="search_field2 == 'mem_id'">
-				and m.mem_id like #{search_name}
-			</when>
-			<when test="search_field2 == 'mem_nickname'">
-				and m.mem_nickname like #{search_name}
-			</when>
-			<when test="search_field2 == 'mem_name'">
-				and m.mem_name like #{search_name}
-			</when>
-		</choose> 
-		</where>
-		and aut.rNum &gt;= #{startrow} and aut.rNum &lt;= #{endrow} order by aut.aut_date desc
-	</select>
-	
-	<select id="req_info" resultMap="authorMap">
-		SELECT * FROM author aut, member m where aut.aut_no=#{no} and aut.mem_no=m.mem_no
-	</select>
+	<select id="req_list" resultType="ra">
+	 SELECT * FROM (SELECT rowNum r,aut_no,aut_intro,aut_date,mem_no,aut_state,aut_update FROM
+	 (SELECT author.* FROM author ORDER BY aut_no DESC)) aut
+	 INNER JOIN member m
+	 ON aut.mem_no=m.mem_no
+      <where>
+         <if test="search_field1 == 'all'"></if>
+         
+         <if test="search_field1 == 'waiting'">
+            and aut.aut_state=0
+         </if>
+         <if test="search_field1 == 'accept'">
+            and aut.aut_state=1
+         </if>
+         <if test="search_field1 == 'reject'">
+            and aut.aut_state=2
+         </if>
+         
+         <if test="search_field2 == 'mem_id'">
+            and m.mem_id like #{search_name}
+         </if>
+         <if test="search_field2 == 'mem_nickname'">
+            and m.mem_nickname like #{search_name}
+         </if>
+         <if test="search_field2 == 'mem_name'">
+            and m.mem_name like #{search_name}
+         </if>
+        and r &gt;= #{startrow} and r &lt;= #{endrow}
+      </where>
+ 		order by aut.aut_date desc
+   	</select>
+   	
+   	<select id="req_info" resultMap="authorMap">
+   		SELECT * FROM author a, member m
+   		WHERE a.mem_no = m.mem_no AND a.aut_no=#{no} 
+   	</select>
+   	
+   	<select id="req_file" resultType="aut">
+   		SELECT aut_file1, aut_file2, aut_file3 FROM author WHERE aut_no=#{no}
+   	</select>
 </mapper>

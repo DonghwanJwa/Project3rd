@@ -28,8 +28,8 @@
 			<c:forEach var="a" items="${reqlist}">
 				<tr onclick="location='admin_author_info?no=${a.aut_no}&page=${page}';" id="to_info">
 					<td align="center" class="list_underline">${a.aut_no}</td>
-					<td align="center" class="list_underline">${a.memberVO.mem_id}</td>
-					<td align="center" class="list_underline">${a.memberVO.mem_nickname}</td>
+					<td align="center" class="list_underline">${a.mem_id}</td>
+					<td align="center" class="list_underline">${a.mem_nickname}</td>
 					
 					<%-- 처리상태 분기 시작 --%>
 					<c:if test="${a.aut_state == 0}">
