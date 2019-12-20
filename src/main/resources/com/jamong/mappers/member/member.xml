@@ -148,4 +148,10 @@
   SELECT mem_fav1,mem_fav2,mem_fav3 FROM member WHERE mem_no=#{mem_no}
  </select>
 
+<update id="profile_up">
+UPDATE member 
+	SET mem_nickname=#{mem_nickname}, profile_photo=#{profile_photo},
+		profile_cont=#{profile_cont}, mem_keyword=#{mem_keyword},  mem_portfolio=#{mem_portfolio}
+		where mem_id=#{mem_id}
+</update>
 </mapper>

@@ -101,4 +101,10 @@ public class MemberDAOImpl implements MemberDAO{
 	public List<MemberVO> categoryMember() {
 		return this.sqlSession.selectList("cat_member");
 	}
+	@Override
+	public void updateProfile(MemberVO mp) {
+		this.sqlSession.update("profile_up",mp);
+	}
+	
+	
 }

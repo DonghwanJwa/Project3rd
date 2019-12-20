@@ -100,8 +100,10 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> categoryMember() {
 		return this.memberDao.categoryMember();
 	}
-
-
-
-
+	
+	@Override
+	public void updateProfile(MemberVO mp) {
+		this.memberDao.updateProfile(mp);
+	}
+	
 }

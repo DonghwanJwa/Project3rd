@@ -68,10 +68,13 @@
 						<c:if test="${mp.mem_author==2}">
 							<div id="profile_keyword_line">
 								<ul class="profile_keyword_link">
-									<li><a href="new_posts"
+								<c:forEach items="${mp.mem_keyword.split('/')}" var="tag">
+							 		<li><a href="new_posts"
 										class="profile_button_keyword profile_line"
-									>예술</a></li>
-									<li><a href="new_posts"
+									>${tag}</a></li>
+								
+								</c:forEach>
+								<%--	<li><a href="new_posts"
 										class="profile_button_keyword profile_line"
 									>문화</a></li>
 									<li><a href="new_posts"
@@ -88,7 +91,7 @@
 									>에디터</a></li>
 									<li><a href="new_posts"
 										class="profile_button_keyword profile_line"
-									>키노라이츠</a></li>
+									>키노라이츠</a></li>--%>
 								</ul>
 							</div>
 						</c:if>
