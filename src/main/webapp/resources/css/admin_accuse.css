@@ -1,2 +1,46 @@
-
 @charset "UTF-8";
+/* admin_accuse.jsp */
+.admin_ac_title{
+	margin-left: 50px;
+}
+.admin_ac_main{
+	display: flex;
+    justify-content: center;
+    min-height: 500px;
+    width: 800px;
+    margin: 0 auto;
+}
+#adm_accuse_table td{
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
+.ac_list_underline {
+	border-bottom: .5px dotted gray;
+	padding: .5em .2em;
+}
+#ac_paging {
+	padding: 1em .2em;
+}
+#ac_search_interface {
+	display:flex;
+	justify-content:center;
+}
+#search_name {
+	margin: 0 7px;
+}
+.ac_adm_tr{
+	cursor:pointer;
+}
+.ac_adm_tr:hover{
+	background-color:aliceblue;
+}
+#search_field{
+	height:24.4px;	
+}
+#search_field_item{
+	height:24.4px;
+}
+#search_field_handling{
+	height:24.4px;
+}
