@@ -51,6 +51,9 @@ public class BookController {
 		
 		MemberVO m=(MemberVO)session.getAttribute("m");
 		String mem_id=m.getMem_id();
+		String mem_nickname=m.getMem_nickname();
+		String profile_photo = m.getProfile_photo();
+		String profile_cont = m.getProfile_cont();
 		
 		List<BoardVO> bList = this.bookService.getBList(mem_id);
 		/* 수정사항 */
@@ -61,6 +64,9 @@ public class BookController {
 			bList.get(i).setBo_cont(bookList);
 		}
 		ModelAndView mv=new ModelAndView();
+		mv.addObject("mem_nickname",mem_nickname);
+		mv.addObject("profile_photo",profile_photo);
+		mv.addObject("profile_cont",profile_cont);
 		mv.addObject("bookList",bList);
 		mv.setViewName("jsp/book_create");
 		
@@ -76,14 +82,14 @@ public class BookController {
 		session = request.getSession();
 		
 		String book_name= request.getParameter("book_name");
-		System.out.println(book_name);
 		this.bookService.insertBook(b);
 		b.setBook_name(book_name);
 		
-		String[] bo_no=request.getParameterValues("book_create");
-		for(String val :(bo_no)) {
-			this.bookService.book_noUP(val);
-			System.out.println(val);
+		BoardVO bo=new BoardVO();
+		
+		String[] val=request.getParameterValues("book_create");
+		for(String bo_no : val) {
+			this.bookService.book_noUP(bo_no);
 		}
 		
 		
