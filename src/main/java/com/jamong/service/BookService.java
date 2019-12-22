@@ -11,6 +11,6 @@ public interface BookService {
 
 	void insertBook(BookVO b);
 
-	void book_noUP(String val);
+	void book_noUP(String bo_no);
 
 }
