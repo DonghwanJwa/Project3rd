@@ -7,7 +7,6 @@
 #member_modify_main_div {
 	background-color: white;
 	width: 777px;
-	height: 700px;
 	margin: 0 auto;
 }
 
@@ -24,8 +23,7 @@
 }
 
 #member_modify_sub_div{
-	height: 450px;
-	width: 600px;	
+	display:inline;
 	margin-left: 60px;
 }
 
@@ -40,6 +38,37 @@
 #member_modify_table td{
 	padding-left: 68px;	
 }
+
+#member_pwd_modify{
+	    width: 43px;
+    height: 25px;
+    background-color: white;
+    border: solid 2px orange;
+    outline: 0;
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+#member_pwd_modify:active{
+	background-color: orange;
+	color: white;
+}
+.hide_box{
+	visibility: hidden;	
+}
+#member_modify_pwd_modify{
+	border:2px solid orange;
+	background-color: orange;
+	cursor: pointer;
+	padding: 0;
+	outline: 0;
+	
+	
+}
+#member_modify_pwd_modify:active{
+	background-color: orange;
+	color: white;
+}
 .member_modify_text { /* 인풋박스 설정 */
 	width: 270px;
 	height: 15px;
@@ -52,7 +81,9 @@
 	padding-bottom:5px;
 	border-bottom:1px solid orange;
 }
-
+.member_modify_text.pwd_check{
+	width: 223px;
+}
 .member_modify_text.birth{
 	width: 63px;
 	height: 15px;
@@ -161,7 +192,6 @@
 
 #member_modify_next_btn_div{
 	border-top: 1px solid gray;
-	margin-top: 50px;
 	text-align: right;
 }
 
@@ -176,7 +206,7 @@
     border: solid 2px orange;
     outline: 0;
     cursor: pointer;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
     font-size: 10px;
 }
 #member_modify_next_btn:hover{

@@ -113,18 +113,6 @@ public class MemberModifyController {
 		return st.toString();
 	}
 	
-	@RequestMapping("pass_modify")
-	public ModelAndView user_pass_modify(MemberVO vo,HttpSession session,
-			HttpServletRequest response,HttpServletRequest request) { // 로그인 페이지
-		ModelAndView view = new ModelAndView();
-		session = request.getSession();
-		MemberVO m = (MemberVO)session.getAttribute("m");
-		MemberVO vov = this.memberService.get(m.getMem_id());
-		
-		view.addObject("vo", vov);
-		view.setViewName("jsp/pass_modify");
-		return view;
-	}
 	//index페이지에서 내 설정을 누르면 하이퍼링크로 my_info로 넘어간다 넘어갈 때 my_info의 매핑을 타고 그 컨트롤러 안에 있는
 	//메서드를 수행하고 리턴하는 값으로 넘어간다
 	
@@ -144,7 +132,6 @@ public class MemberModifyController {
 		
 		session = request.getSession();
 		MemberVO session_m = (MemberVO) session.getAttribute("m");
-		System.out.println(session_m);
 		int re = 1;
 		if(session_m == null) {
 			re = 2;
@@ -194,23 +181,51 @@ public class MemberModifyController {
 		return view;
 	}
 
-	@RequestMapping("member_modify_ok") //회원정보수정
-	public ModelAndView member_modify_ok(MemberVO me,
-			HttpSession session,HttpServletResponse response,
-			HttpServletRequest request) throws Exception  {
+
+	@RequestMapping("pass_modify")
+	public ModelAndView user_pass_modify(MemberVO vo,HttpSession session,
+			HttpServletRequest response,HttpServletRequest request) {
 		ModelAndView view = new ModelAndView();
-		response.setContentType("text/html;charset=UTF-8");
+		session = request.getSession();
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		MemberVO vov = this.memberService.get(m.getMem_id());
 		
+		view.addObject("vo", vov);
+		view.setViewName("jsp/pass_modify");
+		return view;
+	}
+	
+	@RequestMapping("member_modify_ok") //회원정보수정
+	public String member_modify_ok(MemberVO me,HttpSession session,HttpServletResponse response,HttpServletRequest request) throws Exception  {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		session = request.getSession();
+		PrintWriter out = response.getWriter();
 		MemberVO m = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
 		me.setMem_no(m.getMem_no());//엠객체에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
-		me.setMem_pwd(PwdChange.getPassWordToXEMD5String(me.getMem_pwd()));//비밀번호를 암호화해서 넣는다
 		this.memberService.memberUpdate(me);//엠이에 디비값을 담는다
-		
-	    view.setViewName("jsp/login");
-		return view;
+		session.invalidate();
+		out.print("<script>");
+		out.print("alert('수정되었습니다');");
+		out.print("location='login/2';");
+		out.print("</script>");
+		return null;
 	}//member_modify_ok()
 	
-		
+	@RequestMapping("member_pwd_modify_ok")
+	@ResponseBody
+	public int member_pwd_modify_ok(MemberVO me,HttpSession session,HttpServletResponse response,HttpServletRequest request) throws Exception  {
+		int re = 1;
+		session = request.getSession();
+		MemberVO m = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
+		System.out.println(me.getMem_pwd());
+		me.setMem_no(m.getMem_no());//엠객체에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
+		me.setMem_pwd(PwdChange.getPassWordToXEMD5String(me.getMem_pwd()));
+		this.memberService.member_pwd_modify(me);//엠이에 디비값을 담는다
+		return re;
+	}
+
+	
 	@RequestMapping("modify_emailcheck")//이메일 중복체크
 	@ResponseBody
 	public int member_emailcheck(String email, String domain, MemberVO m, HttpServletResponse response)throws Exception{
@@ -366,7 +381,7 @@ public class MemberModifyController {
 		}
 	}
 	
-	@RequestMapping("Withdrawal_ok") //회원정보수정
+	@RequestMapping("Withdrawal_ok") //회원탈퇴
 	@ResponseBody
 	public int member_update(MemberVO vo,String my_info_leave_text_id,
 			HttpSession session,HttpServletResponse response,
