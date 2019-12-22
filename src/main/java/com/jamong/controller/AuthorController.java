@@ -5,13 +5,14 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class AuthorController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('로그인이 필요한 서비스입니다. 로그인 해주세요.');");
-			out.println("location='login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			int no=adm_m.getMem_no();
@@ -103,7 +104,7 @@ public class AuthorController {
 		a.setAut_file3(aut_file3);
 		
 		this.authorService.sendAuthor(a);
-			
+		
 		out.println("<script>");
 		out.println("alert('작가신청이 완료되었습니다.');");
 		out.println("history.go(-2);");
@@ -122,7 +123,7 @@ public class AuthorController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login'");
+			out.println("location='login/1'");
 			out.println("</script>");
 		}else {
 			int page=1;
@@ -145,19 +146,22 @@ public class AuthorController {
 			
 			List<AuthorVO> reqlist=this.authorService.req_list(a);
 			
+			// 총 페이지
 			int maxpage=(int)((double)listcount/limit+0.95);
+			// 시작페이지
 			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+			// 마지막 페이지
 			int endpage=maxpage;
-			if(endpage>startpage+10-1) endpage=startpage+10-1;
+			if(endpage > startpage+10-1) endpage=startpage+10-1;
 			
 			ModelAndView mv=new ModelAndView();
 						
 			mv.addObject("a",a);
-			mv.addObject("listcount",listcount);
 			mv.addObject("reqlist",reqlist);
+			mv.addObject("listcount",listcount);
 			mv.addObject("page",page);
-			mv.addObject("maxpage",maxpage);
 			mv.addObject("startpage",startpage);
+			mv.addObject("maxpage",maxpage);
 			mv.addObject("endpage",endpage);
 			mv.addObject("search_name",search_name);
 			mv.addObject("search_field1",search_field1);
@@ -182,7 +186,7 @@ public class AuthorController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			ModelAndView mv=new ModelAndView();
@@ -223,6 +227,20 @@ public class AuthorController {
 	
 	@RequestMapping("author_file")
 	public ModelAndView author_file(HttpServletRequest request, HttpServletResponse response, int no) throws Exception {
+		List<AuthorVO> fileList=this.authorService.getFileList(no);
+		
+		if(fileList != null) {
+			// 다운로드 알림창이 뜨도록 하기 위해서 컨텐트 타입을 8비트 바이너리로 설정한다.
+			response.setContentType("application/octet-stream");
+			
+		}
+		
+		return null;
+	}
+	
+	
+	@RequestMapping("author_file1")
+	public ModelAndView author_file1(HttpServletRequest request, HttpServletResponse response, int no) throws Exception {
 		AuthorVO a=this.authorService.get_file(no);
 		
 		/*경로제외 파일명*/
@@ -240,32 +258,35 @@ public class AuthorController {
 			
 			String downPath = "C:/jamongAdmin/AuthorRequest/"+year+"-"+month+"-"+date;
 			File folder=new File(downPath);
-		
+			
 			if(!folder.exists()) {
 				folder.mkdirs();
 			}
-		
+			
 			// 다운로드 알림창이 뜨도록 하기 위해서 컨텐트 타입을 8비트 바이너리로 설정한다.
 			response.setContentType("application/octet-stream");
-		
-			response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName1 + "\";");
-	    
+			
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileName1,"UTF-8") + "\";");
+			
+			// 서버 실제 경로의 파일을 구함
 			String pathAndName1=request.getServletContext().getRealPath("/")+a.getAut_file1();
-	    
-			File aut_file1=new File(pathAndName1);
-	    
+			System.out.println(pathAndName1);
+			File aut_file1=new File(pathAndName1);			
+			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
 			byte[] b = new byte[50*1024*1024];
-
+			
 			FileInputStream in1=new FileInputStream(aut_file1);
 			BufferedInputStream bis=new BufferedInputStream(in1);
 			BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
+			
 			if (aut_file1.isFile() && aut_file1.length() > 0){ 
 				int read=0;
-	    	
+				
 				while((read=bis.read(b)) != -1) {
 					bos.write(b , 0 , read);
 				}
+				bos.flush();
 				bos.close();
 				bis.close();
 			}
@@ -275,4 +296,174 @@ public class AuthorController {
 		
 		return null;
 	}
+	
+	@RequestMapping("author_file2")
+	public ModelAndView author_file2(HttpServletRequest request, HttpServletResponse response, int no) throws Exception {
+		AuthorVO a=this.authorService.get_file(no);
+		
+		/*경로제외 파일명*/
+		String fileName2=a.getAut_file2().substring(a.getAut_file2().lastIndexOf("/")+1);
+		
+		/*저장할 폴더 경로*/
+		Calendar c = Calendar.getInstance();
+		int year=c.get(Calendar.YEAR);
+		int month=c.get(Calendar.MONTH)+1;
+		int date=c.get(Calendar.DATE);
+		
+		if(a.getAut_file2() == null) {
+			response.sendRedirect("/redirect.jsp");
+		}else {
+			
+			String downPath = "C:/jamongAdmin/AuthorRequest/"+year+"-"+month+"-"+date;
+			File folder=new File(downPath);
+			
+			if(!folder.exists()) {
+				folder.mkdirs();
+			}
+			
+			// 다운로드 알림창이 뜨도록 하기 위해서 컨텐트 타입을 8비트 바이너리로 설정한다.
+			response.setContentType("application/octet-stream");
+			
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileName2,"UTF-8") + "\";");
+			
+			// 서버 실제 경로의 파일을 구함
+			String pathAndName2=request.getServletContext().getRealPath("/")+a.getAut_file2();
+			
+			System.out.println(pathAndName2);
+			
+			File aut_file2=new File(pathAndName2);			
+			
+			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
+			byte[] b = new byte[50*1024*1024];
+			
+			FileInputStream in2=new FileInputStream(aut_file2);
+			BufferedInputStream bis=new BufferedInputStream(in2);
+			BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
+			
+			if (aut_file2.isFile() && aut_file2.length() > 0){ 
+				int read=0;
+				
+				while((read=bis.read(b)) != -1) {
+					bos.write(b , 0 , read);
+				}
+				bos.flush();
+				bos.close();
+				bis.close();
+			}
+			ModelAndView mv=new ModelAndView("jsp/admin_author_info");
+			mv.addObject(aut_file2);
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping("author_file3")
+	public ModelAndView author_file3(HttpServletRequest request, HttpServletResponse response, int no) throws Exception {
+		AuthorVO a=this.authorService.get_file(no);
+		
+		/*경로제외 파일명*/
+		String fileName3=a.getAut_file3().substring(a.getAut_file3().lastIndexOf("/")+1);
+		
+		/*저장할 폴더 경로*/
+		Calendar c = Calendar.getInstance();
+		int year=c.get(Calendar.YEAR);
+		int month=c.get(Calendar.MONTH)+1;
+		int date=c.get(Calendar.DATE);
+		
+		if(a.getAut_file3() == null) {
+			response.sendRedirect("/redirect.jsp");
+		}else {
+			
+			String downPath = "C:/jamongAdmin/AuthorRequest/"+year+"-"+month+"-"+date;
+			File folder=new File(downPath);
+			
+			if(!folder.exists()) {
+				folder.mkdirs();
+			}
+			
+			// 다운로드 알림창이 뜨도록 하기 위해서 컨텐트 타입을 8비트 바이너리로 설정한다.
+			response.setContentType("application/octet-stream");
+			
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileName3,"UTF-8") + "\";");
+			
+			// 서버 실제 경로의 파일을 구함
+			String pathAndName3=request.getServletContext().getRealPath("/")+a.getAut_file3();
+			
+			System.out.println(pathAndName3);
+			
+			File aut_file3=new File(pathAndName3);			
+			
+			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
+			byte[] b = new byte[50*1024*1024];
+			
+			FileInputStream in3=new FileInputStream(aut_file3);
+			BufferedInputStream bis=new BufferedInputStream(in3);
+			BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
+			
+			if (aut_file3.isFile() && aut_file3.length() > 0){ 
+				int read=0;
+				
+				while((read=bis.read(b)) != -1) {
+					bos.write(b , 0 , read);
+				}
+				bos.flush();
+				bos.close();
+				bis.close();
+			}
+			ModelAndView mv=new ModelAndView("jsp/admin_author_info");
+			mv.addObject(aut_file3);
+		}
+		
+		return null;
+	}
+
+	/* 작가신청 승인/거절 */
+	@RequestMapping("author_upstate")
+	public ModelAndView author_upstate(HttpServletRequest request, HttpServletResponse response, HttpSession session, String state, int no, AuthorVO a) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		session=request.getSession();
+		PrintWriter out=response.getWriter();
+		
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
+		
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='login/1';");
+			out.println("</script>");	
+		} else {
+			int page=1;
+			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
+			
+			a=this.authorService.req_info(no);
+
+			if(state.equals("accept")) {
+				
+				this.authorService.acceptAuthor(a);
+				
+				if (a.getAut_state() != 0) {
+					out.println("<script>");
+					out.println("alert('이미 심사가 완료된 신청입니다.');");
+					out.println("history.back();");
+					out.println("</script>");
+				}else {
+					return new ModelAndView("redirect:/admin_author?page="+page);
+				}
+			}else if(state.equals("reject")) {
+				
+				this.authorService.rejectAuthor(a);
+				
+				if (a.getAut_state() != 0) {
+					out.println("<script>");
+					out.println("alert('이미 심사가 완료된 신청입니다.');");
+					out.println("history.back();");
+					out.println("</script>");
+				}else {
+					return new ModelAndView("redirect:/admin_author?page="+page);
+				}
+			}
+		}
+		return null;
+	}
+	
 }

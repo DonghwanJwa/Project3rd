@@ -45,5 +45,26 @@ public class AuthorDAOImpl implements AuthorDAO {
 		return this.sqlSession.selectOne("req_file",no);
 	}
 
+	@Override
+	public List<AuthorVO> getFileList(int no) {
+		return this.sqlSession.selectOne("fileList",no);
+	}
+
+	@Override
+	public void acceptAuthor(AuthorVO a) {
+		this.sqlSession.update("accept_author",a);
+	}
+
+	@Override
+	public void editAuthor(AuthorVO a) {
+		this.sqlSession.update("edit_author",a);
+	}
+
+	@Override
+	public void rejectAuthor(AuthorVO a) {
+		this.sqlSession.update("reject_author",a);
+	}
+
+
 	
 }

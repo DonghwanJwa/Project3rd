@@ -13,7 +13,7 @@ public class AuthorVO {
 	private String aut_file2;
 	private String aut_file3;
 	private String aut_date;
-	private String aut_state;
+	private int aut_state;
 	private String aut_update;
 	
 	/* 회원 세션값 받아올 변수 */
@@ -44,7 +44,7 @@ public class AuthorVO {
 	public void setAut_file2(String aut_file2) {		this.aut_file2 = aut_file2;		}
 	public void setAut_file3(String aut_file3) {		this.aut_file3 = aut_file3;		}
 	public void setAut_date(String aut_date)   {		this.aut_date = aut_date;		}
-	public void setAut_state(String aut_state) {		this.aut_state = aut_state;	}
+	public void setAut_state(int aut_state) {		this.aut_state = aut_state;	}
 	public void setAut_update(String aut_update) {		this.aut_update = aut_update;	}
 	public void setMem_no(int mem_no) 		   {		this.mem_no = mem_no;			}
 	public void setStartrow(int startrow)		{		this.startrow = startrow;	}
@@ -65,7 +65,7 @@ public class AuthorVO {
 	public String getAut_file2() {		return aut_file2;	}
 	public String getAut_file3() {		return aut_file3;	}
 	public String getAut_date()  {		return aut_date;	}
-	public String getAut_state() {		return aut_state;	}
+	public int getAut_state() {		return aut_state;	}
 	public String getAut_update() {		return aut_update;	}
 	public int getMem_no() 		 {		return mem_no;		}
 	public int getStartrow()	 {		return startrow;	}

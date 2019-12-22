@@ -19,4 +19,10 @@ public interface AuthorService {
 
 	AuthorVO get_file(int no);
 
+	List<AuthorVO> getFileList(int no);
+
+	void acceptAuthor(AuthorVO a);
+
+	void rejectAuthor(AuthorVO a);
+
 }
