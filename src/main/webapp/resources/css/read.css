@@ -271,6 +271,7 @@ body a {
 	list-style:none;
 	font-size:12px;
 }
+
 .reply_hide_wrap {
 	display:none;
 	flex-direction:row;
@@ -325,13 +326,25 @@ body a {
 	padding:10px;
 	border: 1px solid #DDD;
 }
+.rep_textarea p{
+	margin-top:0px;
+	margin-bottom:3px;
+}
 #comment_editarea{
 	display:inline-block;
-	width: 550px;
+	width: 510px;
     margin-top: 5px;
     padding: 5px;
-    height: 50px;
+    min-height: 50px;
     border:1px solid #A9A9A9;
+}
+#comment_editarea p{
+	margin-top:0px;
+	margin-bottom:3px;
+}
+.comment_cont p{
+	margin-top:0px;
+	margin-bottom:3px;
 }
 #comment_editCancle{
 	float: right;
@@ -373,12 +386,14 @@ body a {
 	border: 1px solid #DDD;
 	padding:10px;
 }
-
+.reply_textarea p{
+	margin-top:0px;
+	margin-bottom:3px;
+}
 .reply_btn_wrap {
 	display:flex;
 	justify-content:flex-end;
 }
-
 .reply_btn {
 	border:1px solid grey;
 	border-radius:50px;

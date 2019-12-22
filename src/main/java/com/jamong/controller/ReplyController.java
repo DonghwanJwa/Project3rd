@@ -75,9 +75,6 @@ public class ReplyController {
 		int flag = 0;
 		session = request.getSession();
 		
-		System.out.println(rep_no);
-		System.out.println(editCont);
-		
 		MemberVO repM = (MemberVO)session.getAttribute("m");
 		if(repM != null) {
 			rvo.setRep_no(rep_no);
@@ -85,6 +82,23 @@ public class ReplyController {
 			
 			this.replyService.editReply(rvo);
 			
+			flag = 1;
+		}else {
+			flag = 2;
+		}		
+		return flag;
+	}
+	
+	@PostMapping("commentremove")
+	@ResponseBody
+	public int removeReply(int rep_no,
+			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+		int flag = 0;
+		session = request.getSession();
+		
+		MemberVO repM = (MemberVO)session.getAttribute("m");
+		if(repM != null) {
+			this.replyService.removeReply(rep_no);
 			flag = 1;
 		}else {
 			flag = 2;

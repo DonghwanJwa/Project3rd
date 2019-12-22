@@ -42,4 +42,9 @@ public class ReplyServiceImpl implements ReplyService {
 		this.replyDao.editReply(rvo);
 	}
 
+	@Override
+	public void removeReply(int rep_no) {
+		this.replyDao.removeReply(rep_no);
+	}
+
 }

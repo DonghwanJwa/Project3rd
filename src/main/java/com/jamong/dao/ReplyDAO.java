@@ -12,5 +12,6 @@ public interface ReplyDAO {
 	int getUserReplyCount(int bo_no);
 	void updateLevel(ReplyVO rvo);
 	void editReply(ReplyVO rvo);
+	void removeReply(int rep_no);
 
 }

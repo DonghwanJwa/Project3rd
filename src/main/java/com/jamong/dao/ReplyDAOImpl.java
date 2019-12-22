@@ -38,4 +38,8 @@ public class ReplyDAOImpl implements ReplyDAO {
 	public void editReply(ReplyVO rvo) {
 		this.sqlSession.update("comment_edit",rvo);
 	}
+	@Override
+	public void removeReply(int rep_no) {
+		this.sqlSession.delete("rep_remove",rep_no);
+	}
 }

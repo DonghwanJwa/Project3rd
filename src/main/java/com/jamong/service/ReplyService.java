@@ -11,5 +11,6 @@ public interface ReplyService {
 	List<ReplyVO> getUserBoardContReply(int bo_no);
 	void editReply(ReplyVO rvo);
 	void addReply(ReplyVO rvo);
+	void removeReply(int rep_no);
 
 }

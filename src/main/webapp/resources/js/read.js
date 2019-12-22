@@ -6,23 +6,45 @@ var replyIndex = 0;
 
 getSympathyState();
 
+function CommentRemove(e){
+	var rep_no = $(e.target).data("no");
+	var removeOK = confirm('댓글을 삭제하시겠습니까?');
+
+	if(removeOK == true){
+		$.ajax({
+			type : "POST",
+			data : {"rep_no":rep_no},
+			url : "/jamong.com/commentremove",
+			success : function(data){
+				if(data == 1){
+					alert('댓글 삭제에 성공했습니다!');
+					window.location.reload();
+				}else if(data == 2)
+					alert('로그인이 필요합니다!');
+			}
+		});
+	}
+}
 function addComment(){
 	var para = document.location.href.split("/");
-	var com_cont = $(".textarea").html();
-	
-	$.ajax({
-		type:"POST",
-		data:{"com_cont":com_cont},
-		url:"/jamong.com/comment/"+para[5],
-		success:function(data){
-			if(data == 1){
-				alert('댓글 작성에 성공했습니다!');
-				window.location.reload();
-			}else if(data == 2){
-				alert('로그인이 필요합니다!');
+	var com_cont = $(".rep_textarea").html();
+	var CommentOK = confirm('댓글을 작성하시겠습니까?');
+
+	if(CommentOK == true){
+		$.ajax({
+			type:"POST",
+			data:{"com_cont":com_cont},
+			url:"/jamong.com/comment/"+para[5],
+			success:function(data){
+				if(data == 1){
+					alert('댓글 작성에 성공했습니다!');
+					window.location.reload();
+				}else if(data == 2){
+					alert('로그인이 필요합니다!');
+				}
 			}
-		}
-	});
+		});
+	}
 }
 function addReply(e){
 	var para = document.location.href.split("/");
@@ -30,45 +52,52 @@ function addReply(e){
 	var rep_ref = e.target.getAttribute("data-ref");
 	var rep_step = e.target.getAttribute('data-step');
 	var rep_level = e.target.getAttribute('data-level');
-	$.ajax({
-		type:"POST",
-		data:{"rep_cont":rep_cont,
-			"rep_ref":rep_ref,
-			"rep_step":rep_step,
-			"rep_level":rep_level,	
-		},
-		url:"/jamong.com/reply/"+para[5],
-		success:function(data){
-			if(data == 1){
-				alert('답글 작성에 성공했습니다!');
-				window.location.reload();
-			}else if(data == 2){
-				alert('로그인이 필요합니다!');
+	var ReplyOK = confirm('답글을 작성하시겠습니까?');
+
+	if(ReplyOK == true){
+		$.ajax({
+			type:"POST",
+			data:{"rep_cont":rep_cont,
+				"rep_ref":rep_ref,
+				"rep_step":rep_step,
+				"rep_level":rep_level,	
+			},
+			url:"/jamong.com/reply/"+para[5],
+			success:function(data){
+				if(data == 1){
+					alert('답글 작성에 성공했습니다!');
+					window.location.reload();
+				}else if(data == 2){
+					alert('로그인이 필요합니다!');
+				}
 			}
-		}
-	});
+		});
+	}
 }
+
 function replyEditOK(e){
-	var editCont = $("#comment_editarea").text();
-	console.log(editCont);
+	var editCont = $("#comment_editarea").html();
 	var rep_no = $(e.target).data("no");
-	
-	$.ajax({
-		type : "POST",
-		data : {"editCont" : editCont,
-			"rep_no" : rep_no
-		},
-		url : "/jamong.com/replyedit",
-		success : function(data){
-			if(data == 1){
-				alert('댓글 수정에 성공했습니다!');
-				window.location.reload();
-			}else if(data == 2){
-				alert('로그인이 필요합니다!');
+	var editOK = confirm('댓글을 수정하시겠습니까?');
+
+	if(editOK == true){
+		$.ajax({
+			type : "POST",
+			data : {"editCont" : editCont,
+				"rep_no" : rep_no
+			},
+			url : "/jamong.com/replyedit",
+			success : function(data){
+				if(data == 1){
+					alert('댓글 수정에 성공했습니다!');
+					window.location.reload();
+				}else if(data == 2){
+					alert('로그인이 필요합니다!');
+				}
 			}
-		}
-		
-	});
+
+		});
+	}
 }
 
 function showHide() {
@@ -85,29 +114,36 @@ function replyEdit(e) {
 	var replymenu = $(e.target).parent();
 	var replyli = $(e.target).parent().parent().parent();
 	var replyCont = replymenu.next().text();
-	
-//	$(replyli).attr('onmouseenter','').unbind("mouseenter");
-	
-	
+	var editHtml = "<a id='comment_editCancle' onclick='replyEditCancle(event)'>수정취소</a>" +
+	"<div>" +
+	"<div id='comment_editarea' contenteditable='true'>" +
+	"<p>"+ replymenu.next().html() +"</p>" +
+	"</div>" +
+	"<button data-no='"+$(e.target).data("no")+"' id='comment_editOK' onclick='replyEditOK(event);'>수정완료</button>" +
+	"</div> "
+
+	$(replyli).attr('onmouseenter','').unbind("mouseenter");
+	$(replyli).css("background-color","#FFF");
+
 	replymenu.css("display","none");
-	replymenu.prev().css("display","block");
 	replymenu.next().css("display","none");
-	replymenu.next().next().css("display","block");
+	replymenu.after(editHtml);
+	replymenu.next().css("display","block");
 }
 function replyEditCancle(e){
 	var cancleBtn = $(e.target);
 	var replyli = $(e.target).parent().parent();
-	
+
 	$(replyli).attr('onmouseenter','replyBtnShow(event);').bind("mouseenter");
-	
-	cancleBtn.prev().css("display","block");
+
+	cancleBtn.next().next().css("display","block");
 	cancleBtn.next().remove();
-	cancleBtn.next().css("display","block");
 	cancleBtn.remove();
 }
 function replyHide(e) {
 	var replyarea = "<div class='reply_wrap'>" +
 	"<div class='reply_textarea' contenteditable='true'>" +
+	"<p><br/></p>" +
 	"</div>" +
 	"<div class='reply_btn_wrap'>" +
 	"<a class='reply_btn' onclick='addReply(event);'>답글 작성</a>" +
@@ -156,11 +192,34 @@ function getSympathyState(){
 	});
 }
 
+$(document).on("keydown","#comment_editarea",function(e){
+	if(e.keyCode == '8'){
+		if(($("#comment_editarea p:first-child").text() == "" && $("#comment_editarea p").length == 1)){
+			return false;
+		}// if
+	}
+});
+$(document).on("keydown",".reply_textarea",function(e){
+	if(e.keyCode == '8'){
+			if(($(".reply_textarea p:first-child").text() == "" && $(".reply_textarea p").length == 1)){
+				return false;
+			}// if
+		}
+})
+
 
 $(document).ready(function(){
 
 	var para = document.location.href.split("/");
-
+	
+	$('.rep_textarea').keydown(function(e){
+		if(e.keyCode == '8'){
+			if(($(".rep_textarea p:first-child").text() == "" && $(".rep_textarea p").length == 1)){
+				console.log('이건 잘 됨');
+				return false;
+			}// if
+		}
+	});
 	/*공감 버튼*/
 	$('.head-menu-heart-img').click(function(event){
 

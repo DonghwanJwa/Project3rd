@@ -68,9 +68,14 @@
  
  <select id="rep_boList" resultMap="replyMap">
   SELECT *
-  FROM (SELECT * FROM reply ORDER BY rep_ref ASC,rep_level) r
+  FROM reply r
   INNER JOIN member m
   ON r.mem_no=m.mem_no
   WHERE r.bo_no=#{bo_no}
+  ORDER BY r.rep_ref ASC,r.rep_level
  </select>
+ 
+ <delete id="rep_remove">
+  DELETE FROM reply WHERE rep_no=#{rep_no}
+ </delete>
 </mapper>
