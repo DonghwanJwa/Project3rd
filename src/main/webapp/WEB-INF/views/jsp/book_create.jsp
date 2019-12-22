@@ -4,10 +4,63 @@
 <script src="/jamong.com/resources/js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/book_create.css">
 
-<form method="post" action="book_create_ok">
 <div id="book_create_wrap">
- <div id="book_create_list">
+ <div id="book_create_base">
+  <form method="post" action="book_create_ok">
+  
+  <!-- 책 커버, 책 소개, 작가 정보 표시 -->
+  <div id="book_create_info">
+   <!-- 책 커버 -->
+   <div id="book_create_cover" class="book_create_about_div">
+    <div id="book_create_cover_text">
+     <div id="book_create_cover_head">
+      <strong id="book_create_cover_title" contenteditable="true">책 제목을 입력하세욘</strong>
+      <span id="book_create_cover_author">
+       <i>by&nbsp;</i>${mem_nickname}
+      </span>
+     </div>
+     <div id="book_create_cover_bot">
+      <span>Jamong Book</span>
+     </div>
+    </div>
+    <span id="book_create_cover_line"></span>
+   </div>
+   <!-- 책 소개 -->
+   <div id="book_create_intro" class="book_create_about_div">
+    <div id="book_create_intro_inner">
+     <strong id="book_create_intro_title">브런치북 소개</strong>
+     <p id="book_create_intro_cont" contenteditable="true">
+     </p>
+    </div>
+   </div>
+   <!-- 작가 정보 -->
+   <div id="book_create_author" class="book_create_about_div">
+    <div id="book_create_author_head"><!-- 작가 소개 상단 ui --></div>
+    <div id="book_create_author_main">
+     <span id="book_create_author_img">
+     <c:set var="profile_poto" value="${profile_photo}"/>
+     <c:if test="${not empty profile_photo}">
+      <img src="${profile_photo}">
+     </c:if>
+     <c:if test='${empty profile_photo}'>
+      <img src="/jamong.com/resources/img/profile_logout.png">
+     </c:if>
+     </span>
+     <div id="book_create_author_desc">
+      <strong id="book_create_author_name">${mem_nickname}</strong>
+     </div>
+     <div id="book_create_author_intro">
+      <p id="book_create_author_intro_cont">
+      ${profile_cont}
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  
 
+  <!-- 글 리스트 -->
+  <div id="book_create_list">
   <div id="post_list_ul">
    <div id="check_btn">
     <input type="button" id="post_list_checkAll" class="btn checkAll" value="전체 선택">
@@ -62,18 +115,10 @@
    <input type="button" class="btn" onclick="return createCheck()" value="만들기">
    <input type="reset" class="btn" value="취소">
   </div>
+  </div>
+
+  </form>
  </div>
 </div>
-
-<!-- 저장 팝업 -->
-<div class="create_book_name">
- <div class="create_book_panel">
-  <input type="text" id ="create_name_box" name="book_name" placeholder="책 제목 입력" maxlength="30"> 
-  <input type="submit" value="만들기">
-  <input type="button" class="create_name_close" value="취소">
- </div>
-</div>
-
-</form>
 
 <jsp:include page="../include/footer.jsp"></jsp:include>

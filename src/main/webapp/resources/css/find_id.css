@@ -192,6 +192,7 @@ display: inline-block;
     height: 25px;
     font-size: 1px;
     outline: none;
+    cursor: pointer;
 }
 #find_id_pass_email_Certified_next_btn{
 	border: 2px solid orange;
@@ -200,9 +201,11 @@ display: inline-block;
     height: 25px;
     font-size: 1px;
     outline: none;
+        cursor: pointer;
 }
+
 #hidde_box{
-	visibility: hidden;
+	/* visibility: hidden; */
 }
 #find_pass_pass_modify{
 	width: 223px;

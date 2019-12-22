@@ -32,11 +32,8 @@
   </div>
   <div id="login_bottom">
    <div class="login_bottom_link">
-	<a href="/jamong.com/find_id">계정을 잃어버리셨나요?</a>
+	<a href="/jamong.com/find_id">Find ID/PW</a>
    </div> 
-   <div class="login_bottom_link">
-    <a href="/jamong.com/find_id">비밀번호를 잊으셨나요?</a>
-   </div>
  </div>
  </div>
 </div>

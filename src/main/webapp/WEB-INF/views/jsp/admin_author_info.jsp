@@ -7,9 +7,9 @@
 <%@include file="../include/admin_header.jsp" %>
 <div id="adm_page_title"><h3 class="adm_page_title">작가신청 열람</h3></div>
 <div id="adm_mem_info_wrap">
-<form action="author_file" method="post" name="file_down">
+<form method="post" name="file_down">
 <input type="hidden" value="${no}" name="no"/>
-</form>
+
 	<h4>1.&nbsp;회원정보</h4>
 	<div class="adm_table_wrap">
 	<table border="1" class="adm_member_table">
@@ -116,7 +116,7 @@
 		</tr>
 		
 		<tr>
-			<td>${a.aut_intro}</td>
+			<td class="author_cont_td">${a.aut_intro}</td>
 		</tr>
 		
 		<tr>
@@ -124,36 +124,74 @@
 		</tr>
 		
 		<tr>
-			<td>${a.aut_plan}</td>
+			<td class="author_cont_td">${a.aut_plan}</td>
 		</tr>
 		
 		<tr>
 			<th>제출한 다른 글</th>
 		</tr>
 		
-		<c:if test="${!empty a.aut_url1}">
 		<tr>
-			<td>첨부 URL 1. <a href="${a.aut_url1}" target="_blank">${a.aut_url1}</a></td>
+			<td class="author_td">
+			<c:if test="${empty a.aut_url1 && empty a.aut_url2 && a.aut_url3}">
+			첨부된 URL 주소가 없습니다.
+			</c:if>
+			<c:if test="${!empty a.aut_url1}">
+			첨부 URL 1. <a href="http://${a.aut_url1}" target="_blank">${a.aut_url1}</a>
+			</c:if>
+			<br/>
+			<c:if test="${!empty a.aut_url2}">
+			첨부 URL 2. <a href="http://${a.aut_url2}" target="_blank" >${a.aut_url2}</a>
+			</c:if>
+			<br/>
+			<c:if test="${!empty a.aut_url3}">
+			첨부 URL 3. <a href="http://${a.aut_url3}" target="_blank">${a.aut_url3}</a>
+			</c:if>
+			</td>
 		</tr>
-		</c:if>
-		<c:if test="${!empty a.aut_url2}">
-		<tr>
-			<td>첨부 URL 2. <a href="${a.aut_url2}" target="_blank" >${a.aut_url2}</a></td>
-		</tr>
-		</c:if>
-		<c:if test="${!empty a.aut_url3}">
-		<tr>
-			<td>첨부 URL 3. <a href="${a.aut_url3}" target="_blank">${a.aut_url3}</a></td>
-		</tr>
-		</c:if>
 		
-		<c:if test="${!empty a.aut_file1}">
 		<tr>
-			<td>첨부파일 1. <a href="#" onclick="javascript:file_down.submit()">${fileName1}</a>
+			<td class="author_td">
+			<c:if test="${empty a.aut_file1 && empty a.aut_file2 && empty a.aut_file3 }">
+			첨부된 파일이 없습니다.
+			</c:if>
+			<c:if test="${!empty a.aut_file1}">
+			첨부파일 1. <input type="submit" value="${fileName1}" onclick="javascript:form.action='author_file1';" class="down_file" /> 
+			</c:if>
+			<br/>
+			<c:if test="${!empty a.aut_file2}">
+			첨부파일 2. <input type="submit" value="${fileName2}" onclick="javascript:form.action='author_file2';" class="down_file"/> 
+			</c:if>
+			<br/>
+			<c:if test="${!empty a.aut_file3}">
+			첨부파일 3. <input type="submit" value="${fileName3}" onclick="javascript:form.action='author_file3';" class="down_file"/>
+			</c:if>
+			</td>
 		</tr>
-		</c:if>
 	</table>
 	</div>
+	</form>
+</div>
+<div id="cont_button_wrap">
+<script>
+	function judge_check() {
+		var con=confirm('회원님의 작가신청을 심사하시겠습니까? \n심사결과를 회원님의 이메일로 발송됩니다.');
+			
+		if(con == true) {
+			alert('심사결과가 저장되었습니다.');
+		}else {
+			return false;
+		}
+	}
+</script>
+	<form name="form2" method="post" onsubmit="return judge_check()">
+	<input type="hidden" value="${no}" name="no"/>
+	<c:if test="${a.aut_state == 0}">
+		<input type="submit" class="notice_btn" value="승인" onclick="javascript:form2.action='author_upstate?state=accept'" />
+		<input type="submit" class="notice_btn" value="반려" onclick="javascript:form2.action='author_upstate?state=reject'" />
+	</c:if>
+		<input type="button" class="notice_btn" value="목록" onclick="location='admin_author?page=${page}';" />
+	</form>
 </div>
 <%@include file="../include/admin_footer.jsp" %>
 </html>

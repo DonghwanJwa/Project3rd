@@ -31,4 +31,14 @@ public class BookDAOImpl implements BookDAO {
 		this.sqlSession.insert("book_in",b);
 	}
 
+	@Override
+	public void book_noSEL(String bo_no) {
+		this.sqlSession.selectList("book_no", bo_no);
+	}
+
+	@Override
+	public void book_noUP(int book_no) {
+		this.sqlSession.update("book_no_up",book_no);
+	}
+
 }

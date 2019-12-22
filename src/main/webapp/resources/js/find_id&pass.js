@@ -2,6 +2,8 @@
  * find_id, find_pass
  */
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
+var regExpPw = RegExp(/^(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()\-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/);//비번
+
 $(function(){
 	//이메일 인증 버튼 클릭시 발생하는 이벤트 //아이디 찾기 버튼
 	$(document).on("click", "#find_id_btn", function(){
@@ -207,5 +209,57 @@ $(function(){
 		}
 	});
 	
+	document.addEventListener('keydown', function(event) {//엔터키 서브밋 막기 이벤트
+		  if (event.keyCode === 13) {
+		    event.preventDefault();
+		  };
+		}, true);
+	//disabled true가 비활성화 false가 활성화
 	//비밀번호 변경 버튼 누를 려면 인증버튼이 비활성화 되어 있어야 하고 비밀번호 정규식 넣어주어야 함
+	//확인버튼이 비활성화가 되어 있지 않으면
+	$(document).on("click","#find_pass_pass_modify",function(){//비밀번호 변경 버튼 눌렀을 때
+		
+		$(".find_id_error").text('');
+		if($("#find_id_pass_email_Certified_next_btn").val() == ('disabled', true)){//활성화
+			$("#find_pass_error_Certified").text("인증번호를 확인해주세요!");			
+			return false;
+		}
+		if($("#find_id_pass_Certified").val() == ""){//활성화
+			$("#find_pass_error_Certified").text("인증번호를 입력해주세요!");			
+			return false;
+		}
+	
+		if($("#find_id_pass_pass").val() == ""){
+			$("#find_pass_error_pass").text("비밀번호를 변경해주세요!");
+			$("#find_id_pass_pass").focus();
+			return false;
+		}
+		if($("#find_id_pass_pass_check").val() == ""){
+			$("#find_pass_error_pass_check").text("비밀번호를 확인해주세요!");
+			$("#find_id_pass_pass_check").focus();
+			return false;
+		}
+		if($.trim($('#find_id_pass_pass').val()).length<8 || $.trim($('#find_id_pass_pass').val()).length>50){
+			$('#find_pass_error_pass').text('8자이상으로 설정해주세요!');
+			$("#find_id_pass_pass_check").val("")
+			$("#find_id_pass_pass").val("").focus();
+			return false;
+		}
+		
+		//비밀번호 정규식 = 영문,숫자,특수문자의 조합
+		if(!regExpPw.test($("#find_id_pass_pass").val())){ 
+			$('#find_pass_error_pass').text('영문,숫자,특수문자의 조합으로 입력해주세요!');
+			$("#find_pass_error_pass_check").val("")
+			$("#find_id_pass_pass").val("").focus();
+			return false; 
+		}
+	
+		//비번 비번확인이 같은지 확인
+		if($("#find_id_pass_pass_check").val() != $('#find_id_pass_pass').val()){
+			$('#find_pass_error_pass_check').text('비밀번호가 같지 않습니다!');
+			$("#find_id_pass_pass_check").val("");
+			$("#find_id_pass_pass").val("").focus();
+			return false;
+		}
+	});
 });

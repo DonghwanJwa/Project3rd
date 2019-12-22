@@ -123,6 +123,18 @@ public class BoardController {
 		
 		return "jsp/read";
 	}
+	
+	@RequestMapping("@{mem_id}/{bo_no}/write")
+	public ModelAndView user_editWrite(@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo,
+			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		bo = this.boardService.getUserBoardCont(bo_no);
+		
+		mv.addObject("bo",bo);
+		
+		return mv;
+	}
 
 	@RequestMapping("write")
 	public ModelAndView user_write(HttpServletResponse response, HttpServletRequest request, HttpSession session)

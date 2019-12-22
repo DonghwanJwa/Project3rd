@@ -14,4 +14,8 @@ public interface BookDAO {
 
 	List<BookVO> getSearchBook(HashMap<String, Object> searchMap);
 
+	void book_noSEL(String bo_no);
+
+	void book_noUP(int book_no);
+
 }
