@@ -264,4 +264,20 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
+	$('.head-menu-lock-img').click(function(event){
+		var lockImg = "/jamong.com/resources/img/lock.png";
+		var unlockImg = "/jamong.com/resources/img/unlock.png";
+		if($(event.target).hasClass('lock')){
+			$(event.target).removeClass('lock');
+			$(event.target).addClass('unlock');
+			$(event.target).attr("src",unlockImg);
+			
+			
+		}else{
+			$(event.target).removeClass('unlock');
+			$(event.target).addClass('lock');
+			$(event.target).attr("src",lockImg)
+		}
+	});
 });

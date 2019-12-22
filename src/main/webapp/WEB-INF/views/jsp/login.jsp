@@ -37,5 +37,8 @@
  </div>
  </div>
 </div>
+<script>
+ $('#login_id').focus();
+</script>
  </body>
 </html>

@@ -1,5 +1,6 @@
 package com.jamong.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -64,8 +65,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> getSearchArticle(String texts) {
-		return this.sqlSession.selectList("search_article",texts);
+	public List<BoardVO> getSearchPost(HashMap<String, Object> searchMap) {
+		return this.sqlSession.selectList("search_post",searchMap);
 	}
 
 	@Override

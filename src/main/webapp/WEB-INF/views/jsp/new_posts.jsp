@@ -10,7 +10,7 @@
       </div>
   </div>
 
-<div id="new_post_title">최신 글</div>
+<div id="new_post_title">RECENT POST</div>
 
 <div id="new_post_maintt">
  <div id="new_post_contents">

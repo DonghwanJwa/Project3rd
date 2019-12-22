@@ -162,8 +162,8 @@ SELECT m.mem_no,
 	]]>
  </select>
  
- <!-- 검색시 Article 첫페이지 -->
- <select id="search_article" parameterType="String" resultMap="boardMap">
+ <!-- 검색페이지 - 글 //검색시 Post 첫페이지 -->
+ <select id="search_post" parameterType="java.util.HashMap" resultMap="boardMap">
   SELECT b.bo_no,
          b.bo_title,
          b.bo_subtitle,
@@ -174,8 +174,14 @@ SELECT m.mem_no,
          m.mem_nickname,
          m.mem_keyword
   FROM (SELECT * FROM board
-  WHERE REGEXP_LIKE(bo_title,#{texts}) OR REGEXP_LIKE(bo_subtitle,#{texts}) OR REGEXP_LIKE(bo_cont,#{texts})
-  ORDER BY REGEXP_COUNT(bo_title,#{texts}) DESC)b, member m
+  WHERE REGEXP_LIKE(bo_title,#{q}) OR REGEXP_LIKE(bo_subtitle,#{q}) OR REGEXP_LIKE(bo_cont,#{q}) 
+  OR REGEXP_LIKE(cat_name,#{q}) AND bo_lock=1
+  <if test="s == 'accuracy'">
+  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC)b, member m
+  </if>
+  <if test="s == 'recent'">
+  ORDER BY bo_date DESC)b, member m
+  </if>
   WHERE b.mem_no=m.mem_no
   AND rowNum &lt;= 10
  </select>
