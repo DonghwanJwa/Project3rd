@@ -11,4 +11,8 @@ public interface BookDAO {
 
 	void insertBook(BookVO b);
 
+	void book_noSEL(String bo_no);
+
+	void book_noUP(int book_no);
+
 }

@@ -55,10 +55,6 @@ function createCheck(){
 		alert("책으로 만들 글을 선택해 주세요");
 		return false;
 	}
-	var screenWidth = $(document).width();
-	var screenHeight = $(document).height();
-	$(".create_book_name").css({'width':screenWidth,'height':screenHeight});
-	$(".create_book_name").css("display","inline-block");
 }
 
 function create_bookCheck(){

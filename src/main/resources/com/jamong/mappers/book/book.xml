@@ -79,10 +79,16 @@
   VALUES (book_no_seq.nextval,#{book_name},sysdate)
  </insert>
  
- <update id="board_book_up">
-  UPDATE board b, book book
-  SET b.book_no=book.book_no
-  WHERE b.bo_no = #{data_no}
+ <select id="book_no" resultType="b">
+  SELECT *
+  FROM board b
+  WHERE b.bo_no=#{bo_no}
+ </select> 
+ 
+ <update id="book_no_up">
+  UPDATE board b SET b.book_no = #{book_no}
+  FROM book
+  WHERE b.bo_no = #{bo_no}
  </update>
  
 </mapper>
