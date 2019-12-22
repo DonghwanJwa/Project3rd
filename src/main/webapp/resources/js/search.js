@@ -356,47 +356,29 @@ $(window).scroll(function(){
 		
 }); //스크롤 이벤트
 
-$(document).ready(function() {
-	// post 버튼 클릭
-	$("#search_type_btn_post").click(function() {
-		$("#search_result_post").show();
-		$("#search_result_work").hide();
-		$("#search_result_author").hide();
-		$("#search_type_btn_post").addClass('view');
-		$("#search_type_btn_work").removeClass('view');
-		$("#search_type_btn_author").removeClass("view");
-	});
-	// work 버튼 클릭
-	$("#search_type_btn_work").click(function() {
-		$("#search_result_post").hide();
-		$("#search_result_work").show();
-		$("#search_result_author").hide();
-		$("#search_type_btn_post").removeClass('view');
-		$("#search_type_btn_work").addClass('view');
-		$("#search_type_btn_author").removeClass("view");
-	});
-	// author 버튼 클릭
-	$("#search_type_btn_author").click(function() {
-		$("#search_result_post").hide();
-		$("#search_result_work").hide();
-		$("#search_result_author").show();
-		$("#search_type_btn_post").removeClass('view');
-		$("#search_type_btn_work").removeClass('view');
-		$("#search_type_btn_author").addClass("view");
-	});
+$(document).ready(function(){
+	$('#search_result_author_select').change(function(){
+		search('author',$(this).val());
+	});	
+})
 
-	// 정확도 정렬
-	$("#btn_accuracy").click(function() {
-		$("#btn_new").addClass("non-select")
-		$("#btn_accuracy").removeClass("non-select");
-		$("#btn_accuracy").attr("disabled", true);
-		$("#btn_new").attr("disabled", false);
-	});
-	// 최신 정렬
-	$("#btn_new").click(function() {
-		$("#btn_accuracy").addClass("non-select");
-		$("#btn_new").removeClass("non-select");
-		$("#btn_new").attr("disabled", true);
-		$("#btn_accuracy").attr("disabled", false);
-	})
-});
+
+function searchEnter(){
+	if(!$.trim($('#search_keyword').val())==""){
+		if (event.keyCode == 13){
+			$('#search_submit').trigger("click");
+		}
+	}
+}
+	
+
+function search(w,s){
+	if(!$.trim($('#search_keyword').val())==""){	
+		var qtext = $('#search_keyword').val();
+		for(var i=0;qtext.search(/(\s){2,}/)!=-1;i){ //공백 2개가 있으면 
+			qtext = qtext.replace(/(\s){2,}/gi," "); //공백 하나로 바꿔줌 - 1개만 있을때까지
+		}
+		q=qtext.replace(/\s/gi,"+");			 //공백을 +로 표기 =>주소창에는 +표시지만 controller에서는 띄어쓰기로 인식된다.
+		location.href = "/jamong.com/search?w="+w+"&s="+s+"&q="+q;
+	}
+}

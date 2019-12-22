@@ -1,5 +1,6 @@
 package com.jamong.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.jamong.domain.MemberVO;
@@ -23,6 +24,7 @@ public interface MemberDAO {
 	MemberVO get(String mem_id);
 	MemberVO profileCheck(String mem_id);
 	MemberVO getMemberFav(int mem_no);
+	List<MemberVO> getSearchMember(HashMap<String, Object> searchMap);
 	List<MemberVO> recomAuthor();
 	List<MemberVO> categoryMember();
 	void updateProfile(MemberVO mp);

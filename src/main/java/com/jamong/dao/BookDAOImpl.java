@@ -1,5 +1,6 @@
 package com.jamong.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,6 +19,11 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public List<BoardVO> getBList(String mem_id) {
 		return this.sqlSession.selectList("book_list",mem_id);
+	}
+
+	@Override
+	public List<BookVO> getSearchBook(HashMap<String, Object> searchMap) {
+		return this.sqlSession.selectList("search_book",searchMap);
 	}
 
 	@Override

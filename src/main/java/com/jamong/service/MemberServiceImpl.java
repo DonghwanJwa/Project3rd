@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +94,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO getMemberFav(int mem_no) {
 		return this.memberDao.getMemberFav(mem_no);
+	}
+	
+	@Override
+	public List<MemberVO> getSearchMember(HashMap<String, Object> searchMap) {
+		return this.memberDao.getSearchMember(searchMap);
 	}
 	
 	@Override

@@ -31,7 +31,21 @@
  	<div id="head-menu-empty">
  	<c:if test="${! empty bo}">
  	<div id="head-menu-readpage">
- 	  <div id="head-menu-sym">
+ 	 <c:if test="${mem_id eq m.mem_id}">
+ 	 <div id="head-menu-lock">
+ 	  <c:if test="${bo.bo_lock==0}">
+ 	   <button class="head-menu-lock-btn">
+ 	    <img class="head-menu-lock-img lock" src="/jamong.com/resources/img/lock.png">
+ 	   </button>
+ 	  </c:if>
+ 	  <c:if test="${bo.bo_lock==1}">
+ 	   <button class="head-menu-lock-btn">
+ 	    <img class="head-menu-lock-img unlock" src="/jamong.com/resources/img/unlock.png">
+ 	   </button>
+ 	  </c:if>
+ 	 </div>
+ 	 </c:if>
+ 	 <div id="head-menu-sym">
  	 <c:if test="${! empty m}">
  	  <button class="head-menu-sym-btn">
  	   <img class="head-menu-heart-img" src="/jamong.com/resources/img/heart.png">
@@ -44,7 +58,7 @@
  	   <span class="head-menu-heart-rate">${bo.bo_like}</span>
  	  </div>
  	 </c:if>
- 	  </div>
+ 	 </div>
 	  <div id="head-menu-hit">
 	   <img class="head-menu-hit-img" src="/jamong.com/resources/img/hit.png">
 	   <span class="head-menu-hit-rate">${bo.bo_hit}</span>
@@ -121,6 +135,7 @@
      <div id="head-page-notice">
       <div id="head-page-notice-title">
        <strong>Notice</strong>
+       <a href="/jamong.com/notice">more</a>
       </div>
       <div id="head-page-notice-list-frame">
        <ul id="head-page-notice-list">

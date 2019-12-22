@@ -108,8 +108,12 @@ function getBestList(){
 		  $(data).each(function(){//each는 jQuery에서 반복함수
 			  str+='<li class="head-page-best-item">'
 			  +'<a href="/jamong.com/@'+this.memberVO.mem_id+'/'+this.bo_no+'" class="head-page-link">'
-			  +'<img src="'+this.bo_thumbnail+'"/>'
-			  +'<div class="head-page-cont">'
+			  if(this.bo_thumbnail==null){
+				  str+='<img style="background-color:#000000;"/>'
+			  }else{
+				  str+='<img src="'+this.bo_thumbnail+'"/>'				  
+			  }
+			  str+='<div class="head-page-cont">'
 			  +'<div class="head-page-main-title-wrap">'
 			  +'<strong class="head-page-main-title">'+this.bo_title+'</strong></div>'
 			  if(this.bo_subtitle==null){
@@ -141,7 +145,7 @@ $(document).ready(function(){
 					otext = otext.replace(/(\s){2,}/gi," "); //공백 하나로 바꿔줌 - 1개만 있을때까지
 				}
 				otext=otext.replace(/\s/gi,"+");			 //공백을 +로 표기 =>주소창에는 +표시지만 controller에서는 띄어쓰기로 인식된다.
-				location.href = "/jamong.com/search?q="+otext;
+				location.href = "/jamong.com/search?w=post&s=accuracy&q="+otext;
 	    	}       
 		}
 	});
@@ -162,7 +166,7 @@ $(document).ready(function(){
 					otext = otext.replace(/(\s){2,}/gi," "); //공백 하나로 바꿔줌 - 1개만 있을때까지
 				}
 				otext=otext.replace(/\s/gi,"+");			 //공백을 +로 표기 =>주소창에는 +표시지만 controller에서는 띄어쓰기로 인식된다.
-				location.href = "/jamong.com/search?q="+otext;
+				location.href = "/jamong.com/search?w=post&s=accuracy&q="+otext;
 			}
 		}       
 	});

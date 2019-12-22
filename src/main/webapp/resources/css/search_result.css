@@ -9,6 +9,10 @@ ul li {
 	list-style: none;
 }
 
+#search_wrap{
+    min-height: calc(100vh - 187px);
+}
+
 /* 검색 결과 페이지 해더 부분 */
 #search_header {
 	width: 100%;
@@ -17,26 +21,48 @@ ul li {
 	margin-top: 1px;
 }
 
+#search_area{
+	
+}
+
+#search_area_align{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	margin:0 auto;
+	margin-top: 25px;
+}
+
+#search_submit{
+	border: none;
+	background-color: transparent;
+	background-image: url(/jamong.com/resources/img/glass.png);
+	background-repeat: no-repeat; 
+	background-position: center;
+	background-size: cover;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    cursor: pointer;
+	outline: none;
+}
+
 #search_keyword {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
 	width: 500px;
 	height: 60px;
 	font-size: 32px;
 	border: 0px;
 	text-align: center;
-	font-family: Georgia, "Malgun Gothic", serif;
 	display: block;
 	outline: none;
 	border-bottom: 2px solid #ffdabb;
-	font-family: Georgia, "Malgun Gothic", serif;
-	margin-top: 25px;
+	font-family: 'NanumGothic', 'serif';	
+	margin-left: 30px;
 }
 
 #search_type {
 	width: 870px;
-	margin-top: 5px;
+	margin-top: 4px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -55,11 +81,13 @@ ul li {
 
 .btn.type_btn.view {
 	width: 120px;
-	margin-top: 25px;
+	height: 42px;
+    margin-top: 24px;
 	border-bottom: thick;
 	border-bottom-color: #fff;
 	border-radius: 15px 15px 0px 0px;
 	background-color: #fff;
+	position: relative;
 }
 
 .btn {
@@ -173,7 +201,7 @@ ul li {
 
 /* '작품' 검색 결과 */
 #search_result_work {
-	display: none;
+	
 }
 
 #search_result_work_type {
@@ -283,7 +311,7 @@ ul li {
 
 /* '작가' 검색 결과 */
 #search_result_author {
-	display: none;
+	
 }
 
 #search_result_author_select {

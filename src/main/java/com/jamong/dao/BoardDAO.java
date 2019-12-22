@@ -1,5 +1,6 @@
 package com.jamong.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.jamong.domain.BoardVO;
@@ -14,7 +15,7 @@ public interface BoardDAO {
 	void sympathyDownUpdate(BoardVO bo);
 	int sympathyNum(BoardVO bo);
 	List<BoardVO> bestList();
-	List<BoardVO> getSearchArticle(String texts);
+	List<BoardVO> getSearchPost(HashMap<String, Object> searchMap);
 	List<BoardVO> infinitiScrollDown(int bo_no);
 	List<BoardVO> categoryArticle(String cat_name);
 	List<BoardVO> getProfile(int mem_no);
