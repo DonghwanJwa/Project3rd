@@ -149,7 +149,7 @@ public class BoardController {
 		if (m == null) {
 			out.println("<script>");
 			out.println("alert('로그인이 필요한 페이지입니다!');");
-			out.println("location='login';");
+			out.println("location='location='login/1'';");
 			out.println("</script>");
 		} else {
 			mv.setViewName("jsp/jamong_write");
@@ -327,6 +327,23 @@ public class BoardController {
 			BoardVO bo = new BoardVO();
 			bo.setBo_no(bo_no); bo.setMem_no(m.getMem_no());
 			result = this.boardService.sympathyDown(bo);
+		}
+		return result;
+	}
+	
+	@PostMapping("boardLock/{bo_no}/{bo_lock}")
+	@ResponseBody
+	public int boardLock(@PathVariable int bo_no,@PathVariable int bo_lock,
+			HttpServletRequest request,
+			HttpSession session) {
+		session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("m");
+		int result =-1;
+		if(m!=null) {
+			BoardVO bo = new BoardVO();
+			bo.setBo_no(bo_no); bo.setMem_no(m.getMem_no());
+			bo.setBo_lock(bo_lock);
+			result = this.boardService.switchBoardLock(bo);
 		}
 		return result;
 	}

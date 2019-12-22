@@ -31,7 +31,7 @@
  	<div id="head-menu-empty">
  	<c:if test="${! empty bo}">
  	<div id="head-menu-readpage">
- 	 <c:if test="${mem_id eq m.mem_id}">
+ 	 <c:if test="${(mem_id eq m.mem_id) && (bo.book_no == 0)}">
  	 <div id="head-menu-lock">
  	  <c:if test="${bo.bo_lock==0}">
  	   <button class="head-menu-lock-btn">
@@ -95,7 +95,7 @@
    
     <%-- 좌측 닫기버튼 --%>
     <div id="head-menu-close-wrap">
-     <a id="head-menu-close-right-button" href="#">
+     <a id="head-menu-close-right-button">
       <img src="/jamong.com/resources/img/right.png">
      </a>
     </div>
