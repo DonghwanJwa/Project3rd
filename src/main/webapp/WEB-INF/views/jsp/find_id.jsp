@@ -43,7 +43,7 @@
 						<div class="find_id_error" id="find_pass_error_name"></div>
 						<input class="find_id_pass_email1" id="find_id_pass_email" name="email_id" placeholder="이메일" autocomplete="off"/> @
 						<input class="find_id_pass_email2" id="find_id_pass_domain"name="email_domain" placeholder="도메인" autocomplete="off"/>
-						<button type="button" id="find_id_pass_email_Certified_btn" >인증</button>
+						<button type="button" id="find_id_pass_email_Certified_btn"  onsubmit="false">인증</button>
 						<div class="find_id_error" id="find_pass_error_email"></div>
 						<div id="hidde_box">
 						<input class="find_id_pass_Certified_text" id="find_id_pass_Certified" placeholder="인증번호"autocomplete="off">
