@@ -328,7 +328,8 @@ a:hover{text-decoration:underline; color:#F57C68;}
 }
 
 #cont_button_wrap {
-	margin:10px 0;
+	width:800px;
+	margin:10px auto;
 	display:flex;
 	justify-content:flex-end;
 }
@@ -469,4 +470,30 @@ a:hover{text-decoration:underline; color:#F57C68;}
 
 #search_name {
 	margin: 0 7px;
+}
+
+/* admin_author_info 작가신청 열람 */
+.author_td {
+	padding:5px;
+}
+
+.author_td a{
+	margin:5px 0;
+}
+
+.author_cont_td	{
+	padding: 5px;
+    height: 300px;
+    vertical-align: baseline;
+}
+
+.down_file {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    margin: 5px 0;
+    padding: 0;
+    outline: none;
 }
