@@ -116,8 +116,8 @@
        <div id="write_wrap_bg" style="min-width:940px;">
          <c:if test="${bo.memberVO.mem_no == m.mem_no}">
        		<div id="edit_del_wrap">
-   				<i class="user_edit_btn" title="글 수정하기"></i>
-   				<i class="user_del_btn" title="글 삭제하기"></i>
+   				<i class="user_edit_btn" title="글 수정" onclick="location.href='/jamong.com/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
+   				<i class="user_del_btn" title="글 삭제"></i>
    			</div>
    		 </c:if>
     <div class="write_cont_area write_cont_align_left" style="min-height:300px;">
@@ -189,41 +189,50 @@
 					<a href="/jamong.com/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
 					<span class="comment_info_icon">·</span>
 					<span class="comment_date">${r.rep_date}</span>
-					<a id='comment_editCancle' onclick='replyEditCancle(event)'>수정취소</a>
 					<span class="comment_menu">
+					<c:if test="${!empty m.mem_no}">
 					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					<c:if test="${m.mem_no == r.mem_no}">
 					· <a class="comment_edit" data-no="${r.rep_no}" onclick="replyEdit(event);">수정</a>
-					· <a class="comment_del">삭제</a>
+					· <a class="comment_del" data-no="${r.rep_no}" onclick="CommentRemove(event);">삭제</a>
+					</c:if>
+					·
+					</c:if>
+					<a class="comment_accuse" >신고하기</a>
 					</span>
-					<p class="comment_cont">${r.rep_cont}</p>
-					<div style="display:none">
-				     <div id='comment_editarea' contenteditable="true">${r.rep_cont}</div>
-	                 <button data-no="" id='comment_editOK' onclick='replyEditOK(event);'>수정완료</button>
-	                </div>
+					<div class="comment_cont">${r.rep_cont}</div>
 				</div>
 				</li>
 				</c:if>
-			 <%-- 답글일 때 --%>
+			  <%-- 답글일 때 --%>
 			  <c:if test="${r.rep_step != 0}">
-			   <li class="comment_frame" onmouseenter="replyBtnShow(event);" onmouseleave="replyBtnHide(event);">
-			        <span class="comment_enter_icon">ㄴ</span><span class="comment_enter_re">RE:</span>
+				<li class="comment_frame" onmouseenter="replyBtnShow(event);" onmouseleave="replyBtnHide(event);">
+					<span class="comment_enter_icon">ㄴ</span><span class="comment_enter_re">RE:</span>
 					<a href="/jamong.com/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
 					<div class="comment_info_wrap">
 					<a href="/jamong.com/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
 					<span class="comment_info_icon">·</span>
 					<span class="comment_date">${r.rep_date}</span>
 					<span class="comment_menu">
+					<c:if test="${!empty m.mem_no}">
 					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
-					· <a class="comment_edit">수정</a>
-					· <a class="comment_del">삭제</a>
+					<c:if test="${m.mem_no == r.mem_no}">
+					· <a class="comment_edit" data-no="${r.rep_no}" onclick="replyEdit(event);">수정</a>
+					· <a class="comment_del" data-no="${r.rep_no}" onclick="CommentRemove(event);">삭제</a>
+					</c:if>
+					·
+					</c:if>
+					<a class="comment_accuse" >신고하기</a>
 					</span>
-					<p class="comment_cont">${r.rep_cont}</p>
-					</div>
-			   	</li>
+					<div class="comment_cont">${r.rep_cont}</div>
+				</div>
+				</li>
 				</c:if>
 			 </c:forEach>
 				<div id="write_comment">
-					<div class="rep_textarea" contenteditable="true"></div>
+					<div class="rep_textarea" contenteditable="true">
+					<p><br/></p>
+					</div>
 					<div class="btn_wrap"><a class= write_comment_btn onclick="addComment();">댓글 작성</a></div>
 				</div>
 			</div>
