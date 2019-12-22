@@ -14,6 +14,7 @@ public interface BoardDAO {
 	void sympathyUpUpdate(BoardVO bo);
 	void sympathyDownUpdate(BoardVO bo);
 	int sympathyNum(BoardVO bo);
+	int switchBoardLock(BoardVO bo);
 	List<BoardVO> bestList();
 	List<BoardVO> getSearchPost(HashMap<String, Object> searchMap);
 	List<BoardVO> infinitiScrollDown(int bo_no);

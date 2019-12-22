@@ -152,6 +152,11 @@ SELECT m.mem_no,
   SELECT bo_like FROM board WHERE bo_no=#{bo_no}
  </select>
  
+ <!-- 게시글 공개/비공개 전환 -->
+ <update id="board_lock">
+  UPDATE board SET bo_lock=#{bo_lock} where bo_no=#{bo_no} and mem_no=#{mem_no}
+ </update>
+ 
  <!-- 메뉴바 Best 글 가져오기 -->
  <select id="best_list" resultMap="boardMap">
   <![CDATA[

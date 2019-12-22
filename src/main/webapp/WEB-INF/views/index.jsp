@@ -65,7 +65,7 @@ $(document).keydown(function(e){
    
     <%-- 좌측 닫기버튼 --%>
     <div id="head-menu-close-wrap">
-     <a id="head-menu-close-right-button" href="#">
+     <a id="head-menu-close-right-button">
       <img src="/jamong.com/resources/img/right.png">
      </a>
     </div>

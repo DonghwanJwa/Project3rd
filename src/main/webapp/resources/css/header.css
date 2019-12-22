@@ -237,6 +237,7 @@ body{
 	padding-top:220px;
 	width:63px;
 	height:280px;
+	cursor: pointer;
 }
 #head-menu-close-wrap img{
 	width:63px;

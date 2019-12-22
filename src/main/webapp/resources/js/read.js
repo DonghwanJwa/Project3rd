@@ -222,7 +222,9 @@ $(document).ready(function(){
 	});
 	/*공감 버튼*/
 	$('.head-menu-heart-img').click(function(event){
-
+		if(event.target.getAttribute("data-disabled")=='true'){
+			return false;
+		}
 		if($(event.target).css('background-color')=='rgb(255, 255, 255)'){
 			$(event.target).css('background-color','rgb(245,124,104)');
 
@@ -233,6 +235,10 @@ $(document).ready(function(){
 				success: function (data) {		
 					if(data!=-1){
 						$('.head-menu-heart-rate').text(data);
+						$(event.target).attr("data-disabled",'true');
+						setTimeout(function(){
+							$(event.target).attr("data-disabled",'false');
+						},2000);
 					}else{
 						alert('로그인 유지시간이 만료되었습니다. \n'
 								+'다시 로그인 하시기 바립니다.')
@@ -252,6 +258,10 @@ $(document).ready(function(){
 				success: function (data) {
 					if(data!=-1){
 						$('.head-menu-heart-rate').text(data);
+						$(event.target).attr("data-disabled",'true');
+						setTimeout(function(){
+							$(event.target).attr("data-disabled",'false');
+						},2000);
 					}else{
 						alert('로그인 유지시간이 만료되었습니다. \n'
 								+'다시 로그인 하시기 바립니다.')
@@ -264,20 +274,63 @@ $(document).ready(function(){
 			});
 		}
 	});
-	
+	//http://localhost:8182/jamong.com/@qwer1234/3
 	$('.head-menu-lock-img').click(function(event){
+		if(event.target.getAttribute("data-disabled")=='true'){
+			return false;
+		}
 		var lockImg = "/jamong.com/resources/img/lock.png";
 		var unlockImg = "/jamong.com/resources/img/unlock.png";
 		if($(event.target).hasClass('lock')){
-			$(event.target).removeClass('lock');
-			$(event.target).addClass('unlock');
-			$(event.target).attr("src",unlockImg);
 			
+			//lock -> unlock
+			$.ajax({
+				type:"POST",
+				url:"/jamong.com/boardLock/"+para[5]+"/1",
+				success: function (data) {		
+					if(data!=-1){
+						$(event.target).removeClass('lock');
+						$(event.target).addClass('unlock');
+						$(event.target).attr("src",unlockImg);
+						$(event.target).attr("data-disabled",'true');
+						setTimeout(function(){
+							$(event.target).attr("data-disabled",'false');
+						},2000);
+					}else{
+						alert('로그인 유지시간이 만료되었습니다. \n'
+								+'다시 로그인 하시기 바립니다.')
+								window.location.replace("/jamong.com/login");
+					}
+				},
+				error:function(){
+					alert("data error");
+				}
+			});
 			
 		}else{
-			$(event.target).removeClass('unlock');
-			$(event.target).addClass('lock');
-			$(event.target).attr("src",lockImg)
+			//lock -> unlock
+			$.ajax({
+				type:"POST",
+				url:"/jamong.com/boardLock/"+para[5]+"/0",
+				success: function (data) {		
+					if(data!=-1){
+						$(event.target).removeClass('unlock');
+						$(event.target).addClass('lock');
+						$(event.target).attr("src",lockImg)
+						$(event.target).attr("data-disabled",'true');
+						setTimeout(function(){
+							$(event.target).attr("data-disabled",'false');
+						},2000);
+					}else{
+						alert('로그인 유지시간이 만료되었습니다. \n'
+								+'다시 로그인 하시기 바립니다.')
+								window.location.replace("/jamong.com/login");
+					}
+				},
+				error:function(){
+					alert("data error");
+				}
+			});
 		}
 	});
 });

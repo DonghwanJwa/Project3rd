@@ -59,6 +59,11 @@ public class BoardServiceImpl implements BoardService {
 	}	
 	
 	@Override
+	public int switchBoardLock(BoardVO bo) {
+		return this.boardDao.switchBoardLock(bo);
+	}
+
+	@Override
 	public List<BoardVO> bestList() {	
 		return this.boardDao.bestList();
 	}
