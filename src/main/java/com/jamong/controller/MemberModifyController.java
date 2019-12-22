@@ -198,18 +198,15 @@ public class MemberModifyController {
 	public ModelAndView member_modify_ok(MemberVO me,
 			HttpSession session,HttpServletResponse response,
 			HttpServletRequest request) throws Exception  {
-		
+		ModelAndView view = new ModelAndView();
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
 		
 		MemberVO m = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
 		me.setMem_no(m.getMem_no());//엠객체에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
 		me.setMem_pwd(PwdChange.getPassWordToXEMD5String(me.getMem_pwd()));//비밀번호를 암호화해서 넣는다
 		this.memberService.memberUpdate(me);//엠이에 디비값을 담는다
 		
-		ModelAndView view = new ModelAndView();
-		session.invalidate();//세션만료
-	    view.setViewName("redirect:/login");
+	    view.setViewName("jsp/login");
 		return view;
 	}//member_modify_ok()
 	
@@ -279,9 +276,12 @@ public class MemberModifyController {
 		PrintWriter out = response.getWriter();
 		ModelAndView view = new ModelAndView();
 		
-			out.println("<script>alert('비밀번호 수정이 완료 되었습니다. \n 로그인페이지로 이동합니다.');</script>");
 			vo.setMem_pwd(PwdChange.getPassWordToXEMD5String(vo.getMem_pwd()));
 			this.memberService.pass_update(vo);
+			out.println("<script>");
+			out.println("alert('비밀번호가 수정되셨습니다!');");
+			out.println("</script>");
+			session.invalidate();
 			view.setViewName("redirect:login/2");
 		return view;
 	}

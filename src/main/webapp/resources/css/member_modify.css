@@ -82,18 +82,20 @@
 }
 	
 .member_modify_text.email{
-	width: 98px;
+	width: 106px;
 	height: 15px;
 	outline: 0;
 	border-left: none;
 	border-right: none;
 	border-top: none;
 	text-align: left;
-	padding:0 10px;
 	border-bottom:1px solid orange;
 	padding-bottom:5px;
 	font-size : 14px;
 	font-family: verdana;
+}
+.member_modify_text.domain{
+	width: 93px;
 }
 .member_modify_text.emailcheck{
 	width: 240px;
@@ -103,7 +105,6 @@
 	border-right: none;
 	border-top: none;
 	text-align: left;
-	padding:0 10px;
 	border-bottom:1px solid orange;
 	padding-bottom:5px;
 	font-size : 14px;
@@ -129,32 +130,33 @@
 }
 
 #member_modify_certified_btn {
-	width: 25px;
-	height: 25px;
-	background-color: lightblack;
-	border: solid 2px lightblack;
-	outline: 0;
-	border-radius: 100%;
-	cursor: pointer;
-	margin-left:5px;
-	margin-bottom: 5px;
+    width: 41px;
+    height: 25px;
+    background-color: white;
+    border: solid 2px orange;
+    outline: 0;
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-size: 10px;
 }
-
+#member_modify_certified_btn:hover{
+	background-color: orange;
+	color: white;
+}
 #member_modify_emailcheck_div{
 	display: inline;
 }
 
 
 #member_modify_emailcheck_btn{
-	width: 25px;
-	height: 25px;
-	background-color: lightblack;
-	border: solid 2px lightblack;
-	outline: 0;
-	border-radius: 100%;
-	cursor: pointer;
-	margin-left:5px;
-	margin-bottom: 5px;
+    width: 41px;
+    height: 25px;
+    background-color: white;
+    border: solid 2px orange;
+    outline: 0;
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-size: 10px;
 }
 
 #member_modify_next_btn_div{
@@ -168,14 +170,19 @@
 }
 
 #member_modify_next_btn {
-	border: solid 1px gray;
-	width: 100px;
-	height: 30px;
-	background-color: white;
-	cursor: pointer;
-	outline: 0;
+    width: 110px;
+    height: 40px;
+    background-color: white;
+    border: solid 2px orange;
+    outline: 0;
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-size: 10px;
 }
-
+#member_modify_next_btn:hover{
+	background-color: orange;
+	color: white;
+}
 .member_modify_error {
 	width: 200px;
 	height: 15px;

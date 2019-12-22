@@ -88,7 +88,7 @@
 							<input class="member_modify_text email" value="${vo.email_id }" tabindex="7"id="member_modify_email" name="email_id" placeholder="이메일">
 						</div>
 						<b id="member_modify_email_atMark">@</b> 
-							<input class="member_modify_text email" type="text" list="browsers" value="${vo.email_domain }" id="member_modify_email_datalist"  name="email_domain" placeholder="도메인" tabindex="8">
+							<input class="member_modify_text email domain" type="text" list="browsers" value="${vo.email_domain }" id="member_modify_email_datalist"  name="email_domain" placeholder="도메인" tabindex="8">
 						<datalist id=browsers>
 							<option value="naver.com">
 							<option value="daum.com">
