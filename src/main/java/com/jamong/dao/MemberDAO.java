@@ -7,6 +7,7 @@ import com.jamong.domain.MemberVO;
 
 public interface MemberDAO {
 
+	void cat_update(MemberVO vo);
 	void member_pwd_modify(MemberVO me);
 	void mem_update_del(MemberVO vo);
 	void pass_update(MemberVO vo);

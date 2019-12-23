@@ -31,6 +31,7 @@
 	text-align: left;	
 	display: inline-block;
 	border-spacing: 0 20px;
+	margin-left: 58px;
 }
 #member_modify_table th{
 	padding-bottom: 20px;
@@ -54,18 +55,18 @@
 	color: white;
 }
 .hide_box{
-	visibility: hidden;	
+	display: none;	
 }
 #member_modify_pwd_modify{
-	border:2px solid orange;
-	background-color: orange;
-	cursor: pointer;
-	padding: 0;
-	outline: 0;
+	border: 2px solid orange;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 9px;
+    outline: 0;
 	
 	
 }
-#member_modify_pwd_modify:active{
+#member_modify_pwd_modify:hover{
 	background-color: orange;
 	color: white;
 }
@@ -126,10 +127,10 @@
 	font-family: verdana;
 }
 .member_modify_text.domain{
-	width: 93px;
+	width: 94px;
 }
 .member_modify_text.emailcheck{
-	width: 240px;
+	width: 233px;
 	height: 15px;
 	outline: 0;
 	border-left: none;
@@ -161,21 +162,21 @@
 }
 
 #member_modify_certified_btn {
-    width: 41px;
+    width: 40px;
     height: 25px;
     background-color: white;
     border: solid 2px orange;
     outline: 0;
-    cursor: pointer;
     margin-bottom: 5px;
     font-size: 10px;
+	visibility: hidden;
 }
-#member_modify_certified_btn:hover{
+#member_modify_certified_btn:active{
 	background-color: orange;
 	color: white;
 }
 #member_modify_emailcheck_div{
-	display: inline;
+	display: none;
 }
 
 

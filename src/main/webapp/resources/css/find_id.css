@@ -205,7 +205,7 @@ display: inline-block;
 }
 
 #hidde_box{
-	/* visibility: hidden; */
+ visibility: hidden;
 }
 #find_pass_pass_modify{
 	width: 223px;

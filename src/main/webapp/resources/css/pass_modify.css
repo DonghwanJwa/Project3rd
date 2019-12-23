@@ -35,8 +35,7 @@ body{
 }
 
 #pass_modify_img_logo{
-	margin-top: 50px;
-	margin-bottom: 20px;
+	margin-top: 40px;
 	width: 200px;
 }
 #pass_modify_id{
@@ -69,16 +68,17 @@ body{
 	margin-top:10px;
 	font-size:12px;
 	padding-left: 50px;
+	color: red;
+	
 }
 #pass_modify_lastbtn{
-width: 190px;
+	width: 190px;
     height: 35px;
     font-size: 14px;
     background-color: white;
     border: solid 2px orange;
     outline: 0;
-    color: gray;
-    /* margin-top: 10px; */
+    margin-top: 10px;
     cursor: pointer;
 }
 #pass_modify_lastbtn:hover{
