@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.MemberDAO;
+import com.jamong.dao.SympathyDAO;
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 
@@ -17,12 +18,20 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDao;
 	
+	@Autowired
+	private SympathyDAO sympathyDao;
+	
+	@Override
+	public void cat_update(MemberVO vo) {
+		this.memberDao.cat_update(vo);
+	}
 	@Override
 	public void member_pwd_modify(MemberVO me) {
 		this.memberDao.member_pwd_modify(me);
 	}
+	@Transactional
 	@Override
-	public void mem_update_del(MemberVO vo) {
+	public void mem_update_del(MemberVO vo) {//회원탈퇴
 		this.memberDao.mem_update_del(vo);
 	}
 	@Override

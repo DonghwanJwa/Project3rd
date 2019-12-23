@@ -105,6 +105,7 @@ body{
 }
 .login_bottom_link{
 	margin-bottom: 15px;
+	text-align: left;
 }
 
 .login_bottom_link a{
@@ -113,9 +114,9 @@ body{
 }
 
 #login_bottom a:link {
-	text-decoration: none; 
-	margin: 0px 70px;	
-	font-size: 20px;
+	text-decoration: none;
+    font-size: 17px;
+    font-weight: 100;
 	
 }
 #login_bottom a:hover{

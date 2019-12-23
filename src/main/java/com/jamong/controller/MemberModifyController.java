@@ -204,11 +204,11 @@ public class MemberModifyController {
 		MemberVO m = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
 		me.setMem_no(m.getMem_no());//엠객체에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
 		this.memberService.memberUpdate(me);//엠이에 디비값을 담는다
-		session.invalidate();
 		out.print("<script>");
 		out.print("alert('수정되었습니다');");
 		out.print("location='login/2';");
 		out.print("</script>");
+		session.invalidate();
 		return null;
 	}//member_modify_ok()
 	
@@ -233,9 +233,9 @@ public class MemberModifyController {
 		m.setEmail_id(email);
 		m.setEmail_domain(domain);
 		MemberVO modify_email=this.memberService.mem_emailCheck(m);	//이메일 중복검색
-		int re=-1;				//중복이메일이 없을 때
+		int re=1;				//중복이메일이 없을 때
 		if(modify_email != null) {	//중복이메일이 있을 때
-			re=1;
+			re=-1;
 		}
 		return re;
 	}//member_idcheck()
@@ -403,6 +403,32 @@ public class MemberModifyController {
 		}
 		return re;
 	}//member_update()
+	
+	@RequestMapping("cat_modify_ok")
+	@ResponseBody
+	public int cat_update(MemberVO vo,HttpSession session,String mem_fav1,String mem_fav2,String mem_fav3,HttpServletRequest request) throws Exception {
+		
+		System.out.println(mem_fav1);
+		System.out.println(mem_fav2);
+		System.out.println(mem_fav3);
+		
+		session = request.getSession();
+		MemberVO me = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
+		int re = 0;
+		
+		if(me != null) {
+			re = 1;
+			vo.setMem_no(me.getMem_no());
+			vo.setMem_fav1(mem_fav1);
+			vo.setMem_fav2(mem_fav2);
+			vo.setMem_fav3(mem_fav3);
+			this.memberService.cat_update(vo);
+		}else {
+			re= 2;
+		}
+		return re;
+	}
+	
 }//MemberModifyController
 
 
