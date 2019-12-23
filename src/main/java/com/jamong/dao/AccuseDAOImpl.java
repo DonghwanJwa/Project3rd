@@ -42,4 +42,15 @@ public class AccuseDAOImpl implements AccuseDAO {
 		this.sqlSession.selectOne("selectRespondent",ac_member);
 	}
 
+	@Override
+	public AccuseVO getAccuseMem(int no) {
+		return this.sqlSession.selectOne("getAccuseMem",no);
+	}
+
+	@Override
+	public void updateAccuse(AccuseVO ac) {
+		this.sqlSession.update("ac_update",ac);
+		
+	}
+
 }

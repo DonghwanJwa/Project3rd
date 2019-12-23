@@ -106,9 +106,13 @@ public class MemberDAOImpl implements MemberDAO{
 		return this.sqlSession.selectList("cat_member");
 	}
 	@Override
+	public MemberVO getAccusee(int ac_member) {
+		return this.sqlSession.selectOne("getAccusee",ac_member);
+	}
+	
+	@Override
 	public void updateProfile(MemberVO mp) {
 		this.sqlSession.update("profile_up",mp);
 	}
-	
 	
 }

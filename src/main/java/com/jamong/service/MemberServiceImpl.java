@@ -105,9 +105,14 @@ public class MemberServiceImpl implements MemberService {
 		return this.memberDao.categoryMember();
 	}
 	
+	
 	@Override
 	public void updateProfile(MemberVO mp) {
 		this.memberDao.updateProfile(mp);
+	}
+	@Override
+	public MemberVO getAccusee(int ac_member) {
+		return this.memberDao.getAccusee(ac_member);
 	}
 	
 }
