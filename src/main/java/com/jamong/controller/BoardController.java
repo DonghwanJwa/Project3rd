@@ -124,6 +124,26 @@ public class BoardController {
 		return "jsp/read";
 	}
 	
+	@PostMapping("artdel/{bo_no}")
+	@ResponseBody
+	public int user_delArticle(@PathVariable int bo_no,
+			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		int flag = 0;
+		
+		MemberVO artM = (MemberVO)session.getAttribute("m");		
+		
+		if(artM != null) {
+			this.boardService.articleDelete(bo_no);
+			
+			flag = 1;
+		}else {
+			
+			flag = 2;
+		}
+		
+		return flag;
+	}
+	
 	@RequestMapping("@{mem_id}/{bo_no}/write")
 	public ModelAndView user_editWrite(@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo,
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -132,9 +152,10 @@ public class BoardController {
 		bo = this.boardService.getUserBoardCont(bo_no);
 		
 		mv.addObject("bo",bo);
+		mv.setViewName("jsp/jamong_edit");
 		
 		return mv;
-	}
+	} // 수정 폼 이동
 
 	@RequestMapping("write")
 	public ModelAndView user_write(HttpServletResponse response, HttpServletRequest request, HttpSession session)
