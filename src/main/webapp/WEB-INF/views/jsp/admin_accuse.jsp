@@ -22,7 +22,7 @@
      
      <c:if test="${!empty alist}">
      	<c:forEach var="a" items="${alist}">   	 	
-     	 <tr onclick="location.href='/jamong.com/admin_accuse_info?no=${a.ac_no}&page=${page}'">
+     	 <tr onclick="location.href='/jamong.com/admin_accuse_info?no=${a.ac_no}&page=${page}'" class="ac_adm_tr">
      	 	<td align="center" class="ac_list_underline">
      	 	  ${a.ac_no}
      	 	</td>
@@ -149,7 +149,7 @@
 	   </div>
 		
 	   <div class="select">
-		<select name="search_field_acc" id="search_field_acc" style="margin-right:5px;">
+		<select name="search_field_acc" id="search_field_acc" style="margin-right:5px;height:24.4px;">
 			<option value="all" selected>
 			  신고구분
 			</option>

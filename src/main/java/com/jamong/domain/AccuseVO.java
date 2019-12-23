@@ -14,6 +14,9 @@ public class AccuseVO {
 	private int bo_no;
 	private int rep_no;
 	private String ac_href;
+	private String ac_reply;
+	private String ac_sender;
+	private String ac_replydate;
 	
 	/* 페이징 변수 */
 	private int startrow;
@@ -50,6 +53,9 @@ public class AccuseVO {
 	public void setSearch_field_info(String search_field_info) 			{	this.search_field_info = search_field_info;}
 	public void setSearch_field_acc(String search_field_acc) 			{		this.search_field_acc = search_field_acc;	}
 	public void setMemberVO(MemberVO memberVO) 							{		this.memberVO = memberVO;	}
+	public void setAc_reply(String ac_reply) {this.ac_reply = ac_reply;}
+	public void setAc_sender(String ac_sender) {this.ac_sender = ac_sender;}
+	public void setAc_replydate(String ac_replydate) {this.ac_replydate = ac_replydate;}
 	
 	
 	// Getter()
@@ -73,6 +79,9 @@ public class AccuseVO {
 	public String getSearch_field_info() 		{		return search_field_info;		}
 	public String getSearch_field_acc() 		{		return search_field_acc;		}
 	public MemberVO getMemberVO() 				{		return memberVO;	}
+	public String getAc_reply() {return ac_reply;}
+	public String getAc_sender() {return ac_sender;}
+	public String getAc_replydate() {return ac_replydate;}
 	
 	
 	

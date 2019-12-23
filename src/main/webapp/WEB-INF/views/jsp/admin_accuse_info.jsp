@@ -39,15 +39,16 @@
 		<td align="center" style="width:120px;">
 			${a.ac_reason}
 		</td>
+	
 		
 		<th align="center" style="width:150px;">PhoneNumber</th>
 		<td align="center" style="width:150px;">
-			${a.ac_phone}
+			${a.memberVO.mem_phone01}-${a.memberVO.mem_phone02}-${a.memberVO.mem_phone03}
 		</td>
 		
 		<th align="center" style="width:105px;">E-Mail</th>
 		<td align="center" style="width:205px;">
-			${a.ac_email}
+			${a.memberVO.email_id}@${a.memberVO.email_domain}
 		</td>	
 	</tr>
 	
@@ -57,12 +58,13 @@
 		</th>
 	</tr>
 	<tr>
-		<td colspan="6" id="adm_inq_field" style="height:175px;">
+		<td colspan="6" id="adm_ac_field" style="height:175px;">
 			<p>${a.ac_cont}</p>
 		</td>
 	</tr>
 </table>
 	
+<h3>신고자 정보</h3>	
 <c:if test="${a.mem_no != 0}">
 	<table class="ac_adm_table2">
 		<tr>
@@ -93,13 +95,48 @@
 		</table>
 	</c:if>
 
-	<c:if test="${a_mem_no == 0}">
+	<c:if test="${a.mem_no == 0}">
 
 	</c:if>
 
+<h3>피신고인 정보</h3>
+<c:if test="${a.ac_member != 0}">
+	<table class="ac_adm_table2">
+		<tr>
+			<th align="center" style="width:140px; height:40px;">ID</th>
+			 <td align="center" style="width:150px;">
+			 	${mem.mem_id}
+			 </td>		
+			 <th align="center" style="width:140px;">이름</th>
+			  <td align="center" style="width:180px;">
+			  	${mem.mem_name}
+			  </td>
+			 <th align="center" style="width:115px;">성별</th>
+			  <td align="center" style="width:115px;">
+			  	${mem.mem_gender}
+			  </td>
+		</tr>
+		
+			<tr>
+				<th align="center" style="height:40px;">생년월일</th>
+			 		<td align="center">
+					${mem.mem_birth1}-${mem.mem_birth2}-${mem.mem_birth3}
+			 		</td>
+				<th align="center">가입날짜</th>
+			 		<td align="center" colspan="3">
+			 		${mem.mem_date}
+			 		</td>
+			</tr>
+		</table>
+	</c:if>
+	
+	
+	
+	
 	<form class="ac_adm_request" method="post"  action="admin_accuse_info_ok"  name="ac_adm_request" >
 		<h3>신고 답변하기</h3>
 		<input type="hidden" name="page" value="${page}"/>
+		<input type="hidden" name="ac_no" value="${a.ac_no}"/>
 		<div>
 		 <textarea id="ac_adm_remail" name="ac_reply" placeholder="문의 답변 입력해주세요(최대400자)"
 		  cols="24" rows="6" maxlength="400"></textarea>
@@ -107,13 +144,13 @@
 		</div> 
 	</form>
 	
- <c:if test="${i.ac_state == 1}">
-	<table id="inq_adm_complete">
+ <c:if test="${a.ac_state == 1}">
+	<table id="ac_adm_complete">
 		<tr>
-			<td align="right" colspan="5" class="ac_adm_readmin">처리자 : ${i.inq_sender} </td>
+			<td align="right" colspan="5" class="ac_adm_readmin">처리자 : ${a.ac_sender} </td>
 		</tr>
 		<tr>	
-			<td align="right" colspan="5" class="ac_adm_retime">처리날짜 : ${i.inq_replydate}</td>
+			<td align="right" colspan="5" class="ac_adm_retime">처리날짜 : ${a.ac_replydate}</td>
 		</tr>
 		
 			<tr>
@@ -122,7 +159,7 @@
 		</th>
 	</tr>
 	<tr>
-		<td colspan="6" id="adm_inq_field" style="height:175px;">
+		<td colspan="6" id="adm_ac_field" style="height:175px;">
 			<p>${a.ac_reply}</p>
 		</td>
 	</tr>

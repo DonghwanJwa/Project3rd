@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,11 +18,16 @@ import com.jamong.domain.MemberVO;
 import com.jamong.service.AccuseService;
 import com.jamong.service.MemberService;
 
+import mailHandler.MailService;
+
 @Controller
 public class AccuseController {
 
 	@Autowired
 	private AccuseService accuseService;
+	
+	@Autowired
+	private MailService mailService;
 	
 	@RequestMapping("accuse")
 	public ModelAndView accuse() {
@@ -150,5 +156,113 @@ public class AccuseController {
 		}	
 			return null;
 	}
+	
+	/* 관리자 신고하기페이지 세부내용 */
+	@RequestMapping("admin_accuse_info")
+	public ModelAndView admin_accuse_info(AccuseVO a,int no,
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session)
+	throws Exception {
 		
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out =response.getWriter();
+		session=request.getSession();
+	
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");	
+		
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='login';");
+			out.println("</script>");
+		}else {
+			int page=1;
+			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
+			
+			
+			a=this.accuseService.getAccuseMem(no);
+			
+			int ac_member = a.getAc_member();
+			
+			String ac_cont=a.getAc_cont().replace("\n", "<br/>");
+			
+			ModelAndView m=new ModelAndView();
+			
+			
+			MemberVO mem=this.memberService.getAccusee(ac_member);
+			
+			m.setViewName("jsp/admin_accuse_info");
+			
+			m.addObject("ac_cont",ac_cont);
+			m.addObject("page",page);
+			m.addObject("a",a);
+			m.addObject("mem",mem);
+				
+			return m;
 	}
+		return null;
+	}
+	/* 신고문의 메일 답변하기 */
+	@RequestMapping("admin_accuse_info_ok")
+	public String admin_accuse_info_ok(int ac_no,AccuseVO a,Model m,String ac_reply,
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session)
+	throws Exception {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out =response.getWriter();
+		session=request.getSession();
+		
+		int page = Integer.parseInt(request.getParameter("page"));
+		
+		MemberVO adm_m = (MemberVO)session.getAttribute("m");
+		
+		a=this.accuseService.getAccuseMem(ac_no);
+		
+		String userEmail = a.getMemberVO().getEmail_id()+"@"+a.getMemberVO().getEmail_domain();
+		
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("$('.wrap-loading').hide();");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='login';");
+			out.println("</script>");
+		}else {
+			/*신고 update문*/
+			AccuseVO ac = new AccuseVO();
+			ac.setAc_no(ac_no);
+			ac.setAc_reply(ac_reply);
+			ac.setAc_sender(adm_m.getMem_name());
+			
+			this.accuseService.updateAccuse(ac);
+			
+			/*신고 메일 보내기*/		
+			String subject = "안녕하세요.자몽입니다. 문의드린 사항에 대한 답변을 드립니다.";
+			StringBuilder sb = new StringBuilder();
+			sb.append("<h3 style=\"font-weight:normal\">");
+			sb.append(ac_reply);
+			sb.append("</h3>");
+			
+			boolean reply_ok = mailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail, null, request);
+			
+			if(reply_ok) {
+				out.println("<script>");
+				out.println("alert('문의 답변이 완료되었습니다.');");
+				out.println("location='admin_accuse_info?no="+ac_no+"&page="+page+"';");
+				out.println("</script>");
+			}else {				
+				out.println("<script>");
+				out.println("alert('처리과정중 에러가 발생하였습니다!');");
+				out.println("history.back();");
+				out.println("</script>");
+			}
+		}
+		return null;
+	}
+
+
+
+}

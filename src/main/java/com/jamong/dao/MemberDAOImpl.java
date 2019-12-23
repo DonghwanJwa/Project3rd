@@ -105,7 +105,7 @@ public class MemberDAOImpl implements MemberDAO{
 	public List<MemberVO> getSearchMember(HashMap<String, Object> searchMap) {
 		return this.sqlSession.selectList("search_member",searchMap);
 	}
-	
+
 	@Override
 	public List<MemberVO> recomAuthor() {
 		return this.sqlSession.selectList("index_author");
@@ -116,9 +116,13 @@ public class MemberDAOImpl implements MemberDAO{
 		return this.sqlSession.selectList("cat_member");
 	}
 	@Override
+	public MemberVO getAccusee(int ac_member) {
+		return this.sqlSession.selectOne("getAccusee",ac_member);
+	}
+	
+	@Override
 	public void updateProfile(MemberVO mp) {
 		this.sqlSession.update("profile_up",mp);
 	}
-	
 	
 }
