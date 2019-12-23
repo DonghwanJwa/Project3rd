@@ -10,7 +10,7 @@ bo_color VARCHAR2(100),             -- 썸네일 배경색상
 bo_hit NUMBER(38) DEFAULT 0, 		-- 조회수
 bo_date DATE, 						-- 작성일
 bo_editdate DATE, 					-- 수정일
-bo_lock NUMBER(38),          		-- 공개여부 / 비공개 0, 공개 1
+bo_lock NUMBER(38),          		-- 공개여부 / 비공개 0, 공개 1, 차단2, 삭제 3
 bo_type NUMBER(38),                 -- 글타입 설정 / 칼럼 0, 에세이 1
 bo_like NUMBER(38) DEFAULT 0, 		-- 추천 (좋아요)
 book_order NUMBER(38), 				-- 책으로 묶었을때 순서

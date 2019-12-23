@@ -69,6 +69,12 @@ $(document).ready(function() {
 		});
 	}
 	
+	var tag = document.getElementsByClassName('tag_item'); 
+	for(var i=0;i<tag.length;i++){	
+		addTag(tag[i].childNodes[0].textContent);
+	}
+
+
 	$('#profile_editor').on("focusout",function(e){
 		var p_edit =$(this).val();
 		if(p_edit.length >0){
@@ -289,6 +295,7 @@ $(document).ready(function(){
 	});
 	
 })
+
 
 
 

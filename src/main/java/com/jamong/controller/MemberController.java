@@ -309,16 +309,17 @@ public class MemberController {
 		ModelAndView mv =new ModelAndView("jsp/profile_edit");
 	
 		MemberVO m = (MemberVO)session.getAttribute("m");
-		mp = this.memberService.profileCheck(m.getMem_id());
-
-//		if(m == null) {
-//			out.print("<script>");
-//			out.print("alert('로그인 이필요한 페이지 입니다!')");
-//			out.print("location='jamong.com/@"+m.getMem_id()+"';");
-//			out.print("</script>");
-//		}
-		mv.addObject("mp",mp);
-		return mv;
+		if(m==null) {
+			out.print("<script>");
+			out.print("alert('로그인 이필요한 페이지 입니다!');");
+			out.print("location='/jamong.com/login/1';");
+			out.print("</script>");
+		}else {
+			mp = this.memberService.profileCheck(m.getMem_id());
+			mv.addObject("mp",mp);
+			return mv;
+		}
+		return null;
 	}// profile_edit => 유저 프로필 수정 창 
 	
 	@RequestMapping("/profile_edit_ok")
@@ -331,70 +332,75 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 		session = request.getSession();
 		MemberVO m = (MemberVO)session.getAttribute("m");
-		
-		// 프로필 이미지 저장경로 추가
-		String saveFolder = request.getRealPath("resources/upload");
-		int fileSize= 100 * 1024 * 1024;	// 첨부파일 최대크기 지정
-		MultipartRequest multi = null;		// 첨부파일을 가져오는 api
-		// post요청을 multi에 저장
-		
-		//값 전달여부 확인
-	
-		//전달 잘
-		multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8");
-		System.out.println(multi);
-
-		// 입력한 값들을 multi로 부터 가져옴
-		String mem_nickname = multi.getParameter("mem_nickname");
-		String profile_cont = multi.getParameter("profile_cont");
-		String mem_keyword = multi.getParameter("mem_keyword");
-		String mem_portfolio = multi.getParameter("mem_portfolio");
-		System.out.println(mem_keyword);
-		
-		int mem_no = m.getMem_no();
-//		mp = this.memberService.profileCheck(m.getMem_id());
-
-		File UpFile = multi.getFile("profile_photo");
-		if(UpFile != null) {
-			String fileName=UpFile.getName();
-			Calendar c = Calendar.getInstance();
-			int year = c.get(Calendar.YEAR);
-			int month = c.get(Calendar.MONTH)+1; 
-			int date = c.get(Calendar.DATE);
-		
-		String homedir = saveFolder+"/profile";
-		
-		Random r = new Random();
-		int random=r.nextInt(10000000);
-		int index=fileName.lastIndexOf("."); 				// 확장자에 붙어있는 .의 index값을 가져옴
-		String fileExtendsion=fileName.substring(index + 1);  // index값을 이용해 확장자를 구함
-		
-		String refilename = m.getMem_id()+ year + month + date + random;//새로운 파일명을 저장
-		
-		String encryptionName=PwdChange.getPassWordToXEMD5String(refilename); //파일명 암호화
-		// DB에 저장되는 레코드 값
-		String fileDBName="jamong.com/resources/upload/profile/"+encryptionName+"."+fileExtendsion;
-		
-		UpFile.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));//바뀌어진 첨부파일 명으로 업로드
-		
-		mp.setProfile_photo(fileDBName);
+		if(m==null) {
+			out.print("<script>");
+			out.print("alert('로그인 이필요한 페이지 입니다!');");
+			out.print("location='/jamong.com/login/1';");
+			out.print("</script>");
 		}else {
-			mp.setProfile_photo(m.getProfile_photo());//프로필사진 등록 안했을때 기존파일로 대체
+			
+			// 프로필 이미지 저장경로 추가
+			String saveFolder = request.getRealPath("resources/upload");
+			int fileSize= 100 * 1024 * 1024;	// 첨부파일 최대크기 지정
+			MultipartRequest multi = null;		// 첨부파일을 가져오는 api
+			// post요청을 multi에 저장
+			
+			//값 전달여부 확인
+		
+			//전달 잘
+			multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8");
+	
+			// 입력한 값들을 multi로 부터 가져옴
+			String mem_nickname = multi.getParameter("mem_nickname");
+			String profile_cont = multi.getParameter("profile_cont");
+			String mem_keyword = multi.getParameter("mem_keyword");
+			String mem_portfolio = multi.getParameter("mem_portfolio");
+			
+			int mem_no = m.getMem_no();
+	//		mp = this.memberService.profileCheck(m.getMem_id());
+	
+			File UpFile = multi.getFile("profile_photo");
+			if(UpFile != null) {
+				String fileName=UpFile.getName();
+				Calendar c = Calendar.getInstance();
+				int year = c.get(Calendar.YEAR);
+				int month = c.get(Calendar.MONTH)+1; 
+				int date = c.get(Calendar.DATE);
+			
+			String homedir = saveFolder+"/profile";
+			
+			Random r = new Random();
+			int random=r.nextInt(10000000);
+			int index=fileName.lastIndexOf("."); 				// 확장자에 붙어있는 .의 index값을 가져옴
+			String fileExtendsion=fileName.substring(index + 1);  // index값을 이용해 확장자를 구함
+			
+			String refilename = m.getMem_id()+ year + month + date + random;//새로운 파일명을 저장
+			
+			String encryptionName=PwdChange.getPassWordToXEMD5String(refilename); //파일명 암호화
+			// DB에 저장되는 레코드 값
+			String fileDBName="jamong.com/resources/upload/profile/"+encryptionName+"."+fileExtendsion;
+			
+			UpFile.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));//바뀌어진 첨부파일 명으로 업로드
+			
+			mp.setProfile_photo(fileDBName);
+			}else {
+				mp.setProfile_photo(m.getProfile_photo());//프로필사진 등록 안했을때 기존파일로 대체
+			}
+			// 입력된 데이터 업데이트
+			mp.setMem_id(m.getMem_id());
+			
+			mp.setMem_nickname(mem_nickname); 		mp.setProfile_cont(profile_cont);
+			// 키워드 항목 나누어서 
+			mp.setMem_keyword(mem_keyword); 		mp.setMem_portfolio(mem_portfolio);
+			
+			this.memberService.updateProfile(mp);
+			
+			out.print("<script>");
+			out.print("alert('변경되었습니다');");
+			out.print("location='/jamong.com/@"+m.getMem_id()+"';");
+			out.print("</script>");
+		
 		}
-		// 입력된 데이터 업데이트
-		mp.setMem_id(m.getMem_id());
-		
-		mp.setMem_nickname(mem_nickname); 		mp.setProfile_cont(profile_cont);
-		// 키워드 항목 나누어서 
-		mp.setMem_keyword(mem_keyword); 		mp.setMem_portfolio(mem_portfolio);
-		
-		this.memberService.updateProfile(mp);
-		
-		out.print("<script>");
-		out.print("alert('변경되었습니다');");
-		out.print("location='/jamong.com/@"+m.getMem_id()+"';");
-		out.print("</script>");
-		
 		return null;
 		
 	}//profile_edit_ok() => 유저 프로필 수정
