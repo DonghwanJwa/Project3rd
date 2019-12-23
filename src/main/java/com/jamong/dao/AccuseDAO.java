@@ -13,4 +13,9 @@ public interface AccuseDAO {
 
 	List<AccuseVO> getAccuseList(AccuseVO a);
 
+	void selectReporter(int mem_no);
+
+	void selectRespondent(int ac_member);
+
+
 }
