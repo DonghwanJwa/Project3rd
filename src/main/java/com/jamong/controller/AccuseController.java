@@ -89,16 +89,15 @@ public class AccuseController {
 	
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
-		
-		
-	
-		
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='location='login/1';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
+			//this.accuseService.selectReporter();
+			//this.accuseService.selectRespondent();
+			
 			int page=1;
 			int limit=10;
 			if(request.getParameter("page") != null) {
@@ -130,6 +129,8 @@ public class AccuseController {
 			if(endpage>startpage+10-1) endpage=startpage+10-1;
 		
 			ModelAndView m=new ModelAndView();
+			
+			 
 			
 			m.addObject("alist",alist);
 			m.addObject("page",page);
