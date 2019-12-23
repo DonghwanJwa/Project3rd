@@ -15,7 +15,7 @@
 		<div id="profile_main_edit_article">
 				<form method="post" enctype="multipart/form-data" onsubmit="return profileCheck();" autocomplete="off" name="profile_form"  action="profile_edit_ok"   >
 			<div>
-				<div id="profile_edit_img">
+				<div id="profile_edit_img" style='background-image:url("${mp.profile_photo}");'>
 					<span id="profile_img_edit_button"> 
 					<label for="profile_img" class="profile_font_hide"></label>
 					 <input id="pf_input" class="profile_input_hide"  type="file" name="profile_photo" accept="image/*">
@@ -62,7 +62,7 @@
 					</div>
 					<div id="profile_info_error"></div>
 				<!-- 여기서부터는 작가항목입니다 -->
-				<c:if test="${mp.mem_author == 2}">
+				<c:if test="${mp.mem_author == 1}">
 					<div>
 						<h3 class="profile_edit_font">키워드</h3>
 					</div>
