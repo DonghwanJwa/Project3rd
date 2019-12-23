@@ -375,7 +375,7 @@ public class BoardController {
 	}
 
 	@RequestMapping("search")
-	public ModelAndView user_search(HttpServletResponse response, HttpServletRequest request) {
+	public ModelAndView user_search(HttpServletResponse response, HttpServletRequest request)throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//url 주소의 parameter값 가져오기
 		String w = request.getParameter("w");		// where 검색 목차(글-post,책-book,작가-author)
@@ -387,14 +387,30 @@ public class BoardController {
 		HashMap<String,Object> searchMap = new HashMap<>();
 		searchMap.put("s", s);
 		searchMap.put("q", q);
+		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat title_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
+
 		if(w.equals("post")) {				//글검색
 			List<BoardVO> boardList = this.boardService.getSearchPost(searchMap);			
+
 			for (int i = 0; i < boardList.size(); i++) {
+				// 시간 계산 해서 방금, 몇분전 띄우기
+				Date bListFormat_date = org_format.parse(boardList.get(i).getBo_date());
+				String bListTitle_date = title_format.format(bListFormat_date);
+				boardList.get(i).setBo_date(bListTitle_date);
+
+				//미리보여주는 글 태그 없앰
 				String htmlText = boardList.get(i).getBo_cont();
 				String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-				String oneSpace = normalText.replaceAll("&nbsp; "," ");
-				boardList.get(i).setBo_cont(oneSpace);
+				String oneSpace = normalText.replaceAll("&nbsp;"," ");
+				if(oneSpace.length()>200) {
+					String hundredText = oneSpace.substring(0,200);								//100글자만 홈페이지에 노출되도록 변경
+					boardList.get(i).setBo_cont(hundredText);
+				}else {
+					boardList.get(i).setBo_cont(oneSpace);
+				}
 			}
+			
 			mv.addObject("boardList", boardList);
 		}else if(w.equals("book")) {		//책검색
 			//List<BookVO> bookList = this.bookService.getSearchBook(searchMap);
@@ -413,5 +429,53 @@ public class BoardController {
 		mv.setViewName("jsp/search_result");
 
 		return mv;
+	}
+	
+	@PostMapping("search_scroll")
+	@ResponseBody
+	public Object search_scroll(
+			String num, String w, String s, String text,
+			HttpServletResponse response, HttpServletRequest request
+			)throws Exception {
+		int n = Integer.parseInt(num);				// number 검색시에 사용될 rowNum(10이후 숫자들...)
+		String q = text.replaceAll("\\+", "\\|");
+		HashMap<String,Object> searchMap = new HashMap<>();
+		searchMap.put("n", n);
+		searchMap.put("s", s);
+		searchMap.put("q", q);
+		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat title_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
+		
+		if(w.equals("post")) {				//글검색
+			List<BoardVO> boardList = this.boardService.getSearchScrollPost(searchMap);			
+
+			for (int i = 0; i < boardList.size(); i++) {
+				// 시간 계산 해서 방금, 몇분전 띄우기
+				Date bListFormat_date = org_format.parse(boardList.get(i).getBo_date());
+				String bListTitle_date = title_format.format(bListFormat_date);
+				boardList.get(i).setBo_date(bListTitle_date);
+
+				//미리보여주는 글 태그 없앰
+				String htmlText = boardList.get(i).getBo_cont();
+				String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				String oneSpace = normalText.replaceAll("&nbsp;"," ");
+				if(oneSpace.length()>200) {
+					String hundredText = oneSpace.substring(0,200);								//100글자만 홈페이지에 노출되도록 변경
+					boardList.get(i).setBo_cont(hundredText);
+				}else {
+					boardList.get(i).setBo_cont(oneSpace);
+				}
+			}
+			
+			return boardList;
+		}else if(w.equals("book")) {		//책검색
+			//List<BookVO> bookList = this.bookService.getSearchBook(searchMap);
+			//아직 XML 구현 안됨!!!!!!!!
+			//return bookList; 
+		}else if(w.equals("author")) {		//작가검색
+			List<MemberVO> memberList = this.memberService.getSearchMember(searchMap);
+			return memberList;
+		}
+		return null;
 	}
 }

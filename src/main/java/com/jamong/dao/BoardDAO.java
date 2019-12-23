@@ -17,6 +17,7 @@ public interface BoardDAO {
 	int switchBoardLock(BoardVO bo);
 	List<BoardVO> bestList();
 	List<BoardVO> getSearchPost(HashMap<String, Object> searchMap);
+	List<BoardVO> getSearchScrollPost(HashMap<String, Object> searchMap);
 	List<BoardVO> infinitiScrollDown(int bo_no);
 	List<BoardVO> categoryArticle(String cat_name);
 	List<BoardVO> getProfile(int mem_no);

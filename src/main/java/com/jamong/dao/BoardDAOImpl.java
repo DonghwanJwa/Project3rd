@@ -75,6 +75,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public List<BoardVO> getSearchScrollPost(HashMap<String, Object> searchMap) {
+		return this.sqlSession.selectList("search_scroll_post",searchMap);
+	}
+
+	@Override
 	public List<BoardVO> bestList() {
 		return this.sqlSession.selectList("board.best_list");
 	}
