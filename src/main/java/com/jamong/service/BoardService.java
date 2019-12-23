@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,9 @@ public interface BoardService {
 	List<BoardVO> recomArticle();
 	int sympathyUp(BoardVO bo);
 	int sympathyDown(BoardVO bo);
+	int switchBoardLock(BoardVO bo);
 	List<BoardVO> bestList();
-	List<BoardVO> getSearchArticle(String texts);
+	List<BoardVO> getSearchPost(HashMap<String, Object> searchMap);
 	List<BoardVO> infinitiScrollDown(int bo_no);
 	List<BoardVO> getUserBoardCatArticle(String cat_name);
 	List<BoardVO> categoryArticle(String cat_name);

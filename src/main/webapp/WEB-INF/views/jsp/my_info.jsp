@@ -74,7 +74,6 @@
 				</div>
 				<div class="my_info_button_container"><!-- 버튼박스 -->
 					<button id="my_info_before_btn">수정하기</button>
-					<button id="my_info_next_btn">돌아가기</button>
 			   </div>
 			</div>  
 			   </div>

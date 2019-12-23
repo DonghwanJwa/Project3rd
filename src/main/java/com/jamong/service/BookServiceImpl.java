@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,22 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	public List<BookVO> getSearchBook(HashMap<String, Object> searchMap) {
+		return this.bookDao.getSearchBook(searchMap);
+	}
+
+	@Override
 	public void insertBook(BookVO b) {
 		this.bookDao.insertBook(b);
 	}
 	
 	@Transactional
 	@Override
-	public void book_noUP(String val) {
-//		this.bookDao.book_noSEL(val);
-//		this.bookDao.book_noUP(val);
+	public void book_noUP(String bo_no) {
+		BookVO book = new BookVO();
+		int book_no = book.getBook_no();
+		this.bookDao.book_noSEL(bo_no);
+		this.bookDao.book_noUP(book_no);
 	}
 
 }

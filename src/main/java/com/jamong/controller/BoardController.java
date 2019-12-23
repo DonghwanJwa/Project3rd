@@ -3,9 +3,9 @@ package com.jamong.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -27,9 +27,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
+import com.jamong.domain.CategoryVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.ReplyVO;
 import com.jamong.service.BoardService;
+import com.jamong.service.BookService;
 import com.jamong.service.CategoryService;
 import com.jamong.service.MemberService;
 import com.jamong.service.ReplyService;
@@ -49,6 +51,9 @@ public class BoardController {
 	private CategoryService catService;
 	@Autowired
 	private ReplyService repService;
+	@Autowired
+	private BookService bookService;
+	
 
 
 	@RequestMapping("@{mem_id}/{bo_no}")
@@ -118,6 +123,18 @@ public class BoardController {
 		
 		return "jsp/read";
 	}
+	
+	@RequestMapping("@{mem_id}/{bo_no}/write")
+	public ModelAndView user_editWrite(@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo,
+			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		bo = this.boardService.getUserBoardCont(bo_no);
+		
+		mv.addObject("bo",bo);
+		
+		return mv;
+	}
 
 	@RequestMapping("write")
 	public ModelAndView user_write(HttpServletResponse response, HttpServletRequest request, HttpSession session)
@@ -132,7 +149,7 @@ public class BoardController {
 		if (m == null) {
 			out.println("<script>");
 			out.println("alert('로그인이 필요한 페이지입니다!');");
-			out.println("location='login';");
+			out.println("location='location='login/1'';");
 			out.println("</script>");
 		} else {
 			mv.setViewName("jsp/jamong_write");
@@ -314,6 +331,23 @@ public class BoardController {
 		return result;
 	}
 	
+	@PostMapping("boardLock/{bo_no}/{bo_lock}")
+	@ResponseBody
+	public int boardLock(@PathVariable int bo_no,@PathVariable int bo_lock,
+			HttpServletRequest request,
+			HttpSession session) {
+		session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("m");
+		int result =-1;
+		if(m!=null) {
+			BoardVO bo = new BoardVO();
+			bo.setBo_no(bo_no); bo.setMem_no(m.getMem_no());
+			bo.setBo_lock(bo_lock);
+			result = this.boardService.switchBoardLock(bo);
+		}
+		return result;
+	}
+	
 	@RequestMapping("best_load")
 	public ResponseEntity<List<BoardVO>> best_load(){
 		ResponseEntity<List<BoardVO>> entity = null;
@@ -342,20 +376,40 @@ public class BoardController {
 
 	@RequestMapping("search")
 	public ModelAndView user_search(HttpServletResponse response, HttpServletRequest request) {
-		String q = request.getParameter("q");	//url주소에 q값을 가져옴
-		String texts = q.replaceAll(" ", "\\|");
-		//+표시로 parameter값을 가져오면 띄어쓰기로 표현되는데, sql문으로써 이용하기 위해서 파이프라인(|)으로 replace해줌 
-		System.out.println(texts);
-		List<BoardVO> bList = this.boardService.getSearchArticle(texts);
-		for (int i = 0; i < bList.size(); i++) {
-			String htmlText = bList.get(i).getBo_cont();
-			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			String oneSpace = normalText.replaceAll("&nbsp; "," ");
-			bList.get(i).setBo_cont(oneSpace);
-		}
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("q",q);
-		mv.addObject("bList", bList);
+		//url 주소의 parameter값 가져오기
+		String w = request.getParameter("w");		// where 검색 목차(글-post,책-book,작가-author)
+		String s = request.getParameter("s");		// step 하위 분기(글[accuracy,recent],카테고리)
+		String text = request.getParameter("q");	// query 검색어 (띄어쓰기 단위)
+		String q = text.replaceAll(" ", "\\|");
+		//+표시로 parameter값을 가져오면 띄어쓰기로 표현되는데, sql문으로써 이용하기 위해서 파이프라인(|)으로 replace해줌 
+		
+		HashMap<String,Object> searchMap = new HashMap<>();
+		searchMap.put("s", s);
+		searchMap.put("q", q);
+		if(w.equals("post")) {				//글검색
+			List<BoardVO> boardList = this.boardService.getSearchPost(searchMap);			
+			for (int i = 0; i < boardList.size(); i++) {
+				String htmlText = boardList.get(i).getBo_cont();
+				String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				String oneSpace = normalText.replaceAll("&nbsp; "," ");
+				boardList.get(i).setBo_cont(oneSpace);
+			}
+			mv.addObject("boardList", boardList);
+		}else if(w.equals("book")) {		//책검색
+			//List<BookVO> bookList = this.bookService.getSearchBook(searchMap);
+			//mv.addObject("bookList",bookList);
+			//아직 XML 구현 안됨!!!!!!!!
+		}else if(w.equals("author")) {		//작가검색
+			List<CategoryVO> catList = this.catService.listCategory();
+			List<MemberVO> memberList = this.memberService.getSearchMember(searchMap);
+			mv.addObject("catList",catList);
+			mv.addObject("memberList",memberList);
+		}
+		
+		mv.addObject("w",w);
+		mv.addObject("s",s);
+		mv.addObject("q",text);
 		mv.setViewName("jsp/search_result");
 
 		return mv;

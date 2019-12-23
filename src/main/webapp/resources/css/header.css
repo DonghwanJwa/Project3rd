@@ -104,6 +104,27 @@ body{
 	margin-top: 2px;
 }
 
+#head-menu-lock{
+	height:30px;
+	margin-right:25px;
+}
+
+.head-menu-lock-btn{
+	border: none;
+    outline: none;
+    height: 27.7px;
+    padding: 0;
+    padding-top: 2.3px;
+    align-items: center;
+    background-color: transparent;
+}
+
+.head-menu-lock-img{
+	cursor: pointer;
+    width: 27px;
+    height: 27px;
+}
+
 #head-menu-sym{
 	height:30px;
 	margin-right:20px;
@@ -216,6 +237,7 @@ body{
 	padding-top:220px;
 	width:63px;
 	height:280px;
+	cursor: pointer;
 }
 #head-menu-close-wrap img{
 	width:63px;
@@ -234,8 +256,24 @@ body{
 	font-size:20px;
 	color:#fff;
 }
-#head-page-best-title strong, #head-page-notice-title strong{
+#head-page-best-title strong{
 	line-height:40px;
+}
+#head-page-notice-title strong{
+	margin-left: 40px;
+	line-height: 40px;
+}
+
+#head-page-notice-title a{
+	position: relative;
+    left: 80px;
+    top: 3px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+}
+#head-page-notice-title a:hover{
+	text-decoration: underline;
 }
 
 /*best*/
@@ -287,11 +325,10 @@ body{
 .head-page-cont{
 	position:absolute;
 	display:inline;
-	height:130px;
+	height:140px;
 	width:320px;
 	left: 50%;
 	transform: translate(-50%);
-	padding-top:40px;
 	bottom:10px;
 	/*summernote와 충돌을 막기위한 조치*/
 	-webkit-box-sizing: unset !important;

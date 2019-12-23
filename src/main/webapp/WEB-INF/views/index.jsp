@@ -65,7 +65,7 @@ $(document).keydown(function(e){
    
     <%-- 좌측 닫기버튼 --%>
     <div id="head-menu-close-wrap">
-     <a id="head-menu-close-right-button" href="#">
+     <a id="head-menu-close-right-button">
       <img src="/jamong.com/resources/img/right.png">
      </a>
     </div>
@@ -105,6 +105,7 @@ $(document).keydown(function(e){
      <div id="head-page-notice">
       <div id="head-page-notice-title">
        <strong>Notice</strong>
+       <a href="/jamong.com/notice">more</a>
       </div>
       <div id="head-page-notice-list-frame">
        <ul id="head-page-notice-list">
@@ -325,7 +326,12 @@ $(document).keydown(function(e){
           <div class="recom_writting-item-head">
            <div class="writting-item-head-inner">
             <div class="writting-item-head-inner-cont">
-             <div class="writting-item-head-inner-cont-img" style="background-image:url(${blist.bo_thumbnail})">
+             <c:if test="${empty blist.bo_thumbnail}">
+              <div class="writting-item-head-inner-cont-img empty-image">
+             </c:if>             
+             <c:if test="${!empty blist.bo_thumbnail}">
+              <div class="writting-item-head-inner-cont-img" style="background-image:url(${blist.bo_thumbnail})">
+             </c:if>             
               <img class="writting-item-head-inner-cont-tape" src="/jamong.com/resources/img/recom_masking/masking${tlist[status.index]}.png">
               <%-- 이미지 div --%>
              </div>

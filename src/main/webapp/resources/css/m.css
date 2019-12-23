@@ -143,6 +143,7 @@ body{
 	padding-top:220px;
 	width:63px;
 	height:280px;
+	cursor: pointer;
 }
 #head-menu-close-wrap img{
 	width:63px;
@@ -161,8 +162,24 @@ body{
 	font-size:20px;
 	color:#fff;
 }
-#head-page-best-title strong, #head-page-notice-title strong{
+#head-page-best-title strong{
 	line-height:40px;
+}
+#head-page-notice-title strong{
+	margin-left: 40px;
+	line-height: 40px;
+}
+
+#head-page-notice-title a{
+	position: relative;
+    left: 80px;
+    top: 3px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+}
+#head-page-notice-title a:hover{
+	text-decoration: underline;
 }
 
 /*best*/
@@ -214,11 +231,10 @@ body{
 .head-page-cont{
 	position:absolute;
 	display:inline;
-	height:130px;
+	height:140px;
 	width:320px;
 	left: 50%;
 	transform: translate(-50%);
-	padding-top:40px;
 	bottom:10px;
 }
 
@@ -354,6 +370,7 @@ body{
 	color:#fff;
 	box-sizing:unset;
 }
+
 .head-page-notice-date{
 	text-align:right;
 	width:80px;
@@ -742,6 +759,12 @@ body{
 	margin: 15px;
 	background-size: cover;
 	border:1px solid #c0c0c0;
+}
+.writting-item-head-inner-cont-img.empty-image{
+	background-image:url(/jamong.com/resources/img/logo2.png);
+	background-repeat: no-repeat;
+	background-size: 260px;
+    background-position: center;
 }
 
 .writting-item-head-inner-cont-tape{

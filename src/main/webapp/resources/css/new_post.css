@@ -10,9 +10,10 @@ ul li {
 }
 
 #new_post_title {
-	font-family: "NanumPen", "serif";
-	font-size: 60px;
+	font-family: 'NanumMyeongjo','serif';
+	font-size: 45px;
 	text-align: center;
+	font-weight: bold;
 	border-bottom: 1px solid #ededed;
 }
 

@@ -33,7 +33,7 @@ public class AdminMemberController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='admin_login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			int page=1;
@@ -100,7 +100,7 @@ public class AdminMemberController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='admin_login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			int page=1;
