@@ -190,7 +190,11 @@ SELECT m.mem_no,
  
  <!-- 검색페이지 - 글 //검색시 Post 첫페이지 -->
  <select id="search_post" parameterType="java.util.HashMap" resultMap="boardMap">
-  SELECT b.bo_no,
+  
+  SELECT * FROM
+ (SELECT ROWNUM RN,X.* FROM
+ (SELECT * FROM
+ (SELECT b.bo_no,
          b.bo_title,
          b.bo_subtitle,
          b.bo_cont,
@@ -199,18 +203,57 @@ SELECT m.mem_no,
          m.mem_id,
          m.mem_nickname,
          m.mem_keyword
-  FROM (SELECT * FROM board
-  WHERE REGEXP_LIKE(bo_title,#{q}) OR REGEXP_LIKE(bo_subtitle,#{q}) OR REGEXP_LIKE(bo_cont,#{q}) 
-  OR REGEXP_LIKE(cat_name,#{q}) AND bo_lock=1
+  FROM board b
+  INNER JOIN member m
+  ON b.mem_no=m.mem_no
+  WHERE REGEXP_LIKE(b.bo_title,#{q}) 
+  OR REGEXP_LIKE(b.bo_cont,#{q}) 
+  OR REGEXP_LIKE(m.mem_nickname,#{q}) 
+  OR REGEXP_LIKE(m.mem_keyword,#{q}) 
+  AND bo_lock=1)
   <if test="s == 'accuracy'">
-  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC)b, member m
+  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC) 
   </if>
   <if test="s == 'recent'">
-  ORDER BY bo_date DESC)b, member m
+  ORDER BY bo_date DESC)
   </if>
-  WHERE b.mem_no=m.mem_no
-  AND rowNum &lt;= 10
+  X)
+  WHERE RN &lt;=10
  </select>
+ 
+ <!-- 검색페이지 - 글 //검색시 Post 스크롤링시 로드되는 목록 -->
+ <select id="search_scroll_post" parameterType="java.util.HashMap" resultMap="boardMap">
+ SELECT * FROM
+ (SELECT ROWNUM RN,X.* FROM
+ (SELECT * FROM
+ (SELECT b.bo_no,
+         b.bo_title,
+         b.bo_subtitle,
+         b.bo_cont,
+         b.bo_thumbnail,
+         b.bo_date,
+         m.mem_id,
+         m.mem_nickname,
+         m.mem_keyword
+  FROM board b
+  INNER JOIN member m
+  ON b.mem_no=m.mem_no
+  WHERE REGEXP_LIKE(b.bo_title,#{q}) 
+  OR REGEXP_LIKE(b.bo_cont,#{q}) 
+  OR REGEXP_LIKE(m.mem_nickname,#{q}) 
+  OR REGEXP_LIKE(m.mem_keyword,#{q}) 
+  AND bo_lock=1)
+  <if test="s == 'accuracy'">
+  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC) 
+  </if>
+  <if test="s == 'recent'">
+  ORDER BY bo_date DESC)
+  </if>
+  X)
+  WHERE RN BETWEEN (#{n}+1) AND (#{n}+10)
+ </select>
+ 
+ 
  
  <select id="infinitiScrollDown" resultMap="boardMap">
  <![CDATA[

@@ -11,6 +11,9 @@
 	  <div id="search_area_align">
 	   <input id="search_keyword" name="q" placeholder="검색어 입력" value="${q}" onkeyup="searchEnter(this);">
 	   <input type="button" id="search_submit" onclick="search('${w}','${s}');">
+	   <input type="hidden" id="search_rowNum" value="10" disabled/>
+	   <input type="hidden" id="search_where" value="${w}" disabled/>
+	   <input type="hidden" id="search_step" value="${s}" disabled/>
 	  </div>
 	 </div>
 	 <div id="search_type">
@@ -60,38 +63,40 @@
 	  <div id="search_result_post_main">
 	  
 	   <ul id="search_result_post_list">
-	    <c:forEach var="board" items="${boardList}">
-	     <li class="scrolling" data-no="${board.bo_no}"><a href="/jamong.com/@${board.memberVO.mem_id}/${board.bo_no}">
+	    <c:forEach var="board" items="${boardList}" varStatus="status">
+	     <li class="scrolling" data-no="${status.count}">
+	      <a href="/jamong.com/@${board.memberVO.mem_id}/${board.bo_no}">
 	      <div class="post_cont">
+	       <c:if test="${!empty board.bo_thumbnail}">
 	       <div id="post_text">
+	       </c:if>
+	       <c:if test="${empty board.bo_thumbnail}">
+	       <div id="post_text" class="post_no_img_text">
+	       </c:if>
 	        <div id="post_title">
-	        <c:if test="${fn:length(board.bo_title)>20}">
-	        ${fn:substring(board.bo_title,0,20)}...
-	        </c:if>
-	        <c:if test="${fn:length(board.bo_title)<20}">
 	        ${board.bo_title}
-	        </c:if>
 	        </div>
-	        <div id="post_cont">
-	        <c:if test="${fn:length(board.bo_cont)>100}">
-	         ${fn:substring(board.bo_cont,0,100)}...
+	        <c:if test="${!empty board.bo_thumbnail}">
+	         <div id="post_cont">
 	        </c:if>
-	        <c:if test="${fn:length(board.bo_cont)<100}">
+	        <c:if test="${empty board.bo_thumbnail}">
+	         <div id="post_cont" class="post_no_img_cont">
+	        </c:if>
 	         ${board.bo_cont}
-	         </c:if>
 	        </div>
-	        <div id="post_writer"><i>by&nbsp;&nbsp;</i>${board.memberVO.mem_nickname}</div>
-	        <div id="post_tag">
-	         <span>${board.memberVO.mem_keyword}</span>
+	        <div class="post_writer"><i>by&nbsp;&nbsp;</i>${board.memberVO.mem_nickname}</div>
+	        <div class="post_ago">${board.bo_date}</div>
+	        <div class="post_tag">
+	        <c:forEach items="${board.memberVO.mem_keyword.split('/')}" var="keyword">
+	         <a href="/jamong.com/search?w=post&s=accuracy&q=${keyword}">#${keyword}</a>	        
+	        </c:forEach>
 	        </div>
-	        <div id="post_ago">${board.bo_date}</div>
 	       </div>
 	       <c:set var="img" value="${board.bo_thumbnail}" />
 	       <c:if test="${not empty img}">
-	        <img id="post_img" src="${board.bo_thumbnail}" alt="그림 안나옴">
-	       </c:if>
-	       <c:if test="${empty img}">
-	        <div id='post_img'></div>
+	       <div class="post_img_wrap">
+	        <img class="post_img" src="${board.bo_thumbnail}" alt="thumbnail">
+	       </div>
 	       </c:if>
 	      </div>
 	     </a></li>
@@ -166,22 +171,26 @@
 	  <div id="search_result_author_main">
 	
 	   <div class="author_cont">
-	    <c:forEach var="member" items="${memberList}">
+	   <ul id="search_author_list">
+	    <c:forEach var="member" items="${memberList}" varStatus="status">
+	    <li class="scrolling" data-no="${status.count}">
 	     <a href="/jamong.com/@${member.mem_id}">
-	      <div id="search_result_author_profile">
-	       <img id="search_result_author_profile_img" src="${member.profile_photo}" alt="프로필 사진">
-	       <div id="search_result_author_profile_info">
-	        <div id="search_result_author_name">${member.mem_nickname}</div>
-	        <div id="search_result_author_introduce">${member.profile_cont}</div>
-	        <div id="search_result_author_tag">
+	      <div class="search_result_author_profile">
+	       <img class="search_result_author_profile_img" src="${member.profile_photo}" alt="프로필 사진">
+	       <div class="search_result_author_profile_info">
+	        <div class="search_result_author_name">${member.mem_nickname}</div>
+	        <div class="search_result_author_introduce">${member.profile_cont}</div>
+	        <div class="search_result_author_tag">
 	        <c:forEach items="${member.mem_keyword.split('/')}" var="tag">
-	         <span>${tag}</span>
+	         <span>#${tag}</span>
 	        </c:forEach>
 	        </div>
 	       </div>
 	      </div>
 	     </a>
+	     </li>
 	    </c:forEach>
+	    </ul>
 	
 	   </div>
 	

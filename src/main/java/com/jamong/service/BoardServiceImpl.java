@@ -74,6 +74,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public List<BoardVO> getSearchScrollPost(HashMap<String, Object> searchMap) {
+		return this.boardDao.getSearchScrollPost(searchMap);
+	}
+
+	@Override
 	public List<BoardVO> infinitiScrollDown(int bo_no) {
 		return this.boardDao.infinitiScrollDown(bo_no);
 	}

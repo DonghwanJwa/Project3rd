@@ -235,7 +235,6 @@ $(document).ready(function(){
 	$('.rep_textarea').keydown(function(e){
 		if(e.keyCode == '8'){
 			if(($(".rep_textarea p:first-child").text() == "" && $(".rep_textarea p").length == 1)){
-				console.log('이건 잘 됨');
 				return false;
 			}// if
 		}
