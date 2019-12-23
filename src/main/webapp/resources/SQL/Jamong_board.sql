@@ -52,7 +52,10 @@ ALTER TABLE book
 ADD CONSTRAINT bo_book_no_fk FOREIGN KEY(book_no)
 REFERENCES book(book_no);
 
+ALTER TABLE book DROP CONSTRAINT bo_book_no_fk;
+
 SELECT * FROM board ORDER BY bo_no DESC;
+SELECT * FROM board ORDER BY book_no DESC;
 SELECT bo_no_seq.nextval FROM DUAL;
 
  UPDATE board SET bo_hit=bo_hit+1 WHERE bo_no=10

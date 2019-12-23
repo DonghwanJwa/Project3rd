@@ -1,5 +1,6 @@
 package com.jamong.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -15,6 +16,10 @@ public class MemberDAOImpl implements MemberDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
+	@Override
+	public void member_pwd_modify(MemberVO me) {
+		this.sqlSession.selectOne("member_pwd_up", me);
+	}
 	@Override
 	public void mem_update_del(MemberVO vo) {
 		this.sqlSession.update("mem_update_del",vo);
@@ -94,6 +99,11 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public MemberVO getMemberFav(int mem_no) {
 		return this.sqlSession.selectOne("mem_getfav",mem_no);
+	}
+	
+	@Override
+	public List<MemberVO> getSearchMember(HashMap<String, Object> searchMap) {
+		return this.sqlSession.selectList("search_member",searchMap);
 	}
 	
 	@Override

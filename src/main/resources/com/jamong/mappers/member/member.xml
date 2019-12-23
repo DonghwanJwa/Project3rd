@@ -42,6 +42,9 @@
  </collection> -->    
 </resultMap>
 
+<update id="member_pwd_up">
+	update member set mem_pwd=#{mem_pwd} where mem_no=#{mem_no}
+</update>
 <update id="mem_update_del">
 	update member set mem_Withdrawal_reason=#{mem_Withdrawal_reason},mem_state=2,mem_Withdrawal_reason_date=sysdate where mem_no=#{mem_no}
 </update>
@@ -62,7 +65,7 @@
 	<!-- 회원정보 업데이트 -->
 <update id="mem_update">
 	update member set 
-	mem_pwd=#{mem_pwd},mem_name=#{mem_name},
+	mem_name=#{mem_name},
 	mem_birth1=#{mem_birth1},mem_birth2=#{mem_birth2},mem_birth3=#{mem_birth3},
 	email_id=#{email_id},email_domain=#{email_domain},
 	mem_phone01=#{mem_phone01},mem_phone02=#{mem_phone02},mem_phone03=#{mem_phone03}
@@ -132,6 +135,19 @@
  -->
  <select id="mem_getID" resultType="m">
   SELECT mem_id FROM member WHERE mem_no=#{mem_no}
+ </select>
+ 
+ <!-- 검색페이지 - 회원 -->
+ <select id="search_member" parameterType="hashMap" resultType="m">
+  SELECT * FROM (SELECT * FROM member 
+  WHERE REGEXP_LIKE(mem_nickname,#{q}) OR REGEXP_LIKE(mem_keyword,#{q}) OR REGEXP_LIKE(profile_cont,#{q})
+  AND mem_state=0 
+  ORDER BY REGEXP_COUNT(mem_nickname,#{q}) DESC, REGEXP_COUNT(mem_keyword,#{q}) DESC, 
+  REGEXP_COUNT(profile_cont,#{q}) DESC)
+  <if test="s == 'all'"> </if>
+  <if test="s != 'all'">
+  WHERE mem_fav1=#{s} OR mem_fav2=#{s} OR mem_fav3=#{s}
+  </if>
  </select>
  
  <select id="index_author" resultType="m">

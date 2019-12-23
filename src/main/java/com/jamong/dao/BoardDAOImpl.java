@@ -1,5 +1,6 @@
 package com.jamong.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -62,10 +63,15 @@ public class BoardDAOImpl implements BoardDAO {
 	public int sympathyNum(BoardVO bo) {
 		return this.sqlSession.selectOne("sym_count", bo);
 	}
+	
+	@Override
+	public int switchBoardLock(BoardVO bo) {
+		return this.sqlSession.update("board_lock",bo);
+	}
 
 	@Override
-	public List<BoardVO> getSearchArticle(String texts) {
-		return this.sqlSession.selectList("search_article",texts);
+	public List<BoardVO> getSearchPost(HashMap<String, Object> searchMap) {
+		return this.sqlSession.selectList("search_post",searchMap);
 	}
 
 	@Override

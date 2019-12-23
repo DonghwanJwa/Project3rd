@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.AuthorDAO;
 import com.jamong.domain.AuthorVO;
@@ -44,4 +45,22 @@ public class AuthorServiceImpl implements AuthorService {
 	public AuthorVO get_file(int no) {
 		return this.autDao.get_file(no);
 	}
+
+	@Override
+	public List<AuthorVO> getFileList(int no) {
+		return this.autDao.getFileList(no);
+	}
+
+	@Transactional
+	@Override
+	public void acceptAuthor(AuthorVO a) {
+		this.autDao.editAuthor(a);
+		this.autDao.acceptAuthor(a);
+	}
+	
+	@Override
+	public void rejectAuthor(AuthorVO a) {
+		this.autDao.rejectAuthor(a);
+	}
+
 }

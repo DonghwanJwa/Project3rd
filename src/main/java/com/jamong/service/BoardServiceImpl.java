@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,13 +59,18 @@ public class BoardServiceImpl implements BoardService {
 	}	
 	
 	@Override
+	public int switchBoardLock(BoardVO bo) {
+		return this.boardDao.switchBoardLock(bo);
+	}
+
+	@Override
 	public List<BoardVO> bestList() {	
 		return this.boardDao.bestList();
 	}
 
 	@Override
-	public List<BoardVO> getSearchArticle(String texts) {
-		return this.boardDao.getSearchArticle(texts);
+	public List<BoardVO> getSearchPost(HashMap<String, Object> searchMap) {
+		return this.boardDao.getSearchPost(searchMap);
 	}
 
 	@Override

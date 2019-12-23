@@ -33,10 +33,19 @@ SELECT count(rep_no) FROM reply WHERE bo_no=9;
 SELECT * FROM reply ORDER BY rep_no DESC;
 SELECT rep_no_seq.nextval FROM DUAL;
 
+SELECT * FROM reply WHERE bo_no=1 ORDER BY rep_ref ASC,rep_level
+
 SELECT *
 FROM (SELECT * FROM reply ORDER BY rep_ref ASC,rep_level) r
 INNER JOIN member m
 ON r.mem_no=m.mem_no
-WHERE r.bo_no=9;
+WHERE r.bo_no=1;
+
+SELECT *
+FROM reply r
+INNER JOIN member m
+ON r.mem_no=m.mem_no
+WHERE r.bo_no=1
+ORDER BY r.rep_ref ASC,r.rep_level
 
 

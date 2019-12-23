@@ -18,4 +18,13 @@ public interface AuthorDAO {
 	int authorcheck(int no);
 
 	AuthorVO get_file(int no);
+
+	List<AuthorVO> getFileList(int no);
+
+	void acceptAuthor(AuthorVO a);
+
+	void editAuthor(AuthorVO a);
+
+	void rejectAuthor(AuthorVO a);
+
 }

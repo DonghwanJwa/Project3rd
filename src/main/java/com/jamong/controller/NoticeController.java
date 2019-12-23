@@ -38,7 +38,7 @@ public class NoticeController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='admin_login';");
+			out.println("location='login/1';");
 			out.println("</script>");			
 		}else {
 			int page=1;
@@ -93,7 +93,7 @@ public class NoticeController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='admin_login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			int page=1;
@@ -113,6 +113,7 @@ public class NoticeController {
 	@RequestMapping("admin_notice_insert")
 	public ModelAndView admin_notice_insert(NoticeVO n) throws Exception {
 		this.noticeService.noticeInsert(n);
+		
 		return new ModelAndView("redirect:/admin_notice");
 	}
 	
@@ -128,7 +129,7 @@ public class NoticeController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='admin_login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			int page=1;
@@ -171,7 +172,7 @@ public class NoticeController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='admin_login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			if(!noti_pwd.equals(db_pwd.getNoti_pwd())) {
@@ -205,7 +206,7 @@ public class NoticeController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='admin_login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			if(!noti_pwd.equals(db_pwd.getNoti_pwd())) {

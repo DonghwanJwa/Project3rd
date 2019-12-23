@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.jamong.domain.BoardVO;
@@ -11,6 +12,8 @@ public interface BookService {
 
 	void insertBook(BookVO b);
 
-	void book_noUP(String val);
+	void book_noUP(String bo_no);
+
+	List<BookVO> getSearchBook(HashMap<String, Object> searchMap);
 
 }

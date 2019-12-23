@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.jamong.domain.BoardVO;
@@ -7,6 +8,7 @@ import com.jamong.domain.MemberVO;
 
 public interface MemberService {
 
+	void member_pwd_modify(MemberVO me);
 	void mem_update_del(MemberVO vo);
 	void pass_update(MemberVO vo);
 	MemberVO memberSelect_pwd(MemberVO vo);
@@ -24,6 +26,7 @@ public interface MemberService {
 	MemberVO get(String mem_id);
 	MemberVO profileCheck(String mem_id);
 	MemberVO getMemberFav(int mem_no);
+	List<MemberVO> getSearchMember(HashMap<String, Object> searchMap);
 	List<MemberVO> recomAuthor();
 	List<MemberVO> categoryMember();
 	void updateProfile(MemberVO mp);

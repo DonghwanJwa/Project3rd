@@ -1,24 +1,109 @@
 @charset "UTF-8";
 
 #book_create_wrap {
-	padding-left: auto;
-	padding-right: auto;
-	background-image: url("../img/background_img/login_pattern1.png");
-	background-repeat: repeat;
+	
 }
 
-#book_create_list {
-	border: 1px solid black;
+#book_create_base {
 	width: 940px;
-	margin-right: auto;
-	margin-left: auto;
-	background-color: #fff;
+	margin: 0 auto;
 }
 
 .ui-sortable {
 	padding-left: 0;
 }
 
+.book_create_about_div {
+	box-shadow: 4px 4px 7px #c0c0c0;
+}
+/* 책 커버 */
+#book_create_cover {
+	position: relative;
+	display: inline-block;
+	height: 430px;
+	width: 300px;
+	border-radius: 2px 6px 6px 2px;
+	overflow: hidden;
+	margin-right: 20px;
+}
+
+#book_create_cover_text {
+	position: absolute;
+	display: inline;
+	height: 430px;
+	width: 300px;
+	text-align: center;
+	left: 50%;
+	bottom: 0;
+	transform: translate(-50%);
+}
+
+#book_create_cover_head {
+	height: 240px;
+	margin: 0 50px;
+	margin-top: 90px;
+	background: #ffffffe0;
+	color: #333;
+}
+
+#book_create_cover_title {
+	display: block;
+	margin: 0;
+	padding: 0px 15px;
+	padding-top: 30px;
+	font-size: 23px;
+	height: 150px;
+}
+
+#book_create_cover_author {
+	display: block;
+	margin: 0;
+	padding: 0 15px;
+	height: 40px;
+	font-size: 16px;
+	line-height: 40px;
+}
+
+#book_create_cover_bot {
+	display: block;
+	height: 40px;
+	margin: 0;
+	padding: 0 15px;
+	padding-top: 60px;
+	font-size: 16px;
+	color: #fff;
+	font-weight: bold;
+}
+
+#book_create_cover_line {
+	width: 11px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+}
+
+#book_creat_cover_list:after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2px;
+	height: 100%;
+	background: rgba(255, 255, 255.1);
+	content: '';
+}
+
+#book_create_cover_list:before {
+	position: absolute;
+	top: 0;
+	right: 2px;
+	width: 1px;
+	height: 100%;
+	background: rgba(0, 0, 0, .05);
+	content: '';
+}
+
+/* 글 리스트 */
 #post_list_ul {
 	border: 1px solid red;
 	border-radius: 20px;

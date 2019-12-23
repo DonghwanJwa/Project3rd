@@ -9,78 +9,12 @@ var getyear= RegExp(/^[0-9]{4}$/); 						//년
 var getmonth_date= RegExp(/^[0-9]{1,2}$/); 				//월,일
 var getName= RegExp(/^[가-힣]+$/);						//이름
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
-//var fa1 = '<c:out value="${mv.mem_fav1 }"/>';
-getCategorySelect();//카테고리선택란에 카테고리 넣기(하단에 메서드 존재)
-
-/*카테고리선택창의 카테고리 불러오기*/
-function getCategorySelect(){
-
-	  $.getJSON("/jamong.com/category_load/",function(data){
-		  var str="";
-		  $(data).each(function(){//each는 jQuery에서 반복함수
-			  str+='<li class="member_modify_category-item">'+
-			  '<span class="member_modify_category-span">'+this.cat_name+'</span>'
-			  +'<input type="hidden" value="'+this.cat_name+'"/>'
-			  +'</li>'
-		  });
-		  if ($("#member_modify_category-list").length > 0 ) {//해당 구역이 존재하면
-			  $('#member_modify_category-list').html(str);	//ul내부에 each내용을 넣어준다
-		  }
-	  });
-}
 
 $(document).ready(function(){
 $("#member_modify_next_btn").click(function() {
 	var member_modify_pass = $("#member_modify_pass").val();
 	
-	//이전 비밀번호는 못쓰게 유효성 검증 해야함
-	if ($.trim($('#member_modify_pass').val())=="") {
-		$('#member_modify_error_pass').text('비밀번호를 입력해주세요!');
-		$("#member_modify_pass").val("").focus();
-		return false;
-	}
-	if($.trim($('#member_modify_pass').val()).length<8 || $.trim($('#member_modify_pass').val()).length>50){
-		$('#member_modify_error_pass').text('8자이상으로 설정해주세요!');
-		$("#member_modify_pass_check").val("")
-		$("#member_modify_pass").val("").focus();
-		return false;
-	}
-	
-	if ($.trim($('#member_modify_pass_check').val())=="") {
-		$('#member_modify_error_pass_check').text('비밀번호 확인을 입력해주세요!');
-		$("#member_modify_pass_check").val("").focus();
-		return false;
-	}
-	if ($.trim($('#member_modify_pass_check').val())=="") {
-		$('#member_modify_error_pass_check').text('비밀번호 확인을 입력해주세요!');
-		$("#member_modify_pass_check").val("").focus();
-		return false;
-	}
 
-	
-	//비밀번호 정규식 = 영문,숫자,특수문자의 조합
-	if(!regExpPw.test($("#member_modify_pass").val())){ 
-		$('#member_modify_error_pass').text('영문,숫자,특수문자의 조합으로 입력해주세요!');
-		$("#member_modify_pass_check").val("")
-		$("#member_modify_pass").val("").focus();
-		return false; 
-	}
-
-	//비번 비번확인이 같은지 확인
-	if($("#member_modify_pass_check").val() != $('#member_modify_pass').val()){
-		$('#member_modify_error_pass_check').text('비밀번호가 같지 않습니다!');
-		$("#member_modify_pass_check").val("");
-		$("#member_modify_pass").val("").focus();
-		return false;
-	}
-
-	//아이디와 비밀번호가 같을때 
-	if($("#member_modify_id").val() == $("#member_modify_pass").val()){ 
-		$('#member_modify_error_pass').text('아이디와 비밀번호가 같습니다');
-		$("#member_modify_pass_check").val("");
-		$("#member_modify_pass").val("").focus(); 
-		return false; 
-	}
 	if ($.trim($('#member_modify_name').val())=="") {
 		$('#member_modify_error_name').text('이름을 입력해주세요!');
 		$("#member_modify_name").val("").focus();
@@ -195,15 +129,6 @@ $("#member_modify_next_btn").click(function() {
 		$("#member_modify_tel3").focus();
 		return false;
 	}
-	//기본정보 -> 프로필
-	if($("#member_modify_page2").css("display") == "none"){
-		$("#member_modify_page1").hide();
-		$("#member_modify_sequence_list1").hide('membership_step');
-		$("#member_modify_page2").show();
-		$("#member_modify_sequence_list2").show('membership_step');
-		$("#member_modify_sequence_list2").addClass('membership_step');
-
-	}
 });
 
 
@@ -280,32 +205,6 @@ $("#member_modify_pass").on("focusout", function() {
 	
 	if (key.keyCode == 13) {
 		$("#member_modify_pass_check").focus();
-	}
-});
-
-//비밀번호 확인 유효성 검증
-$("#member_modify_pass_check").on("focusout", function() {
-	if ($.trim($('#member_modify_pass_check').val())=="") {
-		$('#member_modify_error_pass_check').text('비밀번호 확인을 입력해주세요!');
-		return false;
-	}
-	if($.trim($('#member_modify_pass_check').val()) != $.trim($('#member_modify_pass').val())){
-		$('#member_modify_error_pass_check').text('비밀번호가 같지 않습니다!');
-		return false;
-	}
-	$('#member_modify_error_pass_check').text('');
-}).on("keyup", function(key) {
-	if ($.trim($('#member_modify_pass_check').val())=="") {
-		$('#member_modify_error_pass_check').text('비밀번호 확인을 입력해주세요!');
-		return false;
-	}
-	if($.trim($('#member_modify_pass_check').val()) != $.trim($('#member_modify_pass').val())){
-		$('#member_modify_error_pass_check').text('비밀번호가 같지 않습니다!');
-		return false;
-	}
-	$('#member_modify_error_pass_check').text('');
-	if (key.keyCode == 13) {
-		$('#member_modify_name').focus();
 	}
 });
 
@@ -573,27 +472,6 @@ $("#member_modify_before_btn2").click(function() {
 
 	}
 });
-//카테고리 선택시 class,name 추가(form에 post전달하기 위해서 name값에 숫자 추가)
-//중요!! $(document).ready()안에 사용하지 않은 이유
-//		jQuery의 get이나 ajax방식으로 사용하는 경우 click 메서드가 요소를 인식하지 못한다.
-//		click의 조상격인 on을 사용하면 인식가능하므로 on을 사용하도록하자
-//		http://blog.freezner.com/archives/411
-$(document).on("click",".member_modify_category-span",function(){
-	if($(this).parent().hasClass("member_category_check")){
-		$(this).parent().removeClass("member_category_check");
-		$(this).next().removeClass()
-		$(this).next().removeAttr("name");
-	}else{
-		for(var i=1;i<=3;i++){
-			if(!$('.member_modify_category-span').next().hasClass("member_fav"+i)){
-				$(this).parent().addClass("member_category_check");
-				$(this).next().addClass("member_fav"+i)
-				$(this).next().attr("name","mem_fav"+i);
-				return false
-			}
-		}
-	}
-});
 
 //이메일 인증 단계 복구해야됨!!
 $(function(){
@@ -698,10 +576,105 @@ $(function(){
 		});
 	});
 });
-//수정이 완료되었을 시 경고창으로 수정이 완료되었습니다 출력
-$(document).on("click", "#member_modify_next_btn", function(){
-	alert("수정이 완료되었습니다");
+$("#member_modify_pwd_modify").click(function(){
+	if($(".hide_box").css("visibility","hidden")){
+		$(".hide_box").css("visibility","visible");
+	}	
 });
 
+$(document).on("click", "#member_pwd_modify", function(){
+	
+	
+	//이전 비밀번호는 못쓰게 유효성 검증 해야함
+	if ($.trim($('#member_modify_pass').val())=="") {
+		$('#member_modify_error_pass').text('비밀번호를 입력해주세요!');
+		$("#member_modify_pass").val("").focus();
+		return false;
+	}
+	if($.trim($('#member_modify_pass').val()).length<8 || $.trim($('#member_modify_pass').val()).length>50){
+		$('#member_modify_error_pass').text('8자이상으로 설정해주세요!');
+		$("#member_modify_pass_check").val("")
+		$("#member_modify_pass").val("").focus();
+		return false;
+	}
+	
+	if ($.trim($('#member_modify_pass_check').val())=="") {
+		$('#member_modify_error_pass_check').text('비밀번호 확인을 입력해주세요!');
+		$("#member_modify_pass_check").val("").focus();
+		return false;
+	}
+	if ($.trim($('#member_modify_pass_check').val())=="") {
+		$('#member_modify_error_pass_check').text('비밀번호 확인을 입력해주세요!');
+		$("#member_modify_pass_check").val("").focus();
+		return false;
+	}
+
+	
+	//비밀번호 정규식 = 영문,숫자,특수문자의 조합
+	if(!regExpPw.test($("#member_modify_pass").val())){ 
+		$('#member_modify_error_pass').text('영문,숫자,특수문자의 조합으로 입력해주세요!');
+		$("#member_modify_pass_check").val("")
+		$("#member_modify_pass").val("").focus();
+		return false; 
+	}
+
+	//비번 비번확인이 같은지 확인
+	if($("#member_modify_pass_check").val() != $('#member_modify_pass').val()){
+		$('#member_modify_error_pass_check').text('비밀번호가 같지 않습니다!');
+		$("#member_modify_pass_check").val("");
+		$("#member_modify_pass").val("").focus();
+		return false;
+	}
+	
+
+	//비밀번호 확인 유효성 검증
+	$("#member_modify_pass_check").on("focusout", function() {
+		if ($.trim($('#member_modify_pass_check').val())=="") {
+			$('#member_modify_error_pass_check').text('비밀번호 확인을 입력해주세요!');
+			return false;
+		}
+		if($.trim($('#member_modify_pass_check').val()) != $.trim($('#member_modify_pass').val())){
+			$('#member_modify_error_pass_check').text('비밀번호가 같지 않습니다!');
+			return false;
+		}
+		$('#member_modify_error_pass_check').text('');
+	}).on("keyup", function(key) {
+		if ($.trim($('#member_modify_pass_check').val())=="") {
+			$('#member_modify_error_pass_check').text('비밀번호 확인을 입력해주세요!');
+			return false;
+		}
+		if($.trim($('#member_modify_pass_check').val()) != $.trim($('#member_modify_pass').val())){
+			$('#member_modify_error_pass_check').text('비밀번호가 같지 않습니다!');
+			return false;
+		}
+		$('#member_modify_error_pass_check').text('');
+		if (key.keyCode == 13) {
+			$('#member_modify_name').focus();
+		}
+	});
+
+	
+	var mem_pwd = $.trim($('#member_modify_pass').val());
+	$.ajax({
+		type:"post",
+		url:"member_pwd_modify_ok",
+		data:{"mem_pwd":mem_pwd},
+		datatype:"int",
+		success:function(data){
+			if(data==1){
+				alert("비밀번호 수정완료");
+				$("#member_pwd_modify").attr("disabled",true);
+				$("#member_pwd_modify").css("border","2px solid gray");
+				$("#member_pwd_modify").css("cursor","default");
+				
+				$("#member_modify_pass").attr("readonly",true)
+				$("#member_modify_pass_check").attr("readonly",true)
+			}
+		},
+		error:function(data){
+			alert("에러가 발생했습니다.");
+		}
+	});
+});
 });
 
