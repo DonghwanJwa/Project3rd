@@ -22,6 +22,7 @@ public interface BoardDAO {
 	List<BoardVO> categoryArticle(String cat_name);
 	List<BoardVO> getProfile(int mem_no);
 	void updateHit(int bo_no);
+	void updateBoard(HashMap<String, Object> bm);
 	List<BoardVO> getUserBoardContList(int mem_no);
 	List<BoardVO> getUserBoardCatArticle(String cat_name);
 

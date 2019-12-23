@@ -103,4 +103,9 @@ public class BoardServiceImpl implements BoardService {
 		return this.boardDao.getUserBoardContList(mem_no);
 	}
 
+	@Override
+	public void updateBoard(HashMap<String, Object> bm) {
+		this.boardDao.updateBoard(bm);
+	}
+
 }

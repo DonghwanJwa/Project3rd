@@ -305,6 +305,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	outline:0px;
 	width:100%;
 	z-index:1;
+	filter:brightness(0.7);
 	transition: height,opacity,200ms;
 	-webkit-transition: height,opacity,200ms;
 }
