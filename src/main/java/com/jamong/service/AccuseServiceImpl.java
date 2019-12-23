@@ -31,6 +31,18 @@ public class AccuseServiceImpl implements AccuseService {
 		return this.accuseDao.getAccuseList(a);
 	}
 
+	@Override
+	public void selectReporter(int mem_no) {
+		this.accuseDao.selectReporter(mem_no);
+	}
+
+	@Override
+	public void selectRespondent(int ac_member) {
+		this.accuseDao.selectRespondent(ac_member);
+	}
+
+
+
 	
 	
 	
