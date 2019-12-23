@@ -26,6 +26,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public void updateBoard(HashMap<String, Object> bm) {
+		this.sqlSession.update("bo_edit",bm);
+	}
+	
+	@Override
 	public List<BoardVO> getUserBoardContList(int mem_no) {
 		return this.sqlSession.selectList("bo_contlist",mem_no);
 	}
@@ -98,6 +103,10 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> getProfile(int mem_no) {
 		return this.sqlSession.selectList("profileList",mem_no);
 	}
+
+	
+
+
 
 
 }

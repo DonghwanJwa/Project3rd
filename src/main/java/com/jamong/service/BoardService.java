@@ -22,6 +22,7 @@ public interface BoardService {
 	int sympathyDown(BoardVO bo);
 	int switchBoardLock(BoardVO bo);
 	void articleDelete(int bo_no);
+	void updateBoard(HashMap<String, Object> bm);
 	List<BoardVO> bestList();
 	List<BoardVO> getSearchPost(HashMap<String, Object> searchMap);
 	List<BoardVO> infinitiScrollDown(int bo_no);

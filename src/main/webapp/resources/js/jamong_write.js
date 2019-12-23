@@ -15,6 +15,7 @@ var category_count = 0;
 
 getCategorySelect();//카테고리선택란에 카테고리 넣기(하단에 메서드 존재)
 
+
 $(document).ready(function(){
 	$(".write_cont_area").summernote({
 		toolbar:[
@@ -72,7 +73,6 @@ $(document).ready(function(){
 			$("#write_title_center_bg").attr('id','write_title_center_icon');
 			$("#write_title_bottom_bg").attr('id','write_title_bottom_icon');
 			colorIndex=0;
-
 		}else{ // 배경색이 지정되었을 때
 			$(".write_main_title").addClass('write_bg_title_option');
 			$(".write_sub_title").addClass('write_bg_title_option');
@@ -88,6 +88,41 @@ $(document).ready(function(){
 			$("#write_title_center_icon").attr('id','write_title_center_bg');
 			$("#write_title_bottom_icon").attr('id','write_title_bottom_bg');
 			colorIndex=1;
+			console.log("암튼됨");
+		}
+	});
+	$("#write_title_background_bg").click(function(){ // 배경색 지정 버튼 클릭 시
+		if($(".write_bg_title_option").is(":visible")){ // 배경색이 지정되어있지 않을 때
+			$(".write_main_title").removeClass('write_bg_title_option');
+			$(".write_sub_title").removeClass('write_bg_title_option');
+			$("#write_title_area_bg").css('background-color','#FFF');
+			$("#write_title_area_bg").css('height','250px');
+			
+			$("#bo_color").val("");
+			$("#write_background_change_btn").css('display','none');
+			
+			$("#write_title_coverimage_bg").attr('id','write_cover_file');
+			$("#write_title_background_bg").attr('id','write_title_background_icon');
+			$("#write_title_center_bg").attr('id','write_title_center_icon');
+			$("#write_title_bottom_bg").attr('id','write_title_bottom_icon');
+			colorIndex=0;
+			console.log("암튼됨");
+		}else{ // 배경색이 지정되었을 때
+			$(".write_main_title").addClass('write_bg_title_option');
+			$(".write_sub_title").addClass('write_bg_title_option');
+			$("#write_title_area_bg").css('background-color','#fbb9ba');
+			$("#write_title_area_bg").css('height','450px');
+			$("#write_title_area_bg").css('opaticy','1');
+			
+			$("#bo_color").val("#FBB9BA");
+			$("#write_background_change_btn").css('display','block');
+			
+			$("#write_cover_file").attr('id','write_title_coverimage_bg');
+			$("#write_title_background_icon").attr('id','write_title_background_bg');
+			$("#write_title_center_icon").attr('id','write_title_center_bg');
+			$("#write_title_bottom_icon").attr('id','write_title_bottom_bg');
+			colorIndex=1;
+			console.log("암튼됨");
 		}
 	});
 	$(".write_title_next_btn").click(function(){ // 배경색 지정 다음버튼 클릭 시
@@ -226,6 +261,7 @@ $(document).ready(function(){
 	
 	// 이미지 미리보기 구현
 	$("#write_cover_file").on("change", handleImgFileSelect);
+	$("#write_title_coverimage_bg").on("change", handleImgFileSelect);
 
 	// 미리보기 이미지 삭제 / 취소
 	$(".write_cover_delete").click(function(){
@@ -268,6 +304,9 @@ $(document).on("click",".join_membership_category-span",function(){
 		}
 	}
 });
+$(document).on("load",function(){
+	
+});
 
 function sendFile(file, editor){
 	var form_data=new FormData();
@@ -288,7 +327,7 @@ function sendFile(file, editor){
 function handleImgFileSelect(e){
 	var files = e.target.files;
 	var filesArr = Array.prototype.slice.call(files);
-
+	
 	// 커버이미지 선택시
 	$("#bo_color").val("");
 	
@@ -317,7 +356,6 @@ function handleImgFileSelect(e){
 		var reader = new FileReader();
 		reader.onload = function(e){
 			$("#write_title_cover_img").css('background-image','url(\"'+e.target.result+'\")');
-			$("#write_title_cover_img").css("filter","brightness(0.7)");
 			$("#write_title_cover_img").css("height","450px");
 		}
 		reader.readAsDataURL(f);

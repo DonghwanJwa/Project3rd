@@ -53,7 +53,7 @@ public class BoardController {
 	private ReplyService repService;
 	@Autowired
 	private BookService bookService;
-	
+
 
 
 	@RequestMapping("@{mem_id}/{bo_no}")
@@ -62,28 +62,28 @@ public class BoardController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		session=request.getSession();
-		
+
 		MemberVO readM = (MemberVO)session.getAttribute("m");
-		
+
 		bo = this.boardService.getUserBoardCont(bo_no);
 		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		int replyCount = this.repService.getUserReplyCount(bo_no);
 		List<BoardVO> catList = this.boardService.getUserBoardCatArticle(bo.getCat_name());
 		List<BoardVO> bList = this.boardService.getUserBoardContList(bo.getMem_no());
-		
+
 		// 날짜 출력타입 변경
 		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SimpleDateFormat title_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
 		Date format_date = org_format.parse(bo.getBo_date());
 		String title_date = title_format.format(format_date);
-		
+
 		for(int i=0;i<bList.size();i++) {
 			Date bListFormat_date = org_format.parse(bList.get(i).getBo_date());
 			String bListTitle_date = title_format.format(bListFormat_date);
 			bList.get(i).setBo_date(bListTitle_date);
 		}
 		bo.setBo_date(title_date);
-		
+
 		// 시간 계산 해서 방금, 몇분전 띄우기
 		for(int i=0;i<repList.size();i++) {
 			Date repListFormat_date = org_format.parse(repList.get(i).getRep_date());
@@ -113,48 +113,58 @@ public class BoardController {
 				catList.get(i).setBo_cont(oneSpace);
 			}
 		}
-		
+
 		model.addAttribute("replyCount",replyCount);
 		model.addAttribute("rList",repList);
 		model.addAttribute("catList",catList);
 		model.addAttribute("bList",bList);
 		model.addAttribute("bo", bo);
 		model.addAttribute("mem_id", mem_id);
-		
+
 		return "jsp/read";
 	}
-	
+
 	@PostMapping("artdel/{bo_no}")
 	@ResponseBody
 	public int user_delArticle(@PathVariable int bo_no,
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		int flag = 0;
-		
+
 		MemberVO artM = (MemberVO)session.getAttribute("m");		
-		
+
 		if(artM != null) {
 			this.boardService.articleDelete(bo_no);
-			
+
 			flag = 1;
 		}else {
-			
+
 			flag = 2;
 		}
-		
+
 		return flag;
 	}
-	
+
 	@RequestMapping("@{mem_id}/{bo_no}/write")
 	public ModelAndView user_editWrite(@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo,
-			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		ModelAndView mv = new ModelAndView();
-		
-		bo = this.boardService.getUserBoardCont(bo_no);
-		
-		mv.addObject("bo",bo);
-		mv.setViewName("jsp/jamong_edit");
-		
-		return mv;
+
+		MemberVO m = (MemberVO)session.getAttribute("m");
+
+		if (m != null) {
+			bo = this.boardService.getUserBoardCont(bo_no);
+			mv.addObject("bo",bo);
+			mv.setViewName("jsp/jamong_edit");
+			return mv;
+		}else {
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 페이지입니다!');");
+			out.println("location='location='login/1';");
+			out.println("</script>");
+		}
+		return null;
 	} // 수정 폼 이동
 
 	@RequestMapping("write")
@@ -170,7 +180,7 @@ public class BoardController {
 		if (m == null) {
 			out.println("<script>");
 			out.println("alert('로그인이 필요한 페이지입니다!');");
-			out.println("location='location='login/1'';");
+			out.println("location='location='login/1';");
 			out.println("</script>");
 		} else {
 			mv.setViewName("jsp/jamong_write");
@@ -256,6 +266,91 @@ public class BoardController {
 		return null;
 	}// user_write_ok() => 유저 글 등록
 
+	@RequestMapping("@{mem_id}/{bo_no}/write_ok")
+	public String user_edit_ok(@PathVariable int bo_no, BoardVO b, HttpServletResponse response, HttpServletRequest request,
+			HttpSession session) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		session = request.getSession();		
+		HashMap<String,Object> bm = new HashMap<>();		
+
+		String saveFolder = request.getRealPath("/resources/upload");
+		int fileSize = 100 * 1024 * 1024; // 첨부파일 최대크기
+		MultipartRequest multi = null;
+		multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8");
+
+		UUID uuid = UUID.randomUUID(); // 랜덤한 이름값 생성
+
+		// MultipartRequest로부터 각 파라미터값 저장
+		String bo_title = multi.getParameter("bo_title");
+		String bo_subtitle = multi.getParameter("bo_subtitle");
+		String bo_cont = multi.getParameter("bo_cont");
+		String bo_color = multi.getParameter("bo_color");
+		int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
+		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
+		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
+		String cat_name = multi.getParameter("cat_name");
+
+		MemberVO m = (MemberVO) session.getAttribute("m");
+
+		File UpFile1 = multi.getFile("bo_thumbnail");
+		if (UpFile1 != null) {
+			String fileName = UpFile1.getName();
+			Calendar c = Calendar.getInstance();
+			int year = c.get(Calendar.YEAR);
+			int month = c.get(Calendar.MONTH) + 1;
+			int date = c.get(Calendar.DATE);
+
+			String homedir = saveFolder + "\\" + "thumbnail" + "\\" + year + "-" + month + "-" + date;
+			String DBdir = "/jamong.com/resources/upload/thumbnail/" + year + "-" + month + "-" + date;
+			File path1 = new File(homedir);
+			if (!(path1.exists())) {
+				path1.mkdirs(); // 폴더 생성
+			} // if => 해당 폴더가 없을때
+
+			Random r = new Random();
+			int index = fileName.lastIndexOf(".");
+			String fileExtendsion = fileName.substring(index + 1);
+
+			String refileName = uuid.toString() + year + month + date;
+			// 업로드파일명 + 년월일 + 난수 + 확장자
+			String encryptionName = PwdChange.getPassWordToXEMD5String(refileName);
+			String fileDBName = DBdir + "/" + encryptionName + "." + fileExtendsion;
+
+			UpFile1.renameTo(new File(homedir + "/" + encryptionName + "." + fileExtendsion));
+
+			b.setBo_thumbnail(fileDBName);
+		} // if => 파일이 있을 때
+
+		b.setBo_title(bo_title);
+		b.setBo_subtitle(bo_subtitle);
+		b.setBo_cont(bo_cont);
+		b.setBo_color(bo_color);
+		b.setBo_titlespace(bo_titlespace);
+		b.setBo_lock(bo_lock);
+		b.setBo_type(bo_type);
+		b.setCat_name(cat_name);
+
+		bm.put("b",b);
+		bm.put("bo_no",bo_no);
+
+		if(m != null) {
+			this.boardService.updateBoard(bm);
+			out.println("<script>");
+			out.println("alert('글이 수정되었습니다!');");
+			out.println("location='/jamong.com/';");
+			out.println("</script>");
+		} else {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다 로그인페이지로 돌아갑니다.');");
+			out.println("location='/jamong.com/login/1';");
+			out.println("</script>");
+		}
+
+
+		return null;
+	} // if => 파일이 있을 때
+
 	@PostMapping("imageUpload")
 	@ResponseBody
 	public void ImageUpload(HttpServletResponse response, HttpServletRequest request) throws Exception {
@@ -306,7 +401,7 @@ public class BoardController {
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String oneSpace = normalText.replaceAll("&nbsp; "," ");
 			bList.get(i).setBo_cont(oneSpace);
-			
+
 			Date org_date = org_format.parse(bList.get(i).getBo_date());
 			String changeDate = TIME_MAXIMUM.formatTimeString(org_date);
 			bList.get(i).setBo_date(changeDate);
@@ -323,9 +418,9 @@ public class BoardController {
 			HttpServletRequest request,
 			HttpSession session) {
 		session = request.getSession();
-		
+
 		MemberVO m = (MemberVO) session.getAttribute("m");
-		
+
 		int result =-1;
 		if(m!=null) {
 			BoardVO bo = new BoardVO();
@@ -334,7 +429,7 @@ public class BoardController {
 		}
 		return result;
 	}
-	
+
 	@PostMapping("sympathy_down/{bo_no}")
 	@ResponseBody
 	public int sympathy_down(@PathVariable int bo_no, 
@@ -342,7 +437,7 @@ public class BoardController {
 			HttpSession session) {
 		session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("m");
-		
+
 		int result =-1;
 		if(m!=null) {
 			BoardVO bo = new BoardVO();
@@ -351,7 +446,7 @@ public class BoardController {
 		}
 		return result;
 	}
-	
+
 	@PostMapping("boardLock/{bo_no}/{bo_lock}")
 	@ResponseBody
 	public int boardLock(@PathVariable int bo_no,@PathVariable int bo_lock,
@@ -368,11 +463,11 @@ public class BoardController {
 		}
 		return result;
 	}
-	
+
 	@RequestMapping("best_load")
 	public ResponseEntity<List<BoardVO>> best_load(){
 		ResponseEntity<List<BoardVO>> entity = null;
-		
+
 		try {
 			entity = new ResponseEntity<>(this.boardService.bestList(),HttpStatus.OK);					
 		}catch(Exception e) {
@@ -381,7 +476,7 @@ public class BoardController {
 		}		
 		return entity;
 	}
-	
+
 	@PostMapping("infinitiScrollDown")
 	@ResponseBody
 	public List<BoardVO> infinitiScrollDownPOST(String bo_no) {
@@ -404,7 +499,7 @@ public class BoardController {
 		String text = request.getParameter("q");	// query 검색어 (띄어쓰기 단위)
 		String q = text.replaceAll(" ", "\\|");
 		//+표시로 parameter값을 가져오면 띄어쓰기로 표현되는데, sql문으로써 이용하기 위해서 파이프라인(|)으로 replace해줌 
-		
+
 		HashMap<String,Object> searchMap = new HashMap<>();
 		searchMap.put("s", s);
 		searchMap.put("q", q);
@@ -427,7 +522,7 @@ public class BoardController {
 			mv.addObject("catList",catList);
 			mv.addObject("memberList",memberList);
 		}
-		
+
 		mv.addObject("w",w);
 		mv.addObject("s",s);
 		mv.addObject("q",text);
