@@ -19,6 +19,8 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+SELECT rep_no_seq.currval FROM DUAL;
+
 -- 참조 컬럼 생성
 ALTER TABLE reply
 ADD CONSTRAINT rep_bo_no_fk FOREIGN KEY(bo_no)
@@ -33,7 +35,7 @@ SELECT count(rep_no) FROM reply WHERE bo_no=9;
 SELECT * FROM reply ORDER BY rep_no DESC;
 SELECT rep_no_seq.nextval FROM DUAL;
 
-SELECT * FROM reply WHERE bo_no=1 ORDER BY rep_ref ASC,rep_level
+SELECT * FROM reply WHERE bo_no=9 ORDER BY rep_ref ASC,CASE WHEN rep_level IN(0) THEN 0 ELSE 1 END,rep_level DESC;
 
 SELECT *
 FROM (SELECT * FROM reply ORDER BY rep_ref ASC,rep_level) r

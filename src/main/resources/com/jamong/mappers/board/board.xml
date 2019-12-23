@@ -68,6 +68,10 @@
  ]]>
  </select>
  
+ <update id="article_del">
+  UPDATE board SET bo_lock=3 WHERE bo_no=#{bo_no}
+ </update>
+ 
  <select id="bo_catcontlist" resultMap="boardMap">
   <![CDATA[
   SELECT *

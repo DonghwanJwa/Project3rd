@@ -13,6 +13,7 @@ public interface BoardDAO {
 	List<BoardVO> getListAll(BoardVO b);
 	void sympathyUpUpdate(BoardVO bo);
 	void sympathyDownUpdate(BoardVO bo);
+	void articleDelete(int bo_no);
 	int sympathyNum(BoardVO bo);
 	int switchBoardLock(BoardVO bo);
 	List<BoardVO> bestList();
