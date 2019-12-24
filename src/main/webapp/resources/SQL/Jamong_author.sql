@@ -63,5 +63,11 @@ INNER JOIN member m
 ON aut.mem_no=m.mem_no
 WHERE r >= 1 AND r <= 11 ORDER BY aut.aut_date DESC;
 
+SELECT * FROM (SELECT rowNum r,aut_no,aut_intro,aut_date,mem_no,aut_state,aut_update 
+FROM (SELECT author.* FROM author WHERE aut_state=1 ORDER BY aut_no DESC)) aut
+INNER JOIN (SELECT * FROM member where mem_nickname like '%%') m
+ON aut.mem_no=m.mem_no
+WHERE r >= 1 AND r <= 20  order by aut.aut_date desc;
+
 select * from member order by mem_date desc;
 commit;
