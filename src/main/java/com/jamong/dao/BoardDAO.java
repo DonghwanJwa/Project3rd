@@ -27,5 +27,6 @@ public interface BoardDAO {
 	List<BoardVO> getUserBoardContList(int mem_no);
 	List<BoardVO> getUserBoardCatArticle(String cat_name);
 	void updateBookNo(HashMap<String, Object> bm);
+	List<BoardVO> getBKList(int book_no);
 
 }

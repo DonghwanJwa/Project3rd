@@ -13,6 +13,21 @@ public class BookVO {
 	private String cat_name;
 	private int mem_no;
 	
+	private MemberVO memberVO;
+	private BoardVO boardVO;
+	
+	public BoardVO getBoardVO() {
+		return boardVO;
+	}
+	public void setBoardVO(BoardVO boardVO) {
+		this.boardVO = boardVO;
+	}
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
 	// Setter()
 	public void setBook_no(int book_no) 			   {		this.book_no = book_no;					}
 	public void setBook_name(String book_name) 		   {		this.book_name = book_name;				}

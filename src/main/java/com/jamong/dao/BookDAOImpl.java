@@ -19,7 +19,7 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public List<BoardVO> getBList(String mem_id) {
-		return this.sqlSession.selectList("book_list",mem_id);
+		return this.sqlSession.selectList("create_list",mem_id);
 	}
 
 	@Override
@@ -40,6 +40,11 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public int selectBookNo(HashMap<String, Object> bm) {
 		return this.sqlSession.selectOne("book_sel",bm);
+	}
+
+	@Override
+	public List<BookVO> selectBookList(BookVO b) {
+		return this.sqlSession.selectList("book_list",b);
 	}
 
 }

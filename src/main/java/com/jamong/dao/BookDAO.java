@@ -19,4 +19,6 @@ public interface BookDAO {
 
 	int selectBookNo(HashMap<String, Object> bm);
 
+	List<BookVO> selectBookList(BookVO b);
+
 }

@@ -38,7 +38,6 @@
    </div>
    <!-- 작가 정보 -->
    <div id="book_create_author" class="book_create_about_div">
-    <a id="book_create_author_wrap" href="./profile">
     <div id="book_create_author_head"><!-- 작가 소개 상단 ui --></div>
     <div id="book_create_author_main">
      <span id="book_create_author_img">
@@ -59,7 +58,6 @@
       </p>
      </div>
     </div>
-    </a>
    </div>
    
   </div>
@@ -86,14 +84,14 @@
           ${b.bo_title}
          </c:if>
         </div>
-        <div class="post__list_cont_text">
-        <c:if test="${fn:length(b.bo_cont)>100}">
-          ${fn:substring(b.bo_cont,0,100)}...
-         </c:if>
-         <c:if test="${fn:length(b.bo_cont)<100}">
-          ${b.bo_cont}
-         </c:if>
-        </div>
+<!--         <div class="post__list_cont_text"> -->
+<%--         <c:if test="${fn:length(b.bo_cont)>100}"> --%>
+<%--           ${fn:substring(b.bo_cont,0,100)}... --%>
+<%--          </c:if> --%>
+<%--          <c:if test="${fn:length(b.bo_cont)<100}"> --%>
+<%--           ${b.bo_cont} --%>
+<%--          </c:if> --%>
+<!--         </div> -->
        </div>
       </label>
      </li>

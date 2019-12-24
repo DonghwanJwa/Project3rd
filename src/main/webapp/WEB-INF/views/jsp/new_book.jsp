@@ -194,17 +194,23 @@
   </div>
   <div class="new_book_list_item" id="new_book_list">
    <ul id="gradeItemList_all" style="width: 21840px;" class="slide_work_list visible" data-page="1">
-    <c:forEach var="w" begin="1" end="22" step="1">
+    <c:forEach var="book" items="${bookList}">
      <li class="item_work <%-- open --%>">
       <div class="new_book_item_work_cover">
-       <img class="img_cover" src="/jamong.com/resources/img/book_img.jpg">
+      <c:set var="img" value="${book.bookVO.book_cover}" />
+      <c:if test="${!empty img}">
+       <img class="img_cover" src="${book.bookVO.book_cover}">
+      </c:if>
+      <c:if test="${empty img}">
+       <img class="img_cover" src="/jamong.com/resources/img/feed.png">
+      </c:if>
        <div class="border_left"></div>
       </div>
-      <p class="title">안 느끼한 산문집${w}</p>
+      <p class="title">${book.bookVO.book_name}</p>
       <p class="author">
        <span class="by">by</span>
        &nbsp;
-       <a target="_blank" href="#">"흔디"</a>
+       <a target="_blank" href="#">"${book.memberVO.mem_nickname}"</a>
       </p>
       <span class="open_marker"></span>
      </li>
