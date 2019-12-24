@@ -68,6 +68,8 @@
 	</tr>
 </table>
 	
+   <form method="post" name="inq_file_form"> 
+   <input type="hidden" name="no" value="${no}"/>
 	 <table class="adm_inq_file"> 
 	<c:if test="${empty i.inq_file1 && empty i.inq_file2 && empty i.inq_file3 && empty i.inq_file4}">
 	</c:if>
@@ -77,17 +79,17 @@
 			첨부파일
 		</th>
 	 </tr>
-	 
 	 <tr>
 	  <td colspan="6" id="adm_inq_field" style="height:175px;">
-		${i.inq_file1}
-		${i.inq_file2}
-		${i.inq_file3}
-		${i.inq_file4}
+		<input type="submit" value="${inq_file1}" onclick="javascript:inq_file_form.action='inquireFile1';" />
+		<input type="submit" value="${inq_file2}" />
+		<input type="submit" value="${inq_file3}" />
+		<input type="submit" value="${inq_file4}" />
 	 </td>	
-	</tr>	
+	</tr>
 		</c:if>
 	</table>		
+  </form>	
 
 <!-- 회원일때 문의하기 내용 밑에 회원정보 띄우기 -->
 
