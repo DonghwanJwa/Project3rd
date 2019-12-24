@@ -195,7 +195,7 @@
   <div class="new_book_list_item" id="new_book_list">
    <ul id="gradeItemList_all" style="width: 21840px;" class="slide_work_list visible" data-page="1">
     <c:forEach var="book" items="${bookList}">
-     <li class="item_work <%-- open --%>">
+     <li class="item_work <%-- open --%>" data-no="${book.book_no}">
       <div class="new_book_item_work_cover">
       <c:set var="img" value="${book.bookVO.book_cover}" />
       <c:if test="${!empty img}">
@@ -224,6 +224,7 @@
 
 <%-- section open --%>
 <section class="new_book_info <%-- open --%>">
+<%-- ajax로 출력 할 부분 --%>
  <div class="new_book_inner_info">
   <div class="new_book">
    <div class="new_book_title">
@@ -267,6 +268,7 @@
    </div>
   </a>
  </div>
+ <%-- ajax로 출력 할 부분 --%>
 </section>
 
 <%@ include file="../include/footer.jsp"%>

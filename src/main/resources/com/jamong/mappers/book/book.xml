@@ -102,4 +102,11 @@
   ON book.mem_no = m.mem_no
  </select>
  
+ <select id="select_bklist" resultMap="boardMap">
+  SELECT *
+  FROM board b
+  INNER JOIN book book
+  ON b.book_no=#{book_no}
+ </select>
+ 
 </mapper>
