@@ -69,9 +69,9 @@ public class BookController {
 
 		// 메서드 전달인자가 세션에 있는 아이디 값이나, 맴버 번호 값을 가져와서 리스트 검색
 		for (int i = 0; i < bList.size(); i++) {
-			String bl = bList.get(i).getBo_cont();
+			String bl = bList.get(i).getBo_title();
 			String bookList = bl.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			bList.get(i).setBo_cont(bookList);
+			bList.get(i).setBo_title(bookList);
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("mem_nickname", mem_nickname);
@@ -159,27 +159,29 @@ public class BookController {
 		response.setContentType("text/html;charset=UTF-8");
 		session = request.getSession();
 		
-		BookVO bk = (BookVO) session.getAttribute("bk");
-		int book_no = bk.getBook_no();
-		
-		MemberVO m = (MemberVO) session.getAttribute("m");
-		String mem_id = m.getMem_id();
-		
-		List<BoardVO> bList = this.bookService.getBList(mem_id);
-		List<BoardVO> bkList = this.bookService.getBKList(book_no);
-		MemberVO member = this.bookService.getMember(mem_id);
-		String mem_nickname = member.getMem_nickname();
-		String profile_photo = member.getProfile_photo();
-		String profile_cont = member.getProfile_cont();
-		
-		//책 번호와 세션 아이디를 기준으로 보더를 검색해서 책 번호가 있는건 오른쪽 없는건 왼쪽에 표시.
-		//필요한 거:책 커버,책 소개
-		
+//		BookVO bk = (BookVO) session.getAttribute("bk");
+//		int book_no = bk.getBook_no();
+//		
+//		MemberVO m = (MemberVO) session.getAttribute("m");
+//		String mem_id = m.getMem_id();
+//		
+//		List<BoardVO> bList = this.bookService.getBList(mem_id);
+//		List<BoardVO> bkList = this.bookService.getBKList(book_no);
+//		MemberVO member = this.bookService.getMember(mem_id);
+//		String mem_nickname = member.getMem_nickname();
+//		String profile_photo = member.getProfile_photo();
+//		String profile_cont = member.getProfile_cont();
+//		
+//		//책 번호와 세션 아이디를 기준으로 보더를 검색해서 책 번호가 있는건 오른쪽 없는건 왼쪽에 표시.
+//		//필요한 거:책 커버,책 소개
+//		
 		ModelAndView mv = new ModelAndView();
-		
-		mv.addObject("mem_nickname",mem_nickname);
-		mv.addObject("profile_photo",profile_photo);
-		mv.addObject("profile_cont",profile_cont);
+//		
+//		mv.addObject("bList",bList);
+//		mv.addObject("bkList",bkList);
+//		mv.addObject("mem_nickname",mem_nickname);
+//		mv.addObject("profile_photo",profile_photo);
+//		mv.addObject("profile_cont",profile_cont);
 		mv.setViewName("jsp/book_edit");
 
 		return mv;

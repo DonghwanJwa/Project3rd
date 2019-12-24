@@ -71,7 +71,7 @@
     <input type="button" id="post_list_releaseAll" class="btn releaseAll" value="전체 해제">
    </div>
    <ul id="post_list" class="ui-sortable">
-    <c:forEach var="b" items="${bookList}">
+    <c:forEach var="b" items="${bList}">
      <li class="ui-state-default" data-no="${b.bo_no}">
       <label for="chk${b}" class="ckeck_label">
        <input type="checkbox" name ="book_create" id="chk${b}" value="${b.bo_no}" class="check_list">
@@ -104,6 +104,23 @@
     <input type="button" id="create_list_releaseAll" class="btn releaseAll" value="전체 해제">
    </div>
    <ul id="create_list" class="ui-sortable">
+    <c:forEach var="bk" items="${bkList}">
+     <li class="ui-state-default" data-no="${bk.bo_no}">
+      <label for="chk${bk}" class="ckeck_label">
+       <input type="checkbox" name ="book_create" id="chk${bk}" value="${bk.bo_no}" class="check_list">
+       <div class="post_list_cont" data-order="${bk.bo_no}">
+        <div class="post_list_cont_title">
+         <c:if test="${fn:length(bk.bo_title)>20}">
+          ${fn:substring(b.bo_title,0,20)}...
+         </c:if>
+         <c:if test="${fn:length(bk.bo_title)<20}">
+          ${bk.bo_title}
+         </c:if>
+        </div>
+       </div>
+      </label>
+     </li>
+    </c:forEach>
    </ul>
   </div>
   

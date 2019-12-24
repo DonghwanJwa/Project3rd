@@ -116,6 +116,6 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List<BoardVO> getBKList(int book_no) {
-		return null;
+		return this.sqlSession.selectList("select_bklist",book_no);
 	}
 }
