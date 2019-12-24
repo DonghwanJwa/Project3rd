@@ -52,7 +52,7 @@
 									<c:if test="${m.mem_id == mp.mem_id}">
 										<a href="./write" class="profile_button_type subscribe_check">글쓰기</a>
 										 <c:if test="${mp.mem_author == 1}">
-										  <a href="./new_book" class="profile_button_type subscribe_check">책 편집</a>
+										  <a href="./book_create" class="profile_button_type subscribe_check">책 편집</a>
 										 </c:if>
 									</c:if>
 									<c:if test="${mp.mem_author == 1 && m.mem_id != mp.mem_id}">
@@ -71,7 +71,7 @@
 									
 								</div>
 						</dl>
-						<c:if test="${mp.mem_author==2}">
+						<c:if test="${mp.mem_author==1}">
 							<div id="profile_keyword_line">
 								<ul class="profile_keyword_link">
 								<c:forEach items="${mp.mem_keyword.split('/')}" var="tag">
