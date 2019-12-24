@@ -17,4 +17,8 @@ public interface BookService {
 
 	void createBook(HashMap<String, Object> bm);
 
+	List<BookVO> selectBookList(BookVO b);
+
+	List<BoardVO> getBKList(int book_no);
+
 }

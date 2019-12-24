@@ -47,4 +47,14 @@ public class BookServiceImpl implements BookService {
 		this.boardDao.updateBookNo(bm);
 	}
 
+	@Override
+	public List<BookVO> selectBookList(BookVO b) {
+		return this.bookDao.selectBookList(b);
+	}
+
+	@Override
+	public List<BoardVO> getBKList(int book_no) {
+		return this.boardDao.getBKList(book_no);
+	}
+
 }
