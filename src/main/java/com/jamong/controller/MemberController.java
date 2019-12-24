@@ -93,6 +93,12 @@ public class MemberController {
 					m.setMem_fav1(dm.getMem_fav1());
 					m.setMem_fav2(dm.getMem_fav2());
 					m.setMem_fav3(dm.getMem_fav3());
+					m.setMem_phone01(dm.getMem_phone01());
+					m.setMem_phone02(dm.getMem_phone02());
+					m.setMem_phone03(dm.getMem_phone03());
+					m.setEmail_id(dm.getEmail_id());
+					m.setEmail_domain(dm.getEmail_domain());
+					
 					if(dm.getMem_state()==9) {	//관리자일경우 이름값을 저장 ->관리자페이지에서 필요하여 넣었습니다.
 						m.setMem_name(dm.getMem_name());
 					}

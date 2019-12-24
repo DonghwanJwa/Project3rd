@@ -23,18 +23,73 @@ function req_check() {
 	}
 }
 
-$('#req_form_intro').on('keyup', function() {
-	if($(this).val().length > 3000) {
-		alert('띄어쓰기 포함 3000자 이내로 작성해 주세요.');
-		$(this).val($(this).val().substring(0,3000));
-	}
+$(document).ready(function() {
+    $('#req_form_intro').on('keyup', function() {
+    	var cont=$(this).val();
+    	$('#counter1').html("("+cont.length+" / 3000)");
+    	
+        if($(this).val().length > 3000) {
+        	alert('최대 3000자 까지만 입력해주세요.');
+            $(this).val($(this).val().substring(0, 3000));
+            $('#counter1').html("(3000 / 3000)");
+        }
+    });
+    
+    $('#req_form_plan').on('keyup', function() {
+    	var cont=$(this).val();
+    	$('#counter2').html("("+cont.length+" / 3000)");
+    	
+        if($(this).val().length > 3000) {
+        	alert('최대 3000자 까지만 입력해주세요.');
+            $(this).val($(this).val().substring(0, 3000));
+            $('#counter2').html("(3000 / 3000)");
+        }
+    });
 });
-$('#req_form_plan').on('keyup', function() {
-	if($(this).val().length > 3000) {
-		alert('띄어쓰기 포함 3000자 이내로 작성해 주세요.');
-		$(this).val($(this).val().substring(0,3000));
-	}
+
+$(document).ready(function(){ 
+	var fileTarget = $('.req_form_file #aut_file1'); 
+	
+	fileTarget.on('change', function(){ // 값이 변경되면 
+		if(window.FileReader){ // modern browser
+			var filename = $(this)[0].files[0].name; } 
+		else { // old IE 
+			var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+			}
+	
+	// 추출한 파일명 삽입
+	$(this).siblings('#file_name1').val(filename); 
+	}); 
 });
+$(document).ready(function(){ 
+	var fileTarget = $('.req_form_file #aut_file2'); 
+	
+	fileTarget.on('change', function(){ // 값이 변경되면 
+		if(window.FileReader){ // modern browser
+			var filename = $(this)[0].files[0].name; } 
+		else { // old IE 
+			var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+			}
+	
+	// 추출한 파일명 삽입
+	$(this).siblings('#file_name2').val(filename); 
+	}); 
+});
+$(document).ready(function(){ 
+	var fileTarget = $('.req_form_file #aut_file3'); 
+	
+	fileTarget.on('change', function(){ // 값이 변경되면 
+		if(window.FileReader){ // modern browser
+			var filename = $(this)[0].files[0].name; } 
+		else { // old IE 
+			var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+			}
+	
+	// 추출한 파일명 삽입
+	$(this).siblings('#file_name3').val(filename); 
+	}); 
+});
+
 
 </script>
 <form action="request_author_in" onsubmit="return req_check();" method="post" enctype="Multipart/form-data">
@@ -52,7 +107,11 @@ $('#req_form_plan').on('keyup', function() {
 				작가님을 이해하고 앞으로의 활동을 기대할 수 있게 해주세요. 
 			</p>
 			
-			<textarea id="req_form_intro" class="req_form_textarea" name="aut_intro"></textarea>
+			<textarea id="req_form_intro" class="req_form_textarea" name="aut_intro" placeholder="띄어쓰기 포함 3000자 이내로 작성해 주세요."></textarea>
+			<br/>
+			<div class="counter_wrap">
+			<span id="counter1" class="counter">(0 / 3000)</span>
+			</div>
 		</div>
 		
 		<div class="req_form">
@@ -64,7 +123,11 @@ $('#req_form_plan').on('keyup', function() {
 				작가님이 자몽에 싣고 싶은 글에 무엇이 담길지 앞으로의 계획을 알려주세요.
 			</p>
 			
-			<textarea id="req_form_plan" class="req_form_textarea" name="aut_plan"></textarea>
+			<textarea id="req_form_plan" class="req_form_textarea" name="aut_plan"  placeholder="띄어쓰기 포함 3000자 이내로 작성해 주세요."></textarea>
+			<br/>
+			<div class="counter_wrap">
+			<span id="counter2" class="counter">(0 / 3000)</span>
+			</div>
 		</div>
 		
 		<div class="req_form">
@@ -88,8 +151,17 @@ $('#req_form_plan').on('keyup', function() {
 					<%-- <div class="req_form_file_name">파일명.pdf<br/>파일명.png<br/>파일명.jpg</div>
 					<a class="req_form_file_add">파일 추가</a>
 					--%>
+					
+					<input id="file_name1" class="file_name" value="파일선택" disabled="disabled"/>
+					<label for="aut_file1">업로드</label>
 					<input type="file" name="aut_file1" id="aut_file1" class="aut_file" accept=".jpg,.png,.pdf,.doc,.docx,.hwp,.zip"><br/>
+					
+					<input id="file_name2" class="file_name" value="파일선택" disabled="disabled"/>
+					<label for="aut_file2">업로드</label>
 					<input type="file" name="aut_file2" id="aut_file2" class="aut_file" accept=".jpg,.png,.pdf,.doc,.docx,.hwp,.zip"><br/>
+					
+					<input id="file_name3" class="file_name" value="파일선택" disabled="disabled"/>
+					<label for="aut_file3">업로드</label>
 					<input type="file" name="aut_file3" id="aut_file3" class="aut_file" accept=".jpg,.png,.pdf,.doc,.docx,.hwp,.zip">
 				</div>
 			</div>

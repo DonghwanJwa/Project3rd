@@ -30,4 +30,5 @@ public interface MemberService {
 	List<MemberVO> recomAuthor();
 	List<MemberVO> categoryMember();
 	void updateProfile(MemberVO mp);
+	MemberVO author_info(String mem_id);
 }

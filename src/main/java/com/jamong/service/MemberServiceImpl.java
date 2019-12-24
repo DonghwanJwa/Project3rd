@@ -30,6 +30,10 @@ public class MemberServiceImpl implements MemberService {
 		this.memberDao.pass_update(vo);
 	}
 	@Override
+	public MemberVO author_info(String mem_id) {
+		return memberDao.author_info(mem_id);
+	}
+	@Override
 	public MemberVO memberSelect_pwd(MemberVO vo) {
 		return this.memberDao.memberSelect_pwd(vo);
 	}
