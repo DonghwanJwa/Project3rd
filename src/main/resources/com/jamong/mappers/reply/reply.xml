@@ -72,7 +72,7 @@
   INNER JOIN member m
   ON r.mem_no=m.mem_no
   WHERE r.bo_no=#{bo_no}
-  ORDER BY r.rep_ref ASC,r.rep_level
+  ORDER BY rep_ref ASC,CASE WHEN rep_level IN(0) THEN 0 ELSE 1 END,rep_level DESC
  </select>
  
  <delete id="rep_remove">

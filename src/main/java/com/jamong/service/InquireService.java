@@ -16,4 +16,6 @@ public interface InquireService {
 
 	void updateInquire(InquireVO inq);
 
+	InquireVO getFile(int no);
+
 }

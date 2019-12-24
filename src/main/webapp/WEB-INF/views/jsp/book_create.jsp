@@ -6,15 +6,18 @@
 
 <div id="book_create_wrap">
  <div id="book_create_base">
-  <form method="post" action="book_create_ok">
+  <form method="post" action="book_create_ok" enctype="multipart/form-data">
   
   <!-- 책 커버, 책 소개, 작가 정보 표시 -->
   <div id="book_create_info">
    <!-- 책 커버 -->
    <div id="book_create_cover" class="book_create_about_div">
+   <img id="book_create_cover_img">
+   <input id="book_create_cover_imgFile" type="file" name="book_cover" accept="image/*" title="책 커버 이미지"/>
     <div id="book_create_cover_text">
      <div id="book_create_cover_head">
-      <strong id="book_create_cover_title" contenteditable="true">책 제목을 입력하세욘</strong>
+      <strong id="book_create_cover_title" class="title" contenteditable="true"></strong>
+      <textarea name="book_name" id="book_title" style="display:none;"></textarea>
       <span id="book_create_cover_author">
        <i>by&nbsp;</i>${mem_nickname}
       </span>
@@ -29,12 +32,13 @@
    <div id="book_create_intro" class="book_create_about_div">
     <div id="book_create_intro_inner">
      <strong id="book_create_intro_title">브런치북 소개</strong>
-     <p id="book_create_intro_cont" contenteditable="true">
-     </p>
+     <p id="book_create_intro_cont" contenteditable="true"></p>
+     <textarea name="book_preface" id="book_intro_cont" style="display:none;"></textarea>
     </div>
    </div>
    <!-- 작가 정보 -->
    <div id="book_create_author" class="book_create_about_div">
+    <a id="book_create_author_wrap" href="./profile">
     <div id="book_create_author_head"><!-- 작가 소개 상단 ui --></div>
     <div id="book_create_author_main">
      <span id="book_create_author_img">
@@ -55,7 +59,9 @@
       </p>
      </div>
     </div>
+    </a>
    </div>
+   
   </div>
   
 
@@ -112,7 +118,7 @@
   </div>
   
   <div id="create_book">
-   <input type="button" class="btn" onclick="return createCheck()" value="만들기">
+   <input type="submit" class="btn" onclick="return createCheck()" value="만들기">
    <input type="reset" class="btn" value="취소">
   </div>
   </div>

@@ -39,5 +39,10 @@ public class InquireServiceImpl implements InquireService {
 	public void updateInquire(InquireVO inq) {
 		this.inqDao.updateInquire(inq);
 	}
+
+	@Override
+	public InquireVO getFile(int no) {
+		return this.inqDao.getFile(no);
+	}
 	
 }

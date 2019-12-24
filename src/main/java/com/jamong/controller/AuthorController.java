@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,11 +25,15 @@ import com.jamong.service.AuthorService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import mailHandler.MailService;
+
 @Controller
 public class AuthorController {
 
 	@Autowired
 	private AuthorService authorService;
+	@Autowired
+	private MailService mailService;
 	
 	/* 페이지 매핑 */
 	@RequestMapping("request_author")
@@ -74,6 +77,12 @@ public class AuthorController {
 		
 		int maxSize= 1024*1024*50; // 50MB 제한
 		String filePath=request.getServletContext().getRealPath("resources/upload/author/"); // 저장되는 파일 경로
+		File folder=new File(filePath);
+		
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+		
 		String aut_no=Integer.toString(a.getAut_no());
 		
 		String d_filePath=filePath+aut_no;
@@ -225,22 +234,9 @@ public class AuthorController {
 		return null;
 	} // admin_author_info()
 	
-	@RequestMapping("author_file")
-	public ModelAndView author_file(HttpServletRequest request, HttpServletResponse response, int no) throws Exception {
-		List<AuthorVO> fileList=this.authorService.getFileList(no);
-		
-		if(fileList != null) {
-			// 다운로드 알림창이 뜨도록 하기 위해서 컨텐트 타입을 8비트 바이너리로 설정한다.
-			response.setContentType("application/octet-stream");
-			
-		}
-		
-		return null;
-	}
-	
-	
 	@RequestMapping("author_file1")
 	public ModelAndView author_file1(HttpServletRequest request, HttpServletResponse response, int no) throws Exception {
+		
 		AuthorVO a=this.authorService.get_file(no);
 		
 		/*경로제외 파일명*/
@@ -278,6 +274,7 @@ public class AuthorController {
 			
 			FileInputStream in1=new FileInputStream(aut_file1);
 			BufferedInputStream bis=new BufferedInputStream(in1);
+			
 			BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
 			
 			if (aut_file1.isFile() && aut_file1.length() > 0){ 
@@ -426,6 +423,8 @@ public class AuthorController {
 		
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
+		
+		
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
@@ -436,33 +435,38 @@ public class AuthorController {
 			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
 			
 			a=this.authorService.req_info(no);
+			
+			String subject="자몽 작가신청 결과내용입니다.";
+			String to=a.getMemberVO().getEmail_id()+"@"+a.getMemberVO().getEmail_domain();
 
 			if(state.equals("accept")) {
 				
-				this.authorService.acceptAuthor(a);
+				StringBuilder mailCont=new StringBuilder();
+				mailCont.append("<h3 style=\"font-weight:normal\">안녕하세요. "+a.getMemberVO().getMem_nickname()+"님, 글에 꿈을 담다, 자몽입니다.</h3><br/><br/>");
+				mailCont.append("우선 자몽 작가에 신청해주셔서 정말 감사드립니다. 작가님의 신청내역을 꼼꼼히 읽고 내부에서 심사한 결과, <br/><br/>");
+				mailCont.append("<b>회원님의 신청이 승인되어 자몽작가로 선정되었음을 알려드립니다.</b><br/><br/>");
+				mailCont.append("앞으로도 작가님의 자몽 생활을 응원합니다.<br/><br/> 감사합니다.");
 				
-				if (a.getAut_state() != 0) {
-					out.println("<script>");
-					out.println("alert('이미 심사가 완료된 신청입니다.');");
-					out.println("history.back();");
-					out.println("</script>");
-				}else {
-					return new ModelAndView("redirect:/admin_author?page="+page);
-				}
+				this.authorService.acceptAuthor(a);
+				this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, null, request);
+				
+				return new ModelAndView("redirect:/admin_author?page="+page);
 			}else if(state.equals("reject")) {
 				
-				this.authorService.rejectAuthor(a);
+				StringBuilder mailCont=new StringBuilder();
+				mailCont.append("<h3 style=\"font-weight:normal\">안녕하세요. "+a.getMemberVO().getMem_nickname()+"님, 글에 꿈을 담다, 자몽입니다.</h3><br/><br/>");
+				mailCont.append("우선 자몽 작가에 신청해주셔서 정말 감사드립니다. 작가님의 신청내역을 꼼꼼히 읽고 내부에서 심사한 결과, <br/><br/>");
+				mailCont.append("<b>아쉽게도 다음기회에 회원님의 작가활동을 기대해야 할 것 같습니다.</b><br/><br/>");
+				mailCont.append("준비가 되면 언제든 자몽의 문을 두드려주세요!<br/><br/> 감사합니다.");
 				
-				if (a.getAut_state() != 0) {
-					out.println("<script>");
-					out.println("alert('이미 심사가 완료된 신청입니다.');");
-					out.println("history.back();");
-					out.println("</script>");
-				}else {
-					return new ModelAndView("redirect:/admin_author?page="+page);
-				}
+				this.authorService.rejectAuthor(a);
+				this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, null, request);
+				
+				return new ModelAndView("redirect:/admin_author?page="+page);
 			}
 		}
+			
+		
 		return null;
 	}
 	

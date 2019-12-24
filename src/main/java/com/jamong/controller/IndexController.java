@@ -33,7 +33,7 @@ public class IndexController {
 			String htmlText = blist.get(i).getBo_cont();
 			String strippedText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");//태그 모두 없앰
 			String oneSpace = strippedText.replaceAll("&nbsp; "," ");					//&nbsp;를 모두 자바의 띄어쓰기로 바꿈(단어단위로 끊어주는 기능때문에 &nbsp;없애야됨)
-			if(oneSpace.length()>100) {
+			if(oneSpace.length()>200) {
 				String hundredText = oneSpace.substring(0,100);								//100글자만 홈페이지에 노출되도록 변경
 				blist.get(i).setBo_cont(hundredText);
 			}else {

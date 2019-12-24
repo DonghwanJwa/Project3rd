@@ -65,6 +65,13 @@
 	select * from member where email_id=#{email_id} and email_domain=#{email_domain}
 </select>
 
+<!-- 작가에게 제안하기 시작-->
+<select id="author_info" resultType="m">
+	SELECT mem_nickname,profile_photo,email_id,email_domain FROM member where mem_id=#{mem_id}
+</select>
+
+<!-- 작가에게 제안하기 끝 -->
+
 	<!-- 회원정보 업데이트 -->
 <update id="mem_update">
 	update member set 
@@ -170,10 +177,15 @@
   SELECT mem_fav1,mem_fav2,mem_fav3 FROM member WHERE mem_no=#{mem_no}
  </select>
 
+<select id="getAccusee" resultType="m">
+	SELECT * FROM member where mem_no = #{ac_member}
+</select>
+
 <update id="profile_up">
 UPDATE member 
 	SET mem_nickname=#{mem_nickname}, profile_photo=#{profile_photo},
 		profile_cont=#{profile_cont}, mem_keyword=#{mem_keyword},  mem_portfolio=#{mem_portfolio}
 		where mem_id=#{mem_id}
 </update>
+
 </mapper>

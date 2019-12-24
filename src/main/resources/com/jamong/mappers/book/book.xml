@@ -73,22 +73,20 @@
   ORDER BY b.bo_no DESC
  </select>
  
- <insert id="book_in">
+ <insert id="book_in" parameterType="java.util.HashMap">
   INSERT
-  INTO book (book_no,book_name,book_date)
-  VALUES (book_no_seq.nextval,#{book_name},sysdate)
+  INTO book (book_no,book_name,book_cover,book_preface,book_date,mem_no)
+  VALUES (book_no_seq.nextval,#{b.book_name},#{b.book_cover},#{b.book_preface},sysdate,#{b.mem_no})
  </insert>
  
- <select id="book_no" resultType="b">
-  SELECT *
-  FROM board b
-  WHERE b.bo_no=#{bo_no}
- </select> 
+ <select id="book_sel" parameterType="java.util.HashMap" resultType="int">
+  SELECT book_no FROM book WHERE book_name = #{b.book_name} AND mem_no = #{b.mem_no}
+ </select>
  
- <update id="book_no_up">
-  UPDATE board b SET b.book_no = #{book_no}
-  FROM book
-  WHERE b.bo_no = #{bo_no}
+ <update id="book_no_up" parameterType="java.util.HashMap">
+  <foreach collection="bo_no" item="bc" separator=";" open="DECLARE BEGIN" close="; END;">
+   UPDATE board SET book_no = #{book_no} WHERE bo_no=#{bc}
+  </foreach>
  </update>
  
 </mapper>

@@ -41,6 +41,10 @@ public class MemberServiceImpl implements MemberService {
 		this.memberDao.pass_update(vo);
 	}
 	@Override
+	public MemberVO author_info(String mem_id) {
+		return memberDao.author_info(mem_id);
+	}
+	@Override
 	public MemberVO memberSelect_pwd(MemberVO vo) {
 		return this.memberDao.memberSelect_pwd(vo);
 	}
@@ -115,7 +119,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> getSearchMember(HashMap<String, Object> searchMap) {
 		return this.memberDao.getSearchMember(searchMap);
 	}
-	
+
 	@Override
 	public List<MemberVO> recomAuthor() {	
 		return this.memberDao.recomAuthor();
@@ -129,6 +133,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void updateProfile(MemberVO mp) {
 		this.memberDao.updateProfile(mp);
+	}
+
+	@Override
+	public MemberVO getAccusee(int ac_member) {
+		return this.memberDao.getAccusee(ac_member);
 	}
 	
 }

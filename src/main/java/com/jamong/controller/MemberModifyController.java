@@ -76,31 +76,39 @@ public class MemberModifyController {
 		List<CategoryVO> clist = this.categoryService.listCategory();
 		StringBuilder st = new StringBuilder();
 		for(int i=0;i<clist.size();i++) {
-			if(clist.get(i).getCat_name().equals(v.getMem_fav1())) {
-				//Withdrawal 탈퇴 reason 사유
-				st.append("<li class=\"my_info_category-item member_category_check\">");
-				st.append("<span class=\"my_info_category-span\">");
-				st.append(clist.get(i).getCat_name());
-				st.append("</span>");
-				st.append("<input type=\"hidden\" class=\"member_fav1\" name=\"mem_fav1\" value=\"");
-				st.append(clist.get(i).getCat_name()+"\"/>");
-				st.append("</li>");
-			}else if(clist.get(i).getCat_name().equals(v.getMem_fav2())) {
-				st.append("<li class=\"my_info_category-item member_category_check\">");
-				st.append("<span class=\"my_info_category-span\">");
-				st.append(clist.get(i).getCat_name());
-				st.append("</span>");
-				st.append("<input type=\"hidden\" class=\"member_fav2\" name=\"mem_fav2\" value=\"");
-				st.append(clist.get(i).getCat_name()+"\"/>");
-				st.append("</li>");
-			}else if(clist.get(i).getCat_name().equals(v.getMem_fav3())) {
-				st.append("<li class=\"my_info_category-item member_category_check\">");
-				st.append("<span class=\"my_info_category-span\">");
-				st.append(clist.get(i).getCat_name());
-				st.append("</span>");
-				st.append("<input type=\"hidden\" class=\"member_fav3\" name=\"mem_fav3\" value=\"");
-				st.append(clist.get(i).getCat_name()+"\"/>");
-				st.append("</li>");
+			if(v!=null) {
+				if(clist.get(i).getCat_name().equals(v.getMem_fav1())) {
+					st.append("<li class=\"my_info_category-item member_category_check\">");
+					st.append("<span class=\"my_info_category-span\">");
+					st.append(clist.get(i).getCat_name());
+					st.append("</span>");
+					st.append("<input type=\"hidden\" class=\"member_fav1\" name=\"mem_fav1\" value=\"");
+					st.append(clist.get(i).getCat_name()+"\"/>");
+					st.append("</li>");
+				}else if(clist.get(i).getCat_name().equals(v.getMem_fav2())) {
+					st.append("<li class=\"my_info_category-item member_category_check\">");
+					st.append("<span class=\"my_info_category-span\">");
+					st.append(clist.get(i).getCat_name());
+					st.append("</span>");
+					st.append("<input type=\"hidden\" class=\"member_fav2\" name=\"mem_fav2\" value=\"");
+					st.append(clist.get(i).getCat_name()+"\"/>");
+					st.append("</li>");
+				}else if(clist.get(i).getCat_name().equals(v.getMem_fav3())) {
+					st.append("<li class=\"my_info_category-item member_category_check\">");
+					st.append("<span class=\"my_info_category-span\">");
+					st.append(clist.get(i).getCat_name());
+					st.append("</span>");
+					st.append("<input type=\"hidden\" class=\"member_fav3\" name=\"mem_fav3\" value=\"");
+					st.append(clist.get(i).getCat_name()+"\"/>");
+					st.append("</li>");
+				}else {
+					st.append("<li class=\"my_info_category-item\">");
+					st.append("<span class=\"my_info_category-span\">");
+					st.append(clist.get(i).getCat_name());
+					st.append("</span>");
+					st.append("<input type=\"hidden\" value=\""+clist.get(i).getCat_name()+"\"/>");
+					st.append("</li>");
+				}
 			}else {
 			st.append("<li class=\"my_info_category-item\">");
 			st.append("<span class=\"my_info_category-span\">");
@@ -217,7 +225,6 @@ public class MemberModifyController {
 		int re = 1;
 		session = request.getSession();
 		MemberVO m = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
-		System.out.println(me.getMem_pwd());
 		me.setMem_no(m.getMem_no());//엠객체에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
 		me.setMem_pwd(PwdChange.getPassWordToXEMD5String(me.getMem_pwd()));
 		this.memberService.member_pwd_modify(me);//엠이에 디비값을 담는다
@@ -344,14 +351,8 @@ public class MemberModifyController {
 		vo.setEmail_domain(Domain);
 		vo.setMem_name(Name);
 		vo.setMem_id(Id);
-		System.out.println(vo.getEmail_id());
-		System.out.println(vo.getEmail_domain());
-		System.out.println(vo.getMem_name());
+		
 		MemberVO pwd = this.memberService.memberSelect_pwd(vo);
-		System.out.println(pwd.getMem_id());
-		System.out.println(pwd.getEmail_id());
-		System.out.println(pwd.getEmail_domain());
-		System.out.println(pwd.getMem_name());
 		
 		int ran = new Random().nextInt(900000) + 100000;	//100000~999999
 		HttpSession session = request.getSession(true);		

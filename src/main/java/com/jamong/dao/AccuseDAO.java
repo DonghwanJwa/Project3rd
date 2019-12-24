@@ -17,5 +17,9 @@ public interface AccuseDAO {
 
 	void selectRespondent(int ac_member);
 
+	AccuseVO getAccuseMem(int no);
+
+	void updateAccuse(AccuseVO ac);
+
 
 }

@@ -29,5 +29,7 @@ public interface MemberDAO {
 	List<MemberVO> getSearchMember(HashMap<String, Object> searchMap);
 	List<MemberVO> recomAuthor();
 	List<MemberVO> categoryMember();
+	MemberVO getAccusee(int ac_member);
 	void updateProfile(MemberVO mp);
+	MemberVO author_info(String mem_id);
 }

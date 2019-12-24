@@ -12,6 +12,9 @@
   <result column="ac_cont" property="ac_cont" />
   <result column="ac_date" property="ac_date" />
   <result column="ac_item" property="ac_item" />
+  <result column="ac_reply" property="ac_reply" />
+  <result column="ac_sender" property="ac_sender" />
+  <result column="ac_replydate" property="ac_replydate" />
   <result column="ac_state" property="ac_state" />
   <result column="ac_member" property="ac_member" />
   <result column="ac_href" property="ac_href" />
@@ -193,7 +196,7 @@
 </select>
 
 <!-- 신고목록에 신고자 정보 가져오기 -->
-<select id="selectReporter" resultMap="accuseMap">
+<select id="getAccuseMem" resultMap="accuseMap">
 	
 	SELECT ac.ac_no,
 		   ac.ac_reason,
@@ -201,6 +204,12 @@
 		   ac.ac_date,
 		   ac.ac_href,
 		   ac.mem_no,
+		   ac.ac_item,
+		   ac.ac_member,
+		   ac.ac_state,
+		   ac.ac_reply,
+		   ac.ac_sender,
+		   ac.ac_replydate,
 		   m.mem_no,
 		   m.mem_id,
 		   m.mem_name,
@@ -208,32 +217,22 @@
 		   m.mem_birth1,
 		   m.mem_birth2,
 		   m.mem_birth3,
+		   m.mem_phone01,
+		   m.mem_phone02,
+		   m.mem_phone03,
+		   m.email_id,
+		   m.email_domain,
+		   mem_date
 		FROM accuse ac
 		LEFT JOIN member m
 		ON ac.mem_no = m.mem_no
 	 	WHERE ac.ac_no = #{no}
 </select>
 
-<!-- 신고목록에 피신고자 정보 가져오기 -->
-<select id="selectRespondent" resultMap="accuseMap">
-		SELECT ac.ac_no,
-		   ac.ac_reason,
-		   ac.ac_cont,
-		   ac.ac_date,
-		   ac.ac_href,
-		   ac,ac_member,	
-		   ac.mem_no,
-		   m.mem_no,
-		   m.mem_id,
-		   m.mem_name,
-		   m.mem_gender,
-		   m.mem_birth1,
-		   m.mem_birth2,
-		   m.mem_birth3,
-		FROM accuse ac
-		LEFT JOIN member m
-		ON ac.mem_no = m.mem_no
-	 	WHERE ac.ac_no = #{no}
-</select>
 
+<!-- 신고하기 답변시 update 문 -->
+<update id="ac_update">
+	update accuse set ac_state=1,ac_reply=#{ac_reply},ac_sender=#{ac_sender},
+	ac_replydate=sysdate where ac_no=#{ac_no}
+</update>
 </mapper>

@@ -19,7 +19,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private SympathyDAO sympathyDao;
-	
+
 	@Override
 	public void insertBoard(BoardVO b) {
 		this.boardDao.insertBoard(b);
@@ -31,17 +31,17 @@ public class BoardServiceImpl implements BoardService {
 		this.boardDao.updateHit(bo_no);
 		return this.boardDao.getUserBoardCont(bo_no);
 	}
-	
+
 	@Override
 	public List<BoardVO> getListAll(BoardVO b) {
 		return this.boardDao.getListAll(b);
 	}
-	
+
 	@Override
 	public List<BoardVO> recomArticle() {
 		return this.boardDao.recomArticle();
 	}
-	
+
 	@Transactional
 	@Override
 	public int sympathyUp(BoardVO bo) {
@@ -49,7 +49,7 @@ public class BoardServiceImpl implements BoardService {
 		this.boardDao.sympathyUpUpdate(bo);
 		return this.boardDao.sympathyNum(bo);
 	}
-	
+
 	@Transactional
 	@Override
 	public int sympathyDown(BoardVO bo) {
@@ -57,7 +57,7 @@ public class BoardServiceImpl implements BoardService {
 		this.boardDao.sympathyDownUpdate(bo);
 		return this.boardDao.sympathyNum(bo);
 	}	
-	
+
 	@Override
 	public int switchBoardLock(BoardVO bo) {
 		return this.boardDao.switchBoardLock(bo);
@@ -71,6 +71,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> getSearchPost(HashMap<String, Object> searchMap) {
 		return this.boardDao.getSearchPost(searchMap);
+	}
+
+	@Override
+	public List<BoardVO> getSearchScrollPost(HashMap<String, Object> searchMap) {
+		return this.boardDao.getSearchScrollPost(searchMap);
 	}
 
 	@Override
@@ -91,11 +96,21 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> getProfile(int mem_no) {
 		return this.boardDao.getProfile(mem_no);
-  }
-  
+	}
+
+	@Override
+	public void articleDelete(int bo_no) {
+		this.boardDao.articleDelete(bo_no);
+	}
+
 	@Override
 	public List<BoardVO> getUserBoardContList(int mem_no) {
 		return this.boardDao.getUserBoardContList(mem_no);
+	}
+
+	@Override
+	public void updateBoard(HashMap<String, Object> bm) {
+		this.boardDao.updateBoard(bm);
 	}
 
 }

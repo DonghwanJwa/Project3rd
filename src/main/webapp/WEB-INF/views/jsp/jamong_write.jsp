@@ -30,6 +30,7 @@
   <div id="write_min-wrap" style="min-width:940px;">
    <!-- 타이틀 부분 -->
    <div id="write_title" style="height:450px;">
+   
     <div id="write_title_cover_img" style="height:250px;"></div>
     <div id="write_title_area_bg" style="height:250px;"></div>
      <div id="write_background_change_btn">
