@@ -68,20 +68,7 @@ function inq(){
 		comSubmit.submit();
 	}
 	
-	/** 첨부파일 추가가 4개까지만 가능하게 하는 js  -with 좌욷**/
-		function fn_addFile(){
-			for(var i=1;i<=4;i++){
-				if(!$('#fileinput').children().hasClass('file_'+i)){
-					var str = "<p class='file_"+i+"'><input type='file' name='file_"+i+"' class='inq_inp_file'><a href='#this' class='btn' name='delete'>삭제</p></a>";
-					$("#fileinput").append(str);
-					$("a[name='delete']").on("click",function(e){
-						e.preventDefault();
-						fn_deletefile($(this));
-					});
-					return false;
-				}
-			}
-		}
+	
 		
 		function fn_deletefile(obj){
 			obj.parent().remove();
@@ -119,5 +106,66 @@ $(document).ready(function(){
 	});	
 	});
 	
+	
+	/* 파일 업로드 */
+	$(document).ready(function(){ 
+		var fileTarget = $('.inq_wrap_upload #inq_file1'); 
+		
+		fileTarget.on('change', function(){ // 값이 변경되면 
+			if(window.FileReader){ // modern browser
+				var filename = $(this)[0].files[0].name; } 
+			else { // old IE 
+				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+				}
+		
+		// 추출한 파일명 삽입
+		$(this).siblings('#file_name1').val(filename); 
+		}); 
+	});
+	
+	$(document).ready(function(){ 
+		var fileTarget = $('.inq_wrap_upload #inq_file2'); 
+		
+		fileTarget.on('change', function(){ // 값이 변경되면 
+			if(window.FileReader){ // modern browser
+				var filename = $(this)[0].files[0].name; } 
+			else { // old IE 
+				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+				}
+		
+		// 추출한 파일명 삽입
+		$(this).siblings('#file_name2').val(filename); 
+		}); 
+	});
+	
+	$(document).ready(function(){ 
+		var fileTarget = $('.inq_wrap_upload #inq_file3'); 
+		
+		fileTarget.on('change', function(){ // 값이 변경되면 
+			if(window.FileReader){ // modern browser
+				var filename = $(this)[0].files[0].name; } 
+			else { // old IE 
+				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+				}
+		
+		// 추출한 파일명 삽입
+		$(this).siblings('#file_name3').val(filename); 
+		}); 
+	});
+	
+	$(document).ready(function(){ 
+		var fileTarget = $('.inq_wrap_upload #inq_file4'); 
+		
+		fileTarget.on('change', function(){ // 값이 변경되면 
+			if(window.FileReader){ // modern browser
+				var filename = $(this)[0].files[0].name; } 
+			else { // old IE 
+				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+				}
+		
+		// 추출한 파일명 삽입
+		$(this).siblings('#file_name4').val(filename); 
+		}); 
+	});
 
 	

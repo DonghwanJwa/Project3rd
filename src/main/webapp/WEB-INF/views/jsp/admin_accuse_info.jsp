@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/admin_accuse_info.css"/>
 <script src="/jamong.com/resources/js/admin_accuse_info.js"></script>
 <div class="wrap-loading" style="display:none">
- <div>
+ <div>	
   <img src="/jamong.com/resources/img/loading1.gif" />
  </div>
 </div>
@@ -51,6 +51,18 @@
 			${a.memberVO.email_id}@${a.memberVO.email_domain}
 		</td>	
 	</tr>
+	
+	<tr>
+		<th colspan="6" align="center" style="height:50px;">
+			신고한페이지 URL
+		</th>
+	</tr>
+	<tr>
+		<td colspan="6" id="adm_ac_url" style="height:50px;">
+			<a href="${a.ac_href}">신고한 페이지 이동</a>
+		</td>
+	</tr>
+	
 	
 	<tr>
 		<th colspan="6" align="center" style="height:50px;">

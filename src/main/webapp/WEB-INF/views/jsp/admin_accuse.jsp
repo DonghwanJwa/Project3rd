@@ -26,15 +26,15 @@
      	 	<td align="center" class="ac_list_underline">
      	 	  ${a.ac_no}
      	 	</td>
-     	 	<td align="center" class="inq_list_underline">
+     	 	<td align="center" class="ac_list_underline">
      	 		${a.ac_reason}
      	 	</td>
      	 	
-     	 	<td align="center" class="inq_list_underline">
+     	 	<td align="center" class="ac_list_underline" id="ac_cont_td">
      	 	  ${a.ac_cont}
      	 	</td>
     
-     	 	<td align="center" class="inq_list_underline">
+     	 	<td align="center" class="ac_list_underline">
      	 	  <c:if test="${a.ac_item == 1}">
      	 	  	<font color="blue">회원신고</font>
      	 	  </c:if>
@@ -43,11 +43,11 @@
      	 	  </c:if>
      	 	</td>
  
-     	 	<td align="center" class="inq_list_underline">
+     	 	<td align="center" class="ac_list_underline">
      	 	  ${a.ac_date}
      	 	</td>
  
-     	 	<td align="center" class="inq_list_underline">
+     	 	<td align="center" class="ac_list_underline">
      	 	  <c:if test="${a.ac_state == 1}">
      	 	  	<font color="blue">처리완료</font>
      	 	  </c:if>
@@ -68,7 +68,7 @@
      
      <%--페이징 구간--%>
      <tr>
-     	<td colspan="6" align="center" id="inq_paging">
+     	<td colspan="6" align="center" id="ac_paging">
      	<%--전체리스트 (검색전) --%>
      	<c:if test="${(empty search_field) && (empty search_field_item) && (empty search_field_handling) && (empty search_field_info)}">
      		<c:if test="${page<=1}">

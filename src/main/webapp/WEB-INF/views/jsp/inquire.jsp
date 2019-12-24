@@ -121,17 +121,28 @@
   	     </label>
   	    </dt>
   	    <dd id="inq_file_list">
+  	     
   	     <div class="inq_wrap_upload" id="fileinput">
-  	      <span class="inq_text_placeholder">첨부파일 추가</span>
-  	      
-  	      <span class="inq_iso_cs"></span>
-  	     <p class="file_1">
-  	      <input class="inq_inp_file" name="file_1" type="file">
-  	     </p>
-  	    </div>
+  	       
+  	     	<input id="file_name1" class="file_name" value="파일선택" disabled="disabled"/>  	      	
+  	     	<label for="inq_file1">업로드</label>
+  	      	<input type="file" class="inq_inp_file" name="inq_file1" id="inq_file1" accept=".jpg,.gif,.psd,.png,.tif,.zip,.ms office,.hwp,.pdf">	
+  	     	
+  	     	<input id="file_name2" class="file_name" value="파일선택" disabled="disabled"/>  	      	
+  	     	<label for="inq_file2">업로드</label>
+  	      	<input type="file" class="inq_inp_file" name="inq_file2" id="inq_file2" accept=".jpg,.gif,.psd,.png,.tif,.zip,.ms office,.hwp,.pdf">	
+  	     	
+  	     	<input id="file_name3" class="file_name" value="파일선택" disabled="disabled"/>  	      	
+  	     	<label for="inq_file3">업로드</label>
+  	      	<input type="file" class="inq_inp_file" name="inq_file3" id="inq_file3" accept=".jpg,.gif,.psd,.png,.tif,.zip,.ms office,.hwp,.pdf">	
+  	     	
+  	     	<input id="file_name4" class="file_name" value="파일선택" disabled="disabled"/>  	      	
+  	     	<label for="inq_file4">업로드</label>
+  	      	<input type="file" class="inq_inp_file" name="inq_file4" id="inq_file4" accept=".jpg,.gif,.psd,.png,.tif,.zip,.ms office,.hwp,.pdf">	
+  	     	
+  	     </div>
   	  
   	  	<br/><br/>
-  	  	<a href="#this" class="btn" id="addfile">파일추가</a>
   	     <p class="inq_desc_info">
   	     첨부파일은 최대 4개, 각 10MB까지 등록 가능하며
   	     <br>

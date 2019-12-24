@@ -30,7 +30,7 @@
      	 		${i.inq_item1}
      	 	</td>
      	 	
-     	 	<td align="center" class="inq_list_underline">
+     	 	<td align="center" class="inq_list_underline" id="inq_cont_td">
      	 	  ${i.inq_cont}
      	 	</td>
     
