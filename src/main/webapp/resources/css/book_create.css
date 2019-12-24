@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+a{
+	text-decoration: none;
+	color: #333333;
+}
+
 #book_create_wrap {
 	
 }
@@ -16,8 +21,15 @@
 .book_create_about_div {
 	box-shadow: 4px 4px 7px #c0c0c0;
 }
+#book_create_info{
+	display:flex;
+	width:940px;
+	margin-top:100px;
+}
+
 /* 책 커버 */
 #book_create_cover {
+	background-color:#fedb9a;
 	position: relative;
 	display: inline-block;
 	height: 430px;
@@ -25,6 +37,17 @@
 	border-radius: 2px 6px 6px 2px;
 	overflow: hidden;
 	margin-right: 20px;
+}
+#book_create_cover_img{
+	height: 430px;
+	width: 300px;
+	object-fit:cover;
+	fiter:brightness(50%);
+	background-repeat: no-repeat;
+}
+
+#book_create_cover_imgFile{
+	display:none;
 }
 
 #book_create_cover_text {
@@ -54,6 +77,16 @@
 	font-size: 23px;
 	height: 150px;
 }
+#book_create_cover_title:empty::before{
+	content:"제목을 \A 입력하세요";
+	white-space:pre;
+	line-height:1.35;
+	font-size:23px;
+	cursor: text;
+	color: #ccc;
+	font-family: 'NanumMyeongjo','serif';
+	opacity: 1;
+}
 
 #book_create_cover_author {
 	display: block;
@@ -73,6 +106,7 @@
 	font-size: 16px;
 	color: #fff;
 	font-weight: bold;
+	text-shadow: 0 0 3px #333;
 }
 
 #book_create_cover_line {
@@ -101,6 +135,104 @@
 	height: 100%;
 	background: rgba(0, 0, 0, .05);
 	content: '';
+}
+
+/* 책 소개 */
+#book_create_intro {
+	width: 240px;
+	height: 390px;
+	border: 1px solid #c4c4c4;
+	margin-right: 20px;
+	padding: 40px 30px 0;
+}
+
+#book_create_intro_inner {
+	position: relative;
+}
+
+#book_create_intro_title {
+	padding: 0 20px 15px;
+	font-size: 15px;
+	line-height: 19px;
+}
+
+#book_create_intro_cont {
+	margin-top: 30px;
+	word-break: break-all;
+	word-wrap: break-word;
+	font-size: 13px;
+	line-height: 23px;
+	color: #666;
+}
+#book_create_intro_cont:empty::before{
+	content:"책 소개를 입력하세요";
+	font-size:13px;
+	cursor: text;
+	color: #ccc;
+	font-family: 'NanumMyeongjo','serif';
+	opacity: 1;
+}
+
+#book_create_author_desc {
+	margin-top: 20px;
+}
+
+#book_create_author_name {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 24px;
+	color: #333;
+}
+
+#book_create_author_intro {
+	margin-top: 20px;
+}
+
+#book_create_author_intro_cont {
+	word-break: break-all;
+	word-wrap: break-word;
+	font-size: 13px;
+	line-height: 22px;
+	color: #666;
+}
+/* 저자 소개 */
+#book_create_author {
+	width: 300px;
+	height: 430px;
+	border: 1px solid #c4c4c4;
+}
+
+#book_create_author_wrap {
+	display: inline-block;
+	width: 300px;
+	height: 430px;
+}
+
+#book_create_author_head {
+	height: 97px;
+	background-color: RGB(245, 124, 104);
+}
+
+#book_create_author_main {
+	position: relative;
+	padding: 40px 30px 0;
+}
+
+#book_create_author_img {
+	position: absolute;
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+	border-radius: 50%;
+	top: -43px;
+	right: 33px;
+}
+
+#book_create_author_img img {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
 }
 
 /* 글 리스트 */

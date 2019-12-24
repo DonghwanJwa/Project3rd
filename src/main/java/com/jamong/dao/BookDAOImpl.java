@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.BookVO;
+import com.jamong.domain.MemberVO;
 
 @Repository
 public class BookDAOImpl implements BookDAO {
@@ -27,18 +28,18 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public void insertBook(BookVO b) {
-		this.sqlSession.insert("book_in",b);
+	public MemberVO getMember(String mem_id) {
+		return this.sqlSession.selectOne("mem_myinfo",mem_id);
 	}
 
 	@Override
-	public void book_noSEL(String bo_no) {
-		this.sqlSession.selectList("book_no", bo_no);
+	public void insertBook(HashMap<String, Object> bm) {
+		this.sqlSession.insert("book_in",bm);
 	}
 
 	@Override
-	public void book_noUP(int book_no) {
-		this.sqlSession.update("book_no_up",book_no);
+	public int selectBookNo(HashMap<String, Object> bm) {
+		return this.sqlSession.selectOne("book_sel",bm);
 	}
 
 }
