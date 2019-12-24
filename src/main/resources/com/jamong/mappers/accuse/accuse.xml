@@ -54,8 +54,8 @@
  
 <!-- 신고접수 -->
 <insert id="insert_acc">
- insert into accuse(ac_no,ac_reason,ac_cont,ac_item,ac_date,mem_no,ac_member)
- values(ac_no_seq.nextval,#{ac_reason},#{ac_cont},#{ac_item},sysdate,#{mem_no},#{ac_member})
+ insert into accuse(ac_no,ac_reason,ac_cont,ac_item,ac_date,mem_no,ac_member,ac_href)
+ values(ac_no_seq.nextval,#{ac_reason},#{ac_cont},#{ac_item},sysdate,#{mem_no},#{ac_member},#{ac_href})
 </insert>
 
 <!-- 신고 개수 -->

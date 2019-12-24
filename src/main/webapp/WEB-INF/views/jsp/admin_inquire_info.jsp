@@ -81,10 +81,10 @@
 	 </tr>
 	 <tr>
 	  <td colspan="6" id="adm_inq_field" style="height:175px;">
-		<input type="submit" value="${inq_file1}" onclick="javascript:inq_file_form.action='inquireFile1';" />
-		<input type="submit" value="${inq_file2}" />
-		<input type="submit" value="${inq_file3}" />
-		<input type="submit" value="${inq_file4}" />
+		<input type="submit" value="${fileName1}" onclick="javascript:inq_file_form.action='inquireFile1';" />
+		<input type="submit" value="${fileName2}" onclick="javascript:inq_file_form.action='inquireFile2';"/>
+		<input type="submit" value="${fileName3}" onclick="javascript:inq_file_form.action='inquireFile3';"/>
+		<input type="submit" value="${fileName4}" onclick="javascript:inq_file_form.action='inquireFile4';"/>
 	 </td>	
 	</tr>
 		</c:if>

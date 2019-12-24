@@ -55,6 +55,7 @@ public class AccuseController {
 		
 		String ac_cont=request.getParameter("ac_cont");
 		String ac_reason=request.getParameter("ac_reason");
+		String ac_href=request.getParameter("ac_href");
 		int ac_item= Integer.parseInt(request.getParameter("ac_item"));
 		//하늘아.. Integer.parseInt에 바로 ac_item을 넣는게 아니라 parameter를 가지고 와서 넣어야지...
 		
@@ -67,11 +68,14 @@ public class AccuseController {
 		MemberVO mem=this.memberService.get(ac_member);
 		int mem_no=mem.getMem_no();
 		
+		a.setAc_href(ref);
 		a.setAc_member(mem_no);
 		a.setAc_cont(ac_cont);			//신고내용
 		a.setAc_reason(ac_reason);		//신고사유(버튼)
 		a.setAc_item(ac_item);			//신고페이지(1-프로필,2-글읽기)
 		a.setMem_no(user.getMem_no());	//신고자 NO값 
+		
+		m.addObject("ac_href",ac_href);
 		
 		this.accuseService.insertAccuse(a);
 	
@@ -101,8 +105,6 @@ public class AccuseController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
-			//this.accuseService.selectReporter();
-			//this.accuseService.selectRespondent();
 			
 			int page=1;
 			int limit=10;
@@ -240,7 +242,7 @@ public class AccuseController {
 			this.accuseService.updateAccuse(ac);
 			
 			/*신고 메일 보내기*/		
-			String subject = "안녕하세요.자몽입니다. 문의드린 사항에 대한 답변을 드립니다.";
+			String subject = "안녕하세요.자몽입니다. 신고하신 사항에 대한 답변을 드립니다.";
 			StringBuilder sb = new StringBuilder();
 			sb.append("<h3 style=\"font-weight:normal\">");
 			sb.append(ac_reply);
