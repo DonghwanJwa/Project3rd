@@ -22,7 +22,7 @@
      
      <c:if test="${!empty alist}">
      	<c:forEach var="a" items="${alist}">   	 	
-     	 <tr onclick="location.href='/jamong.com/admin_accuse_info?no=${a.ac_no}&page=${page}'">
+     	 <tr onclick="location.href='/jamong.com/admin_accuse_info?no=${a.ac_no}&page=${page}'" class="ac_adm_tr">
      	 	<td align="center" class="ac_list_underline">
      	 	  ${a.ac_no}
      	 	</td>
@@ -133,23 +133,23 @@
   </table>
  </div>
 
-	<div id="ac_search_interface">
+	 <div id="ac_search_interface">
 	   <div class="select">
 		<select name="search_field" id="search_field" style="margin-right:5px;">
 			<option value="all"  selected>
 				회원구분
 			</option>
-			<option value="신고자" <c:if test="${search_field == '회원'}">${'selected'}</c:if>>
+			<option value="신고자" <c:if test="${search_field == '신고자'}">${'selected'}</c:if>>
 				신고자
 			</option>
-			<option value="피신고자" <c:if test="${search_field == '비회원'}">${'selected'}</c:if>>
-				피신고자
+			<option value="피신고인" <c:if test="${search_field == '피신고인'}">${'selected'}</c:if>>
+				피신고인
 			</option>
 		</select>
 	   </div>
 		
 	   <div class="select">
-		<select name="search_field_acc" id="search_field_acc" style="margin-right:5px;">
+		<select name="search_field_acc" id="search_field_acc" style="margin-right:5px;height:24.4px;">
 			<option value="all" selected>
 			  신고구분
 			</option>
@@ -221,10 +221,10 @@
 			<option value="Phone" <c:if test="${search_field_info == 'a.memberVO.mem_phone'}">${'selected'}</c:if>>
 				Phone
 			</option>
-			<option value="Email" <c:if test="${search_field_info == 'a.memberVO.mem_email}">${'selected'}</c:if>>
+			<option value="Email" <c:if test="${search_field_info == 'a.memberVO.mem_email'}">${'selected'}</c:if>>
 				Email
 			</option>
-		</select>	
+		</select>
 	  
 		<!-- 검색 DIV -->
 		<input name="search_name" id="search_name" size="15" value="${search_name}" />

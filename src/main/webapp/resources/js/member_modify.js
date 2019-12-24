@@ -89,12 +89,6 @@ $("#member_modify_next_btn").click(function() {
 		return false;
 	}
 	
-	if ($.trim($('#member_modify_select_gender option:selected').val())=='성별') {
-		$('#member_modify_error_birth').text('성별을 선택해 주세요!');
-		$("#member_modify_select_gender").focus();
-		return false;
-	}
-		
 	if ($.trim($('#member_modify_email').val())=="") {
 		$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
 		$("#member_modify_email").val("").focus();
@@ -129,7 +123,7 @@ $("#member_modify_next_btn").click(function() {
 		$("#member_modify_tel3").focus();
 		return false;
 	}
-});
+	
 
 
 //생년월일,전화번호 숫자만 받도록
@@ -147,66 +141,6 @@ $(".number2Only").on("focus", function() {//포커스되었을때
 	$(this).val($(this).val().replace(/[^0-9]/g,""));//숫자가 아닌존재들을 지움
 });
 
-
-//비밀번호 검사
-$("#member_modify_pass").on("focusout", function() {
-	if ($.trim($('#member_modify_pass').val())=="") {
-		$('#member_modify_error_pass').text('비밀번호를 입력해주세요!');
-		return false;
-	}
-
-	if($.trim($('#member_modify_pass').val()).length<8 || $.trim($('#member_modify_pass').val()).length>50){
-		$('#member_modify_error_pass').text('8자이상으로 설정해주세요!');
-		return false;
-	}
-	if(!regExpPw.test($("#member_modify_pass").val())){ 
-		$('#member_modify_error_pass').text('영문,숫자,특수문자의 조합으로 입력해주세요!');
-		return false; 
-	}
-	if($("#member_modify_id").val() == $("#member_modify_pass").val()){ 
-		$('#member_modify_error_pass').text('아이디와 비밀번호가 같습니다');
-		return false; 
-	}
-	$('#member_modify_error_pass').text('');
-}).on("keyup", function(key) {
-	if ($.trim($('#member_modify_pass').val())=="") {
-		$('#member_modify_error_pass').text('비밀번호를 입력해주세요!');
-		return false;
-	}
-
-	if($.trim($('#member_modify_pass').val()).length<8 || $.trim($('#member_modify_pass').val()).length>50){
-		$('#member_modify_error_pass').text('8자이상으로 설정해주세요!');
-		return false;
-	}
-	if(!regExpPw.test($("#member_modify_pass").val())){ 
-		$('#member_modify_error_pass').text('영문,숫자,특수문자의 조합으로 입력해주세요!');
-		return false; 
-	}
-	if($("#member_modify_id").val() == $("#member_modify_pass").val()){ 
-		$('#member_modify_error_pass').text('아이디와 비밀번호가 같습니다');
-		return false; 
-	}
-	/*$.ajax({					//이전에 사용한 비밀번호는 재사용 못하게 막는 코드 실험해봐야함
-        type:"POST",
-        url:"member_modify_ok", 
-        data: {"member_modify_pass":member_modify_pass},  			//좌측 id 피라미터 이름에 우측 $mem_id변수값을 저장
-        datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
-        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
-      	  if(data==1){	//중복 아이디가 있다면
-      		$('#member_modify_error_pass').text('이전에 사용한 비밀번호 입니다!');
-          	return false;
-      	  }  
-        },
-    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
-    		  alert("data error");
-    	  }
-      });*/
-	$('#member_modify_error_pass').text('');
-	
-	if (key.keyCode == 13) {
-		$("#member_modify_pass_check").focus();
-	}
-});
 
 //이름 유효성 검증
 $('#member_modify_name').on("focusout", function() {
@@ -349,68 +283,6 @@ $('#member_modify_birth_date').on("focusout", function() {
 	}
 });
 
-//성별 유효성 검증
-$('#member_modify_select_gender').on("focus", function() {
-	if ($.trim($('#member_modify_select_gender option:selected').val())=='성별') {
-		$('#member_modify_error_birth').text('성별을 선택해 주세요!');
-		return false;
-	}
-	$('#member_modify_error_birth').text('');
-}).on("focusout", function() {
-	if ($.trim($('#member_modify_select_gender option:selected').val())=='성별') {
-		$('#member_modify_error_bir qth').text('성별을 선택해 주세요!');
-		return false;
-	}
-	$('#member_modify_error_birth').text('');
-}).on("keyup", function(key) {
-	if (key.keyCode == 13) {
-		$('#member_modify_email').focus();
-	}
-});
-
-//이메일 id 유효성 검증
-$('#member_modify_email').on("focusout", function() {
-	if ($.trim($('#member_modify_email').val())=="") {
-		$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
-		return false;
-	}
-}).on("keyup", function(key) {
-	if ($.trim($('#member_modify_email').val())=="") {
-		$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
-		return false;
-	}
-	$('#member_modify_error_email_domain').text('');
-	if (key.keyCode == 13) {
-		$('#member_modify_email_datalist').focus();
-	}
-});
-
-//이메일 도메인 유효성 검증
-$('#member_modify_email_datalist').on("focusout", function() {
-	if ($.trim($('#member_modify_email_datalist').val())=="") {
-		$('#member_modify_error_email_domain').text('도메인을 입력해주세요!');
-		return false;
-	}
-	
-	if (!emailCheck.test($('#member_modify_email_datalist').val())) {
-		$('#member_modify_error_email_domain').text('도메인을 입력해주세요!');
-		return false;
-	}
-}).on("keyup", function(key) {
-	if ($.trim($('#member_modify_email_datalist').val())=="") {
-		$('#member_modify_error_email_domain').text('도메인을 입력해주세요!');
-		return false;
-	}
-	
-	if (!emailCheck.test($('#member_modify_email_datalist').val())) {
-		$('#member_modify_error_email_domain').text('도메인을 입력해주세요!');
-		return false;
-	}
-	$('#member_modify_error_email_domain').text('');
-	if (key.keyCode == 13) {
-		$('#member_modify_tel1').focus();
-	}
-});
 //핸드폰 번호1
 $('#member_modify_tel1').on("focusout", function() {
 	if ($.trim($('#member_modify_tel1').val())=="") {
@@ -461,24 +333,38 @@ $('#member_modify_tel3').on("focusout", function() {
 		$("#member_modify_next_btn").trigger("click");
 	}
 });
-
-$("#member_modify_before_btn2").click(function() {
-	if($("#member_modify_page1").css ("display") == "none"){
-		$("#member_modify_page2").hide();
-		$("#member_modify_sequence_list2").hide('membership_step');
-		$("#member_modify_page1").show();
-		$("#member_modify_sequence_list1").addClass('membership_step');
-		$("#member_modify_sequence_list1").show('membership_step');
-
-	}
+	
 });
 
-//이메일 인증 단계 복구해야됨!!
-$(function(){
-	//이메일 인증 버튼 클릭시 발생하는 이벤트 
+//이메일 수정하기 전에 인증버튼 없어짐
+$('#member_modify_email').on("focusout", function() {
+	if ($.trim($('#member_modify_email').val())=="") {
+		$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
+		return false;
+	}
+}).on("keyup", function(key) {
+
+	$('#member_modify_certified_btn').css("visibility","visible");
+	$('#member_modify_certified_btn').attr("disabled",true);
+	$('#member_modify_certified_btn').css("cursor","pointer");
+	$('#member_modify_emailcheck_div').css("display","none");
+	$('#member_modify_emailcheck_btn').attr('disabled', false);
+	$('#member_modify_email').css('border-bottom','1px solid orange');
+	$('#member_modify_email_datalist').css('border-bottom','1px solid orange');
+	$('#member_modify_certified_btn').css('border','2px solid orange');
+	
+	if ($.trim($('#member_modify_email').val())=="") {
+		$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
+		return false;
+	}
+	$('#find_pass_error_email').text('');
+});
+
+//회원정보수정 페이지에서  이메일 수정 아작스
 	$(document).on("click", "#member_modify_certified_btn", function(){
 		var email = $.trim($('#member_modify_email').val());				//이메일값
 		var domain = $.trim($('#member_modify_email_datalist').val());	//도메인값
+		
 		$('#member_modify_error_email_domain').text('');
 		
 		if (email=="") {
@@ -493,38 +379,30 @@ $(function(){
 			$('#member_modify_error_email_domain').text('도메인을 입력해주세요!');
 			return false;
 		}
-		//이메일 중복 다시체크
-		$.ajax({
-	        type:"POST",
-	        url:"modify_emailcheck", 
-	        data: {"email":email,"domain":domain},  				
-	        datatype:"int",					
-	        success: function (data) {		
-	      	  if(data==1){	
-	      		$('#member_modify_error_email_domain').text('중복이메일 입니다!');
-	          	return false;
-	      	  }  
-	      	  	$('#member_modify_error_email_domain').text('');
-	        },
-	    	  error:function(){
-	    		  alert("data error");
-	    	  }
-	      });
 		
-		//이메일 중복 체크 후 메일 발송 비동기 처리 
+		//이메일 중복체크
 		$.ajax({
 			type:"POST",
 			url : "modify_emailCert",
 			data : {"email": email,"domain":domain},
+			 datatype:"int",	
 			success : function(data){
+		      	if(data==1){
+		      		//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
+		      		//readonly false면 값변경이 가능
+		      		//disabled 태그 속성 활성화 false 비활성화
+		      		//#01ea137a 확인된 곳엔 색 주기
 				alert("입력하신 이메일로 인증번호가 발송되었습니다. 인증번호를 입력해주세요.");
 				$('#member_modify_certified_btn').attr("disabled",true);//disabled 태그 속성 활성화 true
+				$('#member_modify_certified_btn').css('cursor','default');
 				$('#member_modify_emailcheck').val('');//이메일 인증체크 디브를 공백으로 만들어줌
 				$('#member_modify_emailcheck').attr('readonly',false);
-				//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
-				//readonly false면 값변경이 가능
-				//disabled 태그 속성 활성화 false 비활성화
 				$('#member_modify_emailcheck_btn').attr('disabled',false);
+				$('#member_modify_email').css('border-bottom','1px solid #01ea137a');
+				$('#member_modify_email_datalist').css('border-bottom','1px solid #01ea137a');
+				$('#member_modify_certified_btn').css('border','2px solid #01ea137a');
+				$("#member_modify_emailcheck_div").css("display","block");
+		      	}
 			},
 			beforeSend:function(){
 			        //(이미지 보여주기 처리)
@@ -538,9 +416,29 @@ $(function(){
 				alert("에러가 발생했습니다.");
 				return false;
 			}
-		})
-		$('#member_modify_emailcheck_div').show();
+		});
+	});//회원정보수정 페이지에서  이메일 수정 아작스
+	
+	
+	$('#member_modify_email').on("focusout", function() {
+		if ($.trim($('#member_modify_email').val())=="") {
+			$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
+			return false;
+		}
+	}).on("keyup", function(key) {
+
+		$('#member_modify_certified_btn').attr("disabled",false);
+		$('#member_modify_emailcheck_div').css("display","none");
+		$('#member_modify_emailcheck_btn').attr('disabled', true);
+		
+		if ($.trim($('#member_modify_email').val())=="") {
+			$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
+			return false;
+		}
+		$('#find_pass_error_email').text('');
+	
 	});
+
 	//이메일 인증번호 입력 후 확인 버튼 클릭 이벤트
 	$(document).on("click", "#member_modify_emailcheck_btn", function(){
 		var authCode = $('#member_modify_emailcheck').val();
@@ -550,11 +448,13 @@ $(function(){
 			data:{"authCode":authCode},
 			success:function(data){
 				if(data=="complete"){
-					alert("인증이 완료되었습니다.");
-					$('#member_modify_email_flag').val('2');
+					alert("이메일 인증과 수정이 완료되었습니다.");
 					$('#member_modify_next_btn').attr('disabled', false);//수정완료버튼 비활성화
 					$('#member_modify_emailcheck').attr('readonly',true);//이메일 체크 못쓰게함
 					$('#member_modify_emailcheck_btn').attr('disabled',true);//확인버튼 활성화
+					$('#member_modify_emailcheck').css('border-bottom','1px solid #01ea137a');
+					$('#member_modify_emailcheck_btn').css('border','2px solid #01ea137a');
+					$('#member_modify_emailcheck_btn').css('cursor','default');
 					sessionStorage.removeItem('authCode');
 					//sessionStorage.removeItem('authCode'); 란 세션스토리지에 저장되어 있는 인증번호값을 리무브아이템으로 
 					//세션에 저장된 인증번호 값을 지운다 인증이 다 끝났으니깐 안지우면 다시 받을 때 문제가 될 것 같다.
@@ -574,13 +474,15 @@ $(function(){
 				alert("에러가 발생했습니다.");
 			}
 		});
-	});
-});
+	});//이메일 인증번호 입력 후 확인 버튼 클릭 이벤트
+
 $("#member_modify_pwd_modify").click(function(){
-	if($(".hide_box").css("visibility","hidden")){
-		$(".hide_box").css("visibility","visible");
-	}	
-});
+	if($(".hide_box").css("display") == "none"){
+		$(".hide_box").show();
+	}else{
+			$(".hide_box").hide();
+	}
+});//비밀번호 변경 박스
 
 $(document).on("click", "#member_pwd_modify", function(){
 	
@@ -664,9 +566,10 @@ $(document).on("click", "#member_pwd_modify", function(){
 			if(data==1){
 				alert("비밀번호 수정완료");
 				$("#member_pwd_modify").attr("disabled",true);
-				$("#member_pwd_modify").css("border","2px solid gray");
+				$('#member_modify_pass').css('border-bottom','1px solid #01ea137a');
+				$('#member_modify_pass_check').css('border-bottom','1px solid #01ea137a');
+				$("#member_pwd_modify").css("border","2px solid #01ea137a");
 				$("#member_pwd_modify").css("cursor","default");
-				
 				$("#member_modify_pass").attr("readonly",true)
 				$("#member_modify_pass_check").attr("readonly",true)
 			}
@@ -676,5 +579,10 @@ $(document).on("click", "#member_pwd_modify", function(){
 		}
 	});
 });
+document.addEventListener('keydown', function(event) {//엔터키 서브밋 막기 이벤트
+	  if (event.keyCode === 13) {
+	    event.preventDefault();
+	  };
+	}, true);
 });
 

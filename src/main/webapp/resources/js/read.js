@@ -6,6 +6,26 @@ var replyIndex = 0;
 
 getSympathyState();
 
+function ArticleRemove(){
+	var para = document.location.href.split("/");
+	var removeOK = confirm('게시글을 삭제하시겠습니까?');
+	
+	if(removeOK == true){
+		$.ajax({
+			type : "POST",
+			url : "/jamong.com/artdel/"+para[5],
+			success : function(data){
+				if(data == 1){
+					alert('게시글이 삭제되었습니다!');
+					location.href = "/jamong.com/new_posts";
+				}else if(data == 2){
+					alert('로그인이 필요합니다!');
+				}
+			}
+		});
+	}
+}
+
 function CommentRemove(e){
 	var rep_no = $(e.target).data("no");
 	var removeOK = confirm('댓글을 삭제하시겠습니까?');
@@ -60,7 +80,7 @@ function addReply(e){
 			data:{"rep_cont":rep_cont,
 				"rep_ref":rep_ref,
 				"rep_step":rep_step,
-				"rep_level":rep_level,	
+				"rep_level":rep_level,
 			},
 			url:"/jamong.com/reply/"+para[5],
 			success:function(data){
@@ -215,7 +235,6 @@ $(document).ready(function(){
 	$('.rep_textarea').keydown(function(e){
 		if(e.keyCode == '8'){
 			if(($(".rep_textarea p:first-child").text() == "" && $(".rep_textarea p").length == 1)){
-				console.log('이건 잘 됨');
 				return false;
 			}// if
 		}

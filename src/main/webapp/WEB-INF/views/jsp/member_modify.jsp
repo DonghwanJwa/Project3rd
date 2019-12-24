@@ -43,9 +43,9 @@
 					<th>생년월일</th>
 					<td>
 						<span id="member_modify_birth_span"> 
-							<input placeholder="년" value="${vo.mem_birth1 }" class="member_modify_text birth" id="member_modify_birth_year" name="mem_birth1" maxlength="4"> 년 
-							<input placeholder="월" value="${vo.mem_birth2 }" class="member_modify_text birth" id="member_modify_birth_month" name="mem_birth2" maxlength="2"> 월 
-							<input placeholder="일" value="${vo.mem_birth3 }" class="member_modify_text birth" id="member_modify_birth_date" name="mem_birth3"  maxlength="2"> 일 
+							<input placeholder="년" value="${vo.mem_birth1 }" class="member_modify_text birth number2Only" id="member_modify_birth_year" name="mem_birth1" maxlength="4"> 년 
+							<input placeholder="월" value="${vo.mem_birth2 }" class="member_modify_text birth number2Only" id="member_modify_birth_month" name="mem_birth2" maxlength="2"> 월 
+							<input placeholder="일" value="${vo.mem_birth3 }" class="member_modify_text birth number2Only" id="member_modify_birth_date" name="mem_birth3"  maxlength="2"> 일 
 						</span> 
 						<div class="member_modify_error"id="member_modify_error_birth"></div>
 					</td>
@@ -56,9 +56,9 @@
 					<td>
 						<div id="member_modify_tel_color">
 							<div class="member_modify_tel_hover_focus">
-								  <input class="member_modify_text tel" id="member_modify_tel1" value="${vo.mem_phone01 }" name="mem_phone01" placeholder="010" maxlength="3" 
-								> - <input class="member_modify_text tel" id="member_modify_tel2" value="${vo.mem_phone02 }" name="mem_phone02" placeholder="0000" maxlength="4" 
-								> - <input class="member_modify_text tel" id="member_modify_tel3" value="${vo.mem_phone03 }" name="mem_phone03" placeholder="0000" maxlength="4" >
+								  <input class="member_modify_text tel number2Only" id="member_modify_tel1" value="${vo.mem_phone01 }" name="mem_phone01" placeholder="010" maxlength="3" 
+								> - <input class="member_modify_text tel number2Only" id="member_modify_tel2" value="${vo.mem_phone02 }" name="mem_phone02" placeholder="0000" maxlength="4" 
+								> - <input class="member_modify_text tel number2Only" id="member_modify_tel3" value="${vo.mem_phone03 }" name="mem_phone03" placeholder="0000" maxlength="4" >
 							</div>
 							<div class="member_modify_error" id="member_modify_error_tel"></div>
 						</div>
@@ -79,7 +79,7 @@
 							<option value="gmail.com">
 							<option value="nate.com">
 						</datalist>
-						<button type="button" id="member_modify_certified_btn" >인증</button>
+						<button type="button" id="member_modify_certified_btn" disabled="disabled">인증</button>
 						<div class="member_modify_error"id="member_modify_error_email_domain"></div>
 					</td>
 					</tr>
@@ -89,7 +89,7 @@
 					<td>
 					<!-- style="display:none;" -->
 						<!-- 인증번호 확인란 이름바꾸고 css 가져와야하고 인증 기능 넣어야함 -->
-					<div id="member_modify_emailcheck_div" style="display:none;">
+					<div id="member_modify_emailcheck_div">
 						<input type="text" placeholder="인증번호 입력란" maxlength="6" class="member_modify_text emailcheck" id="member_modify_emailcheck"/>
 						<button type="button" id="member_modify_emailcheck_btn" >확인</button>
 					<div class="member_modify_error" id="member_modify_error_email_check"></div>
@@ -125,7 +125,7 @@
 						</table>
 						</div>
 						<div id="member_modify_next_btn_div">
-						<div id="member_modify_p"><p>* 이메일이 수정되었을 시 인증을 다시 받아주세요 </p></div>
+						<div id="member_modify_p"><p>* 이메일이 수정되었을 때 인증버튼이 활성화됩니다 </p></div>
 						<input type="submit" id="member_modify_next_btn"  value="수정완료" />
 						</div>
 				</div>

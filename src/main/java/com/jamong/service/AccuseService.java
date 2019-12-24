@@ -13,6 +13,16 @@ public interface AccuseService {
 
 	List<AccuseVO> getAccuseList(AccuseVO a);
 
+	void selectReporter(int mem_no);
+
+	void selectRespondent(int ac_member);
+
+	AccuseVO getAccuseMem(int no);
+
+	void updateAccuse(AccuseVO ac);
+
+
+
 	
 
 }

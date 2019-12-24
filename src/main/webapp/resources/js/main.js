@@ -44,6 +44,9 @@ function scrollmove(whereScroll,howMove){
 
 /*메뉴바 Best,Hot 페이징버튼*/
 function hotscroll(where,number){
+	if($('.best-scroll').attr("data-disabled")=='true'){
+		return false;
+	}
 	scrollAmount = 0; 
 	var hotContainer = document.getElementById("head-page-"+where+"-list-frame");
 	var hotScrollMove = $("#head-page-"+where+"-list-frame").width();/* 사진 1장의 가로길이 */
@@ -62,6 +65,10 @@ function hotscroll(where,number){
 	},1);
 	$('.best-scroll').children().removeClass();
 	$('.head-item-scroll-link'+number).children('span').addClass("head-checked");
+	$('.best-scroll').attr("data-disabled",'true');
+	setTimeout(function(){
+		$('.best-scroll').attr("data-disabled",'false');
+	},1000);
 	
 }
 

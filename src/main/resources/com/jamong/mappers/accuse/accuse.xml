@@ -6,12 +6,15 @@
 <mapper namespace="accuse">
 
 <!-- Join 하기 -->
- <resultMap type="ac" id="inquireMap">
+ <resultMap type="ac" id="accuseMap">
   <id column="ac_no" property="ac_no" />
   <result column="ac_reason" property="ac_reason" />
   <result column="ac_cont" property="ac_cont" />
   <result column="ac_date" property="ac_date" />
   <result column="ac_item" property="ac_item" />
+  <result column="ac_reply" property="ac_reply" />
+  <result column="ac_sender" property="ac_sender" />
+  <result column="ac_replydate" property="ac_replydate" />
   <result column="ac_state" property="ac_state" />
   <result column="ac_member" property="ac_member" />
   <result column="ac_href" property="ac_href" />
@@ -57,21 +60,179 @@
 
 <!-- 신고 개수 -->
 <select id="AccuseCount" resultType="int">
- select count(ac_no) from accuse
- 
- 	<where>
- 	
- 	</where>
+	SELECT COUNT(AC_NO) FROM (SELECT accuse.* FROM accuse ORDER BY ac_no DESC) ac
+	INNER JOIN member m
+	<if test="search_field == 'all' or search_field == null">
+	ON ac.mem_no = m.mem_no
+	</if>
+	<if test="search_field == '신고자'">
+	ON ac.mem_no = m.mem_no	
+	</if>
+	<if test="search_field == '피신고인'">
+	ON ac.ac_member = m.mem_no
+	</if>
+
+	<where>
+ 		<if test="search_field_acc == 'all'"></if>
+ 		<if test="search_field_acc == '회원신고'">
+ 			and ac.ac_item=1
+ 		</if>
+ 		<if test="search_field_acc == '게시물신고'">
+ 			and ac.ac_item=2
+ 		</if>
+ 		
+ 		<if test="search_field_item == 'all'"></if>
+ 		<if test="search_field_item == '영리목적/홍보성'">
+ 			and ac.ac_reason='영리목적/홍보성'
+ 		</if>
+ 		<if test="search_field_item == '불법정보'">
+ 			and ac.ac_reason='불법정보'
+ 		</if>
+ 		<if test="search_field_item == '욕설/인신공격'">
+ 			and ac.ac_reason='욕설/인신공격'
+ 		</if> 
+ 		<if test="search_field_item == '음란/선정성'">
+ 			and ac.ac_reason='음란/선정성'
+ 		</if>
+ 		<if test="search_field_item == '개인정보노출'">
+ 			and ac.ac_reason='개인정보노출'
+ 		</if>
+ 		<if test="search_field_item == '같은내용도배'">
+ 			and ac.ac_reason='같은내용도배'
+ 		</if>
+ 		<if test="search_field_item == '권리침해신고'">
+ 			and ac.ac_reason='권리침해신고'
+ 		</if>
+ 		<if test="search_field_item == '기타'">
+ 			and ac.ac_reason='기타'
+ 		</if>
+ 		
+ 		<if test="search_field_handling == 'all'"></if>
+ 		<if test="search_field_handling == '처리완료'">
+ 			and ac.ac_state=1
+ 		</if>
+ 		<if test="search_field_handling == '처리대기'">
+ 			and ac.ac_state=0
+ 		</if>
+ 		
+ 		<if test="search_field_info == 'all'"></if>
+ 		<if test="search_field_info == 'ID'">
+ 			and m.mem_id like #{search_name}
+ 		</if>
+ 		<if test="search_field_info == '내용'">
+ 			and ac.ac_cont like #{search_name}
+ 		</if>
+	</where>
 </select>
 
 <!-- 신고 목록 -->
 <select id="getAccuseList" resultType="ac">
-	select * from (select rowNum rNum,ac_no,ac_reason,ac_cont,ac_item,ac_date,mem_no,ac_state
-	from (select * from accuse
-	
+	SELECT * FROM (SELECT rowNum rNum,ac_no,ac_member,ac_reason,ac_cont,ac_item,ac_date,mem_no,ac_state
+	FROM (SELECT accuse.* FROM accuse ORDER BY ac_no DESC)) ac
+	INNER JOIN member m
+	<if test="search_field == 'all' or search_field == null">
+	ON ac.mem_no = m.mem_no
+	</if>
+	<if test="search_field == '신고자'">
+	ON ac.mem_no = m.mem_no	
+	</if>
+	<if test="search_field == '피신고인'">
+	ON ac.ac_member = m.mem_no
+	</if>
+
 	<where>
-	
+ 		<if test="search_field_acc == 'all'"></if>
+ 		<if test="search_field_acc == '회원신고'">
+ 			and ac.ac_item=1
+ 		</if>
+ 		<if test="search_field_acc == '게시물신고'">
+ 			and ac.ac_item=2
+ 		</if>
+ 		
+ 		<if test="search_field_item == 'all'"></if>
+ 		<if test="search_field_item == '영리목적/홍보성'">
+ 			and ac.ac_reason='영리목적/홍보성'
+ 		</if>
+ 		<if test="search_field_item == '불법정보'">
+ 			and ac.ac_reason='불법정보'
+ 		</if>
+ 		<if test="search_field_item == '욕설/인신공격'">
+ 			and ac.ac_reason='욕설/인신공격'
+ 		</if> 
+ 		<if test="search_field_item == '음란/선정성'">
+ 			and ac.ac_reason='음란/선정성'
+ 		</if>
+ 		<if test="search_field_item == '개인정보노출'">
+ 			and ac.ac_reason='개인정보노출'
+ 		</if>
+ 		<if test="search_field_item == '같은내용도배'">
+ 			and ac.ac_reason='같은내용도배'
+ 		</if>
+ 		<if test="search_field_item == '권리침해신고'">
+ 			and ac.ac_reason='권리침해신고'
+ 		</if>
+ 		<if test="search_field_item == '기타'">
+ 			and ac.ac_reason='기타'
+ 		</if>
+ 		
+ 		<if test="search_field_handling == 'all'"></if>
+ 		<if test="search_field_handling == '처리완료'">
+ 			and ac.ac_state=1
+ 		</if>
+ 		<if test="search_field_handling == '처리대기'">
+ 			and ac.ac_state=0
+ 		</if>
+ 		
+ 		<if test="search_field_info == 'all'"></if>
+ 		<if test="search_field_info == 'ID'">
+ 			and m.mem_id like #{search_name}
+ 		</if>
+ 		<if test="search_field_info == '내용'">
+ 			and ac.ac_cont like #{search_name}
+ 		</if>
+ 		and rNum &gt; = #{startrow} and rNum &lt;= #{endrow}
 	</where>
-	order by ac_date desc)) where rNum &gt; = #{startrow} and rNum &lt;= #{endrow}
+	order by ac.ac_date desc
 </select>
+
+<!-- 신고목록에 신고자 정보 가져오기 -->
+<select id="getAccuseMem" resultMap="accuseMap">
+	
+	SELECT ac.ac_no,
+		   ac.ac_reason,
+		   ac.ac_cont,
+		   ac.ac_date,
+		   ac.ac_href,
+		   ac.mem_no,
+		   ac.ac_item,
+		   ac.ac_member,
+		   ac.ac_state,
+		   ac.ac_reply,
+		   ac.ac_sender,
+		   ac.ac_replydate,
+		   m.mem_no,
+		   m.mem_id,
+		   m.mem_name,
+		   m.mem_gender,
+		   m.mem_birth1,
+		   m.mem_birth2,
+		   m.mem_birth3,
+		   m.mem_phone01,
+		   m.mem_phone02,
+		   m.mem_phone03,
+		   m.email_id,
+		   m.email_domain,
+		   mem_date
+		FROM accuse ac
+		LEFT JOIN member m
+		ON ac.mem_no = m.mem_no
+	 	WHERE ac.ac_no = #{no}
+</select>
+
+
+<!-- 신고하기 답변시 update 문 -->
+<update id="ac_update">
+	update accuse set ac_state=1,ac_reply=#{ac_reply},ac_sender=#{ac_sender},
+	ac_replydate=sysdate where ac_no=#{ac_no}
+</update>
 </mapper>

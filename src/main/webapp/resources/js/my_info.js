@@ -49,6 +49,11 @@ $(document).on("click",".link_close",function(){
 			
 			var my_info_leave_text_id = $("#my_info_leave_text_id").val();
 			
+			if($('#leaveagree').is(":checked") == false){
+				$('#my_info_check_error').text('안내사항에 동의해 주세요');
+				$('#leaveagree').focus();
+				return false;
+			}
 			$.ajax({
 				type:"POST",
 				url:"Withdrawal_ok",
@@ -66,6 +71,31 @@ $(document).on("click",".link_close",function(){
 				error:function(){
 					alert("data error");
 				}
-			});
+		});
 	});
+	
+		$("#my_info_before_btn").click(function(){
+			var mem_fav1 =	$("input[name=mem_fav1]").val();
+			var mem_fav2 =	$("input[name=mem_fav2]").val();
+			var mem_fav3 =	$("input[name=mem_fav3]").val();
+			
+			$.ajax({
+				type:"post",
+				url:"cat_modify_ok",
+				data: {"mem_fav1":mem_fav1,"mem_fav2":mem_fav2,"mem_fav3":mem_fav3},
+				datatype:"int",
+				success: function (data){
+					if(data==1){
+						alert("카테고리가 수정되었습니다");
+					}else{
+						alert("로그인 시간이 만료되었습니다. 다시 로그인 해주세요")
+						window.location.replace("/jamong.com/login");
+					}
+				},
+				error:function(){
+					alert("data error");
+				}
+			});
+		});
+
 });

@@ -30,4 +30,27 @@ public class AccuseDAOImpl implements AccuseDAO {
 	public List<AccuseVO> getAccuseList(AccuseVO a) {
 		return this.sqlSession.selectList("getAccuseList",a);
 	}
+
+	@Override
+	public void selectReporter(int mem_no) {
+		this.sqlSession.selectOne("selectReporter",mem_no);
+		
+	}
+
+	@Override
+	public void selectRespondent(int ac_member) {
+		this.sqlSession.selectOne("selectRespondent",ac_member);
+	}
+
+	@Override
+	public AccuseVO getAccuseMem(int no) {
+		return this.sqlSession.selectOne("getAccuseMem",no);
+	}
+
+	@Override
+	public void updateAccuse(AccuseVO ac) {
+		this.sqlSession.update("ac_update",ac);
+		
+	}
+
 }

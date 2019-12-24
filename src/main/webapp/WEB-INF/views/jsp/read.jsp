@@ -117,7 +117,7 @@
          <c:if test="${bo.memberVO.mem_no == m.mem_no}">
        		<div id="edit_del_wrap">
    				<i class="user_edit_btn" title="글 수정" onclick="location.href='/jamong.com/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
-   				<i class="user_del_btn" title="글 삭제"></i>
+   				<i class="user_del_btn" title="글 삭제" onclick="ArticleRemove();"></i>
    			</div>
    		 </c:if>
     <div class="write_cont_area write_cont_align_left" style="min-height:300px;">
@@ -238,7 +238,6 @@
 			</div>
 		</div>
 		
-		<%-- 댓글 쓰기 form으로 감싸기 --%>
 
 		<div class="clear"></div>
 		

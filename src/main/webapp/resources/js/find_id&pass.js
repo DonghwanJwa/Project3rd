@@ -167,7 +167,7 @@ $(function(){
 		});
 	});
 	
-	//	이메일 id 유효성 검증//추후 복구해야됨!!!!
+	//이메일이 수정되면 박스를 닫고 다시 인증을 받아야 함
 	$('#find_id_pass_email').on("focusout", function() {
 		if ($.trim($('#find_id_pass_email').val())=="") {
 			$('#find_pass_error_email').text('이메일을 입력해주세요!');
