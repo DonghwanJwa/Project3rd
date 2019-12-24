@@ -175,7 +175,7 @@
 	background-color: orange;
 	color: white;
 }
-#member_modify_emailcheck_div{
+.member_modify_emailcheck_div{
 	display: none;
 }
 

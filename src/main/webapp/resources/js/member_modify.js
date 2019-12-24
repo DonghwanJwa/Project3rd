@@ -10,10 +10,11 @@ var getmonth_date= RegExp(/^[0-9]{1,2}$/); 				//월,일
 var getName= RegExp(/^[가-힣]+$/);						//이름
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
 
+
 $(document).ready(function(){
 $("#member_modify_next_btn").click(function() {
 	var member_modify_pass = $("#member_modify_pass").val();
-	
+	confirm('수정하시겠습니까?');
 
 	if ($.trim($('#member_modify_name').val())=="") {
 		$('#member_modify_error_name').text('이름을 입력해주세요!');
@@ -205,6 +206,7 @@ $('#member_modify_birth_year').on("focusout", function() {
 	if (key.keyCode == 13) {
 		$('#member_modify_birth_month').focus();
 	}
+	
 });
 
 //생년월일 : 월 유효성검증
@@ -347,7 +349,7 @@ $('#member_modify_email').on("focusout", function() {
 	$('#member_modify_certified_btn').css("visibility","visible");
 	$('#member_modify_certified_btn').attr("disabled",true);
 	$('#member_modify_certified_btn').css("cursor","pointer");
-	$('#member_modify_emailcheck_div').css("display","none");
+	$('.member_modify_emailcheck_div').css("display","none");
 	$('#member_modify_emailcheck_btn').attr('disabled', false);
 	$('#member_modify_email').css('border-bottom','1px solid orange');
 	$('#member_modify_email_datalist').css('border-bottom','1px solid orange');
@@ -401,7 +403,7 @@ $('#member_modify_email').on("focusout", function() {
 				$('#member_modify_email').css('border-bottom','1px solid #01ea137a');
 				$('#member_modify_email_datalist').css('border-bottom','1px solid #01ea137a');
 				$('#member_modify_certified_btn').css('border','2px solid #01ea137a');
-				$("#member_modify_emailcheck_div").css("display","block");
+				$(".member_modify_emailcheck_div").css("display","block");
 		      	}
 			},
 			beforeSend:function(){
@@ -428,7 +430,7 @@ $('#member_modify_email').on("focusout", function() {
 	}).on("keyup", function(key) {
 
 		$('#member_modify_certified_btn').attr("disabled",false);
-		$('#member_modify_emailcheck_div').css("display","none");
+		$('.member_modify_emailcheck_div').css("display","none");
 		$('#member_modify_emailcheck_btn').attr('disabled', true);
 		
 		if ($.trim($('#member_modify_email').val())=="") {
@@ -579,6 +581,7 @@ $(document).on("click", "#member_pwd_modify", function(){
 		}
 	});
 });
+
 document.addEventListener('keydown', function(event) {//엔터키 서브밋 막기 이벤트
 	  if (event.keyCode === 13) {
 	    event.preventDefault();
