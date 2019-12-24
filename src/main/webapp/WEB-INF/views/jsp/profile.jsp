@@ -45,24 +45,30 @@
 							<dd>
 								<a><b class="profile_line profile_font_size">구독자</b> <span
 									class="profile_line_num"
-								></span></a>
+								>${subCount}</span></a>
 							<dd>
 								<div id="profile_button">
 									<%--해당되는 아이디로 로그인 했을때 --%>
 									<c:if test="${m.mem_id == mp.mem_id}">
 										<a href="./write" class="profile_button_type subscribe_check">글쓰기</a>
-										 <c:if test="${mp.mem_author == 2}">
+										 <c:if test="${mp.mem_author == 1}">
 										  <a href="./new_book" class="profile_button_type subscribe_check">책 편집</a>
 										 </c:if>
 									</c:if>
-									<c:if test="${mp.mem_author == 2 && m.mem_id != mp.mem_id}">
+									<c:if test="${mp.mem_author == 1 && m.mem_id != mp.mem_id}">
 										<a href="./offer_author" class="profile_button_type">제안하기</a>
 									</c:if>
-									<c:if test="${m.mem_id != mp.mem_id}">
+									<c:if test="${m.mem_id != mp.mem_id }">
 										<span>
+										 	<c:if test="${sub.sub_member != m.mem_no || empty sub}">
 											<button class="profile_button_type2">구독하기</button>
+											</c:if>
+											<c:if test="${sub.sub_member == m.mem_no && !empty sub}">
+											<button class="profile_button_type2 p_follow">구독중</button>
+											</c:if>
 										</span>
 									</c:if>
+									
 								</div>
 						</dl>
 						<c:if test="${mp.mem_author==2}">
@@ -74,24 +80,6 @@
 									>${tag}</a></li>
 								
 								</c:forEach>
-								<%--	<li><a href="new_posts"
-										class="profile_button_keyword profile_line"
-									>문화</a></li>
-									<li><a href="new_posts"
-										class="profile_button_keyword profile_line"
-									>영화</a></li>
-									<li><a href="new_posts"
-										class="profile_button_keyword profile_line"
-									>편집장</a></li>
-									<li><a href="new_posts"
-										class="profile_button_keyword profile_line"
-									>칼럼니스트</a></li>
-									<li><a href="new_posts"
-										class="profile_button_keyword profile_line"
-									>에디터</a></li>
-									<li><a href="new_posts"
-										class="profile_button_keyword profile_line"
-									>키노라이츠</a></li>--%>
 								</ul>
 							</div>
 						</c:if>
@@ -126,7 +114,7 @@
 					<strong class="profile_font_size">소개</strong>
 					<p class="profile_font_size">${mp.profile_cont}</p>
 				</div>
-				<c:if test="${mp.mem_author == 2 && mp.mem_portfolio != null}">
+				<c:if test="${mp.mem_author == 1 && mp.mem_portfolio != null}">
 					<p class="profile_font_size">
 						<strong>기타 이력 및 포트폴리오</strong> ${portfolio}
 					</p>

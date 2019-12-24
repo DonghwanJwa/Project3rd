@@ -4,7 +4,9 @@ package com.jamong.controller;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.SubscribeVO;
 import com.jamong.service.BoardService;
 import com.jamong.service.MemberService;
+import com.jamong.service.SubscribeService;
 import com.oreilly.servlet.MultipartRequest;
 
 import mailHandler.MailService;
@@ -39,7 +43,9 @@ public class MemberController {
 	private BoardService boardService;
 	@Autowired
 	private MailService mailService;
-		
+	@Autowired
+	private SubscribeService subService;
+	
 	@RequestMapping("login/{page}")
 	public String user_login(@PathVariable("page") int page,Model mo,
 			HttpServletRequest request,
@@ -275,13 +281,27 @@ public class MemberController {
 		PrintWriter out =response.getWriter();
 		session = request.getSession();
 		
+		MemberVO m = (MemberVO)session.getAttribute("m");
 		
 		ModelAndView mv=new ModelAndView("jsp/profile");
 			mp = this.memberService.profileCheck(mem_id);
+			// 구독자 
+			
+			SubscribeVO sub = null;
+			
+			HashMap<String,Object>  submap= new HashMap<>();
+			if(m != null) {
+			submap.put("sub_member", m.getMem_no());
+			submap.put("mem_no", mp.getMem_no());
+
+			sub=this.subService.subCheck(submap);
+			}
+			int subCount = this.subService.subCount(mp.getMem_no());
 			// 포트폴리오 항목 띄어쓰기 적용되게
 //			if(mp.getMem_portfolio() != null){
 //			String portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
 //			}
+//			mv.addObject(portfolio);
 				
 			List<BoardVO> mplist = this.boardService.getProfile(mp.getMem_no());
 			
@@ -293,9 +313,9 @@ public class MemberController {
 			
 			mv.addObject("mplist",mplist);
 			mv.addObject("mp",mp);
-//			mv.addObject(portfolio);
-		return mv;
-//			return null;
+			mv.addObject("sub",sub);
+			mv.addObject("subCount",subCount);
+			return mv;
 	}//user_profile() => 유저 프로필 창
 
 	
