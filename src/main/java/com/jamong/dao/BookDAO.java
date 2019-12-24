@@ -5,17 +5,18 @@ import java.util.List;
 
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.BookVO;
+import com.jamong.domain.MemberVO;
 
 public interface BookDAO {
 
 	List<BoardVO> getBList(String mem_id);
 
-	void insertBook(BookVO b);
+	void insertBook(HashMap<String, Object> bm);
 
 	List<BookVO> getSearchBook(HashMap<String, Object> searchMap);
 
-	void book_noSEL(String bo_no);
+	MemberVO getMember(String mem_id);
 
-	void book_noUP(int book_no);
+	int selectBookNo(HashMap<String, Object> bm);
 
 }

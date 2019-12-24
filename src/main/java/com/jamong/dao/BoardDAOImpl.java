@@ -94,4 +94,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return this.sqlSession.selectList("profileList",mem_no);
 	}
 
+	@Override
+	public void updateBookNo(HashMap<String, Object> bm) {
+		this.sqlSession.update("book_no_up",bm);
+	}
+
 }

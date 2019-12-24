@@ -7,13 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jamong.dao.BoardDAO;
 import com.jamong.dao.BookDAO;
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.BookVO;
+import com.jamong.domain.MemberVO;
 
 @Service
 public class BookServiceImpl implements BookService {
 
+	@Autowired
+	private BoardDAO boardDao;
+	
 	@Autowired
 	private BookDAO bookDao;
 
@@ -27,18 +32,19 @@ public class BookServiceImpl implements BookService {
 		return this.bookDao.getSearchBook(searchMap);
 	}
 
+
 	@Override
-	public void insertBook(BookVO b) {
-		this.bookDao.insertBook(b);
+	public MemberVO getMember(String mem_id) {
+		return this.bookDao.getMember(mem_id);
 	}
 	
 	@Transactional
 	@Override
-	public void book_noUP(String bo_no) {
-		BookVO book = new BookVO();
-		int book_no = book.getBook_no();
-		this.bookDao.book_noSEL(bo_no);
-		this.bookDao.book_noUP(book_no);
+	public void createBook(HashMap<String, Object> bm) {
+		this.bookDao.insertBook(bm);
+		int book_no = this.bookDao.selectBookNo(bm);
+		bm.put("book_no",book_no);
+		this.boardDao.updateBookNo(bm);
 	}
 
 }
