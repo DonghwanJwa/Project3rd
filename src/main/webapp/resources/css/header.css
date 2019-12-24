@@ -623,10 +623,10 @@ body{
 	
 }
 #head-profile-service-wrap{
-	height:269.5px;
-	width:200px;
-	margin-top:40px;
-	border-bottom: 0.5px solid #d4d4d4;
+	height: 279.5px;
+    width: 200px;
+    margin-top: 30px;
+    border-bottom: 0.5px solid #d4d4d4;
 }
 #head-profile-service-wrap ul{
 	list-style: none;
@@ -666,7 +666,7 @@ body{
 
 #head-profile-service-hr{ /*프로필 중앙선 li*/
 	padding:10px 0;
-	margin:30px 20px !important;
+	margin:20px 20px !important;
 }
 
 .head-profile-service-bar{
