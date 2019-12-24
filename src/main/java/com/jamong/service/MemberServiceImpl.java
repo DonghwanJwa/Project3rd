@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jamong.dao.BoardDAO;
 import com.jamong.dao.MemberDAO;
 import com.jamong.dao.SympathyDAO;
 import com.jamong.domain.BoardVO;

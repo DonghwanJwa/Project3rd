@@ -214,9 +214,8 @@ public class MemberModifyController {
 		this.memberService.memberUpdate(me);//엠이에 디비값을 담는다
 		out.print("<script>");
 		out.print("alert('수정되었습니다');");
-		out.print("location='login/2';");
+		out.print("location='my_info';");
 		out.print("</script>");
-		session.invalidate();
 		return null;
 	}//member_modify_ok()
 	
