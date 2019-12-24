@@ -205,4 +205,9 @@
 			update inquire set inq_state=1,inq_reply=#{inq_reply},inq_sender=#{inq_sender},
 			inq_replydate=sysdate where inq_no=#{inq_no}
 		</update>
+		
+		<!-- 파일 다운로드문 -->
+		<select id="getFile" resultType="inq">
+			select inq_file1,inq_file2,inq_file3,inq_file4 from inquire where inq_no=#{no}
+		</select>
 </mapper>

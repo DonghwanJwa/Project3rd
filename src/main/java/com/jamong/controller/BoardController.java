@@ -54,8 +54,6 @@ public class BoardController {
 	@Autowired
 	private BookService bookService;
 
-
-
 	@RequestMapping("@{mem_id}/{bo_no}")
 	public String user_readCont(@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo, Model model,
 			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
@@ -213,6 +211,8 @@ public class BoardController {
 		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
 		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
+		
+		int flag = Integer.parseInt(multi.getParameter("thumb_remove"));
 
 		MemberVO m = (MemberVO) session.getAttribute("m");
 		int mem_no = m.getMem_no();
@@ -245,11 +245,15 @@ public class BoardController {
 
 			b.setBo_thumbnail(fileDBName);
 		} // if => 파일이 있을 때
-
+		
+		if(flag == 1) {
+			b.setBo_color("1");
+		}else if(flag == 0) {
+			b.setBo_color(bo_color);			
+		}
 		b.setBo_title(bo_title);
 		b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont);
-		b.setBo_color(bo_color);
 		b.setBo_titlespace(bo_titlespace);
 		b.setBo_lock(bo_lock);
 		b.setBo_type(bo_type);
@@ -259,7 +263,7 @@ public class BoardController {
 		this.boardService.insertBoard(b);
 
 		out.println("<script>");
-		out.println("alert('글이 등록되었습니다!')");
+		out.println("alert('게시글이 등록되었습니다!')");
 		out.println("location='/jamong.com/';");
 		out.println("</script>");
 
@@ -337,7 +341,7 @@ public class BoardController {
 		if(m != null) {
 			this.boardService.updateBoard(bm);
 			out.println("<script>");
-			out.println("alert('글이 수정되었습니다!');");
+			out.println("alert('게시글이 수정되었습니다!');");
 			out.println("location='/jamong.com/';");
 			out.println("</script>");
 		} else {
@@ -346,10 +350,8 @@ public class BoardController {
 			out.println("location='/jamong.com/login/1';");
 			out.println("</script>");
 		}
-
-
 		return null;
-	} // if => 파일이 있을 때
+	} // 게시글 수정 컨트롤러
 
 	@PostMapping("imageUpload")
 	@ResponseBody
@@ -397,6 +399,11 @@ public class BoardController {
 		List<BoardVO> bList = this.boardService.getListAll(b);
 		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		for (int i = 0; i < bList.size(); i++) {
+			String htmlTitle = bList.get(i).getBo_title();
+			String normarTitle = htmlTitle.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			String titleSpace = normarTitle.replaceAll("&nbsp;"," ");
+			bList.get(i).setBo_title(titleSpace);
+			
 			String htmlText = bList.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String oneSpace = normalText.replaceAll("&nbsp; "," ");
@@ -479,13 +486,23 @@ public class BoardController {
 
 	@PostMapping("infinitiScrollDown")
 	@ResponseBody
-	public List<BoardVO> infinitiScrollDownPOST(String bo_no) {
+	public List<BoardVO> infinitiScrollDownPOST(String bo_no) throws Exception{
 		int bo_noToStart = Integer.parseInt(bo_no) - 1;
 		List<BoardVO> data = this.boardService.infinitiScrollDown(bo_noToStart);
+		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		for (int i = 0; i < data.size(); i++) {
+			String htmlTitle = data.get(i).getBo_title();
+			String normarTitle = htmlTitle.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			String titleSpace = normarTitle.replaceAll("&nbsp;"," ");
+			data.get(i).setBo_title(titleSpace);
+			
 			String htmlText = data.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			data.get(i).setBo_cont(normalText);
+
+			Date repListFormat_date = org_format.parse(data.get(i).getBo_date());
+			String repList_date = TIME_MAXIMUM.formatTimeString(repListFormat_date);
+			data.get(i).setBo_date(repList_date);
 		}
 		return data;
 	}
@@ -526,7 +543,7 @@ public class BoardController {
 					boardList.get(i).setBo_cont(oneSpace);
 				}
 			}
-			
+
 			mv.addObject("boardList", boardList);
 		}else if(w.equals("book")) {		//책검색
 			//List<BookVO> bookList = this.bookService.getSearchBook(searchMap);
@@ -546,7 +563,7 @@ public class BoardController {
 
 		return mv;
 	}
-	
+
 	@PostMapping("search_scroll")
 	@ResponseBody
 	public Object search_scroll(
@@ -561,7 +578,7 @@ public class BoardController {
 		searchMap.put("q", q);
 		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SimpleDateFormat title_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
-		
+
 		if(w.equals("post")) {				//글검색
 			List<BoardVO> boardList = this.boardService.getSearchScrollPost(searchMap);			
 
@@ -582,7 +599,7 @@ public class BoardController {
 					boardList.get(i).setBo_cont(oneSpace);
 				}
 			}
-			
+
 			return boardList;
 		}else if(w.equals("book")) {		//책검색
 			//List<BookVO> bookList = this.bookService.getSearchBook(searchMap);

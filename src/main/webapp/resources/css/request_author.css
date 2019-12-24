@@ -88,12 +88,72 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	padding-left:5px;
 }
 
-.req_form_file {
-	margin-top:15px;
-}
-
 #req_auth_btn_wrap {
 	display:flex;
 	justify-content: center;
 }
 
+.req_button {
+	width:65px;
+	border: 1px solid lightgrey;
+    border-radius: 10px;
+    background-color: white;
+    padding: 4px;
+    cursor:pointer;
+    margin:0 3px;
+    outline:none;
+}
+
+.req_button:hover {
+	border: 1px solid lightgrey;
+    border-radius: 10px;
+    background-color: lightgrey;
+    padding: 4px;
+    color:white;
+}
+
+.aut_file {
+	position: absolute; 
+	width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip:rect(0,0,0,0); 
+	border: 0;
+}
+
+.req_form_file label{
+	display: inline-block; 
+	padding: .2em .75em; 
+	color: #999; 
+	font-size: 14px; 
+	line-height: normal; 
+	vertical-align: middle; 
+	background-color: #fdfdfd; 
+	cursor: pointer; 
+	border: 1px solid #ebebeb; 
+	border-bottom-color: #e2e2e2; 
+	margin-bottom:5px;
+}
+
+.file_name {
+	display: inline-block;
+	padding: .2em .75em; /* label의 패딩값과 일치 */ 
+	font-size: 14px; 
+	font-family: inherit; 
+	line-height: normal; 
+	vertical-align: middle; 
+	background-color: #f5f5f5; 
+	border: 1px solid #ebebeb; 
+	border-bottom-color: #e2e2e2; 
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+	-moz-appearance: none; 
+	appearance: none;
+	margin-bottom:5px;
+}
+
+.counter_wrap {
+	display:flex;
+	justify-content:flex-end;
+}

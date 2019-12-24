@@ -36,6 +36,11 @@ public class CategoryController {
 		List<BoardVO> blist=this.boardService.categoryArticle(cat_name);
 		
 		for (int i = 0; i < blist.size(); i++) {
+			String htmlTitle = blist.get(i).getBo_title();
+			String normarTitle = htmlTitle.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			String titleSpace = normarTitle.replaceAll("&nbsp;"," ");
+			blist.get(i).setBo_title(titleSpace);
+			
 			String htmlText = blist.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			blist.get(i).setBo_cont(normalText);

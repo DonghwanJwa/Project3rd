@@ -53,6 +53,7 @@ body{
 }
 .cat_writer_keyword{
 	height: 20px;
+	margin-top:3px;
 	border-radius:25px;
 	background-color:transparent;
 	color:#3d3d3d;
@@ -117,7 +118,7 @@ body{
 #cat_writer_list1{
 	background-color: #FFF;
 	width: 220px;
-	height:190px;
+	height:200px;
 	margin: 10px 5px;
 	border:1px solid #FBA621;
 	justify-content:center;
@@ -134,7 +135,7 @@ body{
 	margin-bottom:60px;
 }
 .cat_writing{
-	width: 500px;
+	width: 700px;
 	height:300px;
 	justify-content:center;
 	margin: 0px auto;
@@ -147,36 +148,43 @@ body{
 	z-index:1;
 }
 .cat_writing_img{
-	width:500px;
+	width:700px;
 	height:300px;
 	object-fit:cover;
 	filter: brightness(50%);
 	-webkt-filter: brightness(50%);
 }
 .cat_writing_top{
-	width:500px;
+	width:700px;
 	height:230px;
 	margin:0px auto;
 	position:absolute;
+	display: flex;
 	top:0;
 	z-index:2;
 	word-break:break-all;
+	justify-content: center;
 }
 .cat_write_title{
 	color:#efefef;
+	width: 500px;
 	font-size:28px;
-	margin-top:60px;
+	position: absolute;
+	margin-top: 50px;
 	text-align:center;
 }
 .cat_story_cont{
 	color:#efefef;
+	width: 500px;
+	height: 35px;
+	position: absolute;
 	font-size:15px;
 	text-align:center;
-	padding:0 20px;
-	display:inline-block;
+	transform: translateY(130px);
+	overflow: hidden;
 }
 .cat_writing_bottom{
-	width:500px;
+	width:700px;
 	height:70px;
 	margin-top:230px;
 	position:absolute;
@@ -265,11 +273,9 @@ body{
 .cat_story_writer{
     font-size:12px;
     font-weight:bold;
+    position: absolute;
+    transform: translateY(220px);
     color:#FFF;
-    width:100%;
-    display:inline-block;
-    text-align:center;
-    transform:translateY(50px);
 }
 .cat_book_inner{
 	width:150px;

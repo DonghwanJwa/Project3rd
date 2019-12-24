@@ -40,5 +40,10 @@ public class InquireDAOImpl implements InquireDAO {
 	public void updateInquire(InquireVO inq) {
 		this.sqlSession.update("inq_update",inq);
 	}
+
+	@Override
+	public InquireVO getFile(int no) {
+		return this.sqlSession.selectOne("getFile",no);
+	}
 	
 }

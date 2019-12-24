@@ -31,17 +31,70 @@ $(document).ready(function() {
 
 })
 // 작가 구독 텍스트 변경되게
+// 작가 구독 텍스트 변경되게
 $(document).ready(function() {
-	$(".profile_button_type2").click(function() {
+	$(".profile_button_type2").click(function(event) {
+		if(event.target.getAttribute("data-disabled")=='true'){
+			return false;
+		}
+		//p.follow 클래스가 없을때
+		var para = document.location.href.split("/");
+		if($(".profile_button_type2").is(".p_follow") === false){
+			
+			$(".profile_button_type2").toggleClass("p_follow");
+			$(".profile_button_type2").text("구독중");
 		// togglClass : 해당요소 여부를판단해 제거 및 부여함
-		$(".profile_button_type2").toggleClass("p_follow")
 		$(".profile_button_type2").each(function() {
 			var text = $(this).text();
-			$(this).html()
-			$(this).text(function(i, text) {
-				return text === "구독하기" ? "구독중" : "구독하기";
+			// 클릭했을때 구독자 항목 저장
+			$.ajax({
+			type : "POST",
+			url : "follow/"+para[4].substring(1),
+			dataType : 'json',
+			success : function(data){
+				if(data == 1){
+					alert('성공!');				
+					$(event.target).attr("data-disabled",'true');
+					$(".p_follow").html();
+					setTimeout(function(){
+						$(event.target).attr("data-disabled",'false');
+					},2000);
+				}else if(data == 2){
+					alert('로그인이 필요한 페이지입니다!');
+					window.location.replace("/jamong.com/login/1");
+				}
+			},
+			error:function(){
+				alert('data error');
+			}
 			})
+			
 		});
+		} else {
+			$(".profile_button_type2").toggleClass("p_follow");
+			$(".profile_button_type2").text("구독하기");
+			$.ajax({
+				type : "POST",
+				url : "unfollow/"+para[4].substring(1),
+				dataType : 'json',
+				success : function(data){
+					if(data == 1){
+						alert('삭제됨!');				
+						$(event.target).attr("data-disabled",'true');
+						$(".p_follow").html();
+						setTimeout(function(){
+							$(event.target).attr("data-disabled",'false');
+						},2000);
+					}else if(data == 2){
+						alert('로그인이 필요한 페이지입니다!');
+						window.location.replace("/jamong.com/login/1");
+					}
+				},
+				error:function(){
+					alert("data error");
+				}
+			})
+		}
 	});
 });
 // edit 글자제한 
@@ -204,32 +257,6 @@ function profileCheck(){
 	
 	if(($.trim($('#pf_info').val()) !== "") && ($.trim($('#profile_editor').val()) !== "")){
 		var result = confirm('저장하시겠습니까?');
-//		$('.profile_edit_btn2').click(function() {
-//			if (result) {
-//				 data = {"profile_photo" : $("#pf_input").val(),
-//						 "mem_nickname"  : $("#profile_editor").val(),
-//						 "profile_cont"  : $("#pf_info").val(),
-//						 "mem_keyword"	 : $("#edit_tag_list").val(),
-//						 "mem_portfolio" : $("profie_portfolio").val()
-//						 };
-//				$.ajax({
-//					type:"POST",
-//					url:"proflie_edit_ok",
-//					dataType:'String',
-//					data:data,
-//					succes: function (data){
-//						if(data){
-//							alert('성공적으로 갱신되었습니다.');
-//						}else{
-//							alert(JSON.stringify(data));
-//						}
-//					}
-////					
-//				})
-//				location.replace('./profile_edit_ok');
-//			} else {}
-//		});
-//		return false;
 	} 
 	if($.trim($('#profile_editor').val())==""){
 		$('#profile_editor_error').text('작가명을 작성해주세요!');

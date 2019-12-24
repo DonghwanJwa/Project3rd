@@ -24,5 +24,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   <typeAlias type="com.jamong.domain.SympathyVO" alias="sym"/> <!-- 공감 -->
   <typeAlias type="com.jamong.domain.AdminVO" alias="adm"/> <!-- 관리자 -->
   <typeAlias type="com.jamong.domain.NoticeVO" alias="notice"/> <!-- 공지사항 -->
+  <typeAlias type="com.jamong.domain.RequestAuthorVO" alias="ra"/> <!-- 관리자 작가신청 열람 -->
  </typeAliases>
 </configuration>

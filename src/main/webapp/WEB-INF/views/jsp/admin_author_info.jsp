@@ -5,6 +5,11 @@
 <meta charset="UTF-8">
 </head>
 <%@include file="../include/admin_header.jsp" %>
+	 <div class="wrap-loading" style="display:none">
+      <div>
+       <img src="/jamong.com/resources/img/loading1.gif" />
+      </div>
+	 </div> 
 <div id="adm_page_title"><h3 class="adm_page_title">작가신청 열람</h3></div>
 <div id="adm_mem_info_wrap">
 <form method="post" name="file_down">
@@ -175,9 +180,10 @@
 <div id="cont_button_wrap">
 <script>
 	function judge_check() {
-		var con=confirm('회원님의 작가신청을 심사하시겠습니까? \n심사결과를 회원님의 이메일로 발송됩니다.');
+		var con=confirm('회원님의 작가신청을 심사하시겠습니까? \n심사결과가 회원님의 이메일로 발송됩니다.');
 			
 		if(con == true) {
+		    $('.wrap-loading').attr('style','display:block;');
 			alert('심사결과가 저장되었습니다.');
 		}else {
 			return false;
@@ -187,8 +193,8 @@
 	<form name="form2" method="post" onsubmit="return judge_check()">
 	<input type="hidden" value="${no}" name="no"/>
 	<c:if test="${a.aut_state == 0}">
-		<input type="submit" class="notice_btn" value="승인" onclick="javascript:form2.action='author_upstate?state=accept'" />
-		<input type="submit" class="notice_btn" value="반려" onclick="javascript:form2.action='author_upstate?state=reject'" />
+		<input type="submit" id="acc_btn" class="notice_btn" value="승인" onclick="javascript:form2.action='author_upstate?state=accept';" />
+		<input type="submit" id="rej_btn" class="notice_btn" value="반려" onclick="javascript:form2.action='author_upstate?state=reject';" />
 	</c:if>
 		<input type="button" class="notice_btn" value="목록" onclick="location='admin_author?page=${page}';" />
 	</form>

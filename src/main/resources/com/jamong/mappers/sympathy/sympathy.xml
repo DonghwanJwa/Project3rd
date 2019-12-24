@@ -21,4 +21,9 @@
  SELECT * FROM sympathy WHERE mem_no=#{mem_no} and bo_no=#{bo_no}
 </select>
 
+<!-- 회원탈퇴 좋아요 업데이트? -->
+<delete id="sym_mem_update">
+ delete from sympathy where mem_no=#{mem_no}
+</delete>
+
 </mapper>

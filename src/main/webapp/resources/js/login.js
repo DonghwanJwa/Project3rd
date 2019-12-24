@@ -750,7 +750,7 @@ $(document).ready(function(){
 		}
 	});
 	
-/*	이메일 id 유효성 검증//추후 복구해야됨!!!!
+//	이메일 id 유효성 검증//추후 복구해야됨!!!!
 	$('#join_membership_email').on("focusout", function() {
 		if ($.trim($('#join_membership_email').val())=="") {
 			$('#join_membership_error_email_domain').text('이메일을 입력해주세요!');
@@ -774,8 +774,8 @@ $(document).ready(function(){
 		
 	});
 	
-	이메일 도메인 유효성 검증
-	$('#join_membership_email_datalist').on("focusout", function() {
+//	이메일 도메인 유효성 검증
+	$('#join_membership_email_datalist').on("keyup", function() {
 		var email = $.trim($('#join_membership_email').val());		
 		var domain = $.trim($('#join_membership_email_datalist').val());
 		
@@ -797,6 +797,8 @@ $(document).ready(function(){
 	        success: function (data) {		
 	      	  if(data==1){	
 	      		$('#join_membership_error_email_domain').text('중복이메일 입니다!');
+	      		$('#join_membership_certified_btn').attr("disabled",true);
+	      		$('#join_membership_certified_btn').css("cursor","default");
 	          	return false;
 	      	  }  
 	        },
@@ -835,7 +837,7 @@ $(document).ready(function(){
 		$('#join_membership_next_btn').attr('disabled', true);
 	});
 	
-*/	/*닉네임 유효성 검증*/
+	/*닉네임 유효성 검증*/
 	$("#join_membership_profile_editor").on("focusout", function() {//포커스가 나갈때
 		var nickname = $(this).val();		
 		$.ajax({
@@ -954,6 +956,7 @@ $(function(){
 	        success: function (data) {		
 	      	  if(data==1){	
 	      		$('#join_membership_error_email_domain').text('중복이메일 입니다!');
+	      		$('#join_membership_certified_btn').attr("disabled",true);
 	          	return false;
 	      	  }  
 	      	  	$('#join_membership_error_email_domain').text('');

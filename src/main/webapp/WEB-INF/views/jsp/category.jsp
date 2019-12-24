@@ -42,6 +42,7 @@
    </div>
    
     <!-- 글 내용부분 -->
+    <c:if test="${!empty blist}">
     <c:forEach var="blist" items="${blist}">
 	 <c:if test="${!empty blist.bo_thumbnail}">
 	<div class=cat_writing_block>
@@ -135,6 +136,12 @@
 	</div>
 	  </c:if>
 	</c:forEach>
+	  </c:if>
+	  <c:if test="${empty blist}">
+	  <div class=cat_writing_block>
+	  <h3>해당 카테고리에 검색결과가 없습니다!</h3>
+	  </div>
+	  </c:if>
 	
 	<!-- 책부분 시작 -->
 	<div class=cat_book_block style="display:none;">	

@@ -66,6 +66,7 @@ $(document).ready(function(){
 			$("#write_title_area_bg").css('height','250px');
 
 			$("#bo_color").val("");
+			$("#thumb_remove").val(1);
 			$("#write_background_change_btn").css('display','none');
 
 			$("#write_title_coverimage_bg").attr('id','write_cover_file');
@@ -81,6 +82,7 @@ $(document).ready(function(){
 			$("#write_title_area_bg").css('opaticy','1');
 			
 			$("#bo_color").val("#FBB9BA");
+			$("#thumb_remove").val(0);
 			$("#write_background_change_btn").css('display','block');
 
 			$("#write_cover_file").attr('id','write_title_coverimage_bg');
@@ -88,7 +90,6 @@ $(document).ready(function(){
 			$("#write_title_center_icon").attr('id','write_title_center_bg');
 			$("#write_title_bottom_icon").attr('id','write_title_bottom_bg');
 			colorIndex=1;
-			console.log("암튼됨");
 		}
 	});
 	$("#write_title_background_bg").click(function(){ // 배경색 지정 버튼 클릭 시
@@ -99,6 +100,7 @@ $(document).ready(function(){
 			$("#write_title_area_bg").css('height','250px');
 			
 			$("#bo_color").val("");
+			$("#thumb_remove").val(1);
 			$("#write_background_change_btn").css('display','none');
 			
 			$("#write_title_coverimage_bg").attr('id','write_cover_file');
@@ -115,6 +117,7 @@ $(document).ready(function(){
 			$("#write_title_area_bg").css('opaticy','1');
 			
 			$("#bo_color").val("#FBB9BA");
+			$("#thumb_remove").val(0);
 			$("#write_background_change_btn").css('display','block');
 			
 			$("#write_cover_file").attr('id','write_title_coverimage_bg');
@@ -279,6 +282,7 @@ $(document).ready(function(){
 
 		$("#bo_color").val("");
 		$("#write_cover_file").val("");
+		$("#thumb_remove").val(1);
 	});
 });
 
@@ -330,6 +334,7 @@ function handleImgFileSelect(e){
 	
 	// 커버이미지 선택시
 	$("#bo_color").val("");
+	$("#thumb_remove").val(0);
 	
 	$(".write_main_title").addClass('write_bg_title_option');
 	$(".write_sub_title").addClass('write_bg_title_option');

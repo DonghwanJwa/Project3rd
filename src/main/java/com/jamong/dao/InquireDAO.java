@@ -16,4 +16,6 @@ public interface InquireDAO {
 
 	void updateInquire(InquireVO inq);
 
+	InquireVO getFile(int no);
+
 }
