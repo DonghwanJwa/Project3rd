@@ -212,8 +212,6 @@ public class BoardController {
 		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
 		
-		int flag = Integer.parseInt(multi.getParameter("thumb_remove"));
-
 		MemberVO m = (MemberVO) session.getAttribute("m");
 		int mem_no = m.getMem_no();
 
@@ -246,11 +244,8 @@ public class BoardController {
 			b.setBo_thumbnail(fileDBName);
 		} // if => 파일이 있을 때
 		
-		if(flag == 1) {
-			b.setBo_color("1");
-		}else if(flag == 0) {
-			b.setBo_color(bo_color);			
-		}
+	
+		b.setBo_color(bo_color);
 		b.setBo_title(bo_title);
 		b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont);
@@ -294,6 +289,8 @@ public class BoardController {
 		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
 		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
+		
+		int flag = Integer.parseInt(multi.getParameter("thumb_remove"));
 
 		MemberVO m = (MemberVO) session.getAttribute("m");
 
@@ -325,11 +322,16 @@ public class BoardController {
 
 			b.setBo_thumbnail(fileDBName);
 		} // if => 파일이 있을 때
-
+		
+		if(flag == 1) {
+			b.setBo_color("1");
+		}else if(flag == 0) {
+			b.setBo_color(bo_color);			
+		}
+		
 		b.setBo_title(bo_title);
 		b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont);
-		b.setBo_color(bo_color);
 		b.setBo_titlespace(bo_titlespace);
 		b.setBo_lock(bo_lock);
 		b.setBo_type(bo_type);
