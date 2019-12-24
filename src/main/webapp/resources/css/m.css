@@ -476,10 +476,10 @@ body{
 	width:200px;
 }
 #head-profile-service-wrap{
-	height:269.5px;
-	width:200px;
-	margin-top:40px;
-	border-bottom: 0.5px solid #d4d4d4;
+	height: 279.5px;
+    width: 200px;
+    margin-top: 30px;
+    border-bottom: 0.5px solid #d4d4d4;
 }
 #head-profile-service-wrap ul{
 	list-style: none;
