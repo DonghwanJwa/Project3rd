@@ -59,18 +59,36 @@ $(document).ready(function() {
 		}
 	});
 	
+	//책 제목 글자 수 제한
 	$("#book_create_cover_title").on("keydown",function(){
 		if($(this).text().length > 30){
 			$(this).text($(this).text().substring(0,30));
 		}
 	});
+	//책 소개 글자 수 제한
+	$("#book_create_intro_cont").on("keydown",function(){
+		if($(this).text().length > 245){
+			$(this).text($(this).text().substring(0,245));
+		}
+	});
 });
 
 function createCheck(){
+	if($.trim($("#book_create_cover_title").text())==""){
+		alert("책 제목을 입력하세요.");
+		$("#book_create_cover_title").text("").focus();
+		return false;
+	}
+	if($.trim($("#book_create_intro_cont").text())==""){
+		alert("책 소개를 입력하세요.");
+		$("#book_create_intro_cont").text("").focus();
+		return false;
+	}
 	if($("#create_list").children().length == ""){
-		alert("책으로 만들 글을 선택해 주세요");
+		alert("책으로 만들 글을 선택해 주세요.");
 		return false;
 	}//ul 리스트가 비어있으면 
+	$("#create_list [type=checkbox]").prop("checked",true);
 	var book_name = $("#book_create_cover_title").html();
 	var book_preface = $("#book_create_intro_cont").html();
 	$("#book_title").val(book_name);

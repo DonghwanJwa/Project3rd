@@ -5,6 +5,10 @@ a{
 	color: #333333;
 }
 
+[contenteditable], [contenteditable]:focus{
+	outline:0px; /* 컨텐츠에디터블 박스포커스 파란 선 제거 */
+}
+
 #book_create_wrap {
 	
 }

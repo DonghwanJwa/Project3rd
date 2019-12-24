@@ -114,4 +114,8 @@ public class BoardDAOImpl implements BoardDAO {
 		this.sqlSession.update("book_no_up",bm);
 	}
 
+	@Override
+	public List<BoardVO> getBKList(int book_no) {
+		return null;
+	}
 }

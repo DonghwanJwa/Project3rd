@@ -324,6 +324,7 @@
 	transition-duration: 0.5s;
 	position: absolute;
 	z-index: -1;
+	margin-left: 0px;
 }
 
 .new_book_list_work .slide_work_list.visible {
@@ -343,6 +344,8 @@
 
 .item_work .img_cover {
 	width: 200px;
+	height: 295px;
+	object-fit: cover;
 	box-sizing: border-box;
 	border: 1px solid #eee;
 }
@@ -480,7 +483,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	margin: 23px auto 0;
-	font-size:14px;
+	font-size: 14px;
 	text-align: center;
 	display: -webkit-box;
 	-webkit-line-clamp: 5;

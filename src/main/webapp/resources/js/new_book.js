@@ -375,6 +375,11 @@ $(document).ready(function() {
 		var now = parseInt($(".slide_work_list").css("margin-left").replace("px",""));
 		var sum = now-500;
 		$(".slide_work_list").css("margin-left",sum+"px");
+		if($(".slide_work_list").css("margin-left") == "0px"){
+			$(".prev").removeClass("on");
+		}else{
+			$(".prev").addClass("on");
+		}
 	});
 	$(".prev").click(function(){
 		$(".prev").attr("disabled",true);

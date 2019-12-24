@@ -51,25 +51,21 @@
  <association javaType="book" property="bookVO">
   <id column="book_no" property="book_no" />
   <result column="book_name" property="book_name" />
+  <result column="book_cover" property="book_cover" />
+  <result column="book_preface" property="book_preface" />
   <result column="book_date" property="book_date" />
   <result column="book_editdate" property="book_editdate" />
-  <result column="cat_no" property="cat_no" />
+  <result column="cat_name" property="cat_name" />
   <result column="mem_no" property="mem_no"	/>
  </association>
  </resultMap>
  
- <select id="book_list" resultMap="boardMap">
+ <select id="create_list" resultMap="boardMap">
   SELECT *
   FROM board b, member m
   WHERE b.mem_no=m.mem_no
   AND m.mem_id=#{mem_id}
-  ORDER BY b.bo_no DESC
- </select>
- 
- <select id="create_list" resultMap="boardMap">
-  SELECT *
-  FROM board b
-  WHERE b.bo_no=#{bo_no}
+  AND b.book_no IS NULL
   ORDER BY b.bo_no DESC
  </select>
  
@@ -88,5 +84,22 @@
    UPDATE board SET book_no = #{book_no} WHERE bo_no=#{bc}
   </foreach>
  </update>
+ 
+ <select id="book_list" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.book_date,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname,
+  		 m.profile_photo,
+  		 m.profile_cont
+  FROM (SELECT * FROM book ORDER BY book_no DESC)book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+ </select>
  
 </mapper>
