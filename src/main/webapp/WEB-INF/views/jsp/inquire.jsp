@@ -12,9 +12,6 @@
   <div class=inq_question_cont>
   	<form id="inq_request" method="post"  action="inquire_ok" enctype="multipart/form-data"
   	 name="inq_request" onsubmit="return inq();" >
-  	 <input type="hidden" id="serviceId" name="serviceId" value="54">
-  	 <input type="hidden" id="serviceId" name="categoryId" value="30">
-  	 <input type="hidden" id="locale" name="locale" value="ko">
   	<fieldset class="inq_field_set">
   	  <legend class="inq_form">문의하기 폼</legend>
   	   

@@ -85,11 +85,11 @@
 					</tr>
 
 					<tr>
-					<th>인증번호</th>
+					<th class="member_modify_emailcheck_div">인증번호</th>
 					<td>
 					<!-- style="display:none;" -->
 						<!-- 인증번호 확인란 이름바꾸고 css 가져와야하고 인증 기능 넣어야함 -->
-					<div id="member_modify_emailcheck_div">
+					<div class="member_modify_emailcheck_div">
 						<input type="text" placeholder="인증번호 입력란" maxlength="6" class="member_modify_text emailcheck" id="member_modify_emailcheck"/>
 						<button type="button" id="member_modify_emailcheck_btn" >확인</button>
 					<div class="member_modify_error" id="member_modify_error_email_check"></div>

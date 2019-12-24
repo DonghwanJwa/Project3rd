@@ -73,4 +73,6 @@ SELECT inq.inq_no,
 		FROM inquire inq
 		LEFT JOIN member m
 		ON inq.mem_no = m.mem_no
-		WHERE inq.inq_no = 21;
+		WHERE inq.inq_no = 20;
+		
+		update inquire set inq_file1='resources\upload\inquire\a.jpg' where inq_no=20; 

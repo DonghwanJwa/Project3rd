@@ -32,4 +32,5 @@ public interface MemberService {
 	List<MemberVO> categoryMember();
 	MemberVO getAccusee(int ac_member);
 	void updateProfile(MemberVO mp);
+	MemberVO author_info(String mem_id);
 }

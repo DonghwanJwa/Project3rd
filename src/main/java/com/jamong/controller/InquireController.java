@@ -1,7 +1,11 @@
-package com.jamong.controller;
+  package com.jamong.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
 
@@ -52,6 +56,7 @@ public class InquireController {
 		
 		MemberVO user=(MemberVO) session.getAttribute("m");
 
+		System.out.println(1);
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out =response.getWriter();
@@ -61,6 +66,7 @@ public class InquireController {
 	
 		MultipartRequest multi = new MultipartRequest(request, filePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
+		System.out.println(2);
 		
 		/* 입력값들을 multi 로부터 가져오는 역할을합니다 */
 		
@@ -79,11 +85,12 @@ public class InquireController {
 		String fileName4 = multi.getFilesystemName("file_4");
 		
 		
-		String inq_file1 = "/jamong.com/resources/upload/inquire/"+fileName1;
-		String inq_file2 = "/jamong.com/resources/upload/inquire/"+fileName2;
-		String inq_file3 = "/jamong.com/resources/upload/inquire/"+fileName3;
-		String inq_file4 = "/jamong.com/resources/upload/inquire/"+fileName4;
+		String inq_file1 = "/resources/upload/inquire/"+fileName1;
+		String inq_file2 = "/resources/upload/inquire/"+fileName2;
+		String inq_file3 = "/resources/upload/inquire/"+fileName3;
+		String inq_file4 = "/resources/upload/inquire/"+fileName4;
 		
+		System.out.println(3);
 		
 				
 		File UpFile = multi.getFile("inq_file1");
@@ -96,10 +103,7 @@ public class InquireController {
 			int date=c.get(Calendar.DATE);
 			
 		
-		
-			
-			
-	
+			System.out.println(4);
 		
 		/* 입력한 값들을 InquireVO객체 i에 저장 */
 		i.setInq_item1(inq_item1);
@@ -115,13 +119,18 @@ public class InquireController {
 			i.setMem_no(user.getMem_no());
 		}// if => 세션이 있을때
 		
+		System.out.println(5);
 		
+		System.out.println(fileName1);
 		this.inqService.insertInquire(i); //쿼리문 실행 메서드
+		
+		System.out.println(6);
 		
 		out.println("<script>");
 		out.println("alert('문의가 접수되었습니다!');");
 		out.println("location='/jamong.com';");
 		out.println("</script>");
+		
 		}
 		return null;
 		}
@@ -227,6 +236,7 @@ public class InquireController {
 			
 			m.setViewName("jsp/admin_inquire_info");
 			
+			m.addObject("no",no);
 			m.addObject("inq_cont",inq_cont);
 			m.addObject("page",page);
 			m.addObject("i",i);
@@ -286,6 +296,72 @@ public class InquireController {
 				out.println("</script>");
 			}
 		}
+		return null;
+	}
+	@RequestMapping("inquireFile1")
+	public ModelAndView inquireFile1(HttpServletRequest request,
+			HttpServletResponse response,
+			int no)
+	throws Exception{
+	
+			InquireVO i=this.inqService.getFile(no);
+			
+			String fileName1=i.getInq_file1().substring(i.getInq_file1().lastIndexOf("/")+1);
+			
+			/* 저장할 폴더 경로*/
+			Calendar c= Calendar.getInstance();
+			int year=c.get(Calendar.YEAR);
+			int month=c.get(Calendar.MONTH);
+			int date=c.get(Calendar.DATE);
+			
+			if(i.getInq_file1() == null) {
+				response.sendRedirect("/redirect.jsp");
+			}else {
+				
+				String downPath = "C:/jamongAdmin/AuthorRequest/"+year+"-"+month+"-"+date;
+				File folder=new File(downPath);
+				
+				if(!folder.exists()) {
+					folder.mkdirs();
+				}
+				
+				/* 다운로드 알림창이 뜨도록 하기 위해서 컨텐트 타입을 8비트 바이너리로 설정한다.*/
+				response.setContentType("application/octet-stream");
+				
+				response.setHeader("Content-Disposition","attachment; filename=\""+ URLEncoder.encode(fileName1,"UTF-8")+"\";");
+				
+				/* 서버 실제 경로의 파일을구함*/
+				String pathAndName1=request.getServletContext().getRealPath("/")+i.getInq_file1();
+				System.out.println(pathAndName1);
+				File inq_file1=new File(pathAndName1);
+				
+				/* 읽어와야 하는 용량은 최대 업로드 용량을 초과히지 않는다. */
+				byte[] b = new byte[10*1024*1024];
+				
+				FileInputStream in=new FileInputStream(inq_file1);
+				BufferedInputStream bu=new BufferedInputStream(in);
+				BufferedOutputStream out=new BufferedOutputStream(response.getOutputStream());
+				
+				if (inq_file1.isFile() &&  inq_file1.length()>0) {
+					int read=0;
+					
+					while((read=bu.read(b)) != -1){
+						out.write(b , 0 , read);
+					}
+					out.flush();
+					out.close();
+					bu.close();
+				}
+				ModelAndView m=new ModelAndView();
+				
+				m.setViewName("jsp/admin_inquire_info");
+				
+				m.addObject(inq_file1);
+				
+			}
+			
+			
+			
 		return null;
 	}
 }

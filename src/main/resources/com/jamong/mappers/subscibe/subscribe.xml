@@ -5,4 +5,21 @@
 
 <mapper namespace="subscribe">
 
+<!-- 구독 -->
+<insert id="sub_in" >
+INSERT INTO subscribe (sub_no, sub_member, mem_no, sub_date)
+VALUES (sub_no_seq.nextval, #{sub_member}, #{mem_no}, sysdate)
+</insert>
+<!-- 구독 해제 -->
+<delete id="sub_del">
+DELETE FROM subscribe WHERE sub_member = #{sub_member} AND mem_no=#{mem_no}
+</delete>
+<!--  -->
+<select id="sub_check" parameterType="java.util.HashMap" resultType="sub">
+SELECT * FROM subscribe WHERE sub_member = #{sub_member} AND mem_no = #{mem_no}
+</select>
+
+<select id="sub_count" resultType="int">
+SELECT COUNT(sub_no) FROM subscribe WHERE mem_no = #{mem_no}
+</select>
 </mapper>
