@@ -101,8 +101,8 @@
 
   <div id="book_create_btn">
    <div id="book_create_function">
-    <input type="button" id="add" class="btn" value="추가">
-    <input type="button" id="del" class="btn" value="삭제">
+    <input type="button" id="add" class="btn" value="▷▷▷" title="삽입" >
+    <input type="button" id="del" class="btn" value="◀◀◀" title="제거">
    </div>
   </div>
   

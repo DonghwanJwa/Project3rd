@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
-a{
+a {
 	text-decoration: none;
 	color: #333333;
 }
 
-[contenteditable], [contenteditable]:focus{
-	outline:0px; /* 컨텐츠에디터블 박스포커스 파란 선 제거 */
+[contenteditable], [contenteditable]:focus {
+	outline: 0px; /* 컨텐츠에디터블 박스포커스 파란 선 제거 */
 }
 
 #book_create_wrap {
@@ -25,15 +25,16 @@ a{
 .book_create_about_div {
 	box-shadow: 4px 4px 7px #c0c0c0;
 }
-#book_create_info{
-	display:flex;
-	width:940px;
-	margin-top:100px;
+
+#book_create_info {
+	display: flex;
+	width: 940px;
+	margin-top: 100px;
 }
 
 /* 책 커버 */
 #book_create_cover {
-	background-color:#fedb9a;
+	background-color: #fedb9a;
 	position: relative;
 	display: inline-block;
 	height: 430px;
@@ -42,16 +43,17 @@ a{
 	overflow: hidden;
 	margin-right: 20px;
 }
-#book_create_cover_img{
+
+#book_create_cover_img {
 	height: 430px;
 	width: 300px;
-	object-fit:cover;
-	fiter:brightness(50%);
+	object-fit: cover;
+	fiter: brightness(50%);
 	background-repeat: no-repeat;
 }
 
-#book_create_cover_imgFile{
-	display:none;
+#book_create_cover_imgFile {
+	display: none;
 }
 
 #book_create_cover_text {
@@ -63,6 +65,7 @@ a{
 	left: 50%;
 	bottom: 0;
 	transform: translate(-50%);
+	/* cursor: pointer; */
 }
 
 #book_create_cover_head {
@@ -81,14 +84,15 @@ a{
 	font-size: 23px;
 	height: 150px;
 }
-#book_create_cover_title:empty::before{
-	content:"제목을 \A 입력하세요";
-	white-space:pre;
-	line-height:1.35;
-	font-size:23px;
+
+#book_create_cover_title:empty::before {
+	content: "제목을 \A 입력하세요";
+	white-space: pre;
+	line-height: 1.35;
+	font-size: 23px;
 	cursor: text;
 	color: #ccc;
-	font-family: 'NanumMyeongjo','serif';
+	font-family: 'NanumMyeongjo', 'serif';
 	opacity: 1;
 }
 
@@ -168,12 +172,13 @@ a{
 	line-height: 23px;
 	color: #666;
 }
-#book_create_intro_cont:empty::before{
-	content:"책 소개를 입력하세요";
-	font-size:13px;
+
+#book_create_intro_cont:empty::before {
+	content: "책 소개를 입력하세요";
+	font-size: 13px;
 	cursor: text;
 	color: #ccc;
-	font-family: 'NanumMyeongjo','serif';
+	font-family: 'NanumMyeongjo', 'serif';
 	opacity: 1;
 }
 
@@ -241,56 +246,53 @@ a{
 
 /* 글 리스트 */
 #post_list_ul {
-	border: 1px solid red;
-	border-radius: 20px;
-	margin: 10px;
+	border-right: none;
+	margin: 20px 10px 0px 10px;
 	display: inline-block;
 	width: 40%;
 	padding-left: 0;
-	min-height: 1200px;
+	overflow-y: auto;
+	height: 500px;
 	vertical-align: top;
-	background-image: url("../img/background_img/login_page.png");
+	box-shadow: 4px 4px 7px #c0c0c0;
 }
 
 #book_create_btn {
-	width: 14.2%;
+	transform: translateY(160px);
 	display: inline-block;
+	vertical-align: top;
 }
 
 #book_create_function {
-	position: fixed;
-	top: 50%;
+	display: inline-block;
+	width: 135px;
 }
 
 #check_btn {
 	text-align: center;
+	margin-top: 10px;
 }
 
 .btn {
-	width: 65px;
+	width: 130px;
 	height: 40px;
-	border-radius: 22px;
-	border: 1px solid orange;
+	border-radius: 25px;
+	border: 1px solid #DDD;
 	margin: 5px 0px 5px 0px;
 	background-color: #fff;
 	outline: none;
 	cursor: pointer;
 	color: #363636;
-	display: inline-block;
+	font-size: 15px;
 }
 
 .btn.checkAll, .btn.releaseAll {
-	display: inline-block;
-	width: 85px;
-	height: 40px;
-	border-radius: 22px;
-	border: 1px solid orange;
-	margin: 5px auto;
 	background-color: #fff;
 	outline: none;
 	cursor: pointer;
 	color: #363636;
 	width: 85px;
+	font-size: 12px;
 }
 
 .btn:hover {
@@ -303,21 +305,26 @@ a{
 }
 
 #create_list_ul {
-	border-radius: 20px;
-	border: 1px solid blue;
-	margin: 10px;
+	border-right: none;
+	margin: 20px 10px 0px 10px;
 	display: inline-block;
 	width: 40%;
 	padding-left: 0;
-	min-height: 1200px;
-	background-image: url("../img/background_img/login_page.png");
+	overflow-y: auto;
+	height: 500px;
+	vertical-align: top;
+	box-shadow: 4px 4px 7px #c0c0c0;
 }
 
 .post_list_cont {
-	border: 1px solid black;
-	margin: 5px;
+	border-bottom: 1px solid #DDD;
+	min-height: 30px;
+	margin: 7px;
 	padding: 5px;
 	background-color: #fff;
+	cursor: pointer;
+	text-align: center;
+	line-height: 30px;
 }
 
 input[type="checkbox"] {
@@ -325,10 +332,13 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked+div.post_list_cont {
-	border: 2px solid black;
-	transform: scale(0.92, 0.87);
-	background-color: #ffff80;
-	transform: scale(0.92, 0.87);
+	transform: scale(0.95, 0.9);
+	background-color: #fbfbfb;
+	background-image: url("/jamong.com/resources/img/bookcheck2.png");
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position-y: center;
+	background-position-x: 310px;
 }
 
 .ui-state-default {
@@ -344,6 +354,7 @@ input[type="checkbox"]:checked+div.post_list_cont {
 	width: 290px;
 	height: 55px;
 	margin-left: 650px;
+	margin-top: 25px;
 	text-align: center;
 }
 
@@ -370,3 +381,7 @@ input[type="checkbox"]:checked+div.post_list_cont {
 	animation: fadein 1s;
 	-webkit-animation: fadein 1s;
 }
+::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}
+::-webkit-scrollbar-track {background: #efefef; -webkit-border-radius: 10px; border-radius:10px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2)}
+::-webkit-scrollbar-thumb {height: 50px; width: 50px; background: rgba(0,0,0,.2); -webkit-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1)}
