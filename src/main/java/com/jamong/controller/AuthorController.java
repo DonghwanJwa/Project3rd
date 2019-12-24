@@ -75,17 +75,20 @@ public class AuthorController {
 		MemberVO m=(MemberVO)session.getAttribute("m"); // 세션에 저장된 사용자 정보
 		a.setMem_no(m.getMem_no()); // author테이블에 세션의 mem_no 저장
 		
+		Calendar c = Calendar.getInstance();
+		int year=c.get(Calendar.YEAR);
+		int month=c.get(Calendar.MONTH)+1;
+		int date=c.get(Calendar.DATE);
+		
 		int maxSize= 1024*1024*50; // 50MB 제한
-		String filePath=request.getServletContext().getRealPath("resources/upload/author/"); // 저장되는 파일 경로
+		
+		String downPath=request.getServletContext().getRealPath("resources/upload/author/"); // 저장되는 파일 경로
+		String filePath=downPath+year+"-"+month+"-"+date+"/"+m.getMem_id();
 		File folder=new File(filePath);
 		
 		if(!folder.exists()) {
 			folder.mkdirs();
 		}
-		
-		String aut_no=Integer.toString(a.getAut_no());
-		
-		String d_filePath=filePath+aut_no;
 		
 		MultipartRequest multi = new MultipartRequest (request, filePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
@@ -465,7 +468,6 @@ public class AuthorController {
 				return new ModelAndView("redirect:/admin_author?page="+page);
 			}
 		}
-			
 		
 		return null;
 	}

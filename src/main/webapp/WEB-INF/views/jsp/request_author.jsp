@@ -148,9 +148,6 @@ $(document).ready(function(){
 				</div>
 			
 				<div class="req_form_file">
-					<%-- <div class="req_form_file_name">파일명.pdf<br/>파일명.png<br/>파일명.jpg</div>
-					<a class="req_form_file_add">파일 추가</a>
-					--%>
 					
 					<input id="file_name1" class="file_name" value="파일선택" disabled="disabled"/>
 					<label for="aut_file1">업로드</label>

@@ -4,5 +4,21 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="offer">
-
+	<insert id="off_send">
+		insert into offer
+		values(off_no_seq.nextval, 
+			   #{off_id},
+			   #{off_email}, 
+			   #{off_domain}, 
+			   #{off_phone1}, 
+			   #{off_phone2}, 
+			   #{off_phone3}, 
+			   sysdate, 
+			   #{off_item}, 
+			   #{off_cont}, 
+			   #{off_file1},
+			   #{off_file2},
+			   #{off_file3},
+			   #{mem_no})
+	</insert>
 </mapper>

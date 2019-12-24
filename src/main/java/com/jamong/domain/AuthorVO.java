@@ -18,9 +18,6 @@ public class AuthorVO {
 	
 	/* 회원 세션값 받아올 변수 */
 	private int mem_no;
-	private String mem_id; 
-	private String mem_nickname;
-	private String mem_name;
 	
 	/* 페이징 변수 */
 	private int startrow;

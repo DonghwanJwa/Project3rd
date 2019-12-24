@@ -56,7 +56,7 @@
 										 </c:if>
 									</c:if>
 									<c:if test="${mp.mem_author == 1 && m.mem_id != mp.mem_id}">
-										<a href="./offer_author" class="profile_button_type">제안하기</a>
+										<a href="/jamong.com/offer_author/@${mp.mem_id}" class="profile_button_type">제안하기</a>
 									</c:if>
 									<c:if test="${m.mem_id != mp.mem_id }">
 										<span>
