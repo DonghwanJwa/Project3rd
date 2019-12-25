@@ -76,7 +76,10 @@
  </insert>
  
  <select id="book_sel" parameterType="java.util.HashMap" resultType="int">
-  SELECT book_no FROM book WHERE book_name = #{b.book_name} AND mem_no = #{b.mem_no}
+  SELECT book_no FROM book 
+  WHERE book_name = #{b.book_name} AND mem_no = #{b.mem_no} 
+  AND ROWNUM=1
+  ORDER BY book_date DESC
  </select>
  
  <update id="book_no_up" parameterType="java.util.HashMap">

@@ -126,8 +126,8 @@ function handleImgFileSelect(e){
 		sel_file = f;
 		var reader = new FileReader();
 		reader.onload = function(e){
-			$("#book_create_cover").css('background','');
-			$("#book_create_cover").css('background-image','url(\"'+e.target.result+'\")');
+			$("#book_create_cover_img").css('background','');
+			$("#book_create_cover_img").css('background-image','url(\"'+e.target.result+'\")');
 		}
 		reader.readAsDataURL(f);
 	});
