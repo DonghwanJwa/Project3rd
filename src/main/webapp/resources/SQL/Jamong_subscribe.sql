@@ -22,6 +22,7 @@ SELECT COUNT(sub_no) FROM subscribe WHERE mem_no = 7
 
 SELECT * FROM subscribe ORDER BY sub_no;
 SELECT * FROM subscribe WHERE sub_member=3 AND mem_no=7
+SELECT sub_no_seq.nextval FROM DUAL;
 DROP TABLE subscribe;
 DROP SEQUENCE sub_no_seq;
 

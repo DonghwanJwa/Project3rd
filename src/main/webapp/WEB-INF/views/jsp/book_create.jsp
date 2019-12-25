@@ -12,7 +12,7 @@
   <div id="book_create_info">
    <!-- 책 커버 -->
    <div id="book_create_cover" class="book_create_about_div">
-   <img id="book_create_cover_img">
+   <div id="book_create_cover_img"></div>
    <input id="book_create_cover_imgFile" type="file" name="book_cover" accept="image/*" title="책 커버 이미지"/>
     <div id="book_create_cover_text">
      <div id="book_create_cover_head">

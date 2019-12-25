@@ -48,8 +48,10 @@ a {
 	height: 430px;
 	width: 300px;
 	object-fit: cover;
-	fiter: brightness(50%);
 	background-repeat: no-repeat;
+	background-size: cover;
+    background-position: center;
+	filter:brightness(80%);
 }
 
 #book_create_cover_imgFile {
