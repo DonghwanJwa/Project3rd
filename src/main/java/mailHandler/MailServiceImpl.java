@@ -29,7 +29,7 @@ public class MailServiceImpl implements MailService {
 
 	
 	@Override
-	public boolean send(String subject, String text, String from, String to, String filePath, HttpServletRequest request) {
+	public boolean send(String subject, String text, String from, String to, String[] filePath, HttpServletRequest request) {
 		MimeMessage message = javaMailSender.createMimeMessage();
 		// javax.mail.internet.MimeMessage
 		String imgFolder = request.getRealPath("/resources/img");
@@ -50,10 +50,12 @@ public class MailServiceImpl implements MailService {
 				helper.addInline("logo2.png", imgFile);
 			
 				// 첨부 파일 처리
-				if (filePath != null) {
-					File file = new File(filePath);
-					if (file.exists()) {
-						helper.addAttachment(file.getName(), new File(filePath));
+				for(int i=0; i<filePath.length; i++) {
+					if (filePath[i] != null) {
+						File file = new File(filePath[i]);
+						if (file.exists()) {
+							helper.addAttachment(file.getName(), new File(filePath[i]));
+						}
 					}
 				}
 
