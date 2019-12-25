@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
+import com.jamong.domain.BookVO;
 import com.jamong.domain.CategoryVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.ReplyVO;
@@ -548,9 +549,14 @@ public class BoardController {
 
 			mv.addObject("boardList", boardList);
 		}else if(w.equals("book")) {		//책검색
-			//List<BookVO> bookList = this.bookService.getSearchBook(searchMap);
-			//mv.addObject("bookList",bookList);
-			//아직 XML 구현 안됨!!!!!!!!
+			List<BoardVO> bookList = this.bookService.getSearchBook(searchMap);
+			for(int i=0;i<bookList.size();i++) {
+				String bookHtmlText = bookList.get(i).getBookVO().getBook_name();
+				String bookStrippedText = bookHtmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");					
+				bookList.get(i).getBookVO().setBook_name(bookOneSpace);
+			}
+			mv.addObject("bookList",bookList);
 		}else if(w.equals("author")) {		//작가검색
 			List<CategoryVO> catList = this.catService.listCategory();
 			List<MemberVO> memberList = this.memberService.getSearchMember(searchMap);
@@ -604,11 +610,16 @@ public class BoardController {
 
 			return boardList;
 		}else if(w.equals("book")) {		//책검색
-			//List<BookVO> bookList = this.bookService.getSearchBook(searchMap);
-			//아직 XML 구현 안됨!!!!!!!!
-			//return bookList; 
+			List<BoardVO> bookList = this.bookService.getSearchScrollBook(searchMap);
+			for(int i=0;i<bookList.size();i++) {
+				String bookHtmlText = bookList.get(i).getBookVO().getBook_name();
+				String bookStrippedText = bookHtmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");					
+				bookList.get(i).getBookVO().setBook_name(bookOneSpace);
+			}
+			return bookList;
 		}else if(w.equals("author")) {		//작가검색
-			List<MemberVO> memberList = this.memberService.getSearchMember(searchMap);
+			List<MemberVO> memberList = this.memberService.getSearchScrollMember(searchMap);
 			return memberList;
 		}
 		return null;

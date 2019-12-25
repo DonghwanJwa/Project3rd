@@ -23,8 +23,18 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public List<BookVO> getSearchBook(HashMap<String, Object> searchMap) {
+	public List<BoardVO> getSearchBook(HashMap<String, Object> searchMap) {
 		return this.sqlSession.selectList("search_book",searchMap);
+	}
+
+	@Override
+	public List<BoardVO> getSearchScrollBook(HashMap<String, Object> searchMap) {
+		return this.sqlSession.selectList("search_scroll_book",searchMap);
+	}
+
+	@Override
+	public List<BoardVO> recomBook() {	
+		return this.sqlSession.selectList("index_book");
 	}
 
 	@Override

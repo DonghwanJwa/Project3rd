@@ -28,6 +28,7 @@ public interface MemberService {
 	MemberVO profileCheck(String mem_id);
 	MemberVO getMemberFav(int mem_no);
 	List<MemberVO> getSearchMember(HashMap<String, Object> searchMap);
+	List<MemberVO> getSearchScrollMember(HashMap<String, Object> searchMap);
 	List<MemberVO> recomAuthor();
 	List<MemberVO> categoryMember();
 	MemberVO getAccusee(int ac_member);

@@ -116,6 +116,11 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
+	public List<MemberVO> getSearchScrollMember(HashMap<String, Object> searchMap) {
+		return this.sqlSession.selectList("search_scroll_member",searchMap);
+	}
+	
+	@Override
 	public List<MemberVO> recomAuthor() {
 		return this.sqlSession.selectList("index_author");
 	}

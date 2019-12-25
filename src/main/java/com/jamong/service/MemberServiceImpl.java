@@ -121,6 +121,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public List<MemberVO> getSearchScrollMember(HashMap<String, Object> searchMap) {
+		return this.memberDao.getSearchScrollMember(searchMap);
+	}
+	
+	@Override
 	public List<MemberVO> recomAuthor() {	
 		return this.memberDao.recomAuthor();
 	}

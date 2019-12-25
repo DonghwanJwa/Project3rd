@@ -28,10 +28,19 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<BookVO> getSearchBook(HashMap<String, Object> searchMap) {
+	public List<BoardVO> getSearchBook(HashMap<String, Object> searchMap) {
 		return this.bookDao.getSearchBook(searchMap);
 	}
 
+	@Override
+	public List<BoardVO> getSearchScrollBook(HashMap<String, Object> searchMap) {
+		return this.bookDao.getSearchScrollBook(searchMap);
+	}
+
+	@Override
+	public List<BoardVO> recomBook() {
+		return this.bookDao.recomBook();
+	}
 
 	@Override
 	public MemberVO getMember(String mem_id) {

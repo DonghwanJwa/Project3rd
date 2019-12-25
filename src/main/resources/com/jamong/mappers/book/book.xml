@@ -105,6 +105,85 @@
   ON book.mem_no = m.mem_no
  </select>
  
+ <select id="index_book" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_date,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname
+  FROM (SELECT * FROM book ORDER BY DBMS_RANDOM.RANDOM)book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  WHERE rowNum &lt;=9
+ </select>
+ 
+ <select id="search_book" parameterType="java.util.HashMap" resultMap="boardMap">
+ SELECT * FROM 
+ (SELECT ROWNUM RN, X.* FROM 
+ (SELECT * FROM 
+ (SELECT bk.book_no,
+		 bk.book_name,
+		 bk.book_cover,
+		 bk.book_date,
+		 m.mem_id,
+		 m.mem_nickname
+	FROM book bk 
+	INNER JOIN member m
+	ON m.mem_no = bk.mem_no
+	INNER JOIN board bd
+	ON m.mem_no = bd.mem_no AND bk.book_no = bd.book_no 
+	WHERE REGEXP_LIKE(bk.book_name,#{q})
+	OR REGEXP_LIKE(m.mem_nickname,#{q})
+	OR REGEXP_LIKE(bo_title,#{q}) 
+	OR REGEXP_LIKE(bo_cont,#{q})
+	AND m.mem_state = 0
+	AND bo_lock=1
+	GROUP BY bk.book_no,
+		 	 bk.book_name,
+		 	 bk.book_cover,
+		 	 bk.book_date,
+		     m.mem_id,
+		     m.mem_nickname)
+	ORDER BY REGEXP_COUNT(book_name,#{q}) DESC, 
+		 	 REGEXP_COUNT(mem_nickname,#{q}) DESC)X)
+ WHERE RN &lt;=6
+ </select>
+ 
+ <select id="search_scroll_book" parameterType="java.util.HashMap" resultMap="boardMap">
+ SELECT * FROM 
+ (SELECT ROWNUM RN, X.* FROM 
+ (SELECT * FROM 
+ (SELECT bk.book_no,
+		 bk.book_name,
+		 bk.book_cover,
+		 bk.book_date,
+		 m.mem_id,
+		 m.mem_nickname
+	FROM book bk 
+	INNER JOIN member m
+	ON m.mem_no = bk.mem_no
+	INNER JOIN board bd
+	ON m.mem_no = bd.mem_no AND bk.book_no = bd.book_no 
+	WHERE REGEXP_LIKE(bk.book_name,#{q})
+	OR REGEXP_LIKE(m.mem_nickname,#{q})
+	OR REGEXP_LIKE(bo_title,#{q}) 
+	OR REGEXP_LIKE(bo_cont,#{q})
+	AND m.mem_state = 0
+	AND bo_lock=1
+	GROUP BY bk.book_no,
+		 	 bk.book_name,
+		 	 bk.book_cover,
+		 	 bk.book_date,
+		     m.mem_id,
+		     m.mem_nickname)
+	ORDER BY REGEXP_COUNT(book_name,#{q}) DESC, 
+		 	 REGEXP_COUNT(mem_nickname,#{q}) DESC)X)
+ WHERE RN BETWEEN (#{n}+1) AND (#{n}+6)
+ </select>
+ 
  <select id="select_bklist" resultMap="boardMap">
   SELECT *
   FROM board b
