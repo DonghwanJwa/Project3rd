@@ -13,8 +13,12 @@ public interface BookDAO {
 
 	void insertBook(HashMap<String, Object> bm);
 
-	List<BookVO> getSearchBook(HashMap<String, Object> searchMap);
+	List<BoardVO> getSearchBook(HashMap<String, Object> searchMap);
+	
+	List<BoardVO> getSearchScrollBook(HashMap<String, Object> searchMap);
 
+	List<BoardVO> recomBook();
+	
 	MemberVO getMember(String mem_id);
 
 	int selectBookNo(HashMap<String, Object> bm);

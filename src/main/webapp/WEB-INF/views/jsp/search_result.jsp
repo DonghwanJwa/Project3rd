@@ -65,41 +65,43 @@
 	   <ul id="search_result_post_list">
 	    <c:forEach var="board" items="${boardList}" varStatus="status">
 	     <li class="scrolling" data-no="${status.count}">
-	      <a href="/jamong.com/@${board.memberVO.mem_id}/${board.bo_no}">
-	      <div class="post_cont">
-	       <c:if test="${!empty board.bo_thumbnail}">
-	       <div id="post_text">
-	       </c:if>
+	      <div class="post_cont_wrap">     
+	      <div id="post_text"
+	       <c:if test="${!empty board.bo_thumbnail}"></c:if>
 	       <c:if test="${empty board.bo_thumbnail}">
-	       <div id="post_text" class="post_no_img_text">
+	        class="post_no_img_text"
 	       </c:if>
+	       >
+	        <div class="post_cont_catbook">
+	         <a href="/jamong.com/category/${board.cat_name}" class="post_cont_cat">${board.cat_name}</a>
+	         <c:if test="${board.book_no ne null}">
+	          <span class="post_cont_book">Book</span>
+	         </c:if>
+	        </div>
+	        <a href="/jamong.com/@${board.memberVO.mem_id}/${board.bo_no}">  
 	        <div id="post_title">
 	        ${board.bo_title}
 	        </div>
-	        <c:if test="${!empty board.bo_thumbnail}">
-	         <div id="post_cont">
-	        </c:if>
-	        <c:if test="${empty board.bo_thumbnail}">
-	         <div id="post_cont" class="post_no_img_cont">
-	        </c:if>
+	        <div id="post_cont"
+	         <c:if test="${!empty board.bo_thumbnail}"></c:if>
+	         <c:if test="${empty board.bo_thumbnail}">
+	          class="post_no_img_cont"
+	         </c:if>
+	        >
 	         ${board.bo_cont}
 	        </div>
-	        <div class="post_writer"><i>by&nbsp;&nbsp;</i>${board.memberVO.mem_nickname}</div>
+	        </a>
+	        <a href="/jamong.com/@${board.memberVO.mem_id}" class="post_writer"><i>by&nbsp;&nbsp;</i>${board.memberVO.mem_nickname}</a>
 	        <div class="post_ago">${board.bo_date}</div>
-	        <div class="post_tag">
-	        <c:forEach items="${board.memberVO.mem_keyword.split('/')}" var="keyword">
-	         <a href="/jamong.com/search?w=post&s=accuracy&q=${keyword}">#${keyword}</a>	        
-	        </c:forEach>
-	        </div>
 	       </div>
 	       <c:set var="img" value="${board.bo_thumbnail}" />
 	       <c:if test="${not empty img}">
-	       <div class="post_img_wrap">
+	       <a href="/jamong.com/@${board.memberVO.mem_id}/${board.bo_no}" class="post_img_wrap">
 	        <img class="post_img" src="${board.bo_thumbnail}" alt="thumbnail">
-	       </div>
+	       </a>
 	       </c:if>
 	      </div>
-	     </a></li>
+	     </li>
 	    </c:forEach>
 	   </ul>
 	  </div>
@@ -110,25 +112,22 @@
 	 <%-- 검색 페이지 '작품' 검색 결과 --%>
 	<c:if test="${w eq 'book'}">
 	 <div id="search_result_work">
-	
-	  <%-- 검색 결과 정렬 기준 --%>
-	  <div id="search_result_work_type">
-	   <select id="search_result_work_select">
-	    <option value="all" selected>모든 작품</option>
-	    <option value="column">컬럼</option>
-	    <option value="essay">에세이</option>
-	   </select>
-	  </div>
-	
+		
 	  <%-- 검색 결과 내용 --%>
 	  <div id="search_result_work_main">
-	   <c:forEach begin="1" end="10" step="1">
-	    <a href="./book_info">
+	   <c:forEach var="bookList" items="${bookList}" varStatus="status">
+	    <a href="/jamong.com/book_info" class="scrolling" data-no="${status.count}">
 	     <div class="work_cont">
-	      <img id="work_img" src="/jamong.com/resources/img/b.jpg" alt="책 표지인데 안나옴;">
+	      <c:if test="${bookList.bookVO.book_cover eq null}">
+		   <img id="work_img" style="background-color:#f2f2f2">
+	      </c:if>
+	      <c:if test="${bookList.bookVO.book_cover ne null}">
+		   <img id="work_img" src="${bookList.bookVO.book_cover}" alt="표지">
+	      </c:if>
 	      <div class="work_cont_view">
 	       <div class="work_cont_view_top">
-	        <strong>강아지와 지내는건 어때?</strong> <span>by 멍뭉이</span>
+	        <strong>${bookList.bookVO.book_name}</strong> 
+	        <span>by ${bookList.memberVO.mem_nickname}</span>
 	       </div>
 	       <div class="work_cont_view_bottom">
 	        <span>Jamong Book</span>

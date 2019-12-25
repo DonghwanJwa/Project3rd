@@ -11,8 +11,12 @@ public interface BookService {
 
 	List<BoardVO> getBList(String mem_id);
 
-	List<BookVO> getSearchBook(HashMap<String, Object> searchMap);
+	List<BoardVO> getSearchBook(HashMap<String, Object> searchMap);
 
+	List<BoardVO> getSearchScrollBook(HashMap<String, Object> searchMap);
+	
+	List<BoardVO> recomBook();
+	
 	MemberVO getMember(String mem_id);
 
 	void createBook(HashMap<String, Object> bm);

@@ -569,32 +569,34 @@ body{
 #recom_book-cont{
 	position:relative;
 	height: 540px;
+	min-width: 940px;
 	margin-bottom:25px;
-	overflow-x: auto;
-	overflow-y: hidden;
-	/*https://www.codingfactory.net/10599
-	  https://blog.jaeyoon.io/2017/10/css-scrollbar.html
-	   나중에 hidden처리*/
-	-ms-overflow-style: none; /*IE에서 스크롤바 감춤 */	
 }
-#recom_book-cont::-webkit-scrollbar { 
-    display: none !important; /* 윈도우 크롬 등*/
-} 
+
 #recom_book-list{
 	list-style: none;
 	display:flex;
+	height: 400px;
+	justify-content: center;
 	align-items: center;		/*상하정렬*/
 	margin:0;
-	width:6720px;
-	padding-left:0;
-	margin-left:282px;
+	padding:0;
 }
 
+.recom_book-item-wrap{
+	display:none;
+}
+
+
 .recom_book-item{
+	opacity:0;
 	border-radius:2px 6px 6px 2px;
-	margin:0 30px;
+	margin:0;
 	box-shadow:12px 11px 7px #636569;
 	height:400px;
+	margin:0px 30px;
+	transition: opacity .5s linear;
+	-webkit-transition: opacity .5s linear;
 }
 .recom_book-item .link_item{
 	text-decoration: none;
@@ -605,7 +607,7 @@ body{
 .book-item-head-inner{
 	position:relative;
 	height:400px;
-	width:300px;
+	width:280px;
 	display:inline-block;
 }
 
@@ -614,21 +616,21 @@ body{
 	height: 100%;
 	object-fit: cover;
 	border-radius:2px 6px 6px 2px;
-	filter: brightness(50%);
+	filter: brightness(80%);
 }
 .book-item-head-inner-cont{
 	position:absolute;
 	display:inline;
 	text-align: center;
 	height:400px;
-	width:300px;
+	width:280px;
 	left: 50%;
 	transform: translate(-50%);
 }
 .book-item-head-inner-cont-top{
 	height: 220px;
 	margin:0 50px;
-	margin-top:80px;
+	margin-top:85px;
 	background:#ffffffe0;
 	color:#333;
 }
@@ -637,7 +639,7 @@ body{
 	font-family: 'NanumMyeongjo','serif';
     display: block;
     margin: 0;
-    padding: 0px 15px;
+    padding: 0px 10px;
     padding-top: 30px;
     font-size: 23px;
     height: 150px;
@@ -661,7 +663,7 @@ body{
 	height:40px;
 	margin:0;
 	padding:0 15px;
-	padding-top:60px;
+	padding-top:55px;
 	font-size:16px;
 	color:#fff;
 	font-weight: bold;
@@ -702,12 +704,40 @@ body{
 	bottom:100px;
 	z-index: -1;
 }
+
 #recom_book-item-shelve{
 	position:absolute;
 	height:22px;
 	width:7602px;
 	background-image: url(../img/bookshelve.png);
 	box-shadow:5px 20px 17px 7px #636569;
+}
+
+#recom_book-item-paging{
+	display:flex;
+	justify-content: center;
+	width:900px;
+	margin:0 auto;
+	padding-top:65px;
+}
+
+.recom-book-page{
+	cursor:pointer;
+	display:inline-block;
+	width:20px;
+	height:20px;
+	margin:0 20px;
+	background-repeat: no-repeat;
+	background-size: cover;
+    background-position: center;
+}
+
+.recom_book-close{
+	background-image: url(/jamong.com/resources/img/book_close.png);
+}
+
+.recom_book-open{
+	background-image: url(/jamong.com/resources/img/book_open.png);
 }
 
 /*공감글 란*/
@@ -851,7 +881,8 @@ body{
 .recom_author-item-link {
 	text-decoration:none;
 	display:flex;
-	height:130px;
+	height:105px;
+	padding-top: 5px;
 }
 .recom_author-item-img{
 	height:70px; 
@@ -902,20 +933,23 @@ body{
 
 }
 .recom_author-keyword{
-	display:flex;
+	display: table-cell;
 	justify-content: flex-end;
-	height:40px;
-	margin-right:5px;
+	height: 50px;
+	padding: 0 15px;
 	
 }
-.recom_author-keyword button{
-	background-color:transparent;
-    border:1px solid #797979; 
-    border-radius: 20px;
-    color:#797979;
-    margin:6px 2px;
-    outline:none;
+.recom_author-keyword a{
+	display: inline-block;
+    color:#3d3d3d;
+    font-size: 13px;
+    margin: 0 2px;
+    line-height: 25px;
     cursor: pointer;
+    text-decoration: none;
+}
+.recom_author-keyword a:hover{
+	text-decoration: underline;
 }
 
 

@@ -3,9 +3,15 @@
  */
 
 //js페이지가 로딩되면 메뉴에 요소들을 불러옴(중단에 메서드 있음)
+var slideIndex = 0;
+var timerID;
 getCategory();
 getBestList();
 getHeaderNotice();
+
+$(document).ready(function(){
+	timerID = showSlides();
+});
 
 function scrollmove(whereScroll,howMove){
 	/*스크롤움직임 버튼 ( 어느div인지,	어느쪽으로 움직이는지)*/
@@ -17,12 +23,12 @@ function scrollmove(whereScroll,howMove){
 	/**/
 	var slideTimer = setInterval(function(){		/*setInterval(함수,시간) : 쓰레드 기능과 같음 */
 		if(howMove=='slideleft'){					/* 						해당함수를 기입한 시간간격으로 반복*/
-			container.scrollLeft -= scrollMove/100;	/*버튼한번클릭하여 움직이는 길이/10*/
+			container.scrollLeft -= scrollMove/30;	/*버튼한번클릭하여 움직이는 길이/10*/
 			/*div.scrollLeft : 해당 div의 왼쪽기준으로 화면에서 넘어간 너비를 알려줌(초기값 0)*/
 		}else{
-			container.scrollLeft += scrollMove/100;
+			container.scrollLeft += scrollMove/30;
 		}
-		scrollAmount += scrollMove/100;			/*움직이는 거리를 측정*/
+		scrollAmount += scrollMove/30;			/*움직이는 거리를 측정*/
 		if(scrollAmount >= scrollMove){			/*움직인 거리가 지시한 거리만큼 움직이면 참*/
 			if(container.scrollLeft==0){
 				document.getElementById(whereScroll+'-'+howMove).style.visibility="hidden";
@@ -39,7 +45,7 @@ function scrollmove(whereScroll,howMove){
 			}
 			window.clearInterval(slideTimer);	/*지정된 Interval을 중지(쓰래드 중지)*/
 		}
-	}, 1);
+	}, 0.6);
 }
 
 /*메뉴바 Best,Hot 페이징버튼*/
@@ -71,6 +77,41 @@ function hotscroll(where,number){
 	},1000);
 	
 }
+
+function showSlides() {
+	if($('#recom_book-cont').length>0){
+		slideIndex++;
+		if (slideIndex > 3) {slideIndex = 1}    
+		$(".recom_book-item-wrap").children().css("opacity","0");
+		setTimeout(function(){
+			$(".recom_book-item-wrap").css("display","none");		
+			$("li[data-book='"+slideIndex+"']").css("display","list-item");
+			setTimeout(function(){
+				$("li[data-book='"+slideIndex+"']").children().css("opacity","1");		
+			},200);
+		},500);
+		$(".recom-book-page").removeClass("recom_book-open");
+		$(".recom-book-page").addClass("recom_book-close");
+		$("span[data-bookpage='"+slideIndex+"']").removeClass("recom_book-close");
+		$("span[data-bookpage='"+slideIndex+"']").addClass("recom_book-open");
+		
+		timerID = setTimeout(showSlides, 5000);
+	}
+}
+
+function slideButton(a){
+	if($('.recom-book-page').attr("data-disabled")=='true'){
+		return false;
+	}
+	$('.recom-book-page').attr("data-disabled",'true');
+	clearTimeout(timerID);
+	slideIndex = a;
+	timerID = setTimeout(showSlides, 500);
+	setTimeout(function(){
+		$('.recom-book-page').attr("data-disabled",'false');
+	},2000);
+}
+
 
 function getHeaderNotice(){
 	
@@ -193,9 +234,11 @@ $(document).ready(function(){
 	});
 	
 	/*한글 단어단위로 끊어주는 메서드*/
-	$('.writting-item-head-inner-cont-head').children().wordBreakKeepAll();
-	$('.writting-item-head-inner-cont-sub').children().wordBreakKeepAll();
-	$('.book-item-head-inner-cont-top').children('strong').wordBreakKeepAll();
+	if($('#main_cont').length>0){
+		$('.writting-item-head-inner-cont-head').children().wordBreakKeepAll();
+		$('.writting-item-head-inner-cont-sub').children().wordBreakKeepAll();
+		$('.book-item-head-inner-cont-top').children('strong').wordBreakKeepAll();
+	}
 	$('.head-page-sub-title').wordBreakKeepAll();
 	$('.head-page-main-title').wordBreakKeepAll();
 });

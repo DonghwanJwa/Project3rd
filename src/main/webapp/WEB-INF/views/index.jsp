@@ -388,17 +388,32 @@ $(document).keydown(function(e){
     <div id="recom_book-cont">
      <ul id="recom_book-list">
      
-	  <c:forEach begin="1" end="20" step="1">
-       <li>
-        <div class="recom_book-item">
+	  <c:forEach items="${bolist}" var="bolist" varStatus="status">
+       <li class="recom_book-item-wrap"
+       <c:if test="${status.count eq 1 || status.count eq 2 || status.count eq 3}">
+       		 data-book="1" style="display:list-item"
+       </c:if>
+       <c:if test="${status.count eq 4 || status.count eq 5 || status.count eq 6}">
+       		 data-book="2"
+       </c:if>
+       <c:if test="${status.count eq 7 || status.count eq 8 || status.count eq 9}">
+       		 data-book="3" 
+       </c:if>
+       >
+        <div class="recom_book-item" style="opacity:1">
          <a href="/jamong.com/book_info" class="link_item">
           <div class="recom_book-item-head">
            <div class="book-item-head-inner">
-            <img class="book-item-head-inner-img" src="/jamong.com/resources/img/write2.jpg">
+           <c:if test="${bolist.bookVO.book_cover eq null}">
+            <img class="book-item-head-inner-img" style="background-color:#f2f2f2">
+           </c:if>
+           <c:if test="${bolist.bookVO.book_cover ne null}">
+            <img class="book-item-head-inner-img" src="${bolist.bookVO.book_cover}">
+           </c:if>
             <div class="book-item-head-inner-cont">
              <div class="book-item-head-inner-cont-top">
-              <strong>강아지와 지내는건 어때?</strong>
-              <i>by 멍뭉이</i>
+              <strong>${bolist.bookVO.book_name}</strong>
+              <i>by ${bolist.memberVO.mem_nickname}</i>
              </div>
              <div class="book-item-head-inner-cont-bottom">
               <span>Jamong Book</span>
@@ -416,18 +431,15 @@ $(document).keydown(function(e){
      <div id="recom_book-item-shelveback"></div>
      <div class="clear"></div>
  	 <div id="recom_book-item-shelve"></div>
+ 	 <div id="recom_book-item-paging">
+ 	  <span class="recom-book-page recom_book-open" data-bookpage="1" data-disabled="false" onclick="slideButton(0)">
+ 	  </span>
+ 	  <span class="recom-book-page recom_book-close" data-bookpage="2" data-disabled="false" onclick="slideButton(1)">
+ 	  </span>
+ 	  <span class="recom-book-page recom_book-close" data-bookpage="3" data-disabled="false" onclick="slideButton(2)">
+ 	  </span>
+ 	 </div>
     </div>
-     <div class="slide-button">
-      <a href="javascript:;" id="recom_book-cont-slideleft" class="slide-left" onclick="scrollmove('recom_book-cont','slideleft');"
-      	style="visibility:hidden;">
-       <img src="/jamong.com/resources/img/writepage_icon/prev_btn.png" alt="왼쪽스크롤버튼"/>
-      </a>
-      <a href="javascript:;" id="recom_book-cont-slideright" class="slide-right" onclick="scrollmove('recom_book-cont','slideright');"
-      	style="visibility:visible;">
-       <img src="/jamong.com/resources/img/writepage_icon/next_btn.png" alt="오른쪽스크롤버튼"/>
-      </a>
-     </div>
-   </div>
    
    <div class="clear"></div>
     
@@ -453,15 +465,11 @@ $(document).keydown(function(e){
 		 </div>
 	   	</a>		  	
 	    <div class="recom_author-keyword">
-	    <c:if test="${!empty mlist.mem_fav1}">
-	     <button class="keyword1">${mlist.mem_fav1}</button>
-	    </c:if>
-	    <c:if test="${!empty mlist.mem_fav2}">
-	     <button class="keyword2">${mlist.mem_fav2}</button>
-	    </c:if>
-	    <c:if test="${!empty mlist.mem_fav3}">
-	     <button class="keyword3">${mlist.mem_fav3}</button>
-	    </c:if>
+	     <c:if test="${mlist.mem_keyword ne null}">
+	      <c:forEach items="${mlist.mem_keyword.split('/')}" var="tag">
+	       <a href="/jamong.com/search?w=post&s=accuracy&q=${tag}">#${tag}</a>	        
+	      </c:forEach>
+	     </c:if>
 	    </div>
 	   </div>
 	  </li>

@@ -131,7 +131,7 @@ ul li {
 	margin: 9px;
 }
 
-#search_result_post_main .post_cont {
+#search_result_post_main .post_cont_wrap {
 	display: flex;
 	width: 800px;
 	height: 210px;
@@ -140,6 +140,29 @@ ul li {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border-top: 1px solid #c0c0c0;
+}
+
+.post_cont_catbook{
+	height:17px;
+	display:flex;
+	justify-content: flex-start;
+	margin-bottom: 5px;
+    font-size:13px;
+	font-family: 'NanumMyeongjo','serif';
+	font-weight: bold;
+}
+
+.post_cont_cat{
+	margin-right:10px;
+	color:#ff8040;
+	text-decoration: none;
+}
+.post_cont_cat:hover{
+	text-decoration: underline;
+}
+
+.post_cont_book{
+	color:#e0849d;
 }
 
 .post_img_wrap{
@@ -194,33 +217,23 @@ ul li {
 }
 
 .post_writer {
-	font-size: 18px;
+	font-size: 16px;
 	text-align: right;
 	padding: 2px;
 	display:inline-block;
 	color:#ff8040;
+	text-decoration: none;
+}
+.post_writer:hover{
+	text-decoration: underline;
 }
 
 .post_writer i{
 	font-family: "NanumPen", "serif";
 }
 
-.post_tag {
-	font-size: 14px;
-	text-align: right;
-	padding: 2px;
-}
-
-.post_tag a{
-	margin-left:6px;
-}
-
-.post_tag a:hover{
-	text-decoration: underline;
-}
-
-
 .post_ago {
+	font-size: 16px;
 	display:inline-block;
 }
 /* '글' 검색 결과 */
@@ -244,7 +257,7 @@ ul li {
 
 #search_result_work_main {
 	width: 922px;
-	margin: 0px 9px 130px 9px;
+	margin: 25px 9px 130px 9px;
 	flex-wrap: nowrap;
 }
 
