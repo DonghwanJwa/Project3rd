@@ -50,11 +50,13 @@ public class MailServiceImpl implements MailService {
 				helper.addInline("logo2.png", imgFile);
 			
 				// 첨부 파일 처리
-				for(int i=0; i<filePath.length; i++) {
-					if (filePath[i] != null) {
-						File file = new File(filePath[i]);
-						if (file.exists()) {
-							helper.addAttachment(file.getName(), new File(filePath[i]));
+				if(filePath != null) {
+					for(int i=0; i<filePath.length; i++) {
+						if (filePath[i] != null) {
+							File file = new File(filePath[i]);
+							if (file.exists()) {
+								helper.addAttachment(file.getName(), new File(filePath[i]));
+							}
 						}
 					}
 				}
