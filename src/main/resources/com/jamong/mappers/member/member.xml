@@ -52,7 +52,7 @@
 	update member set mem_Withdrawal_reason=#{mem_Withdrawal_reason},mem_state=2,mem_Withdrawal_reason_date=sysdate where mem_no=#{mem_no}
 </update>
 <update id="mem_pwd_update">
-	update member set mem_pwd=#{mem_pwd} where mem_id=#{mem_id}
+	update member set mem_pwd=#{mem_pwd} where mem_id=#{mem_id} and mem_name=#{mem_name}
 </update>
 <select id="mem_select_pwd" resultType="m">
 	select * from member where email_id=#{email_id} and email_domain=#{email_domain} and mem_name=#{mem_name} and mem_id=#{mem_id}

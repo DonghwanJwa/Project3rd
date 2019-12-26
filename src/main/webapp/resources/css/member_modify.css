@@ -1,9 +1,16 @@
-#member_modify_main_wrap {
-/* 	padding: calc(( 100vh - 580px)/2) 0;
- */    
- background-size: cover;
-}
+/* member_modify.jsp
+*/
+
 * { font : 14px verdana }
+
+#member_modify_main_wrap {
+	min-height: calc(100vh - 162px);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	lign-items: center;
+}
+
 #member_modify_main_div {
 	background-color: white;
 	width: 777px;
@@ -12,7 +19,7 @@
 
 #member_modify_h4_div{
 	margin-bottom:20px;
-	margin-top:20px;
+	padding-top:20px;
 	border-bottom: 1px solid gray;	
 }
 
@@ -32,6 +39,7 @@
 	display: inline-block;
 	border-spacing: 0 20px;
 	margin-left: 58px;
+	display: block;
 }
 #member_modify_table th{
 	padding-bottom: 20px;

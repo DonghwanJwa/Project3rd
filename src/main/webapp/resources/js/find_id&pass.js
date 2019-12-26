@@ -27,30 +27,32 @@ $(function(){
 			return false;
 		}
 		
-		
 		//이메일 메일 발송 비동기 처리 
 		$.ajax({
 			type:"POST",
 			url : "find_id_emailCert",
 			data : {"email": email,"domain":domain,"name":name},
+			datatype:"int",
 			success : function(data){
-				alert("입력하신 이메일로 아이디가 발송되었습니다.\n비밀번호 찾기 페이지로 이동됩니다	");
-				//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
-				//readonly false면 값변경이 가능
-				//disabled 태그 속성 활성화 false 비활성화
-				 	$("#find_id_sub_box_pass").css("display","none");
+				if(data == 1){
+					//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
+					//readonly false면 값변경이 가능
+					//disabled 태그 속성 활성화 false 비활성화
+					alert("입력하신 이메일로 아이디가 발송되었습니다.\n비밀번호 찾기 페이지로 이동됩니다.");
 					$("#find_id_sub_box_id").css("display","none");
 					$("#find_id_sub_box_pass").css("display","block");
 					$(".find_pass_link2").css("background","orange");
 					$(".find_pass_link2").css("color","white");
 					$(".find_id_link1").css("background","lightgray");
-					$("#find_id_name").val("");
-					$("#find_id_email").val("");
-					$("#find_id_domain").val("");
+				}else if(data==-1){
+					alert("입력하신 정보에 해당하는 계정이 없습니다.");
+				}else if(data==-2){
+					alert("이메일 전송중 에러가 발생하였습니다.\n다시한번 시도해 주시기 바랍니다.\n" +
+							"+오류가 반복될 경우 '문의하기'페이지를 통해\n문의 해 주시기 바립니다.");
+				}
 			},
 			beforeSend:function(){
 			        //(이미지 보여주기 처리)
-
 			        $('.wrap-loading').show();
 			},
 			complete:function(){
@@ -58,11 +60,11 @@ $(function(){
 				$('#find_id_email').val("");
 				$('#find_id_domain').val("");
 				$('#find_id_name').val("");
-
-			        $('.wrap-loading').hide();
+			    $('.wrap-loading').hide();
 			},
 			error: function(data){
-				alert("입력하신 이름과 이메일이 일치하지 않습니다.");
+				alert("data error");
+				//이 부분은 정말로 java단에서 에러발생시에 발생하는 event를 넣어주어야된다.
 				return false;
 			}
 		})
@@ -100,16 +102,31 @@ $(function(){
 			type:"POST",
 			url : "find_pass_emailCert",
 			data : {"email": pass_email,"domain":pass_domain,"name":pass_name,"id":pass_id},
+			datatype:"int",
 			success : function(data){
-				alert("입력하신 이메일로 인증번호가 발송되었습니다.");
-				//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
-				//readonly false면 값변경이 가능
-				//disabled true가 비활성화 false가 활성화
-				$('#find_id_pass_email_Certified_btn').attr("disabled",true);//버튼을 못쓰게 막음
-				$('#hidde_box').css("visibility","visible");
-				$('#find_id_pass_Certified').val('');
-				$('#find_id_pass_Certified').attr('readonly',false);//readonly false면 쓰기 가능 true면 글을 못씀
-				$('#find_id_pass_email_Certified_next_btn').attr('disabled',false);
+				if(data==1){
+					alert("입력하신 이메일로 인증번호가 발송되었습니다.");
+					//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
+					//readonly false면 값변경이 가능
+					//disabled true가 비활성화 false가 활성화
+					$('#find_id_pass_email_Certified_btn').attr("disabled",true);//버튼을 못쓰게 막음
+					$('#find_id_pass_before_certified').show();
+					$('#find_id_pass_Certified').val('');
+					$('#find_id_pass_Certified').attr('readonly',false);//readonly false면 쓰기 가능 true면 글을 못씀
+					$('#find_id_pass_email_Certified_next_btn').attr('disabled',false);
+				}else if(data==-1){
+					alert("입력하신 정보에 해당하는 계정이 없습니다.");
+					$('#find_id_pass_email').val("");	
+					$('#find_id_pass_domain').val("");
+					$('#find_id_pass_name').val("");
+					$('#find_id_pass_id').val("");
+					$('#find_id_pass_Certified').val("");
+					$('#find_id_pass_pass').val("");
+					$('#find_id_pass_pass_check').val("");
+				}else if(data==-2){
+					alert("이메일 전송중 에러가 발생하였습니다.\n다시한번 시도해 주시기 바랍니다.\n" +
+					"+오류가 반복될 경우 '문의하기'페이지를 통해\n문의 해 주시기 바립니다.");
+				}
 			},
 			beforeSend:function(){
 				//(이미지 보여주기 처리)
@@ -122,14 +139,8 @@ $(function(){
 				//비번찾기로 넘어가도 된다
 			},
 			error: function(data){
-				alert("입력하신 회원정보가 일치하지 않습니다.");
-				$('#find_id_pass_email').val("");	//이메일값
-				$('#find_id_pass_domain').val("");	//도메인값
-				$('#find_id_pass_name').val("");
-				$('#find_id_pass_id').val("");
-				$('#find_id_pass_Certified').val("");
-				$('#find_id_pass_pass').val("");
-				$('#find_id_pass_pass_check').val("");
+				alert("data error");
+				//이 부분은 정말로 java단에서 에러발생시에 발생하는 event를 넣어주어야된다.
 				return false;
 			}
 		})
@@ -147,7 +158,9 @@ $(function(){
 					alert("인증이 완료되었습니다.");
 					$('#find_id_pass_email_Certified_next_btn').attr('disabled', true);//비활성화
 					$('#find_id_pass_Certified').attr('readonly',true);
-					$('#find_id_pass_email_Certified_btn').attr('disabled',false);
+					$('#find_pass_email_box').hide();
+					$('#find_id_pass_before_certified').hide();
+					$('#find_id_pass_after_certified').show();
 					sessionStorage.removeItem('authCode');
 				}else if(data == "false"){
 					alert("인증번호를 잘못 입력하셨습니다.")
@@ -162,21 +175,22 @@ $(function(){
 			    $('.wrap-loading').hide();
 			},
 			error:function(data){
-				alert("에러가 발생했습니다.");
+				alert("data error");
 			}
 		});
 	});
 	
 	//이메일이 수정되면 박스를 닫고 다시 인증을 받아야 함
 	$('#find_id_pass_email').on("focusout", function() {
+		$('#find_pass_error_email').text('');
 		if ($.trim($('#find_id_pass_email').val())=="") {
 			$('#find_pass_error_email').text('이메일을 입력해주세요!');
 			return false;
 		}
 	}).on("keyup", function(key) {
-
+		sessionStorage.removeItem('authCode');
 		$('#find_id_pass_email_Certified_btn').attr("disabled",false);
-		$('#hidde_box').css("visibility","hidden");
+		$('#find_id_pass_before_certified').hide();
 		$('#find_id_pass_email_Certified_next_btn').attr('disabled', true);
 		
 		if ($.trim($('#find_id_pass_email').val())=="") {
@@ -185,6 +199,26 @@ $(function(){
 		}
 		$('#find_pass_error_email').text('');
 	
+	});
+	//도메인 수정시 인증 초기화
+	$('#find_id_pass_domain').on("focusout", function() {
+		$('#find_pass_error_email').text('');
+		if ($.trim($('#find_id_pass_domain').val())=="") {
+			$('#find_pass_error_email').text('도메인을 입력해주세요!');
+			return false;
+		}
+	}).on("keyup", function(key) {
+		sessionStorage.removeItem('authCode');
+		$('#find_id_pass_email_Certified_btn').attr("disabled",false);
+		$('#find_id_pass_before_certified').hide();
+		$('#find_id_pass_email_Certified_next_btn').attr('disabled', true);
+
+		if ($.trim($('#find_id_pass_domain').val())=="") {
+			$('#find_pass_error_email').text('도메인을 입력해주세요!');
+			return false;
+		}
+		$('#find_pass_error_email').text('');
+		
 	});
 	
 
