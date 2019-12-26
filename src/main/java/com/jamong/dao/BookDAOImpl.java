@@ -57,4 +57,13 @@ public class BookDAOImpl implements BookDAO {
 		return this.sqlSession.selectList("book_list",b);
 	}
 
+	@Override
+	public BoardVO bookInnerInfo(int book_no) {
+		return this.sqlSession.selectOne("book_info",book_no);
+	}
+
+	@Override
+	public BookVO getBook(int book_no) {
+		return this.sqlSession.selectOne("book_get",book_no);
+	}
 }

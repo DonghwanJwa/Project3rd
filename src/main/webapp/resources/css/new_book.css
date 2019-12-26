@@ -353,9 +353,9 @@
 .item_work .title {
 	margin-top: 14px;
 	font-size: 16px;
-	letter-spacing: -0.4px;
+	letter-spacing: -0.7px;
 	color: #333;
-	width: 220px;
+	width: 210px;
 	overflow: hidden;
 	white-space: nowrap;
 	-ms-text-overflow: ellipsis;
@@ -431,7 +431,6 @@
 	height: 800px;
 	opacity: 1;
 	background: #f8f8f8 url(../resources/img/bg_text_center.png) center no-repeat;
-	padding-bottom: 68px;
 }
 
 .new_book_inner_info {
@@ -447,6 +446,7 @@
 .new_book_inner_info .new_book_author {
 	float: right;
 	width: 280px;
+	height: 460px;
 	background-color: #fff;
 	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
 	margin: 198px 0 0 20px;
@@ -487,12 +487,14 @@
 	text-align: center;
 	display: -webkit-box;
 	-webkit-line-clamp: 5;
+	min-height: 88px;
 	max-height: 108px;
 	-webkit-box-orient: vertical;
+	max-height: 108px;
 }
 
 .new_book_inner_info .new_book_author .new_book_user_follow {
-	margin: 32px auto 0;
+	margin: 80px auto 0;
 	width: 130px;
 	height: 40px;
 	border: 1px solid #000;
@@ -518,11 +520,10 @@
 	font-family: Nanum Myeongjo;
 	width: 378px;
 	line-height: 1.3;
-	overflow: hidden;
 	display: -webkit-box;
-	-webkit-line-clamp: 3;
 	max-height: 160px;
-	-web-kit-box-orient: vertical;
+	letter-spacing: -0.9px;
+	-webkit-box-orient: vertical;
 }
 
 .new_book_inner_info .new_book_author .publisher_book {
@@ -549,6 +550,7 @@
 
 .new_book_inner_info .new_book_desc .new_book_description {
 	width: 389px;
+	min-height: 88px;
 	max-height: 82px;
 	line-height: 1.64;
 	color: #959595;
@@ -557,6 +559,7 @@
 	-webkit-line-clamp: 4;
 	max-height: 314px;
 	-webkit-box-orient: vertical;
+	max-height: 82px;
 }
 
 .new_book_inner_info .new_book_desc .btn_buy_book {
@@ -628,17 +631,34 @@
 	top: 51px;
 	left: 58px;
 	width: 314px;
-	height: 151px;
+	height: 40px;
 	font-family: Nanum Myeongjo;
 	font-size: 26px;
 	line-height: 1.46;
-	letter-spacing: -0.7;
+	letter-spacing: -0.7px;
 	color: #fff;
 	position: absolute;
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-line-clamp: 4;
 	max-height: 314px;
+	-webkit-box-orient: vertical;
+}
+
+.new_book_inner_info .new_book_desc .new_book_text_sentence_cont {
+	top: 110px;
+	left: 59px;
+	width: 314px;
+	height: 100px;
+	font-family: Nanum Myeongjo;
+	font-size: 16px;
+	line-height: 1.3;
+	letter-spacing: -0.9px;
+	color: #fff;
+	position: absolute;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
 	-webkit-box-orient: vertical;
 }
 
@@ -655,6 +675,7 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
+	margin: 0;
 	background-color: rgba(0, 0, 0, 0.5);
 }
 

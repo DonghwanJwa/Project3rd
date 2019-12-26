@@ -25,4 +25,8 @@ public interface BookDAO {
 
 	List<BookVO> selectBookList(BookVO b);
 
+	BoardVO bookInnerInfo(int book_no);
+
+	BookVO getBook(int book_no);
+
 }

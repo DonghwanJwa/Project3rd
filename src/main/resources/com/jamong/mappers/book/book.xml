@@ -83,8 +83,8 @@
  </select>
  
  <update id="book_no_up" parameterType="java.util.HashMap">
-  <foreach collection="bo_no" item="bc" separator=";" open="DECLARE BEGIN" close="; END;">
-   UPDATE board SET book_no = #{book_no} WHERE bo_no=#{bc}
+  <foreach collection="bo_no" index="index" item="bc" separator=";" open="DECLARE BEGIN" close="; END;">
+   UPDATE board SET book_no = #{book_no}, book_order = #{index} WHERE bo_no=#{bc}
   </foreach>
  </update>
  
@@ -189,6 +189,53 @@
   FROM board b
   INNER JOIN book book
   ON b.book_no=#{book_no}
+ </select>
+ 
+ <select id="book_info" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.book_date,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname,
+  		 m.profile_photo,
+  		 m.profile_cont,
+  		 b.bo_title,
+  		 b.bo_cont
+  FROM book book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  INNER JOIN board b
+  ON b.book_no = #{book_no}
+  AND b.book_order = 0
+  WHERE book.book_no = #{book_no}
+ </select>
+ 
+ <select id="book_info_cont" resultMap="boardMap">
+  SELECT m.mem_id,
+  		 m.mem_nickname,
+  		 m.profile_photo,
+  		 m.profile_cont,
+  		 b.bo_no,
+  		 b.bo_title,
+  		 b.bo_cont,
+  		 b.bo_thumbnail,
+  		 b.bo_color,
+  		 b.bo_date
+  FROM board b
+  INNER JOIN member m
+  ON b.book_no = #{book_no}
+  AND m.mem_id = #{mem_id}
+  ORDER BY b.book_order
+ </select>
+ 
+ <select id="book_get" resultType="book">
+  SELECT *
+  FROM book
+  WHERE book_no = #{book_no}
  </select>
  
 </mapper>
