@@ -8,13 +8,12 @@ import com.jamong.domain.MemberVO;
 public interface MemberDAO {
 
 	void cat_update(MemberVO vo);
-	void member_pwd_modify(MemberVO me);
 	void mem_update_del(MemberVO vo);
 	void pass_update(MemberVO vo);
 	MemberVO memberSelect_pwd(MemberVO vo);
 	MemberVO memberSelect_id(MemberVO vo);
 	MemberVO mem_emailCheck(MemberVO m);
-	void memberUpdate(MemberVO me);
+	int memberUpdate(HashMap<String, Object> bm);
 	void insertMember(MemberVO m);
 	MemberVO idCheck(String id);
 	MemberVO loginCheck(String login_id);

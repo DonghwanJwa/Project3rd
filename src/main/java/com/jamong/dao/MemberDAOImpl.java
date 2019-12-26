@@ -22,10 +22,6 @@ public class MemberDAOImpl implements MemberDAO{
 		this.sqlSession.update("member_cat_up", vo);
 	}
 	@Override
-	public void member_pwd_modify(MemberVO me) {
-		this.sqlSession.selectOne("member_pwd_up", me);
-	}
-	@Override
 	public void mem_update_del(MemberVO vo) {
 		this.sqlSession.update("mem_update_del",vo);
 	}
@@ -52,8 +48,8 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 	
 	@Override
-	public void memberUpdate(MemberVO me) {
-		this.sqlSession.update("mem_update", me);
+	public int memberUpdate(HashMap<String, Object> bm) {
+		return this.sqlSession.update("mem_update", bm);
 	}
 
 	@Override

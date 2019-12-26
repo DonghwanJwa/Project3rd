@@ -26,10 +26,6 @@ public class MemberServiceImpl implements MemberService {
 	public void cat_update(MemberVO vo) {
 		this.memberDao.cat_update(vo);
 	}
-	@Override
-	public void member_pwd_modify(MemberVO me) {
-		this.memberDao.member_pwd_modify(me);
-	}
 	@Transactional
 	@Override
 	public void mem_update_del(MemberVO vo) {//회원탈퇴
@@ -59,8 +55,8 @@ public class MemberServiceImpl implements MemberService {
 	}	
 	
 	@Override
-	public void memberUpdate(MemberVO me) {
-		this.memberDao.memberUpdate(me);
+	public int memberUpdate(HashMap<String, Object> bm) {
+		return this.memberDao.memberUpdate(bm);
 	}
 
 	@Override

@@ -14,7 +14,7 @@
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 <div id="member_modify_main_wrap">
-<form method="post" action="member_modify_ok">
+<form method="post" action="member_modify_ok" onsubmit="return updateCheck();">
  <div class="wrap-loading" style="display:none">
       <div>
        <img src="/jamong.com/resources/img/loading1.gif" />
@@ -23,6 +23,7 @@
 
 	<div id="member_modify_main_div"><!-- 겉에 싸고 있는 박스 -->
 					<div id="member_modify_h4_div"><h4 id="member_modify_h4">${vo.mem_id }님의 정보를 수정해주세요!</h4></div>		
+					<input type="hidden" id="member_modify_id" value="${vo.mem_id}">
 					
 	<div id="#member_modify_sub_div"><!-- 겉에 싸고 있는 박스 -->
 					<table  id="member_modify_table">	
@@ -79,6 +80,8 @@
 							<option value="gmail.com">
 							<option value="nate.com">
 						</datalist>
+						<input type="hidden" id="member_modify_original_email" value="${vo.email_id}" readonly>
+						<input type="hidden" id="member_modify_original_domain" value="${vo.email_domain}" readonly>
 						<button type="button" id="member_modify_certified_btn" disabled="disabled">인증</button>
 						<div class="member_modify_error"id="member_modify_error_email_domain"></div>
 					</td>
@@ -107,7 +110,7 @@
 					<tr class="hide_box">
 					<th>비밀번호 수정</th>
 					<td>
-						<input type="password" placeholder="비밀번호" class="member_modify_text" id="member_modify_pass" name="mem_pwd">
+						<input type="password" placeholder="비밀번호 수정" class="member_modify_text" id="member_modify_pass">
 						<div class="member_modify_error" id="member_modify_error_pass"></div>
 					</td>
 					</tr>
@@ -115,8 +118,7 @@
 					<tr  class="hide_box">
 					<th>비밀번호 확인</th>
 					<td>
-						<input type="password" placeholder="비밀번호 확인" class="member_modify_text pwd_check" id="member_modify_pass_check">
-						<button type="button" id="member_pwd_modify">수정</button>
+						<input type="password" placeholder="비밀번호 수정 확인" class="member_modify_text pwd_check" id="member_modify_pass_check">
 						<div class="member_modify_error"id="member_modify_error_pass_check"></div>
 					</td>
 					</tr>
