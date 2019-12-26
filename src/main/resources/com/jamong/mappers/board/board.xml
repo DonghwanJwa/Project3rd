@@ -105,14 +105,14 @@
   bo_lock=#{b.bo_lock},
   bo_type=#{b.bo_type}
   <if test="b.bo_thumbnail != null" >
-  ,bo_tumbnail=#{b.bo_thumbnail}
+  ,bo_thumbnail=#{b.bo_thumbnail}
   ,bo_color=null
   </if>
-  <if test="b.bo_color != null">
+  <if test='b.bo_color != "1" and b.bo_thumbnail == null'>
   ,bo_thumbnail=null
   ,bo_color=#{b.bo_color}
   </if>
-  <if test="b.bo_color == '1'">
+  <if test='b.bo_color == "1"'>
   ,bo_thumbnail=null
   ,bo_color=null
   </if>

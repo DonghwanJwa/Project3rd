@@ -14,6 +14,7 @@
 <body>
 	<%-- 본문 구역 쓰기 페이지와 같음 --%>
  <div id="write_wrap">
+  <input type="hidden" name="mem_no" id="mem_no" value="${bo.mem_no}" />
   <div id="write_min-wrap" style="min-width:940px;">
    <!-- 타이틀 부분 -->
    <c:if test="${!empty bo.bo_thumbnail && empty bo.bo_color}">
@@ -191,7 +192,7 @@
 					<span class="comment_date">${r.rep_date}</span>
 					<span class="comment_menu">
 					<c:if test="${!empty m.mem_no}">
-					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" data-mem="${r.mem_no}" onclick="replyHide(event);">답글</a>
 					<c:if test="${m.mem_no == r.mem_no}">
 					· <a class="comment_edit" data-no="${r.rep_no}" onclick="replyEdit(event);">수정</a>
 					· <a class="comment_del" data-no="${r.rep_no}" onclick="CommentRemove(event);">삭제</a>
@@ -215,7 +216,7 @@
 					<span class="comment_date">${r.rep_date}</span>
 					<span class="comment_menu">
 					<c:if test="${!empty m.mem_no}">
-					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" data-mem="${r.mem_no}" onclick="replyHide(event);">답글</a>
 					<c:if test="${m.mem_no == r.mem_no}">
 					· <a class="comment_edit" data-no="${r.rep_no}" onclick="replyEdit(event);">수정</a>
 					· <a class="comment_del" data-no="${r.rep_no}" onclick="CommentRemove(event);">삭제</a>

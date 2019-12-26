@@ -26,6 +26,4 @@ SELECT sub_no_seq.nextval FROM DUAL;
 DROP TABLE subscribe;
 DROP SEQUENCE sub_no_seq;
 
-INSERT INTO subscribe 
-
 SELECT COUNT(sub_no) FROM subscribe WHERE mem_no = 7

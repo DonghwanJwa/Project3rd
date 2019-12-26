@@ -9,18 +9,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.BoardDAO;
 import com.jamong.dao.BookDAO;
+import com.jamong.dao.FeedDAO;
+import com.jamong.dao.SubscribeDAO;
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.BookVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.SubscribeVO;
 
 @Service
 public class BookServiceImpl implements BookService {
 
 	@Autowired
-	private BoardDAO boardDao;
-	
+	private BoardDAO boardDao;	
 	@Autowired
 	private BookDAO bookDao;
+	@Autowired
+	private FeedDAO feedDao;
+	@Autowired
+	private SubscribeDAO subDao;
 
 	@Override
 	public List<BoardVO> getBList(String mem_id) {
@@ -54,6 +60,9 @@ public class BookServiceImpl implements BookService {
 		int book_no = this.bookDao.selectBookNo(bm);
 		bm.put("book_no",book_no);
 		this.boardDao.updateBookNo(bm);
+		List<SubscribeVO> followerList = this.subDao.followerList(bm.get("mem_no"));
+		bm.put("fList",followerList);
+		this.feedDao.addBookFeed(bm);
 	}
 
 	@Override
