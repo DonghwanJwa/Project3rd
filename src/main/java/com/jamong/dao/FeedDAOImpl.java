@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.jamong.domain.FeedVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.SubscribeVO;
 
@@ -22,7 +23,7 @@ public class FeedDAOImpl implements FeedDAO {
 	}
 
 	@Override
-	public List<MemberVO> getUserFeedList(int mem_no) {
+	public List<FeedVO> getUserFeedList(int mem_no) {
 		return this.sqlSession.selectList("FeedList",mem_no);
 	}
 
@@ -34,5 +35,10 @@ public class FeedDAOImpl implements FeedDAO {
 	@Override
 	public void addArticleFeed(HashMap<String, Object> bm) {
 		this.sqlSession.insert("ArticleFeed",bm);
+	}
+
+	@Override
+	public void addBookFeed(HashMap<String, Object> bm) {
+		this.sqlSession.insert("BookFeed",bm);
 	}
 }

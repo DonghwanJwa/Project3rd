@@ -117,6 +117,7 @@ public class BoardServiceImpl implements BoardService {
 		return this.boardDao.getProfile(mem_no);
 	}
 
+	@Transactional
 	@Override
 	public void articleDelete(int bo_no) {
 		this.boardDao.articleDelete(bo_no);

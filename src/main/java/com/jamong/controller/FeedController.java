@@ -1,6 +1,8 @@
 package com.jamong.controller;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jamong.domain.FeedVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.FeedService;
+
+import timeChanger.TIME_MAXIMUM;
 
 @Controller
 public class FeedController {
@@ -32,7 +37,14 @@ public class FeedController {
 		MemberVO feedM = (MemberVO)session.getAttribute("m");
 		if(feedM != null) {
 			
-			List<MemberVO> fList = this.feedService.getUserFeedList(feedM.getMem_no());
+			List<FeedVO> fList = this.feedService.getUserFeedList(feedM.getMem_no());
+			SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			
+			for(int i=0;i<fList.size();i++) {
+				Date repListFormat_date = org_format.parse(fList.get(i).getFeed_date());
+				String repList_date = TIME_MAXIMUM.formatTimeString(repListFormat_date);
+				fList.get(i).setFeed_date(repList_date);
+			}
 			
 			mv.addObject("fList",fList);
 			mv.setViewName("jsp/feed");

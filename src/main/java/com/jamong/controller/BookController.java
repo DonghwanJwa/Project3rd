@@ -112,6 +112,7 @@ public class BookController {
 
 		MemberVO m = (MemberVO) session.getAttribute("m");
 		int mem_no = m.getMem_no();
+		String mem_id = m.getMem_id();
 
 		File UpFile1 = multi.getFile("book_cover");
 		if (UpFile1 != null) {
@@ -150,6 +151,8 @@ public class BookController {
 		HashMap<String, Object> bm = new HashMap<>();
 		bm.put("b", b);
 		bm.put("bo_no", val);
+		bm.put("mem_no",mem_no);
+		bm.put("mem_id",mem_id);
 
 		this.bookService.createBook(bm);
 
