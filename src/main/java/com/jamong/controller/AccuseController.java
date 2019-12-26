@@ -264,7 +264,31 @@ public class AccuseController {
 		}
 		return null;
 	}
-
+	/* 신고사항 삭제 */
+	@RequestMapping("admin_accuse_del") 
+	public ModelAndView admin_accuse_del(HttpSession session, HttpServletRequest request, 
+			HttpServletResponse response, int ac_no) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		session=request.getSession();
+		
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
+		
+		ac_no=Integer.parseInt(request.getParameter("ac_no"));
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='login/1';");
+			out.println("</script>");
+		}else {
+			this.accuseService.accuseDel(ac_no);
+			out.println("<script>");
+			out.println("alert('삭제되었습니다.');");
+			out.println("location='admin_accuse';");
+			out.println("</script>");
+		}
+		return null;
+	}
 
 
 }

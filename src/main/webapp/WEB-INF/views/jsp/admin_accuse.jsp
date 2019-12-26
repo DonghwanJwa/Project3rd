@@ -14,9 +14,9 @@
      <tr>
                <th width="40px">번호</th>
                <th width="131px">분류</th>
-               <th width="255px">내용</th>
+               <th width="160px">내용</th>
                <th width="125px">신고항목</th>
-               <th width="137px">신고일자</th>
+               <th width="200px">신고일자</th>
                <th width="85px">처리여부</th>
      </tr>
      

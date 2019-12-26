@@ -18,4 +18,7 @@ public interface InquireService {
 
 	InquireVO getFile(int no);
 
+	void inquireDel(int no);
+
+
 }

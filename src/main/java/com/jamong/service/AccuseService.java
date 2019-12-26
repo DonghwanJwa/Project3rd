@@ -21,6 +21,8 @@ public interface AccuseService {
 
 	void updateAccuse(AccuseVO ac);
 
+	void accuseDel(int ac_no);
+
 
 
 	
