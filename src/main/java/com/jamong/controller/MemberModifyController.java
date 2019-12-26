@@ -2,6 +2,7 @@ package com.jamong.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -205,32 +206,39 @@ public class MemberModifyController {
 	
 	@RequestMapping("member_modify_ok") //회원정보수정
 	public String member_modify_ok(MemberVO me,HttpSession session,HttpServletResponse response,HttpServletRequest request) throws Exception  {
-		
 		response.setContentType("text/html;charset=UTF-8");
 		session = request.getSession();
 		PrintWriter out = response.getWriter();
 		MemberVO m = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
-		me.setMem_no(m.getMem_no());//엠객체에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
-		this.memberService.memberUpdate(me);//엠이에 디비값을 담는다
-		out.print("<script>");
-		out.print("alert('수정되었습니다');");
-		out.print("location='my_info';");
-		out.print("</script>");
+		if(m==null) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 페이지 입니다.');");
+			out.println("history.go(-2);");
+			out.println("</script>");
+		}else{
+			HashMap<String,Object> bm = new HashMap<>();
+			if(me.getMem_pwd()==null) {
+				
+			}else {
+				me.setMem_pwd(PwdChange.getPassWordToXEMD5String(me.getMem_pwd()));
+			}
+			bm.put("me",me);
+			me.setMem_no(m.getMem_no());//세션에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
+			int re = this.memberService.memberUpdate(bm);//엠이에 디비값을 담는다
+			if(re >0) {
+				out.print("<script>");
+				out.print("alert('회원정보가 정상적으로 수정되었습니다.');");
+				out.print("location='my_info';");
+				out.print("</script>");
+			}else{
+				out.print("<script>");
+				out.print("alert('처리중 에러가 발생하였습니다.\\\n 지속적으로 발생시 문의 해 주시기 바랍니다.');");
+				out.print("location='my_info';");
+				out.print("</script>");
+			}
+		}
 		return null;
 	}//member_modify_ok()
-	
-	@RequestMapping("member_pwd_modify_ok")
-	@ResponseBody
-	public int member_pwd_modify_ok(MemberVO me,HttpSession session,HttpServletResponse response,HttpServletRequest request) throws Exception  {
-		int re = 1;
-		session = request.getSession();
-		MemberVO m = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
-		me.setMem_no(m.getMem_no());//엠객체에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
-		me.setMem_pwd(PwdChange.getPassWordToXEMD5String(me.getMem_pwd()));
-		this.memberService.member_pwd_modify(me);//엠이에 디비값을 담는다
-		return re;
-	}
-
 	
 	@RequestMapping("modify_emailcheck")//이메일 중복체크
 	@ResponseBody
@@ -252,7 +260,6 @@ public class MemberModifyController {
 	@RequestMapping("modify_emailCert")//이메일 인증번호 체크
 	@ResponseBody
 	public boolean createEmailCheck(String email,String domain, HttpServletRequest request){
-		
 		
 		String userEmail = email + "@" + domain; //받는 사람 이메일 주소
 		

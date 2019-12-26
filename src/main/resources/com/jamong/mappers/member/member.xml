@@ -45,9 +45,6 @@
 <update id="member_cat_up">
 	update member set mem_fav1=#{mem_fav1},mem_fav2=#{mem_fav2},mem_fav3=#{mem_fav3} where mem_no=#{mem_no}
 </update>
-<update id="member_pwd_up">
-	update member set mem_pwd=#{mem_pwd} where mem_no=#{mem_no}
-</update>
 <update id="mem_update_del">
 	update member set mem_Withdrawal_reason=#{mem_Withdrawal_reason},mem_state=2,mem_Withdrawal_reason_date=sysdate where mem_no=#{mem_no}
 </update>
@@ -73,12 +70,16 @@
 <!-- 작가에게 제안하기 끝 -->
 
 	<!-- 회원정보 업데이트 -->
-<update id="mem_update">
+<update id="mem_update" parameterType="java.util.HashMap">
 	update member set 
-	mem_name=#{mem_name},
-	mem_birth1=#{mem_birth1},mem_birth2=#{mem_birth2},mem_birth3=#{mem_birth3},
-	mem_phone01=#{mem_phone01},mem_phone02=#{mem_phone02},mem_phone03=#{mem_phone03}
-	where mem_no=#{mem_no}
+	mem_name=#{me.mem_name},
+	mem_birth1=#{me.mem_birth1},mem_birth2=#{me.mem_birth2},mem_birth3=#{me.mem_birth3},
+	email_id=#{me.email_id},email_domain=#{me.email_domain},
+	<if test="me.mem_pwd != null">
+	mem_pwd=#{me.mem_pwd},
+	</if>
+	mem_phone01=#{me.mem_phone01},mem_phone02=#{me.mem_phone02},mem_phone03=#{me.mem_phone03}
+	where mem_no=#{me.mem_no}
 </update>
 
    <!-- 회원정보가져오기 -->

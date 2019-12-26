@@ -8,7 +8,7 @@
 	background-size: cover;
 	display: flex;
 	justify-content: center;
-	lign-items: center;
+	align-items: center;
 }
 
 #member_modify_main_div {
@@ -45,7 +45,8 @@
 	padding-bottom: 20px;
 }
 #member_modify_table td{
-	padding-left: 68px;	
+	padding-left: 50px;
+    width: 400px;
 }
 
 #member_pwd_modify{
@@ -86,13 +87,11 @@
 	border-right: none;
 	border-top: none;
 	text-align: left;
-	padding-left:10px;
+	padding-left:15px;
 	padding-bottom:5px;
 	border-bottom:1px solid orange;
 }
-.member_modify_text.pwd_check{
-	width: 223px;
-}
+
 .member_modify_text.birth{
 	width: 63px;
 	height: 15px;
@@ -101,28 +100,28 @@
 	border-right: none;
 	border-top: none;
 	text-align: left;
-	padding-left:10px;
+	padding-left:15px;
 	border-bottom:1px solid orange;
 	padding-bottom:5px;
 	font-size : 14px;
 }
 
 .member_modify_text.tel{
-	width: 64px;
+	width: 69px;
 	height: 15px;
 	outline: 0;
 	border-left: none;
 	border-right: none;
 	border-top: none;
 	text-align: left;
-	padding:0 10px;
+	padding-left:15px;
 	border-bottom:1px solid orange;
 	padding-bottom:5px;
 	font-size : 14px;
 }
 	
 .member_modify_text.email{
-	width: 106px;
+	width: 118px;
 	height: 15px;
 	outline: 0;
 	border-left: none;
@@ -135,10 +134,10 @@
 	font-family: verdana;
 }
 .member_modify_text.domain{
-	width: 94px;
+	width: 114px;
 }
 .member_modify_text.emailcheck{
-	width: 233px;
+	width: 276px;
 	height: 15px;
 	outline: 0;
 	border-left: none;
@@ -177,7 +176,8 @@
     outline: 0;
     margin-bottom: 5px;
     font-size: 10px;
-	visibility: hidden;
+	display:none;
+	cursor: pointer;
 }
 #member_modify_certified_btn:active{
 	background-color: orange;
