@@ -94,6 +94,7 @@
 <!-- 회원일때 문의하기 내용 밑에 회원정보 띄우기 -->
 
 <c:if test="${i.mem_no != 0}">
+  <h3 style="padding-left:20px;">회원정보</h3>
 	<table class="inq_adm_table2">
 		<tr>
 			<th align="center" style="width:140px; height:40px;">ID</th>
@@ -161,13 +162,27 @@
 	</table>
   </c:if>
    
+      
+   
    <!-- 목록으로, 답변하기 버튼 -->
+   <form action="admin_inquire_del" onsubmit="return delconfirm();">
+   <input type="hidden" name="no" value="${no}" />
+   <script>
+   		function delconfirm() {
+   			var con=confirm('삭제하시겠습니까?');
+   			
+   			if(con === false){
+   				return false;
+   			}
+   		}
+   </script>
 	<div id="inq_adm_button">
 		<input type="button" id="inq_list_btn" class="inq_button" value="목록으로" onclick="location='admin_inquire?page=${page}';"/>
 		<c:if test="${i.inq_state == 0}">
-		<input type="button" id="inq_re_btn" class="inq_button" value="답변하기" action="inq_adm_re" />
-		</c:if>	
+		<input type="button" id="inq_re_btn" class="inq_button" value="답변하기" />
+		</c:if>
+		<input type="submit" id="inq_del_btn" class="inq_button" value="삭제하기" />	
 	</div>
-   
+   </form> 
 <%@include file="../include/admin_footer.jsp" %>
 </html>

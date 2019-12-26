@@ -18,4 +18,7 @@ public interface InquireDAO {
 
 	InquireVO getFile(int no);
 
+	void inquireDel(int no);
+
+
 }

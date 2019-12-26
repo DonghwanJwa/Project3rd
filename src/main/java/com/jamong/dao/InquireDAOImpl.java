@@ -45,5 +45,11 @@ public class InquireDAOImpl implements InquireDAO {
 	public InquireVO getFile(int no) {
 		return this.sqlSession.selectOne("getFile",no);
 	}
-	
+
+	@Override
+	public void inquireDel(int no) {
+		this.sqlSession.delete("inq_del",no);
+		
+	}
+
 }

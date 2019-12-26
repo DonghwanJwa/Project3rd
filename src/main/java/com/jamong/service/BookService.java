@@ -25,4 +25,10 @@ public interface BookService {
 
 	List<BoardVO> getBKList(int book_no);
 
+	BoardVO bookInnerInfo(int book_no);
+
+	List<BoardVO> bookInfoCont(HashMap<String, Object> binfo);
+
+	BookVO getBook(int book_no);
+
 }

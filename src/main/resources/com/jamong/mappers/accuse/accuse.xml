@@ -235,4 +235,9 @@
 	update accuse set ac_state=1,ac_reply=#{ac_reply},ac_sender=#{ac_sender},
 	ac_replydate=sysdate where ac_no=#{ac_no}
 </update>
+
+<!-- 신고문의 관리자페이지에서 삭제하기 -->
+<delete id="ac_del">
+	delete accuse where ac_no=#{ac_no}
+</delete>
 </mapper>

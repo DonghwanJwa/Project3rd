@@ -10,8 +10,10 @@ body{
 #pass_modify_main_wrap{
     background-image: url(../img/background_img/background_on.png);
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 100%;
-    height: 78.4vh;
+    height: calc(100vh - 162px);
 	display: flex;
     justify-content: center;
     align-items: center;

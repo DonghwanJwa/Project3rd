@@ -21,5 +21,7 @@ public interface AccuseDAO {
 
 	void updateAccuse(AccuseVO ac);
 
+	void accuseDel(int ac_no);
+
 
 }

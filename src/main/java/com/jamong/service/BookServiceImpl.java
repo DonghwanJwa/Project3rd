@@ -66,4 +66,18 @@ public class BookServiceImpl implements BookService {
 		return this.boardDao.getBKList(book_no);
 	}
 
+	@Override
+	public BoardVO bookInnerInfo(int book_no) {
+		return this.bookDao.bookInnerInfo(book_no);
+	}
+
+	@Override
+	public List<BoardVO> bookInfoCont(HashMap<String, Object> binfo) {
+		return this.boardDao.bookInfoCont(binfo);
+	}
+
+	@Override
+	public BookVO getBook(int book_no) {
+		return this.bookDao.getBook(book_no);
+	}
 }

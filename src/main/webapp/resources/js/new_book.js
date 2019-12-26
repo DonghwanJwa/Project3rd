@@ -365,9 +365,10 @@ $(document).ready(function() {
 			url:"book_inner_info",
 			dataType:"json",
 			data:{//서버로 보낼 데이터
-				"book_no":book_no
+				"bk_no":book_no
 			},
 			success:function(data){//ajax 성공 시 실행
+				$(".new_book_inner_info").remove();
 				var str="";
 				if(data!=""){
 					$(data).each(function(){
@@ -375,48 +376,48 @@ $(document).ready(function() {
 							+  	"<div class='new_book'>"
 							+	"<div class='new_book'>"
 							+	"<div class='new_book_title'>"
-							+	"<h3 class='title_book'>안 느끼한 산문집</h3>"
+							+	"<h3 class='title_book'>" + this.bookVO.book_name + "</h3>"
 							+	"</div>"
 							+	"<div class='new_book_desc'>"
 							+	"<div class='new_book_desc_buy'>"
 							+	"<p class='new_book_description'>"
-							+	"그림을 그려보고 싶은데 어디서부터 어떻게 시작해야 할지 막막한 초보자를 위한 가이드북입니다."
-							+	"힘 들이지 않고, 못 그려도 즐겁게, '야매스케치' 마음가짐으로 오늘부터 그림! 같이 시작해봐요."
+							+	this.bookVO.book_preface
 							+	"</p>"
-							+	"<a href='#' target='_blank' class='#buybook'>"
+							+	"<a href='/jamong.com/book/@" + this.memberVO.mem_id + "/" + this.bookVO.book_no + "' target='_blank' class='#buybook'>"
 							+	"<button class='btn_buy_book'>책 구경하기</button>"
 							+	"</a>"
 							+	"</div>"
-							+	"<a href='#' target='_blank' class='#buybook'>"
-							+	"<div class='new_book_image' style='background-image:url(/jamong.com/resources/img/book_img.jpg)'>"
+							+	"<a href='/jamong.com/book/@" + this.memberVO.mem_id + "/" + this.bookVO.book_no + "' target='_blank' class='#buybook'>"
+							+	"<div class='new_book_image' style='background-image:url(" + this.bookVO.book_cover + ")'>"
 							+	"<div class='border_left'></div>"
 							+	"</div>"
 							+	"</a>"
 							+	"<div class='new_book_share_sentence'>"
 							+	"<div class='new_book_share'></div>"
-							+	"<div class='new_book_sentence' style='background-image:url(/jamong.com/resources/img/background_img/adm_back.jpg)'>"
+							+	"<div class='new_book_sentence' style='background-image:url(/jamong.com/resources/img/background_img/sentence_background_image_01.png)'>"
 							+	"<p class='layer_dimmed'></p>"
 							+	"<img src='/jamong.com/resources/img/quotation.png' class='quotation'>"
-							+	"<p class='new_book_text_sentence'>뭐, 어차피 취미일 뿐인데 좀 못 그리면 어때?</p>"
-							+	"<p class='ment_sentence'>작가가 사랑한 한 문장</p>"
+							+	"<p class='new_book_text_sentence'>" + this.bo_title + "</p>"
+							+	"<p class='new_book_text_sentence_cont'>" + this.bo_cont + "</p>"
+							+	"<p class='ment_sentence'>책 핥아보기</p>"
 							+	"</div>"
 							+	"</div>"
 							+	"</div>"
 							+	"</div>"
 							+	"<a href='./profile' target='_blank'>"
 							+	"<div class='new_book_author'>"
-							+	"<div class='new_book_user_image' style='background-image: url(/jamong.com/resources/img/cat_writer_face2.jpg)'></div>"
-							+	"<div class='new_book_user_name'>콧수염 아저씨</div>"
-							+	"<span class='publisher_book'>먼진 아재들</span>"
+							+	"<div class='new_book_user_image' style='background-image: url(" + this.memberVO.profile_photo + ")'></div>"
+							+	"<div class='new_book_user_name'>" + this.memberVO.mem_nickname + "</div>"
+							+	"<span class='publisher_book'></span>"
 							+	"<div class='new_book_user_description'>"
-							+	"콧수염이 매력적인 작가, 콧수염 아저씨입니다. IT업계에서 UX디자이너로 일합니다. 취미로 사부작 사부작 그림을 그리고 글을 씁니다. 초보 헬창으로 매일 운동하며 삽니다."
+							+	this.memberVO.profile_cont
 							+	"</div>"
 							+	"<div class='new_book_user_follow'>작가 구독하기</div>"
 							+	"</div>"
 							+	"</a>"
 							+	"</div>"
 					});//each
-					$(".new_book_info").after(str);
+					$(".new_book_info").append(str);
 				}//data가 null이 아닐 때
 			}//success
 		});//ajax
@@ -437,11 +438,6 @@ $(document).ready(function() {
 		var now = parseInt($(".slide_work_list").css("margin-left").replace("px",""));
 		var sum = now-500;
 		$(".slide_work_list").css("margin-left",sum+"px");
-		if($(".slide_work_list").css("margin-left") == "0px"){
-			$(".prev").removeClass("on");
-		}else{
-			$(".prev").addClass("on");
-		}
 	});
 	$(".prev").click(function(){
 		$(".prev").attr("disabled",true);

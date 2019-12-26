@@ -292,81 +292,82 @@ public class MemberModifyController {
 	
 	//비번을 바꾸려면 아이디나 이메일이 필요함
 	@RequestMapping("find_pass_ok")
-	public ModelAndView user_pass_update(MemberVO vo,HttpSession session,HttpServletResponse response) throws Exception { // 비밀번호 수정
+	public String user_pass_update(MemberVO vo,HttpSession session,HttpServletResponse response) throws Exception { // 비밀번호 수정
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		ModelAndView view = new ModelAndView();
-		
+			
 			vo.setMem_pwd(PwdChange.getPassWordToXEMD5String(vo.getMem_pwd()));
 			this.memberService.pass_update(vo);
 			out.println("<script>");
 			out.println("alert('비밀번호가 수정되셨습니다!');");
+			out.println("location='/jamong.com/login/2';");
 			out.println("</script>");
 			session.invalidate();
-			view.setViewName("redirect:login/2");
-		return view;
+		return null;
 	}
 	
 	@RequestMapping("find_id_emailCert")//이메일 인증번호 체크
 	@ResponseBody
-	public boolean find_id_createEmailCheck(MemberVO vo,String name,String email,String domain, HttpServletRequest request){
-		
+	public int find_id_createEmailCheck(MemberVO vo,String name,String email,String domain, HttpServletRequest request){
 		String userEmail = email + "@" + domain; //받는 사람 이메일 주소
-		String Email = email;
-		String Domain = domain;
-		String Name = name;
-		vo.setEmail_id(Email);
-		vo.setEmail_domain(Domain);
-		vo.setMem_name(Name);
-		System.out.println(vo.getEmail_id());
-		System.out.println(vo.getEmail_domain());
-		System.out.println(vo.getMem_name());
+		vo.setEmail_id(email);
+		vo.setEmail_domain(domain);
+		vo.setMem_name(name);
+		int re = -1;	//아이디찾기 성공유무 판단 flag
 		MemberVO member = this.memberService.memberSelect_id(vo);
-		vo.setMem_id(member.getMem_id());
-		//회원정보를 가져와야 한다
-		HttpSession session = request.getSession(true);		
-		String authCode = String.valueOf(vo.getMem_id());				//생성한 값을 어스코드에 담고
-		session.setAttribute("authCode", authCode);			//세션에 인증번호값 저장
-		
-		String subject = "JAMONG 아이디 찾기";
-		StringBuilder sb = new StringBuilder();
-		sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
-		sb.append("귀하의 아이디는 </h3><h2>" + authCode + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
-		sb.append("해당 아이디로 로그인해주세요.<br/>");
-		sb.append("감사합니다.</h3>");
-		
-		return MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request);
+		if(member==null) {
+			//입력한 아이디와 이메일로 검색이 되지 않을때 해당 정보가 없음을 알려주는 -1값 유지
+		}else {
+			String subject = "JAMONG 아이디 찾기";
+			StringBuilder sb = new StringBuilder();
+			sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
+			sb.append("귀하의 아이디는 </h3><h2>" + member.getMem_id() + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
+			sb.append("해당 아이디로 로그인해주세요.<br/>");
+			sb.append("감사합니다.</h3>");
+			if(MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request)) {
+				//메일전송이 잘 되었으면
+				re = 1;
+			}else {
+				//이메일 전송이 실패하면
+				re =-2;
+			}
+		}
+		return re;
 	}
 
 	@RequestMapping("find_pass_emailCert")//이메일 인증번호 체크
 	@ResponseBody
-	public boolean find_pass_createEmailCheck(MemberVO vo,String id,String name,String email,String domain, HttpServletRequest request){
-		
+	public int find_pass_createEmailCheck(MemberVO vo,String id,String name,String email,String domain, HttpServletRequest request){
 		String userEmail = email + "@" + domain; //받는 사람 이메일 주소
-		String Email = email;
-		String Domain = domain;
-		String Name = name;
-		String Id = id;
-		vo.setEmail_id(Email);
-		vo.setEmail_domain(Domain);
-		vo.setMem_name(Name);
-		vo.setMem_id(Id);
+		vo.setEmail_id(email);
+		vo.setEmail_domain(domain);
+		vo.setMem_name(name);
+		vo.setMem_id(id);
 		
 		MemberVO pwd = this.memberService.memberSelect_pwd(vo);
-		
-		int ran = new Random().nextInt(900000) + 100000;	//100000~999999
-		HttpSession session = request.getSession(true);		
-		String authCode = String.valueOf(ran);				//생성한 값을 어스코드에 담고
-		session.setAttribute("authCode", authCode);			//세션에 인증번호값 저장
-		
-		String subject = "JAMONG 비밀번호 찾기";
-		StringBuilder sb = new StringBuilder();
-		sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
-		sb.append("귀하의 비밀번호는 </h3><h2>" + authCode + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
-		sb.append("해당 비밀번호로 로그인해주세요.<br/>");
-		sb.append("감사합니다.</h3>");
-		
-		return MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request);
+		int re = -1; //이메일 인증 성공여부 flag
+		if(pwd == null) {
+			//입력한 아이디와 이름, 이메일로 검색이 되지 않을때 해당 정보가 없음을 알려주는 -1값 유지
+		}else {
+			int ran = new Random().nextInt(900000) + 100000;	//100000~999999
+			HttpSession session = request.getSession(true);		
+			String authCode = String.valueOf(ran);				//생성한 값을 어스코드에 담고
+			session.setAttribute("authCode", authCode);			//세션에 인증번호값 저장
+			
+			String subject = "JAMONG 비밀번호 찾기";
+			StringBuilder sb = new StringBuilder();
+			sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
+			sb.append("귀하의 비밀번호는 </h3><h2>" + authCode + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
+			sb.append("해당 코드를 인증란에 입력해주시기 바랍니다.<br/>");
+			sb.append("감사합니다.</h3>");
+			
+			if(MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request)) {
+				re=1;
+			}else {
+				re=-2;
+			}
+		}
+		return re;
 	}
 	
 	@RequestMapping("find_pass_emailCert_ok")
