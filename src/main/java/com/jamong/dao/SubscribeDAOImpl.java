@@ -1,6 +1,7 @@
 package com.jamong.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class SubscribeDAOImpl implements SubscribeDAO {
 	@Override
 	public SubscribeVO subCheck(HashMap<String, Object> submap) {
 		return this.sqlSession.selectOne("sub_check",submap);
+	}
+
+	@Override
+	public List<SubscribeVO> followerList(Object object) {
+		return this.sqlSession.selectList("FollowerList",object);
 	}
 
 	

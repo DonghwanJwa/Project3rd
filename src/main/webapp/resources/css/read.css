@@ -433,6 +433,7 @@ body a {
 	border : 1px solid gray;
 	border-radius : 50px;
 	box-sizing : border-box;
+	cursor:pointer;
 }
 
 .remote_button a:hover {

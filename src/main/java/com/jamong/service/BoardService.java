@@ -13,10 +13,12 @@ import com.jamong.domain.MemberVO;
 
 public interface BoardService {
 
-	void insertBoard(BoardVO b);	
+	void insertBoard(HashMap<String, Object> bm);	
 	BoardVO getUserBoardCont(int bo_no);
 	List<BoardVO> getListAll(BoardVO b);
 	List<BoardVO> getProfile(int mem_no);
+	BoardVO getNextBoardCont(HashMap<String, Object> bm);
+	BoardVO getPreBoardCont(HashMap<String, Object> bm);
 	List<BoardVO> recomArticle();
 	int sympathyUp(BoardVO bo);
 	int sympathyDown(BoardVO bo);

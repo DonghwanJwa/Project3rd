@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="feed">
+
+ <insert id="CommentFeed" parameterType="java.util.HashMap">
+  INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_bo_no,feed_date,mem_no)
+  VALUES(feed_no_seq.nextval,2,#{mem_id},#{rvo.bo_no},sysdate,#{mem_no})
+ </insert>
+
+ <insert id="ReplyFeed" parameterType="java.util.HashMap">
+  INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_bo_no,feed_date,mem_no)
+  VALUES(feed_no_seq.nextval,3,#{mem_id},#{rvo.bo_no},sysdate,#{mem_no})
+ </insert>
+
+ <select id="FeedList" resultType="feed">
+  SELECT * FROM feed WHERE mem_no = #{mem_no} ORDER BY feed_date DESC
+ </select>
+ 
+ <insert id="ArticleFeed" parameterType="java.util.HashMap">
+  <foreach collection="fList" item="fList" separator=";" open="DECLARE BEGIN" close="; END;">
+   INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_bo_no,feed_date,mem_no)
+   VALUES(feed_no_seq.nextval,1,#{mem_id},#{newArtNo},sysdate,#{fList.sub_member})
+  </foreach>
+ </insert>
+</mapper>

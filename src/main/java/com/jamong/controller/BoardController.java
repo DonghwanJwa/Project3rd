@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
-import com.jamong.domain.BookVO;
 import com.jamong.domain.CategoryVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.ReplyVO;
@@ -63,7 +62,13 @@ public class BoardController {
 		session=request.getSession();
 
 		MemberVO readM = (MemberVO)session.getAttribute("m");
-
+		
+		HashMap<String,Object> bm = new HashMap<>();
+		bm.put("mem_id",mem_id);
+		bm.put("bo_no",bo_no);
+		
+		BoardVO nextVo = this.boardService.getNextBoardCont(bm);
+		BoardVO preVo = this.boardService.getPreBoardCont(bm);
 		bo = this.boardService.getUserBoardCont(bo_no);
 		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		int replyCount = this.repService.getUserReplyCount(bo_no);
@@ -112,7 +117,9 @@ public class BoardController {
 				catList.get(i).setBo_cont(oneSpace);
 			}
 		}
-
+		
+		model.addAttribute("next",nextVo);
+		model.addAttribute("pre",preVo);
 		model.addAttribute("replyCount",replyCount);
 		model.addAttribute("rList",repList);
 		model.addAttribute("catList",catList);
@@ -160,7 +167,7 @@ public class BoardController {
 		}else {
 			out.println("<script>");
 			out.println("alert('로그인이 필요한 페이지입니다!');");
-			out.println("location='location='login/1';");
+			out.println("location='/jamong.com/login/1';");
 			out.println("</script>");
 		}
 		return null;
@@ -179,7 +186,7 @@ public class BoardController {
 		if (m == null) {
 			out.println("<script>");
 			out.println("alert('로그인이 필요한 페이지입니다!');");
-			out.println("location='location='login/1';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		} else {
 			mv.setViewName("jsp/jamong_write");
@@ -195,7 +202,7 @@ public class BoardController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		session = request.getSession();
-
+		
 		String saveFolder = request.getRealPath("/resources/upload");
 		int fileSize = 100 * 1024 * 1024; // 첨부파일 최대크기
 		MultipartRequest multi = null;
@@ -256,7 +263,12 @@ public class BoardController {
 		b.setCat_name(cat_name);
 		b.setMem_no(mem_no);
 
-		this.boardService.insertBoard(b);
+		HashMap<String,Object> bm = new HashMap<>();
+		bm.put("b",b);
+		bm.put("mem_no",mem_no);
+		bm.put("mem_id",m.getMem_id());
+		
+		this.boardService.insertBoard(bm);
 
 		out.println("<script>");
 		out.println("alert('게시글이 등록되었습니다!')");

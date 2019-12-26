@@ -430,13 +430,4 @@ public class MemberController {
 		return null;
 		
 	}//profile_edit_ok() => 유저 프로필 수정
-	
-	@RequestMapping("feed")
-	public ModelAndView user_feed() {
-		ModelAndView mv=new ModelAndView();
-		
-		mv.setViewName("jsp/feed");
-		
-		return mv;
-	}
 }

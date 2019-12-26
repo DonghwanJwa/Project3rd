@@ -16,8 +16,8 @@ public class BoardDAOImpl implements BoardDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public void insertBoard(BoardVO b) {
-		this.sqlSession.insert("bo_insert", b);
+	public void insertBoard(HashMap<String, Object> bm) {
+		this.sqlSession.insert("bo_insert", bm);
 	}
 
 	@Override
@@ -117,5 +117,20 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardVO> getBKList(int book_no) {
 		return this.sqlSession.selectList("select_bklist",book_no);
+	}
+
+	@Override
+	public BoardVO getNextBoardCont(HashMap<String, Object> bm) {
+		return this.sqlSession.selectOne("NextBoardCont",bm);
+	}
+
+	@Override
+	public BoardVO getPreBoardCont(HashMap<String, Object> bm) {
+		return this.sqlSession.selectOne("PreBoardCont",bm);
+	}
+
+	@Override
+	public int newArticleNum(Object mem_no) {
+		return this.sqlSession.selectOne("NewArticleNumber",mem_no);
 	}
 }

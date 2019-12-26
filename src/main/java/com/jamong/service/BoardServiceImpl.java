@@ -8,21 +8,40 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.BoardDAO;
+import com.jamong.dao.FeedDAO;
+import com.jamong.dao.ReplyDAO;
+import com.jamong.dao.SubscribeDAO;
 import com.jamong.dao.SympathyDAO;
 import com.jamong.domain.BoardVO;
+import com.jamong.domain.SubscribeVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardDAO boardDao;
-
 	@Autowired
-	private SympathyDAO sympathyDao;
-
+	private SympathyDAO sympathyDao;	
+	@Autowired
+	private ReplyDAO replyDao;
+	@Autowired
+	private SubscribeDAO subDao;
+	@Autowired
+	private FeedDAO feedDao;
+	
+	@Transactional
 	@Override
-	public void insertBoard(BoardVO b) {
-		this.boardDao.insertBoard(b);
+	public void insertBoard(HashMap<String, Object> bm) {
+		this.boardDao.insertBoard(bm);
+		int newArtNo = this.boardDao.newArticleNum(bm.get("mem_no"));
+		// 최신글 번호( 세션 아이디에서 가장 최근 게시글 )
+		List<SubscribeVO> followerList = this.subDao.followerList(bm.get("mem_no"));
+		// 팔로우내역 셀렉트( 세션 아이디로 )
+		bm.put("fList",followerList);
+		bm.put("newArtNo",newArtNo);
+		
+		this.feedDao.addArticleFeed(bm);
+		// 피드를 인서트 함
 	}
 
 	@Transactional
@@ -101,6 +120,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void articleDelete(int bo_no) {
 		this.boardDao.articleDelete(bo_no);
+		this.replyDao.replyDelete(bo_no);
 	}
 
 	@Override
@@ -111,6 +131,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void updateBoard(HashMap<String, Object> bm) {
 		this.boardDao.updateBoard(bm);
+	}
+
+	@Override
+	public BoardVO getNextBoardCont(HashMap<String, Object> bm) {
+		return this.boardDao.getNextBoardCont(bm);
+	}
+
+	@Override
+	public BoardVO getPreBoardCont(HashMap<String, Object> bm) {
+		return this.boardDao.getPreBoardCont(bm);
 	}
 
 }

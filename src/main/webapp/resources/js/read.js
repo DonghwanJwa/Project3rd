@@ -25,7 +25,24 @@ function ArticleRemove(){
 		});
 	}
 }
-
+function nextNullError(){
+	$(".write_title_error").addClass('write_top_error');
+	$(".write_error_message").text("이 회원의 마지막 게시글입니다!");
+	$(".read_nextArt_btn").attr("dsabled",true);
+	setTimeout(function(){
+		$(".write_title_error").removeClass('write_top_error');
+		$(".read_nextArt_btn").attr("disabled",false);
+	},3000);
+}
+function preNullError(){
+	$(".write_title_error").addClass('write_top_error');
+	$(".write_error_message").text("이 회원의 첫 게시글입니다!");
+	$(".read_preArt_btn").attr("dsabled",true);
+	setTimeout(function(){
+		$(".write_title_error").removeClass('write_top_error');
+		$(".read_preArt_btn").attr("disabled",false);
+	},3000);
+}
 function CommentRemove(e){
 	var rep_no = $(e.target).data("no");
 	var removeOK = confirm('댓글을 삭제하시겠습니까?');
@@ -48,12 +65,16 @@ function CommentRemove(e){
 function addComment(){
 	var para = document.location.href.split("/");
 	var com_cont = $(".rep_textarea").html();
+	var mem_no = $("#mem_no").val();
 	var CommentOK = confirm('댓글을 작성하시겠습니까?');
 
 	if(CommentOK == true){
 		$.ajax({
 			type:"POST",
-			data:{"com_cont":com_cont},
+			data:{"com_cont" : com_cont,
+				"mem_no" : mem_no,
+				"mem_id" : para[4]
+			},
 			url:"/jamong.com/comment/"+para[5],
 			success:function(data){
 				if(data == 1){
@@ -72,6 +93,7 @@ function addReply(e){
 	var rep_ref = e.target.getAttribute("data-ref");
 	var rep_step = e.target.getAttribute('data-step');
 	var rep_level = e.target.getAttribute('data-level');
+	var mem_no = e.target.getAttribute('data-mem');
 	var ReplyOK = confirm('답글을 작성하시겠습니까?');
 
 	if(ReplyOK == true){
@@ -81,6 +103,8 @@ function addReply(e){
 				"rep_ref":rep_ref,
 				"rep_step":rep_step,
 				"rep_level":rep_level,
+				"mem_no" : mem_no,
+				"mem_id" : para[4]
 			},
 			url:"/jamong.com/reply/"+para[5],
 			success:function(data){
@@ -183,6 +207,7 @@ function replyHide(e) {
 	$(".reply_btn").attr("data-ref",e.target.getAttribute("data-ref"));
 	$(".reply_btn").attr("data-step",e.target.getAttribute('data-step'));
 	$(".reply_btn").attr("data-level",e.target.getAttribute('data-level'));
+	$(".reply_btn").attr("data-mem",e.target.getAttribute('data-mem'));
 }
 
 function replyBtnHide(e){

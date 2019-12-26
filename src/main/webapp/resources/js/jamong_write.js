@@ -108,7 +108,6 @@ $(document).ready(function(){
 			$("#write_title_center_bg").attr('id','write_title_center_icon');
 			$("#write_title_bottom_bg").attr('id','write_title_bottom_icon');
 			colorIndex=0;
-			console.log("암튼됨");
 		}else{ // 배경색이 지정되었을 때
 			$(".write_main_title").addClass('write_bg_title_option');
 			$(".write_sub_title").addClass('write_bg_title_option');
@@ -125,7 +124,6 @@ $(document).ready(function(){
 			$("#write_title_center_icon").attr('id','write_title_center_bg');
 			$("#write_title_bottom_icon").attr('id','write_title_bottom_bg');
 			colorIndex=1;
-			console.log("암튼됨");
 		}
 	});
 	$(".write_title_next_btn").click(function(){ // 배경색 지정 다음버튼 클릭 시
