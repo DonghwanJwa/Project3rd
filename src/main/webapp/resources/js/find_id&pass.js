@@ -26,31 +26,36 @@ $(function(){
 			$('#find_id_error_pass').text('도메인을 입력해주세요!');
 			return false;
 		}
-		
+		console.log(email);
+		console.log(domain);
+		console.log(name);
 		
 		//이메일 메일 발송 비동기 처리 
 		$.ajax({
 			type:"POST",
 			url : "find_id_emailCert",
 			data : {"email": email,"domain":domain,"name":name},
+			datatype:"int",
 			success : function(data){
-				alert("입력하신 이메일로 아이디가 발송되었습니다.\n비밀번호 찾기 페이지로 이동됩니다	");
-				//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
-				//readonly false면 값변경이 가능
-				//disabled 태그 속성 활성화 false 비활성화
-				 	$("#find_id_sub_box_pass").css("display","none");
+				if(data == 1){
+					//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
+					//readonly false면 값변경이 가능
+					//disabled 태그 속성 활성화 false 비활성화
+					alert("입력하신 이메일로 아이디가 발송되었습니다.\n비밀번호 찾기 페이지로 이동됩니다	");
 					$("#find_id_sub_box_id").css("display","none");
 					$("#find_id_sub_box_pass").css("display","block");
 					$(".find_pass_link2").css("background","orange");
 					$(".find_pass_link2").css("color","white");
 					$(".find_id_link1").css("background","lightgray");
-					$("#find_id_name").val("");
-					$("#find_id_email").val("");
-					$("#find_id_domain").val("");
+				}else if(data==-1){
+					alert("입력하신 정보에 해당하는 계정이 없습니다.");
+				}else if(data==-2){
+					alert("이메일 전송중 에러가 발생하였습니다.\n다시한번 시도해 주시기 바랍니다.\n" +
+							"+오류가 반복될 경우 '문의하기'페이지를 통해\n문의해 주시기 바립니다.");
+				}
 			},
 			beforeSend:function(){
 			        //(이미지 보여주기 처리)
-
 			        $('.wrap-loading').show();
 			},
 			complete:function(){
@@ -58,11 +63,10 @@ $(function(){
 				$('#find_id_email').val("");
 				$('#find_id_domain').val("");
 				$('#find_id_name').val("");
-
-			        $('.wrap-loading').hide();
+			    $('.wrap-loading').hide();
 			},
 			error: function(data){
-				alert("입력하신 이름과 이메일이 일치하지 않습니다.");
+				alert("data error");
 				return false;
 			}
 		})

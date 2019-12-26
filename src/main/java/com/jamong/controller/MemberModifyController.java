@@ -309,33 +309,37 @@ public class MemberModifyController {
 	
 	@RequestMapping("find_id_emailCert")//이메일 인증번호 체크
 	@ResponseBody
-	public boolean find_id_createEmailCheck(MemberVO vo,String name,String email,String domain, HttpServletRequest request){
-		
+	public int find_id_createEmailCheck(MemberVO vo,String name,String email,String domain, HttpServletRequest request){
 		String userEmail = email + "@" + domain; //받는 사람 이메일 주소
-		String Email = email;
-		String Domain = domain;
-		String Name = name;
-		vo.setEmail_id(Email);
-		vo.setEmail_domain(Domain);
-		vo.setMem_name(Name);
-		System.out.println(vo.getEmail_id());
-		System.out.println(vo.getEmail_domain());
-		System.out.println(vo.getMem_name());
+		vo.setEmail_id(email);
+		vo.setEmail_domain(domain);
+		vo.setMem_name(name);
+		int re = -1;	//아이디찾기 성공유무 판단 flag
 		MemberVO member = this.memberService.memberSelect_id(vo);
-		vo.setMem_id(member.getMem_id());
-		//회원정보를 가져와야 한다
-		HttpSession session = request.getSession(true);		
-		String authCode = String.valueOf(vo.getMem_id());				//생성한 값을 어스코드에 담고
-		session.setAttribute("authCode", authCode);			//세션에 인증번호값 저장
+		if(member==null) {
+			//입력한 아이디와 이메일로 검색이 되지 않을때 해당 정보가 없음을 알려주는 -1값
+			return re;
+		}else {
+			String subject = "JAMONG 아이디 찾기";
+			StringBuilder sb = new StringBuilder();
+			sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
+			sb.append("귀하의 아이디는 </h3><h2>" + member.getMem_id() + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
+			sb.append("해당 아이디로 로그인해주세요.<br/>");
+			sb.append("감사합니다.</h3>");
+			if(MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request)) {
+				//메일전송이 잘 되었으면
+				re = 1;
+				return re;
+			}else {
+				//이메일 전송이 실패하면
+				re =-2;
+				return re;
+			}
+			
+		}
 		
-		String subject = "JAMONG 아이디 찾기";
-		StringBuilder sb = new StringBuilder();
-		sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
-		sb.append("귀하의 아이디는 </h3><h2>" + authCode + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
-		sb.append("해당 아이디로 로그인해주세요.<br/>");
-		sb.append("감사합니다.</h3>");
 		
-		return MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request);
+		
 	}
 
 	@RequestMapping("find_pass_emailCert")//이메일 인증번호 체크
