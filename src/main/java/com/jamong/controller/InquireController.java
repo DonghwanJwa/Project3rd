@@ -16,11 +16,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.NoticeVO;
 import com.jamong.service.InquireService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -148,7 +153,7 @@ public class InquireController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='admin_login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			int page=1;
@@ -220,7 +225,7 @@ public class InquireController {
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='admin_login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			int page=1;
@@ -273,7 +278,7 @@ public class InquireController {
 			out.println("<script>");
 			out.println("$('.wrap-loading').hide();");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='admin_login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			/*inq update문*/
@@ -564,6 +569,32 @@ public class InquireController {
 		
 		
 		
+		return null;
+	}
+
+	/* 문의사항 삭제 */
+	@RequestMapping("admin_inquire_del") 
+	public ModelAndView admin_inquire_del(HttpSession session, HttpServletRequest request, HttpServletResponse 
+			response, int no) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		session=request.getSession();
+		
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
+		
+		no=Integer.parseInt(request.getParameter("no"));
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='login/1';");
+			out.println("</script>");
+		}else {
+			this.inqService.inquireDel(no);
+			out.println("<script>");
+			out.println("alert('삭제되었습니다.');");
+			out.println("location='admin_inquire';");
+			out.println("</script>");
+		}
 		return null;
 	}
 }

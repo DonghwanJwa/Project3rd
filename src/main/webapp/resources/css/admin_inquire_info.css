@@ -2,7 +2,7 @@
 
 /* admin_inquire_info */
 .adm_inq_file{
-	width:858px;
+	width:900px;
 }
 .inq_button{
 	width:65px;
@@ -35,7 +35,7 @@
 .inq_adm_request{
 	display:none;
 }
-#inq_re_btn{
+#inq_del_btn{
 	margin-right:20px;
 }
 

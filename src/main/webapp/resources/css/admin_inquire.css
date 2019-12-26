@@ -11,6 +11,9 @@
     width: 800px;
     margin: 0 auto;
 }
+.adm_inquire_count{
+	padding-bottom:15px;
+}
 .inq_list_underline {
 	border-bottom: .5px dotted gray;
 	padding: .5em .2em;
@@ -27,6 +30,7 @@
 }
 .inq_adm_tr{
 	cursor:pointer;
+	font-size:14px;
 }
 .inq_adm_tr:hover{
 	background-color:aliceblue;
@@ -40,14 +44,17 @@
 #search_field_handling{
 	height:24.4px;
 }
+#adm_inquire_table{
+	margin:auto;
+}
 #inq_cont_td{
    overflow: hidden;
-   display: -webkit-box; 
-   white-space: normal;    
    word-wrap: break-word;   
+   white-space: normal;    
    text-overflow: ellipsis;
+   display: -webkit-box; 
    -webkit-line-clamp: 1;
    -webkit-box-orient: vertical;
-   height: 38px;
-   line-height: 38px;
+   line-height: 24px;
+   height: 22px;
 }

@@ -51,6 +51,12 @@ public class AccuseServiceImpl implements AccuseService {
 		this.accuseDao.updateAccuse(ac);
 	}
 
+	@Override
+	public void accuseDel(int ac_no) {
+		this.accuseDao.accuseDel(ac_no);
+		
+	}
+
 
 
 

@@ -76,7 +76,7 @@
 	</tr>
 </table>
 	
-<h3>신고자 정보</h3>	
+<h3 style="padding-left:20px;">신고자 정보</h3>	
 <c:if test="${a.mem_no != 0}">
 	<table class="ac_adm_table2">
 		<tr>
@@ -111,7 +111,7 @@
 
 	</c:if>
 
-<h3>피신고인 정보</h3>
+<h3 style="padding-left:20px;">피신고인 정보</h3>
 <c:if test="${a.ac_member != 0}">
 	<table class="ac_adm_table2">
 		<tr>
@@ -178,13 +178,27 @@
 	</table>
   </c:if>
    
+   
    <!-- 목록으로, 답변하기 버튼 -->
+  <form action="admin_accuse_del" onsubmit="return delconfirm()">
+  <input type="hidden" name="ac_no" value="${a.ac_no}" />
+  <script>
+  			function delconfirm(){
+  				var con=confirm('삭제하시겠습니까?');
+  				
+  				if(con === false){
+  					return false;
+  				}
+  			}
+  </script>
+  	
 	<div id="ac_adm_button">
 		<input type="button" id="ac_list_btn" class="ac_button" value="목록으로" onclick="location='admin_accuse?page=${page}';"/>
 		<c:if test="${a.ac_state == 0}">
-		<input type="button" id="ac_re_btn" class="ac_button" value="답변하기" action="ac_adm_re" />
-		</c:if>	
+		<input type="button" id="ac_re_btn" class="ac_button" value="답변하기" />
+		</c:if>
+		<input type="submit" id="ac_del_btn" class="ac_button" value="삭제하기" />
 	</div>
-   
+   </form>
 <%@include file="../include/admin_footer.jsp" %>
 </html>

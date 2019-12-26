@@ -53,4 +53,10 @@ public class AccuseDAOImpl implements AccuseDAO {
 		
 	}
 
+	@Override
+	public void accuseDel(int ac_no) {
+		this.sqlSession.delete("ac_del",ac_no);
+		
+	}
+
 }

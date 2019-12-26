@@ -44,5 +44,11 @@ public class InquireServiceImpl implements InquireService {
 	public InquireVO getFile(int no) {
 		return this.inqDao.getFile(no);
 	}
-	
+
+	@Override
+	public void inquireDel(int no) {
+		this.inqDao.inquireDel(no);
+		
+	}
+
 }
