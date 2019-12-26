@@ -401,7 +401,7 @@ $(document).keydown(function(e){
        </c:if>
        >
         <div class="recom_book-item" style="opacity:1">
-         <a href="/jamong.com/book_info" class="link_item">
+         <a href="/jamong.com/book/@${bolist.memberVO.mem_id}/${bolist.bookVO.book_no}" class="link_item">
           <div class="recom_book-item-head">
            <div class="book-item-head-inner">
            <c:if test="${bolist.bookVO.book_cover eq null}">
