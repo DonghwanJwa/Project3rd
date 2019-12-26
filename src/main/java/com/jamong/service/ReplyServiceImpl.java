@@ -1,11 +1,13 @@
 package com.jamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jamong.dao.FeedDAO;
 import com.jamong.dao.ReplyDAO;
 import com.jamong.domain.ReplyVO;
 
@@ -15,9 +17,17 @@ public class ReplyServiceImpl implements ReplyService {
 	@Autowired
 	private ReplyDAO replyDao;
 
+	@Autowired
+	private FeedDAO feedDao;
+
+	@Transactional
 	@Override
-	public void addComment(ReplyVO rvo) {
-		this.replyDao.addComment(rvo);
+	public void addComment(HashMap<String, Object> rm, int mem_no, int sMem_no) {
+		this.replyDao.addComment(rm);
+		if(mem_no != sMem_no) {
+			this.feedDao.addReplyFeed(rm);
+			// 게시글 작성자에게 피드
+		} // if => 덧글 작성자가 게시글 작성자와 같지 않을때만 실행
 	}
 
 	@Override
@@ -27,9 +37,12 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Transactional
 	@Override
-	public void addReply(ReplyVO rvo) {
-		this.replyDao.updateLevel(rvo);
-		this.replyDao.addReply(rvo);
+	public void addReply(HashMap<String,Object> rm, int mem_no, int sMem_no) {
+		this.replyDao.updateLevel(rm);
+		this.replyDao.addReply(rm);
+		if(mem_no != sMem_no) {
+			this.feedDao.addCommentFeed(rm);
+		}
 	}
 
 	@Override
@@ -46,5 +59,6 @@ public class ReplyServiceImpl implements ReplyService {
 	public void removeReply(int rep_no) {
 		this.replyDao.removeReply(rep_no);
 	}
+
 
 }

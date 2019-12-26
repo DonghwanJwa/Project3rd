@@ -1,5 +1,7 @@
 package com.jamong.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,19 +24,24 @@ public class ReplyController {
 	
 	@PostMapping("comment/{bo_no}")
 	@ResponseBody
-	public int addComment(@PathVariable int bo_no, ReplyVO rvo, String com_cont,
+	public int addComment(@PathVariable int bo_no, ReplyVO rvo, String com_cont,int mem_no, String mem_id,
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 		int flag = 0;
 		session = request.getSession();
 		
 		MemberVO comM = (MemberVO)session.getAttribute("m");
 		if(comM != null) { // 세션이 있을때
-			
+			HashMap<String,Object> rm = new HashMap<>();
+						
 			rvo.setBo_no(bo_no);
 			rvo.setMem_no(comM.getMem_no());
 			rvo.setRep_cont(com_cont);
 			
-			this.replyService.addComment(rvo);
+			rm.put("rvo",rvo);
+			rm.put("mem_no",mem_no);
+			rm.put("mem_id",mem_id.substring(1));
+			
+			this.replyService.addComment(rm,mem_no,comM.getMem_no());
 			flag = 1;
 		}else { // 세션이 없을 때
 			flag = 2;
@@ -45,13 +52,17 @@ public class ReplyController {
 	
 	@PostMapping("reply/{bo_no}")
 	@ResponseBody
-	public int addReply(@PathVariable int bo_no, ReplyVO rvo, String rep_cont, int rep_ref, int rep_step, int rep_level,
+	public int addReply(@PathVariable int bo_no, ReplyVO rvo, String rep_cont, int rep_ref,
+			int rep_step, int rep_level, String mem_id, int mem_no,
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 		int flag = 0;
 		session = request.getSession();
 		
 		MemberVO repM = (MemberVO)session.getAttribute("m");
+		
 		if(repM != null) { // 세션이 있을 때
+			HashMap<String,Object> rm = new HashMap<>();
+			
 			rvo.setBo_no(bo_no);
 			rvo.setMem_no(repM.getMem_no());
 			rvo.setRep_cont(rep_cont);
@@ -59,7 +70,12 @@ public class ReplyController {
 			rvo.setRep_step(rep_step);
 			rvo.setRep_level(rep_level);
 			
-			this.replyService.addReply(rvo);
+			rm.put("rvo",rvo);
+			rm.put("mem_id",mem_id);
+			rm.put("mem_no",mem_no);
+			
+			
+			this.replyService.addReply(rm,mem_no,repM.getMem_no());
 			
 			flag = 1;
 		}else { // 세션이 없을 때

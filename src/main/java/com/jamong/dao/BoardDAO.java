@@ -7,7 +7,7 @@ import com.jamong.domain.BoardVO;
 
 public interface BoardDAO {
 
-	void insertBoard(BoardVO b);
+	void insertBoard(HashMap<String, Object> bm);
 	BoardVO getUserBoardCont(int bo_no);
 	List<BoardVO> recomArticle();
 	List<BoardVO> getListAll(BoardVO b);
@@ -16,6 +16,8 @@ public interface BoardDAO {
 	void articleDelete(int bo_no);
 	int sympathyNum(BoardVO bo);
 	int switchBoardLock(BoardVO bo);
+	BoardVO getNextBoardCont(HashMap<String, Object> bm);
+	BoardVO getPreBoardCont(HashMap<String, Object> bm);
 	List<BoardVO> bestList();
 	List<BoardVO> getSearchPost(HashMap<String, Object> searchMap);
 	List<BoardVO> getSearchScrollPost(HashMap<String, Object> searchMap);
@@ -28,6 +30,7 @@ public interface BoardDAO {
 	List<BoardVO> getUserBoardCatArticle(String cat_name);
 	void updateBookNo(HashMap<String, Object> bm);
 	List<BoardVO> getBKList(int book_no);
+	int newArticleNum(Object object);
 	List<BoardVO> bookInfoCont(HashMap<String, Object> binfo);
 
 }

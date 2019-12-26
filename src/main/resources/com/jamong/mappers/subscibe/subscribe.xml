@@ -22,4 +22,8 @@ SELECT * FROM subscribe WHERE sub_member = #{sub_member} AND mem_no = #{mem_no}
 <select id="sub_count" resultType="int">
 SELECT COUNT(sub_no) FROM subscribe WHERE mem_no = #{mem_no}
 </select>
+
+<select id="FollowerList" resultType="sub">
+ SELECT * FROM subscribe WHERE mem_no = #{mem_no}
+</select>
 </mapper>

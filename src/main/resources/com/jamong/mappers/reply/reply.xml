@@ -42,21 +42,25 @@
   </association>
  </resultMap>
 
- <insert id="com_add">
+ <insert id="com_add" parameterType="java.util.HashMap">
   INSERT INTO reply (rep_no,rep_cont,rep_date,rep_ref,rep_step,rep_level,bo_no,mem_no)
-  VALUES (rep_no_seq.nextval,#{rep_cont},sysdate,rep_no_seq.nextval,0,0,#{bo_no},#{mem_no})
+  VALUES (rep_no_seq.nextval,#{rvo.rep_cont},sysdate,rep_no_seq.nextval,0,0,#{rvo.bo_no},#{rvo.mem_no})
  </insert>
  
- <insert id="rep_add">
+ <insert id="rep_add" parameterType="java.util.HashMap">
   INSERT INTO reply (rep_no,rep_cont,rep_date,rep_ref,rep_step,rep_level,bo_no,mem_no)
-  VALUES (rep_no_seq.nextval,#{rep_cont},sysdate,#{rep_ref},#{rep_step}+1,#{rep_level}+1,#{bo_no},#{mem_no})
+  VALUES (rep_no_seq.nextval,#{rvo.rep_cont},sysdate,#{rvo.rep_ref},#{rvo.rep_step}+1,#{rvo.rep_level}+1,#{rvo.bo_no},#{rvo.mem_no})
  </insert>
  
- <update id="rep_update">
+ <update id="rep_update" parameterType="java.util.HashMap">
   <![CDATA[
-  UPDATE reply SET rep_level=rep_level+1 WHERE rep_ref=#{rep_ref} AND rep_level > #{rep_level}
+  UPDATE reply SET rep_level=rep_level+1 WHERE rep_ref=#{rvo.rep_ref} AND rep_level > #{rvo.rep_level}
   ]]>
  </update>
+ 
+ <delete id="ArtReplyRemove">
+  DELETE reply WHERE bo_no=#{bo_no}
+ </delete>
  
  <select id="rep_count" resultType="int">
   SELECT COUNT(rep_no) FROM reply WHERE bo_no=#{bo_no}
