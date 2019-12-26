@@ -116,7 +116,7 @@
 	  <%-- 검색 결과 내용 --%>
 	  <div id="search_result_work_main">
 	   <c:forEach var="bookList" items="${bookList}" varStatus="status">
-	    <a href="/jamong.com/book_info" class="scrolling" data-no="${status.count}">
+	    <a href="/jamong.com/book/@${bookList.memberVO.mem_id}/${bookList.bookVO.book_no}" class="scrolling" data-no="${status.count}">
 	     <div class="work_cont">
 	      <c:if test="${bookList.bookVO.book_cover eq null}">
 		   <img id="work_img" style="background-color:#f2f2f2">
