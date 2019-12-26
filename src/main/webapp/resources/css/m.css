@@ -699,7 +699,7 @@ body{
 #recom_book-item-shelveback{
 	position:absolute;
 	height:300px;
-	width:7602px;
+	width: 100%;
 	background-image: url(../img/bookshelve_back.jpg);
 	bottom:100px;
 	z-index: -1;
@@ -708,7 +708,7 @@ body{
 #recom_book-item-shelve{
 	position:absolute;
 	height:22px;
-	width:7602px;
+	width: 100%;
 	background-image: url(../img/bookshelve.png);
 	box-shadow:5px 20px 17px 7px #636569;
 }
