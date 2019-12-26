@@ -72,10 +72,10 @@
    </div>
    <ul id="post_list" class="ui-sortable">
     <c:forEach var="b" items="${bookList}">
-     <li class="ui-state-default" data-no="${b.bo_no}">
+     <li class="ui-state-default" data-no="${b.bo_no}" data-order="${b}">
       <label for="chk${b}" class="ckeck_label">
        <input type="checkbox" name ="book_create" id="chk${b}" value="${b.bo_no}" class="check_list">
-       <div class="post_list_cont" data-order="${b.bo_no}">
+       <div class="post_list_cont">
         <div class="post_list_cont_title">
          <c:if test="${fn:length(b.bo_title)>20}">
           ${fn:substring(b.bo_title,0,20)}...

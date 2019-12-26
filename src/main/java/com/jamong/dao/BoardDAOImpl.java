@@ -118,4 +118,9 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> getBKList(int book_no) {
 		return this.sqlSession.selectList("select_bklist",book_no);
 	}
+
+	@Override
+	public List<BoardVO> bookInfoCont(HashMap<String, Object> binfo) {
+		return this.sqlSession.selectList("book_info_cont",binfo);
+	}
 }
