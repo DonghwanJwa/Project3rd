@@ -363,6 +363,7 @@ body{
 	border-radius:55px;
 	width:100px;
 	height: 100px;
+	object-fit: cover;
 	float: right;
 	z-index: 0;
 	border: 1px solid gray;
