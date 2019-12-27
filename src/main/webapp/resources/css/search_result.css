@@ -111,13 +111,27 @@ ul li {
 }
 /*배경 이미지*/
 #search_result_contents {
-	width: 940px;
+	width: 940px;    
+	min-height: calc(100vh - 360px);
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 50px;
 	border: 1px solid orange;
 	background: #fff;
 }
+
+.search_result_none{
+	min-height: calc(100vh - 480px);
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search_result_none span{
+	font-size: 20px;
+    font-weight: bold;
+}
+
 /* '글' 검색 결과 */
 #search_result_post {
 /* 	display: none; */
@@ -257,7 +271,7 @@ ul li {
 
 #search_result_work_main {
 	width: 922px;
-	margin: 25px 9px 130px 9px;
+	margin: 25px 9px 60px 9px;
 	flex-wrap: nowrap;
 }
 
