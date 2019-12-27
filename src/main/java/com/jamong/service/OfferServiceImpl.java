@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.jamong.dao.FeedDAO;
 import com.jamong.dao.OfferDAO;
 import com.jamong.domain.AdminOfferVO;
 import com.jamong.domain.OfferVO;
@@ -14,10 +16,14 @@ public class OfferServiceImpl implements OfferService {
 
 	@Autowired
 	private OfferDAO offerDao;
-
+	@Autowired
+	private FeedDAO feedDao;
+	
+	@Transactional
 	@Override
 	public void offer_send(OfferVO ov) {
 		this.offerDao.offer_send(ov);
+		this.feedDao.addOfferFeed(ov);
 	}
 
 	@Override

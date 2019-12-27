@@ -14,7 +14,7 @@
 </div>
 <div id="adm_inq_title"><h3 class="adm_inq_title">문의내용 열람</h3></div>
 <table class="adm_inq_table">
-	
+	<input type="hidden" name="mem_no" id="mem_no" value="${i.mem_no}" />
 	<tr>
 		<th align="center" style="width:110px; height:40px;">회원분류</th>
 		<td align="center" style="width:120px;">

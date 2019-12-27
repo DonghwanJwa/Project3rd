@@ -58,7 +58,29 @@
   INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_bo_no,feed_mem_no,feed_date,mem_no)
   VALUES(feed_no_seq.nextval,3,#{mem_id},#{rvo.bo_no},#{rvo.mem_no},sysdate,#{mem_no})
  </insert>
+ 
+ <insert id="InquireFeed">
+  INSERT INTO feed (feed_no,feed_step,feed_date,mem_no)
+  VALUES (feed_no_seq.nextval,4,sysdate,#{mem_no})
+ </insert> 
 
+ <insert id="AuthorFeed">
+  INSERT INTO feed (feed_no,feed_step,feed_date,mem_no)
+  VALUES (feed_no_seq.nextval,5,sysdate,#{mem_no})
+ </insert>
+ 
+ <insert id="BookFeed" parameterType="java.util.HashMap">
+  <foreach collection="fList" item="fList" separator=";" open="DECLARE BEGIN" close="; END;">
+   INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_book_no,feed_mem_no,feed_date,mem_no)
+   VALUES(feed_no_seq.nextval,6,#{mem_id},#{book_no},#{b.mem_no},sysdate,#{fList.sub_member})
+  </foreach>
+ </insert>
+ 
+ <insert id="OfferFeed">
+  INSERT INTO feed (feed_no,feed_step,feed_date,mem_no)
+  VALUES (feed_no_seq.nextval,7,sysdate,#{mem_no})
+ </insert>
+ 
  <select id="FeedList" resultMap="feedMap">
   SELECT * 
   FROM feed f
@@ -67,11 +89,8 @@
   WHERE f.mem_no = #{mem_no}
   ORDER BY feed_date DESC
  </select>
-  
- <insert id="BookFeed" parameterType="java.util.HashMap">
-  <foreach collection="fList" item="fList" separator=";" open="DECLARE BEGIN" close="; END;">
-   INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_book_no,feed_mem_no,feed_date,mem_no)
-   VALUES(feed_no_seq.nextval,6,#{mem_id},#{book_no},#{b.mem_no},sysdate,#{fList.sub_member})
-  </foreach>
- </insert>
+ 
+ <update id="FeedStateUp">
+  UPDATE feed SET feed_state = 1 WHERE feed_no = #{feed_no}
+ </update>
 </mapper>
