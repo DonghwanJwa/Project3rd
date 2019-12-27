@@ -51,6 +51,10 @@ $(document).ready(function(){
 	});
 });
 
+$(window).on('load',function(){
+	$('#book_info_cover_title').wordBreakKeepAll();
+});
+
 function getRecommendState(){
 	var para = document.location.href.split("/");
 	$.ajax({
