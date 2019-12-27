@@ -5,10 +5,18 @@
 #feed_wrap{
 	margin:0;
 	padding:0;
-	min-height:calc(100vh - 167px);
-	
 }
-
+.feed_new_icon{
+	display: inline-block;
+    vertical-align: text-top;
+    width: 13px;
+    height: 12px;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: orange;
+    color: white;
+}
 #feed_menu {
 	width: 100%;
 	background: #fff;
@@ -56,6 +64,7 @@
 	margin-bottom: 50px;
 	border: 1px solid orange;
 	background: #fff;
+	min-height:calc(100vh - 162px);
 }
 
 .feed_main_cont_wrap {
@@ -64,12 +73,10 @@
 
 /*새소식*/
 .feed_new_cont_article {
-	width: 500px;
-	padding:0 50px;
+	width: 540px;
+	padding:10px 50px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 10px;
-	margin-bottom: 10px;
 	border-bottom: 1px solid #c0c0c0;
 }
 .feed_new_cont_article a{
@@ -87,7 +94,7 @@
 
 .feed_new_cont_profile_img{
 	height:50px;
-	width:auto;
+	width:50px;
 	object-fit: cover;
 	border:1px solid #c0c0c0;
 	border-radius:100%;
@@ -103,6 +110,7 @@
 }
 
 .feed_new_cont_message{
+	display:inline-block;
 	height:40px;
 	line-height: 40px;
 	font-size: 15px;
@@ -203,15 +211,6 @@
 	height:20px;
 	background-color: rgb(245,124,104);
 }
-
-
-
-
-
-
-
-
-
 
 
 

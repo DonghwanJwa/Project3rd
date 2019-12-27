@@ -31,4 +31,8 @@ public interface BookService {
 
 	BookVO getBook(int book_no);
 
+	int recommendUp(BookVO bk);
+
+	int recommendDown(BookVO bk);
+
 }

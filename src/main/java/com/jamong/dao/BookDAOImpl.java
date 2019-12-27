@@ -66,4 +66,20 @@ public class BookDAOImpl implements BookDAO {
 	public BookVO getBook(int book_no) {
 		return this.sqlSession.selectOne("book_get",book_no);
 	}
+
+	@Override
+	public void recommendUpUpdate(BookVO bk) {
+		this.sqlSession.update("rec_up",bk);
+	}
+
+	@Override
+	public void recommendDownUpdate(BookVO bk) {
+		this.sqlSession.update("rec_down",bk);
+	}
+
+	@Override
+	public int recommendNum(BookVO bk) {
+		return this.sqlSession.selectOne("rec_count",bk);
+	}
+
 }

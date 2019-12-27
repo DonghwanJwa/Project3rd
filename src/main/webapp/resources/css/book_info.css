@@ -1,8 +1,13 @@
 @charset "UTF-8";
 
+a {
+	text-decoration: none;
+}
+
 #book_info_wrap{
 	
 }
+
 #book_info_base{
 	width:940px;
 	margin:0 auto;
@@ -52,6 +57,7 @@
 	color:#333;
 }
 #book_info_cover_title{
+	font-family: 'NanumMyeongjo','serif';
 	display: block;
     margin: 0;
     padding: 0px 15px;
@@ -123,11 +129,18 @@
 }
 #book_info_intro_cont{
 	margin-top:30px;
-	word-break: break-all;
-    word-wrap: break-word;
     font-size: 13px;
-    line-height: 23px;
     color: #666;
+    overflow: hidden;		/*내용이 넘어가면 숨김*/
+	white-space: normal;	/*줄바꿈 처리 : width넘어가면 엔터처리*/ 
+	word-break: break-all;
+	word-wrap: break-word;	/*엔터처리시에 단어단위로 끊어서 사용-현재적용안됨..*/
+	text-overflow: ellipsis;/*문자 over되는거 ...처리*/
+	display: -webkit-box; 
+	-webkit-line-clamp: 2; /* 라인수 */ 
+	-webkit-box-orient: vertical;
+	height: 299px;
+    line-height: 23px;
 }
 
 #book_info_intro_like{
@@ -233,6 +246,14 @@
 	display:flex;
 	
 }
+
+.book_info_article_link:hover .book_info_article_head{
+	text-decoration: underline;
+}
+.book_info_article_link:hover .book_info_article_main{
+	text-decoration: underline;
+}
+
 .book_info_article_num{
 	width:30px;
 	padding: 10px 20px;

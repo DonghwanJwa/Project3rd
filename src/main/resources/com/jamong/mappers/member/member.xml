@@ -64,7 +64,7 @@
 
 <!-- 작가에게 제안하기 시작-->
 <select id="author_info" resultType="m">
-	SELECT mem_id,mem_nickname,profile_photo,email_id,email_domain FROM member where mem_id=#{mem_id}
+	SELECT mem_no,mem_id,mem_nickname,profile_photo,email_id,email_domain FROM member where mem_id=#{mem_id}
 </select>
 
 <!-- 작가에게 제안하기 끝 -->

@@ -19,4 +19,9 @@ public class FeedServiceImpl implements FeedService {
 	public List<FeedVO> getUserFeedList(int mem_no) {
 		return this.feedDao.getUserFeedList(mem_no);
 	}
+
+	@Override
+	public void feedStateUp(int feed_no) {
+		this.feedDao.feedStateUp(feed_no);
+	}
 }

@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,16 +17,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
-import com.jamong.domain.NoticeVO;
 import com.jamong.service.InquireService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -271,9 +267,10 @@ public class InquireController {
 		session=request.getSession();
 
 		int page = Integer.parseInt(request.getParameter("page"));
-
+		int mem_no = Integer.parseInt(request.getParameter("mem_no"));
+		System.out.println(mem_no);
 		MemberVO adm_m = (MemberVO)session.getAttribute("m");
-
+		
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("$('.wrap-loading').hide();");
@@ -281,12 +278,20 @@ public class InquireController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
+			int sMem_no = adm_m.getMem_no();
+			HashMap<String, Object> im = new HashMap<>();
+			
 			/*inq update문*/
 			InquireVO inq = new InquireVO();
 			inq.setInq_no(inq_no);
 			inq.setInq_reply(inq_reply);
 			inq.setInq_sender(adm_m.getMem_name());
-			this.inqService.updateInquire(inq);
+			inq.setMem_no(mem_no);
+			
+			im.put("inq",inq);
+			im.put("sMem_no",sMem_no);
+			
+			this.inqService.updateInquire(im);
 
 			/*inq 메일 보내기*/		
 			String subject = "안녕하세요.자몽입니다. 문의드린 사항에 대한 답변을 드립니다.";

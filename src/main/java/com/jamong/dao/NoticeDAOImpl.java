@@ -32,6 +32,10 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public NoticeVO noticeCont(int no) {
 		return this.sqlSession.selectOne("n_cont",no);
 	}
+	@Override
+	public void upHit(int no) {
+		this.sqlSession.update("upHit",no);
+	}
 
 	@Override
 	public void noticeEdit(NoticeVO n) {
@@ -47,5 +51,6 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public List<NoticeVO> headerNotice() {
 		return sqlSession.selectList("cat_n_list");
 	}
+
 
 }
