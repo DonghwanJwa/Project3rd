@@ -80,4 +80,11 @@ public class BookServiceImpl implements BookService {
 	public BookVO getBook(int book_no) {
 		return this.bookDao.getBook(book_no);
 	}
+
+	@Override
+	public List<BoardVO> myBookList(int mem_no) {
+		return this.bookDao.myBookList(mem_no);
+	}
+	
+	
 }

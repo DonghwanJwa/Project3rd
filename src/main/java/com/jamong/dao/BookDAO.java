@@ -29,4 +29,6 @@ public interface BookDAO {
 
 	BookVO getBook(int book_no);
 
+	List<BoardVO> myBookList(int mem_no);
+
 }

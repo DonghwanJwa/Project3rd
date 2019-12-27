@@ -238,4 +238,21 @@
   WHERE book_no = #{book_no}
  </select>
  
+   <select id="my_book_List" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.book_date,
+  		 book.book_editdate,
+  		 book.cat_name,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname
+  FROM (SELECT * FROM book ORDER BY book_date)book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  WHERE m.mem_no = #{mem_no}
+ </select>
 </mapper>
