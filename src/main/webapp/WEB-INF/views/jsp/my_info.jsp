@@ -112,7 +112,7 @@
 			<span class="my_info_dot"></span>
 			작성한 댓글은 삭제되지 않고 남게 되오니 탈퇴 전 미리 확인하시기 바랍니다.</li>
 			</ul>
-			<textarea name="mem_Withdrawal_reason" id="my_info_leave_text_id" class="my_info_leave_text" rows="10" cols="60" placeholder="탈퇴사유를 적어주세요"></textarea>
+			<textarea name="drop_reason" id="my_info_leave_text_id" class="my_info_leave_text" rows="10" cols="60" placeholder="탈퇴사유를 적어주세요"></textarea>
 			<div class="check_label_div">
 			<input class="my_info_check" type="checkbox" name="agree" id="leaveagree">
 			<label class="my_info_label_com">안내 사항을 모두 확인하였으며,이에 동의합니다.</label><br>
