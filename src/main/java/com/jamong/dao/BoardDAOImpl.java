@@ -130,7 +130,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int newArticleNum(Object mem_no) {
+	public BoardVO newArticleNum(Object mem_no) {
 		return this.sqlSession.selectOne("NewArticleNumber",mem_no);
   }
   
