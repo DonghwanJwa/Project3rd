@@ -20,5 +20,7 @@ public interface InquireService {
 
 	void inquireDel(int no);
 
+	List<InquireVO> newInquire(InquireVO i);
+
 
 }

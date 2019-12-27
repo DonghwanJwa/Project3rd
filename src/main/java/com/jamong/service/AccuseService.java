@@ -23,6 +23,8 @@ public interface AccuseService {
 
 	void accuseDel(int ac_no);
 
+	List<AccuseVO> newAccuse(AccuseVO a);
+
 
 
 	

@@ -76,7 +76,7 @@ body{
 }
 #cat_writer_title{
 	height: 42px;
-	width:921px;
+	width:910px;
 	font-size:24px;
 	text-align:left;
 	margin:0px auto;
@@ -96,7 +96,7 @@ body{
 	text-decoration:none;
 	text-align: center;
 }
-#cat_write_count1{
+#cat_write_count{
 	margin-top:10px;
 	width:120px;
 	height:20px;
@@ -106,14 +106,14 @@ body{
 	text-align: center;
 	margin: 10px auto 0px auto;
 }
-#cat_sub_count1{
+#cat_sub_count{
 	width:120px;
 	height:20px;
 	color:#333;
 	text-decoration:none;
 	font-size:12px;
 	text-align:left;
-	margin-left:30px;
+	margin-left:72px;
 }
 #cat_writer_list1{
 	background-color: #FFF;

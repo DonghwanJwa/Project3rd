@@ -192,7 +192,30 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	margin:3px 3px;
 	font-size:12px;
 }
-
+#adm_ac_cont{
+   overflow: hidden;
+   word-wrap: break-word;   
+   white-space: normal;    
+   text-overflow: ellipsis;
+   display: -webkit-box; 
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical;
+   line-height: 35px;
+   height: 35px;
+   width:312px;
+}
+#adm_inq_cont{
+   overflow: hidden;
+   word-wrap: break-word;   
+   white-space: normal;    
+   text-overflow: ellipsis;
+   display: -webkit-box; 
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical;
+   line-height: 46.6px;
+   height: 46.6px;
+   width:312px;
+}
 
 /* admin_notice (공지사항) */
 #adm_notice_wrap {

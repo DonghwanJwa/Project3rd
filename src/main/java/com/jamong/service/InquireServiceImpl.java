@@ -51,4 +51,9 @@ public class InquireServiceImpl implements InquireService {
 		
 	}
 
+	@Override
+	public List<InquireVO> newInquire(InquireVO i) {
+		return this.inqDao.newInquire(i);
+	}
+
 }
