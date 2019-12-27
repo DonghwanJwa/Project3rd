@@ -46,7 +46,7 @@
  <insert id="ArticleFeed" parameterType="java.util.HashMap">
   <foreach collection="fList" item="fList" separator=";" open="DECLARE BEGIN" close="; END;">
    INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_bo_no,feed_mem_no,feed_date,mem_no)
-   VALUES(feed_no_seq.nextval,1,#{mem_id},#{newArtNo},#{b.mem_no},sysdate,#{fList.sub_member})
+   VALUES(feed_no_seq.nextval,1,#{mem_id},#{aVO.bo_no},#{b.mem_no},sysdate,#{fList.sub_member})
   </foreach>
  </insert>
  
