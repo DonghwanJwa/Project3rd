@@ -130,16 +130,16 @@
    		SELECT aut_file1, aut_file2, aut_file3 FROM author WHERE aut_no=#{no}
    	</select>
    	
-   	<update id="accept_author">
-   		UPDATE author set aut_state=1, aut_update=sysdate where aut_no=#{aut_no}
+   	<update id="accept_author" parameterType="java.util.HashMap">
+   		UPDATE author set aut_state=1, aut_update=sysdate where aut_no=#{am.aut_no}
    	</update>
 
-   	<update id="reject_author">
-   		UPDATE author set aut_state=2, aut_update=sysdate where aut_no=#{aut_no}
+   	<update id="reject_author" parameterType="java.util.HashMap">
+   		UPDATE author set aut_state=2, aut_update=sysdate where aut_no=#{am.aut_no}
    	</update>
    	
-   	<update id="edit_author">
-   		UPDATE member set mem_author=1 where mem_no=#{mem_no}
+   	<update id="edit_author" parameterType="java.util.HashMap">
+   		UPDATE member set mem_author=1 where mem_no=#{am.mem_no}
    	</update>
 
 </mapper>

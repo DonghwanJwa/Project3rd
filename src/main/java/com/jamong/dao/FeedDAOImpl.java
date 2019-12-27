@@ -51,8 +51,8 @@ public class FeedDAOImpl implements FeedDAO {
 	}
 
 	@Override
-	public void addAuthorFeed(AuthorVO a) {
-		this.sqlSession.insert("AuthorFeed",a);
+	public void addAuthorFeed(HashMap<String,Object> am) {
+		this.sqlSession.insert("AuthorFeed",am);
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class FeedDAOImpl implements FeedDAO {
 	}
 
 	@Override
-	public void addInquireFeed(InquireVO inq) {
-		this.sqlSession.insert("InquireFeed",inq);
+	public void addInquireFeed(HashMap<String, Object> im) {
+		this.sqlSession.insert("InquireFeed",im);
 	}
 }

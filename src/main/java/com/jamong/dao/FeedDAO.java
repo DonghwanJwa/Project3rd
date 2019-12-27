@@ -18,8 +18,8 @@ public interface FeedDAO {
 	void addArticleFeed(HashMap<String, Object> bm);
 	void addBookFeed(HashMap<String, Object> bm);
 	void feedStateUp(int feed_no);
-	void addAuthorFeed(AuthorVO a);
+	void addAuthorFeed(HashMap<String, Object> am);
 	void addOfferFeed(OfferVO ov);
-	void addInquireFeed(InquireVO inq);
+	void addInquireFeed(HashMap<String, Object> im);
 
 }

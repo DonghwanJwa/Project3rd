@@ -1,5 +1,6 @@
 package com.jamong.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -37,8 +38,8 @@ public class InquireDAOImpl implements InquireDAO {
 	}
 
 	@Override
-	public void updateInquire(InquireVO inq) {
-		this.sqlSession.update("inq_update",inq);
+	public void updateInquire(HashMap<String, Object> im) {
+		this.sqlSession.update("inq_update",im);
 	}
 
 	@Override
