@@ -174,8 +174,8 @@
 		</tr>
 		
 		<tr>
-			<td colspan="6">
-				회원 탈퇴 후 남긴 데이터 전달
+			<td colspan="6" style="height:200px;">
+				${me.drop_reason}
 			</td>
 		</tr>
 		
@@ -184,7 +184,7 @@
 				탈퇴 날짜
 			</th>
 			<td colspan="3" align="center">
-				0000-00-00
+				${me.drop_date}
 			</td>
 		</tr>
 		</c:if>
@@ -193,6 +193,8 @@
 	</div>
 	
 	<div id="cont_button_wrap">
+		<input type="button" value="회원 프로필" class="notice_btn" onclick="window.open('/jamong.com/@${me.mem_id}');" />
+		<input type="button" value="계정정지" class="notice_btn" onclick="location='admin_member_drop?no=${me.mem_no}';" />
 		<input type="button" value="회원목록" class="notice_btn" onclick="location='admin_member?page=${page}';" />
 	</div>
 </div>

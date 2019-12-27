@@ -29,23 +29,19 @@ public class MemberVO {
 	private String mem_fav2;
 	private String mem_fav3;
 	private String mem_portfolio; // 12/03 회원 테이블 수정 후 VO에 추가 (getter,setter)
-	private String mem_Withdrawal_reason;
-	private String mem_Withdrawal_reason_date;
+	/* 12/26 탈퇴사유, 날짜 추가 */
+	private String drop_reason;
+	private String drop_cont;
+	public String getDrop_cont() {
+		return drop_cont;
+	}
+	public void setDrop_cont(String drop_cont) {
+		this.drop_cont = drop_cont;
+	}
+	private String drop_date;
 	
-	public String getMem_Withdrawal_reason() {
-		return mem_Withdrawal_reason;
-	}
-	public void setMem_Withdrawal_reason(String mem_Withdrawal_reason) {
-		this.mem_Withdrawal_reason = mem_Withdrawal_reason;
-	}
-	public String getMem_Withdrawal_reason_date() {
-		return mem_Withdrawal_reason_date;
-	}
-	public void setMem_Withdrawal_reason_date(String mem_Withdrawal_reason_date) {
-		this.mem_Withdrawal_reason_date = mem_Withdrawal_reason_date;
-	}
-	
-	
+
+
 	/* 관리자페이지 회원관리 게시판 페이징,검색을 위한 변수 추가 (12/5) */
 	private int startrow;
 	private int endrow;
@@ -86,6 +82,8 @@ public class MemberVO {
 	public void setSearch_field_state(String search_field_state) 	{		this.search_field_state = search_field_state;		}
 	public void setSearch_field_author(String search_field_author) 	{		this.search_field_author = search_field_author;		}
 	public void setSearch_field_key(String search_field_key) 		{		this.search_field_key = search_field_key;			}
+	public void setDrop_reason(String drop_reason) 		{		this.drop_reason = drop_reason;	}
+	public void setDrop_date(String drop_date) 			{		this.drop_date = drop_date;		}
 	
 	
 	// Getter()
@@ -119,5 +117,6 @@ public class MemberVO {
 	public String getSearch_field_state() 	{		return search_field_state;		}
 	public String getSearch_field_author() 	{		return search_field_author;		}
 	public String getSearch_field_key() 	{		return search_field_key;		}
-	
+	public String getDrop_reason() 	{		return drop_reason;	}
+	public String getDrop_date() 	{		return drop_date;	}
 }

@@ -5,6 +5,7 @@ public class OfferVO {
 
 	private int off_no;
 	private String off_id;
+	private String off_nickname;
 	private String off_email;
 	private String off_domain;
 	private String off_phone1;
@@ -31,6 +32,7 @@ public class OfferVO {
 
 	public int getOff_no() 				{		return off_no;			}
 	public String getOff_id() 			{		return off_id;			}
+	public String getOff_nickname() {		return off_nickname;	}
 	public String getOff_email() 		{		return off_email;		}
 	public String getOff_domain() 		{		return off_domain;		}
 	public String getOff_phone1() 			{		return off_phone1;			}
@@ -52,6 +54,7 @@ public class OfferVO {
 	
 	public void setOff_no(int off_no) 				{		this.off_no = off_no;			}
 	public void setOff_id(String off_id) 			{		this.off_id = off_id;			}
+	public void setOff_nickname(String off_nickname) {		this.off_nickname = off_nickname;	}
 	public void setOff_email(String off_email) 		{		this.off_email = off_email;		}
 	public void setOff_domain(String off_domain) 	{		this.off_domain = off_domain;	}
 	public void setOff_phone1(String off_phone1) 			{		this.off_phone1 = off_phone1;			}
