@@ -3,8 +3,11 @@ package com.jamong.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.jamong.domain.AuthorVO;
 import com.jamong.domain.FeedVO;
+import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.OfferVO;
 import com.jamong.domain.SubscribeVO;
 
 public interface FeedDAO {
@@ -14,5 +17,9 @@ public interface FeedDAO {
 	void addCommentFeed(HashMap<String, Object> rm);
 	void addArticleFeed(HashMap<String, Object> bm);
 	void addBookFeed(HashMap<String, Object> bm);
+	void feedStateUp(int feed_no);
+	void addAuthorFeed(AuthorVO a);
+	void addOfferFeed(OfferVO ov);
+	void addInquireFeed(InquireVO inq);
 
 }

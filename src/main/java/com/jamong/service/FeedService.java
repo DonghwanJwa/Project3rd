@@ -10,5 +10,6 @@ import com.jamong.domain.MemberVO;
 public interface FeedService {
 
 	List<FeedVO> getUserFeedList(int mem_no);
+	void feedStateUp(int feed_no);
 
 }

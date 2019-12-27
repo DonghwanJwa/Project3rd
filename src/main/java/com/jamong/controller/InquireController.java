@@ -271,7 +271,8 @@ public class InquireController {
 		session=request.getSession();
 
 		int page = Integer.parseInt(request.getParameter("page"));
-
+		int mem_no = Integer.parseInt(request.getParameter("mem_no"));
+		System.out.println(mem_no);
 		MemberVO adm_m = (MemberVO)session.getAttribute("m");
 
 		if(adm_m == null) {
@@ -286,6 +287,7 @@ public class InquireController {
 			inq.setInq_no(inq_no);
 			inq.setInq_reply(inq_reply);
 			inq.setInq_sender(adm_m.getMem_name());
+			inq.setMem_no(mem_no);
 			this.inqService.updateInquire(inq);
 
 			/*inq 메일 보내기*/		
