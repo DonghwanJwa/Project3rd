@@ -254,10 +254,12 @@ public class BookController {
 			String orgcontlistRe = orgcontlist.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			bkifcntlist.get(i).setBo_cont(orgcontlistRe);
 		}
-
+		
 		model.addAttribute("book_name", book_name);
 		model.addAttribute("book_cover", book_cover);
 		model.addAttribute("book_preface", book_prefaceRe);
+		model.addAttribute("mem_id",mem_id);
+		model.addAttribute("book_no",book_no);
 		model.addAttribute("mem_nickname", mem_nickname);
 		model.addAttribute("profile_photo", profile_photo);
 		model.addAttribute("profile_cont", profile_cont);

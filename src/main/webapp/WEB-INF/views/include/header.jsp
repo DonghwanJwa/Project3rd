@@ -65,6 +65,16 @@
 	  </div>
 	 </div>
  	</c:if>
+ 	<c:if test="${book_cover ne null}">
+ 	 <c:if test="${mem_id eq m.mem_id}">
+   	  <div id="head-menu-readpage">
+ 	   <a href="/jamong.com/book_edit/@${mem_id}/${book_no}" id="head-menu-book-edit">
+ 	    <img class="head-menu-book-edit-img" src="/jamong.com/resources/img/settings_n.png">
+ 	    <span>책수정</span>
+ 	   </a>
+ 	  </div>
+ 	 </c:if>
+ 	</c:if>
  	</div>
  	
  	<input id="head-menu_search-text" placeholder="검색어 입력"/>
