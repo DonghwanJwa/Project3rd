@@ -28,7 +28,7 @@ public class BoardServiceImpl implements BoardService {
 	private SubscribeDAO subDao;
 	@Autowired
 	private FeedDAO feedDao;
-	
+
 	@Transactional
 	@Override
 	public void insertBoard(HashMap<String, Object> bm) {
@@ -39,9 +39,11 @@ public class BoardServiceImpl implements BoardService {
 		// 팔로우내역 셀렉트( 세션 아이디로 )
 		bm.put("fList",followerList);
 		bm.put("newArtNo",newArtNo);
-		
-		this.feedDao.addArticleFeed(bm);
-		// 피드를 인서트 함
+		if(followerList == null) {
+		}else {
+			this.feedDao.addArticleFeed(bm);
+			// 피드를 인서트 함
+		}
 	}
 
 	@Transactional
