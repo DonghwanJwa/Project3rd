@@ -636,5 +636,24 @@ public class BoardController {
 			return memberList;
 		}
 		return null;
+	} 
+	
+	@PostMapping("profile_scroll")
+	@ResponseBody
+	public List<BoardVO> profileScrolling(String bo_no, String mem_no) throws Exception{
+		int data_bo = Integer.parseInt(bo_no);
+		int data_mno = Integer.parseInt(mem_no);
+		
+		SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));	
+		HashMap<Object,Object> scroll = new HashMap<>();
+		scroll.put("bo_no", data_bo);
+		scroll.put("mem_no", data_mno);
+		List<BoardVO> pfData = this.boardService.profileScroll(scroll);
+		for(int i=0; i<scroll.size(); i++) {
+		
+		}
+				return null;
 	}
+	
 }

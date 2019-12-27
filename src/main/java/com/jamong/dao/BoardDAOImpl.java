@@ -143,4 +143,10 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> bkEditList(HashMap<String, Object> be) {
 		return this.sqlSession.selectOne("bkEditList", be);
 	}
+
+  @Override
+  public List<BoardVO> profileScroll(HashMap<Object, Object> scroll) {
+	return this.sqlSession.selectList("profileScroll",scroll);
+	}
+
 }

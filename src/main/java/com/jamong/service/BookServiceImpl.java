@@ -95,6 +95,11 @@ public class BookServiceImpl implements BookService {
 		return this.bookDao.getBook(book_no);
 	}
 
+	@Override
+	public List<BoardVO> myBookList(int mem_no) {
+		return this.bookDao.myBookList(mem_no);
+	}
+	
 	@Transactional
 	@Override
 	public int recommendUp(BookVO bk) {
@@ -115,4 +120,5 @@ public class BookServiceImpl implements BookService {
 	public List<BoardVO> bkEditList(HashMap<String, Object> be) {
 		return this.boardDao.bkEditList(be);
 	}
+
 }
