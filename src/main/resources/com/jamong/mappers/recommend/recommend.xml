@@ -5,4 +5,19 @@
 
 <mapper namespace="recommend">
 
+<!-- 추천 추가 -->
+<insert id="rec_insert">
+ INSERT INTO recommend (rec_no,book_no,mem_no,rec_date)
+ VALUES (rec_no_seq.nextval,#{book_no},#{mem_no},sysdate)
+</insert>
+
+<!-- 추천 취소(삭제) -->
+<delete id="rec_delete">
+ DELETE FROM recommend WHERE mem_no = #{mem_no} and book_no = #{book_no}
+</delete>
+
+<!-- 추천 count -->
+<select id="rec_select" resultType="rec">
+ SELECT * FROM recommend WHERE mem_no = #{mem_no} and book_no = #{book_no}
+</select>
 </mapper>

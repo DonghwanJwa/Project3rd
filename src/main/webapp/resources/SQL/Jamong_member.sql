@@ -24,8 +24,9 @@ mem_fav1 VARCHAR2(50), 				  -- 관심 카테고리 (선호하는 장르 선택)
 mem_fav2 VARCHAR2(50),
 mem_fav3 VARCHAR2(50),
 mem_portfolio CLOB,		  			  -- 작가 포트폴리오 내용 (12/03 추가)
-mem_Withdrawal_reason VARCHAR2(2000), -- 회원 탈퇴사유 (12/19 추가)
-mem_Withdrawal_reason_date DATE       -- 회원 탈퇴 날짜 (12/19 추가)
+drop_reason VARCHAR2(50), -- 회원 탈퇴사유 종류 (12/19 추가)
+drop_cont VARCHAR2(4000), -- 회원 탈퇴사유 내용
+drop_date DATE       -- 회원 탈퇴 날짜 (12/19 추가)
 );
 
 DROP table member;
@@ -48,8 +49,9 @@ where mem_no=28
 
 -- 회원 테이블에 작가 포트폴리오 내용 추가
 ALTER member ADD (mem_portflio CLOB);
-ALTER table member ADD (mem_Withdrawal_reason VARCHAR2(100))
-ALTER table member ADD (mem_Withdrawal_reason_date DATE);
+ALTER table member ADD (drop_reason VARCHAR2(50));
+ALTER table member ADD (drop_cont VARCHAR2(4000));
+ALTER table member ADD (drop_date DATE);
 
 
 select * from(
@@ -73,4 +75,5 @@ WHERE rowNum <= 9;
 commit;
 SELECT * FROM member ORDER BY mem_no DESC;
 
-update member set mem_state=0
+update member set mem_state=0;
+update member set mem_state=9 where mem_id='tkdgjs905';

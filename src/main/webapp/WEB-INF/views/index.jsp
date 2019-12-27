@@ -270,6 +270,15 @@ $(document).keydown(function(e){
           <span class="head-profile-service-bar-right"></span>
          </a>
         </li>
+        <c:if test="${m.mem_author==1}">
+        <li id="head-profile-service-publish" class="head-profile-stat-login">
+         <a href="/jamong.com/book_create">
+          <span class="head-profile-service-bar-left"></span>
+       	  <b>책 발간</b>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+        </c:if>
         <li id="head-profile-service-setting" class="head-profile-stat-login">
          <a href="/jamong.com/my_info">
           <span class="head-profile-service-bar-left"></span>
@@ -493,7 +502,11 @@ $(document).keydown(function(e){
      <div id="foot-inner-menu">
       <ul id="foot-inner-menu-list">
        <li class="foot-inner-menu-item"><a href="/jamong.com/notice">공지사항</a></li>
-       <li class="foot-inner-menu-item"><a href="/jamong.com/request_author">작가신청</a></li>
+       <c:if test="${m ne null}">
+        <c:if test="${m.mem_author == 0}">
+         <li class="foot-inner-menu-item"><a href="/jamong.com/request_author">작가신청</a></li>
+        </c:if>
+       </c:if>
        <li class="foot-inner-menu-item"><a href="/jamong.com/inquire">문의하기</a></li>
        <li class="foot-inner-menu-item"><a href="/jamong.com/policy_terms">이용약관</a></li>
        <li class="foot-inner-menu-item"><a href="/jamong.com/policy_privacy">개인정보 처리방침</a></li>

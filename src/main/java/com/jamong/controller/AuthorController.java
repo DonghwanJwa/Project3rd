@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -425,9 +426,7 @@ public class AuthorController {
 		PrintWriter out=response.getWriter();
 		
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
-		
-		
-		
+				
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
@@ -438,9 +437,14 @@ public class AuthorController {
 			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
 			
 			a=this.authorService.req_info(no);
+			int sMem_no = adm_m.getMem_no();
+			HashMap<String, Object> am = new HashMap<>();
 			
 			String subject="자몽 작가신청 결과내용입니다.";
 			String to=a.getMemberVO().getEmail_id()+"@"+a.getMemberVO().getEmail_domain();
+			
+			am.put("a",a);
+			am.put("sMem_no", sMem_no);
 
 			if(state.equals("accept")) {
 				
@@ -450,7 +454,7 @@ public class AuthorController {
 				mailCont.append("<b>회원님의 신청이 승인되어 자몽작가로 선정되었음을 알려드립니다.</b><br/><br/>");
 				mailCont.append("앞으로도 작가님의 자몽 생활을 응원합니다.<br/><br/> 감사합니다.");
 				
-				this.authorService.acceptAuthor(a);
+				this.authorService.acceptAuthor(am);
 				this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, null, request);
 				
 				return new ModelAndView("redirect:/admin_author?page="+page);
@@ -462,7 +466,7 @@ public class AuthorController {
 				mailCont.append("<b>아쉽게도 다음기회에 회원님의 작가활동을 기대해야 할 것 같습니다.</b><br/><br/>");
 				mailCont.append("준비가 되면 언제든 자몽의 문을 두드려주세요!<br/><br/> 감사합니다.");
 				
-				this.authorService.rejectAuthor(a);
+				this.authorService.rejectAuthor(am);
 				this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, null, request);
 				
 				return new ModelAndView("redirect:/admin_author?page="+page);

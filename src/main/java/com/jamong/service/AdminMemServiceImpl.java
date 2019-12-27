@@ -27,4 +27,14 @@ public class AdminMemServiceImpl implements AdminMemService {
 	public MemberVO memberInfo(int no) {
 		return this.admMemDao.memInfo(no);
 	}
+
+	@Override
+	public void memDrop(MemberVO me) {
+		this.admMemDao.memDrop(me);
+	}
+
+	@Override
+	public void memRestore(MemberVO me) {
+		this.admMemDao.memRestore(me);
+	}
 }

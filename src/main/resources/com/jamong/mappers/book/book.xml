@@ -238,4 +238,18 @@
   WHERE book_no = #{book_no}
  </select>
  
+ <!-- 추천 증가 -->
+ <update id="rec_up">
+  UPDATE book SET book_recommend = book_recommend + 1 WHERE book_no = #{book_no}
+ </update>
+ 
+ <!-- 추천 감소 -->
+ <update id="rec_down">
+  UPDATE book SET book_recommend = book_recommend - 1 WHERE book_no = #{book_no}
+ </update>
+ 
+ <!-- 추천 개수 가져오기 -->
+ <select id="rec_count" resultType="int">
+  SELECT book_recommend FROM book WHERE book_no = #{book_no}
+ </select>
 </mapper>

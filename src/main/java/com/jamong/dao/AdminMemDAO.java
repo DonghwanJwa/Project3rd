@@ -12,4 +12,8 @@ public interface AdminMemDAO {
 
 	MemberVO memInfo(int no);
 
+	void memDrop(MemberVO me);
+
+	void memRestore(MemberVO me);
+
 }

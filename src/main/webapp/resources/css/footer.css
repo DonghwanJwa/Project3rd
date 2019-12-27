@@ -41,6 +41,7 @@
 /*footer 메뉴와 링크포함된 div*/
 #foot-inner-right{
 	margin-top:12px;
+	width:581px;
 }
 
 /*footer 메뉴*/
@@ -51,14 +52,15 @@
 	list-style: none;
 	padding:0;
 	margin:0;
+	justify-content: flex-end;
 }
 .foot-inner-menu-item{
 	margin-right:20px;
 }
 .foot-inner-menu-item a{
-	cursor: pointer;
 	text-decoration: none;
 	color:#fff;
+	cursor:pointer;
 }
 /*footer 링크*/
 #foot-inner-sns{

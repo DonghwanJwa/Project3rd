@@ -5,9 +5,21 @@
 <meta charset="UTF-8">
 </head>
 <%@include file="../include/admin_header.jsp" %>
-
+<script>
+function restore_check() {
+	var con=confirm("회원의 계정을 복구 하시겠습니까?");
+	
+	if(con === false) {
+		return false;
+	}
+}
+</script>
 <div id="adm_page_title"><h3 class="adm_page_title">회원정보 열람</h3></div>
 <div id="adm_mem_info_wrap">
+<form method="post" action="admin_member_restore" onsubmit="return restore_check();">
+<input type="hidden" name="no" value="${me.mem_no}"/>
+<input type="hidden" name="page" value="${page}"/>
+
 	<div class="adm_table_wrap">
 	<table border="1" class="adm_member_table">
 		<tr>
@@ -71,7 +83,7 @@
 		</tr>
 		<tr>
 			<td colspan="6" id="adm_profile_field">
-				${me.profile_cont}
+				${profile_cont}
 			</td>
 		</tr>
 		
@@ -112,7 +124,7 @@
 		<tr>
 			<c:if test="${!empty me.mem_portfolio}">
 			<td colspan="6" id="adm_portfolio_field">
-				${me.mem_portfolio}
+				${mem_portfolio}
 			</td>
 			</c:if>
 			<c:if test="${empty me.mem_portfolio}">
@@ -127,12 +139,12 @@
 		</tr>
 		<tr>
 			<c:if test="${!empty me.mem_keyword}">
-			<td colspan="6">
+			<td colspan="6" align="center" class="adm_td">
 				${me.mem_keyword}
 			</td>
 			</c:if>
 			<c:if test="${empty me.mem_keyword}">
-			<td colspan="6" align="center">
+			<td colspan="6" align="center" class="adm_td">
 				설정 된 작가키워드가 없습니다.
 			</td>
 			</c:if>
@@ -149,8 +161,10 @@
 		</tr>
 		
 		<tr>
-			<td colspan="6">
-				신고하기 페이지에서 처리된 내용 전달되야 함.
+			<td colspan="6" class="adm_td">
+				<b>${me.drop_reason}</b>
+				<br/><br/>
+				${drop_cont }
 			</td>
 		</tr>
 		
@@ -174,8 +188,10 @@
 		</tr>
 		
 		<tr>
-			<td colspan="6">
-				회원 탈퇴 후 남긴 데이터 전달
+			<td colspan="6" class="adm_td">
+				<b>${me.drop_reason}</b>
+				<br/><br/>
+				${drop_cont }
 			</td>
 		</tr>
 		
@@ -184,7 +200,7 @@
 				탈퇴 날짜
 			</th>
 			<td colspan="3" align="center">
-				0000-00-00
+				${me.drop_date}
 			</td>
 		</tr>
 		</c:if>
@@ -193,8 +209,18 @@
 	</div>
 	
 	<div id="cont_button_wrap">
+		<input type="button" value="회원 프로필" class="notice_btn" onclick="window.open('/jamong.com/@${me.mem_id}');" />
+		
+		<c:if test="${me.mem_state == 0}">
+		<input type="button" value="계정정지" class="notice_btn" onclick="location='admin_member_drop?no=${me.mem_no}&page=${page}';" />
+		</c:if>
+		
+		<c:if test="${me.mem_state == 1 || me.mem_state == 2}">
+		<input type="submit" value="계정복구" class="notice_btn" />
+		</c:if>
 		<input type="button" value="회원목록" class="notice_btn" onclick="location='admin_member?page=${page}';" />
 	</div>
+</form>
 </div>
 
 <%@include file="../include/admin_footer.jsp" %>

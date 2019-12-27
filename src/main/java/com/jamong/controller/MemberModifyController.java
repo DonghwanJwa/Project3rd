@@ -403,7 +403,7 @@ public class MemberModifyController {
 			 re = 2;
 			 
 		}else { 
-			vo.setMem_Withdrawal_reason(my_info_leave_text_id);
+			vo.setDrop_cont(my_info_leave_text_id);
 			vo.setMem_no(m.getMem_no());//엠객체에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
 			this.memberService.mem_update_del(vo);//엠이에 디비값을 담는다
 			re = 1;

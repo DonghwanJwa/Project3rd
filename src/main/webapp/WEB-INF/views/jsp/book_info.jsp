@@ -1,16 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<script>
-$(document).ready(function(){
-	$('#book_info_intro_like_img').click(function(event){
-		if($(event.target).css('background-color')=='rgb(255, 255, 255)'){
-			$(event.target).css('background-color','RGB(245,124,104)');
-		}else{
-			$(event.target).css('background-color','rgb(255, 255, 255)');			
-		}
-	});
-});
-</script>
+<script src="/jamong.com/resources/js/book_info.js"></script>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/book_info.css"/>
 <div id="book_info_wrap">
  <div id="book_info_base">

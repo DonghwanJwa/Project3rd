@@ -6,9 +6,9 @@ aut_plan VARCHAR2(4000) NOT NULL,  -- 작가활동계획
 aut_url1 VARCHAR2(200),			   -- 제출 URL
 aut_url2 VARCHAR2(200),
 aut_url3 VARCHAR2(200),
-aut_file1 VARCHAR2(200),		   -- 제출 파일
-aut_file2 VARCHAR2(200),
-aut_file3 VARCHAR2(200),
+aut_file1 VARCHAR2(4000),		   -- 제출 파일
+aut_file2 VARCHAR2(4000),
+aut_file3 VARCHAR2(4000),
 aut_date DATE, 					   -- 신청일
 mem_no NUMBER(38),  			   -- 회원번호 참조컬럼
 aut_state NUMBER(38) DEFAULT 0,    -- 처리결과
