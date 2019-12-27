@@ -62,6 +62,11 @@
 	  <%-- 검색 결과 내용 --%>
 	  <div id="search_result_post_main">
 	  
+	   <c:if test="${empty boardList}">
+		<div class="search_result_none">
+		 <span>검색 결과가 없습니다.</span>
+		</div>	    
+	   </c:if>
 	   <ul id="search_result_post_list">
 	    <c:forEach var="board" items="${boardList}" varStatus="status">
 	     <li class="scrolling" data-no="${status.count}">
@@ -115,6 +120,12 @@
 		
 	  <%-- 검색 결과 내용 --%>
 	  <div id="search_result_work_main">
+	  <c:if test="${empty boardList}">
+	  <div style="height:35px;"></div>
+		<div class="search_result_none">
+		 <span>검색 결과가 없습니다.</span>
+		</div>	    
+	   </c:if>
 	   <c:forEach var="bookList" items="${bookList}" varStatus="status">
 	    <a href="/jamong.com/book/@${bookList.memberVO.mem_id}/${bookList.bookVO.book_no}" class="scrolling" data-no="${status.count}">
 	     <div class="work_cont">
@@ -170,6 +181,12 @@
 	  <div id="search_result_author_main">
 	
 	   <div class="author_cont">
+	   
+	   <c:if test="${empty boardList}">
+		<div class="search_result_none">
+		 <span>검색 결과가 없습니다.</span>
+		</div>	    
+	   </c:if>
 	   <ul id="search_author_list">
 	    <c:forEach var="member" items="${memberList}" varStatus="status">
 	    <li class="scrolling" data-no="${status.count}">
