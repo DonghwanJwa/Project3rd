@@ -36,10 +36,10 @@ ORDER BY feed_date DESC;
   FROM feed f
   INNER JOIN member m 
   ON f.feed_mem_no=m.mem_no
-  WHERE f.mem_no = 29
+  WHERE f.mem_no = 28
   ORDER BY feed_date DESC;
   
   SELECT *
   FROM feed f, member m
-  WHERE f.mem_no = 29
+  WHERE f.mem_no = 28
   ORDER BY feed_date DESC;

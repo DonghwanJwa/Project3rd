@@ -56,8 +56,8 @@ public class FeedDAOImpl implements FeedDAO {
 	}
 
 	@Override
-	public void addOfferFeed(OfferVO ov) {
-		this.sqlSession.insert("OfferFeed",ov);
+	public void addOfferFeed(HashMap<String, Object> om) {
+		this.sqlSession.insert("OfferFeed",om);
 	}
 
 	@Override

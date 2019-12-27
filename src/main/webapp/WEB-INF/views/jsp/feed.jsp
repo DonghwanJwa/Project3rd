@@ -84,7 +84,7 @@
    <c:if test="${fList.feed_step == 4}">
      <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
-    <a href="#">
+    <a>
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
      </div>
@@ -103,7 +103,7 @@
    <c:if test="${fList.feed_step == 5}">
       <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
-    <a href="/jamong.com/read">
+    <a>
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
      </div>
@@ -122,7 +122,7 @@
    <c:if test="${fList.feed_step == 6}">
     <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
-    <a href="/jamong.com/book/@${fList.memberVO.mem_id}/${fList.bookVO.book_no}">
+    <a href="/jamong.com/book/@${fList.feed_mem_id}/${fList.feed_book_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
      </div>
@@ -141,13 +141,13 @@
    <c:if test="${fList.feed_step == 7}">
     <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
-    <a href="#">
+    <a>
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
-       	작가님이 등록한 메일로 제안 메일이 발송되었습니다.
+       	작가님이 등록하신 메일로 제안 메일이 전송되었습니다.
       </div>
       <div class="feed_new_icon">N</div>
       <div class="feed_new_cont_time">
@@ -216,7 +216,7 @@
    <c:if test="${fList.feed_step == 4}">
      <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
     onmouseleave="FeedMouseOut(event)">
-    <a href="#">
+    <a>
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
      </div>
@@ -234,7 +234,7 @@
    <c:if test="${fList.feed_step == 5}">
      <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
     onmouseleave="FeedMouseOut(event)">
-    <a href="/jamong.com/read">
+    <a>
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
      </div>
@@ -252,7 +252,7 @@
    <c:if test="${fList.feed_step == 6}">
     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
     onmouseleave="FeedMouseOut(event)">
-    <a href="/jamong.com/book_info">
+    <a href="/jamong.com/book/@${fList.feed_mem_id}/${fList.feed_book_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
      </div>
@@ -270,7 +270,7 @@
    <c:if test="${fList.feed_step == 7}">
     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
     onmouseleave="FeedMouseOut(event)">
-    <a href="#">
+    <a>
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
      </div>

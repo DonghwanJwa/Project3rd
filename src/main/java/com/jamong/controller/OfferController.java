@@ -168,8 +168,11 @@ public class OfferController {
 			mailCont.append("이메일 : "+off_email+"@"+off_domain+"<br/><br/>");
 			
 			this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, files, request);
-			
-			this.offerService.offer_send(ov);
+			int sMem_no = user.getMem_no();
+			HashMap<String, Object> om = new HashMap<>();
+			om.put("ov",ov);
+			om.put("sMem_no", sMem_no);
+			this.offerService.offer_send(om);
 			
 			out.println("<script>");
 			out.println("alert('작가님께 제안사항이 전달 되었습니다.');");
