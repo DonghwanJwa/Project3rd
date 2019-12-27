@@ -52,7 +52,7 @@ public class BookServiceImpl implements BookService {
 	public MemberVO getMember(String mem_id) {
 		return this.bookDao.getMember(mem_id);
 	}
-	
+
 	@Transactional
 	@Override
 	public void createBook(HashMap<String, Object> bm) {
@@ -61,8 +61,10 @@ public class BookServiceImpl implements BookService {
 		bm.put("book_no",book_no);
 		this.boardDao.updateBookNo(bm);
 		List<SubscribeVO> followerList = this.subDao.followerList(bm.get("mem_no"));
-		bm.put("fList",followerList);
-		this.feedDao.addBookFeed(bm);
+		if(followerList.size() > 0) {
+			bm.put("fList",followerList);
+			this.feedDao.addBookFeed(bm);
+		}
 	}
 
 	@Override
