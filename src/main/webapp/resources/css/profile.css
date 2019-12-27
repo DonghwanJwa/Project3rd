@@ -58,6 +58,7 @@ background: url(../img/warring.png) no-repeat;
 	height: 100px;
 	float: right;
 	z-index: 0;
+	object-fit: cover;
 }
 #profile_img_button{
 	position:absolute;
@@ -103,11 +104,15 @@ ul.profile_keyword_link{
 }
 .profile_post_img{
 	float: right;
-    width: 110px;
-    height: 110px;
-    margin: -100px 10px 0px 0px;
+    width: 100px;
+    height: 100px;
+    margin: -68px 1px 0px 0px;
     display: inline-block;
+    object-fit: cover;
 	}
+.pf_post_date{
+    font-size: 13px;
+}
 .profile_article_main{
 	display : flex;
 	font-size: 13px;
@@ -118,6 +123,10 @@ ul.profile_keyword_link{
 .pf_bo_title{
     opacity: 0.7;
     color: #333;
+    font-size: 20px;
+    line-height: 41px;
+    letter-spacing: -1px;
+    padding-top: 6px;
 }
 .article_cont{
 	font-size: 14px;
@@ -141,8 +150,26 @@ ul.profile_keyword_link{
 }
 .private{
 	float: right;
-    width: 25px;
-    margin: 0px 10px 0px 0px
+    margin: 3px 0px;
+    background: transparent;
+    outline: none;
+    height: 30px;
+    width: 30px;
+    border: none;
+  	cursor: pointer;
+}
+.lock{
+	background: url(../img/lock.png) no-repeat;
+    background-size: 25px;
+    background-position: 50%;
+    position: relative;
+}
+.unlock{
+	background: url(../img/unlock.png) no-repeat;
+    background-size: 25px;
+    background-position: 50%;
+    position: relative;
+	
 }
 
 /*	profile 	*/
@@ -303,10 +330,11 @@ ul.profile_keyword_link{
 	font-weight: bold;
 	}
 .profile_writer_list{
-		width:670px;
+		width: 660px;
 		height: auto;
 		margin-bottom: 5px;
 		padding-left: 0;
+		margin-top: 0;
 }	
 .profile_writer_list li{
 	padding: 20px 0 20px;
@@ -329,9 +357,10 @@ ul.profile_keyword_link{
 	     padding-right: 25px; 
 	     padding-bottom: 50px;
 	}
-	.profile_articles{
-
-	}
+.author_intro{
+	line-height: 1.5;
+    padding-bottom: 10px;
+}
 #article{
 	     padding-left: 25px; 
 }
@@ -359,6 +388,7 @@ ul.profile_keyword_link{
     padding-top: 20px;
     font-size: 18px;
     height: 90px;
+    line-height: 1.5;
 }
 .Magazine_list{
 	width: 735px;
@@ -389,10 +419,6 @@ ul.profile_keyword_link{
 	vertical-align: top; 
 	/* vertical-align : 인라인,인라인 블록을 수직정렬할때 사용*/
 }
-.magazin_img{
-	width: 190px;
-	height: auto;
-}
 /*책 좌측 책모양*/
 .book_line:after {
     position: absolute;
@@ -418,6 +444,9 @@ ul.profile_keyword_link{
     height: 100%;
     background: rgba(0,0,0,.05);
     content: '';
+}
+.pf_date{
+	float:right;
 }
 .profile_jm{
 	display: block;
@@ -623,6 +652,8 @@ ul#edit_tag_list {
     margin-top: 0;
     padding: 10px;
     padding-left: 10px;
+    letter-spacing: -1px;
+    font-size: 13px;
 }
 span.del_btn {
     position: absolute;
@@ -672,6 +703,7 @@ span.del_btn {
 	width: 95%;
 	height: auto;
 	min-height: 50px;
+	overflow:visible;
 	
 }
 	#profile_edit_button{
