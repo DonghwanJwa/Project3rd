@@ -367,6 +367,10 @@ a:hover{text-decoration:underline; color:#F57C68;}
 
 
 /* admin_member */
+.adm_td {
+	padding:5px;
+	height:100px;
+}
 
 #adm_member_wrap {
 	display: flex;
@@ -445,7 +449,7 @@ a:hover{text-decoration:underline; color:#F57C68;}
 }
 
 #adm_portfolio_field {
-	min-height:100px;
+	height:100px;
 	padding:5px;
 }
 
@@ -524,7 +528,7 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	margin: 10px auto;
 	min-height:600px;
 }
-.drop_reason_select {
+#drop_reason {
 	padding: .5em .2em;
 }
 
@@ -555,7 +559,7 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	margin: 15px 10px;	
 }
 
-#counter_wrap{
+.counter_wrap{
 	display:flex;
 	justify-content:flex-end;
 }

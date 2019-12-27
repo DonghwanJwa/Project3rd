@@ -5,15 +5,18 @@
 <meta charset="UTF-8">
 </head>
 <%@include file="../include/admin_header.jsp" %>
+<div id="mem_drop_wrap">
 <script>
 function drop_check() {
-	if($('#drop_reason').val() == 'non-select') {
+	if($('#drop_reason').val() == '') {
 		alert('정지사유를 선택하세요.');
 		$('#drop_reason').focus();
+		return false;
 	}
 	if($('#drop_cont').val().trim() == '') {
 		alert('정지사유를 500자 이내로 입력하세요.');
 		$('#drop_cont').val('').focus();
+		return false;
 	}
 	
 	var con=confirm('정말로 회원의 계정을 정지시키겠습니까?');
@@ -34,15 +37,15 @@ $(document).ready(function() {
             $('#counter').html("(500 / 500)");
         }
     });
+});
 </script>
-<div id="mem_drop_wrap">
 <form action="admin_member_drop_ok" onsubmit="return drop_check();">
 <input type="hidden" name="no" value="${no}" />
 <input type="hidden" name="page" value="${page}" />
 	<div id="drop_cont_wrap">
 		<h3>정지사유</h3>
 		<select id="drop_reason" name="drop_reason">
-			<option value="non-select">
+			<option value="">
 				정지사유를 선택하세요.
 			</option>
 		

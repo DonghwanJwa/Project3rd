@@ -43,7 +43,7 @@ public class AdminController {
 			out.println("</script>");
 		}else {
 			if(adm_m.getMem_state() != 9) {
-				out.println("<script>");
+				out.println("<script>"); 
 				out.println("alert('허용되지 않은 접근입니다.');");
 				out.println("history.back();");
 				out.println("</script>");
