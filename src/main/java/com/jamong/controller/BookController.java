@@ -164,35 +164,38 @@ public class BookController {
 		return null;
 	}
 
-	@RequestMapping("book_edit")
-	public ModelAndView user_book_edit(HttpServletRequest request, HttpServletResponse response, HttpSession session)
-			throws Exception { // 책 수정
+	@RequestMapping("book_edit/{book_no}")
+	public ModelAndView user_book_edit(@PathVariable int book_no, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session,BookVO bk) throws Exception { // 책 수정
+		ModelAndView mv = new ModelAndView();
 		response.setContentType("text/html;charset=UTF-8");
 		session = request.getSession();
-
-//		BookVO bk = (BookVO) session.getAttribute("bk");
-//		int book_no = bk.getBook_no();
-//		
-//		MemberVO m = (MemberVO) session.getAttribute("m");
-//		String mem_id = m.getMem_id();
-//		
-//		List<BoardVO> bList = this.bookService.getBList(mem_id);
-//		List<BoardVO> bkList = this.bookService.getBKList(book_no);
-//		MemberVO member = this.bookService.getMember(mem_id);
-//		String mem_nickname = member.getMem_nickname();
-//		String profile_photo = member.getProfile_photo();
-//		String profile_cont = member.getProfile_cont();
-//		
-//		//책 번호와 세션 아이디를 기준으로 보더를 검색해서 책 번호가 있는건 오른쪽 없는건 왼쪽에 표시.
-//		//필요한 거:책 커버,책 소개
-//		
-		ModelAndView mv = new ModelAndView();
-//		
-//		mv.addObject("bList",bList);
-//		mv.addObject("bkList",bkList);
-//		mv.addObject("mem_nickname",mem_nickname);
-//		mv.addObject("profile_photo",profile_photo);
-//		mv.addObject("profile_cont",profile_cont);
+		
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		int mem_no = m.getMem_no();
+		String mem_id = m.getMem_id();
+		MemberVO member = this.bookService.getMember(mem_id);
+		String mem_nickname = member.getMem_nickname();
+		String profile_photo = member.getProfile_photo();
+		String profile_cont = member.getProfile_cont();
+		List<BoardVO> bList = this.bookService.getBList(mem_id);
+		
+		//책 번호와 세션 아이디를 기준으로 보더를 검색해서 책 번호가 있는건 오른쪽 없는건 왼쪽에 표시.
+		//필요한 거:책 커버,책 소개
+		HashMap<String, Object> be = new HashMap<>();
+		be.put("bk",bk);
+		be.put("book_no", book_no);
+		be.put("mem_no", mem_no);
+		
+		List<BoardVO> bkList = this.bookService.bkEditList(be);
+		bk = this.bookService.getBook(book_no);
+		
+		mv.addObject("bk",bk);
+		mv.addObject("mem_nickname",mem_nickname);
+		mv.addObject("profile_photo",profile_photo);
+		mv.addObject("profile_cont",profile_cont);
+		mv.addObject("bList",bList);
+		mv.addObject("bkList",bkList);
 		mv.setViewName("jsp/book_edit");
 
 		return mv;

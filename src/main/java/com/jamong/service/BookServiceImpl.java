@@ -108,4 +108,9 @@ public class BookServiceImpl implements BookService {
 		this.bookDao.recommendDownUpdate(bk);
 		return this.bookDao.recommendNum(bk);
 	}
+	
+	@Override
+	public List<BoardVO> bkEditList(HashMap<String, Object> be) {
+		return this.boardDao.bkEditList(be);
+	}
 }

@@ -252,4 +252,11 @@
  <select id="rec_count" resultType="int">
   SELECT book_recommend FROM book WHERE book_no = #{book_no}
  </select>
+ 
+ <select id="bkEditList" parameterType="java.util.HashMap" resultMap="boardMap">
+  SELECT *
+  FROM board b
+  INNER JOIN book book
+  ON b.book_no = #{bk.book_no}
+ </select>
 </mapper>

@@ -106,7 +106,7 @@
    </c:if>
    <c:if test="${fList.feed_step == 6}">
     <div class="feed_new_cont_article">
-    <a href="/jamong.com/book_info">
+    <a href="/jamong.com/book/@${fList.memberVO.mem_id}/${fList.bookVO.book_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
      </div>
