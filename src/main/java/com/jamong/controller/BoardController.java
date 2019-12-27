@@ -62,11 +62,11 @@ public class BoardController {
 		session=request.getSession();
 
 		MemberVO readM = (MemberVO)session.getAttribute("m");
-		
+
 		HashMap<String,Object> bm = new HashMap<>();
 		bm.put("mem_id",mem_id);
 		bm.put("bo_no",bo_no);
-		
+
 		BoardVO nextVo = this.boardService.getNextBoardCont(bm);
 		BoardVO preVo = this.boardService.getPreBoardCont(bm);
 		bo = this.boardService.getUserBoardCont(bo_no);
@@ -117,7 +117,7 @@ public class BoardController {
 				catList.get(i).setBo_cont(oneSpace);
 			}
 		}
-		
+
 		model.addAttribute("next",nextVo);
 		model.addAttribute("pre",preVo);
 		model.addAttribute("replyCount",replyCount);
@@ -202,7 +202,7 @@ public class BoardController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		session = request.getSession();
-		
+
 		String saveFolder = request.getRealPath("/resources/upload");
 		int fileSize = 100 * 1024 * 1024; // 첨부파일 최대크기
 		MultipartRequest multi = null;
@@ -219,7 +219,7 @@ public class BoardController {
 		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
 		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
-		
+
 		MemberVO m = (MemberVO) session.getAttribute("m");
 		int mem_no = m.getMem_no();
 
@@ -251,9 +251,9 @@ public class BoardController {
 
 			b.setBo_thumbnail(fileDBName);
 		} // if => 파일이 있을 때
-		
+
 		System.out.println(bo_color);
-	
+
 		b.setBo_color(bo_color);
 		b.setBo_title(bo_title);
 		b.setBo_subtitle(bo_subtitle);
@@ -268,7 +268,7 @@ public class BoardController {
 		bm.put("b",b);
 		bm.put("mem_no",mem_no);
 		bm.put("mem_id",m.getMem_id());
-		
+
 		this.boardService.insertBoard(bm);
 
 		out.println("<script>");
@@ -336,13 +336,15 @@ public class BoardController {
 
 			b.setBo_thumbnail(fileDBName);
 		} // if => 파일이 있을 때
-		
+
 		if(flag == 1) {
 			b.setBo_color("1");
 		}else if(flag == 0) {
 			b.setBo_color(bo_color);
+		}else if(bo_color == null) {
+			b.setBo_color("1");
 		}
-		
+
 		b.setBo_title(bo_title);
 		b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont);
@@ -419,7 +421,7 @@ public class BoardController {
 			String normarTitle = htmlTitle.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String titleSpace = normarTitle.replaceAll("&nbsp;"," ");
 			bList.get(i).setBo_title(titleSpace);
-			
+
 			String htmlText = bList.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String oneSpace = normalText.replaceAll("&nbsp; "," ");
@@ -511,7 +513,7 @@ public class BoardController {
 			String normarTitle = htmlTitle.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String titleSpace = normarTitle.replaceAll("&nbsp;"," ");
 			data.get(i).setBo_title(titleSpace);
-			
+
 			String htmlText = data.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			data.get(i).setBo_cont(normalText);

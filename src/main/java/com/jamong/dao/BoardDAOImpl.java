@@ -130,10 +130,10 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int newArticleNum(Object mem_no) {
-		return this.sqlSession.selectOne("NewArticleNumber", mem_no);
-	}
-
+	public BoardVO newArticleNum(Object mem_no) {
+		return this.sqlSession.selectOne("NewArticleNumber",mem_no);
+  }
+	
 	@Override
 	public List<BoardVO> bookInfoCont(HashMap<String, Object> binfo) {
 		return this.sqlSession.selectList("book_info_cont", binfo);

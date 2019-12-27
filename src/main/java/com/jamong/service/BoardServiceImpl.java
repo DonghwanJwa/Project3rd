@@ -33,14 +33,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertBoard(HashMap<String, Object> bm) {
 		this.boardDao.insertBoard(bm);
-		int newArtNo = this.boardDao.newArticleNum(bm.get("mem_no"));
+		BoardVO articleVO = this.boardDao.newArticleNum(bm.get("mem_no"));
 		// 최신글 번호( 세션 아이디에서 가장 최근 게시글 )
 		List<SubscribeVO> followerList = this.subDao.followerList(bm.get("mem_no"));
 		// 팔로우내역 셀렉트( 세션 아이디로 )
-		System.out.println(followerList.size());
-		if(followerList.size() > 0) {
+		if(followerList.size() > 0 && articleVO.getBo_lock() == 1) {
 			bm.put("fList",followerList);
-			bm.put("newArtNo",newArtNo);
+			bm.put("aVO",articleVO);
 			this.feedDao.addArticleFeed(bm);
 			// 피드를 인서트 함
 		}
