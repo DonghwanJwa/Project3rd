@@ -71,7 +71,7 @@ public class ReplyController {
 			rvo.setRep_level(rep_level);
 			
 			rm.put("rvo",rvo);
-			rm.put("mem_id",mem_id);
+			rm.put("mem_id",mem_id.substring(1));
 			rm.put("mem_no",mem_no);
 						
 			this.replyService.addReply(rm,mem_no,repM.getMem_no());

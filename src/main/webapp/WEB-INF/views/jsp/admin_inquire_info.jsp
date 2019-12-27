@@ -14,7 +14,7 @@
 </div>
 <div id="adm_inq_title"><h3 class="adm_inq_title">문의내용 열람</h3></div>
 <table class="adm_inq_table">
-	<input type="hidden" name="mem_no" id="mem_no" value="${i.mem_no}" />
+
 	<tr>
 		<th align="center" style="width:110px; height:40px;">회원분류</th>
 		<td align="center" style="width:120px;">
@@ -68,7 +68,7 @@
 	</tr>
 </table>
 	
-   <form method="post" name="inq_file_form"> 
+   <form method="post" name="inq_file_form">
    <input type="hidden" name="no" value="${no}"/>
 	 <table class="adm_inq_file"> 
 	<c:if test="${empty i.inq_file1 && empty i.inq_file2 && empty i.inq_file3 && empty i.inq_file4}">
@@ -129,6 +129,7 @@
 	</c:if>
 
 	<form class="inq_adm_request" method="post"  action="admin_inquire_info_ok"  name="inq_adm_request" >
+	<input type="hidden" name="mem_no" id="mem_no" value="${i.mem_no}" />
 		<h3>문의하기</h3>
 		<input type="hidden" name="page" value="${page}"/>
 		<input type="hidden" name="inq_no" value="${i.inq_no}"/>
