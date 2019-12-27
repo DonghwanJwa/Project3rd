@@ -20,5 +20,7 @@ public interface NoticeDAO {
 
 	List<NoticeVO> headerNotice();
 
+	void upHit(int no);
+
 
 }

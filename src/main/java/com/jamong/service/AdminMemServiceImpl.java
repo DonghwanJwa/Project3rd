@@ -32,4 +32,9 @@ public class AdminMemServiceImpl implements AdminMemService {
 	public void memDrop(MemberVO me) {
 		this.admMemDao.memDrop(me);
 	}
+
+	@Override
+	public void memRestore(MemberVO me) {
+		this.admMemDao.memRestore(me);
+	}
 }
