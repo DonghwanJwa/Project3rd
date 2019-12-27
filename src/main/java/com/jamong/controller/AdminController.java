@@ -12,12 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jamong.domain.AccuseVO;
+import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.NoticeVO;
+import com.jamong.service.AccuseService;
 import com.jamong.service.AdminService;
+import com.jamong.service.InquireService;
 import com.jamong.service.MemberService;
-
-import pwdconv.PwdChange;
 
 @Controller
 public class AdminController {
@@ -25,10 +27,17 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@Autowired
+	private AccuseService accuseService;
+
+	@Autowired
+	private InquireService inquireService;
+	
+	
+	@Autowired
 	private MemberService memberService;
 	
 	@RequestMapping("admin_main")
-	public ModelAndView admin_main(HttpSession session, HttpServletRequest request, HttpServletResponse response, NoticeVO n) throws Exception {
+	public ModelAndView admin_main(HttpSession session, HttpServletRequest request, HttpServletResponse response, NoticeVO n,AccuseVO a,InquireVO i) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		session=request.getSession();
@@ -50,11 +59,18 @@ public class AdminController {
 			}else {
 				// 최신공지 띄우기
 				List<NoticeVO> newNotice=this.adminService.newNotice(n);
-				
+				List<AccuseVO> newAccuse=this.accuseService.newAccuse(a);
+				List<InquireVO> newInquire=this.inquireService.newInquire(i);
+
+					
 				ModelAndView m=new ModelAndView();
 				
 				m.addObject("newNotice",newNotice);
+				m.addObject("newAccuse",newAccuse);
+				m.addObject("newInquire",newInquire);
 				m.addObject("n",n);
+				m.addObject("a",a);
+				m.addObject("i",i);
 				
 				m.setViewName("jsp/admin_main");
 				

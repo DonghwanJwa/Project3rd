@@ -240,4 +240,11 @@
 <delete id="ac_del">
 	delete accuse where ac_no=#{ac_no}
 </delete>
+
+<!-- 관리자 메인페이지에 리스트 띄우기 -->
+<select id="newAccuse" resultType="ac">
+	SELECT * FROM (SELECT * FROM accuse) ac
+	INNER JOIN member m
+	ON ac.mem_no= m.mem_no ORDER BY ac.ac_date DESC
+</select>
 </mapper>

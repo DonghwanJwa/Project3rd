@@ -21,5 +21,7 @@ public interface InquireDAO {
 
 	void inquireDel(int no);
 
+	List<InquireVO> newInquire(InquireVO i);
+
 
 }
