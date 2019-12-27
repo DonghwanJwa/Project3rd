@@ -135,7 +135,14 @@ a:hover{text-decoration:underline; color:#F57C68;}
 .adm_main_table {
 	font-size:13px;
 	text-align:center;
-
+}
+.adm_main_table2 {
+	font-size:13px;
+	text-align:center;
+}
+.adm_main_table3 {
+	font-size:13px;
+	text-align:center;
 }
 
 .adm_main_table th{
@@ -148,6 +155,26 @@ a:hover{text-decoration:underline; color:#F57C68;}
 .adm_main_table td{
 	min-width:120px;
 	max-width:120px;
+	border-bottom:dotted 1px gray;
+	padding:5px;
+	color:gray;
+}
+.adm_main_table2 th{
+	text-align:left;
+	border-bottom:dotted 1px gray;
+	padding:5px;
+}
+.adm_main_table2 td{
+	border-bottom:dotted 1px gray;
+	padding:5px;
+	color:gray;
+}
+.adm_main_table3 th{
+	text-align:left;
+	border-bottom:dotted 1px gray;
+	padding:5px;
+}
+.adm_main_table3 td{
 	border-bottom:dotted 1px gray;
 	padding:5px;
 	color:gray;
@@ -192,7 +219,30 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	margin:3px 3px;
 	font-size:12px;
 }
-
+#adm_ac_cont{
+   overflow: hidden;
+   word-wrap: break-word;   
+   white-space: normal;    
+   text-overflow: ellipsis;
+   display: -webkit-box; 
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical;
+   line-height: 35px;
+   height: 35px;
+   width:312px;
+}
+#adm_inq_cont{
+   overflow: hidden;
+   word-wrap: break-word;   
+   white-space: normal;    
+   text-overflow: ellipsis;
+   display: -webkit-box; 
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical;
+   line-height: 37px;
+   height: 37px;
+   width:312px;
+}
 
 /* admin_notice (공지사항) */
 #adm_notice_wrap {
@@ -367,6 +417,10 @@ a:hover{text-decoration:underline; color:#F57C68;}
 
 
 /* admin_member */
+.adm_td {
+	padding:5px;
+	height:100px;
+}
 
 #adm_member_wrap {
 	display: flex;
@@ -445,7 +499,7 @@ a:hover{text-decoration:underline; color:#F57C68;}
 }
 
 #adm_portfolio_field {
-	min-height:100px;
+	height:100px;
 	padding:5px;
 }
 
@@ -524,7 +578,7 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	margin: 10px auto;
 	min-height:600px;
 }
-.drop_reason_select {
+#drop_reason {
 	padding: .5em .2em;
 }
 
@@ -555,7 +609,7 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	margin: 15px 10px;	
 }
 
-#counter_wrap{
+.counter_wrap{
 	display:flex;
 	justify-content:flex-end;
 }

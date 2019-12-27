@@ -3,10 +3,12 @@ package com.jamong.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Locale;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,12 +29,14 @@ import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.SubscribeVO;
 import com.jamong.service.BoardService;
+import com.jamong.service.BookService;
 import com.jamong.service.MemberService;
 import com.jamong.service.SubscribeService;
 import com.oreilly.servlet.MultipartRequest;
 
 import mailHandler.MailService;
 import pwdconv.PwdChange;
+import timeChanger.TIME_MAXIMUM;
 
 @Controller
 public class MemberController {
@@ -41,6 +45,8 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private BookService bookService;
 	@Autowired
 	private MailService mailService;
 	@Autowired
@@ -303,24 +309,49 @@ public class MemberController {
 			sub=this.subService.subCheck(submap);
 			}
 			int subCount = this.subService.subCount(mp.getMem_no());
+			
 			// 포트폴리오 항목 띄어쓰기 적용되게
-//			if(mp.getMem_portfolio() != null){
-//			String portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
-//			}
-//			mv.addObject(portfolio);
-				
+			String portfolio = null;
+            
+			if(mp.getMem_portfolio() != null){
+            portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
+            mp.setMem_portfolio(portfolio);
+            }
 			List<BoardVO> mplist = this.boardService.getProfile(mp.getMem_no());
 			
+			SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
+
+			
 			for(int i=0; i < mplist.size(); i++) {
+					// 시간 계산 해서 방금, 몇분전 띄우기
+				Date mpListFormat_date = b_format.parse(mplist.get(i).getBo_date());
+				String mpListTitle_date = TIME_MAXIMUM.formatTimeString(mpListFormat_date);
+				mplist.get(i).setBo_date(mpListTitle_date);
+				
 				String htmlText = mplist.get(i).getBo_cont();
 				String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 				String oneSpace = nomalText.replaceAll("&nbsp; "," ");
+				mplist.get(i).setBo_cont(oneSpace);
 			}
 			
+			List<BoardVO> myBookList = this.bookService.myBookList(mp.getMem_no());
+			for(int i=0;i<myBookList.size();i++) {
+				Date mbListFormat_date = b_format.parse(myBookList.get(i).getBookVO().getBook_date());
+				String mbListTitle_date = date_format.format(mbListFormat_date);
+				myBookList.get(i).getBookVO().setBook_date(mbListTitle_date);
+				
+				String bookHtmlText = myBookList.get(i).getBookVO().getBook_name();
+				String bookStrippedText = bookHtmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");	
+				myBookList.get(i).getBookVO().setBook_name(bookOneSpace);
+			}
+
 			mv.addObject("mplist",mplist);
 			mv.addObject("mp",mp);
 			mv.addObject("sub",sub);
 			mv.addObject("subCount",subCount);
+			mv.addObject("mybook",myBookList);
 			return mv;
 	}//user_profile() => 유저 프로필 창
 
@@ -366,7 +397,7 @@ public class MemberController {
 		}else {
 			
 			// 프로필 이미지 저장경로 추가
-			String saveFolder = request.getRealPath("resources/upload");
+			String saveFolder = request.getRealPath("/resources/upload");
 			int fileSize= 100 * 1024 * 1024;	// 첨부파일 최대크기 지정
 			MultipartRequest multi = null;		// 첨부파일을 가져오는 api
 			// post요청을 multi에 저장
@@ -404,11 +435,12 @@ public class MemberController {
 			
 			String encryptionName=PwdChange.getPassWordToXEMD5String(refilename); //파일명 암호화
 			// DB에 저장되는 레코드 값
-			String fileDBName="jamong.com/resources/upload/profile/"+encryptionName+"."+fileExtendsion;
+			String fileDBName="/jamong.com/resources/upload/profile/"+encryptionName+"."+fileExtendsion;
 			
 			UpFile.renameTo(new File(homedir+"/"+encryptionName+"."+fileExtendsion));//바뀌어진 첨부파일 명으로 업로드
 			
 			mp.setProfile_photo(fileDBName);
+			m.setProfile_photo(fileDBName);
 			}else {
 				mp.setProfile_photo(m.getProfile_photo());//프로필사진 등록 안했을때 기존파일로 대체
 			}
@@ -418,8 +450,11 @@ public class MemberController {
 			mp.setMem_nickname(mem_nickname); 		mp.setProfile_cont(profile_cont);
 			// 키워드 항목 나누어서 
 			mp.setMem_keyword(mem_keyword); 		mp.setMem_portfolio(mem_portfolio);
+			m.setMem_nickname(mem_nickname);
 			
+			session.setAttribute("m", m);
 			this.memberService.updateProfile(mp);
+			
 			
 			out.print("<script>");
 			out.print("alert('변경되었습니다');");

@@ -141,9 +141,15 @@ public class OfferController {
 			ov.setOff_phone2(off_phone2);
 			ov.setOff_phone3(off_phone3);
 			ov.setOff_cont(off_cont);		 // 제안 세부내용
-			ov.setOff_file1(off_file1);		 // 첨부파일
-			ov.setOff_file2(off_file2);
-			ov.setOff_file3(off_file3);
+			if(off_file1 != null) {
+				ov.setOff_file1(off_file1);		 // 첨부파일
+			}
+			if(off_file2 != null) {
+				ov.setOff_file2(off_file2);
+			}
+			if(off_file3 != null) {
+				ov.setOff_file3(off_file3);
+			}
 			ov.setMem_no(author.getMem_no()); // 작가 회원번호
 			
 			String subject=user.getMem_nickname()+"님께서 "+off_item+"목적으로 작가님께 제안한 내용이 도착했습니다.";
@@ -162,8 +168,11 @@ public class OfferController {
 			mailCont.append("이메일 : "+off_email+"@"+off_domain+"<br/><br/>");
 			
 			this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, files, request);
-			
-			this.offerService.offer_send(ov);
+			int sMem_no = user.getMem_no();
+			HashMap<String, Object> om = new HashMap<>();
+			om.put("ov",ov);
+			om.put("sMem_no", sMem_no);
+			this.offerService.offer_send(om);
 			
 			out.println("<script>");
 			out.println("alert('작가님께 제안사항이 전달 되었습니다.');");
@@ -265,8 +274,8 @@ public class OfferController {
 			}
 			
 			String fileName1=ao.getOff_file1().substring(ao.getOff_file1().lastIndexOf("/")+1);
-			String fileName2=ao.getOff_file2().substring(ao.getOff_file1().lastIndexOf("/")+1);
-			String fileName3=ao.getOff_file3().substring(ao.getOff_file1().lastIndexOf("/")+1);
+			String fileName2=ao.getOff_file2().substring(ao.getOff_file2().lastIndexOf("/")+1);
+			String fileName3=ao.getOff_file3().substring(ao.getOff_file3().lastIndexOf("/")+1);
 			
 			ModelAndView mv=new ModelAndView();
 			mv.setViewName("jsp/admin_offer_info");
@@ -337,7 +346,7 @@ public class OfferController {
 				bos.close();
 				bis.close();
 			}
-			ModelAndView mv=new ModelAndView("jsp/admin_author_info");
+			ModelAndView mv=new ModelAndView("jsp/admin_offer_info");
 			mv.addObject(off_file1);
 		}
 		
@@ -396,7 +405,7 @@ public class OfferController {
 				bos.close();
 				bis.close();
 			}
-			ModelAndView mv=new ModelAndView("jsp/admin_author_info");
+			ModelAndView mv=new ModelAndView("jsp/admin_offer_info");
 			mv.addObject(off_file2);
 		}
 		
@@ -455,7 +464,7 @@ public class OfferController {
 				bos.close();
 				bis.close();
 			}
-			ModelAndView mv=new ModelAndView("jsp/admin_author_info");
+			ModelAndView mv=new ModelAndView("jsp/admin_offer_info");
 			mv.addObject(off_file3);
 		}
 		

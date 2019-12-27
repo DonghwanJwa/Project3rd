@@ -1,5 +1,6 @@
 package com.jamong.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,8 +17,8 @@ public class OfferDAOImpl implements OfferDAO{
 	private SqlSession sqlSession;
 
 	@Override
-	public void offer_send(OfferVO ov) {
-		this.sqlSession.insert("off_send",ov);
+	public void offer_send(HashMap<String, Object> om) {
+		this.sqlSession.insert("off_send",om);
 	}
 
 	@Override

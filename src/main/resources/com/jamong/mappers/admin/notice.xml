@@ -57,6 +57,10 @@
 	<select id="n_cont" resultType="notice">
 		select * from adm_notice where noti_no=#{no}
 	</select>
+	<!-- 공지사항 조회수 증가 -->
+	<update id="upHit">
+		UPDATE adm_notice SET noti_hit=noti_hit+1 where noti_no=#{no}
+	</update>
 	
 	<!-- 공지사항 수정하기 -->
 	<update id="n_edit">

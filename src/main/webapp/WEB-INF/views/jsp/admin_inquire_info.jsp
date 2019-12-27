@@ -14,7 +14,7 @@
 </div>
 <div id="adm_inq_title"><h3 class="adm_inq_title">문의내용 열람</h3></div>
 <table class="adm_inq_table">
-	<input type="hidden" name="mem_no" id="mem_no" value="${i.mem_no}" />
+
 	<tr>
 		<th align="center" style="width:110px; height:40px;">회원분류</th>
 		<td align="center" style="width:120px;">
@@ -68,7 +68,7 @@
 	</tr>
 </table>
 	
-   <form method="post" name="inq_file_form"> 
+   <form method="post" name="inq_file_form">
    <input type="hidden" name="no" value="${no}"/>
 	 <table class="adm_inq_file"> 
 	<c:if test="${empty i.inq_file1 && empty i.inq_file2 && empty i.inq_file3 && empty i.inq_file4}">
@@ -80,11 +80,11 @@
 		</th>
 	 </tr>
 	 <tr>
-	  <td colspan="6" id="adm_inq_field" style="height:175px;">
-		<input type="submit" value="${fileName1}" onclick="javascript:inq_file_form.action='inquireFile1';" />
-		<input type="submit" value="${fileName2}" onclick="javascript:inq_file_form.action='inquireFile2';"/>
-		<input type="submit" value="${fileName3}" onclick="javascript:inq_file_form.action='inquireFile3';"/>
-		<input type="submit" value="${fileName4}" onclick="javascript:inq_file_form.action='inquireFile4';"/>
+	  <td colspan="6" align="left" id="adm_inq_field" style="height:175px;">
+		<div><h3 style="display:inline-block;">첨부파일 1:</h3><input type="submit" class="inq_file_down" value="${fileName1}" onclick="javascript:inq_file_form.action='inquireFile1';" /></div>
+		<div><h3 style="display:inline-block;">첨부파일 2:</h3><input type="submit" class="inq_file_down" value="${fileName2}" onclick="javascript:inq_file_form.action='inquireFile2';"/></div>
+		<div><h3 style="display:inline-block;">첨부파일 3:</h3><input type="submit" class="inq_file_down" value="${fileName3}" onclick="javascript:inq_file_form.action='inquireFile3';"/></div>
+		<div><h3 style="display:inline-block;">첨부파일 4:</h3><input type="submit" class="inq_file_down" value="${fileName4}" onclick="javascript:inq_file_form.action='inquireFile4';"/></div>
 	 </td>	
 	</tr>
 		</c:if>
@@ -94,7 +94,7 @@
 <!-- 회원일때 문의하기 내용 밑에 회원정보 띄우기 -->
 
 <c:if test="${i.mem_no != 0}">
-  <h3 style="padding-left:20px;">회원정보</h3>
+  <h3>회원정보</h3>
 	<table class="inq_adm_table2">
 		<tr>
 			<th align="center" style="width:140px; height:40px;">ID</th>
@@ -129,6 +129,7 @@
 	</c:if>
 
 	<form class="inq_adm_request" method="post"  action="admin_inquire_info_ok"  name="inq_adm_request" >
+	<input type="hidden" name="mem_no" id="mem_no" value="${i.mem_no}" />
 		<h3>문의하기</h3>
 		<input type="hidden" name="page" value="${page}"/>
 		<input type="hidden" name="inq_no" value="${i.inq_no}"/>
@@ -181,6 +182,7 @@
 		<c:if test="${i.inq_state == 0}">
 		<input type="button" id="inq_re_btn" class="inq_button" value="답변하기" />
 		</c:if>
+		<input type="button" id="inq_info_btn" class="inq_button" value="회원관리" onclick="location='admin_member_info?no=${i.mem_no}&page=${page}';" />
 		<input type="submit" id="inq_del_btn" class="inq_button" value="삭제하기" />	
 	</div>
    </form> 

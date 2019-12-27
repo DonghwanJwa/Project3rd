@@ -4,6 +4,16 @@
 .adm_inq_file{
 	width:900px;
 }
+.inq_file_down{
+	margin-left:10px;
+	height:30px;
+}
+.adm_inq_table{
+	width:900px;
+}
+.inq_adm_table2{
+	width:900px;
+}
 .inq_button{
 	width:65px;
 	border: 1px solid lightgrey;
@@ -86,7 +96,7 @@ color:transparent;
     margin-top:60px;
 }
 #inq_adm_complete{
-    width: 856px;
+    width: 900px;
    	margin-top:100px;
 }
 #adm_inq_replyname{
