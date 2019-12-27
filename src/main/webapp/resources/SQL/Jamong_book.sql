@@ -2,7 +2,7 @@
 CREATE TABLE book(
 book_no NUMBER(38) PRIMARY KEY,   -- 책 번호(seq)
 book_name VARCHAR2(100) NOT NULL, -- 책 이름
-book_cover VARCHAR2(2000), -- 책 커버 이미지
+book_cover VARCHAR2(4000), -- 책 커버 이미지
 book_preface VARCHAR2(4000), -- 책 소개 글
 book_date DATE,                   -- 책 발간일
 book_editdate DATE,					  -- 책 수정일
@@ -66,4 +66,7 @@ SELECT * FROM
 		     m.mem_nickname)
 	ORDER BY REGEXP_COUNT(book_name,'굿굿|아이디어|스프링|넘바원|오라클|갈배') DESC, 
 		 	 REGEXP_COUNT(mem_nickname,'굿굿|아이디어|스프링|넘바원|오라클|갈배') DESC)X)
- WHERE RN BETWEEN 7 AND 13
+ WHERE RN BETWEEN 7 AND 13;
+ 
+ALTER TABLE book ADD (book_cover VARCHAR2(4000));
+ALTER TABLE book ADD (book_preface VARCHAR2(4000));

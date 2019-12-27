@@ -87,7 +87,11 @@
 		order by mem_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
 	</select>
 	
-	<select id="amd_mem_info" resultType="m">
+	<select id="adm_mem_info" resultType="m">
 		select * from member where mem_no=#{no}
 	</select>
+	
+	<update id="adm_mem_drop">
+		UPDATE member SET mem_state=1 , drop_reason=#{drop_reason} , drop_cont=#{drop_cont} , drop_date=sysdate
+	</update>
 </mapper>
