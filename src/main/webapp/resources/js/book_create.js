@@ -8,7 +8,7 @@ $(document).ready(function() {
 		if(!$(e.target).hasClass("title")){
 			$("input[type=file]").click();
 		}
-	});	
+	});
 	
 	/* 책 커버 이미지 미리보기 */
 	$("#book_create_cover_imgFile").on("change",handleImgFileSelect);

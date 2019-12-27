@@ -85,8 +85,8 @@
 				</div>
 				<div id="pf_folio"  style="display: none;">	
 				<h3 class="profile_edit_font">포트폴리오</h3>
-						<div id="profile_portflio" contenteditable="true" class="profile_edit_info" name="mem_portfolio"
-						 >${mp.mem_portfolio}</div>
+						<textarea id="profile_portflio"  class="profile_edit_info" name="mem_portfolio"
+						 >${mp.mem_portfolio}</textarea>
 				</div>
 				</c:if>
 				<div id="profile_edit_button">
