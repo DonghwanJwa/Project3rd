@@ -53,16 +53,13 @@
 	</tr>
 	
 	<tr>
-		<th colspan="6" align="center" style="height:50px;">
+		<th colspan="3" align="center" style="height:50px;">
 			신고한페이지 URL
 		</th>
-	</tr>
-	<tr>
-		<td colspan="6" id="adm_ac_url" style="height:50px;">
+		<td colspan="3" id="adm_ac_url" style="height:50px;">
 			<a href="${a.ac_href}">신고한 페이지 이동</a>
-		</td>
+		</td>	
 	</tr>
-	
 	
 	<tr>
 		<th colspan="6" align="center" style="height:50px;">
@@ -113,7 +110,7 @@
 
 <h3 style="padding-left:20px;">피신고인 정보</h3>
 <c:if test="${a.ac_member != 0}">
-	<table class="ac_adm_table2">
+	<table class="ac_adm_table3">
 		<tr>
 			<th align="center" style="width:140px; height:40px;">ID</th>
 			 <td align="center" style="width:150px;">
@@ -196,7 +193,8 @@
 		<input type="button" id="ac_list_btn" class="ac_button" value="목록으로" onclick="location='admin_accuse?page=${page}';"/>
 		<c:if test="${a.ac_state == 0}">
 		<input type="button" id="ac_re_btn" class="ac_button" value="답변하기" />
-		</c:if>
+		</c:if>		
+		<input type="button" id="ac_info_btn" class="ac_button" value="회원관리" onclick="location='admin_member_info?no=${mem.mem_no}&page=${page}';" />
 		<input type="submit" id="ac_del_btn" class="ac_button" value="삭제하기" />
 	</div>
    </form>

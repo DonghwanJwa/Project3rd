@@ -110,6 +110,7 @@ public class AdminMemberController {
 			
 			String profile_cont=me.getProfile_cont();
 			String mem_portfolio=me.getMem_portfolio();
+			String drop_cont=me.getDrop_cont();
 			
 			if(me.getMem_portfolio() != null) {
 				mem_portfolio=me.getMem_portfolio().replace("\n", "<br/>");
@@ -117,14 +118,19 @@ public class AdminMemberController {
 			if(me.getProfile_cont() != null) {
 				profile_cont=me.getProfile_cont().replace("\n", "<br/>");
 			}
+			if(me.getDrop_cont() != null) {
+				drop_cont=me.getDrop_cont().replace("\n", "<br/>");
+			}
 			
 			ModelAndView m = new ModelAndView();
+			
 			
 			m.setViewName("jsp/admin_member_info");
 			
 			m.addObject("me",me);
 			m.addObject("profile_cont",profile_cont);
 			m.addObject("mem_portfolio",mem_portfolio);
+			m.addObject("drop_cont",drop_cont);
 			m.addObject("page",page);
 			
 			return m;
@@ -178,7 +184,9 @@ public class AdminMemberController {
 			out.println("</script>");
 		}else {
 			int page=1;
-			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));
+			}
 			
 			String drop_reason=request.getParameter("drop_reason");
 			String drop_cont=request.getParameter("drop_cont");
@@ -191,10 +199,40 @@ public class AdminMemberController {
 			
 			out.println("<script>");
 			out.println("alert('회원의 계정이 정지되었습니다.');");
-			out.println("location='admin_member?no="+no+"&page="+page);
+			out.println("location='admin_member_info?no="+no+"&page="+page+"';");
 			out.println("</script>");
 		}
 		
+		return null;
+	}
+	
+	@RequestMapping("admin_member_restore")
+	public ModelAndView admin_member_restore (HttpServletRequest request, HttpServletResponse response, HttpSession session, int no, MemberVO me) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		session=request.getSession();
+		
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
+		
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
+			out.println("location='login/1';");
+			out.println("</script>");
+		}else {
+			int page=1;
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));
+			}
+			me.setMem_no(no);
+			
+			this.admMemService.memRestore(me);
+			
+			out.println("<script>");
+			out.println("alert('회원의 계정이 복구되었습니다.');");
+			out.println("location='admin_member_info?no="+no+"&page="+page+"';");
+			out.println("</script>");
+		}
 		return null;
 	}
 }

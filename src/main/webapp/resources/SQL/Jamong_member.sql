@@ -75,4 +75,5 @@ WHERE rowNum <= 9;
 commit;
 SELECT * FROM member ORDER BY mem_no DESC;
 
-update member set mem_state=0
+update member set mem_state=0;
+update member set mem_state=9 where mem_id='tkdgjs905';

@@ -59,4 +59,9 @@ public class AccuseDAOImpl implements AccuseDAO {
 		
 	}
 
+	@Override
+	public List<AccuseVO> newAccuse(AccuseVO a) {
+		return this.sqlSession.selectList("newAccuse",a);
+	}
+
 }
