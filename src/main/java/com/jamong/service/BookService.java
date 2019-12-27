@@ -35,4 +35,6 @@ public interface BookService {
 
 	int recommendDown(BookVO bk);
 
+	List<BoardVO> bkEditList(HashMap<String, Object> be);
+
 }
