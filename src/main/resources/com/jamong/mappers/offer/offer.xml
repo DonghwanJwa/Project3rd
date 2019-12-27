@@ -4,10 +4,56 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="offer">
+<resultMap type="off" id="offerMap">
+  <id column="off_no" property="off_no" />
+  <result column="off_id" property="off_id" />
+  <result column="off_nickname" property="off_nickname" />
+  <result column="off_email" property="off_email" />
+  <result column="off_domain" property="off_domain" />
+  <result column="off_phone1" property="off_phone1" />
+  <result column="off_phone2" property="off_phone2" />
+  <result column="off_phone3" property="off_phone3" />
+  <result column="off_date" property="off_date" />
+  <result column="off_item" property="off_item" />
+  <result column="off_cont" property="off_cont" />
+  <result column="off_file1" property="off_file1" />
+  <result column="off_file2" property="off_file2" />
+  <result column="off_file3" property="off_file3" />
+  <result column="mem_no" property="mem_no" />
+  
+  
+ <association javaType="m" property="memberVO">
+  <id column="mem_no" property="mem_no" />
+  <result column="mem_id" property="mem_id" />
+  <result column="mem_name" property="mem_name" />
+  <result column="mem_birth1" property="mem_birth1" />
+  <result column="mem_birth2" property="mem_birth2" />
+  <result column="mem_birth3" property="mem_birth3" />
+  <result column="email_id" property="email_id" />
+  <result column="email_domain" property="email_domain" />
+  <result column="mem_phone01" property="mem_phone01" />
+  <result column="mem_phone02" property="mem_phone02" />
+  <result column="mem_phone03" property="mem_phone03" />
+  <result column="mem_date" property="mem_date" />
+  <result column="mem_author" property="mem_author" />
+  <result column="mem_state" property="mem_state" />
+  <result column="profile_photo" property="profile_photo" />
+  <result column="profile_cont" property="profile_cont" />
+  <result column="mem_state" property="mem_state" />
+  <result column="mem_nickname" property="mem_nickname" />
+  <result column="mem_keyword" property="mem_keyword" />
+  <result column="mem_fav1" property="mem_fav1" />
+  <result column="mem_fav2" property="mem_fav2" />
+  <result column="mem_fav3" property="mem_fav3" />
+  <result column="mem_portfolio" property="mem_portfolio" />
+ </association>
+</resultMap>
+
 	<insert id="off_send">
-		insert into offer
-		values(off_no_seq.nextval, 
+		INSERT INTO offer
+		VALUES (off_no_seq.nextval, 
 			   #{off_id},
+			   #{off_nickname},
 			   #{off_email}, 
 			   #{off_domain}, 
 			   #{off_phone1}, 
@@ -21,4 +67,96 @@
 			   #{off_file3},
 			   #{mem_no})
 	</insert>
+	
+	<select id="off_count" resultType="int">
+		SELECT COUNT(off_no) FROM (SELECT offer.* FROM offer order by off_date desc) off , member m
+		<where>
+		off.mem_no = m.mem_no
+		<if test="search_field1 == 'all'"></if>
+
+		<if test="search_field1 == 'publish'">
+			and off.off_item='출판'
+		</if>
+		<if test="search_field1 == 'contribute'">
+			and off.off_item='기고'
+		</if>
+		<if test="search_field1 == 'lecture'">
+			and off.off_item='강연'
+		</if>
+		<if test="search_field1 == 'cooperate'">
+			and off.off_item='협업'
+		</if>
+		<if test="search_field1 == 'etc'">
+			and off.off_item='기타'
+		</if>
+		
+		<if test="search_field2 == 'all'"></if>
+		
+		<if test="search_field2 == 'user_id'">
+			and off.off_id like #{search_name}
+		</if>
+		<if test="search_field2 == 'user_nickname'">
+			and off.off_nickname like #{search_name}
+		</if>
+		<if test="search_field2 == 'author_id'">
+			and m.mem_id like #{search_name}
+		</if>
+		<if test="search_field2 == 'author_nickname'">
+			and m.mem_nickname like #{search_name}
+		</if>
+		</where>
+	</select>
+	
+	<select id="off_list" resultType="ao">
+		SELECT * FROM (SELECT rowNum r,off_no,off_id,off_nickname,off_date,off_item,mem_no FROM
+		(SELECT offer.* FROM offer
+		<where>
+		<if test="search_field1 == 'all'"></if>
+
+		<if test="search_field1 == 'publish'">
+			and off_item='출판'
+		</if>
+		<if test="search_field1 == 'contribute'">
+			and off_item='기고'
+		</if>
+		<if test="search_field1 == 'lecture'">
+			and off_item='강연'
+		</if>
+		<if test="search_field1 == 'cooperate'">
+			and off_item='협업'
+		</if>
+		<if test="search_field1 == 'etc'">
+			and off_item='기타'
+		</if>
+		<if test="search_field2 == 'all'"></if>
+		
+		<if test="search_field2 == 'user_id'">
+			and off_id like #{search_name}
+		</if>
+		<if test="search_field2 == 'user_nickname'">
+			and off_nickname like #{search_name}
+		</if>
+		
+		</where>
+		ORDER BY off_no DESC)) off
+		INNER JOIN (SELECT * FROM member
+		<where>
+		<if test="search_field2 == 'all'"></if>
+		
+		<if test="search_field2 == 'author_id'">
+			and mem_id like #{search_name}
+		</if>
+		<if test="search_field2 == 'author_nickname'">
+			and mem_nickname like #{search_name}
+		</if>
+		</where>
+		) m
+		ON off.mem_no=m.mem_no
+		WHERE r &gt;= #{startrow} and r &lt;= #{endrow} order by off.off_date desc
+	</select>
+	
+	<select id="off_info" resultType="ao">
+		SELECT * FROM offer off, member m
+		WHERE off.mem_no=m.mem_no AND off.off_no=#{no}
+	</select>
 </mapper>
