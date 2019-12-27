@@ -12,7 +12,7 @@
   <div id="book_create_info">
    <!-- 책 커버 -->
    <div id="book_create_cover" class="book_create_about_div">
-   <img id="book_create_cover_img">
+   <img id="book_create_cover_img" src="${bk.book_cover}">
    <input id="book_create_cover_imgFile" type="file" name="book_cover" accept="image/*" title="책 커버 이미지"/>
     <div id="book_create_cover_text">
      <div id="book_create_cover_head">
@@ -32,7 +32,7 @@
    <div id="book_create_intro" class="book_create_about_div">
     <div id="book_create_intro_inner">
      <strong id="book_create_intro_title">브런치북 소개</strong>
-     <p id="book_create_intro_cont" contenteditable="true"></p>
+     <p id="book_create_intro_cont" contenteditable="true">${bk.book_preface}</p>
      <textarea name="book_preface" id="book_intro_cont" style="display:none;"></textarea>
     </div>
    </div>

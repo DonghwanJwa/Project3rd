@@ -13,6 +13,8 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+ALTER TABLE recommend ADD rec_date DATE;
+
 SELECT rec_no_seq.nextval FROM DUAL
 -- 참조키 설정
 ALTER TABLE recommend

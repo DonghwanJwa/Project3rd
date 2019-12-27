@@ -11,14 +11,15 @@
     <div id=cat_writer_title><b>추천작가</b></div>
      <div id=cat_writer_list>
       <c:forEach var="cat" items="${mlist}">
-       <a class=cat_writer_a href="/jamong.com/profile">
+       <a class=cat_writer_a align="center" href="/jamong.com/@${cat.mem_id}">
       	<div id=cat_writer_list1>
+      	
        		<div id=cat_writer_face1>
         		<img class="cat_face_img" src="/jamong.com/resources/img/cat_writer_face1.jpg" alt="작가이미지" />
        		</div>
-       		<div class=cat_writer_name><strong>${cat.mem_nickname}</strong></div>
-       		<div id=cat_write_count1>글      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	    : &nbsp;25개</div>
-       		<div id=cat_sub_count>구독자 : 121만</div>
+       		<div class=cat_writer_name><strong>${cat.mem_id}</strong></div>
+       		<div id=cat_write_count>글:25개</div>
+       		<div id=cat_sub_count>구독자:121만</div>
       		 <div class=cat_writer_keyword_div>
       			<c:if test="${!empty cat.mem_fav1}">
       		 	<button class="cat_writer_keyword" ><strong>${cat.mem_fav1}</strong></button>

@@ -881,14 +881,14 @@ body{
 .recom_author-item-link {
 	text-decoration:none;
 	display:flex;
-	height:105px;
+	height:95px;
 	padding-top: 5px;
 }
 .recom_author-item-img{
 	height:70px; 
 	width:70px;
 	display:inline-block;
-	margin:20px 10px 10px 10px;
+	margin:10px 10px 10px 10px;
 }
 .recom_author-item-img img{
 	height:70px;
@@ -929,13 +929,14 @@ body{
 	height: 4.1em; 
 	/* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 
 		1.4em * 3 = 4.2em ....아래가 조금 보여서 4.1로 줄임*/
-	margin-top:14px;	
+	margin-top:9px;	
 
 }
 .recom_author-keyword{
 	display: table-cell;
 	justify-content: flex-end;
-	height: 50px;
+	vertical-align: middle;
+	height: 60px;
 	padding: 0 15px;
 	
 }
@@ -944,7 +945,7 @@ body{
     color:#3d3d3d;
     font-size: 13px;
     margin: 0 2px;
-    line-height: 25px;
+    line-height: 21px;
     cursor: pointer;
     text-decoration: none;
 }

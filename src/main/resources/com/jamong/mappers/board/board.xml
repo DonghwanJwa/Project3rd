@@ -169,7 +169,7 @@ SELECT m.mem_no,
     	b.mem_no,
     	b.book_no
     FROM member m
-    INNER JOIN board b
+    INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
  	ON m.mem_no = b.mem_no
     AND m.mem_no = #{mem_no}
 </select>
@@ -328,4 +328,35 @@ SELECT m.mem_no,
   ORDER BY b.bo_no DESC
  </select>
 
+<select id="profileScroll" resultMap="boardMap">
+<![CDATA[
+ SELECT m.mem_no,
+    	m.mem_id, 
+    	m.mem_author, 
+    	m.profile_photo, 
+    	m.profile_cont, 
+    	m.mem_nickname, 
+    	m.mem_keyword, 
+    	m.mem_portfolio,
+    	b.bo_no,
+    	b.bo_title,
+    	b.bo_subtitle,
+    	b.bo_cont,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	b.bo_date,
+    	b.bo_editdate,
+    	b.bo_lock,
+    	b.bo_type,
+    	b.bo_like,
+    	b.book_order,
+    	b.cat_name,
+    	b.mem_no,
+    	b.book_no
+    FROM member m
+    INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
+ 	ON m.mem_no = b.mem_no
+    WHERE m.mem_no = #{mem_no} AND b.bo_no >= #{bo_no} - 10
+]]>
+</select>
 </mapper>

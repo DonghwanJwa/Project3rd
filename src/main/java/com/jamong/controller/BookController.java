@@ -151,8 +151,8 @@ public class BookController {
 		HashMap<String, Object> bm = new HashMap<>();
 		bm.put("b", b);
 		bm.put("bo_no", val);
-		bm.put("mem_no",mem_no);
-		bm.put("mem_id",mem_id);
+		bm.put("mem_no", mem_no);
+		bm.put("mem_id", mem_id);
 
 		this.bookService.createBook(bm);
 
@@ -164,35 +164,38 @@ public class BookController {
 		return null;
 	}
 
-	@RequestMapping("book_edit")
-	public ModelAndView user_book_edit(HttpServletRequest request, HttpServletResponse response, HttpSession session)
-			throws Exception { // 책 수정
+	@RequestMapping("book_edit/{book_no}")
+	public ModelAndView user_book_edit(@PathVariable int book_no, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session,BookVO bk) throws Exception { // 책 수정
+		ModelAndView mv = new ModelAndView();
 		response.setContentType("text/html;charset=UTF-8");
 		session = request.getSession();
-
-//		BookVO bk = (BookVO) session.getAttribute("bk");
-//		int book_no = bk.getBook_no();
-//		
-//		MemberVO m = (MemberVO) session.getAttribute("m");
-//		String mem_id = m.getMem_id();
-//		
-//		List<BoardVO> bList = this.bookService.getBList(mem_id);
-//		List<BoardVO> bkList = this.bookService.getBKList(book_no);
-//		MemberVO member = this.bookService.getMember(mem_id);
-//		String mem_nickname = member.getMem_nickname();
-//		String profile_photo = member.getProfile_photo();
-//		String profile_cont = member.getProfile_cont();
-//		
-//		//책 번호와 세션 아이디를 기준으로 보더를 검색해서 책 번호가 있는건 오른쪽 없는건 왼쪽에 표시.
-//		//필요한 거:책 커버,책 소개
-//		
-		ModelAndView mv = new ModelAndView();
-//		
-//		mv.addObject("bList",bList);
-//		mv.addObject("bkList",bkList);
-//		mv.addObject("mem_nickname",mem_nickname);
-//		mv.addObject("profile_photo",profile_photo);
-//		mv.addObject("profile_cont",profile_cont);
+		
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		int mem_no = m.getMem_no();
+		String mem_id = m.getMem_id();
+		MemberVO member = this.bookService.getMember(mem_id);
+		String mem_nickname = member.getMem_nickname();
+		String profile_photo = member.getProfile_photo();
+		String profile_cont = member.getProfile_cont();
+		List<BoardVO> bList = this.bookService.getBList(mem_id);
+		
+		//책 번호와 세션 아이디를 기준으로 보더를 검색해서 책 번호가 있는건 오른쪽 없는건 왼쪽에 표시.
+		//필요한 거:책 커버,책 소개
+		HashMap<String, Object> be = new HashMap<>();
+		be.put("bk",bk);
+		be.put("book_no", book_no);
+		be.put("mem_no", mem_no);
+		
+		List<BoardVO> bkList = this.bookService.bkEditList(be);
+		bk = this.bookService.getBook(book_no);
+		
+		mv.addObject("bk",bk);
+		mv.addObject("mem_nickname",mem_nickname);
+		mv.addObject("profile_photo",profile_photo);
+		mv.addObject("profile_cont",profile_cont);
+		mv.addObject("bList",bList);
+		mv.addObject("bkList",bkList);
 		mv.setViewName("jsp/book_edit");
 
 		return mv;
@@ -229,38 +232,72 @@ public class BookController {
 		session = request.getSession();
 
 		MemberVO sesM = (MemberVO) session.getAttribute("m");
-		
+
 		/* 준비물 */
-		// 책 커버, 책 제목, 책 소개, 작가 이름, 작가 프로필, 작가 소개, 책 번호에 해당하는 글 리스트(제목,내용,썸네일,작성 날짜,글쓴이 아이디,글 번호)
+		// 책 커버, 책 제목, 책 소개, 작가 이름, 작가 프로필, 작가 소개, 책 번호에 해당하는 글 리스트(제목,내용,썸네일,작성 날짜,글쓴이
+		// 아이디,글 번호)
 		HashMap<String, Object> binfo = new HashMap<>();
 		binfo.put("mem_id", mem_id);
 		binfo.put("book_no", book_no);
-		
+
 		MemberVO member = this.bookService.getMember(mem_id);
 		String mem_nickname = member.getMem_nickname();
 		String profile_photo = member.getProfile_photo();
 		String profile_cont = member.getProfile_cont();
-		
+
 		BookVO book = this.bookService.getBook(book_no);
 		String book_name = book.getBook_name();
 		String book_cover = book.getBook_cover();
 		String book_preface = book.getBook_preface();
-		
+		String book_prefaceRe = book_preface.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+
 		List<BoardVO> bkifcntlist = this.bookService.bookInfoCont(binfo);
-		for(int i=0; i<bkifcntlist.size(); i++) {
+		for (int i = 0; i < bkifcntlist.size(); i++) {
 			String orgcontlist = (String) bkifcntlist.get(i).getBo_cont();
 			String orgcontlistRe = orgcontlist.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			bkifcntlist.get(i).setBo_cont(orgcontlistRe);
 		}
-		
-		model.addAttribute("book_name",book_name);
-		model.addAttribute("book_cover",book_cover);
-		model.addAttribute("book_preface",book_preface);
-		model.addAttribute("mem_nickname",mem_nickname);
-		model.addAttribute("profile_photo",profile_photo);
-		model.addAttribute("profile_cont",profile_cont);
-		model.addAttribute("bkList",bkifcntlist);
+
+		model.addAttribute("book_name", book_name);
+		model.addAttribute("book_cover", book_cover);
+		model.addAttribute("book_preface", book_prefaceRe);
+		model.addAttribute("mem_nickname", mem_nickname);
+		model.addAttribute("profile_photo", profile_photo);
+		model.addAttribute("profile_cont", profile_cont);
+		model.addAttribute("bkList", bkifcntlist);
 
 		return "jsp/book_info";
+	}
+
+	@PostMapping("book/recommend_up/{book_no}")
+	@ResponseBody
+	public int recommned_up(@PathVariable int book_no, HttpServletRequest request, HttpSession session) {
+		session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("m");
+
+		int result = -1;
+		if (m != null) {
+			BookVO bk = new BookVO();
+			bk.setBook_no(book_no);
+			bk.setMem_no(m.getMem_no());
+			result = this.bookService.recommendUp(bk);
+		}
+		return result;
+	}
+
+	@PostMapping("book/recommend_down/{book_no}")
+	@ResponseBody
+	public int recommend_down(@PathVariable int book_no, HttpServletRequest request, HttpSession session) {
+		session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("m");
+		
+		int result = -1;
+		if(m!=null) {
+			BookVO bk = new BookVO();
+			bk.setBook_no(book_no);
+			bk.setMem_no(m.getMem_no());
+			result = this.bookService.recommendDown(bk);
+		}
+		return result;
 	}
 }

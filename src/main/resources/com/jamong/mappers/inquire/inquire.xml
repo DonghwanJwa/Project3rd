@@ -215,4 +215,10 @@
 	<delete id="inq_del">
 		delete inquire where inq_no=#{no}
 	</delete>
+	
+	<select id="newInquire" resultType="inq">
+	select * from (SELECT * FROM inquire) inq
+			INNER JOIN member m
+			ON inq.mem_no= m.mem_no ORDER BY inq.inq_date DESC
+	</select>
 </mapper>

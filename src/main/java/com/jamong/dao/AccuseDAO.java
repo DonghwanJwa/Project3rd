@@ -23,5 +23,7 @@ public interface AccuseDAO {
 
 	void accuseDel(int ac_no);
 
+	List<AccuseVO> newAccuse(AccuseVO a);
+
 
 }

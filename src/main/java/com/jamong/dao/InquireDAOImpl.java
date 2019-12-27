@@ -53,4 +53,9 @@ public class InquireDAOImpl implements InquireDAO {
 		
 	}
 
+	@Override
+	public List<InquireVO> newInquire(InquireVO i) {
+		return this.sqlSession.selectList("newInquire",i);
+	}
+
 }

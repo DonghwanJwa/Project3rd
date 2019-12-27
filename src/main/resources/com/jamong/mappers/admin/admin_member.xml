@@ -92,6 +92,9 @@
 	</select>
 	
 	<update id="adm_mem_drop">
-		UPDATE member SET mem_state=1 , drop_reason=#{drop_reason} , drop_cont=#{drop_cont} , drop_date=sysdate
+		UPDATE member SET mem_state=1 , drop_reason=#{drop_reason} , drop_cont=#{drop_cont} , drop_date=sysdate WHERE mem_no=#{mem_no}
+	</update>
+	<update id="adm_mem_restore">
+		UPDATE member SET mem_state=0 WHERE mem_no=#{mem_no}
 	</update>
 </mapper>

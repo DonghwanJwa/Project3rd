@@ -33,4 +33,9 @@ public class AdminMemDAOImpl implements AdminMemDAO {
 		this.sqlSession.update("adm_mem_drop",me);
 	}
 
+	@Override
+	public void memRestore(MemberVO me) {
+		this.sqlSession.update("adm_mem_restore",me);
+	}
+
 }

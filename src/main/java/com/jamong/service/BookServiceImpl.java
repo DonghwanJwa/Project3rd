@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jamong.dao.BoardDAO;
 import com.jamong.dao.BookDAO;
 import com.jamong.dao.FeedDAO;
+import com.jamong.dao.RecommendDAO;
 import com.jamong.dao.SubscribeDAO;
 import com.jamong.domain.BoardVO;
 import com.jamong.domain.BookVO;
@@ -27,6 +28,8 @@ public class BookServiceImpl implements BookService {
 	private FeedDAO feedDao;
 	@Autowired
 	private SubscribeDAO subDao;
+	@Autowired
+	private RecommendDAO recDao;
 
 	@Override
 	public List<BoardVO> getBList(String mem_id) {
@@ -91,4 +94,31 @@ public class BookServiceImpl implements BookService {
 	public BookVO getBook(int book_no) {
 		return this.bookDao.getBook(book_no);
 	}
+
+	@Override
+	public List<BoardVO> myBookList(int mem_no) {
+		return this.bookDao.myBookList(mem_no);
+	}
+	
+	@Transactional
+	@Override
+	public int recommendUp(BookVO bk) {
+		this.recDao.recommendUpInsert(bk);
+		this.bookDao.recommendUpUpdate(bk);
+		return this.bookDao.recommendNum(bk);
+	}
+
+	@Transactional
+	@Override
+	public int recommendDown(BookVO bk) {
+		this.recDao.recommendDownDelete(bk);
+		this.bookDao.recommendDownUpdate(bk);
+		return this.bookDao.recommendNum(bk);
+	}
+	
+	@Override
+	public List<BoardVO> bkEditList(HashMap<String, Object> be) {
+		return this.boardDao.bkEditList(be);
+	}
+
 }

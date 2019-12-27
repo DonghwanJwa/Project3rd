@@ -7,6 +7,7 @@
 <link rel=stylesheet type="text/css" href="./resources/css/profile.css">
 <script src="./resources/js/profile.js"></script>
 <script src="./resources/js/jquery.js"></script>
+<script src="/jamong.com/resources/js/jquery.word-break-keep-all.min.js"></script>
 <title></title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" >
@@ -52,12 +53,11 @@
 									<c:if test="${m.mem_id == mp.mem_id}">
 										<a href="./write" class="profile_button_type subscribe_check">글쓰기</a>
 										 <c:if test="${mp.mem_author == 1}">
-										  <a href="./book_create" class="profile_button_type subscribe_check">책 편집</a>
+										  <a href="./book_create" class="profile_button_type subscribe_check">책 발간</a>
 										 </c:if>
 									</c:if>
 									<c:if test="${mp.mem_author == 1 && m.mem_id != mp.mem_id}">
-										<a href="/jamong.com/offer_author/@${mp.mem_id}" class="profile_button_type">제안하기</a>
-									</c:if>
+                                        <a href="/jamong.com/offer_author/@${mp.mem_id}" class="profile_button_type">제안하기</a>									</c:if>
 									<c:if test="${m.mem_id != mp.mem_id }">
 										<span>
 										 	<c:if test="${sub.sub_member != m.mem_no || empty sub}">
@@ -116,7 +116,8 @@
 				</div>
 				<c:if test="${mp.mem_author == 1 && mp.mem_portfolio != null}">
 					<p class="profile_font_size">
-						<strong>기타 이력 및 포트폴리오</strong> ${portfolio}
+						<strong>기타 이력 및 포트폴리오</strong> 
+						<p class="profile_font_size">${mp.mem_portfolio}
 					</p>
 				</c:if>
 			</div>
@@ -125,53 +126,63 @@
 					<h3 class="hide_font">글목록</h3>
 					<ul class="profile_writer_list">
 						<c:forEach var="fp" items="${mplist}">
-						<!-- 다른사람의 프로필을 들어갔을때 -->
-							<c:if test="${m.mem_id != mp.mem_id && fp.bo_lock != 0 && m.mem_id == null}">
-								<li class="profile_articles" data-no="">
-									<div>
-										<a class="profile_article_main" href="./book_info">...</a> 
-										<a href="./@${mp.mem_id}/"
-										> <strong class="pf_bo_title">${fp.bo_title}</strong> 
-										<span class="article_cont">${fp.bo_cont}</span>
+							<c:if test="${fp.bo_lock != 2 && fp.bo_lock != 3}">
+								<c:if test="${empty fp}">
+								</c:if>
+								<%-- 다른사람의 프로필을 들어갔을때 --%>
+								<c:if
+									test="${m.mem_id != mp.mem_id && fp.bo_lock != 0 && m.mem_id == null}"
+								>
+									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}">
 										<div>
-											<c:set var="img" value="${fp.bo_thumbnail}" />
-											<c:if test="${not empty img}">
-												<img class="profile_post_img" alt="이미지 정보"
-													src="${fp.bo_thumbnail}"
-												>
-											</c:if>
-											<c:if test="${empty img}">
-											</c:if>
-										</div>
-										</a>
-									</div> <span></span>
-								</li>
-							</c:if>
-							<!-- 자신의 아이디로 로그인시 -->
-							<c:if test="${ m.mem_id == mp.mem_id}">
-								<li class="profile_articles" data-no="">
-									<div>
-									<c:if test ="${fp.bo_lock == 0 }">
-									<img class="private" src="./resources/img/lock.png">
-									</c:if>
-										<a class="profile_article_main" href="./book_info">...</a> <a
-											href="./@${mp.mem_id}/"
-										> <strong class="pf_bo_title">${fp.bo_title}</strong> <em
-											class="article_cont"
-										>${fp.bo_cont}</em>
-										</a>
+											<a href="./@${mp.mem_id}/${fp.bo_no}"> 
+											<strong class="pf_bo_title">${fp.bo_title}</strong> 
+											<div class="article_cont">
+											<em class="profile_font_size">${fp.bo_subtitle}</em>
+											${fp.bo_cont}
+											</div>
+											<div>
+													<c:set var="img" value="${fp.bo_thumbnail}" />
+													<c:if test="${!empty img}">
+														<img class="profile_post_img" alt="이미지 정보"
+															src="${fp.bo_thumbnail}"
+														>
+													</c:if>
+													<c:if test="${empty img}">
+													</c:if>
+											</div>
+											</a>
+										</div> <span class="pf_post_date">${fp.bo_date}</span>
+									</li>
+								</c:if>
+								<%-- 자신의 아이디로 로그인시 --%>
+								<c:if test="${ m.mem_id == mp.mem_id}">
+									<li class="profile_articles scrolling" data-no="${fp.bo_no}">
 										<div>
-											<c:set var="img" value="${fp.bo_thumbnail}" />
-											<c:if test="${not empty img}">
-												<img class="profile_post_img" alt="이미지 정보"
-													src="${fp.bo_thumbnail}"
-												>
+											<c:if test="${fp.bo_lock == 0 }"> <%-- 0 = 비공개 --%>
+												<img class="private lock"	data-no="${fp.bo_no}" data-disabled="false" />
 											</c:if>
-											<c:if test="${empty img}">
+											<c:if test="${fp.bo_lock == 1 }"> <%-- 1 = 공개 --%>
+												<img class="private unlock" data-no="${fp.bo_no}" data-disabled="false" />
 											</c:if>
-										</div>
-									</div> <span></span>
-								</li>
+											<a class="profile_article_main" href="./jamong.com/@${mp.mem_id}/${fp.book_no}"></a> 
+											<a href="./@${mp.mem_id}/${fp.bo_no}"> 
+											<strong class="pf_bo_title">${fp.bo_title}</strong> <em
+												class="article_cont"
+											>${fp.bo_cont}</em>
+											</a>
+											<div>
+												<c:set var="img" value="${fp.bo_thumbnail}" />
+												<c:if test="${not empty img}">
+													<img class="profile_post_img" alt="이미지 정보"
+														src="${fp.bo_thumbnail}">
+												</c:if>
+												<c:if test="${empty img}">
+												</c:if>
+											</div>
+										</div> <span class="pf_post_date">${fp.bo_date}</span>
+									</li>
+								</c:if>
 							</c:if>
 						</c:forEach>
 					</ul>
@@ -179,32 +190,45 @@
 			</div>
 			<div id="Magazine" style="display: none;">
 				<h3 class="hide_font">매거진</h3>
-				<!-- 공감과 추천한 숫자를 지정 -->
-				<div id="" class="Magazine_list jm_list ">
-					<div class="box_contents">
-						<a href="./book_info">
-							<div class="cover_book">
-								<img class="cover_img" src="./resources/img/a.jpg"
-									class="magazin_img"	>
+				<%-- 공감과 추천한 숫자를 지정 --%>
+				<div id="" class="Magazine_list jm_list ">	
+				<c:forEach var="mb" items="${mybook}">
+						<div class="box_contents">
+							<a href="./jamong.com/@${mp.mem_id}/${mb.bookVO.book_no}">
+								</a><div class="cover_book">
+								<a href="./jamong.com/@${mp.mem_id}/${mb.bookVO.book_no}">
+								<c:set var="img" value="${mb.bookVO.book_cover}" />
+								<c:if test="${not empty img }">
+									<img class="cover_img" src="${img}">
+								</c:if>
+								<c:if test="${empty img }">
+									<img class="cover_img" style="background-color:#f2f2f2" >	
+								</c:if>
 								<div class="info_cover">
-									<strong class="tit_cover"></strong> <span>by${mp.mem_nickname}</span>
+									<strong class="tit_cover">${mb.bookVO.book_name}</strong> <span>by ${mp.mem_nickname}</span>
 								</div>
 								<span class="book_line"></span>
-						</a>
-					</div>
-					<strong>Magazine</strong> <a class="profile_jm" href="./book_info">...</a>
-					<dl class="j_list_info">
-						<dt>
-							<span class="article_icon"></span>
-						</dt>
-						<dd class="box_contents_num">
-							<b></b>
-						</dd>
-						<dt>
-							<span class="relate"></span>
-						</dt>
-						<dd class="box_contents_num"></dd>
-					</dl>
+							</a>
+						</div>
+						<strong>Category ${mb.bookVO.cat_name}</strong> 
+						<strong class="pf_date">${mb.bookVO.book_date}</strong>
+						<a class="profile_jm" href="./book_info">${mb.bookVO.book_name}</a>
+						<div>
+						<dl class="j_list_info">
+							<dt>
+								<span class="article_icon"></span>
+							</dt>
+							<dd class="box_contents_num">
+								<b></b>
+							</dd>
+							<dt>
+								<span class="relate"></span>
+							</dt>
+							<dd class="box_contents_num"></dd>
+						</dl>
+						</div>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

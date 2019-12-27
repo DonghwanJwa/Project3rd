@@ -27,8 +27,10 @@ MINVALUE 0
 NOCACHE;
 
 DROP TABLE board
-DROP SEQUENCE bo_no_seq
+DROP SEQUENCE bo_no_seq;
 
+ALTER TABLE board DROP COLUMN bo_subtitle;
+ALTER TABLE board ADD bo_subtitle VARCHAR2(100);
 ALTER TABLE board 
 ALTER TABLE board ADD cat_name VARCHAR2(50);
 ALTER TABLE board DROP ();
@@ -99,3 +101,49 @@ select * from ALL_CONSTRAINTS WHERE TABLE_NAME='board';
   WHERE REGEXP_LIKE(b.bo_title,'핫') OR REGEXP_LIKE(b.bo_subtitle,'핫') OR REGEXP_LIKE(b.bo_cont,'핫') 
   OR REGEXP_LIKE(b.cat_name,'핫') OR REGEXP_LIKE(m.mem_nickname,'핫') AND bo_lock=1 AND rowNum <= 10
   ORDER BY REGEXP_COUNT(bo_title,'핫') DESC, REGEXP_COUNT(bo_cont,'핫')
+  
+  
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.book_date,
+  		 book.book_editdate,
+  		 book.cat_name,
+  		 book.mem_no,
+  		 b.mem_no,
+  		 b.book_no
+  FROM (SELECT * FROM book ORDER BY book_no DESC)book
+  INNER JOIN board b
+  ON b.mem_no = book.mem_no 
+  WHERE book.mem_no = 3
+
+  
+  SELECT m.mem_no,
+    	m.mem_id, 
+    	m.mem_author, 
+    	m.profile_photo, 
+    	m.profile_cont, 
+    	m.mem_nickname, 
+    	m.mem_keyword, 
+    	m.mem_portfolio,
+    	b.bo_no,
+    	b.bo_title,
+    	b.bo_subtitle,
+    	b.bo_cont,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	b.bo_date,
+    	b.bo_editdate,
+    	b.bo_lock,
+    	b.bo_type,
+    	b.bo_like,
+    	b.book_order,
+    	b.cat_name,
+    	b.mem_no,
+    	b.book_no
+    FROM member m
+    INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
+ 	ON m.mem_no = b.mem_no
+    WHERE m.mem_no = 3 AND b.bo_no >= 13 - 10
+ 

@@ -84,7 +84,7 @@ public class AuthorController {
 		int maxSize= 1024*1024*50; // 50MB 제한
 		
 		String downPath=request.getServletContext().getRealPath("resources/upload/author/"); // 저장되는 파일 경로
-		String filePath=downPath+year+"-"+month+"-"+date+"/"+m.getMem_id();
+		String filePath=downPath+year+"-"+month+"-"+date+"/"+m.getMem_id()+"/";
 		File folder=new File(filePath);
 		
 		if(!folder.exists()) {
@@ -103,18 +103,24 @@ public class AuthorController {
 		String fileName2 = multi.getFilesystemName("aut_file2");
 		String fileName3 = multi.getFilesystemName("aut_file3");
 		
-		String aut_file1 = "/resources/upload/author/"+fileName1;
-		String aut_file2 = "/resources/upload/author/"+fileName2;
-		String aut_file3 = "/resources/upload/author/"+fileName3;
+		String aut_file1 = filePath+fileName1;
+		String aut_file2 = filePath+fileName2;
+		String aut_file3 = filePath+fileName3;
 		
 		a.setAut_intro(aut_intro);
 		a.setAut_plan(aut_plan);
 		a.setAut_url1(aut_url1);
 		a.setAut_url2(aut_url2);
 		a.setAut_url3(aut_url3);
-		a.setAut_file1(aut_file1);
-		a.setAut_file2(aut_file2);
-		a.setAut_file3(aut_file3);
+		if(fileName1 != null) {
+			a.setAut_file1(aut_file1);
+		}
+		if(fileName2 != null) {
+			a.setAut_file2(aut_file2);
+		}
+		if(aut_file3 != null) {
+			a.setAut_file3(aut_file3);
+		}
 		
 		this.authorService.sendAuthor(a);
 		
@@ -269,7 +275,7 @@ public class AuthorController {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileName1,"UTF-8") + "\";");
 			
 			// 서버 실제 경로의 파일을 구함
-			String pathAndName1=request.getServletContext().getRealPath("/")+a.getAut_file1();
+			String pathAndName1=a.getAut_file1();
 			System.out.println(pathAndName1);
 			File aut_file1=new File(pathAndName1);			
 			
@@ -328,7 +334,7 @@ public class AuthorController {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileName2,"UTF-8") + "\";");
 			
 			// 서버 실제 경로의 파일을 구함
-			String pathAndName2=request.getServletContext().getRealPath("/")+a.getAut_file2();
+			String pathAndName2=a.getAut_file2();
 			
 			System.out.println(pathAndName2);
 			
@@ -388,7 +394,7 @@ public class AuthorController {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileName3,"UTF-8") + "\";");
 			
 			// 서버 실제 경로의 파일을 구함
-			String pathAndName3=request.getServletContext().getRealPath("/")+a.getAut_file3();
+			String pathAndName3=a.getAut_file3();
 			
 			System.out.println(pathAndName3);
 			

@@ -14,5 +14,6 @@ public interface InquireService {
 	void updateInquire(HashMap<String, Object> im);
 	InquireVO getFile(int no);
 	void inquireDel(int no);
+	List<InquireVO> newInquire(InquireVO i);
 
 }

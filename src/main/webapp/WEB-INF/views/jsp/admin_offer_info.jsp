@@ -160,15 +160,15 @@
 			<c:if test="${fileName1 eq 'null' && fileName2 eq 'null' && fileName3 eq 'null' }">
 			첨부된 파일이 없습니다.
 			</c:if>
-			<c:if test="${!empty ao.off_file1 && ! fileName1 eq 'null'}">
+			<c:if test="${!empty ao.off_file1 && !(fileName1 eq 'null')}">
 			첨부파일 1. <input type="submit" value="${fileName1}" onclick="javascript:form.action='offer_file1';" class="down_file" /> 
 			</c:if>
 			<br/>
-			<c:if test="${!empty ao.off_file2 && ! fileName2 eq 'null'}">
+			<c:if test="${!empty ao.off_file2 && !(fileName2 eq 'null')}">
 			첨부파일 2. <input type="submit" value="${fileName2}" onclick="javascript:form.action='offer_file2';" class="down_file"/> 
 			</c:if>
 			<br/>
-			<c:if test="${!empty ao.off_file3 && ! fileName3 eq 'null'}">
+			<c:if test="${!empty ao.off_file3 && !(fileName3 eq 'null')}">
 			첨부파일 3. <input type="submit" value="${fileName3}" onclick="javascript:form.action='offer_file3';" class="down_file"/>
 			</c:if>
 			</td>
