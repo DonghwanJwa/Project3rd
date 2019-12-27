@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.NoticeDAO;
 import com.jamong.domain.NoticeVO;
@@ -28,8 +29,10 @@ public class NoticeServiceImpl implements NoticeService {
 		this.noticeDao.noticeInsert(n);
 	}
 
+	@Transactional
 	@Override
 	public NoticeVO getNoticeCont(int no) {
+		this.noticeDao.upHit(no);
 		return this.noticeDao.noticeCont(no);
 	}
 

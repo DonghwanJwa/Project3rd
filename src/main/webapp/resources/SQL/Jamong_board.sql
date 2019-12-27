@@ -27,8 +27,10 @@ MINVALUE 0
 NOCACHE;
 
 DROP TABLE board
-DROP SEQUENCE bo_no_seq
+DROP SEQUENCE bo_no_seq;
 
+ALTER TABLE board DROP COLUMN bo_subtitle;
+ALTER TABLE board ADD bo_subtitle VARCHAR2(100);
 ALTER TABLE board 
 ALTER TABLE board ADD cat_name VARCHAR2(50);
 ALTER TABLE board DROP ();

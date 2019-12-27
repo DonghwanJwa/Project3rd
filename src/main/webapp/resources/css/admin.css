@@ -192,7 +192,30 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	margin:3px 3px;
 	font-size:12px;
 }
-
+#adm_ac_cont{
+   overflow: hidden;
+   word-wrap: break-word;   
+   white-space: normal;    
+   text-overflow: ellipsis;
+   display: -webkit-box; 
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical;
+   line-height: 35px;
+   height: 35px;
+   width:312px;
+}
+#adm_inq_cont{
+   overflow: hidden;
+   word-wrap: break-word;   
+   white-space: normal;    
+   text-overflow: ellipsis;
+   display: -webkit-box; 
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical;
+   line-height: 46.6px;
+   height: 46.6px;
+   width:312px;
+}
 
 /* admin_notice (공지사항) */
 #adm_notice_wrap {
@@ -272,11 +295,10 @@ a:hover{text-decoration:underline; color:#F57C68;}
 }
 
 #notice_submit_btn {
-	width:65px;
 	border: 1px solid lightgrey;
     border-radius: 10px;
     background-color: white;
-    padding: 4px;
+    padding: 5px 7px;
     cursor:pointer;
 }
 
@@ -284,16 +306,15 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	border: 1px solid lightgrey;
     border-radius: 10px;
     background-color: lightgrey;
-    padding: 4px;
+    padding: 5px 7px;
     color:white;
 }
 
 .notice_btn {
-	width:65px;
 	border: 1px solid lightgrey;
     border-radius: 10px;
     background-color: white;
-    padding: 4px;
+    padding: 5px 7px;
     cursor:pointer;
     margin:0 3px;
 }
@@ -302,7 +323,7 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	border: 1px solid lightgrey;
     border-radius: 10px;
     background-color: lightgrey;
-    padding: 4px;
+    padding: 5px 7px;
     color:white;
 }
 
@@ -369,6 +390,10 @@ a:hover{text-decoration:underline; color:#F57C68;}
 
 
 /* admin_member */
+.adm_td {
+	padding:5px;
+	height:100px;
+}
 
 #adm_member_wrap {
 	display: flex;
@@ -447,7 +472,7 @@ a:hover{text-decoration:underline; color:#F57C68;}
 }
 
 #adm_portfolio_field {
-	min-height:100px;
+	height:100px;
 	padding:5px;
 }
 
@@ -513,4 +538,51 @@ a:hover{text-decoration:underline; color:#F57C68;}
     margin: 5px 0;
     padding: 0;
     outline: none;
+}
+
+/* admin_offer */
+#table_column th{
+	padding-bottom:10px;
+}
+
+/* admin_member_drop */
+#drop_cont_wrap {
+	width:50%;
+	margin: 10px auto;
+	min-height:600px;
+}
+#drop_reason {
+	padding: .5em .2em;
+}
+
+.drop_reason_cont {
+	width: 100%; /* 원하는 너비 설정 */
+	height: 350px; /* 높이값 초기화 */
+	resize:none; /* 크기조절 막기 (크롬) */ 
+	line-height : normal; /* line-height 초기화 */
+	padding: .5em .5em; /* 원하는 여백 설정, 상하단 여백으로 높이를 조절 */
+	font-family: inherit; /* 폰트 상속 */
+	border: 1px solid #999;
+	border-radius: 0; /* iSO 둥근모서리 제거 */
+	outline-style: none; /* 포커스시 발생하는 효과 제거를 원한다면 */
+	-webkit-appearance: none; /* 브라우저별 기본 스타일링 제거 */
+	-moz-appearance: none;
+	appearance: none;
+    font-size:13px;
+    margin-top:30px;
+}
+
+#drop_btn_wrap {
+	margin-top: 30px;
+	display:flex;
+	justify-content:center;
+}
+
+#drop_btn_wrap input{
+	margin: 15px 10px;	
+}
+
+.counter_wrap{
+	display:flex;
+	justify-content:flex-end;
 }

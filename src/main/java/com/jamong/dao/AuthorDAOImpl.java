@@ -1,5 +1,6 @@
 package com.jamong.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -51,18 +52,18 @@ public class AuthorDAOImpl implements AuthorDAO {
 	}
 
 	@Override
-	public void acceptAuthor(AuthorVO a) {
-		this.sqlSession.update("accept_author",a);
+	public void acceptAuthor(HashMap<String,Object> am) {
+		this.sqlSession.update("accept_author",am);
 	}
 
 	@Override
-	public void editAuthor(AuthorVO a) {
-		this.sqlSession.update("edit_author",a);
+	public void editAuthor(HashMap<String,Object> am) {
+		this.sqlSession.update("edit_author",am);
 	}
 
 	@Override
-	public void rejectAuthor(AuthorVO a) {
-		this.sqlSession.update("reject_author",a);
+	public void rejectAuthor(HashMap<String,Object> am) {
+		this.sqlSession.update("reject_author",am);
 	}
 
 

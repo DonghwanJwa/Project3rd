@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -83,7 +84,7 @@ public class AuthorController {
 		int maxSize= 1024*1024*50; // 50MB 제한
 		
 		String downPath=request.getServletContext().getRealPath("resources/upload/author/"); // 저장되는 파일 경로
-		String filePath=downPath+year+"-"+month+"-"+date+"/"+m.getMem_id();
+		String filePath=downPath+year+"-"+month+"-"+date+"/"+m.getMem_id()+"/";
 		File folder=new File(filePath);
 		
 		if(!folder.exists()) {
@@ -102,18 +103,24 @@ public class AuthorController {
 		String fileName2 = multi.getFilesystemName("aut_file2");
 		String fileName3 = multi.getFilesystemName("aut_file3");
 		
-		String aut_file1 = "/resources/upload/author/"+fileName1;
-		String aut_file2 = "/resources/upload/author/"+fileName2;
-		String aut_file3 = "/resources/upload/author/"+fileName3;
+		String aut_file1 = filePath+fileName1;
+		String aut_file2 = filePath+fileName2;
+		String aut_file3 = filePath+fileName3;
 		
 		a.setAut_intro(aut_intro);
 		a.setAut_plan(aut_plan);
 		a.setAut_url1(aut_url1);
 		a.setAut_url2(aut_url2);
 		a.setAut_url3(aut_url3);
-		a.setAut_file1(aut_file1);
-		a.setAut_file2(aut_file2);
-		a.setAut_file3(aut_file3);
+		if(fileName1 != null) {
+			a.setAut_file1(aut_file1);
+		}
+		if(fileName2 != null) {
+			a.setAut_file2(aut_file2);
+		}
+		if(aut_file3 != null) {
+			a.setAut_file3(aut_file3);
+		}
 		
 		this.authorService.sendAuthor(a);
 		
@@ -268,7 +275,7 @@ public class AuthorController {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileName1,"UTF-8") + "\";");
 			
 			// 서버 실제 경로의 파일을 구함
-			String pathAndName1=request.getServletContext().getRealPath("/")+a.getAut_file1();
+			String pathAndName1=a.getAut_file1();
 			System.out.println(pathAndName1);
 			File aut_file1=new File(pathAndName1);			
 			
@@ -327,7 +334,7 @@ public class AuthorController {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileName2,"UTF-8") + "\";");
 			
 			// 서버 실제 경로의 파일을 구함
-			String pathAndName2=request.getServletContext().getRealPath("/")+a.getAut_file2();
+			String pathAndName2=a.getAut_file2();
 			
 			System.out.println(pathAndName2);
 			
@@ -387,7 +394,7 @@ public class AuthorController {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(fileName3,"UTF-8") + "\";");
 			
 			// 서버 실제 경로의 파일을 구함
-			String pathAndName3=request.getServletContext().getRealPath("/")+a.getAut_file3();
+			String pathAndName3=a.getAut_file3();
 			
 			System.out.println(pathAndName3);
 			
@@ -425,9 +432,7 @@ public class AuthorController {
 		PrintWriter out=response.getWriter();
 		
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
-		
-		
-		
+				
 		if(adm_m == null) {
 			out.println("<script>");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
@@ -438,9 +443,14 @@ public class AuthorController {
 			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
 			
 			a=this.authorService.req_info(no);
+			int sMem_no = adm_m.getMem_no();
+			HashMap<String, Object> am = new HashMap<>();
 			
 			String subject="자몽 작가신청 결과내용입니다.";
 			String to=a.getMemberVO().getEmail_id()+"@"+a.getMemberVO().getEmail_domain();
+			
+			am.put("a",a);
+			am.put("sMem_no", sMem_no);
 
 			if(state.equals("accept")) {
 				
@@ -450,7 +460,7 @@ public class AuthorController {
 				mailCont.append("<b>회원님의 신청이 승인되어 자몽작가로 선정되었음을 알려드립니다.</b><br/><br/>");
 				mailCont.append("앞으로도 작가님의 자몽 생활을 응원합니다.<br/><br/> 감사합니다.");
 				
-				this.authorService.acceptAuthor(a);
+				this.authorService.acceptAuthor(am);
 				this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, null, request);
 				
 				return new ModelAndView("redirect:/admin_author?page="+page);
@@ -462,7 +472,7 @@ public class AuthorController {
 				mailCont.append("<b>아쉽게도 다음기회에 회원님의 작가활동을 기대해야 할 것 같습니다.</b><br/><br/>");
 				mailCont.append("준비가 되면 언제든 자몽의 문을 두드려주세요!<br/><br/> 감사합니다.");
 				
-				this.authorService.rejectAuthor(a);
+				this.authorService.rejectAuthor(am);
 				this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, null, request);
 				
 				return new ModelAndView("redirect:/admin_author?page="+page);

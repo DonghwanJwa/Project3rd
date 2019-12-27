@@ -33,5 +33,6 @@ public interface BoardDAO {
 	int newArticleNum(Object object);
 	List<BoardVO> bookInfoCont(HashMap<String, Object> binfo);
 	List<BoardVO> profileScroll(HashMap<Object, Object> scroll);
+	List<BoardVO> bkEditList(HashMap<String, Object> be);
 
 }

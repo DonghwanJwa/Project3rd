@@ -35,7 +35,7 @@ public class ReplyController {
 						
 			rvo.setBo_no(bo_no);
 			rvo.setMem_no(comM.getMem_no());
-			rvo.setRep_cont(com_cont);
+			rvo.setRep_cont(com_cont);			
 			
 			rm.put("rvo",rvo);
 			rm.put("mem_no",mem_no);
@@ -73,8 +73,7 @@ public class ReplyController {
 			rm.put("rvo",rvo);
 			rm.put("mem_id",mem_id);
 			rm.put("mem_no",mem_no);
-			
-			
+						
 			this.replyService.addReply(rm,mem_no,repM.getMem_no());
 			
 			flag = 1;

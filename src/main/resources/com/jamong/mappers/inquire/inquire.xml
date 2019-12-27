@@ -201,9 +201,9 @@
 		</select>
 		
 		<!-- 문의하기 답변시 update문 -->
-		<update id="inq_update">
-			update inquire set inq_state=1,inq_reply=#{inq_reply},inq_sender=#{inq_sender},
-			inq_replydate=sysdate where inq_no=#{inq_no}
+		<update id="inq_update" parameterType="java.util.HashMap">
+			update inquire set inq_state=1,inq_reply=#{im.inq_reply},inq_sender=#{im.inq_sender},
+			inq_replydate=sysdate where inq_no=#{im.inq_no}
 		</update>
 		
 		<!-- 파일 다운로드문 -->
@@ -215,4 +215,10 @@
 	<delete id="inq_del">
 		delete inquire where inq_no=#{no}
 	</delete>
+	
+	<select id="newInquire" resultType="inq">
+	select * from (SELECT * FROM inquire) inq
+			INNER JOIN member m
+			ON inq.mem_no= m.mem_no ORDER BY inq.inq_date DESC
+	</select>
 </mapper>

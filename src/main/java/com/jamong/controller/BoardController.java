@@ -128,7 +128,7 @@ public class BoardController {
 		model.addAttribute("mem_id", mem_id);
 
 		return "jsp/read";
-	}
+	}// 게시글 읽기 페이지
 
 	@PostMapping("artdel/{bo_no}")
 	@ResponseBody
@@ -148,7 +148,7 @@ public class BoardController {
 		}
 
 		return flag;
-	}
+	}// 게시글 삭제
 
 	@RequestMapping("@{mem_id}/{bo_no}/write")
 	public ModelAndView user_editWrite(@PathVariable String mem_id, @PathVariable int bo_no, BoardVO bo,
@@ -194,7 +194,7 @@ public class BoardController {
 		} // if else => 로그인 전 / 후
 
 		return null;
-	}
+	}// 글쓰기 페이지 이동
 
 	@RequestMapping("write_ok")
 	public String user_write_ok(BoardVO b, HttpServletResponse response, HttpServletRequest request,
@@ -252,6 +252,7 @@ public class BoardController {
 			b.setBo_thumbnail(fileDBName);
 		} // if => 파일이 있을 때
 		
+		System.out.println(bo_color);
 	
 		b.setBo_color(bo_color);
 		b.setBo_title(bo_title);
@@ -339,7 +340,7 @@ public class BoardController {
 		if(flag == 1) {
 			b.setBo_color("1");
 		}else if(flag == 0) {
-			b.setBo_color(bo_color);			
+			b.setBo_color(bo_color);
 		}
 		
 		b.setBo_title(bo_title);

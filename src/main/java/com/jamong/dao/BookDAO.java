@@ -31,4 +31,11 @@ public interface BookDAO {
 
 	List<BoardVO> myBookList(int mem_no);
 
+	void recommendUpUpdate(BookVO bk);
+
+	int recommendNum(BookVO bk);
+
+	void recommendDownUpdate(BookVO bk);
+
+
 }

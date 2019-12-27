@@ -238,7 +238,7 @@
   WHERE book_no = #{book_no}
  </select>
  
-   <select id="my_book_List" resultMap="boardMap">
+ <select id="my_book_List" resultMap="boardMap">
   SELECT book.book_no,
   		 book.book_name,
   		 book.book_cover,
@@ -254,5 +254,27 @@
   INNER JOIN member m
   ON book.mem_no = m.mem_no
   WHERE m.mem_no = #{mem_no}
+  </select>
+
+ <!-- 추천 증가 -->
+ <update id="rec_up">
+  UPDATE book SET book_recommend = book_recommend + 1 WHERE book_no = #{book_no}
+ </update>
+ 
+ <!-- 추천 감소 -->
+ <update id="rec_down">
+  UPDATE book SET book_recommend = book_recommend - 1 WHERE book_no = #{book_no}
+ </update>
+ 
+ <!-- 추천 개수 가져오기 -->
+ <select id="rec_count" resultType="int">
+  SELECT book_recommend FROM book WHERE book_no = #{book_no}
+ </select>
+ 
+ <select id="bkEditList" parameterType="java.util.HashMap" resultMap="boardMap">
+  SELECT *
+  FROM board b
+  INNER JOIN book book
+  ON b.book_no = #{bk.book_no}
  </select>
 </mapper>

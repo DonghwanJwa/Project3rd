@@ -14,6 +14,10 @@
 <body>
 	<%-- 본문 구역 쓰기 페이지와 같음 --%>
  <div id="write_wrap">
+  <input type="hidden" name="mem_no" id="mem_no" value="${bo.mem_no}" />
+  <div class="write_title_error">
+   <span class="write_error_message"></span>
+  </div>
   <div id="write_min-wrap" style="min-width:940px;">
    <!-- 타이틀 부분 -->
    <c:if test="${!empty bo.bo_thumbnail && empty bo.bo_color}">
@@ -191,7 +195,7 @@
 					<span class="comment_date">${r.rep_date}</span>
 					<span class="comment_menu">
 					<c:if test="${!empty m.mem_no}">
-					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" data-mem="${r.mem_no}" onclick="replyHide(event);">답글</a>
 					<c:if test="${m.mem_no == r.mem_no}">
 					· <a class="comment_edit" data-no="${r.rep_no}" onclick="replyEdit(event);">수정</a>
 					· <a class="comment_del" data-no="${r.rep_no}" onclick="CommentRemove(event);">삭제</a>
@@ -215,7 +219,7 @@
 					<span class="comment_date">${r.rep_date}</span>
 					<span class="comment_menu">
 					<c:if test="${!empty m.mem_no}">
-					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" onclick="replyHide(event);">답글</a>
+					<a class="comment_reply" data-ref="${r.rep_ref}" data-step="${r.rep_step}" data-level="${r.rep_level}" data-mem="${r.mem_no}" onclick="replyHide(event);">답글</a>
 					<c:if test="${m.mem_no == r.mem_no}">
 					· <a class="comment_edit" data-no="${r.rep_no}" onclick="replyEdit(event);">수정</a>
 					· <a class="comment_del" data-no="${r.rep_no}" onclick="CommentRemove(event);">삭제</a>
@@ -242,8 +246,18 @@
 		<div class="clear"></div>
 		
 			<div class="remote_button">
-				<a href="#"> < 이전글 </a>
-				<a href="#"> 다음글 > </a>
+				<c:if test="${!empty pre}">
+                <a href="/jamong.com/@${pre.memberVO.mem_id}/${pre.bo_no}"> < 이전글 </a>
+                </c:if>
+                <c:if test="${empty pre}">
+                <a class="read_preArt_btn" onclick="preNullError();"> < 이전글 </a>
+                </c:if>
+                <c:if test="${!empty next}">
+                <a href="/jamong.com/@${next.memberVO.mem_id}/${next.bo_no}"> 다음글 > </a>
+                </c:if>
+                <c:if test="${empty next}">
+                <a class="read_nextArt_btn" onclick="nextNullError();"> 다음글 > </a>
+                </c:if>
 			</div>
 		 <hr class="read_division_line">
 		<%-- 이전, 다음글 리스트 --%>
@@ -251,7 +265,7 @@
 		<%-- 리스트 반복문으로 처리 할 것. --%>
 		<h3>같은 작가의 다른 글</h3>
 		 <c:forEach var="blist" items="${bList}">
-			<a href="#">
+			<a href="/jamong.com/@${blist.memberVO.mem_id}/${blist.bo_no}">
 			<div class="list">
 				<p style="font-weight:bold;">${blist.bo_title}</p>
 				<span id="read_list_date">${blist.bo_date}</span>
@@ -267,7 +281,7 @@
 			<div class="another_wrap">
 				<h3>같은 카테고리 다른 글</h3>
 				<c:forEach var="catList" items="${catList}">
-				<a href="#">
+				<a href="/jamong.com/@${catList.memberVO.mem_id}/${catList.bo_no}">
 				  <!-- 썸네일 있을때 -->
 				   <c:if test="${!empty catList.bo_thumbnail}">
 					<div class="another_cover">

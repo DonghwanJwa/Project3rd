@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.AuthorDAO;
+import com.jamong.dao.FeedDAO;
 import com.jamong.domain.AuthorVO;
 import com.jamong.domain.RequestAuthorVO;
 
@@ -15,6 +17,8 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Autowired
 	private AuthorDAO autDao;
+	@Autowired
+	private FeedDAO feedDao;
 	
 	@Override
 	public void sendAuthor(AuthorVO a) {
@@ -53,14 +57,17 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Transactional
 	@Override
-	public void acceptAuthor(AuthorVO a) {
-		this.autDao.editAuthor(a);
-		this.autDao.acceptAuthor(a);
+	public void acceptAuthor(HashMap<String,Object> am) {
+		this.autDao.editAuthor(am);
+		this.autDao.acceptAuthor(am);
+		this.feedDao.addAuthorFeed(am);
 	}
 	
+	@Transactional
 	@Override
-	public void rejectAuthor(AuthorVO a) {
-		this.autDao.rejectAuthor(a);
+	public void rejectAuthor(HashMap<String,Object> am) {
+		this.autDao.rejectAuthor(am);
+		this.feedDao.addAuthorFeed(am);
 	}
 
 }

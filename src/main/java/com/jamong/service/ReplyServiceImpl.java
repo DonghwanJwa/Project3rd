@@ -42,8 +42,9 @@ public class ReplyServiceImpl implements ReplyService {
 		this.replyDao.addReply(rm);
 		if(mem_no != sMem_no) {
 			this.feedDao.addCommentFeed(rm);
-		}
-	}
+			// 댓글 작성자에게 피드
+		} // if => 댓글 작성자와 답글 작성자와 같지 않을때 실행
+	} 
 
 	@Override
 	public int getUserReplyCount(int bo_no) {
