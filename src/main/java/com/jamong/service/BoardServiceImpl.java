@@ -28,7 +28,7 @@ public class BoardServiceImpl implements BoardService {
 	private SubscribeDAO subDao;
 	@Autowired
 	private FeedDAO feedDao;
-	
+
 	@Transactional
 	@Override
 	public void insertBoard(HashMap<String, Object> bm) {
@@ -37,11 +37,13 @@ public class BoardServiceImpl implements BoardService {
 		// 최신글 번호( 세션 아이디에서 가장 최근 게시글 )
 		List<SubscribeVO> followerList = this.subDao.followerList(bm.get("mem_no"));
 		// 팔로우내역 셀렉트( 세션 아이디로 )
-		bm.put("fList",followerList);
-		bm.put("newArtNo",newArtNo);
-		
-		this.feedDao.addArticleFeed(bm);
-		// 피드를 인서트 함
+		System.out.println(followerList.size());
+		if(followerList.size() > 0) {
+			bm.put("fList",followerList);
+			bm.put("newArtNo",newArtNo);
+			this.feedDao.addArticleFeed(bm);
+			// 피드를 인서트 함
+		}
 	}
 
 	@Transactional

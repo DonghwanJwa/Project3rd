@@ -239,6 +239,10 @@ $(document).ready(function(){
 		$('.writting-item-head-inner-cont-sub').children().wordBreakKeepAll();
 		$('.book-item-head-inner-cont-top').children('strong').wordBreakKeepAll();
 	}
+	
+});
+
+$(window).on('load',function(){
 	$('.head-page-sub-title').wordBreakKeepAll();
 	$('.head-page-main-title').wordBreakKeepAll();
 });

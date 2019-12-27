@@ -14,4 +14,6 @@ public interface AdminMemService {
 
 	void memDrop(MemberVO me);
 
+	void memRestore(MemberVO me);
+
 }

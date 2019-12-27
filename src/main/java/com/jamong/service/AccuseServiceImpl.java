@@ -57,6 +57,11 @@ public class AccuseServiceImpl implements AccuseService {
 		
 	}
 
+	@Override
+	public List<AccuseVO> newAccuse(AccuseVO a) {
+		return this.accuseDao.newAccuse(a);
+	}
+
 
 
 

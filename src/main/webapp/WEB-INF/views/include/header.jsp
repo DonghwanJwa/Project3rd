@@ -300,6 +300,15 @@
           <span class="head-profile-service-bar-right"></span>
          </a>
         </li>
+        <c:if test="${m.mem_author==1}">
+        <li id="head-profile-service-publish" class="head-profile-stat-login">
+         <a href="/jamong.com/book_create">
+          <span class="head-profile-service-bar-left"></span>
+       	  <b>책 발간</b>
+          <span class="head-profile-service-bar-right"></span>
+         </a>
+        </li>
+        </c:if>
         <li id="head-profile-service-setting" class="head-profile-stat-login">
          <a href="/jamong.com/my_info">
           <span class="head-profile-service-bar-left"></span>

@@ -18,9 +18,150 @@
   <div id="feed_new_wrap" class="feed_main_cont_wrap"><%-- 피드 새소식 --%><%-- display:show --%>
   
   <%-- 새글 보여주기 양식 --%>
+   <c:if test="${empty fList}">
+    <h2>알림이 없습니다!</h2>
+   </c:if>
   <c:forEach var="fList" items="${fList}">
+   <c:if test="${!empty fList}">
+   <c:if test="${fList.feed_state == 0}">
    <c:if test="${fList.feed_step == 1}">
-   <div class="feed_new_cont_article">
+   <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
+    onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
+    <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
+     <div class="feed_new_cont_profile">
+      <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
+     </div>
+     <div class="feed_new_cont_text">
+      <div class="feed_new_cont_message">
+       	${fList.memberVO.mem_nickname}님의 새 게시글이 등록되었습니다.
+      </div>
+      <div class="feed_new_icon">N</div>
+      <div class="feed_new_cont_time">
+      	${fList.feed_date}
+      </div>
+     </div>
+    </a>
+   </div>
+   </c:if>
+   <c:if test="${fList.feed_step == 2}">
+    <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
+    onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
+    <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
+     <div class="feed_new_cont_profile">
+      <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
+     </div>
+     <div class="feed_new_cont_text">
+      <div class="feed_new_cont_message">
+       	${fList.memberVO.mem_nickname}님이 회원님의 게시글에 댓글을 등록하셨습니다.
+      </div>
+      <div class="feed_new_icon">N</div>
+      <div class="feed_new_cont_time">
+      	${fList.feed_date}
+      </div>
+     </div>
+    </a>
+   </div>
+   </c:if>
+   <c:if test="${fList.feed_step == 3}">
+    <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
+    onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
+    <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
+     <div class="feed_new_cont_profile">
+      <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}" />
+     </div>
+     <div class="feed_new_cont_text">
+      <div class="feed_new_cont_message">
+       	${fList.memberVO.mem_nickname}님이 회원님의 댓글에 답글을 등록하셨습니다.
+      </div>
+      <div class="feed_new_icon">N</div>
+      <div class="feed_new_cont_time">
+      	${fList.feed_date}
+      </div>
+     </div>
+    </a>
+   </div>
+   </c:if>
+   <c:if test="${fList.feed_step == 4}">
+     <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
+    onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
+    <a href="#">
+     <div class="feed_new_cont_profile">
+      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
+     </div>
+     <div class="feed_new_cont_text">
+      <div class="feed_new_cont_message">
+       	문의사항에 대한 답변이 고객님의 메일로 전송되었습니다.
+      </div>
+      <div class="feed_new_icon">N</div>
+      <div class="feed_new_cont_time">
+      	${fList.feed_date}
+      </div>
+     </div>
+    </a>
+   </div>
+   </c:if>
+   <c:if test="${fList.feed_step == 5}">
+      <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
+    onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
+    <a href="/jamong.com/read">
+     <div class="feed_new_cont_profile">
+      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
+     </div>
+     <div class="feed_new_cont_text">
+      <div class="feed_new_cont_message">
+       	작가님의 작가신청 결과가 메일로 전송되었습니다.
+      </div>
+      <div class="feed_new_icon">N</div>
+      <div class="feed_new_cont_time">
+      	${fList.feed_date}
+      </div>
+     </div>
+    </a>
+   </div>
+   </c:if>
+   <c:if test="${fList.feed_step == 6}">
+    <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
+    onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
+    <a href="/jamong.com/book/@${fList.memberVO.mem_id}/${fList.bookVO.book_no}">
+     <div class="feed_new_cont_profile">
+      <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
+     </div>
+     <div class="feed_new_cont_text">
+      <div class="feed_new_cont_message">
+       	${fList.memberVO.mem_nickname}님의 새 책이 발간되었습니다.
+      </div>
+      <div class="feed_new_icon">N</div>
+      <div class="feed_new_cont_time">
+      	${fList.feed_date}
+      </div>
+     </div>
+    </a>
+   </div>
+   </c:if>
+   <c:if test="${fList.feed_step == 7}">
+    <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
+    onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
+    <a href="#">
+     <div class="feed_new_cont_profile">
+      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
+     </div>
+     <div class="feed_new_cont_text">
+      <div class="feed_new_cont_message">
+       	작가님이 등록한 메일로 제안 메일이 발송되었습니다.
+      </div>
+      <div class="feed_new_icon">N</div>
+      <div class="feed_new_cont_time">
+      	${fList.feed_date}
+      </div>
+     </div>
+    </a>
+   </div>
+   </c:if>
+   </c:if>
+   <c:if test="${fList.feed_state == 1}">
+   <c:if test="${fList.feed_step == 1}">
+   <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
@@ -37,7 +178,8 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 2}">
-    <div class="feed_new_cont_article">
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
@@ -54,7 +196,8 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 3}">
-    <div class="feed_new_cont_article">
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}" />
@@ -71,42 +214,45 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 4}">
-     <div class="feed_new_cont_article">
+     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    onmouseleave="FeedMouseOut(event)">
     <a href="#">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/profile_logout.png"/>
+      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
        	문의사항에 대한 답변이 고객님의 메일로 전송되었습니다.
       </div>
       <div class="feed_new_cont_time">
-      	4시간 전
+      	${fList.feed_date}
       </div>
      </div>
     </a>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 5}">
-      <div class="feed_new_cont_article">
+     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/read">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/cat_writer_face2.jpg"/>
+      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
        	작가님의 작가신청 결과가 메일로 전송되었습니다.
       </div>
       <div class="feed_new_cont_time">
-      	1시간 전
+      	${fList.feed_date}
       </div>
      </div>
     </a>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 6}">
-    <div class="feed_new_cont_article">
-    <a href="/jamong.com/book/@${fList.memberVO.mem_id}/${fList.bookVO.book_no}">
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    onmouseleave="FeedMouseOut(event)">
+    <a href="/jamong.com/book_info">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
      </div>
@@ -122,21 +268,24 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 7}">
-    <div class="feed_new_cont_article">
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    onmouseleave="FeedMouseOut(event)">
     <a href="#">
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/profile_logout.png"/>
+      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
-       	제안메일 발송
+       	작가님이 등록하신 메일로 제안 메일이 전송되었습니다.
       </div>
       <div class="feed_new_cont_time">
-      	4시간 전
+      	${fList.feed_date}
       </div>
      </div>
     </a>
    </div>
+   </c:if>
+   </c:if>
    </c:if>
    </c:forEach>
  

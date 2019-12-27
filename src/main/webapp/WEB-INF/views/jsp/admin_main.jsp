@@ -30,21 +30,11 @@
 			<h2>신고사항</h2>
 			<div class="adm_table_wrap">
 			<table class="adm_main_table">
+				<c:forEach begin="0" end="4" step="1" var="a" items="${newAccuse}"> <%-- 최신공지 5개 출력 --%>
 				<tr>
-					<th><a href="adm_notice_cont?page=${page}&no=${n.noti_no}">TEST1</a></th>  <td>작성자</td>  <td>0000.00.00 00:00:00</td>
+					<th style="width:130px;"><a href="admin_accuse_info?no=${a.ac_no}">${a.ac_reason}</a></th>  <td id="adm_ac_cont">${a.ac_cont}</td> <td style="width:130px;"><c:if test="${a.ac_item == 1}">회원신고</c:if><c:if test="${a.ac_item == 2}">게시물신고</c:if></td> <td style="width:130px;">${a.ac_date}</td>
 				</tr>
-				<tr>
-					<th><a href="adm_notice_cont?page=${page}&${no}">TEST2</a></th>  <td>작성자</td>  <td>0000.00.00 00:00:00</td>
-				</tr>
-				<tr>
-					<th><a href="adm_notice_cont?page=${page}&${no}">TEST3</a></th>  <td>작성자</td>  <td>0000.00.00 00:00:00</td>
-				</tr>
-				<tr>
-					<th><a href="adm_notice_cont?page=${page}&${no}">TEST4</a></th>  <td>작성자</td>  <td>0000.00.00 00:00:00</td>
-				</tr>
-				<tr>
-					<th><a href="adm_notice_cont?page=${page}&${no}">TEST5</a></th>  <td>작성자</td>  <td>0000.00.00 00:00:00</td>
-				</tr>
+				</c:forEach>
 			</table>
 			</div>
 		</div>
@@ -54,21 +44,11 @@
 			<h2>문의사항</h2>
 			<div class="adm_table_wrap">
 			<table class="adm_main_table">
+				<c:forEach begin="0" end="4" step="1" var="i" items="${newInquire}"> <%-- 최신공지 5개 출력 --%>
 				<tr>
-					<th><a href="adm_notice_cont?page=${page}&${no}">$</a></th>  <td>작성자</td>  <td>0000.00.00 00:00:00</td>
+					<th style="width:130px;"><a href="admin_inquire_info?no=${i.inq_no}">${i.inq_item1}</a></th>  <td id="adm_inq_cont">${i.inq_cont}</td>  <td><c:if test="${!empty i.mem_no}">회원문의</c:if><c:if test="${empty i.mem_no}">비회원문의</c:if></td> <td style="width:130px;">${i.inq_date}</td>
 				</tr>
-				<tr>
-					<th><a href="adm_notice_cont?page=${page}&${no}">TEST2</a></th>  <td>작성자</td>  <td>0000.00.00 00:00:00</td>
-				</tr>
-				<tr>
-					<th><a href="adm_notice_cont?page=${page}&${no}">TEST3</a></th>  <td>작성자</td>  <td>0000.00.00 00:00:00</td>
-				</tr>
-				<tr>
-					<th><a href="adm_notice_cont?page=${page}&${no}">TEST4</a></th>  <td>작성자</td>  <td>0000.00.00 00:00:00</td>
-				</tr>
-				<tr>
-					<th><a href="adm_notice_cont?page=${page}&${no}">TEST5</a></th>  <td>작성자</td>  <td>0000.00.00 00:00:00</td>
-				</tr>
+				</c:forEach>
 			</table>
 			</div>
 		</div>
