@@ -151,8 +151,8 @@ public class BookController {
 		HashMap<String, Object> bm = new HashMap<>();
 		bm.put("b", b);
 		bm.put("bo_no", val);
-		bm.put("mem_no",mem_no);
-		bm.put("mem_id",mem_id);
+		bm.put("mem_no", mem_no);
+		bm.put("mem_id", mem_id);
 
 		this.bookService.createBook(bm);
 
@@ -229,38 +229,72 @@ public class BookController {
 		session = request.getSession();
 
 		MemberVO sesM = (MemberVO) session.getAttribute("m");
-		
+
 		/* 준비물 */
-		// 책 커버, 책 제목, 책 소개, 작가 이름, 작가 프로필, 작가 소개, 책 번호에 해당하는 글 리스트(제목,내용,썸네일,작성 날짜,글쓴이 아이디,글 번호)
+		// 책 커버, 책 제목, 책 소개, 작가 이름, 작가 프로필, 작가 소개, 책 번호에 해당하는 글 리스트(제목,내용,썸네일,작성 날짜,글쓴이
+		// 아이디,글 번호)
 		HashMap<String, Object> binfo = new HashMap<>();
 		binfo.put("mem_id", mem_id);
 		binfo.put("book_no", book_no);
-		
+
 		MemberVO member = this.bookService.getMember(mem_id);
 		String mem_nickname = member.getMem_nickname();
 		String profile_photo = member.getProfile_photo();
 		String profile_cont = member.getProfile_cont();
-		
+
 		BookVO book = this.bookService.getBook(book_no);
 		String book_name = book.getBook_name();
 		String book_cover = book.getBook_cover();
 		String book_preface = book.getBook_preface();
-		
+		String book_prefaceRe = book_preface.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+
 		List<BoardVO> bkifcntlist = this.bookService.bookInfoCont(binfo);
-		for(int i=0; i<bkifcntlist.size(); i++) {
+		for (int i = 0; i < bkifcntlist.size(); i++) {
 			String orgcontlist = (String) bkifcntlist.get(i).getBo_cont();
 			String orgcontlistRe = orgcontlist.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			bkifcntlist.get(i).setBo_cont(orgcontlistRe);
 		}
-		
-		model.addAttribute("book_name",book_name);
-		model.addAttribute("book_cover",book_cover);
-		model.addAttribute("book_preface",book_preface);
-		model.addAttribute("mem_nickname",mem_nickname);
-		model.addAttribute("profile_photo",profile_photo);
-		model.addAttribute("profile_cont",profile_cont);
-		model.addAttribute("bkList",bkifcntlist);
+
+		model.addAttribute("book_name", book_name);
+		model.addAttribute("book_cover", book_cover);
+		model.addAttribute("book_preface", book_prefaceRe);
+		model.addAttribute("mem_nickname", mem_nickname);
+		model.addAttribute("profile_photo", profile_photo);
+		model.addAttribute("profile_cont", profile_cont);
+		model.addAttribute("bkList", bkifcntlist);
 
 		return "jsp/book_info";
+	}
+
+	@PostMapping("book/recommend_up/{book_no}")
+	@ResponseBody
+	public int recommned_up(@PathVariable int book_no, HttpServletRequest request, HttpSession session) {
+		session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("m");
+
+		int result = -1;
+		if (m != null) {
+			BookVO bk = new BookVO();
+			bk.setBook_no(book_no);
+			bk.setMem_no(m.getMem_no());
+			result = this.bookService.recommendUp(bk);
+		}
+		return result;
+	}
+
+	@PostMapping("book/recommend_down/{book_no}")
+	@ResponseBody
+	public int recommend_down(@PathVariable int book_no, HttpServletRequest request, HttpSession session) {
+		session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("m");
+		
+		int result = -1;
+		if(m!=null) {
+			BookVO bk = new BookVO();
+			bk.setBook_no(book_no);
+			bk.setMem_no(m.getMem_no());
+			result = this.bookService.recommendDown(bk);
+		}
+		return result;
 	}
 }

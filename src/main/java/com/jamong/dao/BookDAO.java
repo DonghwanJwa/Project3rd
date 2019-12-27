@@ -29,4 +29,10 @@ public interface BookDAO {
 
 	BookVO getBook(int book_no);
 
+	void recommendUpUpdate(BookVO bk);
+
+	int recommendNum(BookVO bk);
+
+	void recommendDownUpdate(BookVO bk);
+
 }

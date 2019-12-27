@@ -29,6 +29,7 @@ SELECT * FROM book ORDER BY book_no DESC;
 SELECT book_no_seq.nextval FROM DUAL;
 ALTER TABLE book DROP (cat_no);
 ALTER TABLE book ADD (cat_no NUMBER(38));
+ALTER TABLE book ADD book_recommend NUMBER(38) DEFAULT 0;
 
 SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'book';
 
