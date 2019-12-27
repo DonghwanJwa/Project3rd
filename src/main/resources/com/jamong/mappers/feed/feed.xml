@@ -42,6 +42,7 @@
   <result column="mem_portfolio" property="mem_portfolio" />
  </association>
  </resultMap>
+ 
  <insert id="ArticleFeed" parameterType="java.util.HashMap">
   <foreach collection="fList" item="fList" separator=";" open="DECLARE BEGIN" close="; END;">
    INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_bo_no,feed_mem_no,feed_date,mem_no)
@@ -59,14 +60,14 @@
   VALUES(feed_no_seq.nextval,3,#{mem_id},#{rvo.bo_no},#{rvo.mem_no},sysdate,#{mem_no})
  </insert>
  
- <insert id="InquireFeed">
-  INSERT INTO feed (feed_no,feed_step,feed_date,mem_no)
-  VALUES (feed_no_seq.nextval,4,sysdate,#{mem_no})
+ <insert id="InquireFeed" parameterType="java.util.HashMap">
+  INSERT INTO feed (feed_no,feed_mem_no,feed_step,feed_date,mem_no)
+  VALUES (feed_no_seq.nextval,#{sMem_no},4,sysdate,#{im.mem_no})
  </insert> 
 
- <insert id="AuthorFeed">
-  INSERT INTO feed (feed_no,feed_step,feed_date,mem_no)
-  VALUES (feed_no_seq.nextval,5,sysdate,#{mem_no})
+ <insert id="AuthorFeed" parameterType="java.util.HashMap">
+  INSERT INTO feed (feed_no,feed_mem_no,feed_step,feed_date,mem_no)
+  VALUES (feed_no_seq.nextval,#{sMem_no},5,sysdate,#{am.mem_no})
  </insert>
  
  <insert id="BookFeed" parameterType="java.util.HashMap">
@@ -77,8 +78,8 @@
  </insert>
  
  <insert id="OfferFeed">
-  INSERT INTO feed (feed_no,feed_step,feed_date,mem_no)
-  VALUES (feed_no_seq.nextval,7,sysdate,#{mem_no})
+  INSERT INTO feed (feed_no,feed_mem_no,feed_step,feed_date,mem_no)
+  VALUES (feed_no_seq.nextval,#{off_id},7,sysdate,#{mem_no})
  </insert>
  
  <select id="FeedList" resultMap="feedMap">

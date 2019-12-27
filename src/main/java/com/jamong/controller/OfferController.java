@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.AdminOfferVO;
-import com.jamong.domain.AuthorVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.OfferVO;
 import com.jamong.service.MemberService;

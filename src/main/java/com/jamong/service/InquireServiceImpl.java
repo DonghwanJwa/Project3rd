@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,6 @@ public class InquireServiceImpl implements InquireService {
 	@Override
 	public void insertInquire(InquireVO i) {
 		this.inqDao.insertInquire(i);
-		
 	}
 
 	@Override
@@ -41,10 +41,9 @@ public class InquireServiceImpl implements InquireService {
 
 	@Transactional
 	@Override
-	public void updateInquire(InquireVO inq) {
-		this.inqDao.updateInquire(inq);
-		this.feedDao.addInquireFeed(inq);
-		
+	public void updateInquire(HashMap<String, Object> im) {
+		this.inqDao.updateInquire(im);
+		this.feedDao.addInquireFeed(im);		
 	}
 
 	@Override
