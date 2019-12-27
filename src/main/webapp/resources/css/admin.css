@@ -135,7 +135,14 @@ a:hover{text-decoration:underline; color:#F57C68;}
 .adm_main_table {
 	font-size:13px;
 	text-align:center;
-
+}
+.adm_main_table2 {
+	font-size:13px;
+	text-align:center;
+}
+.adm_main_table3 {
+	font-size:13px;
+	text-align:center;
 }
 
 .adm_main_table th{
@@ -148,6 +155,26 @@ a:hover{text-decoration:underline; color:#F57C68;}
 .adm_main_table td{
 	min-width:120px;
 	max-width:120px;
+	border-bottom:dotted 1px gray;
+	padding:5px;
+	color:gray;
+}
+.adm_main_table2 th{
+	text-align:left;
+	border-bottom:dotted 1px gray;
+	padding:5px;
+}
+.adm_main_table2 td{
+	border-bottom:dotted 1px gray;
+	padding:5px;
+	color:gray;
+}
+.adm_main_table3 th{
+	text-align:left;
+	border-bottom:dotted 1px gray;
+	padding:5px;
+}
+.adm_main_table3 td{
 	border-bottom:dotted 1px gray;
 	padding:5px;
 	color:gray;
@@ -212,8 +239,8 @@ a:hover{text-decoration:underline; color:#F57C68;}
    display: -webkit-box; 
    -webkit-line-clamp: 1;
    -webkit-box-orient: vertical;
-   line-height: 46.6px;
-   height: 46.6px;
+   line-height: 37px;
+   height: 37px;
    width:312px;
 }
 
