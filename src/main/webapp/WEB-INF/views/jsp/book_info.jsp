@@ -35,7 +35,7 @@
    </div>
    
    <div id="book_info_author" class="book_info_about_div">
-    <a id="book_info_author_wrap" href="./profile">
+    <a id="book_info_author_wrap" href="/jamong.com/@${mem_id}">
      <div id="book_info_author_head">
      
      </div>

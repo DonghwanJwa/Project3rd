@@ -191,6 +191,34 @@ body{
 	margin-left:10px;
 }
 
+.head-menu-readpage{
+	display:flex;
+	margin-top: 2px;
+	margin-right: 20px;
+}
+
+#head-menu-book-edit{
+	height: 27.7px;
+	display: flex;
+    padding: 0;
+    padding-top: 2.3px;
+    align-items: center;
+    background-color: transparent;
+	color:#0f0f0f;
+	text-decoration: none;    
+}
+
+.head-menu-book-edit-img{
+	width: 24px;
+    height: 24px;
+    margin-bottom: 1px;
+    margin-right: 5px;
+}
+
+#head-menu-book-edit span{
+	font-weight: bold;
+}
+
 #head-menu_search-empty{
 	height:62px;
 	min-height:62px;
