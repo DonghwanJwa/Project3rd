@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel=stylesheet type="text/css" href="./resources/css/profile.css">
-<script src="./resources/js/profile.js"></script>
-<script src="./resources/js/jquery.js"></script>
+<link rel=stylesheet type="text/css" href="/jamong.com/resources/css/profile.css">
+<script src="/jamong.com/resources/js/profile.js"></script>
+<script src="/jamong.com/resources/js/jquery.js"></script>
 <script src="/jamong.com/resources/js/jquery.word-break-keep-all.min.js"></script>
 <title></title>
 </head>
@@ -51,9 +51,9 @@
 								<div id="profile_button">
 									<%--해당되는 아이디로 로그인 했을때 --%>
 									<c:if test="${m.mem_id == mp.mem_id}">
-										<a href="./write" class="profile_button_type subscribe_check">글쓰기</a>
+										<a href="/jamong.com/write" class="profile_button_type subscribe_check">글쓰기</a>
 										 <c:if test="${mp.mem_author == 1}">
-										  <a href="./book_create" class="profile_button_type subscribe_check">책 발간</a>
+										  <a href="/jamong.com/book_create" class="profile_button_type subscribe_check">책 발간</a>
 										 </c:if>
 									</c:if>
 									<c:if test="${mp.mem_author == 1 && m.mem_id != mp.mem_id}">
@@ -135,7 +135,7 @@
 								>
 									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}">
 										<div>
-											<a href="./@${mp.mem_id}/${fp.bo_no}"> 
+											<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
 											<strong class="pf_bo_title">${fp.bo_title}</strong> 
 											<div class="article_cont">
 											<em class="profile_font_size">${fp.bo_subtitle}</em>
@@ -165,8 +165,8 @@
 											<c:if test="${fp.bo_lock == 1 }"> <%-- 1 = 공개 --%>
 												<img class="private unlock" data-no="${fp.bo_no}" data-disabled="false" />
 											</c:if>
-											<a class="profile_article_main" href="./jamong.com/@${mp.mem_id}/${fp.book_no}"></a> 
-											<a href="./@${mp.mem_id}/${fp.bo_no}"> 
+											<a class="profile_article_main" href="/jamong.com/@${mp.mem_id}/${fp.book_no}"></a> 
+											<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
 											<strong class="pf_bo_title">${fp.bo_title}</strong> <em
 												class="article_cont"
 											>${fp.bo_cont}</em>
@@ -194,9 +194,9 @@
 				<div id="" class="Magazine_list jm_list ">	
 				<c:forEach var="mb" items="${mybook}">
 						<div class="box_contents">
-							<a href="./jamong.com/@${mp.mem_id}/${mb.bookVO.book_no}">
+							<a href="/jamong.com/book/@${mp.mem_id}/${mb.bookVO.book_no}">
 								</a><div class="cover_book">
-								<a href="./jamong.com/@${mp.mem_id}/${mb.bookVO.book_no}">
+								<a href="/jamong.com/book/@${mp.mem_id}/${mb.bookVO.book_no}">
 								<c:set var="img" value="${mb.bookVO.book_cover}" />
 								<c:if test="${not empty img }">
 									<img class="cover_img" src="${img}">
@@ -212,7 +212,7 @@
 						</div>
 						<strong>Category ${mb.bookVO.cat_name}</strong> 
 						<strong class="pf_date">${mb.bookVO.book_date}</strong>
-						<a class="profile_jm" href="./book_info">${mb.bookVO.book_name}</a>
+						<a class="profile_jm" href="/jamong.com/book/@${mp.mem_id}/${mb.bookVO.book_no}">${mb.bookVO.book_name}</a>
 						<div>
 						<dl class="j_list_info">
 							<dt>

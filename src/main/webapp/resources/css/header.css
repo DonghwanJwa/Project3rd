@@ -191,6 +191,18 @@ body{
 	margin-left:10px;
 }
 
+#head-menu-accuse{
+	height:30px;
+	margin-right:20px;
+}
+
+.head-menu-accuse-img{
+	cursor: pointer;
+    width: 23px;
+    height: 23px;
+    margin-top: 3px;
+}
+
 .head-menu-readpage{
 	display:flex;
 	margin-top: 2px;
@@ -243,8 +255,8 @@ body{
 }
 /*우측사이드창 - wrap*/
 #head-menu-close-wrap{
-	width:63px;
-	min-width:63px;
+	width:80px;
+	min-width:80px;
 }
 #head-page-besthot-wrap{
 	width:calc(43.24vw - 140px);
@@ -278,7 +290,7 @@ body{
 	min-width:320px;
 	height:250px;
 }
-#head-page-best-title, #head-page-notice-title{
+#head-page-best-title, #head-page-notice-title, #head-page-category-title{
 	height:40px;
 	text-align:center;
 	font-size:20px;
@@ -286,10 +298,16 @@ body{
 }
 #head-page-best-title strong{
 	line-height:40px;
+	font-family: 'NanumMyeongjo','serif';
 }
 #head-page-notice-title strong{
+	font-family: 'NanumMyeongjo','serif';
 	margin-left: 40px;
 	line-height: 40px;
+}
+#head-page-category-title strong{
+	font-family: 'NanumMyeongjo','serif';
+	line-height:40px;
 }
 
 #head-page-notice-title a{
@@ -512,11 +530,14 @@ body{
 #head-page-category-frame{
 	width:calc(56.76vw - 180px);
 	min-width:376px;
+	max-width: 950px;
 	height:480px;
 	margin:10px 20px;
 	display:flex;
 	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
+    align-content: center;
 }
 #head-page-category-list{
 	list-style: none;
@@ -532,6 +553,8 @@ body{
 	height: calc(7.55vw - 10px);
 	min-width: 67px;
 	min-height: 67px;
+	max-width:180px;
+	max-height:180px;
 	margin:2.5px;
 	display:flex;
 	justify-content: center;
@@ -543,6 +566,8 @@ body{
 	height: calc(7.55vw - 10px);
 	min-width: 67px;
 	min-height: 67px;
+	max-width:180px;
+	max-height:180px;
 	cursor:pointer;
 	display:inline-block;
 	line-height:calc(7.55vw - 10px);

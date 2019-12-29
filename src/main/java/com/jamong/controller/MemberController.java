@@ -83,38 +83,42 @@ public class MemberController {
 		session.setMaxInactiveInterval(120*60);		//세션 유지시간 2시간
 		MemberVO mem_m = (MemberVO)session.getAttribute("m");
 		
-		int re = 1;	//로그인 가능여부 변수 : 1 불가능, 2이미 로그인됨 , -1 & -2가능
+		int re = 1;	//로그인 가능여부 변수 : 1 불가능, 2이미 로그인됨 , 3 계정정지, -1 & -2가능
 		
 		if(mem_m != null) {
 			re = 2;
 		}else {			
 			MemberVO dm=this.memberService.loginCheck(login_id);//로그인 인증
 			if(dm!=null) {		//안에 디비값이 있을떄
-				if(dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))){
-					if(page==1) {	//메뉴에서 로그인 시도시
-						re=-1;						
-					}else {			//회원가입에서 로그인 시도시
-						re=-2;
+				if(dm.getMem_state()==1) {
+					re=3;
+				}else {
+					if(dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))){
+						if(page==1) {	//메뉴에서 로그인 시도시
+							re=-1;						
+						}else {			//회원가입에서 로그인 시도시
+							re=-2;
+						}
+						m.setMem_no(dm.getMem_no());
+						m.setMem_id(dm.getMem_id());
+						m.setMem_nickname(dm.getMem_nickname());
+						m.setMem_author(dm.getMem_author());
+						m.setMem_state(dm.getMem_state());
+						m.setProfile_photo(dm.getProfile_photo());
+						m.setMem_fav1(dm.getMem_fav1());
+						m.setMem_fav2(dm.getMem_fav2());
+						m.setMem_fav3(dm.getMem_fav3());
+						m.setMem_phone01(dm.getMem_phone01());
+						m.setMem_phone02(dm.getMem_phone02());
+						m.setMem_phone03(dm.getMem_phone03());
+						m.setEmail_id(dm.getEmail_id());
+						m.setEmail_domain(dm.getEmail_domain());
+						
+						if(dm.getMem_state()==9) {	//관리자일경우 이름값을 저장 ->관리자페이지에서 필요하여 넣었습니다.
+							m.setMem_name(dm.getMem_name());
+						}
+						session.setAttribute("m", m);
 					}
-					m.setMem_no(dm.getMem_no());
-					m.setMem_id(dm.getMem_id());
-					m.setMem_nickname(dm.getMem_nickname());
-					m.setMem_author(dm.getMem_author());
-					m.setMem_state(dm.getMem_state());
-					m.setProfile_photo(dm.getProfile_photo());
-					m.setMem_fav1(dm.getMem_fav1());
-					m.setMem_fav2(dm.getMem_fav2());
-					m.setMem_fav3(dm.getMem_fav3());
-					m.setMem_phone01(dm.getMem_phone01());
-					m.setMem_phone02(dm.getMem_phone02());
-					m.setMem_phone03(dm.getMem_phone03());
-					m.setEmail_id(dm.getEmail_id());
-					m.setEmail_domain(dm.getEmail_domain());
-					
-					if(dm.getMem_state()==9) {	//관리자일경우 이름값을 저장 ->관리자페이지에서 필요하여 넣었습니다.
-						m.setMem_name(dm.getMem_name());
-					}
-					session.setAttribute("m", m);
 				}
 			}
 		}

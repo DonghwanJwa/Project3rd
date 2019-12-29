@@ -79,12 +79,16 @@ a {
 }
 
 #book_create_cover_title {
-	display: block;
+	font-family: 'NanumMyeongjo','serif';
+    display: table-cell;
+    vertical-align: middle;
+	width: 170px;
+	height: 160px;
+	line-height: 35px;
 	margin: 0;
 	padding: 0px 15px;
-	padding-top: 30px;
-	font-size: 23px;
-	height: 150px;
+	padding-top: 20px;
+	font-size: 22px;
 }
 
 #book_create_cover_title:empty::before {
@@ -102,9 +106,10 @@ a {
 	display: block;
 	margin: 0;
 	padding: 0 15px;
+	padding-top: 10px;
 	height: 40px;
 	font-size: 16px;
-	line-height: 40px;
+	line-height: 40px;	
 }
 
 #book_create_cover_bot {
@@ -127,7 +132,7 @@ a {
 	height: 100%;
 }
 
-#book_creat_cover_list:after {
+#book_create_cover_line:after {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -137,7 +142,7 @@ a {
 	content: '';
 }
 
-#book_create_cover_list:before {
+#book_create_cover_line:before {
 	position: absolute;
 	top: 0;
 	right: 2px;
@@ -327,6 +332,22 @@ a {
 	cursor: pointer;
 	text-align: center;
 	line-height: 30px;
+	display:flex;
+}
+
+.post_list_lock{
+	display:inline;
+	width:20px;
+	height:20px;
+}
+.post_list_lock_img{
+	width:20px;
+	height:20px;
+	padding-top: 4px;
+}
+
+.post_list_cont_title{
+	width: 332px;
 }
 
 input[type="checkbox"] {

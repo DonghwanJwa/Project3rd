@@ -77,6 +77,10 @@ $(document).ready(function(){
 					return false;
 				}else if(data==2){				//이미 로그인 되어진 상황이라면 이전페이지로
 					history.back();
+				}else if(data==3){
+					alert('자몽 정책에 위배되는 활동으로 인하여 \n 정지된 계정입니다. 자세한 사항은'
+							+ '\n 문의하기를 통하여 요청하시기 바랍니다.');
+					window.location.replace("/jamong.com/");
 				}else if(data==-1){
 					window.location=ref;
 				}else if(data==-2){

@@ -106,7 +106,7 @@ function slideButton(a){
 	$('.recom-book-page').attr("data-disabled",'true');
 	clearTimeout(timerID);
 	slideIndex = a;
-	timerID = setTimeout(showSlides, 500);
+	timerID = setTimeout(showSlides, 1000);
 	setTimeout(function(){
 		$('.recom-book-page').attr("data-disabled",'false');
 	},2000);
