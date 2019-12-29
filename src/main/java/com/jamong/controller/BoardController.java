@@ -60,7 +60,7 @@ public class BoardController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		session=request.getSession();
-
+		
 		MemberVO readM = (MemberVO)session.getAttribute("m");
 
 		HashMap<String,Object> bm = new HashMap<>();
@@ -70,6 +70,24 @@ public class BoardController {
 		BoardVO nextVo = this.boardService.getNextBoardCont(bm);
 		BoardVO preVo = this.boardService.getPreBoardCont(bm);
 		bo = this.boardService.getUserBoardCont(bo_no);
+		if(bo.getBo_lock()==0) {
+			if(readM==null) {
+					out.println("<script>");
+					out.println("alert('비공개 처리된 글 입니다.');");
+					out.println("history.back();");
+					out.println("</script>");
+					return null;
+			}else {
+				if(readM.getMem_no()!=bo.getMem_no()) {
+					out.println("<script>");
+					out.println("alert('비공개 처리된 글 입니다.');");
+					out.println("history.back();");
+					out.println("</script>");
+					return null;
+				}
+			}
+			
+		}
 		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		int replyCount = this.repService.getUserReplyCount(bo_no);
 		List<BoardVO> catList = this.boardService.getUserBoardCatArticle(bo.getCat_name());

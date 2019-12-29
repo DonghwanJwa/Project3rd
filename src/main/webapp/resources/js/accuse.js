@@ -3,12 +3,28 @@
  */
 
 function accuseShow(a) {
-		if($('#acc_wrap').css("display") == "none") {
-			$('#acc_wrap').show();
-			$('html').css("overflow-y","hidden");
-			$('#ac_item').val(a);
+	//lock -> unlock
+	$.ajax({
+		type:"POST",
+		url:"/jamong.com/accuse_ok",
+		success: function (data) {		
+			if(data==-1){
+				alert('로그인이 필요한 페이지 입니다.');
+				location="/jamong.com/login/1";
+			}else if(data==1){
+				if($('#acc_wrap').css("display") == "none") {
+					$('#acc_wrap').show();
+					$('html').css("overflow-y","hidden");
+					$('#ac_item').val(a);
+				}
+			}
+		},
+		error:function(){
+			alert("data error");
 		}
+	});	
 }
+
 function accuseHide(){
 	if($('#acc_wrap').css("display") == "block"){
 		$('#acc_wrap').hide();

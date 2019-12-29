@@ -41,6 +41,9 @@
      	 	  <c:if test="${a.ac_item == 2}">
      	 	   	<font color="red">게시물신고</font>
      	 	  </c:if>
+     	 	  <c:if test="${a.ac_item == 3}">
+     	 	   	<font color="green">댓글신고</font>
+     	 	  </c:if>
      	 	</td>
  
      	 	<td align="center" class="ac_list_underline">

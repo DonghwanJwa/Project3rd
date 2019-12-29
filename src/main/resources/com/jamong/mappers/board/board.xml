@@ -195,7 +195,7 @@ SELECT m.mem_no,
          m.mem_nickname,
          m.mem_keyword
   FROM (SELECT * FROM board ORDER BY bo_no DESC)b, member m
-  WHERE b.mem_no=m.mem_no
+  WHERE b.mem_no=m.mem_no AND b.bo_lock=1
   AND rowNum <= 10
   ]]>
  </select>
@@ -249,14 +249,13 @@ SELECT m.mem_no,
          m.mem_keyword
   FROM board b
   INNER JOIN member m
-  ON b.mem_no=m.mem_no
+  ON b.mem_no=m.mem_no and b.bo_lock=1
   WHERE REGEXP_LIKE(b.bo_title,#{q}) 
   OR REGEXP_LIKE(b.bo_cont,#{q}) 
   OR REGEXP_LIKE(m.mem_nickname,#{q}) 
-  OR REGEXP_LIKE(m.mem_keyword,#{q}) 
-  AND bo_lock=1)
+  OR REGEXP_LIKE(m.mem_keyword,#{q}))
   <if test="s == 'accuracy'">
-  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC) 
+  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC,bo_date DESC) 
   </if>
   <if test="s == 'recent'">
   ORDER BY bo_date DESC)
@@ -283,14 +282,13 @@ SELECT m.mem_no,
          m.mem_keyword
   FROM board b
   INNER JOIN member m
-  ON b.mem_no=m.mem_no
+  ON b.mem_no=m.mem_no and b.bo_lock=1
   WHERE REGEXP_LIKE(b.bo_title,#{q}) 
   OR REGEXP_LIKE(b.bo_cont,#{q}) 
   OR REGEXP_LIKE(m.mem_nickname,#{q}) 
-  OR REGEXP_LIKE(m.mem_keyword,#{q}) 
-  AND bo_lock=1)
+  OR REGEXP_LIKE(m.mem_keyword,#{q}))
   <if test="s == 'accuracy'">
-  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC) 
+  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC,bo_date DESC) 
   </if>
   <if test="s == 'recent'">
   ORDER BY bo_date DESC)

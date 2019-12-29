@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.AccuseVO;
@@ -29,16 +30,29 @@ public class AccuseController {
 	@Autowired
 	private MailService mailService;
 	
+	@Autowired
+	private MemberService memberService;
+	
 	@RequestMapping("accuse")
 	public ModelAndView accuse() {
 		return null;
 	}
-	
-	@Autowired
-	private MemberService memberService;
+
+	@RequestMapping("accuse_ok")
+	@ResponseBody
+	public int accuse_ok(HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session)throws Exception {
+		session=request.getSession();
+		MemberVO user=(MemberVO) session.getAttribute("m");
+		int re=-1;
+		if(user!=null) {
+			re=1;
+		}
+		return re;
+	}
 	
 	@RequestMapping("accuse_report_ok")
-	
 	public ModelAndView accuse_report_ok(AccuseVO a,
 			HttpServletRequest request,
 			HttpServletResponse response,
@@ -72,7 +86,7 @@ public class AccuseController {
 		a.setAc_member(mem_no);
 		a.setAc_cont(ac_cont);			//신고내용
 		a.setAc_reason(ac_reason);		//신고사유(버튼)
-		a.setAc_item(ac_item);			//신고페이지(1-프로필,2-글읽기)
+		a.setAc_item(ac_item);			//신고페이지(1-프로필,2-글읽기,3-댓글)
 		a.setMem_no(user.getMem_no());	//신고자 NO값 
 		
 		m.addObject("ac_href",ac_href);
@@ -80,7 +94,7 @@ public class AccuseController {
 		this.accuseService.insertAccuse(a);
 	
 		out.println("<script>");
-		out.println("alert('문의가 접수되었습니다!');");
+		out.println("alert('신고가 접수되었습니다!');");
 		out.println("location='"+ref+"';");
 		out.println("</script>");
 		

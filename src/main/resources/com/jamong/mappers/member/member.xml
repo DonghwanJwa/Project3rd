@@ -105,7 +105,7 @@
  
  <!-- 로그인 -->
  <select id="mem_logincheck" parameterType="String" resultType="m">
-     select * from member where (mem_state=0 or mem_state=9) and  mem_id=#{mem_id}
+     select * from member where (mem_state=0 or mem_state=1 or mem_state=9) and  mem_id=#{mem_id}
  </select>
  
  <!-- admin 로그인 -->
@@ -152,11 +152,12 @@
   SELECT * FROM
   (SELECT ROWNUM RN,X.* FROM
   (SELECT * FROM 
-  (SELECT * FROM member  
+  (SELECT * FROM 
+  (SELECT * FROM member
+  WHERE mem_state=0 AND mem_author=1) 
   WHERE REGEXP_LIKE(mem_nickname,#{q}) 
   OR REGEXP_LIKE(mem_keyword,#{q}) 
-  OR REGEXP_LIKE(profile_cont,#{q})
-  AND mem_state=0) 
+  OR REGEXP_LIKE(profile_cont,#{q}))
   ORDER BY REGEXP_COUNT(mem_nickname,#{q}) DESC, 
   		   REGEXP_COUNT(mem_keyword,#{q}) DESC, 
   		   REGEXP_COUNT(profile_cont,#{q}) DESC)X)
@@ -177,7 +178,7 @@
   WHERE REGEXP_LIKE(mem_nickname,#{q}) 
   OR REGEXP_LIKE(mem_keyword,#{q}) 
   OR REGEXP_LIKE(profile_cont,#{q})
-  AND mem_state=0) 
+  AND mem_state=0 AND mem_author=1) 
   ORDER BY REGEXP_COUNT(mem_nickname,#{q}) DESC, 
   		   REGEXP_COUNT(mem_keyword,#{q}) DESC, 
   		   REGEXP_COUNT(profile_cont,#{q}) DESC)X)
@@ -193,7 +194,7 @@
  <select id="index_author" resultType="m">
  <![CDATA[
   SELECT * 
-  FROM (SELECT * FROM member where mem_state=0 ORDER BY DBMS_RANDOM.RANDOM) 
+  FROM (SELECT * FROM member WHERE mem_state=0 AND mem_author=1 ORDER BY DBMS_RANDOM.RANDOM) 
   WHERE rowNum <= 9
   ]]> 
  </select>

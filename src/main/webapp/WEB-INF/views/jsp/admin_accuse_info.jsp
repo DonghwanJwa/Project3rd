@@ -20,6 +20,7 @@
 		<td align="center" style="width:120px;">
 			<c:if test="${a.ac_item == 1}"><font color="red">회원신고</font></c:if>
 			<c:if test="${a.ac_item == 2}"><font color="blue">게시물신고</font></c:if>
+			<c:if test="${a.ac_item == 2}"><font color="green">댓글신고</font></c:if>
 		</td>
 		
 		<th align="center" style="width:150px;">처리상태</th>

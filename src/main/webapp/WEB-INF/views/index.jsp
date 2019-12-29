@@ -119,6 +119,9 @@ $(document).keydown(function(e){
     <%-- category --%>
     <div id="head-page-category-wrap">
      <div id="head-page-category-frame">
+      <div id="head-page-category-title">
+       <strong>Category</strong>
+      </div>
       <ul id="head-page-category-list">
 		<%-- category 내용들어오는곳 : getJSON 처리 --%>
 	  </ul>

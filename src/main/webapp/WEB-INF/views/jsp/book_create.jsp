@@ -14,7 +14,7 @@
    <div id="book_create_cover" class="book_create_about_div">
    <div id="book_create_cover_img"></div>
    <input id="book_create_cover_imgFile" type="file" name="book_cover" accept="image/*" title="책 커버 이미지"/>
-    <div id="book_create_cover_text">
+    <div id="book_create_cover_text" title="클릭하여 책커버 이미지 삽입">
      <div id="book_create_cover_head">
       <strong id="book_create_cover_title" class="title" contenteditable="true"></strong>
       <textarea name="book_name" id="book_title" style="display:none;"></textarea>
@@ -31,7 +31,7 @@
    <!-- 책 소개 -->
    <div id="book_create_intro" class="book_create_about_div">
     <div id="book_create_intro_inner">
-     <strong id="book_create_intro_title">브런치북 소개</strong>
+     <strong id="book_create_intro_title">자몽 책 소개</strong>
      <p id="book_create_intro_cont" contenteditable="true"></p>
      <textarea name="book_preface" id="book_intro_cont" style="display:none;"></textarea>
     </div>
@@ -76,6 +76,14 @@
       <label for="chk${b}" class="ckeck_label">
        <input type="checkbox" name ="book_create" id="chk${b}" value="${b.bo_no}" class="check_list">
        <div class="post_list_cont">
+       <div class="post_list_lock">
+       <c:if test="${b.bo_lock==0}">
+        <img class="post_list_lock_img" src="/jamong.com/resources/img/lock.png">
+       </c:if>
+       <c:if test="${b.bo_lock==1}">
+        <img class="post_list_lock_img" src="/jamong.com/resources/img/unlock.png">
+       </c:if>
+       </div>
         <div class="post_list_cont_title">
          <c:if test="${fn:length(b.bo_title)>20}">
           ${fn:substring(b.bo_title,0,20)}...

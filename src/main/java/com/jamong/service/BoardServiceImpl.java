@@ -85,7 +85,13 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> bestList() {	
-		return this.boardDao.bestList();
+		List<BoardVO> blist = this.boardDao.bestList(); 
+		for(BoardVO b : blist) {
+			String titleText = b.getBo_title();
+			String titleChanged = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*"," ");
+			b.setBo_title(titleChanged);
+		}
+		return blist;
 	}
 
 	@Override
