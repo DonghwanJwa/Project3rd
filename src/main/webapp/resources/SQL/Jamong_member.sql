@@ -76,7 +76,10 @@ commit;
 SELECT * FROM member ORDER BY mem_no DESC;
 
 update member set mem_state=0;
+update member set mem_state=9 where mem_id='tkdgjs905';
+update member set mem_author=1 where mem_id='shtlgus0915';
 update member set mem_author=1 where mem_id='dkek112';
 update member set mem_author=1 where mem_id='tkekd000';
 update member set mem_author=1 where mem_id='tkekd00';
 update member set mem_state=9 where mem_id='tkekd00';
+
