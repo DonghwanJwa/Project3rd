@@ -244,7 +244,7 @@ public class AccuseController {
 			out.println("<script>");
 			out.println("$('.wrap-loading').hide();");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			/*신고 update문*/
