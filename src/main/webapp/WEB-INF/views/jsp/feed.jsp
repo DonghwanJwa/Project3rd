@@ -337,7 +337,7 @@
        <div class="feed_scrap_type">Book</div>
        <div class="feed_scrap_title">${book.bookVO.book_name}</div>
        <div class="feed_scrap_author">by ${book.memberVO.mem_nickname}</div>
-       <div class="feed_scrap_date">${book.sym_date}</div>
+       <div class="feed_scrap_date">${book.rec_date}</div>
       </div>
      </a>
      <div class="feed_scrap_like_outer">

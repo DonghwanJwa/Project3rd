@@ -203,9 +203,11 @@
 					· <a class="comment_edit" data-no="${r.rep_no}" onclick="replyEdit(event);">수정</a>
 					· <a class="comment_del" data-no="${r.rep_no}" onclick="CommentRemove(event);">삭제</a>
 					</c:if>
-					·
 					</c:if>
+					<c:if test="${m.mem_no != r.mem_no}">
+					·
 					<a class="comment_accuse" onclick="accuseShow(3);">신고하기</a>
+					</c:if>
 					</span>
 					<div class="comment_cont">${r.rep_cont}</div>
 				</div>
@@ -227,9 +229,11 @@
 					· <a class="comment_edit" data-no="${r.rep_no}" onclick="replyEdit(event);">수정</a>
 					· <a class="comment_del" data-no="${r.rep_no}" onclick="CommentRemove(event);">삭제</a>
 					</c:if>
-					·
 					</c:if>
-					<a class="comment_accuse" >신고하기</a>
+					<c:if test="${m.mem_no != r.mem_no}">
+					·
+					<a class="comment_accuse" onclick="accuseShow(3);" >신고하기</a>
+					</c:if>
 					</span>
 					<div class="comment_cont">${r.rep_cont}</div>
 				</div>
