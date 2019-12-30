@@ -13,6 +13,8 @@ $(document).ready(function(){
 	timerID = showSlides();
 });
 
+
+
 function scrollmove(whereScroll,howMove){
 	/*스크롤움직임 버튼 ( 어느div인지,	어느쪽으로 움직이는지)*/
 	scrollAmount = 0; /*움직인 스크롤 길이를 저장할 변수*/
@@ -148,6 +150,20 @@ function getCategory(){
 	  });
 }
 
+function feedCount(){
+	var feed = $("#head-feed-count")
+	$.ajax({
+		type : "POST",
+		url : "/jamong.com/feedCount",
+		success : function(data){
+			feed.text(data);
+		}
+	});
+	setTimeout(function(){
+		feedCount();
+	},1000)
+}
+
 function getBestList(){
 	//header가 존재하면
 	
@@ -179,7 +195,7 @@ function getBestList(){
 }
 
 $(document).ready(function(){
-	
+	feedCount();
 	/*검색버튼*/
 	$('#head-menu_search-button').click(function(){
 		if($('#head-menu_search-text').css('opacity')=='0'){//검색창 숨겨져있을 때
