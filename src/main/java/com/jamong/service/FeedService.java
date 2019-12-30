@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.jamong.domain.FeedVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.SympathyVO;
 
 public interface FeedService {
 
