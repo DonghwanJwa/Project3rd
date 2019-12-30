@@ -1,8 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<jsp:include page="../include/header.jsp" />
 <!DOCTYPE html>
-<html>
-<head>
+
+<%@ include file="../include/header.jsp"%>
 <meta charset="EUC-KR">
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/my_info.css" />
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>
@@ -122,14 +121,6 @@
 			</div>
 			<button type="button" class="my_info_confirm_btn" id="leave_member" >탈퇴하기</button>
 	</div>
-</div>
+</div>	
 		
-		
-		
-		
-		
-		
-		
-</body>
-</html>
 <%@ include file="../include/footer.jsp"%>
