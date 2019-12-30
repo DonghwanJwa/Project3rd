@@ -39,4 +39,6 @@ public interface BookService {
 
 	List<BoardVO> bkEditList(HashMap<String, Object> be);
 
+	void bookDel(int book_no);
+
 }

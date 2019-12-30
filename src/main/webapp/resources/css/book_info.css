@@ -37,7 +37,7 @@ a {
 	height:430px;
 	width:300px;
 	object-fit:cover;
-	filter: brightness(50%);
+	filter: brightness(80%);
 }
 #book_info_cover_txt{
 	position: absolute;

@@ -10,7 +10,8 @@
 	display: inline-block;
     vertical-align: text-top;
     width: 13px;
-    height: 12px;
+    height: 13px;
+    line-height:13px;
     font-size: 10px;
     text-align: center;
     border-radius: 50%;
@@ -62,7 +63,6 @@
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 50px;
-	border: 1px solid orange;
 	background: #fff;
 	min-height:calc(100vh - 162px);
 }
@@ -211,8 +211,22 @@
 	height:20px;
 	background-color: rgb(245,124,104);
 }
-
-
+.feed_toggle_btn{
+	font-size: 13px;
+    border: 1px solid #DDD;
+    background-color: #FFF;
+    padding: 5px 13px;
+    border-radius: 25px;
+    outline: none;
+    cursor:pointer;
+}
+.feed_toggle_btn:active{
+	background-color: #DDD;
+}
+#feed_scrap_toggle{
+	text-align:center;
+	margin:20px 0px;
+}
 
 
 

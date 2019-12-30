@@ -72,6 +72,20 @@ body{
 	-webkit-transition:width 0.33s linear, opacity 0.33s linear;
 }
 
+#head-feed-count{
+	font-size: 10px;
+    position: absolute;
+    right: 165px;
+    text-align: center;
+    background-color: red;
+    color: white;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    border-radius: 50%;
+    top: 4px;
+}
+
 #head-menu_open_button{
 	margin-top:5px;
 }

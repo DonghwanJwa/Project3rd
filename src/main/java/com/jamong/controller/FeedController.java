@@ -18,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.FeedVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.SympathyVO;
 import com.jamong.service.FeedService;
+import com.jamong.service.SympathyService;
 
 import timeChanger.TIME_MAXIMUM;
 
@@ -27,7 +29,9 @@ public class FeedController {
 
 	@Autowired
 	private FeedService feedService;
-	
+	@Autowired
+	private SympathyService symService;
+
 	@RequestMapping("feed")
 	public ModelAndView user_Feed(
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
@@ -35,8 +39,9 @@ public class FeedController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		session = request.getSession();
-		
+
 		MemberVO feedM = (MemberVO)session.getAttribute("m");
+
 		if(feedM == null) {
 			out.println("<script>");
 			out.println("alert('로그인이 필요한 페이지입니다!');");
@@ -45,23 +50,36 @@ public class FeedController {
 		}else {
 			List<FeedVO> fList = this.feedService.getUserFeedList(feedM.getMem_no());
 			SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			
+
 			for(int i=0;i<fList.size();i++) {
 				Date repListFormat_date = org_format.parse(fList.get(i).getFeed_date());
 				String repList_date = TIME_MAXIMUM.formatTimeString(repListFormat_date);
 				fList.get(i).setFeed_date(repList_date);
 			}
-			
+
 			mv.addObject("fList",fList);
 			mv.setViewName("jsp/feed");
 			return mv;
 		}
 		return null;
 	}
-	
+
 	@PostMapping("stateUp")
 	@ResponseBody
 	public void feedStateUp(int feed_no) {
 		this.feedService.feedStateUp(feed_no);
+	}
+
+	@PostMapping("feedCount")
+	@ResponseBody
+	public int feedCount(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		int count = -1;
+		session = request.getSession();
+		MemberVO feedM = (MemberVO)session.getAttribute("m");
+		if(feedM !=null) {
+			int sMem_no = feedM.getMem_no();
+			count = this.feedService.feedCount(sMem_no);
+		}
+		return count;
 	}
 }

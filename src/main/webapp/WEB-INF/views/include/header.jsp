@@ -73,8 +73,9 @@
  	  </div>
  	 </c:if>
  	</c:if>
+
  	<%-- 책info 페이지에 필요한 버튼 / 삭제 / 관리자만--%>
- 	<c:if test="${book_cover ne null}">
+ 	<c:if test="${book_name ne null}">
  	 <c:if test="${m.mem_state==9}">
    	  <div id="head-menu-readpage">
  	   <a href="/jamong.com/book/del/${book_no}" id="head-menu-book-edit">
@@ -234,6 +235,7 @@
       <div id="head-profile-menu">
        <a href="/jamong.com/feed" class="head-feed-button">
         <img src="/jamong.com/resources/img/feed.png" alt="피드"/>
+        <span id="head-feed-count"></span>
        </a>
       </div>
       <a href="/jamong.com/@${m.mem_id}" id="head-profile-info-wrap">

@@ -72,7 +72,7 @@ public class BookDAOImpl implements BookDAO {
 		return this.sqlSession.selectList("my_book_List",mem_no);
 	}
 	
-  @Override
+	@Override
 	public void recommendUpUpdate(BookVO bk) {
 		this.sqlSession.update("rec_up",bk);
 	}
@@ -85,6 +85,11 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public int recommendNum(BookVO bk) {
 		return this.sqlSession.selectOne("rec_count",bk);
+	}
+
+	@Override
+	public void bookDel(int book_no) {
+		this.sqlSession.delete("book_del",book_no);
 	}
 
 }
