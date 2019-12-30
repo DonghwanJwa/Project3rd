@@ -29,6 +29,7 @@
  	</div>
  	
  	<div id="head-menu-empty">
+ 	<%-- 읽기페이지에 필요한 버튼 --%>
  	<c:if test="${! empty bo}">
  	<div id="head-menu-readpage">
  	 <c:if test="${(mem_id eq m.mem_id) && (bo.book_no == 0)}">
@@ -48,22 +49,40 @@
  	 <div id="head-menu-sym">
  	 <c:if test="${! empty m}">
  	  <button class="head-menu-sym-btn">
- 	   <img class="head-menu-heart-img" src="/jamong.com/resources/img/heart.png">
+ 	   <img class="head-menu-heart-img" title="공감" src="/jamong.com/resources/img/heart.png">
  	   <span class="head-menu-heart-rate">${bo.bo_like}</span>
  	  </button>
  	 </c:if>
  	 <c:if test="${empty m}">
  	  <div class="head-menu-sym-div">
- 	   <img class="head-menu-heart-img-disabled" src="/jamong.com/resources/img/heart.png">
+ 	   <img class="head-menu-heart-img-disabled" title="공감" src="/jamong.com/resources/img/heart.png">
  	   <span class="head-menu-heart-rate">${bo.bo_like}</span>
  	  </div>
  	 </c:if>
  	 </div>
 	  <div id="head-menu-hit">
-	   <img class="head-menu-hit-img" src="/jamong.com/resources/img/hit.png">
+	   <img class="head-menu-hit-img" title="조회수" src="/jamong.com/resources/img/hit.png">
 	   <span class="head-menu-hit-rate">${bo.bo_hit}</span>
 	  </div>
 	 </div>
+	  	<%-- 신고기능 --%>
+ 	 <c:if test="${mem_id ne m.mem_id}">
+ 	  <div id="head-menu-accuse">
+ 	  <img class="head-menu-accuse-img" src="/jamong.com/resources/img/warring.png" onclick="accuseShow(2);"
+ 	  			title="신고하기" alt="신고하기" />
+ 	  </div>
+ 	 </c:if>
+ 	</c:if>
+ 	<%-- 책info 페이지에 필요한 버튼 --%>
+ 	<c:if test="${book_cover ne null}">
+ 	 <c:if test="${mem_id eq m.mem_id}">
+   	  <div id="head-menu-readpage">
+ 	   <a href="/jamong.com/book_edit/@${mem_id}/${book_no}" id="head-menu-book-edit">
+ 	    <img class="head-menu-book-edit-img" src="/jamong.com/resources/img/settings_n.png">
+ 	    <span>책수정</span>
+ 	   </a>
+ 	  </div>
+ 	 </c:if>
  	</c:if>
  	</div>
  	
@@ -149,6 +168,9 @@
    <%-- category --%>
     <div id="head-page-category-wrap">
      <div id="head-page-category-frame">
+      <div id="head-page-category-title">
+       <strong>Category</strong>
+      </div>
       <ul id="head-page-category-list">
 	   <%-- category 내용들어오는곳 : getJSON 처리 --%>
 	  </ul>

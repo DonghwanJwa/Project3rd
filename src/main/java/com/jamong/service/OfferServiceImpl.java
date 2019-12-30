@@ -1,5 +1,6 @@
 package com.jamong.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,9 @@ public class OfferServiceImpl implements OfferService {
 	
 	@Transactional
 	@Override
-	public void offer_send(OfferVO ov) {
-		this.offerDao.offer_send(ov);
-		this.feedDao.addOfferFeed(ov);
+	public void offer_send(HashMap<String, Object> om) {
+		this.offerDao.offer_send(om);
+		this.feedDao.addOfferFeed(om);
 	}
 
 	@Override

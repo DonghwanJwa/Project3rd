@@ -27,7 +27,7 @@
        <img id="book_info_intro_like_img" src="/jamong.com/resources/img/heart.png"/>
       </button>
      </div>
-     <strong id="book_info_intro_title">브런치북 소개</strong>
+     <strong id="book_info_intro_title">자몽 책 소개</strong>
      <p id="book_info_intro_cont">
      	${book_preface}
      </p>
@@ -35,7 +35,7 @@
    </div>
    
    <div id="book_info_author" class="book_info_about_div">
-    <a id="book_info_author_wrap" href="./profile">
+    <a id="book_info_author_wrap" href="/jamong.com/@${mem_id}">
      <div id="book_info_author_head">
      
      </div>

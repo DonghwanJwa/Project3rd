@@ -15,6 +15,7 @@ aut_state NUMBER(38) DEFAULT 0,    -- 처리결과
 aut_update DATE                    -- 처리날짜
 );
 DROP TABLE author;
+delete author table ;
 
 -- 시퀀스 생성
 CREATE SEQUENCE aut_no_seq

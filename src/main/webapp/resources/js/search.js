@@ -48,7 +48,7 @@ $(window).scroll(function(){
 							}
 						str +=	 '<div class="post_cont_catbook">'
 							+	  '<a href="/jamong.com/category/'+this.cat_name+'" class="post_cont_cat">'+this.cat_name+'</a>'
-							if(this.book_no != null){
+							if(this.book_no != 0){
 								str += '<span class="post_cont_book">Book</span>'
 							}
 						str += '</div>'  

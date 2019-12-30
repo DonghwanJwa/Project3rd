@@ -221,12 +221,6 @@ body a {
 	margin: 0 10px;
 }
 
-.accuse_page_open img {
-	width: 20px;
-    height: 20px;
-    vertical-align: text-bottom;
-}
-
 .author_button_wrap a:hover {
 	text-decoration:underline;
 	color:pink;
@@ -308,6 +302,9 @@ body a {
 	cursor:pointer;
 }
 .comment_del{
+	cursor:pointer;
+}
+.comment_accuse{
 	cursor:pointer;
 }
 .comment_menu{
@@ -473,6 +470,9 @@ body a {
 }
 #read_list img {
 	object-fit:cover;
+	width: 250px;
+    height: 100px;
+}
 }
 
 

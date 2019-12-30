@@ -49,23 +49,23 @@
  </association>
 </resultMap>
 
-	<insert id="off_send">
+	<insert id="off_send" parameterType="java.util.HashMap">
 		INSERT INTO offer
 		VALUES (off_no_seq.nextval, 
-			   #{off_id},
-			   #{off_nickname},
-			   #{off_email}, 
-			   #{off_domain}, 
-			   #{off_phone1}, 
-			   #{off_phone2}, 
-			   #{off_phone3}, 
+			   #{ov.off_id},
+			   #{ov.off_nickname},
+			   #{ov.off_email}, 
+			   #{ov.off_domain}, 
+			   #{ov.off_phone1}, 
+			   #{ov.off_phone2}, 
+			   #{ov.off_phone3}, 
 			   sysdate, 
-			   #{off_item}, 
-			   #{off_cont}, 
-			   #{off_file1},
-			   #{off_file2},
-			   #{off_file3},
-			   #{mem_no})
+			   #{ov.off_item}, 
+			   #{ov.off_cont}, 
+			   #{ov.off_file1},
+			   #{ov.off_file2},
+			   #{ov.off_file3},
+			   #{ov.mem_no})
 	</insert>
 	
 	<select id="off_count" resultType="int">

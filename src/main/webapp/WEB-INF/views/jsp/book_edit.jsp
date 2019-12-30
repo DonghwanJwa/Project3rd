@@ -31,7 +31,7 @@
    <!-- 책 소개 -->
    <div id="book_create_intro" class="book_create_about_div">
     <div id="book_create_intro_inner">
-     <strong id="book_create_intro_title">브런치북 소개</strong>
+     <strong id="book_create_intro_title">자몽 책 소개</strong>
      <p id="book_create_intro_cont" contenteditable="true">${bk.book_preface}</p>
      <textarea name="book_preface" id="book_intro_cont" style="display:none;"></textarea>
     </div>

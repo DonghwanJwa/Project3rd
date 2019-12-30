@@ -145,7 +145,7 @@
 		<%-- 작가 프로필 --%>
 		<div id="author_profile">
 			<%-- 프로필사진, 이름 --%>
-			<a href="/jamong.com/@${bo.memberVO.mem_id}"><img class="author_img" src=/jamong.com/resources/img/a.jpg width="90" height="90" alt="글쓴이 프로필사진"/></a>
+			<a href="/jamong.com/@${bo.memberVO.mem_id}"><img class="author_img" src="${bo.memberVO.profile_photo}" width="90" height="90" alt="글쓴이 프로필사진"/></a>
 			<a href="/jamong.com/@${bo.memberVO.mem_id}"><span><strong>${bo.memberVO.mem_nickname}</strong></span></a>
 			
 			<%-- 작가 키워드 --%>
@@ -173,8 +173,7 @@
 			<%-- 구독/제안 버튼부 --%>
 			<div class="author_button_wrap">
 				<a href="#" class="subscribe">구독하기</a>
-				<a href="/jamong.com/offer_author" class="offer">제안하기</a>
-				<a class="accuse_page_open" onclick="accuseShow(2);" title="신고하기"><img src="/jamong.com/resources/img/warring.png" /></a>
+				<a href="/jamong.com/offer_author/@${bo.memberVO.mem_id}" class="offer">제안하기</a>
 			</div>
 		</div>
 		
@@ -202,7 +201,7 @@
 					</c:if>
 					·
 					</c:if>
-					<a class="comment_accuse" >신고하기</a>
+					<a class="comment_accuse" onclick="accuseShow(3);">신고하기</a>
 					</span>
 					<div class="comment_cont">${r.rep_cont}</div>
 				</div>
@@ -269,7 +268,7 @@
 			<div class="list">
 				<p style="font-weight:bold;">${blist.bo_title}</p>
 				<span id="read_list_date">${blist.bo_date}</span>
-				<img src="${blist.bo_thumbnail}" width="250" height="100">
+				<img src="${blist.bo_thumbnail}">
 			</div>
 			</a>
 		 </c:forEach>

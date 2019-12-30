@@ -131,15 +131,15 @@
    	</select>
    	
    	<update id="accept_author" parameterType="java.util.HashMap">
-   		UPDATE author set aut_state=1, aut_update=sysdate where aut_no=#{am.aut_no}
+   		UPDATE author set aut_state=1, aut_update=sysdate where aut_no=#{a.aut_no}
    	</update>
 
    	<update id="reject_author" parameterType="java.util.HashMap">
-   		UPDATE author set aut_state=2, aut_update=sysdate where aut_no=#{am.aut_no}
+   		UPDATE author set aut_state=2, aut_update=sysdate where aut_no=#{a.aut_no}
    	</update>
    	
    	<update id="edit_author" parameterType="java.util.HashMap">
-   		UPDATE member set mem_author=1 where mem_no=#{am.mem_no}
+   		UPDATE member set mem_author=1 where mem_no=#{a.mem_no}
    	</update>
 
 </mapper>

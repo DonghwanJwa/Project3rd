@@ -112,15 +112,9 @@ public class AuthorController {
 		a.setAut_url1(aut_url1);
 		a.setAut_url2(aut_url2);
 		a.setAut_url3(aut_url3);
-		if(fileName1 != null) {
-			a.setAut_file1(aut_file1);
-		}
-		if(fileName2 != null) {
-			a.setAut_file2(aut_file2);
-		}
-		if(aut_file3 != null) {
-			a.setAut_file3(aut_file3);
-		}
+		a.setAut_file1(aut_file1);
+		a.setAut_file2(aut_file2);
+		a.setAut_file3(aut_file3);
 		
 		this.authorService.sendAuthor(a);
 		

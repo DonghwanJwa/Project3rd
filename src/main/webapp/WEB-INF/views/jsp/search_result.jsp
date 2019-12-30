@@ -79,7 +79,7 @@
 	       >
 	        <div class="post_cont_catbook">
 	         <a href="/jamong.com/category/${board.cat_name}" class="post_cont_cat">${board.cat_name}</a>
-	         <c:if test="${board.book_no ne null}">
+	         <c:if test="${board.book_no ne 0}">
 	          <span class="post_cont_book">Book</span>
 	         </c:if>
 	        </div>
@@ -120,7 +120,7 @@
 		
 	  <%-- 검색 결과 내용 --%>
 	  <div id="search_result_work_main">
-	  <c:if test="${empty boardList}">
+	  <c:if test="${empty bookList}">
 	  <div style="height:35px;"></div>
 		<div class="search_result_none">
 		 <span>검색 결과가 없습니다.</span>
@@ -144,6 +144,7 @@
 	        <span>Jamong Book</span>
 	       </div>
 	      </div>
+	      <span class="work_cont_inner_line"></span>
 	     </div>
 	    </a>
 	   </c:forEach>
@@ -182,7 +183,7 @@
 	
 	   <div class="author_cont">
 	   
-	   <c:if test="${empty boardList}">
+	   <c:if test="${empty memberList}">
 		<div class="search_result_none">
 		 <span>검색 결과가 없습니다.</span>
 		</div>	    

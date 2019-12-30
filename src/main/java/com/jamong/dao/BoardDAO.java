@@ -30,7 +30,7 @@ public interface BoardDAO {
 	List<BoardVO> getUserBoardCatArticle(String cat_name);
 	void updateBookNo(HashMap<String, Object> bm);
 	List<BoardVO> getBKList(int book_no);
-	int newArticleNum(Object object);
+	BoardVO newArticleNum(Object object);
 	List<BoardVO> bookInfoCont(HashMap<String, Object> binfo);
 	List<BoardVO> profileScroll(HashMap<Object, Object> scroll);
 	List<BoardVO> bkEditList(HashMap<String, Object> be);
