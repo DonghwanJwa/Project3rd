@@ -145,7 +145,8 @@
  </update>
  
  <select id="profileList" resultMap="boardMap">
-SELECT m.mem_no,
+ <![CDATA[
+ SELECT m.mem_no,
     	m.mem_id, 
     	m.mem_author, 
     	m.profile_photo, 
@@ -171,7 +172,9 @@ SELECT m.mem_no,
     FROM member m
     INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
  	ON m.mem_no = b.mem_no
-    AND m.mem_no = #{mem_no}
+    WHERE m.mem_no = #{mem_no}
+    AND  rowNum <= 10
+ ]]>
 </select>
  
  <select id="index_article" resultMap="boardMap">
@@ -318,15 +321,7 @@ SELECT m.mem_no,
  ]]>
  </select>
  
-  <select id="cat_board" resultMap="boardMap">
-  SELECT *
-  FROM board b,member m
-  WHERE b.mem_no=m.mem_no
-  AND b.cat_name=#{cat_name}
-  ORDER BY b.bo_no DESC
- </select>
-
-<select id="profileScroll" resultMap="boardMap">
+ <select id="profileScroll"  resultMap="boardMap">
 <![CDATA[
  SELECT m.mem_no,
     	m.mem_id, 
@@ -354,7 +349,17 @@ SELECT m.mem_no,
     FROM member m
     INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
  	ON m.mem_no = b.mem_no
-    WHERE m.mem_no = #{mem_no} AND b.bo_no >= #{bo_no} - 10
+    WHERE m.mem_no = #{mem_no}
+    AND b.bo_no >= #{bo_no} - 10
 ]]>
 </select>
+ 
+  <select id="cat_board" resultMap="boardMap">
+  SELECT *
+  FROM board b,member m
+  WHERE b.mem_no=m.mem_no
+  AND b.cat_name=#{cat_name}
+  ORDER BY b.bo_no DESC
+ </select>
+
 </mapper>

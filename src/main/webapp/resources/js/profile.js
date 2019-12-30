@@ -110,42 +110,43 @@ $(window).on("beforeunload",function(){
 $(window).scroll(function(){
 	/* 스크롤 다운 중 */
 	//현재 스크롤의 top 좌표가 > (게시글을 불러온 화면 높이 - 윈도우 창의 높이) 되는 순간
-	//현재 스크롤의 위치가 보이는 위치보가 클때
+	//현재 스크롤의 위치가 보이는 위치보다 클때
 	if($(window).scrollTop() >= ($(document).height() - $(window).height())){
 		var article = $(".scrolling:last").attr("data-no");
 		var para = article.split("/");
-		
+		console.log(article);
 		//ajax를 이용하여 현재 로딩 된 게시글의 마지막 bo_no를 서버로 보내어 그 다음 10개의 게시물 데이터를 받아온다.
 		$.ajax({
 			type : "post",
 			url : "profile_scroll",
-			dataType : "json",
+			dataType : 'json',
 			data : {//서버로 보낼 데이터
-			"mem_no" : para[0],
-			"bo_no" : para[1]
-			},success : function(data){// ajax가 성공했을 시 수행될 function
-			var str=""; 
-			// 받아온 데이터가 "" 이거나 null이 아닌경우 DOM handling?을 해준다
-			if(data != ""){
-				
-			// 서버로 부터 받아온 data가 list이므로 each문을 사용하여 접근	
-			$(data).each(function(){
-				
-				str += "<li class='profile_articles scrolling' data-no='" + article + ">"
-				+  "<div> <a href=./@'" + this.memberVO.mem_id + "/" + this.boardVO.bo_no + ">" 
-				+  "<strong class='pf_bo_title'>" + this.boardVO.bo_title + "</strong>"
-				+  "<div class='article_cont'> <em class=profile_font_size>'" + this.boardVO.bo_subtitle + "</em>"
-				+	this.boardVO.bo_cont + "</div> <div>"
-					if(this.boardVO.bo_thumnail == null){
-						str += "<img class='profile_post_img' alt='이미지 정보'	src='" + this.boardVO.bo_thumnail + "'/>"
-					}else{}
-				str += "</div> </a> </div> <span class='pf_post_date'>" + this.boardVO.bo_date + "</span></li>"
-			}); // each
-			} // if data
+				"mem_no" : para[0],
+				"bo_no" : para[1]
+			},
+			success : function(data){// ajax가 성공했을 시 수행될 function
+				var str=""; 
+				console.log(str);
+				// 받아온 데이터가 "" 이거나 null이 아닌경우 DOM handling?을 해준다
+				if(data != ""){
+				// 서버로 부터 받아온 data가 list이므로 each문을 사용하여 접근	
+					$(data).each(function(){
+						str += "<li class='profile_articles scrolling' data-no='" + article + ">"
+						+  "<div> <a href=./@'" + this.memberVO.mem_id + "/" + this.boardVO.bo_no + ">" 
+						+  "<strong class='pf_bo_title'>" + this.boardVO.bo_title + "</strong>"
+						+  "<div class='article_cont'> <em class=profile_font_size>'" + this.boardVO.bo_subtitle + "</em>"
+						+	this.boardVO.bo_cont + "</div> <div>"
+						if(this.boardVO.bo_thumnail != null){
+							str += "<img class='profile_post_img' alt='이미지 정보'	src='" + this.boardVO.bo_thumnail + "'/>"
+						}
+						str += "</div> </a> </div> <span class='pf_post_date'>" + this.boardVO.bo_date + "</span></li>"
+					}); // each
+					$(".scrolling:last").after(str);
+				} // if data
 			} // success
-			}); // ajax
-		} // if(scrollTop()
-}) // scroll
+		}); // ajax
+	} // if(scrollTop()
+}); // scroll
 				
 				
 
