@@ -194,6 +194,8 @@
          b.bo_cont,
          b.bo_thumbnail,
          b.bo_date,
+         b.cat_name,
+         b.book_no,
          m.mem_id,
          m.mem_nickname,
          m.mem_keyword
@@ -310,6 +312,8 @@
          b.bo_cont,
          b.bo_thumbnail,
          b.bo_date,
+         b.cat_name,
+         b.book_no,
          m.mem_id,
          m.mem_nickname,
          m.mem_keyword
@@ -363,6 +367,6 @@
  </select>
 
 <update id="book_null">
- UPDATE board b SET b.book_no = NULL WHERE b.book_no = #{book_no}
+ UPDATE board b SET b.book_no = NULL, b.book_order = NULL WHERE b.book_no = #{book_no}
 </update>
 </mapper>

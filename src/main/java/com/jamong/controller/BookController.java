@@ -64,31 +64,40 @@ public class BookController {
 	public ModelAndView user_book_create(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception { // 책 생성
 		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		session = request.getSession();
 
 		MemberVO m = (MemberVO) session.getAttribute("m");
-		String mem_id = m.getMem_id();
+		if (m != null) {
+			String mem_id = m.getMem_id();
 
-		List<BoardVO> bList = this.bookService.getBList(mem_id);
-		MemberVO member = this.bookService.getMember(mem_id);
-		String mem_nickname = member.getMem_nickname();
-		String profile_photo = member.getProfile_photo();
-		String profile_cont = member.getProfile_cont();
+			List<BoardVO> bList = this.bookService.getBList(mem_id);
+			MemberVO member = this.bookService.getMember(mem_id);
+			String mem_nickname = member.getMem_nickname();
+			String profile_photo = member.getProfile_photo();
+			String profile_cont = member.getProfile_cont();
 
-		// 메서드 전달인자가 세션에 있는 아이디 값이나, 맴버 번호 값을 가져와서 리스트 검색
-		for (int i = 0; i < bList.size(); i++) {
-			String bl = bList.get(i).getBo_title();
-			String bookList = bl.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			bList.get(i).setBo_title(bookList);
+			// 메서드 전달인자가 세션에 있는 아이디 값이나, 맴버 번호 값을 가져와서 리스트 검색
+			for (int i = 0; i < bList.size(); i++) {
+				String bl = bList.get(i).getBo_title();
+				String bookList = bl.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				bList.get(i).setBo_title(bookList);
+			}
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("mem_nickname", mem_nickname);
+			mv.addObject("profile_photo", profile_photo);
+			mv.addObject("profile_cont", profile_cont);
+			mv.addObject("bookList", bList);
+			mv.setViewName("jsp/book_create");
+
+			return mv;
+		}else {
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 페이지입니다!');");
+			out.println("location='/jamong.com/login/1';");
+			out.println("</script>");
 		}
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("mem_nickname", mem_nickname);
-		mv.addObject("profile_photo", profile_photo);
-		mv.addObject("profile_cont", profile_cont);
-		mv.addObject("bookList", bList);
-		mv.setViewName("jsp/book_create");
-
-		return mv;
+		return null;
 	}
 
 	@RequestMapping("book_create_ok")
@@ -172,24 +181,24 @@ public class BookController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		session = request.getSession();
-		MemberVO m =(MemberVO) session.getAttribute("m");
+		MemberVO m = (MemberVO) session.getAttribute("m");
 		int re = 0;
-		
+
 		int mem_state = m.getMem_state();
-		
-		if(mem_state == 9) {
+
+		if (mem_state == 9) {
 			this.bookService.bookDel(book_no);
 			re = 1;
-		}else {
+		} else {
 			out.println("<script> alert('제한된 접근입니다!'); location='/jamong.com/'; </script>");
 			re = 0;
 		}
-		
+
 		out.println("<script>");
 		out.println("alert('책이 폐간되었습니다!')");
 		out.println("location='/jamong.com/';");
 		out.println("</script>");
-		
+
 		return re;
 	}
 
@@ -222,8 +231,6 @@ public class BookController {
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		session = request.getSession();
-
-		MemberVO sesM = (MemberVO) session.getAttribute("m");
 
 		/* 준비물 */
 		// 책 커버, 책 제목, 책 소개, 작가 이름, 작가 프로필, 작가 소개, 책 번호에 해당하는 글 리스트(제목,내용,썸네일,작성 날짜,글쓴이
