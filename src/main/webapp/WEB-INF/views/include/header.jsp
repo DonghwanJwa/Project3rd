@@ -73,13 +73,13 @@
  	  </div>
  	 </c:if>
  	</c:if>
- 	<%-- 책info 페이지에 필요한 버튼 --%>
+ 	<%-- 책info 페이지에 필요한 버튼 / 삭제 / 관리자만--%>
  	<c:if test="${book_cover ne null}">
- 	 <c:if test="${mem_id eq m.mem_id}">
+ 	 <c:if test="${m.mem_state==9}">
    	  <div id="head-menu-readpage">
- 	   <a href="/jamong.com/book_edit/@${mem_id}/${book_no}" id="head-menu-book-edit">
+ 	   <a href="/jamong.com/book/del/${book_no}" id="head-menu-book-edit">
  	    <img class="head-menu-book-edit-img" src="/jamong.com/resources/img/settings_n.png">
- 	    <span>책수정</span>
+ 	    <span>책폐간</span>
  	   </a>
  	  </div>
  	 </c:if>

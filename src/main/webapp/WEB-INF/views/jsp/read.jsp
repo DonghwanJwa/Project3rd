@@ -118,7 +118,7 @@
   <!-- 글 내용 부분 --> 
   <div id="write_cont" style="height:auto;">
        <div id="write_wrap_bg" style="min-width:940px;">
-         <c:if test="${bo.memberVO.mem_no == m.mem_no}">
+         <c:if test="${(bo.memberVO.mem_no == m.mem_no && bo.book_no == 0) || m.mem_state==9}">
        		<div id="edit_del_wrap">
    				<i class="user_edit_btn" title="글 수정" onclick="location.href='/jamong.com/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
    				<i class="user_del_btn" title="글 삭제" onclick="ArticleRemove();"></i>
@@ -145,7 +145,7 @@
 		<%-- 작가 프로필 --%>
 		<div id="author_profile">
 			<%-- 프로필사진, 이름 --%>
-			<a href="/jamong.com/@${bo.memberVO.mem_id}"><img class="author_img" src="${bo.memberVO.profile_photo}" width="90" height="90" alt="글쓴이 프로필사진"/></a>
+			<a href="/jamong.com/@${bo.memberVO.mem_id}"><img class="author_img" src="${bo.memberVO.profile_photo}" alt="글쓴이 프로필사진"/></a>
 			<a href="/jamong.com/@${bo.memberVO.mem_id}"><span><strong>${bo.memberVO.mem_nickname}</strong></span></a>
 			
 			<%-- 작가 키워드 --%>
@@ -172,8 +172,12 @@
 			
 			<%-- 구독/제안 버튼부 --%>
 			<div class="author_button_wrap">
-				<a href="#" class="subscribe">구독하기</a>
-				<a href="/jamong.com/offer_author/@${bo.memberVO.mem_id}" class="offer">제안하기</a>
+				<c:if test="${bo.memberVO.mem_no ne m.mem_no}">
+					<a href="#" class="subscribe">구독하기</a>
+					<c:if test="${bo.memberVO.mem_author==1}">
+					 <a href="/jamong.com/offer_author/@${bo.memberVO.mem_id}" class="offer">제안하기</a>
+					</c:if>
+				</c:if>
 			</div>
 		</div>
 		
