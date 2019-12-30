@@ -585,6 +585,45 @@ public class BoardController {
 		return mv;
 	}
 
+	@PostMapping("profile_scroll")
+	@ResponseBody
+	public List<BoardVO> profileScrolling(
+			String bo_no, String mem_no,
+			HttpServletResponse response, 
+			HttpServletRequest request
+			) throws Exception{
+		System.out.println(bo_no);
+		System.out.println(mem_no);
+		int data_bo = Integer.parseInt(bo_no);
+		int data_mno = Integer.parseInt(mem_no);
+		
+		SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));	
+		HashMap<Object,Object> scroll = new HashMap<>();
+		scroll.put("bo_no", data_bo);
+		scroll.put("mem_no", data_mno);
+		List<BoardVO> pfData = this.boardService.profileScroll(scroll);
+		for(int i=0; i<scroll.size(); i++) {
+
+			Date mpListFormat_date = b_format.parse(pfData.get(i).getBo_date());
+			String mpListTitle_date = TIME_MAXIMUM.formatTimeString(mpListFormat_date);
+			pfData.get(i).setBo_date(mpListTitle_date);
+			
+			// 미리보여주는 글 태그 없앰 (제목)
+			String titleText = pfData.get(i).getBo_title();
+			String titleNomarText = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			pfData.get(i).setBo_title(titleNomarText);
+
+			//미리보여주는 글 태그 없앰 (내용)
+			String htmlText = pfData.get(i).getBo_cont();
+			String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			String oneSpace = nomalText.replaceAll("&nbsp; "," ");
+			pfData.get(i).setBo_cont(oneSpace);
+			System.out.println(pfData.get(i).getBo_no());
+		}
+		return pfData;
+	}
+	
 	@PostMapping("search_scroll")
 	@ResponseBody
 	public Object search_scroll(
@@ -637,23 +676,5 @@ public class BoardController {
 		}
 		return null;
 	} 
-	
-	@PostMapping("profile_scroll")
-	@ResponseBody
-	public List<BoardVO> profileScrolling(String bo_no, String mem_no) throws Exception{
-		int data_bo = Integer.parseInt(bo_no);
-		int data_mno = Integer.parseInt(mem_no);
-		
-		SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));	
-		HashMap<Object,Object> scroll = new HashMap<>();
-		scroll.put("bo_no", data_bo);
-		scroll.put("mem_no", data_mno);
-		List<BoardVO> pfData = this.boardService.profileScroll(scroll);
-		for(int i=0; i<scroll.size(); i++) {
-		
-		}
-				return null;
-	}
 	
 }
