@@ -17,7 +17,6 @@ body{
 	opacity: 0.8;
 	z-index: 10020;
 }
-
 #head-header_menubar{
 	display: flex;
 	height:60px;
@@ -646,7 +645,19 @@ body{
 #head-profile-menu .head-feed-button img{
 	width:20px;
 }
-
+#head-feed-count{
+	font-size: 10px;
+    position: absolute;
+    right: 165px;
+    text-align: center;
+    background-color: red;
+    color: white;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    border-radius: 50%;
+    top: 4px;
+}
 #head-profile-info-wrap{
 	width:200px;
 	height:150px;

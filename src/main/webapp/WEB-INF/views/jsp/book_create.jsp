@@ -7,7 +7,13 @@
 
 <div id="book_create_wrap">
  <div id="book_create_base">
+ <div id="book_create_announce">
+  <img id="book_create_anno_img" src="/jamong.com/resources/img/alert.png" alt="주의">
+  <div id="book_create_anno_cont">  
+  </div>
+ </div>
   <form method="post" action="book_create_ok" onsubmit="return createBookCheck();" enctype="multipart/form-data">
+
   
   <!-- 책 커버, 책 소개, 작가 정보 표시 -->
   <div id="book_create_info">

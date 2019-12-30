@@ -101,16 +101,17 @@
 			<ul>
 			<li>
 			<span class="my_info_dot"></span>
-			작성한 글, 책, 첨부파일 등 모든 정보가 삭제됩니다.</li>
+			작성하신 글,책,댓글은 삭제되지 않고 남게 되오니 탈퇴 전 미리 
+			</li>
+			<li>
+			<span style="display:inline-block; width:25px;"></span>확인하시기 바랍니다.
+			</li>
 			<li>
 			<span class="my_info_dot"></span>
 			자몽 프로필 및 연결된 SNS 정보 등이 모두 삭제됩니다.</li>
 			<li>
 			<span class="my_info_dot"></span>
 			현재 아이디로 자몽 주소를 다시 사용할 수 없습니다.</li>
-			<li>
-			<span class="my_info_dot"></span>
-			작성한 댓글은 삭제되지 않고 남게 되오니 탈퇴 전 미리 확인하시기 바랍니다.</li>
 			</ul>
 			<textarea name="drop_reason" id="my_info_leave_text_id" class="my_info_leave_text" rows="10" cols="60" placeholder="탈퇴사유를 적어주세요"></textarea>
 			<div class="check_label_div">

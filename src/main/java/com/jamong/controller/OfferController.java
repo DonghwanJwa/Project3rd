@@ -64,19 +64,26 @@ public class OfferController {
 
 			MemberVO author=this.memberService.author_info(mem_id); // 제안받는 작가 정보 검색
 			
-			ModelAndView mv=new ModelAndView();
-			
-			mv.addObject("author",author);
-			
-			mv.addObject("user_email",user_email);
-			mv.addObject("user_domain",user_domain);
-			mv.addObject("phone01",phone01);
-			mv.addObject("phone02",phone02);
-			mv.addObject("phone03",phone03);
-			
-			mv.setViewName("jsp/offer_author");
-			
-			return mv;
+			if(author.getMem_author() != 1) {
+				out.println("<script>");
+				out.println("alert('올바르지 않은 접근입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+				ModelAndView mv=new ModelAndView();
+				
+				mv.addObject("author",author);
+				
+				mv.addObject("user_email",user_email);
+				mv.addObject("user_domain",user_domain);
+				mv.addObject("phone01",phone01);
+				mv.addObject("phone02",phone02);
+				mv.addObject("phone03",phone03);
+				
+				mv.setViewName("jsp/offer_author");
+				
+				return mv;
+			}
 		}
 		
 		return null;
