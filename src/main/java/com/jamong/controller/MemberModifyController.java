@@ -46,15 +46,26 @@ public class MemberModifyController {
 	
 	@RequestMapping("my_info")
 	public ModelAndView myinfo(@ModelAttribute MemberVO vo,HttpSession session,
-			HttpServletRequest response,HttpServletRequest request) { // 로그인 페이지
+			HttpServletResponse response,HttpServletRequest request) throws Exception { // 로그인 페이지
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
 		ModelAndView view = new ModelAndView();
 		session = request.getSession();
-		MemberVO m = (MemberVO)session.getAttribute("m");
-		MemberVO vov = this.memberService.get(m.getMem_id());
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
-		view.addObject("vo", vov);
-		view.setViewName("jsp/my_info");
-		return view;
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 서비스입니다. 로그인 해주세요.');");
+			out.println("location='login/1';");
+			out.println("</script>");
+		}else {
+			MemberVO vov = this.memberService.get(adm_m.getMem_id());
+			view.addObject("vo", vov);
+			view.setViewName("jsp/my_info");
+			return view;
+			
+		}
+		return null;
 	}
 	
 	/* 내정보 페이지에서 카테고리 선택되어진것을 토글처리되어진 상태로 보여주기 위한 메서드
@@ -178,30 +189,49 @@ public class MemberModifyController {
 	
 	@RequestMapping("member_modify")
 	public ModelAndView user_member_modify(MemberVO vo,HttpSession session,
-			HttpServletRequest response,HttpServletRequest request) { // 로그인 페이지
+			HttpServletResponse response,HttpServletRequest request) throws Exception { // 로그인 페이지
 		ModelAndView view = new ModelAndView();
+		response.setContentType("text/html;charset=UTF-8");
 		session = request.getSession();
-		
-		MemberVO m = (MemberVO)session.getAttribute("m");
-		MemberVO vov = this.memberService.get(m.getMem_id());
-		
-		view.addObject("vo", vov);
-		view.setViewName("jsp/member_modify");
-		return view;
+		PrintWriter out = response.getWriter();
+		MemberVO session_m = (MemberVO)session.getAttribute("m");
+
+		if(session_m == null) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 서비스입니다. 로그인 해주세요.');");
+			out.println("location='login/1';");
+			out.println("</script>");
+		}else {
+			MemberVO vov = this.memberService.get(session_m.getMem_id());
+			view.addObject("vo", vov);
+			view.setViewName("jsp/member_modify");
+			return view;
+		}
+		return null;
 	}
 
 
 	@RequestMapping("pass_modify")
 	public ModelAndView user_pass_modify(MemberVO vo,HttpSession session,
-			HttpServletRequest response,HttpServletRequest request) {
+			HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelAndView view = new ModelAndView();
 		session = request.getSession();
-		MemberVO m = (MemberVO)session.getAttribute("m");
-		MemberVO vov = this.memberService.get(m.getMem_id());
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		MemberVO session_m = (MemberVO)session.getAttribute("m");
 		
+		if(session_m == null	) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 서비스입니다. 로그인 해주세요.');");
+			out.println("location='login/1';");
+			out.println("</script>");
+		}else {
+		MemberVO vov = this.memberService.get(session_m.getMem_id());
 		view.addObject("vo", vov);
 		view.setViewName("jsp/pass_modify");
 		return view;
+		}
+		return null;
 	}
 	
 	@RequestMapping("member_modify_ok") //회원정보수정

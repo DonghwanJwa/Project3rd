@@ -1,5 +1,7 @@
 package com.jamong.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,10 @@ public class RecommendServiceImpl implements RecommendService {
 	@Override
 	public RecommendVO getRecommendState(RecommendVO rvo) {
 		return this.recDao.getRecommendState(rvo);
+	}
+
+	@Override
+	public List<RecommendVO> getUserScrapBook(int mem_no) {
+		return this.recDao.getUserScrapBook(mem_no);
 	}
 }

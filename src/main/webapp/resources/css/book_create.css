@@ -30,6 +30,7 @@ a {
 #book_create_announce{
 	height:50px;
 	display:flex;
+	align-items: center;
 }
 
 #book_create_anno_img{

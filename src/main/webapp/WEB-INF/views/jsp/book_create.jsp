@@ -10,6 +10,7 @@
  <div id="book_create_announce">
   <img id="book_create_anno_img" src="/jamong.com/resources/img/alert.png" alt="주의">
   <div id="book_create_anno_cont">  
+  	자몽에서는 작가님들의 책임있는 출판활동을 권고하기 위하여 완성된 책에 대한 수정 삭제 기능이 없음을 안내드립니다.
   </div>
  </div>
   <form method="post" action="book_create_ok" onsubmit="return createBookCheck();" enctype="multipart/form-data">

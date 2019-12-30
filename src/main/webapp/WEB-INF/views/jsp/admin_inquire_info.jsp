@@ -13,7 +13,7 @@
  </div>
 </div>
 <div id="adm_inq_title"><h3 class="adm_inq_title">문의내용 열람</h3></div>
-<table class="adm_inq_table">
+<table border="1" class="adm_inq_table">
 
 	<tr>
 		<th align="center" style="width:110px; height:40px;">회원분류</th>
@@ -70,24 +70,33 @@
 	
    <form method="post" name="inq_file_form">
    <input type="hidden" name="no" value="${no}"/>
-	 <table class="adm_inq_file"> 
-	<c:if test="${empty i.inq_file1 && empty i.inq_file2 && empty i.inq_file3 && empty i.inq_file4}">
-	</c:if>
-	<c:if test="${!empty i.inq_file1 || !empty i.inq_file2 || !empty i.inq_file3 || !empty i.inq_file4}">
+	 <table border="1" class="adm_inq_file"> 
 	  <tr>
 		<th colspan="6" id="adm_inq_filename" align="center" style="height:50px;">
 			첨부파일
 		</th>
 	 </tr>
+	
 	 <tr>
 	  <td colspan="6" align="left" id="adm_inq_field" style="height:175px;">
-		<div><h3 style="display:inline-block;">첨부파일 1:</h3><input type="submit" class="inq_file_down" value="${fileName1}" onclick="javascript:inq_file_form.action='inquireFile1';" /></div>
-		<div><h3 style="display:inline-block;">첨부파일 2:</h3><input type="submit" class="inq_file_down" value="${fileName2}" onclick="javascript:inq_file_form.action='inquireFile2';"/></div>
-		<div><h3 style="display:inline-block;">첨부파일 3:</h3><input type="submit" class="inq_file_down" value="${fileName3}" onclick="javascript:inq_file_form.action='inquireFile3';"/></div>
-		<div><h3 style="display:inline-block;">첨부파일 4:</h3><input type="submit" class="inq_file_down" value="${fileName4}" onclick="javascript:inq_file_form.action='inquireFile4';"/></div>
-	 </td>	
-	</tr>
+	   <c:if test="${fileName1 eq 'null' && fileName2 eq 'null' && fileName3 eq 'null' && fileName4 eq 'null'}">
+			<h3>첨부된 파일이 없습니다.</h3>
+       </c:if>
+			
+		<c:if test="${fileName1 ne 'null'}"> 
+			<div><h3 style="display:inline-block;">첨부파일 1:</h3><input type="submit" class="inq_file_down" value="${fileName1}" onclick="javascript:inq_file_form.action='inquireFile1';" /></div>
+		</c:if>	
+		<c:if test="${fileName2 ne 'null'}">	
+			<div><h3 style="display:inline-block;">첨부파일 2:</h3><input type="submit" class="inq_file_down" value="${fileName2}" onclick="javascript:inq_file_form.action='inquireFile2';"/></div>
+		</c:if>	
+		<c:if test="${fileName3 ne 'null'}">	
+			<div><h3 style="display:inline-block;">첨부파일 3:</h3><input type="submit" class="inq_file_down" value="${fileName3}" onclick="javascript:inq_file_form.action='inquireFile3';"/></div>
 		</c:if>
+		<c:if test="${fileName4 ne 'null'}">	
+			<div><h3 style="display:inline-block;">첨부파일 4:</h3><input type="submit" class="inq_file_down" value="${fileName4}" onclick="javascript:inq_file_form.action='inquireFile4';"/></div>
+	   	</c:if>
+	   </td>	
+	</tr>
 	</table>		
   </form>	
 
@@ -95,7 +104,7 @@
 
 <c:if test="${i.mem_no != 0}">
   <h3>회원정보</h3>
-	<table class="inq_adm_table2">
+	<table border="1" class="inq_adm_table2">
 		<tr>
 			<th align="center" style="width:140px; height:40px;">ID</th>
 			 <td align="center" style="width:150px;">
@@ -151,12 +160,12 @@
 		</tr>
 		
 			<tr>
-		<th colspan="6" id="adm_inq_replyname" align="center" style="height:50px;">
+		<th colspan="6" id="adm_inq_replyname" align="center" style="height:50px; border:1px solid grey;">
 			답변내용
 		</th>
 	</tr>
 	<tr>
-		<td colspan="6" id="adm_inq_field" style="height:175px;">
+		<td colspan="6" id="adm_inq_field" style="height:175px; border:1px solid grey;">
 			<p>${i.inq_reply}</p>
 		</td>
 	</tr>

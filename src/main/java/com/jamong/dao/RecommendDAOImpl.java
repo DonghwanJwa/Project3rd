@@ -1,5 +1,7 @@
 package com.jamong.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,6 +28,11 @@ public class RecommendDAOImpl implements RecommendDAO {
 	@Override
 	public RecommendVO getRecommendState(RecommendVO rvo) {
 		return this.sqlSession.selectOne("rec_select",rvo);
+	}
+
+	@Override
+	public List<RecommendVO> getUserScrapBook(int mem_no) {
+		return this.sqlSession.selectList("ScrapBook",mem_no);
 	}
 
 }

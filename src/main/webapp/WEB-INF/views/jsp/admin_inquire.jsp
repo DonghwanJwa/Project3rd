@@ -125,8 +125,6 @@
      			<a href="admin_inquire?page=${page+1}&search_field=${search_field}&search_field_item=${search_field_item}&search_field=${search_field}&search_field_handling=${search_field_handling}&search_field=${search_field}&search_field_info=${search_field_info}">다음 ></a>
      		</c:if>
      	</c:if>
-     	</td>
-     </tr>
      	<%--검색후 페이징 끝 --%>
      
   </table>

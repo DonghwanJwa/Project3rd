@@ -122,8 +122,8 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public List<MemberVO> categoryMember() {
-		return this.sqlSession.selectList("cat_member");
+	public List<MemberVO> categoryMember(String cat_name) {
+		return this.sqlSession.selectList("cat_member",cat_name);
 	}
 	@Override
 	public MemberVO getAccusee(int ac_member) {

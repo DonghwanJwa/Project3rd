@@ -13,6 +13,7 @@ import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.OfferVO;
 import com.jamong.domain.SubscribeVO;
+import com.jamong.domain.SympathyVO;
 
 @Repository
 public class FeedDAOImpl implements FeedDAO {
@@ -69,4 +70,5 @@ public class FeedDAOImpl implements FeedDAO {
 	public int feedCount(int sMem_no) {
 		return this.sqlSession.selectOne("FeedCount",sMem_no);
 	}
+
 }

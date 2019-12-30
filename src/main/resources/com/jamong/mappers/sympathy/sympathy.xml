@@ -4,6 +4,59 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="sympathy">
+ <resultMap type="sym" id="sympathyMap">
+  <id column="sym_no" property="sym_no" />
+  <result column="bo_no" property="bo_no" />
+  <result column="mem_no" property="mem_no" />
+  <result column="sym_date" property="sym_date" />
+ 
+ <association javaType="b" property="boardVO">
+  <id column="bo_no" property="bo_no" />
+  <result column="bo_title" property="bo_title" />
+  <result column="bo_subtitle" property="bo_subtitle" />
+  <result column="bo_cont" property="bo_cont" />
+  <result column="bo_thumbnail" property="bo_thumbnail" />
+  <result column="bo_hit" property="bo_hit" />
+  <result column="bo_date" property="bo_date" />
+  <result column="bo_editdate" property="bo_editdate" />
+  <result column="bo_lock" property="bo_lock" />
+  <result column="bo_type" property="bo_type" />
+  <result column="bo_like" property="bo_like" />
+  <result column="book_order" property="book_order" />
+  <result column="cat_name" property="cat_name" />
+  <result column="mem_no" property="mem_no" />
+  <result column="book_no" property="book_no" />
+  <result column="bo_titlespace" property="bo_titlespace" />
+  <result column="bo_color" property="bo_color" />
+ </association>
+  
+ <association javaType="m" property="memberVO">
+  <id column="mem_no" property="mem_no" />
+  <result column="mem_id" property="mem_id" />
+  <result column="mem_name" property="mem_name" />
+  <result column="mem_birth1" property="mem_birth1" />
+  <result column="mem_birth2" property="mem_birth2" />
+  <result column="mem_birth3" property="mem_birth3" />
+  <result column="email_id" property="email_id" />
+  <result column="email_domain" property="email_domain" />
+  <result column="mem_phone01" property="mem_phone01" />
+  <result column="mem_phone02" property="mem_phone02" />
+  <result column="mem_phone03" property="mem_phone03" />
+  <result column="mem_date" property="mem_date" />
+  <result column="mem_author" property="mem_author" />
+  <result column="mem_state" property="mem_state" />
+  <result column="profile_photo" property="profile_photo" />
+  <result column="profile_cont" property="profile_cont" />
+  <result column="mem_state" property="mem_state" />
+  <result column="mem_nickname" property="mem_nickname" />
+  <result column="mem_keyword" property="mem_keyword" />
+  <result column="mem_fav1" property="mem_fav1" />
+  <result column="mem_fav2" property="mem_fav2" />
+  <result column="mem_fav3" property="mem_fav3" />
+  <result column="mem_portfolio" property="mem_portfolio" />
+ </association>
+ </resultMap>
+
 
 <!-- 공감 추가 -->
 <insert id="sym_insert" parameterType="b">
@@ -25,5 +78,27 @@
 <delete id="sym_mem_update">
  delete from sympathy where mem_no=#{mem_no}
 </delete>
+
+<delete id="ArticleDeleteSym">
+ DELETE FROM sympathy WHERE bo_no=#{bo_no}
+</delete>
+
+<select id="ScrapArticle" resultMap="sympathyMap">
+ SELECT 
+      m.mem_no,
+      m.mem_nickname,
+      m.mem_id,
+      b.bo_no,
+      b.bo_title,
+      b.bo_thumbnail,
+      s.sym_date
+FROM sympathy s
+INNER JOIN board b
+ON s.bo_no = b.bo_no
+INNER JOIN member m
+ON b.mem_no = m.mem_no
+WHERE s.mem_no = #{mem_no}
+ORDER BY s.sym_date DESC
+</select>
 
 </mapper>
