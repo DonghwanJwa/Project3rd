@@ -186,6 +186,9 @@ body a {
 .author_img {
 	border-radius:100px;
 	float:right;
+	width:90px;
+	height:90px;
+	object-fit: cover;
 }
 
 .author_keyword {

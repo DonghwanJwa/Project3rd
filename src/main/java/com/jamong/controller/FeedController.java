@@ -37,8 +37,12 @@ public class FeedController {
 		session = request.getSession();
 		
 		MemberVO feedM = (MemberVO)session.getAttribute("m");
-		if(feedM != null) {
-			
+		if(feedM == null) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 페이지입니다!');");
+			out.println("location='login/1';");
+			out.println("</script>");
+		}else {
 			List<FeedVO> fList = this.feedService.getUserFeedList(feedM.getMem_no());
 			SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			
@@ -51,13 +55,7 @@ public class FeedController {
 			mv.addObject("fList",fList);
 			mv.setViewName("jsp/feed");
 			return mv;
-		}else {
-			out.println("<script>");
-			out.println("alert('로그인이 필요한 페이지입니다!');");
-			out.println("location='login/1';");
-			out.println("</script>");
 		}
-		
 		return null;
 	}
 	
