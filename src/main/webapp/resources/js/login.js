@@ -8,6 +8,9 @@ var regExpPw = RegExp(/^(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()\-+=]{1,50})(?=.*[a-zA-
 var getCheck= RegExp(/^[a-zA-Z0-9]{6,12}$/); 			//아이디
 var getyear= RegExp(/^[0-9]{4}$/); 						//년
 var getmonth_date= RegExp(/^[0-9]{1,2}$/); 				//월,일
+var tel_first = RegExp(/^[0-9]{3}$/); 					//폰번호 3
+var tel_second = RegExp(/^[0-9]{3,4}$/); 				//폰번호 3,4
+var tel_third = RegExp(/^[0-9]{4}$/); 					//폰번호 4
 var getName= RegExp(/^[가-힣]+$/);						//이름
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
 
@@ -265,20 +268,35 @@ $(document).ready(function(){
 			$("#join_membership_email_datalist").val("").focus();
 			return false;
 		}
-	
+
+		//핸드폰 정규식
 		if ($.trim($('#join_membership_tel1').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			$("#join_membership_tel1").focus();
 			return false;
 		}
+		if(!tel_first.test($('#join_membership_tel1').val())){
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		}
+		
 		if ($.trim($('#join_membership_tel2').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			$("#join_membership_tel2").focus();
 			return false;
 		}
+		if (!tel_second.test($('#join_membership_tel2').val())) {
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		}
+		
 		if ($.trim($('#join_membership_tel3').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			$("#join_membership_tel3").focus();
+			return false;
+		}
+		if (!tel_third.test($('#join_membership_tel3').val())) {
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
 			return false;
 		}
 		
@@ -708,12 +726,20 @@ $(document).ready(function(){
 		if ($.trim($('#join_membership_tel1').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
+		if(!tel_first.test($('#join_membership_tel1').val())){
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		 }
 		}
 	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_tel1').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
+		if(!tel_first.test($('#join_membership_tel1').val())){
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		 }
 		$('#join_membership_error_tel').text('');
 		if (key.keyCode == 13) {
 			$('#join_membership_tel2').focus();
@@ -726,9 +752,17 @@ $(document).ready(function(){
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
+		if (!tel_second.test($('#join_membership_tel2').val())) {
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		}
 	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_tel2').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
+			return false;
+		}
+		if (!tel_second.test($('#join_membership_tel2').val())) {
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
 			return false;
 		}
 		$('#join_membership_error_tel').text('');
@@ -743,9 +777,17 @@ $(document).ready(function(){
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
+		if (!third.test($('#join_membership_tel3').val())) {
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		}
 	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_tel3').val())=="") {
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
+			return false;
+		}
+		if (!third.test($('#join_membership_tel3').val())) {
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
 			return false;
 		}
 		$('#join_membership_error_tel').text('');
