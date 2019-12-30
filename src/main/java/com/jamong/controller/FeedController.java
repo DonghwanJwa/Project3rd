@@ -18,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.FeedVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.RecommendVO;
 import com.jamong.domain.SympathyVO;
 import com.jamong.service.FeedService;
+import com.jamong.service.RecommendService;
 import com.jamong.service.SympathyService;
 
 import timeChanger.TIME_MAXIMUM;
@@ -31,6 +33,8 @@ public class FeedController {
 	private FeedService feedService;
 	@Autowired
 	private SympathyService symService;
+	@Autowired
+	private RecommendService recService;
 
 	@RequestMapping("feed")
 	public ModelAndView user_Feed(
@@ -49,6 +53,8 @@ public class FeedController {
 			out.println("</script>");
 		}else {
 			List<FeedVO> fList = this.feedService.getUserFeedList(feedM.getMem_no());
+			List<SympathyVO> aList = this.symService.getUserScrapArticle(feedM.getMem_no());
+			List<RecommendVO> bList = this.recService.getUserScrapBook(feedM.getMem_no());
 			SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 			for(int i=0;i<fList.size();i++) {
@@ -58,6 +64,8 @@ public class FeedController {
 			}
 
 			mv.addObject("fList",fList);
+			mv.addObject("aList",aList);
+			mv.addObject("bList",bList);
 			mv.setViewName("jsp/feed");
 			return mv;
 		}

@@ -1,5 +1,7 @@
 package com.jamong.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -31,6 +33,10 @@ public class SympathyDAOImpl implements SympathyDAO{
 	@Override
 	public SympathyVO getSympathyState(SympathyVO svo) {	
 		return this.sqlSession.selectOne("sym_select",svo);
+	}
+	@Override
+	public List<SympathyVO> getUserScrapArticle(int mem_no) {
+		return this.sqlSession.selectList("ScrapArticle",mem_no);
 	}
 
 

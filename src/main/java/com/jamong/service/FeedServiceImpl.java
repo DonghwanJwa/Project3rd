@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.jamong.dao.FeedDAO;
 import com.jamong.domain.FeedVO;
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.SympathyVO;
 
 @Service
 public class FeedServiceImpl implements FeedService {
@@ -29,4 +30,5 @@ public class FeedServiceImpl implements FeedService {
 	public int feedCount(int sMem_no) {
 		return this.feedDao.feedCount(sMem_no);
 	}
+
 }
