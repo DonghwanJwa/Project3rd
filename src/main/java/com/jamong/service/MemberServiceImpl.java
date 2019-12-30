@@ -127,8 +127,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> categoryMember() {
-		return this.memberDao.categoryMember();
+	public List<MemberVO> categoryMember(String cat_name) {
+		return this.memberDao.categoryMember(cat_name);
 	}
 	
 	@Override

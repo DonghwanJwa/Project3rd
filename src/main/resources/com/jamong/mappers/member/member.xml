@@ -201,7 +201,8 @@
  
  <select id="cat_member" resultType="m">
  <![CDATA[
-  SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) WHERE rowNum <= 4
+  SELECT * FROM (SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM)
+  WHERE mem_fav1 = #{cat_name} OR mem_fav2 = #{cat_name} OR mem_fav3 = #{cat_name}) WHERE rowNum <= 4
   ]]> 
  </select>
 

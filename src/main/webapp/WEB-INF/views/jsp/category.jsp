@@ -17,7 +17,7 @@
        		<div id=cat_writer_face1>
         		<img class="cat_face_img" src="/jamong.com/resources/img/cat_writer_face1.jpg" alt="작가이미지" />
        		</div>
-       		<div class=cat_writer_name><strong>${cat.mem_id}</strong></div>
+       		<div class=cat_writer_name><strong>${cat.mem_nickname}</strong></div>
        		<div id=cat_write_count>글:25개</div>
        		<div id=cat_sub_count>구독자:121만</div>
       		 <div class=cat_writer_keyword_div>
