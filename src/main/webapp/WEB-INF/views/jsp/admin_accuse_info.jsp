@@ -13,14 +13,14 @@
  </div>
 </div>
 <div id="adm_ac_title"><h3 class="adm_ac_title">신고내용 열람</h3></div>
-<table class="adm_ac_table">
+<table border="1" class="adm_ac_table">
 	
 	<tr>
 		<th align="center" style="width:110px; height:40px;">신고분류</th>
 		<td align="center" style="width:120px;">
 			<c:if test="${a.ac_item == 1}"><font color="red">회원신고</font></c:if>
 			<c:if test="${a.ac_item == 2}"><font color="blue">게시물신고</font></c:if>
-			<c:if test="${a.ac_item == 2}"><font color="green">댓글신고</font></c:if>
+			<c:if test="${a.ac_item == 3}"><font color="green">댓글신고</font></c:if>
 		</td>
 		
 		<th align="center" style="width:150px;">처리상태</th>
@@ -76,7 +76,7 @@
 	
 <h3 style="padding-left:20px;">신고자 정보</h3>	
 <c:if test="${a.mem_no != 0}">
-	<table class="ac_adm_table2">
+	<table border="1" class="ac_adm_table2">
 		<tr>
 			<th align="center" style="width:140px; height:40px;">ID</th>
 			 <td align="center" style="width:150px;">
@@ -111,7 +111,7 @@
 
 <h3 style="padding-left:20px;">피신고인 정보</h3>
 <c:if test="${a.ac_member != 0}">
-	<table class="ac_adm_table3">
+	<table border="1" class="ac_adm_table3">
 		<tr>
 			<th align="center" style="width:140px; height:40px;">ID</th>
 			 <td align="center" style="width:150px;">
@@ -163,13 +163,13 @@
 			<td align="right" colspan="5" class="ac_adm_retime">처리날짜 : ${a.ac_replydate}</td>
 		</tr>
 		
-			<tr>
-		<th colspan="6" id="adm_ac_replyname" align="center" style="height:50px;">
+			<tr style="border:1px solid grey;">
+		<th colspan="6" id="adm_ac_replyname" align="center" style="height:50px; border:1px solid grey;">
 			답변내용
 		</th>
 	</tr>
 	<tr>
-		<td colspan="6" id="adm_ac_field" style="height:175px;">
+		<td colspan="6" id="adm_ac_field" style="height:175px; border:1px solid grey;">
 			<p>${a.ac_reply}</p>
 		</td>
 	</tr>

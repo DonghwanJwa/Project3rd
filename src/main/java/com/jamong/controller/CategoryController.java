@@ -32,7 +32,7 @@ public class CategoryController {
 	public ModelAndView user_category(@PathVariable String cat_name) {
 		ModelAndView mv=new ModelAndView();
 		
-		List<MemberVO> mlist=this.memberService.categoryMember();
+		List<MemberVO> mlist=this.memberService.categoryMember(cat_name);
 		List<BoardVO> blist=this.boardService.categoryArticle(cat_name);
 		
 		for (int i = 0; i < blist.size(); i++) {

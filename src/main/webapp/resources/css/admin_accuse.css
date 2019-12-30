@@ -1,10 +1,17 @@
 @charset "UTF-8";
 /* admin_accuse.jsp */
-.admin_ac_title{
-	margin-left: 50px;
+.admin_acc_title{
+	margin-left: 55px;
 }
 .adm_accuse_count{
 	padding-bottom:15px;
+}
+.admin_acc_main{
+	display: flex;
+    justify-content: center;
+    min-height: 400px;
+    width: 800px;
+    margin: 0 auto;
 }
 .admin_ac_main{
 	display: flex;
@@ -14,8 +21,8 @@
     margin: 0 auto;
 }
 #adm_accuse_table{
-	margin:auto;
 	width:800px;
+	font-size:12px;
 }
 #ac_cont_td{
    overflow: hidden;
@@ -44,7 +51,6 @@
 }
 .ac_adm_tr{
 	cursor:pointer;
-	font-size:14px;
 }
 .ac_adm_tr:hover{
 	background-color:aliceblue;

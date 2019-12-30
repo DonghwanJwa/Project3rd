@@ -29,7 +29,7 @@ public interface MemberService {
 	List<MemberVO> getSearchMember(HashMap<String, Object> searchMap);
 	List<MemberVO> getSearchScrollMember(HashMap<String, Object> searchMap);
 	List<MemberVO> recomAuthor();
-	List<MemberVO> categoryMember();
+	List<MemberVO> categoryMember(String cat_name);
 	MemberVO getAccusee(int ac_member);
 	void updateProfile(MemberVO mp);
 	MemberVO author_info(String mem_id);

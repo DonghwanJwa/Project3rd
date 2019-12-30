@@ -110,19 +110,31 @@ color:transparent;
 	background-color:white;
 	border:0px;
 }
+#adm_ac_field{
+	vertical-align: top;
+	text-align: left;
+	padding: 0px 15px;
+	font-size:14px;
+}
 table{
+	width:900px;
 	border-collapse: separate;
     border-spacing: 1px;
     text-align: center;
     line-height: 1.5;
     margin: auto auto;
+    border-collapse: collapse;
+    border-color: gray;
+    font-size:14px;
 }
 table th{
 	font-weight: bold;
-	color:#fff;
-	background:#ce4869;
+	color:black;
+	background:aliceblue;
 }
 table td{
-	border-bottom: 1px solid #ccc;
-    background: #eee;
+    background: white;
+}
+.adm_inq_main{
+	font-size:14px;
 }
