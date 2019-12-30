@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,7 +41,7 @@ public class FeedController {
 	public ModelAndView user_Feed(
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		response.setContentType("text/html;charset=UTF-8");
+		response.setContentType("text/html;charset=	UTF-8");
 		PrintWriter out = response.getWriter();
 		session = request.getSession();
 
@@ -55,8 +56,22 @@ public class FeedController {
 			List<FeedVO> fList = this.feedService.getUserFeedList(feedM.getMem_no());
 			List<SympathyVO> aList = this.symService.getUserScrapArticle(feedM.getMem_no());
 			List<RecommendVO> bList = this.recService.getUserScrapBook(feedM.getMem_no());
-			SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+			SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat title_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
+
+			// 날짜 출력방식 변경
+			for(int i=0;i<aList.size();i++) {
+				Date format_date = org_format.parse(aList.get(i).getSym_date());
+				String title_date = title_format.format(format_date);
+				aList.get(i).setSym_date(title_date);
+			}
+			for(int i=0;i<bList.size();i++) {
+				Date format_date = org_format.parse(bList.get(i).getRec_date());
+				String title_date = title_format.format(format_date);
+				bList.get(i).setRec_date(title_date);
+			}
+			
 			for(int i=0;i<fList.size();i++) {
 				Date repListFormat_date = org_format.parse(fList.get(i).getFeed_date());
 				String repList_date = TIME_MAXIMUM.formatTimeString(repListFormat_date);

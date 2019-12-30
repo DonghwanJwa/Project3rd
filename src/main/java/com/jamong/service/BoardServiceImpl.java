@@ -129,6 +129,7 @@ public class BoardServiceImpl implements BoardService {
 	public void articleDelete(int bo_no) {
 		this.boardDao.articleDelete(bo_no);
 		this.replyDao.replyDelete(bo_no);
+		this.sympathyDao.sympathyArticleDelete(bo_no);
 	}
 
 	@Override

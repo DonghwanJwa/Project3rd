@@ -13,5 +13,6 @@ public interface SympathyDAO {
 	void sympathyDownDelete(BoardVO bo);
 	SympathyVO getSympathyState(SympathyVO svo);
 	List<SympathyVO> getUserScrapArticle(int mem_no);
+	void sympathyArticleDelete(int bo_no);
 
 }
