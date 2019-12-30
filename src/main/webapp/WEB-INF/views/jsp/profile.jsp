@@ -35,7 +35,6 @@
 						<div id="profile_cont">
 							<div class="pf_subscriber">
 								<img id="profile_img" alt="이미지" src="${mp.profile_photo}">
-								<!--  <input class="?" date-image="???">-->
 							</div>
 							<strong id="profile_name">${mp.mem_nickname}</strong>
 							<br>
@@ -57,7 +56,8 @@
 										 </c:if>
 									</c:if>
 									<c:if test="${mp.mem_author == 1 && m.mem_id != mp.mem_id}">
-                                        <a href="/jamong.com/offer_author/@${mp.mem_id}" class="profile_button_type">제안하기</a>									</c:if>
+                                        <a href="/jamong.com/offer_author/@${mp.mem_id}" class="profile_button_type">제안하기</a>
+                                        </c:if>
 									<c:if test="${m.mem_id != mp.mem_id }">
 										<span>
 										 	<c:if test="${sub.sub_member != m.mem_no || empty sub}">
@@ -138,7 +138,7 @@
 											<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
 											<strong class="pf_bo_title">${fp.bo_title}</strong> 
 											<div class="article_cont">
-											<em class="profile_font_size">${fp.bo_subtitle}</em>
+											<%-- <em class="profile_font_size">${fp.bo_subtitle}</em>--%>
 											${fp.bo_cont}
 											</div>
 											<div>
@@ -165,11 +165,14 @@
 											<c:if test="${fp.bo_lock == 1 }"> <%-- 1 = 공개 --%>
 												<img class="private unlock" data-no="${fp.bo_no}" data-disabled="false" />
 											</c:if>
+
 											<a class="profile_article_main" href="/jamong.com/@${mp.mem_id}/${fp.book_no}"></a> 
 											<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
-											<strong class="pf_bo_title">${fp.bo_title}</strong> <em
-												class="article_cont"
-											>${fp.bo_cont}</em>
+											<strong class="pf_bo_title">${fp.bo_title}</strong> 
+                      <div class="article_cont">
+											<%-- <em class="profile_font_size">${fp.bo_subtitle}</em>--%>
+											${fp.bo_cont}
+                      </div>
 											</a>
 											<div>
 												<c:set var="img" value="${fp.bo_thumbnail}" />

@@ -333,10 +333,17 @@ public class MemberController {
 				String mpListTitle_date = TIME_MAXIMUM.formatTimeString(mpListFormat_date);
 				mplist.get(i).setBo_date(mpListTitle_date);
 				
+				// 미리보여주는 글 태그 없앰 (제목)
+				String titleText = mplist.get(i).getBo_title();
+				String titleNomarText = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				mplist.get(i).setBo_title(titleNomarText);
+
+				//미리보여주는 글 태그 없앰 (내용)
 				String htmlText = mplist.get(i).getBo_cont();
 				String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 				String oneSpace = nomalText.replaceAll("&nbsp; "," ");
 				mplist.get(i).setBo_cont(oneSpace);
+
 			}
 			
 			List<BoardVO> myBookList = this.bookService.myBookList(mp.getMem_no());
@@ -351,11 +358,11 @@ public class MemberController {
 				myBookList.get(i).getBookVO().setBook_name(bookOneSpace);
 			}
 
-			mv.addObject("mplist",mplist);
 			mv.addObject("mp",mp);
 			mv.addObject("sub",sub);
 			mv.addObject("subCount",subCount);
 			mv.addObject("mybook",myBookList);
+			mv.addObject("mplist",mplist);
 			return mv;
 	}//user_profile() => 유저 프로필 창
 

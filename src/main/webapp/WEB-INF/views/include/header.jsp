@@ -234,6 +234,7 @@
       <div id="head-profile-menu">
        <a href="/jamong.com/feed" class="head-feed-button">
         <img src="/jamong.com/resources/img/feed.png" alt="피드"/>
+        <span id="head-feed-count"></span>
        </a>
       </div>
       <a href="/jamong.com/@${m.mem_id}" id="head-profile-info-wrap">

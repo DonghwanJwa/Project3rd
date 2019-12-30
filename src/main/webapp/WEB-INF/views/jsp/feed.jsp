@@ -288,47 +288,35 @@
    </c:if>
    </c:if>
    </c:forEach>
+   </div>
  
   <div id="feed_scrap_wrap" class="feed_main_cont_wrap"><%-- 피드 스크랩 --%><%-- display:none --%>
    
-   <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="/jamong.com/read">
-     <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="/jamong.com/resources/img/a.jpg" alt="그림 안나옴">
-     </div>
-     <div class="feed_scrap_cont">
-      <div class="feed_scrap_type">Article</div>
-      <div class="feed_scrap_title">여기에 Article 제목이 출력됩니다.</div>
-      <div class="feed_scrap_author">by 누구누구</div>
-      <div class="feed_scrap_date">2019.10.30</div>
-     </div>
-    </a>
-    <div class="feed_scrap_like_outer">
-     <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
-     </button>
-    </div>
+   <div id="feed_scrap_toggle">
+    <button type="button" id="feed_btn_article" class="feed_toggle_btn" style="background-color:">내가 공감한 글</button>
+    <button type="button" id="feed_btn_book" class="feed_toggle_btn">내가 추천한 책</button>
    </div>
    
-   <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="/jamong.com/book">
-     <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="/jamong.com/resources/img/book_img.jpg"/>
+   <div id="feed_scrap_article">
+    <div class="feed_scrap_inner">
+     <a class="feed_scrap_link" href="/jamong.com/read">
+      <div class="feed_scrap_img_container">
+       <img class="feed_scrap_img" src="/jamong.com/resources/img/a.jpg" alt="그림 안나옴">
+      </div>
+      <div class="feed_scrap_cont">
+       <div class="feed_scrap_type">Article</div>
+       <div class="feed_scrap_title">여기에 Article 제목이 출력됩니다.</div>
+       <div class="feed_scrap_author">by 누구누구</div>
+       <div class="feed_scrap_date">2019.10.30</div>
+      </div>
+     </a>
+     <div class="feed_scrap_like_outer">
+      <button class="feed_scrap_like_inner">
+       <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
+      </button>
      </div>
-     <div class="feed_scrap_cont">
-      <div class="feed_scrap_type">Book</div>
-      <div class="feed_scrap_title">여기에 Book 제목이 출력됩니다.</div>
-      <div class="feed_scrap_author">by 늬구늬구</div>
-      <div class="feed_scrap_date">2019.11.01</div>
-     </div>
-    </a>
-    <div class="feed_scrap_like_outer">
-     <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
-     </button>
     </div>
-   </div>
- 
+
    <div class="feed_scrap_inner">
     <a class="feed_scrap_link" href="/jamong.com/read">
      <div class="feed_scrap_img_container">
@@ -346,26 +334,30 @@
       <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
      </button>
     </div>
+   </div>
    </div>
    
-   <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="/jamong.com/read">
-     <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="/jamong.com/resources/img/a.jpg" alt="그림 안나옴">
+   <div id="feed_scrap_book" style="display:none;">   
+    <div class="feed_scrap_inner">
+     <a class="feed_scrap_link" href="/jamong.com/book">
+      <div class="feed_scrap_img_container">
+       <img class="feed_scrap_img" src="/jamong.com/resources/img/book_img.jpg"/>
+      </div>
+      <div class="feed_scrap_cont">
+       <div class="feed_scrap_type">Book</div>
+       <div class="feed_scrap_title">여기에 Book 제목이 출력됩니다.</div>
+       <div class="feed_scrap_author">by 늬구늬구</div>
+       <div class="feed_scrap_date">2019.11.01</div>
+      </div>
+     </a>
+     <div class="feed_scrap_like_outer">
+      <button class="feed_scrap_like_inner">
+       <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
+      </button>
      </div>
-     <div class="feed_scrap_cont">
-      <div class="feed_scrap_type">Article</div>
-      <div class="feed_scrap_title">여기에 Article 제목이 출력됩니다.</div>
-      <div class="feed_scrap_author">by 누구누구</div>
-      <div class="feed_scrap_date">2019.10.30</div>
-     </div>
-    </a>
-    <div class="feed_scrap_like_outer">
-     <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
-     </button>
-    </div>
+    </div> 
    </div>
+   
  
   </div><%-- feed_scrap_wrap --%>
  </div><%-- feed_main_wrap --%>
