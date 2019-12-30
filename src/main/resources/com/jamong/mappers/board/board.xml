@@ -362,4 +362,7 @@
   ORDER BY b.bo_no DESC
  </select>
 
+<update id="book_null">
+ UPDATE board b SET b.book_no = NULL WHERE b.book_no = #{book_no}
+</update>
 </mapper>

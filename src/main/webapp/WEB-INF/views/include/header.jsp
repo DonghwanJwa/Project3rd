@@ -74,7 +74,7 @@
  	 </c:if>
  	</c:if>
  	<%-- 책info 페이지에 필요한 버튼 --%>
- 	<c:if test="${book_cover ne null}">
+ 	<c:if test="${book_name ne null}">
  	 <c:if test="${mem_id eq m.mem_id}">
    	  <div id="head-menu-readpage">
  	   <a href="/jamong.com/book_edit/@${mem_id}/${book_no}" id="head-menu-book-edit">

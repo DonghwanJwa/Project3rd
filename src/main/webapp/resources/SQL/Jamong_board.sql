@@ -13,7 +13,7 @@ bo_editdate DATE, 					-- 수정일
 bo_lock NUMBER(38),          		-- 공개여부 / 비공개 0, 공개 1, 차단2, 삭제 3
 bo_type NUMBER(38),                 -- 글타입 설정 / 칼럼 0, 에세이 1
 bo_like NUMBER(38) DEFAULT 0, 		-- 추천 (좋아요)
-book_order NUMBER(38), 				-- 책으로 묶었을때 순서
+book_order NUMBER(38) DEFAULT 1, 				-- 책으로 묶었을때 순서
 cat_name VARCHAR2(50),			-- 카테고리 테이블 시퀀스 참조
 mem_no NUMBER(38),					-- 회원 테이블 시퀀스 참조
 book_no NUMBER(38) 				    -- 책 테이블 시퀀스 참조
@@ -29,6 +29,8 @@ NOCACHE;
 DROP TABLE board
 DROP SEQUENCE bo_no_seq;
 
+ALTER TABLE board DROP COLUMN book_order;
+ALTER TABLE board ADD book_order NUMBER(38) DEFAULT 1;
 ALTER TABLE board DROP COLUMN bo_subtitle;
 ALTER TABLE board ADD bo_subtitle VARCHAR2(100);
 ALTER TABLE board 

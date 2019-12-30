@@ -3,10 +3,11 @@
 <script src="/jamong.com/resources/js/book_create.js"></script>
 <script src="/jamong.com/resources/js/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/book_create.css">
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/write.css">
 
 <div id="book_create_wrap">
  <div id="book_create_base">
-  <form method="post" action="book_create_ok" enctype="multipart/form-data">
+  <form method="post" action="book_create_ok" onsubmit="return createBookCheck();" enctype="multipart/form-data">
   
   <!-- 책 커버, 책 소개, 작가 정보 표시 -->
   <div id="book_create_info">
@@ -92,14 +93,6 @@
           ${b.bo_title}
          </c:if>
         </div>
-<!--         <div class="post__list_cont_text"> -->
-<%--         <c:if test="${fn:length(b.bo_cont)>100}"> --%>
-<%--           ${fn:substring(b.bo_cont,0,100)}... --%>
-<%--          </c:if> --%>
-<%--          <c:if test="${fn:length(b.bo_cont)<100}"> --%>
-<%--           ${b.bo_cont} --%>
-<%--          </c:if> --%>
-<!--         </div> -->
        </div>
       </label>
      </li>
@@ -124,11 +117,31 @@
   </div>
   
   <div id="create_book">
-   <input type="submit" class="btn" onclick="return createCheck()" value="만들기">
+   <input type="button" class="btn" onclick="return createCheck()" value="만들기">
    <input type="reset" class="btn" value="취소">
   </div>
   </div>
 
+<!-- 저장팝업 -->
+  <div class="write_choice_wrap">
+   <div class="write_save_panel">  
+    <div id="join_membership_category-wrap">
+     <div id="join_membership_category-frame">
+      <h3 class="join_membership_category-anoun">
+       글 카테고리를 선택해주세요!
+      </h3>
+      <ul id="join_membership_category-list">
+      <%-- 카테고리 AJAX처리 --%>
+      </ul>
+     </div>
+    </div>
+   <div class="write_choice_btn_panel">
+    <input type="submit" class="write_choice_save_btn" value="확인" />
+    <input type="button" class="write_choice_close_btn" value="취소" />
+   </div>
+  </div>
+ </div>
+ 
   </form>
  </div>
 </div>

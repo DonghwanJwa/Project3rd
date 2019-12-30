@@ -141,12 +141,17 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List<BoardVO> bkEditList(HashMap<String, Object> be) {
-		return this.sqlSession.selectOne("bkEditList", be);
+		return this.sqlSession.selectList("bkEditList", be);
 	}
 
   @Override
   public List<BoardVO> profileScroll(HashMap<Object, Object> scroll) {
 	return this.sqlSession.selectList("profileScroll",scroll);
 	}
+
+  	@Override
+  	public void bookNull(int book_no) {
+  		this.sqlSession.update("book_null",book_no);
+  	}
 
 }

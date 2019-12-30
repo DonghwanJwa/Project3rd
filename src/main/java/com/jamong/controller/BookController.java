@@ -109,6 +109,7 @@ public class BookController {
 		// MultipartRequest로부터 각 파라미터 값 저장
 		String book_name = multi.getParameter("book_name");
 		String book_preface = multi.getParameter("book_preface");
+		String cat_name = multi.getParameter("cat_name");
 
 		MemberVO m = (MemberVO) session.getAttribute("m");
 		int mem_no = m.getMem_no();
@@ -144,6 +145,7 @@ public class BookController {
 
 		b.setBook_name(book_name);
 		b.setBook_preface(book_preface);
+		b.setCat_name(cat_name);
 		b.setMem_no(mem_no);
 
 		String[] val = multi.getParameterValues("book_create");// 스트링 배열로 선택 된 book_create의 value 값인 bo_no를 가져옴
@@ -157,48 +159,38 @@ public class BookController {
 		this.bookService.createBook(bm);
 
 		out.println("<script>");
-		out.println("alert('책이 등록되었습니다!')");
+		out.println("alert('책이 출간되었습니다!')");
 		out.println("location='/jamong.com/';");
 		out.println("</script>");
 
 		return null;
 	}
 
-	@RequestMapping("book_edit/{book_no}")
-	public ModelAndView user_book_edit(@PathVariable int book_no, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session,BookVO bk) throws Exception { // 책 수정
-		ModelAndView mv = new ModelAndView();
+	@RequestMapping("book/del/{book_no}")
+	public int user_book_del(@PathVariable int book_no, HttpServletRequest request, HttpServletResponse response,
+			HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		session = request.getSession();
+		MemberVO m =(MemberVO) session.getAttribute("m");
+		int re = 0;
 		
-		MemberVO m = (MemberVO)session.getAttribute("m");
-		int mem_no = m.getMem_no();
-		String mem_id = m.getMem_id();
-		MemberVO member = this.bookService.getMember(mem_id);
-		String mem_nickname = member.getMem_nickname();
-		String profile_photo = member.getProfile_photo();
-		String profile_cont = member.getProfile_cont();
-		List<BoardVO> bList = this.bookService.getBList(mem_id);
+		int mem_state = m.getMem_state();
 		
-		//책 번호와 세션 아이디를 기준으로 보더를 검색해서 책 번호가 있는건 오른쪽 없는건 왼쪽에 표시.
-		//필요한 거:책 커버,책 소개
-		HashMap<String, Object> be = new HashMap<>();
-		be.put("bk",bk);
-		be.put("book_no", book_no);
-		be.put("mem_no", mem_no);
+		if(mem_state == 9) {
+			this.bookService.bookDel(book_no);
+			re = 1;
+		}else {
+			out.println("<script> alert('제한된 접근입니다!'); location='/jamong.com/'; </script>");
+			re = 0;
+		}
 		
-		List<BoardVO> bkList = this.bookService.bkEditList(be);
-		bk = this.bookService.getBook(book_no);
+		out.println("<script>");
+		out.println("alert('책이 폐간되었습니다!')");
+		out.println("location='/jamong.com/';");
+		out.println("</script>");
 		
-		mv.addObject("bk",bk);
-		mv.addObject("mem_nickname",mem_nickname);
-		mv.addObject("profile_photo",profile_photo);
-		mv.addObject("profile_cont",profile_cont);
-		mv.addObject("bList",bList);
-		mv.addObject("bkList",bkList);
-		mv.setViewName("jsp/book_edit");
-
-		return mv;
+		return re;
 	}
 
 	@PostMapping("book_inner_info")
@@ -257,12 +249,12 @@ public class BookController {
 			String orgcontlistRe = orgcontlist.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			bkifcntlist.get(i).setBo_cont(orgcontlistRe);
 		}
-		
+
 		model.addAttribute("book_name", book_name);
 		model.addAttribute("book_cover", book_cover);
 		model.addAttribute("book_preface", book_prefaceRe);
-		model.addAttribute("mem_id",mem_id);
-		model.addAttribute("book_no",book_no);
+		model.addAttribute("mem_id", mem_id);
+		model.addAttribute("book_no", book_no);
 		model.addAttribute("mem_nickname", mem_nickname);
 		model.addAttribute("profile_photo", profile_photo);
 		model.addAttribute("profile_cont", profile_cont);
@@ -292,9 +284,9 @@ public class BookController {
 	public int recommend_down(@PathVariable int book_no, HttpServletRequest request, HttpSession session) {
 		session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("m");
-		
+
 		int result = -1;
-		if(m!=null) {
+		if (m != null) {
 			BookVO bk = new BookVO();
 			bk.setBook_no(book_no);
 			bk.setMem_no(m.getMem_no());

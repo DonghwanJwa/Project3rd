@@ -6,7 +6,7 @@
 
 <div id="book_create_wrap">
  <div id="book_create_base">
-  <form method="post" action="book_create_ok" enctype="multipart/form-data">
+  <form method="post" onsubmit="return editAllCheck();" enctype="multipart/form-data">
   
   <!-- 책 커버, 책 소개, 작가 정보 표시 -->
   <div id="book_create_info">
@@ -16,7 +16,7 @@
    <input id="book_create_cover_imgFile" type="file" name="book_cover" accept="image/*" title="책 커버 이미지"/>
     <div id="book_create_cover_text">
      <div id="book_create_cover_head">
-      <strong id="book_create_cover_title" class="title" contenteditable="true"></strong>
+      <strong id="book_create_cover_title" class="title" contenteditable="true">${bk.book_name}</strong>
       <textarea name="book_name" id="book_title" style="display:none;"></textarea>
       <span id="book_create_cover_author">
        <i>by&nbsp;</i>${mem_nickname}
@@ -125,7 +125,7 @@
   </div>
   
   <div id="create_book">
-   <input type="submit" class="btn" onclick="return createCheck()" value="만들기">
+   <input type="submit" class="btn" onclick="return editCheck()" value="만들기">
    <input type="reset" class="btn" value="취소">
   </div>
   </div>

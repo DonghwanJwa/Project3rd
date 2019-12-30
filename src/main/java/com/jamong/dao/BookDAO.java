@@ -37,5 +37,7 @@ public interface BookDAO {
 
 	void recommendDownUpdate(BookVO bk);
 
+	void bookDel(int book_no);
+
 
 }
