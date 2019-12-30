@@ -70,8 +70,10 @@ public class BoardController {
 		BoardVO nextVo = this.boardService.getNextBoardCont(bm);
 		BoardVO preVo = this.boardService.getPreBoardCont(bm);
 		bo = this.boardService.getUserBoardCont(bo_no);
-		if(bo.getBo_lock()==0) {
-			if(readM==null) {
+
+		/** lock 0 비공개, 1 공개, 2 정지, 3 삭제 **/
+		if(bo.getBo_lock() == 0) { // 비공개 글일때 ( lock가 0일때 )
+			if(readM == null) {
 					out.println("<script>");
 					out.println("alert('비공개 처리된 글 입니다.');");
 					out.println("history.back();");
@@ -85,9 +87,15 @@ public class BoardController {
 					out.println("</script>");
 					return null;
 				}
-			}
-			
+			}			
+		}else if(bo.getBo_lock() == 3) { // 삭제된 게시글일때 ( lock가 3일떄 )
+			out.println("<script>");
+			out.println("alert('삭제된 게시글 입니다.');");
+			out.println("history.back();");
+			out.println("</script>");
+			return null;
 		}
+		
 		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		int replyCount = this.repService.getUserReplyCount(bo_no);
 		List<BoardVO> catList = this.boardService.getUserBoardCatArticle(bo.getCat_name());
@@ -512,11 +520,11 @@ public class BoardController {
 		ResponseEntity<List<BoardVO>> entity = null;
 
 		try {
-			entity = new ResponseEntity<>(this.boardService.bestList(),HttpStatus.OK);					
+			entity = new ResponseEntity<>(this.boardService.bestList(),HttpStatus.OK);		
 		}catch(Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}		
+		}
 		return entity;
 	}
 

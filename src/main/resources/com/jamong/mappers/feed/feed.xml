@@ -43,6 +43,7 @@
  </association>
  </resultMap>
  
+ <!-- 게시글 작성 피드 -->
  <insert id="ArticleFeed" parameterType="java.util.HashMap">
   <foreach collection="fList" item="fList" separator=";" open="DECLARE BEGIN" close="; END;">
    INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_bo_no,feed_mem_no,feed_date,mem_no)
@@ -50,26 +51,31 @@
   </foreach>
  </insert>
  
+ <!-- 댓글 작성 피드 -->
  <insert id="CommentFeed" parameterType="java.util.HashMap">
   INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_bo_no,feed_mem_no,feed_date,mem_no)
   VALUES(feed_no_seq.nextval,2,#{mem_id},#{rvo.bo_no},#{rvo.mem_no},sysdate,#{mem_no})
  </insert>
 
+ <!-- 답글작성 피드 -->
  <insert id="ReplyFeed" parameterType="java.util.HashMap">
   INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_bo_no,feed_mem_no,feed_date,mem_no)
   VALUES(feed_no_seq.nextval,3,#{mem_id},#{rvo.bo_no},#{rvo.mem_no},sysdate,#{mem_no})
  </insert>
  
+ <!-- 문의하기 답변 메일전송 피드 -->
  <insert id="InquireFeed" parameterType="java.util.HashMap">
   INSERT INTO feed (feed_no,feed_mem_no,feed_step,feed_date,mem_no)
   VALUES (feed_no_seq.nextval,#{sMem_no},4,sysdate,#{inq.mem_no})
  </insert> 
 
+ <!-- 작가신청 답변메일 전송 피드 -->
  <insert id="AuthorFeed" parameterType="java.util.HashMap">
   INSERT INTO feed (feed_no,feed_mem_no,feed_step,feed_date,mem_no)
   VALUES (feed_no_seq.nextval,#{sMem_no},5,sysdate,#{a.mem_no})
  </insert>
  
+ <!-- 책 발간 피드 -->
  <insert id="BookFeed" parameterType="java.util.HashMap">
   <foreach collection="fList" item="fList" separator=";" open="DECLARE BEGIN" close="; END;">
    INSERT INTO feed (feed_no,feed_step,feed_mem_id,feed_book_no,feed_mem_no,feed_date,mem_no)
@@ -77,6 +83,7 @@
   </foreach>
  </insert>
  
+ <!-- 제안 메일 전송 피드 -->
  <insert id="OfferFeed" parameterType="java.util.HashMap">
   INSERT INTO feed (feed_no,feed_mem_no,feed_step,feed_date,mem_no)
   VALUES (feed_no_seq.nextval,#{sMem_no},7,sysdate,#{ov.mem_no})
@@ -91,7 +98,12 @@
   ORDER BY feed_date DESC
  </select>
  
+ <!-- 피드 읽기 업데이트 -->
  <update id="FeedStateUp">
   UPDATE feed SET feed_state = 1 WHERE feed_no = #{feed_no}
  </update>
+ 
+ <select id="FeedCount" resultType="int">
+  SELECT count(feed_no) FROM feed WHERE feed_state = 0 AND mem_no = #{mem_no}
+ </select>
 </mapper>

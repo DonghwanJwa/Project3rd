@@ -26,6 +26,16 @@ $(document).ready(function(){
 			$(event.target).css('background-color','rgb(255, 255, 255)');			
 		}
 	});
+	
+	$("#feed_btn_article").click(function(){
+		$("#feed_scrap_article").css("display","block");
+		$("#feed_scrap_book").css("display","none");
+	});
+	
+	$("#feed_btn_book").click(function(){
+		$("#feed_scrap_article").css("display","none");
+		$("#feed_scrap_book").css("display","block");
+	});
 });
 
 function FeedReading(e){

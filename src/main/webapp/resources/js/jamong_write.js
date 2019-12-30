@@ -89,7 +89,7 @@ $(document).ready(function(){
 			$("#write_title_background_icon").attr('id','write_title_background_bg');
 			$("#write_title_center_icon").attr('id','write_title_center_bg');
 			$("#write_title_bottom_icon").attr('id','write_title_bottom_bg');
-			colorIndex=1;
+			colorIndex=2;
 		}
 	});
 	$("#write_title_background_bg").click(function(){ // 배경색 지정 버튼 클릭 시
@@ -123,74 +123,74 @@ $(document).ready(function(){
 			$("#write_title_background_icon").attr('id','write_title_background_bg');
 			$("#write_title_center_icon").attr('id','write_title_center_bg');
 			$("#write_title_bottom_icon").attr('id','write_title_bottom_bg');
-			colorIndex=1;
+			colorIndex=2;
 		}
 	});
 	$(".write_title_next_btn").click(function(){ // 배경색 지정 다음버튼 클릭 시
-		if(colorIndex==0){
+		if(colorIndex==1){
 			$("#write_title_area_bg").css('background-color','#fbb9ba');
 			$("#bo_color").val("#FBB9BA");
-		}else if(colorIndex==1){
+		}else if(colorIndex==2){
 			$("#write_title_area_bg").css('background-color','#fdd3ba');
 			$("#bo_color").val("#FDD3BA");
-		}else if(colorIndex==2){
+		}else if(colorIndex==3){
 			$("#write_title_area_bg").css('background-color','#fcecb9');
 			$("#bo_color").val("#FCECB9");
-		}else if(colorIndex==3){
+		}else if(colorIndex==4){
 			$("#write_title_area_bg").css('background-color','#c2fdb9');
 			$("#bo_color").val("#C2FDB9");
-		}else if(colorIndex==4){
+		}else if(colorIndex==5){
 			$("#write_title_area_bg").css('background-color','#b9e8fc');
 			$("#bo_color").val("#B9E8FC");
-		}else if(colorIndex==5){
+		}else if(colorIndex==6){
 			$("#write_title_area_bg").css('background-color','#c1bafd');
 			$("#bo_color").val("#C1BAFD");
-		}else if(colorIndex==6){
+		}else if(colorIndex==7){
 			$("#write_title_area_bg").css('background-color','#eebbfe');
 			$("#bo_color").val("#EEBBFE");
-		}else if(colorIndex==7){
+		}else if(colorIndex==8){
 			$("#write_title_area_bg").css('background-color','#cccccc');
 			$("#bo_color").val("#CCCCCC");
-		}else if(colorIndex==8){
+		}else if(colorIndex==9){
 			$("#write_title_area_bg").css('background-color','#bf9b74');
 			$("#bo_color").val("#BF9B74");
-		}else if(colorIndex==9){
+		}else if(colorIndex==10){
 			$("#write_title_area_bg").css('background-color','#89b589');
 			$("#bo_color").val("#89B589");
-			colorIndex=0;
+			colorIndex=1;
 		}
 		colorIndex++;
 	});
 	$(".write_title_prev_btn").click(function(){ // 배경색 지정 이전버튼 클릭 시		
-		if(colorIndex==0){ 
+		if(colorIndex==1){ 
 			$("#write_title_area_bg").css('background-color','#fbb9ba');
 			$("#bo_color").val("#FBB9BA");
-			colorIndex=9;
-		}else if(colorIndex==1){
+			colorIndex=10;
+		}else if(colorIndex==2){
 			$("#write_title_area_bg").css('background-color','#fdd3ba');
 			$("#bo_color").val("#FDD3BA");
-		}else if(colorIndex==2){
+		}else if(colorIndex==3){
 			$("#write_title_area_bg").css('background-color','#fcecb9');
 			$("#bo_color").val("#FCECB9");
-		}else if(colorIndex==3){
+		}else if(colorIndex==4){
 			$("#write_title_area_bg").css('background-color','#c2fdb9');
 			$("#bo_color").val("#C2FDB9");
-		}else if(colorIndex==4){
+		}else if(colorIndex==5){
 			$("#write_title_area_bg").css('background-color','#b9e8fc');
 			$("#bo_color").val("#B9E8FC");
-		}else if(colorIndex==5){
+		}else if(colorIndex==6){
 			$("#write_title_area_bg").css('background-color','#c1bafd');
 			$("#bo_color").val("#C1BAFD");
-		}else if(colorIndex==6){
+		}else if(colorIndex==7){
 			$("#write_title_area_bg").css('background-color','#eebbfe');
 			$("#bo_color").val("#EEBBFE");
-		}else if(colorIndex==7){
+		}else if(colorIndex==8){
 			$("#write_title_area_bg").css('background-color','#cccccc');
 			$("#bo_color").val("#CCCCCC");
-		}else if(colorIndex==8){
+		}else if(colorIndex==9){
 			$("#write_title_area_bg").css('background-color','#bf9b74');
 			$("#bo_color").val("#BF9B74");
-		}else if(colorIndex==9){
+		}else if(colorIndex==10){
 			$("#write_title_area_bg").css('background-color','#89b589');
 			$("#bo_color").val("#89B589");
 		}

@@ -21,5 +21,6 @@ public interface FeedDAO {
 	void addAuthorFeed(HashMap<String, Object> am);
 	void addOfferFeed(HashMap<String, Object> om);
 	void addInquireFeed(HashMap<String, Object> im);
+	int feedCount(int sMem_no);
 
 }

@@ -64,4 +64,9 @@ public class FeedDAOImpl implements FeedDAO {
 	public void addInquireFeed(HashMap<String, Object> im) {
 		this.sqlSession.insert("InquireFeed",im);
 	}
+
+	@Override
+	public int feedCount(int sMem_no) {
+		return this.sqlSession.selectOne("FeedCount",sMem_no);
+	}
 }
