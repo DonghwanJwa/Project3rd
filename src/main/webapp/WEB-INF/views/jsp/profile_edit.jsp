@@ -37,12 +37,12 @@
 						<div>
 							<h3 class="">
 								<input type="hidden" id="profile_edit">
-								<label for="profile_editor" class="profile_edit_font">작가명</label>
+								<label for="profile_editor" class="profile_edit_font">닉네임</label>
 								<!--  for을 사용해서 라벨을 눌러도 텍스트 박스에 적용되도록 함(구조?) -->
 								<span></span>
 							</h3>
 							<input id="profile_editor" class="error_text"name="mem_nickname" placeholder="이름을 입력해주세요(30자 이내로)"	
-									maxlength="30" value="${mp.mem_nickname}"/>
+									maxlength="10" value="${mp.mem_nickname}"/>
 							<div id="profile_editor_error"></div>
 						</div>
 					</div>

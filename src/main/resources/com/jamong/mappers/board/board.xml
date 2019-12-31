@@ -145,39 +145,6 @@
   UPDATE board SET bo_hit=bo_hit+1 WHERE bo_no=#{bo_no}
  </update>
  
- <select id="profileList" resultMap="boardMap">
- <![CDATA[
- SELECT m.mem_no,
-    	m.mem_id, 
-    	m.mem_author, 
-    	m.profile_photo, 
-    	m.profile_cont, 
-    	m.mem_nickname, 
-    	m.mem_keyword, 
-    	m.mem_portfolio,
-    	b.bo_no,
-    	b.bo_title,
-    	b.bo_subtitle,
-    	b.bo_cont,
-    	b.bo_thumbnail,
-    	b.bo_hit,
-    	b.bo_date,
-    	b.bo_editdate,
-    	b.bo_lock,
-    	b.bo_type,
-    	b.bo_like,
-    	b.book_order,
-    	b.cat_name,
-    	b.mem_no,
-    	b.book_no
-    FROM member m
-    INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
- 	ON m.mem_no = b.mem_no
-    WHERE m.mem_no = #{mem_no}
-    AND  rowNum <= 10
- ]]>
-</select>
- 
  <select id="index_article" resultMap="boardMap">
  <![CDATA[
 	SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM)b
@@ -242,7 +209,6 @@
  
  <!-- 검색페이지 - 글 //검색시 Post 첫페이지 -->
  <select id="search_post" parameterType="java.util.HashMap" resultMap="boardMap">
-  
   SELECT * FROM
  (SELECT ROWNUM RN,X.* FROM
  (SELECT * FROM
@@ -307,8 +273,6 @@
   WHERE RN BETWEEN (#{n}+1) AND (#{n}+10)
  </select>
  
- 
- 
  <select id="infinitiScrollDown" resultMap="boardMap">
  <![CDATA[
    SELECT b.bo_no,
@@ -329,10 +293,11 @@
   AND b.bo_no >= #{b.bo_no} - 10
  ]]>
  </select>
- 
- <select id="profileScroll"  resultMap="boardMap">
-<![CDATA[
- SELECT m.mem_no,
+ <!-- 프로필 글목록 -->
+  <select id="profileList" resultMap="boardMap">
+SELECT * FROM
+(SELECT ROWNUM RN,X.* FROM
+ (SELECT m.mem_no as m_mem_no,
     	m.mem_id, 
     	m.mem_author, 
     	m.profile_photo, 
@@ -353,14 +318,48 @@
     	b.bo_like,
     	b.book_order,
     	b.cat_name,
-    	b.mem_no,
+    	b.mem_no as b_mem_no,
     	b.book_no
     FROM member m
     INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
  	ON m.mem_no = b.mem_no
-    WHERE m.mem_no = #{mem_no}
-    AND b.bo_no >= #{bo_no} - 10
-]]>
+    WHERE m.mem_no = #{mem_no})
+    X)
+    WHERE RN &lt;= 10
+</select>
+ <!-- 프로필 글목록 스크롤시 불러오는  목록-->
+ <select id="profileScroll" parameterType="java.util.HashMap" resultMap="boardMap">
+SELECT * FROM
+(SELECT ROWNUM RN,X.* FROM
+ (SELECT m.mem_no as m_mem_no,
+    	m.mem_id, 
+    	m.mem_author, 
+    	m.profile_photo, 
+    	m.profile_cont, 
+    	m.mem_nickname, 
+    	m.mem_keyword, 
+    	m.mem_portfolio,
+    	b.bo_no,
+    	b.bo_title,
+    	b.bo_subtitle,
+    	b.bo_cont,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	b.bo_date,
+    	b.bo_editdate,
+    	b.bo_lock,
+    	b.bo_type,
+    	b.bo_like,
+    	b.book_order,
+    	b.cat_name,
+    	b.mem_no as b_mem_no,
+    	b.book_no
+    FROM member m
+    INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
+ 	ON m.mem_no = b.mem_no
+    WHERE m.mem_no = #{mem_no})
+    X)
+    WHERE RN BETWEEN (#{n}+1) AND (#{n}+10)
 </select>
  
   <select id="cat_board" resultMap="boardMap">

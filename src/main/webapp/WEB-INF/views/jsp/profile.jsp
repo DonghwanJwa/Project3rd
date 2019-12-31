@@ -75,9 +75,10 @@
 							<div id="profile_keyword_line">
 								<ul class="profile_keyword_link">
 								<c:forEach items="${mp.mem_keyword.split('/')}" var="tag">
-							 		<li><a href="new_posts"
-										class="profile_button_keyword profile_line"
-									>${tag}</a></li>
+							 		<li>
+							 		<a class="profile_button_keyword profile_line" 
+							 		href="/jamong.com/search?w=post&s=accuracy&q=${tag}">${tag}</a>	        
+								</li>
 								
 								</c:forEach>
 								</ul>
@@ -88,21 +89,26 @@
 				</div>
 			</div>
 			<div id="profile_menu">
+			<input type="hidden" id="profile_menu_check" value="info" disabled>
 				<%--ARIA roles 적용  --%>
 				<div id="Tablist">
 					<a href="#info">
 						<button id="info_tab" class="tab active">
 							<span class="profile_font_size">작가소개</span><b></b>
 						</button>
-					</a> <a href="#articles">
+					</a> 
+					<a href="#articles">
 						<button id="article_tab" class="tab">
 							<span class="profile_font_size">글</span><b></b>
 						</button>
-					</a> <a href="#magazine">
+					</a>
+					<c:if test="${mp.mem_author == 1}">
+					<a href="#magazine">
 						<button id="Magazine_tab" class="tab">
 							<span class="profile_font_size">작품</span><b></b>
 						</button>
 					</a>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -125,7 +131,47 @@
 				<div class="author_intro">
 					<h3 class="hide_font">글목록</h3>
 					<ul class="profile_writer_list">
-						<c:forEach var="fp" items="${mplist}">
+						<c:if test="${empty mplist}">
+						<div class="profile_none"> 작성한 글이 없습니다 </div> 
+						</c:if>
+						<c:if test="${!empty mplist}"> 
+						<c:forEach var="fp" items="${mplist}" varStatus="status">
+						<%--관리자 일때 --%>
+						<c:if test="${m.mem_state == 9}">
+						<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
+							<div>
+								<c:if test="${fp.bo_lock == 0 }"> <%-- 0 = 비공개 --%>
+									<img class="private lock" src="/jamong.com/resources/img/lock.png" data-no="${fp.bo_no}" data-disabled="false" />
+									</c:if>
+									<c:if test="${fp.bo_lock == 1 }"> <%-- 1 = 공개 --%>
+									<img class="private unlock" src="/jamong.com/resources/img/unlock.png" data-no="${fp.bo_no}" data-disabled="false" />
+									</c:if>
+								<div class="profile_article_main">
+							         <a href="/jamong.com/category/${fp.cat_name}"
+							         	class="profile_cat_color">${fp.cat_name}</a>
+										<c:if test="${fp.book_no ne 0}">
+											<span class="profile_book_color">Book</span>
+													</c:if>
+													</div>
+												<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
+											<strong class="pf_bo_title">${fp.bo_title}</strong> 
+											<div class="article_cont">
+											<%-- <em class="profile_font_size">${fp.bo_subtitle}</em>--%>
+											${fp.bo_cont}
+											</div>
+											<div>
+													<c:set var="img" value="${fp.bo_thumbnail}" />
+													<c:if test="${!empty img}">
+														<img class="profile_post_img" alt="이미지 정보"
+															src="${fp.bo_thumbnail}">
+													</c:if>
+													<c:if test="${empty img}">
+													</c:if>
+											</div>
+											</a>
+										</div> <span class="pf_post_date">${fp.bo_date}</span>
+									</li>
+						</c:if>
 							<c:if test="${fp.bo_lock != 2 && fp.bo_lock != 3}">
 								<c:if test="${empty fp}">
 								</c:if>
@@ -133,9 +179,17 @@
 								<c:if
 									test="${m.mem_id != mp.mem_id && fp.bo_lock != 0 && m.mem_id == null}"
 								>
-									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}">
+									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
 										<div>
-											<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
+												<div class="profile_article_main">
+												         <a href="/jamong.com/category/${fp.cat_name}"
+															class="profile_cat_color">${fp.cat_name}</a>
+													<c:if test="${fp.book_no ne 0}">
+														<span class="profile_book_color"
+														>Book</span>
+													</c:if>
+												</div>
+												<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
 											<strong class="pf_bo_title">${fp.bo_title}</strong> 
 											<div class="article_cont">
 											<%-- <em class="profile_font_size">${fp.bo_subtitle}</em>--%>
@@ -157,48 +211,59 @@
 								</c:if>
 								<%-- 자신의 아이디로 로그인시 --%>
 								<c:if test="${ m.mem_id == mp.mem_id}">
-									<li class="profile_articles scrolling" data-no="${fp.bo_no}">
-										<div>
+									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
+											<div>
 											<c:if test="${fp.bo_lock == 0 }"> <%-- 0 = 비공개 --%>
-												<img class="private lock"	data-no="${fp.bo_no}" data-disabled="false" />
+												<img class="private lock" src="/jamong.com/resources/img/lock.png" data-no="${fp.bo_no}" data-disabled="false" />
 											</c:if>
 											<c:if test="${fp.bo_lock == 1 }"> <%-- 1 = 공개 --%>
-												<img class="private unlock" data-no="${fp.bo_no}" data-disabled="false" />
+												<img class="private unlock" src="/jamong.com/resources/img/unlock.png" data-no="${fp.bo_no}" data-disabled="false" />
 											</c:if>
-
-											<a class="profile_article_main" href="/jamong.com/@${mp.mem_id}/${fp.book_no}"></a> 
-											<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
+												<div class="profile_article_main">
+												         <a href="/jamong.com/category/${fp.cat_name}"
+															class="profile_cat_color">${fp.cat_name}</a>
+													<c:if test="${fp.book_no ne 0}">
+														<span class="profile_book_color"
+														>Book</span>
+													</c:if>
+													</div>
+												<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
 											<strong class="pf_bo_title">${fp.bo_title}</strong> 
-                      <div class="article_cont">
+											<div class="article_cont">
 											<%-- <em class="profile_font_size">${fp.bo_subtitle}</em>--%>
 											${fp.bo_cont}
-                      </div>
-											</a>
-											<div>
-												<c:set var="img" value="${fp.bo_thumbnail}" />
-												<c:if test="${not empty img}">
-													<img class="profile_post_img" alt="이미지 정보"
-														src="${fp.bo_thumbnail}">
-												</c:if>
-												<c:if test="${empty img}">
-												</c:if>
 											</div>
+											<div>
+													<c:set var="img" value="${fp.bo_thumbnail}" />
+													<c:if test="${!empty img}">
+														<img class="profile_post_img" alt="이미지 정보"
+															src="${fp.bo_thumbnail}">
+													</c:if>
+													<c:if test="${empty img}">
+													</c:if>
+											</div>
+											</a>
 										</div> <span class="pf_post_date">${fp.bo_date}</span>
 									</li>
 								</c:if>
-							</c:if>
+								</c:if>
 						</c:forEach>
+						</c:if>
 					</ul>
 				</div>
 			</div>
 			<div id="Magazine" style="display: none;">
 				<h3 class="hide_font">매거진</h3>
 				<%-- 공감과 추천한 숫자를 지정 --%>
-				<div id="" class="Magazine_list jm_list ">	
-				<c:forEach var="mb" items="${mybook}">
-						<div class="box_contents">
-							<a href="/jamong.com/book/@${mp.mem_id}/${mb.bookVO.book_no}">
-								</a><div class="cover_book">
+				<div id="" class="Magazine_list jm_list ">
+					<c:if test="${empty mybook}">
+				<div class="profile_none m_right"> 완성된 작품이 없습니다 </div>
+					</c:if>
+					<c:if test="${!empty mybook}">
+				<c:forEach var="mb" items="${mybook}" varStatus="status">
+				<c:if test="${!empty mb.bookVO.book_no}">
+						<div class="box_contents bookList" data-no="${mp.mem_no}/${mb.bookVO.book_no}/${status.count}">
+								<div class="cover_book">
 								<a href="/jamong.com/book/@${mp.mem_id}/${mb.bookVO.book_no}">
 								<c:set var="img" value="${mb.bookVO.book_cover}" />
 								<c:if test="${not empty img }">
@@ -231,7 +296,9 @@
 						</dl>
 						</div>
 						</div>
+					</c:if>
 					</c:forEach>
+					</c:if>
 				</div>
 			</div>
 		</div>

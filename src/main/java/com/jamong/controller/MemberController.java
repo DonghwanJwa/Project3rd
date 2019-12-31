@@ -315,7 +315,6 @@ public class MemberController {
 		ModelAndView mv=new ModelAndView("jsp/profile");
 			mp = this.memberService.profileCheck(mem_id);
 			// 구독자 
-			
 			SubscribeVO sub = null;
 			
 			HashMap<String,Object>  submap= new HashMap<>();
@@ -326,6 +325,8 @@ public class MemberController {
 			sub=this.subService.subCheck(submap);
 			}
 			int subCount = this.subService.subCount(mp.getMem_no());
+		
+			int state = mp.getMem_state();
 			
 			// 포트폴리오 항목 띄어쓰기 적용되게
 			String portfolio = null;
@@ -334,12 +335,12 @@ public class MemberController {
             portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
             mp.setMem_portfolio(portfolio);
             }
+		
 			List<BoardVO> mplist = this.boardService.getProfile(mp.getMem_no());
 			
 			SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
 
-			
 			for(int i=0; i < mplist.size(); i++) {
 					// 시간 계산 해서 방금, 몇분전 띄우기
 				Date mpListFormat_date = b_format.parse(mplist.get(i).getBo_date());
@@ -370,12 +371,19 @@ public class MemberController {
 				String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");	
 				myBookList.get(i).getBookVO().setBook_name(bookOneSpace);
 			}
-
-			mv.addObject("mp",mp);
-			mv.addObject("sub",sub);
-			mv.addObject("subCount",subCount);
-			mv.addObject("mybook",myBookList);
-			mv.addObject("mplist",mplist);
+			
+			if(state == 1 || state == 2 || mp == null) {
+				out.println("<script>");
+				out.println("alert('등록된 계정이 아닙니다');");
+				out.print("hitory.back();");
+				out.println("</script>");
+			}else {
+				mv.addObject("mp",mp);
+				mv.addObject("sub",sub);
+				mv.addObject("subCount",subCount);
+				mv.addObject("mybook",myBookList);
+				mv.addObject("mplist",mplist);
+			}
 			return mv;
 	}//user_profile() => 유저 프로필 창
 

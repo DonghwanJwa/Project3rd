@@ -661,40 +661,67 @@ public class BoardController {
 	@PostMapping("profile_scroll")
 	@ResponseBody
 	public List<BoardVO> profileScrolling(
-			String bo_no, String mem_no,
+			String bo_no, String mem_no, String book_no,
+			String num, String pb,
 			HttpServletResponse response, 
 			HttpServletRequest request
 			) throws Exception{
-		System.out.println(bo_no);
-		System.out.println(mem_no);
-		int data_bo = Integer.parseInt(bo_no);
-		int data_mno = Integer.parseInt(mem_no);
 		
 		SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));	
-		HashMap<Object,Object> scroll = new HashMap<>();
-		scroll.put("bo_no", data_bo);
-		scroll.put("mem_no", data_mno);
-		List<BoardVO> pfData = this.boardService.profileScroll(scroll);
-		for(int i=0; i<scroll.size(); i++) {
-
-			Date mpListFormat_date = b_format.parse(pfData.get(i).getBo_date());
-			String mpListTitle_date = TIME_MAXIMUM.formatTimeString(mpListFormat_date);
-			pfData.get(i).setBo_date(mpListTitle_date);
+		
+		HashMap<String,Object> scroll = new HashMap<>();
+		scroll.put("bo_no", bo_no);
+		scroll.put("mem_no", mem_no);
+		scroll.put("n", num);
+		if(pb.equals("article")) {
 			
-			// 미리보여주는 글 태그 없앰 (제목)
-			String titleText = pfData.get(i).getBo_title();
-			String titleNomarText = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			pfData.get(i).setBo_title(titleNomarText);
+		List<BoardVO> mplist = this.boardService.profileScroll(scroll);
+		
+			for(int i=0; i<scroll.size(); i++) {
+				if( !mplist.isEmpty() ) {
+				Date mpListFormat_date = b_format.parse(mplist.get(i).getBo_date());
+				String mpListTitle_date = TIME_MAXIMUM.formatTimeString(mpListFormat_date);
+				mplist.get(i).setBo_date(mpListTitle_date);
 
-			//미리보여주는 글 태그 없앰 (내용)
-			String htmlText = pfData.get(i).getBo_cont();
-			String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			String oneSpace = nomalText.replaceAll("&nbsp; "," ");
-			pfData.get(i).setBo_cont(oneSpace);
-			System.out.println(pfData.get(i).getBo_no());
+				// 미리보여주는 글 태그 없앰 (제목)
+				String titleText = mplist.get(i).getBo_title();
+				String titleNomarText = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				mplist.get(i).setBo_title(titleNomarText);
+
+				//미리보여주는 글 태그 없앰 (내용)
+				String htmlText = mplist.get(i).getBo_cont();
+				String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				String oneSpace = nomalText.replaceAll("&nbsp; "," ");
+				if(oneSpace.length()>200) {
+					String hundredText = oneSpace.substring(0,200);								//100글자만 홈페이지에 노출되도록 변경
+					mplist.get(i).setBo_cont(hundredText);
+				}else {
+					mplist.get(i).setBo_cont(oneSpace);
+				}
+				}
+			}
+			return mplist;
+		}else if(pb.equals("magazine")) {
+			HashMap<Object,Object> bookScroll = new HashMap<>();
+			bookScroll.put("book_no", book_no);
+			bookScroll.put("mem_no", mem_no);
+			bookScroll.put("n",num);
+			List<BoardVO> mybook = this.bookService.bookScroll(bookScroll);
+			
+				for(int i=0;i<mybook.size();i++) {
+					Date mbListFormat_date = b_format.parse(mybook.get(i).getBookVO().getBook_date());
+					String mbListTitle_date = date_format.format(mbListFormat_date);
+					mybook.get(i).getBookVO().setBook_date(mbListTitle_date);
+					
+					String bookHtmlText = mybook.get(i).getBookVO().getBook_name();
+					String bookStrippedText = bookHtmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+					String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");	
+					mybook.get(i).getBookVO().setBook_name(bookOneSpace);
+				}
+			return mybook;
 		}
-		return pfData;
+		return null;
 	}
 	
 	@PostMapping("search_scroll")
@@ -714,17 +741,17 @@ public class BoardController {
 
 		if(w.equals("post")) {				//글검색
 			List<BoardVO> boardList = this.boardService.getSearchScrollPost(searchMap);			
-
 			for (int i = 0; i < boardList.size(); i++) {
 				// 시간 계산 해서 방금, 몇분전 띄우기
 				Date bListFormat_date = org_format.parse(boardList.get(i).getBo_date());
 				String bListTitle_date = title_format.format(bListFormat_date);
 				boardList.get(i).setBo_date(bListTitle_date);
-
+				
 				//미리보여주는 글 태그 없앰
 				String htmlText = boardList.get(i).getBo_cont();
 				String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 				String oneSpace = normalText.replaceAll("&nbsp;"," ");
+				
 				if(oneSpace.length()>200) {
 					String hundredText = oneSpace.substring(0,200);								//100글자만 홈페이지에 노출되도록 변경
 					boardList.get(i).setBo_cont(hundredText);
@@ -741,6 +768,7 @@ public class BoardController {
 				String bookStrippedText = bookHtmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 				String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");					
 				bookList.get(i).getBookVO().setBook_name(bookOneSpace);
+				
 			}
 			return bookList;
 		}else if(w.equals("author")) {		//작가검색
