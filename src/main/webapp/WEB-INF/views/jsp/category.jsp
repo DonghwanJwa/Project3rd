@@ -18,8 +18,8 @@
         		<img class="cat_face_img" src="/jamong.com/resources/img/cat_writer_face1.jpg" alt="작가이미지" />
        		</div>
        		<div class=cat_writer_name><strong>${cat.mem_nickname}</strong></div>
-       		<div id=cat_write_count>글:25개</div>
-       		<div id=cat_sub_count>구독자:121만</div>
+       		<div id=cat_write_count>글:${cat.mem_article}</div>
+       		<div id=cat_sub_count>구독자:${cat.mem_subscribe}</div>
       		 <div class=cat_writer_keyword_div>
       			<c:if test="${!empty cat.mem_fav1}">
       		 	<button class="cat_writer_keyword" ><strong>${cat.mem_fav1}</strong></button>
@@ -90,7 +90,7 @@
 	  </c:if>
 	 <c:if test="${empty blist.bo_thumbnail}">
 	<div class=cat_writing_block>
-	 <div class=cat_writing style="border-bottom: 1px solid #DDD;">
+	 <div class=cat_writing style="border-bottom: 1px solid #f57c68;">
 	  <div class="cat_writing_img-div">
 	  </div>
 	 <a class=cat_write_top href="/jamong.com/@${blist.memberVO.mem_id}/${blist.bo_no}">
