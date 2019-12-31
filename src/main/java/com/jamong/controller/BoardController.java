@@ -185,18 +185,33 @@ public class BoardController {
 	public int user_delArticle(@PathVariable int bo_no,
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		int flag = 0;
-
 		MemberVO artM = (MemberVO)session.getAttribute("m");		
-
 		if(artM != null) {
 			this.boardService.articleDelete(bo_no,artM.getMem_no());
-
 			flag = 1;
 		}else {
-
 			flag = 2;
 		}
-
+		return flag;
+	}// 게시글 삭제
+	
+	@PostMapping("artdel/{mem_no}/{bo_no}/{state}")
+	@ResponseBody
+	public int admin_delArticle(@PathVariable int mem_no, @PathVariable int bo_no, @PathVariable int state,
+			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		int flag = 0;
+		MemberVO artM = (MemberVO)session.getAttribute("m");
+		
+		if(artM != null) {
+			if(artM.getMem_state()==9) {
+				this.boardService.adminArticleDelete(bo_no,mem_no,state);
+				flag = 1; //성공
+			}else {
+				flag = 3; //관리자가 아님
+			}
+		}else {
+			flag = 2; //세션만료
+		}
 		return flag;
 	}// 게시글 삭제
 

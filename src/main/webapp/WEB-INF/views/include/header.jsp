@@ -66,6 +66,7 @@
 	  </div>
 	 </div>
 	 <c:if test="${m.mem_state==9}">
+	  <c:if test="${bo.bo_lock!=3}">
 	  <div id="head-menu-block">
 	   <c:if test="${bo.bo_lock!=2}">
 	    <img class="head-menu-block-img" src="/jamong.com/resources/img/block.png" title="정지" data-state="${bo.bo_lock}"/>
@@ -74,6 +75,7 @@
 	    <img class="head-menu-block-img" src="/jamong.com/resources/img/unblock.png" title="정지해제" data-state="${bo.bo_lock}"/>
 	   </c:if>
 	  </div>
+	  </c:if>
 	 </c:if>
 	  	<%-- 신고기능 --%>
 	 <c:if test="${m.mem_state!=9}">
