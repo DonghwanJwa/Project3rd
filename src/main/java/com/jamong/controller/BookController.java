@@ -184,14 +184,15 @@ public class BookController {
 
 		out.println("<script>");
 		out.println("alert('책이 출간되었습니다!')");
-		out.println("location='/jamong.com/';");
+		out.println("location='/jamong.com/@"+mem_id+"';");
 		out.println("</script>");
 
 		return null;
 	}
 
-	@RequestMapping("book/del/{book_no}")
-	public String user_book_del(@PathVariable int book_no, HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping("book/del/{mem_id}/{book_no}")
+	public String user_book_del(@PathVariable String mem_id,@PathVariable int book_no, 
+			HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -204,7 +205,7 @@ public class BookController {
 				this.bookService.bookDel(book_no);
 				out.println("<script>");
 				out.println("alert('책이 폐간되었습니다!')");
-				out.println("location='/jamong.com/';");
+				out.println("location='/jamong.com/@"+mem_id+"';");
 				out.println("</script>");
 			} else {
 				out.println("<script> alert('제한된 접근입니다!'); location='/jamong.com/'; </script>");

@@ -154,8 +154,8 @@
 										<h3>
 											<label for="join_membership_profile_editor"	class="join_membership_profile_font">닉네임</label> 
 										</h3>
-										<textarea id="join_membership_profile_editor" name="mem_nickname" placeholder="이름을 입력해주세요(30자 이내)" maxlength="30"></textarea>
-										<b class="join_membership_profile_anoun">작가명을 입력하지 않으시면 아이디로 지정이 됩니다.</b>
+										<textarea id="join_membership_profile_editor" name="mem_nickname" placeholder="닉네임을 입력해주세요(10자 이내)" maxlength="10"></textarea>
+										<b class="join_membership_profile_anoun">닉네임을 입력하지 않으시면 아이디로 지정이 됩니다.</b>
 										<div id="join_membership_profile_editor_error"></div>
 									</div>
 								</div>

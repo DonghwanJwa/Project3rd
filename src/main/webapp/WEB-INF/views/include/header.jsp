@@ -92,7 +92,7 @@
  	<c:if test="${book_name ne null}">
  	 <c:if test="${m.mem_state==9}">
    	  <div id="head-menu-readpage">
- 	   <a href="/jamong.com/book/del/${book_no}" id="head-menu-book-edit">
+ 	   <a href="/jamong.com/book/del/${mem_id}/${book_no}" id="head-menu-book-edit">
  	    <img class="head-menu-book-del-img" src="/jamong.com/resources/img/readpage_icon/del_off.png"
  	    	title="폐간">
  	   </a>
