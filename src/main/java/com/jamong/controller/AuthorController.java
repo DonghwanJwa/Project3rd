@@ -270,7 +270,6 @@ public class AuthorController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName1=a.getAut_file1();
-			System.out.println(pathAndName1);
 			File aut_file1=new File(pathAndName1);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
@@ -329,9 +328,6 @@ public class AuthorController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName2=a.getAut_file2();
-			
-			System.out.println(pathAndName2);
-			
 			File aut_file2=new File(pathAndName2);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
@@ -389,9 +385,6 @@ public class AuthorController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName3=a.getAut_file3();
-			
-			System.out.println(pathAndName3);
-			
 			File aut_file3=new File(pathAndName3);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */

@@ -88,6 +88,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public int boardBan(BoardVO bo) {
+		return this.boardDao.boardBan(bo);
+	}
+
+	@Override
 	public List<BoardVO> bestList() {	
 		List<BoardVO> blist = this.boardDao.bestList(); 
 		for(BoardVO b : blist) {

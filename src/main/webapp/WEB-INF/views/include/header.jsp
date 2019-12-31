@@ -65,12 +65,24 @@
 	   <span class="head-menu-hit-rate">${bo.bo_hit}</span>
 	  </div>
 	 </div>
+	 <c:if test="${m.mem_state==9}">
+	  <div id="head-menu-block">
+	   <c:if test="${bo.bo_lock!=2}">
+	    <img class="head-menu-block-img" src="/jamong.com/resources/img/block.png" title="정지" data-state="${bo.bo_lock}"/>
+	   </c:if>
+	   <c:if test="${bo.bo_lock==2}">
+	    <img class="head-menu-block-img" src="/jamong.com/resources/img/unblock.png" title="정지해제" data-state="${bo.bo_lock}"/>
+	   </c:if>
+	  </div>
+	 </c:if>
 	  	<%-- 신고기능 --%>
- 	 <c:if test="${mem_id ne m.mem_id}">
- 	  <div id="head-menu-accuse">
- 	  <img class="head-menu-accuse-img" src="/jamong.com/resources/img/warring.png" onclick="accuseShow(2);"
- 	  			title="신고하기" alt="신고하기" />
- 	  </div>
+	 <c:if test="${m.mem_state!=9}">
+ 	  <c:if test="${mem_id ne m.mem_id}">
+ 	   <div id="head-menu-accuse">
+ 	   <img class="head-menu-accuse-img" src="/jamong.com/resources/img/warring.png" onclick="accuseShow(2);"
+ 	  	 		title="신고하기" alt="신고하기" />
+ 	   </div>
+ 	  </c:if>
  	 </c:if>
  	</c:if>
 
@@ -79,8 +91,8 @@
  	 <c:if test="${m.mem_state==9}">
    	  <div id="head-menu-readpage">
  	   <a href="/jamong.com/book/del/${book_no}" id="head-menu-book-edit">
- 	    <img class="head-menu-book-edit-img" src="/jamong.com/resources/img/settings_n.png">
- 	    <span>책폐간</span>
+ 	    <img class="head-menu-book-del-img" src="/jamong.com/resources/img/readpage_icon/del_off.png"
+ 	    	title="폐간">
  	   </a>
  	  </div>
  	 </c:if>

@@ -23,6 +23,7 @@ public interface BoardService {
 	int sympathyUp(BoardVO bo);
 	int sympathyDown(BoardVO bo);
 	int switchBoardLock(BoardVO bo);
+	int boardBan(BoardVO bo);
 	void articleDelete(int bo_no, int mem_no);
 	void updateBoard(HashMap<String, Object> bm);
 	List<BoardVO> bestList();
