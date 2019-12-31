@@ -33,6 +33,7 @@
 				<li><a href="admin_inquire">문의사항</a></li>
 				<li><a href="admin_accuse">신고사항</a></li>
 				<li><a href="admin_member">회원관리</a></li>
+				<li><a href="admin_article">글관리</a></li>
 			</ul>
 			</nav>
 		</div>
