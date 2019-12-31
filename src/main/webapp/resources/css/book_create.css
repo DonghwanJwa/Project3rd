@@ -420,6 +420,41 @@ input[type="checkbox"]:checked+div.post_list_cont {
 	animation: fadein 1s;
 	-webkit-animation: fadein 1s;
 }
+.create_choice_wrap{
+	position: absolute;
+	top:0;
+	left: 0;
+	background-color: RGB(0,0,0,0.6);
+	display: none;
+	z-index: 10020;
+	animation: fadein 1s;
+	-webkit-animation: fadein 1s;
+}
+.create_save_panel{
+	text-align:center;
+	width:500px;
+	height:222px;
+	background-color:#FFF;
+	margin:auto;
+	margin-top:550px;
+	z-index:10;
+	transform:translateY(50%);
+	-webkit-transform:translateY(50%);
+	animation: fadein 1s;
+	-webkit-animation: fadein 1s;
+}
+.create_save_panel h3{
+	padding:15px 0px;
+	font-size:17px;
+}
+.create_save_panel td{
+	font-size:14px;
+}
+.create_save_panel caption{
+	padding-top:2px;
+	padding-bottom:2px;
+	fonx-size:15px;
+}
 ::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
 ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}
 ::-webkit-scrollbar-track {background: #efefef; -webkit-border-radius: 10px; border-radius:10px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2)}

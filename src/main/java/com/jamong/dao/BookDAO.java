@@ -41,5 +41,7 @@ public interface BookDAO {
 
 	List<BoardVO> categoryArticleBK(String cat_name);
 
+	List<BoardVO> bookBannerList();
+
 
 }

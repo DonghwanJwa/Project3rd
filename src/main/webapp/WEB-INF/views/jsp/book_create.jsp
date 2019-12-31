@@ -130,12 +130,12 @@
   </div>
 
 <!-- 저장팝업 -->
-  <div class="write_choice_wrap">
-   <div class="write_save_panel">  
+  <div class="create_choice_wrap">
+   <div class="create_save_panel">  
     <div id="join_membership_category-wrap">
      <div id="join_membership_category-frame">
       <h3 class="join_membership_category-anoun">
-       글 카테고리를 선택해주세요!
+       책 카테고리를 선택해주세요!
       </h3>
       <ul id="join_membership_category-list">
       <%-- 카테고리 AJAX처리 --%>

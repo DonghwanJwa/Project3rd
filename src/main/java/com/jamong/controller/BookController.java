@@ -46,14 +46,21 @@ public class BookController {
 	@RequestMapping("new_book")
 	public ModelAndView user_new_book(BookVO b) { // 최신 책
 		List<BookVO> BookList = this.bookService.selectBookList(b);
+		List<BoardVO> bkList = this.bookService.bookBannerList();
 		// 책 제목 특수 태그 삭제
 //		for(int i = 0; i < BookList.size(); i++) {
 //			String book_title = BookList.get(i).getBook_name();
 //			String book_titleRe = book_title.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 //			BookList.get(i).setBook_name(book_titleRe);
 //		}
+		for(int j = 0; j < bkList.size(); j++) {
+			String book_cont = bkList.get(j).getBookVO().getBook_preface();
+			String book_contRe = book_cont.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			bkList.get(j).getBookVO().setBook_preface(book_contRe);
+		}
 		ModelAndView mv = new ModelAndView();
 
+		mv.addObject("bkList",bkList);
 		mv.addObject("bookList", BookList);
 		mv.setViewName("jsp/new_book");
 
@@ -68,34 +75,42 @@ public class BookController {
 		session = request.getSession();
 
 		MemberVO m = (MemberVO) session.getAttribute("m");
-		if (m != null) {
-			String mem_id = m.getMem_id();
-
-			List<BoardVO> bList = this.bookService.getBList(mem_id);
-			MemberVO member = this.bookService.getMember(mem_id);
-			String mem_nickname = member.getMem_nickname();
-			String profile_photo = member.getProfile_photo();
-			String profile_cont = member.getProfile_cont();
-
-			// 메서드 전달인자가 세션에 있는 아이디 값이나, 맴버 번호 값을 가져와서 리스트 검색
-			for (int i = 0; i < bList.size(); i++) {
-				String bl = bList.get(i).getBo_title();
-				String bookList = bl.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-				bList.get(i).setBo_title(bookList);
-			}
-			ModelAndView mv = new ModelAndView();
-			mv.addObject("mem_nickname", mem_nickname);
-			mv.addObject("profile_photo", profile_photo);
-			mv.addObject("profile_cont", profile_cont);
-			mv.addObject("bookList", bList);
-			mv.setViewName("jsp/book_create");
-
-			return mv;
-		}else {
+		if (m == null) {
 			out.println("<script>");
 			out.println("alert('로그인이 필요한 페이지입니다!');");
 			out.println("location='/jamong.com/login/1';");
 			out.println("</script>");
+		} else {
+			int mem_author = m.getMem_author();
+			if (mem_author != 1) {
+				out.println("<script>");
+				out.println("alert('작가 권한이 필요한 페이지 입니다!');");
+				out.println("location='/jamong.com/request_author';");
+				out.println("</script>");
+			} else {
+				String mem_id = m.getMem_id();
+
+				List<BoardVO> bList = this.bookService.getBList(mem_id);
+				MemberVO member = this.bookService.getMember(mem_id);
+				String mem_nickname = member.getMem_nickname();
+				String profile_photo = member.getProfile_photo();
+				String profile_cont = member.getProfile_cont();
+
+				// 메서드 전달인자가 세션에 있는 아이디 값이나, 맴버 번호 값을 가져와서 리스트 검색
+				for (int i = 0; i < bList.size(); i++) {
+					String bl = bList.get(i).getBo_title();
+					String bookList = bl.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+					bList.get(i).setBo_title(bookList);
+				}
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("mem_nickname", mem_nickname);
+				mv.addObject("profile_photo", profile_photo);
+				mv.addObject("profile_cont", profile_cont);
+				mv.addObject("bookList", bList);
+				mv.setViewName("jsp/book_create");
+
+				return mv;
+			}
 		}
 		return null;
 	}
@@ -184,12 +199,16 @@ public class BookController {
 		MemberVO m = (MemberVO) session.getAttribute("m");
 		int re = 0;
 
-		int mem_state = m.getMem_state();
-
-		if (mem_state == 9) {
-			this.bookService.bookDel(book_no);
-			re = 1;
-		} else {
+		if (m != null) {
+			int mem_state = m.getMem_state();
+			if (mem_state == 9) {
+				this.bookService.bookDel(book_no);
+				re = 1;
+			} else {
+				out.println("<script> alert('제한된 접근입니다!'); location='/jamong.com/'; </script>");
+				re = 0;
+			}
+		}else {
 			out.println("<script> alert('제한된 접근입니다!'); location='/jamong.com/'; </script>");
 			re = 0;
 		}
