@@ -41,4 +41,6 @@ public interface BookService {
 
 	void bookDel(int book_no);
 
+	List<BoardVO> categoryArticleBK(String cat_name);
+
 }

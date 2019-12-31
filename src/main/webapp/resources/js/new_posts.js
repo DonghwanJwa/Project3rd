@@ -44,19 +44,19 @@ $(window).scroll(function(){
 												+  "</div>"
 										}
 									str	+=	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"  
-										if(this.bo_title.text > 20){
+										if(this.bo_title.length > 20){
 											str += "<div id='new_post_loading_cont_text_title'>" + title + "</div>"
 										}else{
 											str += "<div id='new_post_loading_cont_text_title'>" + this.bo_title + "</div>"
 										}
 										if(this.bo_thumbnail != null){
-											if(this.bo_cont.text > 100){
+											if(this.bo_cont.length > 100){
 												str	+= "<div id='new_post_loading_cont_text_cont'>" + cont + "</div>"
 											}else{
 												str += "<div id='new_post_loading_cont_text_cont'>" + this.bo_cont + "</div>"
 											}
 										}else{
-											if(this.bo_cont.text > 100){
+											if(this.bo_cont.length > 100){
 												str	+= "<div id='new_post_loading_cont_text_cont' class='new_post_no_img_cont'>" + cont + "</div>"
 											}else{
 												str += "<div id='new_post_loading_cont_text_cont' class='new_post_no_img_cont'>" + this.bo_cont + "</div>"

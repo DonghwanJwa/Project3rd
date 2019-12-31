@@ -27,12 +27,6 @@ public class BoardVO {
 	private MemberVO memberVO;
 	private BookVO bookVO;
 	
-	public BookVO getBookVO() {
-		return bookVO;
-	}
-	public void setBookVO(BookVO bookVO) {
-		this.bookVO = bookVO;
-	}
 	// Setter()
 	public void setBo_date(String bo_date)		   	 {		this.bo_date = bo_date;				}
 	public void setBo_editdate(String bo_editdate) 	 {		this.bo_editdate = bo_editdate;		}
@@ -54,6 +48,7 @@ public class BoardVO {
 	public void setMemberVO(MemberVO memberVO) 		 {		this.memberVO = memberVO;			}
 	public void setBo_color(String bo_color) 		 {		this.bo_color = bo_color;			}
 	public void setBo_titlespace(int bo_titlespace)  {		this.bo_titlespace = bo_titlespace;	}
+	public void setBookVO(BookVO bookVO) 			 {		this.bookVO = bookVO;				}
 	
 	// Getter()
 	public int getBo_no() 		   	{		return bo_no;			}
@@ -76,5 +71,6 @@ public class BoardVO {
 	public MemberVO getMemberVO() 	{		return memberVO;		}
 	public String getBo_color() 	{		return bo_color;		}
 	public int getBo_titlespace() 	{		return bo_titlespace;	}
+	public BookVO getBookVO() 		{		return bookVO;			}
 		
 }
