@@ -96,6 +96,8 @@
   				 AND b.bo_no < #{bo_no})
  ]]>
  </select>
+ 
+ 
  <update id="bo_edit" parameterType="java.util.HashMap">
   UPDATE board
   SET bo_title=#{b.bo_title},
@@ -361,8 +363,9 @@
   <select id="cat_board" resultMap="boardMap">
   SELECT *
   FROM board b,member m
-  WHERE b.mem_no=m.mem_no
-  AND b.cat_name=#{cat_name}
+  WHERE b.mem_no = m.mem_no
+  AND b.cat_name = #{cat_name}
+  AND b.bo_lock = 1
   ORDER BY b.bo_no DESC
  </select>
 
