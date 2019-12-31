@@ -73,6 +73,7 @@
 
 /*새소식*/
 .feed_new_cont_article {
+	display:flex;
 	width: 540px;
 	padding:10px 50px;
 	margin-left: auto;
@@ -244,6 +245,14 @@
 #feed_scrap_toggle{
 	text-align:center;
 	margin:20px 0px;
+}
+#feed_delete_btn{
+	margin: 0px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: 30px;
 }
 
 

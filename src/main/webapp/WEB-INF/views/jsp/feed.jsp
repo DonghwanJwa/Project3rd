@@ -62,6 +62,7 @@
       </div>
      </div>
     </a>
+    <a>X</a>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 3}">
@@ -162,7 +163,7 @@
    </c:if>
    <c:if test="${fList.feed_state == 1}">
    <c:if test="${fList.feed_step == 1}">
-   <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+   <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
@@ -180,7 +181,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 2}">
-    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
@@ -195,10 +196,11 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 3}">
-    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
@@ -216,7 +218,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 4}">
-     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a>
      <div class="feed_new_cont_profile">
@@ -234,7 +236,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 5}">
-     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a>
      <div class="feed_new_cont_profile">
@@ -252,7 +254,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 6}">
-    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}" 
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/book/@${fList.feed_mem_id}/${fList.feed_book_no}">
      <div class="feed_new_cont_profile">

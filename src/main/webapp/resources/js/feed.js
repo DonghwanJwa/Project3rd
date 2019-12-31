@@ -93,13 +93,6 @@ $(document).ready(function(){
 	
 });
 
-function FeedReading(e){
-	if (e.target !== e.currentTarget) return;
-	var wrapDiv = $(e.target)
-	console.log(feed_no);
-
-}
-
 function FeedMouseUp(e){
 	var wrapDiv = $(e.target)
 	var feed_no = $(e.target).data("no");
@@ -125,7 +118,18 @@ function FeedMouseOn(e){
 	}
 }
 
-
+function FeedDelete(e){
+	var wrapDiv = $(e.target).parent();
+	var feed_no = wrapDiv.data("no");
+	$.ajax({
+		type : "POST",
+		data : {"feed_no":feed_no},
+		url : "/jamong.com/feed/del",
+		success : function(){
+			wrapDiv.remove();
+		}
+	});
+}
 
 
 
