@@ -77,8 +77,6 @@ public class AccuseController {
 		
 		String[] sid=ref.split("/");	//sid 라는 배열에 ref에 넣은 신고한페이지주소값을 /단위로 쪼개넣음
 		String ac_member=sid[4].substring(1,sid[4].length());
-		System.out.println(ac_member);
-
 		MemberVO mem=this.memberService.get(ac_member);
 		int mem_no=mem.getMem_no();
 		
@@ -244,7 +242,7 @@ public class AccuseController {
 			out.println("<script>");
 			out.println("$('.wrap-loading').hide();");
 			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login';");
+			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
 			/*신고 update문*/

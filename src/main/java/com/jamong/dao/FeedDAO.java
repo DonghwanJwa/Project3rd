@@ -9,6 +9,7 @@ import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.OfferVO;
 import com.jamong.domain.SubscribeVO;
+import com.jamong.domain.SympathyVO;
 
 public interface FeedDAO {
 
@@ -21,5 +22,7 @@ public interface FeedDAO {
 	void addAuthorFeed(HashMap<String, Object> am);
 	void addOfferFeed(HashMap<String, Object> om);
 	void addInquireFeed(HashMap<String, Object> im);
+	int feedCount(int sMem_no);
+	void feedDelete(int feed_no);
 
 }

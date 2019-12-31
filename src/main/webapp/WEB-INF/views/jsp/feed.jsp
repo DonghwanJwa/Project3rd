@@ -19,7 +19,9 @@
   
   <%-- 새글 보여주기 양식 --%>
    <c:if test="${empty fList}">
-    <h2>알림이 없습니다!</h2>
+    <div class="feed_scrap_no_info">
+     <span>알림이 없습니다.</span>
+    </div>
    </c:if>
   <c:forEach var="fList" items="${fList}">
    <c:if test="${!empty fList}">
@@ -60,6 +62,7 @@
       </div>
      </div>
     </a>
+    <a>X</a>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 3}">
@@ -160,7 +163,7 @@
    </c:if>
    <c:if test="${fList.feed_state == 1}">
    <c:if test="${fList.feed_step == 1}">
-   <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+   <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
@@ -178,7 +181,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 2}">
-    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
@@ -193,10 +196,11 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 3}">
-    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
@@ -214,7 +218,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 4}">
-     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a>
      <div class="feed_new_cont_profile">
@@ -232,7 +236,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 5}">
-     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a>
      <div class="feed_new_cont_profile">
@@ -250,7 +254,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 6}">
-    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}" 
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/book/@${fList.feed_mem_id}/${fList.feed_book_no}">
      <div class="feed_new_cont_profile">
@@ -288,84 +292,75 @@
    </c:if>
    </c:if>
    </c:forEach>
+   </div>
  
   <div id="feed_scrap_wrap" class="feed_main_cont_wrap"><%-- 피드 스크랩 --%><%-- display:none --%>
    
-   <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="/jamong.com/read">
-     <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="/jamong.com/resources/img/a.jpg" alt="그림 안나옴">
-     </div>
-     <div class="feed_scrap_cont">
-      <div class="feed_scrap_type">Article</div>
-      <div class="feed_scrap_title">여기에 Article 제목이 출력됩니다.</div>
-      <div class="feed_scrap_author">by 누구누구</div>
-      <div class="feed_scrap_date">2019.10.30</div>
-     </div>
-    </a>
-    <div class="feed_scrap_like_outer">
-     <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
-     </button>
-    </div>
+   <div id="feed_scrap_toggle">
+    <button type="button" id="feed_btn_article" class="feed_toggle_btn" style="background-color:">내가 공감한 글</button>
+    <button type="button" id="feed_btn_book" class="feed_toggle_btn">내가 추천한 책</button>
    </div>
    
-   <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="/jamong.com/book">
-     <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="/jamong.com/resources/img/book_img.jpg"/>
+   <div id="feed_scrap_article" style="display:block;">
+    <c:forEach var="art" items="${aList}">
+    <c:if test="${!empty art}">
+    <div class="feed_scrap_inner">
+     <a class="feed_scrap_link" href="/jamong.com/@${art.memberVO.mem_id}/${art.boardVO.bo_no}">
+      <div class="feed_scrap_img_container">
+       <img class="feed_scrap_img" src="${art.boardVO.bo_thumbnail}" alt="그림 안나옴">
+      </div>
+      <div class="feed_scrap_cont">
+       <div class="feed_scrap_type">Article</div>
+       <div class="feed_scrap_title">${art.boardVO.bo_title}</div>
+       <div class="feed_scrap_author">by ${art.memberVO.mem_nickname}</div>
+       <div class="feed_scrap_date">${art.sym_date}</div>
+      </div>
+     </a>
+     <div class="feed_scrap_like_outer">
+      <button class="feed_scrap_like_inner">
+       <img class="feed_scrap_sym_img" src="/jamong.com/resources/img/heart.png" data-no="${art.boardVO.bo_no}"/>
+      </button>
      </div>
-     <div class="feed_scrap_cont">
-      <div class="feed_scrap_type">Book</div>
-      <div class="feed_scrap_title">여기에 Book 제목이 출력됩니다.</div>
-      <div class="feed_scrap_author">by 늬구늬구</div>
-      <div class="feed_scrap_date">2019.11.01</div>
      </div>
-    </a>
-    <div class="feed_scrap_like_outer">
-     <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
-     </button>
-    </div>
+    </c:if>
+    </c:forEach>   
+    <c:if test="${empty aList}">
+     <div class="feed_scrap_no_info">
+      <span>공감한 게시글이 없습니다.</span>
+     </div>
+    </c:if>
    </div>
- 
-   <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="/jamong.com/read">
-     <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="/jamong.com/resources/img/a.jpg" alt="그림 안나옴">
+    
+   <div id="feed_scrap_book" style="display:none;">
+   <c:forEach var="book" items="${bList}">
+   <c:if test="${!empty book}">
+    <div class="feed_scrap_inner">
+     <a class="feed_scrap_link" href="/jamong.com/book/@${book.memberVO.mem_id}/${book.bookVO.book_no}">
+      <div class="feed_scrap_img_container">
+       <img class="feed_scrap_img" src="${book.bookVO.book_cover}"/>
+      </div>
+      <div class="feed_scrap_cont">
+       <div class="feed_scrap_type">Book</div>
+       <div class="feed_scrap_title">${book.bookVO.book_name}</div>
+       <div class="feed_scrap_author">by ${book.memberVO.mem_nickname}</div>
+       <div class="feed_scrap_date">${book.rec_date}</div>
+      </div>
+     </a>
+     <div class="feed_scrap_like_outer">
+      <button class="feed_scrap_like_inner">
+       <img class="feed_scrap_rec_img" src="/jamong.com/resources/img/heart.png" data-no="${book.bookVO.book_no}"/>
+      </button>
      </div>
-     <div class="feed_scrap_cont">
-      <div class="feed_scrap_type">Article</div>
-      <div class="feed_scrap_title">여기에 Article 제목이 출력됩니다.</div>
-      <div class="feed_scrap_author">by 누구누구</div>
-      <div class="feed_scrap_date">2019.10.30</div>
-     </div>
-    </a>
-    <div class="feed_scrap_like_outer">
-     <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
-     </button>
     </div>
+    </c:if>
+    </c:forEach> 
+    <c:if test="${empty bList}">
+    <div class="feed_scrap_no_info">
+     <span>추천한 책이 없습니다.</span>
+    </div>
+    </c:if>
    </div>
    
-   <div class="feed_scrap_inner">
-    <a class="feed_scrap_link" href="/jamong.com/read">
-     <div class="feed_scrap_img_container">
-      <img class="feed_scrap_img" src="/jamong.com/resources/img/a.jpg" alt="그림 안나옴">
-     </div>
-     <div class="feed_scrap_cont">
-      <div class="feed_scrap_type">Article</div>
-      <div class="feed_scrap_title">여기에 Article 제목이 출력됩니다.</div>
-      <div class="feed_scrap_author">by 누구누구</div>
-      <div class="feed_scrap_date">2019.10.30</div>
-     </div>
-    </a>
-    <div class="feed_scrap_like_outer">
-     <button class="feed_scrap_like_inner">
-      <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
-     </button>
-    </div>
-   </div>
  
   </div><%-- feed_scrap_wrap --%>
  </div><%-- feed_main_wrap --%>

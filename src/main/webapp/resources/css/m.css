@@ -72,6 +72,22 @@ body{
 	-webkit-transition:width 0.33s linear, opacity 0.33s linear;
 }
 
+#head-feed-count{
+	font-size: 10px;
+	position: relative;
+	display: inline-block;
+	right: 13px;
+	text-align: center;
+	background-color: red;
+	color: white;
+	width: 15px;
+	height: 15px;
+	line-height: 16px;
+	border-radius: 50%;
+	bottom: 14px;
+	text-decoration: none;
+}
+
 #head-menu_open_button{
 	margin-top:5px;
 }
@@ -462,6 +478,7 @@ body{
 }
 #head-profile-menu .head-feed-button{
 	height:20px;
+	text-decoration: none;
 }
 
 #head-profile-menu .head-feed-button img{

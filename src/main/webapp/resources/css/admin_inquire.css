@@ -2,12 +2,12 @@
 /* admin_inquire.jsp */
 
 .admin_inq_title{
-	margin-left: 50px;
+	margin-left: 55px;
 }
 .admin_inq_main{
 	display: flex;
     justify-content: center;
-    min-height: 500px;
+    min-height: 400px;
     width: 800px;
     margin: 0 auto;
 }
@@ -20,6 +20,9 @@
 }
 #inq_paging {
 	padding: 1em .2em;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 #inq_search_interface {
 	display:flex;
@@ -30,7 +33,6 @@
 }
 .inq_adm_tr{
 	cursor:pointer;
-	font-size:14px;
 }
 .inq_adm_tr:hover{
 	background-color:aliceblue;
@@ -45,7 +47,9 @@
 	height:24.4px;
 }
 #adm_inquire_table{
-	margin:auto;
+	font-size:12px;
+	width:800px;
+	border-collapse:collapse;
 }
 #inq_cont_td{
    overflow: hidden;

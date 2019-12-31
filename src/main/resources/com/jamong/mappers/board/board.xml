@@ -51,9 +51,9 @@
  </resultMap>
  
  <insert id="bo_insert" parameterType="java.util.HashMap">
-  INSERT INTO board (bo_no,bo_title,bo_subtitle,bo_cont,bo_thumbnail,bo_date,bo_lock,bo_type,cat_name,mem_no,bo_titlespace,bo_color)
+  INSERT INTO board (bo_no,bo_title,bo_subtitle,bo_cont,bo_thumbnail,bo_date,bo_lock,cat_name,mem_no,bo_titlespace,bo_color)
   VALUES(bo_no_seq.nextval,#{b.bo_title},#{b.bo_subtitle},#{b.bo_cont},#{b.bo_thumbnail},sysdate,
-  #{b.bo_lock},#{b.bo_type},#{b.cat_name},#{b.mem_no},#{b.bo_titlespace},#{b.bo_color})
+  #{b.bo_lock},#{b.cat_name},#{b.mem_no},#{b.bo_titlespace},#{b.bo_color})
  </insert>
  
  <select id="bo_cont" resultMap="boardMap">
@@ -96,6 +96,8 @@
   				 AND b.bo_no < #{bo_no})
  ]]>
  </select>
+ 
+ 
  <update id="bo_edit" parameterType="java.util.HashMap">
   UPDATE board
   SET bo_title=#{b.bo_title},
@@ -103,7 +105,6 @@
   bo_cont=#{b.bo_cont},
   bo_titlespace=#{b.bo_titlespace},
   bo_lock=#{b.bo_lock},
-  bo_type=#{b.bo_type}
   <if test="b.bo_thumbnail != null" >
   ,bo_thumbnail=#{b.bo_thumbnail}
   ,bo_color=null
@@ -128,7 +129,7 @@
  </select>
  
  <update id="article_del">
-  UPDATE board SET bo_lock=3 WHERE bo_no=#{bo_no}
+  UPDATE board SET bo_lock=3, bo_editdate=sysdate WHERE bo_no=#{bo_no}
  </update>
  
  <select id="bo_catcontlist" resultMap="boardMap">
@@ -161,6 +162,8 @@
          b.bo_cont,
          b.bo_thumbnail,
          b.bo_date,
+         b.cat_name,
+         b.book_no,
          m.mem_id,
          m.mem_nickname,
          m.mem_keyword
@@ -188,6 +191,10 @@
  <!-- 게시글 공개/비공개 전환 -->
  <update id="board_lock">
   UPDATE board SET bo_lock=#{bo_lock} where bo_no=#{bo_no} and mem_no=#{mem_no}
+ </update>
+ 
+ <update id="board_ban">
+  UPDATE board SET bo_lock=#{bo_lock} where bo_no=#{bo_no}
  </update>
  
  <!-- 메뉴바 Best 글 가져오기 -->
@@ -274,6 +281,8 @@
          b.bo_cont,
          b.bo_thumbnail,
          b.bo_date,
+         b.cat_name,
+         b.book_no,
          m.mem_id,
          m.mem_nickname,
          m.mem_keyword
@@ -356,9 +365,13 @@ SELECT * FROM
   <select id="cat_board" resultMap="boardMap">
   SELECT *
   FROM board b,member m
-  WHERE b.mem_no=m.mem_no
-  AND b.cat_name=#{cat_name}
+  WHERE b.mem_no = m.mem_no
+  AND b.cat_name = #{cat_name}
+  AND b.bo_lock = 1
   ORDER BY b.bo_no DESC
  </select>
 
+<update id="book_null">
+ UPDATE board b SET b.book_no = NULL, b.book_order = NULL WHERE b.book_no = #{book_no}
+</update>
 </mapper>

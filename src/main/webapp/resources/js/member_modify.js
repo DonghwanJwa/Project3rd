@@ -9,6 +9,10 @@ var getyear= RegExp(/^[0-9]{4}$/); 						//년
 var getmonth_date= RegExp(/^[0-9]{1,2}$/); 				//월,일
 var getName= RegExp(/^[가-힣]+$/);						//이름
 var emailCheck = RegExp(/^[A-Za-z0-9_\.\-]{5,14}$/);	//이메일
+var tel_first = RegExp(/^[0-9]{3}$/); 					//폰번호 3
+var tel_second = RegExp(/^[0-9]{3,4}$/); 				//폰번호 3,4
+var tel_third = RegExp(/^[0-9]{4}$/); 					//폰번호 4
+
 
 
 $(document).ready(function(){
@@ -176,9 +180,17 @@ $(document).ready(function(){
 			$('#member_modify_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
+		if(!tel_first.test($('#member_modify_tel1').val())){
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		}
 	}).on("keyup", function(key) {
 		if ($.trim($('#member_modify_tel1').val())=="") {
 			$('#member_modify_error_tel').text('핸드폰번호를 입력해주세요!');
+			return false;
+		}
+		if(!tel_first.test($('#member_modify_tel1').val())){
+			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
 			return false;
 		}
 		$('#member_modify_error_tel').text('');
@@ -193,9 +205,17 @@ $(document).ready(function(){
 			$('#member_modify_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
+		if(!tel_second.test($('#member_modify_tel2').val())){
+			$('#member_modify_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		}
 	}).on("keyup", function(key) {
 		if ($.trim($('#member_modify_tel2').val())=="") {
 			$('#member_modify_error_tel').text('핸드폰번호를 입력해주세요!');
+			return false;
+		}
+		if(!tel_second.test($('#member_modify_tel2').val())){
+			$('#member_modify_error_tel').text('정확한 번호를 입력해주세요!');
 			return false;
 		}
 		$('#member_modify_error_tel').text('');
@@ -210,9 +230,17 @@ $(document).ready(function(){
 			$('#member_modify_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
+		if(!tel_third.test($('#member_modify_tel3').val())){
+			$('#member_modify_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		}
 	}).on("keyup", function(key) {
 		if ($.trim($('#member_modify_tel3').val())=="") {
 			$('#member_modify_error_tel').text('핸드폰번호를 입력해주세요!');
+			return false;
+		}
+		if(!tel_third.test($('#member_modify_tel3').val())){
+			$('#member_modify_error_tel').text('정확한 번호를 입력해주세요!');
 			return false;
 		}
 		$('#member_modify_error_tel').text('');
@@ -576,14 +604,28 @@ function updateCheck(){
 			$("#member_modify_tel1").focus();
 			return false;
 		}
+		if (!tel_first.test($('#member_modify_tel1').val())) {
+			$('#member_modify_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		}
+		
 		if ($.trim($('#member_modify_tel2').val())=="") {
 			$('#member_modify_error_tel').text('핸드폰번호를 입력해주세요!');
 			$("#member_modify_tel2").focus();
 			return false;
 		}
+		if (!tel_second.test($('#member_modify_tel2').val())) {
+			$('#member_modify_error_tel').text('정확한 번호를 입력해주세요!');
+			return false;
+		}
+		
 		if ($.trim($('#member_modify_tel3').val())=="") {
 			$('#member_modify_error_tel').text('핸드폰번호를 입력해주세요!');
 			$("#member_modify_tel3").focus();
+			return false;
+		}
+		if (!tel_third.test($('#member_modify_tel3').val())) {
+			$('#member_modify_error_tel').text('정확한 번호를 입력해주세요!');
 			return false;
 		}
 		
@@ -592,7 +634,12 @@ function updateCheck(){
 				$('#member_modify_error_pass_check').text('비밀번호를 입력해주세요!');
 				return false;
 			}
-			
+			if ($.trim($('#member_modify_pass').val().replace(/ /g,""))) {
+				$('#member_modify_error_pass').text('공백은 사용 불가능!');
+				$("#member_modify_pass").val("").focus();
+				$("#member_modify_pass_check").val("")
+				return false;
+			}
 			if($.trim($('#member_modify_pass').val()).length<8 || $.trim($('#join_membership_pass').val()).length>50){
 				$('#member_modify_error_pass_check').text('8자이상으로 설정해주세요!');
 				return false;

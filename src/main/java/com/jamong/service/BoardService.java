@@ -13,7 +13,7 @@ import com.jamong.domain.MemberVO;
 
 public interface BoardService {
 
-	void insertBoard(HashMap<String, Object> bm);	
+	void insertBoard(HashMap<String, Object> bm, int mem_no);
 	BoardVO getUserBoardCont(int bo_no);
 	List<BoardVO> getListAll(BoardVO b);
 	List<BoardVO> getProfile(int mem_no);
@@ -23,7 +23,8 @@ public interface BoardService {
 	int sympathyUp(BoardVO bo);
 	int sympathyDown(BoardVO bo);
 	int switchBoardLock(BoardVO bo);
-	void articleDelete(int bo_no);
+	int boardBan(BoardVO bo);
+	void articleDelete(int bo_no, int mem_no);
 	void updateBoard(HashMap<String, Object> bm);
 	List<BoardVO> bestList();
 	List<BoardVO> getSearchPost(HashMap<String, Object> searchMap);

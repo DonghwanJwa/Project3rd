@@ -17,9 +17,9 @@
        		<div id=cat_writer_face1>
         		<img class="cat_face_img" src="/jamong.com/resources/img/cat_writer_face1.jpg" alt="작가이미지" />
        		</div>
-       		<div class=cat_writer_name><strong>${cat.mem_id}</strong></div>
-       		<div id=cat_write_count>글:25개</div>
-       		<div id=cat_sub_count>구독자:121만</div>
+       		<div class=cat_writer_name><strong>${cat.mem_nickname}</strong></div>
+       		<div id=cat_write_count>글:${cat.mem_article}</div>
+       		<div id=cat_sub_count>구독자:${cat.mem_subscribe}</div>
       		 <div class=cat_writer_keyword_div>
       			<c:if test="${!empty cat.mem_fav1}">
       		 	<button class="cat_writer_keyword" ><strong>${cat.mem_fav1}</strong></button>
@@ -90,7 +90,7 @@
 	  </c:if>
 	 <c:if test="${empty blist.bo_thumbnail}">
 	<div class=cat_writing_block>
-	 <div class=cat_writing style="border-bottom: 1px solid #DDD;">
+	 <div class=cat_writing style="border-bottom: 1px solid #f57c68;">
 	  <div class="cat_writing_img-div">
 	  </div>
 	 <a class=cat_write_top href="/jamong.com/@${blist.memberVO.mem_id}/${blist.bo_no}">
@@ -146,15 +146,15 @@
 	
 	<!-- 책부분 시작 -->
 	<div class=cat_book_block style="display:none;">	
-	<c:forEach begin="1" end="5" step="1" var="i">
-	 <div class=cat_book onclick="location.href='/jamong.com/book_info'">
-	   <img class="cat_book_img" src="/jamong.com/resources/img/out.jpg" alt="글" />
+	<c:forEach var="bklist" items="${bklist}">
+	 <div class=cat_book onclick="location.href='/jamong.com/book/@${bklist.memberVO.mem_id}/${bklist.bookVO.book_no}'">
+	   <img class="cat_book_img" src="${bklist.bookVO.book_cover }" alt="글" />
 		<div class="cat_book_inner">
-			<p class=cat_book_title><strong>숲에 소원을 빌어요.</strong></p>
-			<span class=cat_story_writer>최하늘</span>
+			<p class=cat_book_title><strong>${bklist.bookVO.book_name}</strong></p>
+			<span class=cat_story_writer><i>by</i>&nbsp;${bklist.memberVO.mem_nickname}</span>
 		</div>
 		<span class=cat_inner_line></span>
-		<span class=cat_jamong_book>Jamong Book</span>	 
+		<span class=cat_jamong_book>Jamong Book</span>
 	 </div>
 	 </c:forEach>
 	</div>	

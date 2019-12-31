@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.BoardVO;
+import com.jamong.domain.BookVO;
 import com.jamong.domain.CategoryVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.service.BoardService;
+import com.jamong.service.BookService;
 import com.jamong.service.CategoryService;
 import com.jamong.service.MemberService;
 
@@ -27,13 +29,16 @@ public class CategoryController {
 	private MemberService memberService;
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private BookService bookService;
 	
 	@RequestMapping("category/{cat_name}")
 	public ModelAndView user_category(@PathVariable String cat_name) {
 		ModelAndView mv=new ModelAndView();
 		
-		List<MemberVO> mlist=this.memberService.categoryMember();
+		List<MemberVO> mlist=this.memberService.categoryMember(cat_name);
 		List<BoardVO> blist=this.boardService.categoryArticle(cat_name);
+		List<BoardVO> bklist=this.bookService.categoryArticleBK(cat_name);
 		
 		for (int i = 0; i < blist.size(); i++) {
 			String htmlTitle = blist.get(i).getBo_title();
@@ -48,6 +53,7 @@ public class CategoryController {
 		
 		mv.addObject("mlist",mlist);
 		mv.addObject("blist",blist);
+		mv.addObject("bklist",bklist);
 		
 		mv.addObject("cat_name",cat_name);
 		

@@ -39,5 +39,12 @@ public interface BookDAO {
 
 	List<BoardVO> bookScroll(HashMap<Object, Object> bookScroll);
 
+	void bookDel(int book_no);
+
+	List<BoardVO> categoryArticleBK(String cat_name);
+
+	List<BoardVO> bookBannerList();
+
+
 
 }

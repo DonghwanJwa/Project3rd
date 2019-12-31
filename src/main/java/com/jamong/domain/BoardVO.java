@@ -23,16 +23,17 @@ public class BoardVO {
 	
 	private String find_name;
 	private String find_field;
+	private String find_field2; // 191231 관리자페이지 검색을 위해 추가
+	private String find_field3; // 191231 관리자페이지 검색을 위해 추가
+	
+	private int startrow; // 191231 관리자 페이지 페이징을 위해 추가
+	private int endrow;	  // 191231 관리자 페이지 페이징을 위해 추가
 	
 	private MemberVO memberVO;
 	private BookVO bookVO;
 	
-	public BookVO getBookVO() {
-		return bookVO;
-	}
-	public void setBookVO(BookVO bookVO) {
-		this.bookVO = bookVO;
-	}
+
+
 	// Setter()
 	public void setBo_date(String bo_date)		   	 {		this.bo_date = bo_date;				}
 	public void setBo_editdate(String bo_editdate) 	 {		this.bo_editdate = bo_editdate;		}
@@ -50,10 +51,15 @@ public class BoardVO {
 	public void setBo_thumbnail(String bo_thumbnail) {		this.bo_thumbnail = bo_thumbnail;	}
 	public void setBo_type(int bo_type) 			 {		this.bo_type = bo_type;				}
 	public void setFind_field(String find_field)   	 {		this.find_field = find_field;		}
+	public void setFind_field2(String find_field2) 	 {		this.find_field2 = find_field2;		}
+	public void setFind_field3(String find_field3) 	 {		this.find_field3 = find_field3;		}
 	public void setFind_name(String find_name) 	   	 {		this.find_name = find_name;			}
+	public void setStartrow(int startrow) 			 {		this.startrow = startrow;			}
+	public void setEndrow(int endrow) 				 {		this.endrow = endrow;				}
 	public void setMemberVO(MemberVO memberVO) 		 {		this.memberVO = memberVO;			}
 	public void setBo_color(String bo_color) 		 {		this.bo_color = bo_color;			}
 	public void setBo_titlespace(int bo_titlespace)  {		this.bo_titlespace = bo_titlespace;	}
+	public void setBookVO(BookVO bookVO) 			 {		this.bookVO = bookVO;				}
 	
 	// Getter()
 	public int getBo_no() 		   	{		return bo_no;			}
@@ -73,8 +79,13 @@ public class BoardVO {
 	public int getBo_type() 		{		return bo_type;			}
 	public String getFind_name()   	{		return find_name;		}
 	public String getFind_field()  	{		return find_field;		}
+	public String getFind_field2() 	{		return find_field2;		}
+	public String getFind_field3() 	{		return find_field3;		}
+	public int getStartrow() 		{		return startrow;		}
+	public int getEndrow() 			{		return endrow;			}
 	public MemberVO getMemberVO() 	{		return memberVO;		}
 	public String getBo_color() 	{		return bo_color;		}
 	public int getBo_titlespace() 	{		return bo_titlespace;	}
+	public BookVO getBookVO() 		{		return bookVO;			}
 		
 }

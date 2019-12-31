@@ -16,6 +16,7 @@ a {
 #book_create_base {
 	width: 940px;
 	margin: 0 auto;
+	margin-top: 100px;
 }
 
 .ui-sortable {
@@ -26,15 +27,30 @@ a {
 	box-shadow: 4px 4px 7px #c0c0c0;
 }
 
+#book_create_announce{
+	height:50px;
+	display:flex;
+	align-items: center;
+}
+
+#book_create_anno_img{
+	width:25px;
+	height:25px;
+	object-fit:cover;
+}
+
+#book_create_anno_cont{
+	
+}
+
 #book_create_info {
 	display: flex;
 	width: 940px;
-	margin-top: 100px;
 }
 
 /* 책 커버 */
 #book_create_cover {
-	background-color: #fedb9a;
+	background-color: #f2f2f2;
 	position: relative;
 	display: inline-block;
 	height: 430px;
@@ -403,6 +419,41 @@ input[type="checkbox"]:checked+div.post_list_cont {
 	-webkit-transform: translateY(50%);
 	animation: fadein 1s;
 	-webkit-animation: fadein 1s;
+}
+.create_choice_wrap{
+	position: absolute;
+	top:0;
+	left: 0;
+	background-color: RGB(0,0,0,0.6);
+	display: none;
+	z-index: 10020;
+	animation: fadein 1s;
+	-webkit-animation: fadein 1s;
+}
+.create_save_panel{
+	text-align:center;
+	width:500px;
+	height:222px;
+	background-color:#FFF;
+	margin:auto;
+	margin-top:550px;
+	z-index:10;
+	transform:translateY(50%);
+	-webkit-transform:translateY(50%);
+	animation: fadein 1s;
+	-webkit-animation: fadein 1s;
+}
+.create_save_panel h3{
+	padding:15px 0px;
+	font-size:17px;
+}
+.create_save_panel td{
+	font-size:14px;
+}
+.create_save_panel caption{
+	padding-top:2px;
+	padding-bottom:2px;
+	fonx-size:15px;
 }
 ::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
 ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}

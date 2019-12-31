@@ -23,6 +23,8 @@ mem_keyword VARCHAR2(400), 		 	  -- 작가 키워드 ※ 카테고리아님
 mem_fav1 VARCHAR2(50), 				  -- 관심 카테고리 (선호하는 장르 선택)
 mem_fav2 VARCHAR2(50),
 mem_fav3 VARCHAR2(50),
+mem_article NUMBER(38) DEFAULT 0,	  -- 게시글 수
+mem_subscribe NUMBER(38) DEFAULT 0,	  -- 팔로우(구독자)수
 mem_portfolio CLOB,		  			  -- 작가 포트폴리오 내용 (12/03 추가)
 drop_reason VARCHAR2(50), 			  -- 회원 탈퇴사유 종류 (12/19 추가)
 drop_cont VARCHAR2(4000), 			  -- 회원 탈퇴사유 내용
@@ -52,6 +54,8 @@ ALTER member ADD (mem_portflio CLOB);
 ALTER table member ADD (drop_reason VARCHAR2(50));
 ALTER table member ADD (drop_cont VARCHAR2(4000));
 ALTER table member ADD (drop_date DATE);
+ALTER TABLE member ADD (mem_article NUMBER(38) DEFAULT 0);
+ALTER TABLE member ADD (mem_subscribe NUMBER(38) DEFAULT 0);
 
 
 select * from(
@@ -77,3 +81,9 @@ SELECT * FROM member ORDER BY mem_no DESC;
 
 update member set mem_state=0;
 update member set mem_state=9 where mem_id='tkdgjs905';
+update member set mem_author=1 where mem_id='shtlgus0915';
+update member set mem_author=1 where mem_id='dkek112';
+update member set mem_author=1 where mem_id='tkekd000';
+update member set mem_author=1 where mem_id='tkekd00';
+update member set mem_state=9 where mem_id='tkekd00';
+

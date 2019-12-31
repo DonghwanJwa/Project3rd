@@ -1,6 +1,5 @@
 package com.jamong.controller;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
@@ -46,15 +45,26 @@ public class MemberModifyController {
 	
 	@RequestMapping("my_info")
 	public ModelAndView myinfo(@ModelAttribute MemberVO vo,HttpSession session,
-			HttpServletRequest response,HttpServletRequest request) { // 로그인 페이지
+			HttpServletResponse response,HttpServletRequest request) throws Exception { // 로그인 페이지
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
 		ModelAndView view = new ModelAndView();
 		session = request.getSession();
-		MemberVO m = (MemberVO)session.getAttribute("m");
-		MemberVO vov = this.memberService.get(m.getMem_id());
+		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
-		view.addObject("vo", vov);
-		view.setViewName("jsp/my_info");
-		return view;
+		if(adm_m == null) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 서비스입니다. 로그인 해주세요.');");
+			out.println("location='login/1';");
+			out.println("</script>");
+		}else {
+			MemberVO vov = this.memberService.get(adm_m.getMem_id());
+			view.addObject("vo", vov);
+			view.setViewName("jsp/my_info");
+			return view;
+			
+		}
+		return null;
 	}
 	
 	/* 내정보 페이지에서 카테고리 선택되어진것을 토글처리되어진 상태로 보여주기 위한 메서드
@@ -178,30 +188,70 @@ public class MemberModifyController {
 	
 	@RequestMapping("member_modify")
 	public ModelAndView user_member_modify(MemberVO vo,HttpSession session,
-			HttpServletRequest response,HttpServletRequest request) { // 로그인 페이지
+			HttpServletResponse response,HttpServletRequest request) throws Exception { // 로그인 페이지
 		ModelAndView view = new ModelAndView();
+		response.setContentType("text/html;charset=UTF-8");
 		session = request.getSession();
-		
-		MemberVO m = (MemberVO)session.getAttribute("m");
-		MemberVO vov = this.memberService.get(m.getMem_id());
-		
-		view.addObject("vo", vov);
-		view.setViewName("jsp/member_modify");
-		return view;
+		PrintWriter out = response.getWriter();
+		MemberVO session_m = (MemberVO)session.getAttribute("m");
+
+		if(session_m == null) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 서비스입니다. 로그인 해주세요.');");
+			out.println("location='login/1';");
+			out.println("</script>");
+		}else {
+			MemberVO vov = this.memberService.get(session_m.getMem_id());
+			view.addObject("vo", vov);
+			view.setViewName("jsp/member_modify");
+			return view;
+		}
+		return null;
 	}
 
 
 	@RequestMapping("pass_modify")
 	public ModelAndView user_pass_modify(MemberVO vo,HttpSession session,
-			HttpServletRequest response,HttpServletRequest request) {
+			HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelAndView view = new ModelAndView();
 		session = request.getSession();
-		MemberVO m = (MemberVO)session.getAttribute("m");
-		MemberVO vov = this.memberService.get(m.getMem_id());
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		MemberVO session_m = (MemberVO)session.getAttribute("m");
 		
+		if(session_m == null	) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 서비스입니다. 로그인 해주세요.');");
+			out.println("location='login/1';");
+			out.println("</script>");
+		}else {
+		MemberVO vov = this.memberService.get(session_m.getMem_id());
 		view.addObject("vo", vov);
 		view.setViewName("jsp/pass_modify");
 		return view;
+		}
+		return null;
+	}
+	
+	
+	
+	//되면 이제 인풋들 검증하고 마지막에 비번 수정하고 버튼 클릭할때 문구 내주고 로그인으로
+	@RequestMapping("find_id")
+	public String user_find_id(MemberVO vo,HttpSession session,
+			HttpServletRequest request,HttpServletResponse response)throws Exception { // 아이디 찾기 페이지
+		session = request.getSession();
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		
+		if(m != null) {//세션이 있으면 뒤로
+			out.println("<script>");
+			out.println("history.back();");
+			out.println("</script>");
+		}else {
+			return "jsp/find_id";
+		}
+		return null;
 	}
 	
 	@RequestMapping("member_modify_ok") //회원정보수정
@@ -288,13 +338,6 @@ public class MemberModifyController {
 		}else {
 			return new ResponseEntity<String>("false", HttpStatus.OK);
 		}
-	}
-	
-	//되면 이제 인풋들 검증하고 마지막에 비번 수정하고 버튼 클릭할때 문구 내주고 로그인으로
-	@RequestMapping("find_id")
-	public String user_find_id() { // 아이디 찾기 페이지
-		
-		return "jsp/find_id";
 	}
 	
 	//비번을 바꾸려면 아이디나 이메일이 필요함
@@ -415,11 +458,6 @@ public class MemberModifyController {
 	@RequestMapping("cat_modify_ok")
 	@ResponseBody
 	public int cat_update(MemberVO vo,HttpSession session,String mem_fav1,String mem_fav2,String mem_fav3,HttpServletRequest request) throws Exception {
-		
-		System.out.println(mem_fav1);
-		System.out.println(mem_fav2);
-		System.out.println(mem_fav3);
-		
 		session = request.getSession();
 		MemberVO me = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
 		int re = 0;

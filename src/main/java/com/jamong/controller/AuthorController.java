@@ -43,24 +43,31 @@ public class AuthorController {
 		session=request.getSession();
 		PrintWriter out=response.getWriter();
 		
-		MemberVO adm_m=(MemberVO)session.getAttribute("m");
+		MemberVO m=(MemberVO)session.getAttribute("m");
 		
-		if(adm_m == null) {
+		if(m == null) {
 			out.println("<script>");
 			out.println("alert('로그인이 필요한 서비스입니다. 로그인 해주세요.');");
 			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
-			int no=adm_m.getMem_no();
-			int acheck=this.authorService.authorcheck(no);
-			
-			if(acheck != 0) {
+			if(m.getMem_author() == 1) {
 				out.println("<script>");
-				out.println("alert('심사중인 작가신청이 존재합니다.\\n결과를 기다려주세요!');");
+				out.println("alert('잘못된 접근입니다.');");
 				out.println("history.back();");
-				out.println("</script>"); 
-			}else {
-				return new ModelAndView("jsp/request_author");
+				out.println("</script>");
+			} else {
+				int no=m.getMem_no();
+				int acheck=this.authorService.authorcheck(no);
+
+				if(acheck != 0) {
+					out.println("<script>");
+					out.println("alert('심사중인 작가신청이 존재합니다.\\n결과를 기다려주세요!');");
+					out.println("history.back();");
+					out.println("</script>");
+				}else {
+					return new ModelAndView("jsp/request_author");
+				}
 			}
 		}
 		return null;
@@ -270,7 +277,6 @@ public class AuthorController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName1=a.getAut_file1();
-			System.out.println(pathAndName1);
 			File aut_file1=new File(pathAndName1);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
@@ -329,9 +335,6 @@ public class AuthorController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName2=a.getAut_file2();
-			
-			System.out.println(pathAndName2);
-			
 			File aut_file2=new File(pathAndName2);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
@@ -389,9 +392,6 @@ public class AuthorController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName3=a.getAut_file3();
-			
-			System.out.println(pathAndName3);
-			
 			File aut_file3=new File(pathAndName3);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */

@@ -126,4 +126,21 @@ public class BookServiceImpl implements BookService {
 		return this.boardDao.bkEditList(be);
 	}
 
+	@Transactional
+	@Override
+	public void bookDel(int book_no) {
+		this.boardDao.bookNull(book_no);
+		this.bookDao.bookDel(book_no);
+	}
+
+	@Override
+	public List<BoardVO> categoryArticleBK(String cat_name) {
+		return this.bookDao.categoryArticleBK(cat_name);
+	}
+
+	@Override
+	public List<BoardVO> bookBannerList() {
+		return this.bookDao.bookBannerList();
+	}
+
 }

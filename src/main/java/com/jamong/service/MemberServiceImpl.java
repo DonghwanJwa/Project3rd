@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	@Override
 	public void mem_update_del(MemberVO vo) {//회원탈퇴
-		this.sympathyDao.mem_update_del(vo);
+		//this.sympathyDao.mem_update_del(vo);
 		this.memberDao.mem_update_del(vo);
 	}
 	@Override
@@ -127,8 +127,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> categoryMember() {
-		return this.memberDao.categoryMember();
+	public List<MemberVO> categoryMember(String cat_name) {
+		return this.memberDao.categoryMember(cat_name);
 	}
 	
 	@Override

@@ -64,19 +64,26 @@ public class OfferController {
 
 			MemberVO author=this.memberService.author_info(mem_id); // 제안받는 작가 정보 검색
 			
-			ModelAndView mv=new ModelAndView();
-			
-			mv.addObject("author",author);
-			
-			mv.addObject("user_email",user_email);
-			mv.addObject("user_domain",user_domain);
-			mv.addObject("phone01",phone01);
-			mv.addObject("phone02",phone02);
-			mv.addObject("phone03",phone03);
-			
-			mv.setViewName("jsp/offer_author");
-			
-			return mv;
+			if(author.getMem_author() != 1) {
+				out.println("<script>");
+				out.println("alert('올바르지 않은 접근입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+				ModelAndView mv=new ModelAndView();
+				
+				mv.addObject("author",author);
+				
+				mv.addObject("user_email",user_email);
+				mv.addObject("user_domain",user_domain);
+				mv.addObject("phone01",phone01);
+				mv.addObject("phone02",phone02);
+				mv.addObject("phone03",phone03);
+				
+				mv.setViewName("jsp/offer_author");
+				
+				return mv;
+			}
 		}
 		
 		return null;
@@ -325,7 +332,6 @@ public class OfferController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName=ao.getOff_file1();
-			System.out.println(pathAndName);
 			File off_file1=new File(pathAndName);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
@@ -384,7 +390,6 @@ public class OfferController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName=ao.getOff_file2();
-			System.out.println(pathAndName);
 			File off_file2=new File(pathAndName);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
@@ -443,7 +448,6 @@ public class OfferController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName=ao.getOff_file3();
-			System.out.println(pathAndName);
 			File off_file3=new File(pathAndName);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */

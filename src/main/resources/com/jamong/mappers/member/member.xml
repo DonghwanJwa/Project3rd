@@ -64,10 +64,20 @@
 
 <!-- 작가에게 제안하기 시작-->
 <select id="author_info" resultType="m">
-	SELECT mem_no,mem_id,mem_nickname,profile_photo,email_id,email_domain FROM member where mem_id=#{mem_id}
+	SELECT mem_no,mem_id,mem_nickname,profile_photo,email_id,email_domain,mem_author FROM member where mem_id=#{mem_id}
 </select>
 
 <!-- 작가에게 제안하기 끝 -->
+
+ <!-- 글작성 / 삭제 시 카운트 변경 -->
+ <update id="ArticleCount" parameterType="java.util.HashMap">
+  UPDATE member SET mem_article=mem_article+#{UpCount} WHERE mem_no=#{mem_no}
+ </update>
+ 
+ <!-- 팔로우 / 언팔로우시 카운트 변경 -->
+ <update id="SubscribeCount" parameterType="java.util.HashMap">
+  UPDATE member SET mem_subscribe=mem_subscribe+#{UpCount} WHERE mem_no=#{s.mem_no}
+ </update>
 
 	<!-- 회원정보 업데이트 -->
 <update id="mem_update" parameterType="java.util.HashMap">
@@ -201,7 +211,8 @@
  
  <select id="cat_member" resultType="m">
  <![CDATA[
-  SELECT * FROM (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) WHERE rowNum <= 4
+  SELECT * FROM (SELECT * FROM (SELECT * FROM member WHERE mem_author=1 ORDER BY DBMS_RANDOM.RANDOM)
+  WHERE mem_fav1 = #{cat_name} OR mem_fav2 = #{cat_name} OR mem_fav3 = #{cat_name}) WHERE rowNum <= 4
   ]]> 
  </select>
 

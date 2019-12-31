@@ -66,13 +66,15 @@
   WHERE b.mem_no=m.mem_no
   AND m.mem_id=#{mem_id}
   AND b.book_no IS NULL
+  AND b.bo_lock != 2
+  AND b.bo_lock != 3
   ORDER BY b.bo_no DESC
  </select>
  
  <insert id="book_in" parameterType="java.util.HashMap">
   INSERT
-  INTO book (book_no,book_name,book_cover,book_preface,book_date,mem_no)
-  VALUES (book_no_seq.nextval,#{b.book_name},#{b.book_cover},#{b.book_preface},sysdate,#{b.mem_no})
+  INTO book (book_no,book_name,book_cover,book_preface,book_date,cat_name,mem_no)
+  VALUES (book_no_seq.nextval,#{b.book_name},#{b.book_cover},#{b.book_preface},sysdate,#{b.cat_name},#{b.mem_no})
  </insert>
  
  <select id="book_sel" parameterType="java.util.HashMap" resultType="int">
@@ -84,7 +86,7 @@
  
  <update id="book_no_up" parameterType="java.util.HashMap">
   <foreach collection="bo_no" index="index" item="bc" separator=";" open="DECLARE BEGIN" close="; END;">
-   UPDATE board SET book_no = #{book_no}, book_order = #{index} WHERE bo_no=#{bc}
+   UPDATE board SET book_no = #{book_no}, book_order = #{index + 1}, bo_lock = 1 WHERE bo_no=#{bc}
   </foreach>
  </update>
  
@@ -299,5 +301,40 @@ SELECT * FROM
   FROM board b
   INNER JOIN book book
   ON b.book_no = #{bk.book_no}
+ </select>
+ 
+ <delete id="book_del">
+  DELETE book WHERE book_no = #{book_no}
+ </delete>
+ 
+ <select id="cat_book_list" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_cover,
+  		 book.book_name,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname
+  FROM book book
+  INNER JOIN member m
+  ON book.cat_name = #{cat_name}
+  AND book.mem_no = m.mem_no
+  ORDER BY book.book_no DESC
+ </select>
+ 
+ <select id="book_banner" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname,
+  		 m.profile_photo,
+  		 m.profile_cont
+  FROM (SELECT * FROM book ORDER BY book_recommend DESC) book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  WHERE ROWNUM &lt;= 5
  </select>
 </mapper>

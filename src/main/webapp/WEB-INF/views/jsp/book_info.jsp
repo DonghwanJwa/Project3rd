@@ -7,7 +7,13 @@
   <div id="book_info_about">
   
    <div id="book_info_cover" class="book_info_about_div">
+   <c:set var="book_cover" value="${book_cover}"/>
+    <c:if test="${!empty book_cover}">
     <img id="book_info_cover_img" src="${book_cover}">
+    </c:if>
+    <c:if test="${empty book_cover}">
+    <div id="book_info_cover_img" style="background-color: #f2f2f2"></div>
+    </c:if>
     <div id="book_info_cover_txt">
 	 <div id="book_info_cover_head">
 	  <strong id="book_info_cover_title">${book_name}</strong>

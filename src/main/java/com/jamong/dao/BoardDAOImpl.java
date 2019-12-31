@@ -80,6 +80,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public int boardBan(BoardVO bo) {
+		return this.sqlSession.update("board_ban",bo);
+	}
+
+	@Override
 	public List<BoardVO> getSearchPost(HashMap<String, Object> searchMap) {
 		return this.sqlSession.selectList("search_post", searchMap);
 	}
@@ -141,12 +146,17 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List<BoardVO> bkEditList(HashMap<String, Object> be) {
-		return this.sqlSession.selectOne("bkEditList", be);
+		return this.sqlSession.selectList("bkEditList", be);
 	}
 
   @Override
   public List<BoardVO> profileScroll(HashMap<String, Object> scroll) {
 	return this.sqlSession.selectList("profileScroll",scroll);
 	}
+
+  	@Override
+  	public void bookNull(int book_no) {
+  		this.sqlSession.update("book_null",book_no);
+  	}
 
 }

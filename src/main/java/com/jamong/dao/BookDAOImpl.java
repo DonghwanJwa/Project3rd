@@ -77,7 +77,7 @@ public class BookDAOImpl implements BookDAO {
 		return this.sqlSession.selectList("my_book_scroll",bookScroll);
 	}
 
-@Override
+  @Override
 	public void recommendUpUpdate(BookVO bk) {
 		this.sqlSession.update("rec_up",bk);
 	}
@@ -90,6 +90,21 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public int recommendNum(BookVO bk) {
 		return this.sqlSession.selectOne("rec_count",bk);
+	}
+
+	@Override
+	public void bookDel(int book_no) {
+		this.sqlSession.delete("book_del",book_no);
+	}
+
+	@Override
+	public List<BoardVO> categoryArticleBK(String cat_name) {
+		return this.sqlSession.selectList("cat_book_list",cat_name);
+	}
+
+	@Override
+	public List<BoardVO> bookBannerList() {
+		return this.sqlSession.selectList("book_banner");
 	}
 
 }
