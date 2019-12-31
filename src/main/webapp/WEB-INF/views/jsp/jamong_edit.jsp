@@ -223,21 +223,6 @@
      </tr>
     </table>
    </div>
-   <div class="write_type_choice_panel">
-   <table>
-   <caption>글 종류</caption>
-   <tr>
-    <td>
-    <input type="radio" name="bo_type" id="write_column" value="0" <c:if test="${bo.bo_type == 0}">checked</c:if> /> 칼럼
-    </td>   
-   </tr>
-   <tr>
-    <td>
-    <input type="radio" name="bo_type" id="write_essay" value="1" <c:if test="${bo.bo_type == 1}">checked</c:if> /> 에세이
-    </td>
-   </tr>
-   </table>
-   </div>
    <div class="write_choice_btn_panel">
     <input type="submit" class="write_choice_save_btn" value="수정" />
     <input type="button" class="write_choice_close_btn" value="취소" />
