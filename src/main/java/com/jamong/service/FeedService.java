@@ -13,5 +13,6 @@ public interface FeedService {
 	List<FeedVO> getUserFeedList(int mem_no);
 	void feedStateUp(int feed_no);
 	int feedCount(int sMem_no);
+	void feedDelete(int feed_no);
 
 }

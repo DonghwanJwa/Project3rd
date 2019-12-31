@@ -71,4 +71,9 @@ public class FeedDAOImpl implements FeedDAO {
 		return this.sqlSession.selectOne("FeedCount",sMem_no);
 	}
 
+	@Override
+	public void feedDelete(int feed_no) {
+		this.sqlSession.delete("FeedDelete",feed_no);
+	}
+
 }

@@ -103,7 +103,7 @@
 							</ul>
 						</div>
 					</div>
-					<h3>공개여부와 글종류를 설정하세요</h3>
+					<h3>공개여부를 선택하세요</h3>
    <div class="write_save_choice_panel">
     <table>
     <caption>공개여부</caption>
@@ -118,21 +118,6 @@
       </td>
      </tr>
     </table>
-   </div>
-   <div class="write_type_choice_panel">
-   <table>
-   <caption>글 종류</caption>
-   <tr>
-    <td>
-    <input type="radio" name="bo_type" id="write_column" value="0" checked /> 칼럼
-    </td>   
-   </tr>
-   <tr>
-    <td>
-    <input type="radio" name="bo_type" id="write_essay" value="1" /> 에세이
-    </td>
-   </tr>
-   </table>
    </div>
    <div class="write_choice_btn_panel">
     <input type="submit" class="write_choice_save_btn" value="확인" />

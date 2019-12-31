@@ -106,4 +106,8 @@
  <select id="FeedCount" resultType="int">
   SELECT count(feed_no) FROM feed WHERE feed_state = 0 AND mem_no = #{mem_no}
  </select>
+ 
+ <delete id="FeedDelete">
+  DELETE FROM feed WHERE feed_no = #{feed_no}
+ </delete>
 </mapper>
