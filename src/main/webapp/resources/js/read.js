@@ -441,7 +441,7 @@ $(document).ready(function(){
 				url : "/jamong.com/artdel/"+mem_no+"/"+para[5]+"/1",
 				success : function(data){
 					if(data == 1){
-						alert('게시글이 삭제되었습니다!');
+						alert('게시글이 복구 되었습니다!');
 						window.location.reload();
 					}else if(data == 2){
 						alert('로그인이 필요합니다!');
@@ -466,7 +466,7 @@ $(document).ready(function(){
 				url : "/jamong.com/artdel/"+mem_no+"/"+para[5]+"/-1",
 				success : function(data){
 					if(data == 1){
-						alert('게시글이 복구 되었습니다!');
+						alert('게시글이 삭제 되었습니다!');
 						window.location.reload();
 					}else if(data == 2){
 						alert('로그인이 필요합니다!');
