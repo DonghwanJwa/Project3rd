@@ -32,6 +32,6 @@ public interface BoardService {
 	List<BoardVO> getUserBoardCatArticle(String cat_name);
 	List<BoardVO> categoryArticle(String cat_name);
 	List<BoardVO> getUserBoardContList(int mem_no);
-	List<BoardVO> profileScroll(HashMap<Object, Object> scroll);
+	List<BoardVO> profileScroll(HashMap<String, Object> scroll);
 
 }

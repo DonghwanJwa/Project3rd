@@ -147,14 +147,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO getPreBoardCont(HashMap<String, Object> bm) {
-		return this.boardDao.getPreBoardCont(bm);
+	public List<BoardVO> profileScroll(HashMap<String, Object> scroll) {
+		return this.boardDao.profileScroll(scroll);
 	}
 
 	@Override
-	public List<BoardVO> profileScroll(HashMap<Object, Object> scroll) {
-		return this.boardDao.profileScroll(scroll);
+	public BoardVO getPreBoardCont(HashMap<String, Object> bm) {
+		return this.boardDao.getPreBoardCont(bm);
 	}
-	
 	
 }

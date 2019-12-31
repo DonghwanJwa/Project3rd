@@ -145,7 +145,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
   @Override
-  public List<BoardVO> profileScroll(HashMap<Object, Object> scroll) {
+  public List<BoardVO> profileScroll(HashMap<String, Object> scroll) {
 	return this.sqlSession.selectList("profileScroll",scroll);
 	}
 

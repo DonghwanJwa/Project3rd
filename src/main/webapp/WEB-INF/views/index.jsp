@@ -256,7 +256,7 @@ $(document).keydown(function(e){
         <img src="/jamong.com/resources/img/admin_icon.png" alt="관리자">
        </a>
       </div>
-      <a href="/jamong.com/profile" id="head-profile-info-wrap">
+      <a href="/jamong.com/@${m.mem_id}" id="head-profile-info-wrap">
        <div id="head-profile-info-img-wrap">
         <img id="head-profile-info-img" src="${m.profile_photo}">
        </div>
