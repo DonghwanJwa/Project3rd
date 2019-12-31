@@ -131,9 +131,22 @@ public class MemberController {
 		return "redirect:/";
 	}
 	@RequestMapping("join_membership")
-	public String user_membership() { // 회원가입
+	public String user_membership(MemberVO vo,HttpSession session,
+			HttpServletRequest request,HttpServletResponse response)throws Exception { // 회원가입
+		session = request.getSession();
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		MemberVO m = (MemberVO)session.getAttribute("m");
 		
-		return "jsp/join_membership";
+		if(m != null) {//세션이 있으면 뒤로
+			out.println("<script>");
+			out.println("history.back();");
+			out.println("</script>");
+		}else {
+			return "jsp/join_membership";
+		}
+		
+		return null;
 	}
 	
 	@RequestMapping("join_membership_idcheck")

@@ -634,7 +634,12 @@ function updateCheck(){
 				$('#member_modify_error_pass_check').text('비밀번호를 입력해주세요!');
 				return false;
 			}
-			
+			if ($.trim($('#member_modify_pass').val().replace(/ /g,""))) {
+				$('#member_modify_error_pass').text('공백은 사용 불가능!');
+				$("#member_modify_pass").val("").focus();
+				$("#member_modify_pass_check").val("")
+				return false;
+			}
 			if($.trim($('#member_modify_pass').val()).length<8 || $.trim($('#join_membership_pass').val()).length>50){
 				$('#member_modify_error_pass_check').text('8자이상으로 설정해주세요!');
 				return false;
