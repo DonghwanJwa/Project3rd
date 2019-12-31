@@ -97,4 +97,9 @@ public class BookDAOImpl implements BookDAO {
 		return this.sqlSession.selectList("cat_book_list",cat_name);
 	}
 
+	@Override
+	public List<BoardVO> bookBannerList() {
+		return this.sqlSession.selectList("book_banner");
+	}
+
 }

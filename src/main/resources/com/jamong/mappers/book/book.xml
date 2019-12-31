@@ -285,9 +285,9 @@
  </delete>
  
  <select id="cat_book_list" resultMap="boardMap">
-  SELECT book_no,
+  SELECT book.book_no,
   		 book.book_cover,
-  		 book_name,
+  		 book.book_name,
   		 m.mem_no,
   		 m.mem_id,
   		 m.mem_nickname
@@ -296,5 +296,22 @@
   ON book.cat_name = #{cat_name}
   AND book.mem_no = m.mem_no
   ORDER BY book.book_no DESC
+ </select>
+ 
+ <select id="book_banner" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname,
+  		 m.profile_photo,
+  		 m.profile_cont
+  FROM (SELECT * FROM book ORDER BY book_recommend DESC) book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  WHERE ROWNUM &lt;= 5
  </select>
 </mapper>

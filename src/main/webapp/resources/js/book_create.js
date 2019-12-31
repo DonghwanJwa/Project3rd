@@ -76,11 +76,11 @@ $(document).ready(function() {
 		}
 	});
 	$(".write_choice_close_btn").click(function() {
-		$(".write_choice_wrap").css("display", "none");
+		$(".create_choice_wrap").css("display", "none");
 	});
-	$(".write_choice_wrap").click(function(e) { // 영역 클릭시
-		if ($(".write_choice_wrap").is(e.target)) { // 영역 밖 클릭시
-			$(".write_choice_wrap").css("display", "none");
+	$(".create_choice_wrap").click(function(e) { // 영역 클릭시
+		if ($(".create_choice_wrap").is(e.target)) { // 영역 밖 클릭시
+			$(".create_choice_wrap").css("display", "none");
 		}
 	});
 });
@@ -139,40 +139,11 @@ function createCheck() {
 	var screenWidth = $(document).width();
 	var screenHeight = $(document).height();
 
-	$(".write_choice_wrap").css({
+	$(".create_choice_wrap").css({
 		'width' : screenWidth,
 		'height' : screenHeight
 	});
-	$(".write_choice_wrap").css("display", "inline-block");
-}
-function editCheck() {
-	if ($.trim($("#book_create_cover_title").text()) == "") {
-		alert("책 제목을 입력하세요.");
-		$("#book_create_cover_title").text("").focus();
-		return false;
-	}
-	if ($.trim($("#book_create_intro_cont").text()) == "") {
-		alert("책 소개를 입력하세요.");
-		$("#book_create_intro_cont").text("").focus();
-		return false;
-	}
-	if ($("#create_list").children().length == "") {
-		alert("책으로 만들 글을 선택해 주세요.");
-		return false;
-	}// ul 리스트가 비어있으면
-	if ($("#create_list").children().length < 5) {
-		alert("책으로 만들 글을 5개 이상 선택해 주세요.");
-		return false
-	}// ul 리스트 글 5개 미만
-	$("#create_list [type=checkbox]").prop("checked", true);
-	var book_name = $("#book_create_cover_title").html();
-	var book_preface = $("#book_create_intro_cont").html();
-	$("#book_title").val(book_name);
-	$("#book_intro_cont").val(book_preface);
-}
-
-function editAllCheck(){
-	
+	$(".create_choice_wrap").css("display", "inline-block");
 }
 
 function createBookCheck() {

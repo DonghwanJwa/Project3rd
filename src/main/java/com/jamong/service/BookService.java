@@ -43,4 +43,6 @@ public interface BookService {
 
 	List<BoardVO> categoryArticleBK(String cat_name);
 
+	List<BoardVO> bookBannerList();
+
 }

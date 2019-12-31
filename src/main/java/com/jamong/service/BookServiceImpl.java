@@ -133,4 +133,9 @@ public class BookServiceImpl implements BookService {
 		return this.bookDao.categoryArticleBK(cat_name);
 	}
 
+	@Override
+	public List<BoardVO> bookBannerList() {
+		return this.bookDao.bookBannerList();
+	}
+
 }
