@@ -296,7 +296,7 @@ public class BoardController {
 
 		out.println("<script>");
 		out.println("alert('게시글이 등록되었습니다!')");
-		out.println("location='/jamong.com/';");
+		out.println("location='/jamong.com/@"+m.getMem_id()+"';");
 		out.println("</script>");
 
 		return null;
@@ -383,7 +383,7 @@ public class BoardController {
 			this.boardService.updateBoard(bm);
 			out.println("<script>");
 			out.println("alert('게시글이 수정되었습니다!');");
-			out.println("location='/jamong.com/';");
+			out.println("location='/jamong.com/@"+m.getMem_id()+"/"+bo_no+"';");
 			out.println("</script>");
 		} else {
 			out.println("<script>");
@@ -512,6 +512,30 @@ public class BoardController {
 		return result;
 	}
 
+	@RequestMapping("boardBan/{bo_no}/{bo_lock}")
+	@ResponseBody
+	public int boardBan(@PathVariable int bo_no,@PathVariable int bo_lock,
+			HttpServletRequest request,
+			HttpSession session) {
+		session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("m");
+		int re=1; //게시글 정지 실패 flag - 로그인안됨1/관리자아님2/성공-1
+		if(m!=null) {
+			if(m.getMem_state()==9) {
+				BoardVO bo = new BoardVO();
+				bo.setBo_no(bo_no);
+				bo.setBo_lock(bo_lock);
+				int result = this.boardService.boardBan(bo);
+				if(result>0) {
+					re=-1;
+				}
+			}else {
+				re=2;
+			}
+		}
+		return re;
+	}
+	
 	@RequestMapping("best_load")
 	public ResponseEntity<List<BoardVO>> best_load(){
 		ResponseEntity<List<BoardVO>> entity = null;
@@ -700,6 +724,6 @@ public class BoardController {
 			return memberList;
 		}
 		return null;
-	} 
+	}
 	
 }

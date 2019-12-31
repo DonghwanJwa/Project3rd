@@ -332,7 +332,6 @@ public class OfferController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName=ao.getOff_file1();
-			System.out.println(pathAndName);
 			File off_file1=new File(pathAndName);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
@@ -391,7 +390,6 @@ public class OfferController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName=ao.getOff_file2();
-			System.out.println(pathAndName);
 			File off_file2=new File(pathAndName);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */
@@ -450,7 +448,6 @@ public class OfferController {
 			
 			// 서버 실제 경로의 파일을 구함
 			String pathAndName=ao.getOff_file3();
-			System.out.println(pathAndName);
 			File off_file3=new File(pathAndName);			
 			
 			/* 읽어와야 할 용량은 최대 업로드 용량을 초과하지 않는다. */

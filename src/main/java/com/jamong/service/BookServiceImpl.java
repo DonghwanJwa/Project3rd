@@ -124,8 +124,8 @@ public class BookServiceImpl implements BookService {
 	@Transactional
 	@Override
 	public void bookDel(int book_no) {
-		this.bookDao.bookDel(book_no);
 		this.boardDao.bookNull(book_no);
+		this.bookDao.bookDel(book_no);
 	}
 
 	@Override
