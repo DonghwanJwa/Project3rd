@@ -128,4 +128,9 @@ public class BookServiceImpl implements BookService {
 		this.boardDao.bookNull(book_no);
 	}
 
+	@Override
+	public List<BoardVO> categoryArticleBK(String cat_name) {
+		return this.bookDao.categoryArticleBK(cat_name);
+	}
+
 }

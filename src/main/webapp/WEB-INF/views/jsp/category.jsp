@@ -146,15 +146,15 @@
 	
 	<!-- 책부분 시작 -->
 	<div class=cat_book_block style="display:none;">	
-	<c:forEach begin="1" end="5" step="1" var="i">
-	 <div class=cat_book onclick="location.href='/jamong.com/book_info'">
-	   <img class="cat_book_img" src="/jamong.com/resources/img/out.jpg" alt="글" />
+	<c:forEach var="bklist" items="${bklist}">
+	 <div class=cat_book onclick="location.href='/jamong.com/book/@${bklist.memberVO.mem_id}/${bklist.bookVO.book_no}'">
+	   <img class="cat_book_img" src="${bklist.bookVO.book_cover }" alt="글" />
 		<div class="cat_book_inner">
-			<p class=cat_book_title><strong>숲에 소원을 빌어요.</strong></p>
-			<span class=cat_story_writer>최하늘</span>
+			<p class=cat_book_title><strong>${bklist.bookVO.book_name}</strong></p>
+			<span class=cat_story_writer><i>by</i>&nbsp;${bklist.memberVO.mem_nickname}</span>
 		</div>
 		<span class=cat_inner_line></span>
-		<span class=cat_jamong_book>Jamong Book</span>	 
+		<span class=cat_jamong_book>Jamong Book</span>
 	 </div>
 	 </c:forEach>
 	</div>	
