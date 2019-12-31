@@ -17,7 +17,7 @@ function ArticleRemove(){
 			success : function(data){
 				if(data == 1){
 					alert('게시글이 삭제되었습니다!');
-					location.href = "/jamong.com/new_posts";
+					location.href = "/jamong.com/"+para[4];
 				}else if(data == 2){
 					alert('로그인이 필요합니다!');
 				}
@@ -427,4 +427,56 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
+	/*admin_게시글 삭제*/
+	$('.admin_art_del_recover_btn').click(function(event){
+		var para = document.location.href.split("/");
+		var recoverOK = confirm('게시글을 복구처리 하시겠습니까?');
+	
+		if(recoverOK == true){
+			var mem_no = $('#user_del_no').val();
+			
+			$.ajax({
+				type : "POST",
+				url : "/jamong.com/artdel/"+mem_no+"/"+para[5]+"/1",
+				success : function(data){
+					if(data == 1){
+						alert('게시글이 삭제되었습니다!');
+						window.location.reload();
+					}else if(data == 2){
+						alert('로그인이 필요합니다!');
+						location.href = "/jamong.com/login/1";
+					}else if(data == 3){
+						alert('접근 권한이 없는 계정입니다.');
+					}
+				}
+			});
+		}
+	});	
+	
+	$('.admin_art_del_btn').click(function(event){
+		var para = document.location.href.split("/");
+		var removeOK = confirm('게시글을 삭제처리 하시겠습니까?');
+	
+		if(removeOK == true){
+			var mem_no = $('#user_del_no').val();
+			
+			$.ajax({
+				type : "POST",
+				url : "/jamong.com/artdel/"+mem_no+"/"+para[5]+"/-1",
+				success : function(data){
+					if(data == 1){
+						alert('게시글이 복구 되었습니다!');
+						window.location.reload();
+					}else if(data == 2){
+						alert('로그인이 필요합니다!');
+						location.href = "/jamong.com/login/1";
+					}else if(data == 3){
+						alert('접근 권한이 없는 계정입니다.');
+					}
+				}
+			});
+		}
+	});	
+	
 });

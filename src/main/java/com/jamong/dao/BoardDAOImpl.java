@@ -55,6 +55,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public void articleRecover(int bo_no) {
+		this.sqlSession.update("article_rec", bo_no);
+	}
+
+	@Override
 	public List<BoardVO> recomArticle() {
 		return this.sqlSession.selectList("board.index_article");
 	}

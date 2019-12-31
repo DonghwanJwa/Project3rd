@@ -14,6 +14,7 @@ public interface BoardDAO {
 	void sympathyUpUpdate(BoardVO bo);
 	void sympathyDownUpdate(BoardVO bo);
 	void articleDelete(int bo_no);
+	void articleRecover(int bo_no);
 	int sympathyNum(BoardVO bo);
 	int switchBoardLock(BoardVO bo);
 	int boardBan(BoardVO bo);

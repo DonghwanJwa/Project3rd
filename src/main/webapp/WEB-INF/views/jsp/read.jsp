@@ -128,11 +128,12 @@
    		 	<div id="edit_del_wrap">
    				<i class="user_edit_btn" title="글 수정" onclick="location.href='/jamong.com/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
    		 	 <c:if test="${bo.bo_lock==3}">
-   				<i class="user_del_recover_btn" title="글 복구" onclick="ArticleRemove();"></i>
+   				<i class="admin_art_del_recover_btn" title="글 복구"></i>
    			 </c:if>
    			 <c:if test="${bo.bo_lock!=3}">
-   				<i class="user_del_btn" title="글 삭제" onclick="ArticleRemove();"></i>
+   				<i class="admin_art_del_btn" title="글 삭제"></i>
    			 </c:if>
+   			 <input type="hidden" id="user_del_no" value="${bo.memberVO.mem_no}" readonly>
    			</div>
    		 </c:if>
     <div class="write_cont_area write_cont_align_left" style="min-height:300px;">
