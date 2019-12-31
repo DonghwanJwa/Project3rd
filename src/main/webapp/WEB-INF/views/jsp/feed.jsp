@@ -43,6 +43,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 2}">
@@ -62,7 +63,7 @@
       </div>
      </div>
     </a>
-    <a>X</a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 3}">
@@ -82,6 +83,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 4}">
@@ -101,6 +103,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 5}">
@@ -120,6 +123,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 6}">
@@ -139,6 +143,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 7}">
@@ -158,6 +163,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    </c:if>
@@ -178,6 +184,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 2}">
@@ -215,6 +222,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 4}">
@@ -233,6 +241,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 5}">
@@ -251,6 +260,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 6}">
@@ -269,6 +279,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 7}">
@@ -287,6 +298,7 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    </c:if>

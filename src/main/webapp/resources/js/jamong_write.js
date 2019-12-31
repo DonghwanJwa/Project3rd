@@ -263,7 +263,6 @@ $(document).ready(function(){
 	// 이미지 미리보기 구현
 	$("#write_cover_file").on("change", handleImgFileSelect);
 	$("#write_title_coverimage_bg").on("change", handleImgFileSelect);
-
 	// 미리보기 이미지 삭제 / 취소
 	$(".write_cover_delete").click(function(){
 		$(".write_main_title").removeClass('write_bg_title_option');
@@ -316,7 +315,7 @@ function sendFile(file, editor){
 	$.ajax({
 		data: form_data,
 		type: "POST",
-		url: 'imageUpload',
+		url: '/jamong.com/imageUpload',
 		cache: false,
 		contentType: false,
 		enctype: "multipart/form-data",

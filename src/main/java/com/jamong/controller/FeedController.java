@@ -105,4 +105,10 @@ public class FeedController {
 		}
 		return count;
 	}
+	
+	@PostMapping("feed/del")
+	@ResponseBody
+	public void feedDelete(int feed_no) {
+		this.feedService.feedDelete(feed_no);
+	}
 }

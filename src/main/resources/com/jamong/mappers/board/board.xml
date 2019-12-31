@@ -104,7 +104,7 @@
   bo_subtitle=#{b.bo_subtitle},
   bo_cont=#{b.bo_cont},
   bo_titlespace=#{b.bo_titlespace},
-  bo_lock=#{b.bo_lock},
+  bo_lock=#{b.bo_lock}
   <if test="b.bo_thumbnail != null" >
   ,bo_thumbnail=#{b.bo_thumbnail}
   ,bo_color=null
