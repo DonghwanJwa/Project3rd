@@ -19,7 +19,9 @@
   
   <%-- 새글 보여주기 양식 --%>
    <c:if test="${empty fList}">
-    <h2>알림이 없습니다!</h2>
+    <div class="feed_scrap_no_info">
+     <span>알림이 없습니다.</span>
+    </div>
    </c:if>
   <c:forEach var="fList" items="${fList}">
    <c:if test="${!empty fList}">
@@ -314,15 +316,17 @@
      </a>
      <div class="feed_scrap_like_outer">
       <button class="feed_scrap_like_inner">
-       <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
+       <img class="feed_scrap_sym_img" src="/jamong.com/resources/img/heart.png" data-no="${art.boardVO.bo_no}"/>
       </button>
      </div>
      </div>
     </c:if>
-    <c:if test="${empty art}">
-    
-    </c:if>
     </c:forEach>   
+    <c:if test="${empty aList}">
+     <div class="feed_scrap_no_info">
+      <span>공감한 게시글이 없습니다.</span>
+     </div>
+    </c:if>
    </div>
     
    <div id="feed_scrap_book" style="display:none;">
@@ -342,15 +346,17 @@
      </a>
      <div class="feed_scrap_like_outer">
       <button class="feed_scrap_like_inner">
-       <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
+       <img class="feed_scrap_rec_img" src="/jamong.com/resources/img/heart.png" data-no="${book.bookVO.book_no}"/>
       </button>
      </div>
     </div>
     </c:if>
-    <c:if test="${empty book}">
-    
-    </c:if>
     </c:forEach> 
+    <c:if test="${empty bList}">
+    <div class="feed_scrap_no_info">
+     <span>추천한 책이 없습니다.</span>
+    </div>
+    </c:if>
    </div>
    
  
