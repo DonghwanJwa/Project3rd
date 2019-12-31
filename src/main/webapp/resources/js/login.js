@@ -4,6 +4,7 @@
 var sel_file; // 이미지 미리보기 변수
 
 /*정규식*/
+
 var regExpPws = RegExp(/^(?=.*\s{1,50})/);
 var regExpPw = RegExp(/^(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()\-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/);//비번
 var getCheck= RegExp(/^[a-zA-Z0-9]{6,12}$/); 			//아이디
@@ -129,7 +130,6 @@ $(document).ready(function(){
 			$("#join_membership_pass").val("").focus();
 			return false;
 		}
-		
 		if($.trim($('#join_membership_pass').val()).length<8 || $.trim($('#join_membership_pass').val()).length>50){
 			$('#join_membership_error_pass').text('8자이상으로 설정해주세요!');
 			$("#join_membership_pass_check").val("")
@@ -145,6 +145,7 @@ $(document).ready(function(){
 	
 		
 		//비밀번호 정규식 = 영문,숫자,특수문자의 조합
+
 		if(!regExpPw.test($("#join_membership_pass").val()) || regExpPws.test($("#join_membership_pass").val())){ 
 			$('#join_membership_error_pass').text('영문,숫자,특수문자의 조합으로 입력해주세요!');
 			$("#join_membership_pass_check").val("")
@@ -476,7 +477,6 @@ $(document).ready(function(){
 			$('#join_membership_error_pass').text('비밀번호를 입력해주세요!');
 			return false;
 		}
-	
 		if($.trim($('#join_membership_pass').val()).length<8 || $.trim($('#join_membership_pass').val()).length>50){
 			$('#join_membership_error_pass').text('8자이상으로 설정해주세요!');
 			return false;
@@ -495,11 +495,11 @@ $(document).ready(function(){
 			$('#join_membership_error_pass').text('비밀번호를 입력해주세요!');
 			return false;
 		}
-	
 		if($.trim($('#join_membership_pass').val()).length<8 || $.trim($('#join_membership_pass').val()).length>50){
 			$('#join_membership_error_pass').text('8자이상으로 설정해주세요!');
 			return false;
 		}
+
 		if(!regExpPw.test($("#join_membership_pass").val()) || regExpPws.test($("#join_membership_pass").val())){ 
 			$('#join_membership_error_pass').text('영문,숫자,특수문자의 조합으로 입력해주세요!');
 			return false; 
