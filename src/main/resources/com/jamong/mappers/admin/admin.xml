@@ -142,6 +142,7 @@
 	<select id="articleList" resultMap="boardMap">
 		SELECT * FROM (SELECT rowNum r, bo_no, bo_title, bo_lock, bo_date, bo_editdate, cat_name, mem_no FROM (SELECT board.* FROM board
 		<where>
+		bo_lock != 0 AND bo_lock != 1 
 		<if test="find_field == 'all'"></if>
 		
 		<if test="find_field == 'block'">
@@ -223,9 +224,6 @@
 		) m
 		ON b.mem_no = m.mem_no
 		WHERE r &gt;= #{startrow} and r &lt;= #{endrow} 
-		AND b.mem_no=m.mem_no 
-		AND b.bo_lock != 0 
-		AND b.bo_lock != 1 
 		ORDER BY b.bo_editdate DESC
 	</select>
 </mapper>
