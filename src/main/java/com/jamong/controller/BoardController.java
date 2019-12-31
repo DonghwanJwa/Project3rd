@@ -266,7 +266,6 @@ public class BoardController {
 		String bo_cont = multi.getParameter("bo_cont");
 		String bo_color = multi.getParameter("bo_color");
 		int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
-		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
 		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
 
@@ -308,7 +307,6 @@ public class BoardController {
 		b.setBo_cont(bo_cont);
 		b.setBo_titlespace(bo_titlespace);
 		b.setBo_lock(bo_lock);
-		b.setBo_type(bo_type);
 		b.setCat_name(cat_name);
 		b.setMem_no(mem_no);
 
@@ -347,7 +345,6 @@ public class BoardController {
 		String bo_cont = multi.getParameter("bo_cont");
 		String bo_color = multi.getParameter("bo_color");
 		int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
-		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
 		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
 		
@@ -397,7 +394,6 @@ public class BoardController {
 		b.setBo_cont(bo_cont);
 		b.setBo_titlespace(bo_titlespace);
 		b.setBo_lock(bo_lock);
-		b.setBo_type(bo_type);
 		b.setCat_name(cat_name);
 
 		bm.put("b",b);
