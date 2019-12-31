@@ -72,29 +72,53 @@ public class BoardController {
 		bo = this.boardService.getUserBoardCont(bo_no);
 
 		/** lock 0 비공개, 1 공개, 2 정지, 3 삭제 **/
+	
 		if(bo.getBo_lock() == 0) { // 비공개 글일때 ( lock가 0일때 )
 			if(readM == null) {
-					out.println("<script>");
-					out.println("alert('비공개 처리된 글 입니다.');");
-					out.println("history.back();");
-					out.println("</script>");
-					return null;
-			}else {
-				if(readM.getMem_no()!=bo.getMem_no()) {
-					out.println("<script>");
-					out.println("alert('비공개 처리된 글 입니다.');");
-					out.println("history.back();");
-					out.println("</script>");
-					return null;
-				}
-			}			
-		}else if(bo.getBo_lock() == 3) { // 삭제된 게시글일때 ( lock가 3일떄 )
-			out.println("<script>");
-			out.println("alert('삭제된 게시글 입니다.');");
-			out.println("history.back();");
-			out.println("</script>");
-			return null;
+				out.println("<script>");
+				out.println("alert('비공개 처리된 글 입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}else if(readM.getMem_state()==9) {
+				//관리자는 그냥 들어갈 수 있음
+			}else if(readM.getMem_no()!=bo.getMem_no()) {
+				out.println("<script>");
+				out.println("alert('비공개 처리된 글 입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}
+		}else if(bo.getBo_lock() == 3) { // 삭제된 게시글일때 ( lock가 3일때 )
+			if(readM == null) {
+				out.println("<script>");
+				out.println("alert('삭제된 게시글 입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}else if(readM.getMem_state()!=9) {
+				out.println("<script>");
+				out.println("alert('삭제된 게시글 입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}
+		}else if(bo.getBo_lock() == 2) {  //정지된 게시글일 때( lock가 2일때 )
+			if(readM == null) {
+				out.println("<script>");
+				out.println("alert('관리자에 의해 블락처리된 글입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}else if(readM.getMem_state()!=9) {
+				out.println("<script>");
+				out.println("alert('관리자에 의해 블락처리된 글입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}
 		}
+		
 		
 		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		int replyCount = this.repService.getUserReplyCount(bo_no);
