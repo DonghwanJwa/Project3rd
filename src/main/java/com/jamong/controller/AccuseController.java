@@ -117,56 +117,63 @@ public class AccuseController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
-			
-			int page=1;
-			int limit=10;
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));
+			if(adm_m.getMem_state() != 9) {
+				out.println("<script>");
+				out.println("alert('잘못된 접근입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+				
+				int page=1;
+				int limit=10;
+				if(request.getParameter("page") != null) {
+					page=Integer.parseInt(request.getParameter("page"));
+				}
+				String search_field=request.getParameter("search_field");
+				String search_field_item=request.getParameter("search_field_item");
+				String search_field_handling=request.getParameter("search_field_handling");
+				String search_field_info=request.getParameter("search_field_info");
+				String search_name=request.getParameter("search_name");
+				
+				a.setSearch_name("%"+search_name+"%");
+				a.setSearch_field(search_field);
+				a.setSearch_field_item(search_field_item);
+				a.setSearch_field_handling(search_field_handling);
+				a.setSearch_field_info(search_field_info);
+				
+				
+				int listcount=this.accuseService.getListCount(a);
+				
+				a.setStartrow((page-1)*10+1);
+				a.setEndrow(a.getStartrow()+limit-1);
+				
+				List<AccuseVO> alist=this.accuseService.getAccuseList(a);
+				
+				int maxpage=(int)((double)listcount/limit+0.95);
+				int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+				int endpage=maxpage;
+				if(endpage>startpage+10-1) endpage=startpage+10-1;
+				
+				ModelAndView m=new ModelAndView();
+				
+				
+				
+				m.addObject("alist",alist);
+				m.addObject("page",page);
+				m.addObject("startpage",startpage);
+				m.addObject("endpage",endpage);
+				m.addObject("maxpage",maxpage);
+				m.addObject("listcount",listcount);
+				m.addObject("search_field",search_field);		
+				m.addObject("search_field_item",search_field_item);
+				m.addObject("search_field_handling",search_field_handling);
+				m.addObject("search_field_info",search_field_info);
+				m.addObject("search_name",search_name);
+				
+				m.setViewName("jsp/admin_accuse");
+				
+				return m;
 			}
-			String search_field=request.getParameter("search_field");
-			String search_field_item=request.getParameter("search_field_item");
-			String search_field_handling=request.getParameter("search_field_handling");
-			String search_field_info=request.getParameter("search_field_info");
-			String search_name=request.getParameter("search_name");
-			
-			a.setSearch_name("%"+search_name+"%");
-			a.setSearch_field(search_field);
-			a.setSearch_field_item(search_field_item);
-			a.setSearch_field_handling(search_field_handling);
-			a.setSearch_field_info(search_field_info);
-			
-			
-			int listcount=this.accuseService.getListCount(a);
-			
-			a.setStartrow((page-1)*10+1);
-			a.setEndrow(a.getStartrow()+limit-1);
-			
-			List<AccuseVO> alist=this.accuseService.getAccuseList(a);
-			
-			int maxpage=(int)((double)listcount/limit+0.95);
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			int endpage=maxpage;
-			if(endpage>startpage+10-1) endpage=startpage+10-1;
-		
-			ModelAndView m=new ModelAndView();
-			
-			 
-			
-			m.addObject("alist",alist);
-			m.addObject("page",page);
-			m.addObject("startpage",startpage);
-			m.addObject("endpage",endpage);
-			m.addObject("maxpage",maxpage);
-			m.addObject("listcount",listcount);
-			m.addObject("search_field",search_field);		
-			m.addObject("search_field_item",search_field_item);
-			m.addObject("search_field_handling",search_field_handling);
-			m.addObject("search_field_info",search_field_info);
-			m.addObject("search_name",search_name);
-			
-			m.setViewName("jsp/admin_accuse");
-			
-			return m;
 		}	
 			return null;
 	}
@@ -192,29 +199,36 @@ public class AccuseController {
 			out.println("location='login';");
 			out.println("</script>");
 		}else {
-			int page=1;
-			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
-			
-			
-			a=this.accuseService.getAccuseMem(no);
-			
-			int ac_member = a.getAc_member();
-			
-			String ac_cont=a.getAc_cont().replace("\n", "<br/>");
-			
-			ModelAndView m=new ModelAndView();
-			
-			
-			MemberVO mem=this.memberService.getAccusee(ac_member);
-			
-			m.setViewName("jsp/admin_accuse_info");
-			
-			m.addObject("ac_cont",ac_cont);
-			m.addObject("page",page);
-			m.addObject("a",a);
-			m.addObject("mem",mem);
+			if(adm_m.getMem_state() != 9) {
+				out.println("<script>");
+				out.println("alert('잘못된 접근입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+				int page=1;
+				if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
 				
-			return m;
+				
+				a=this.accuseService.getAccuseMem(no);
+				
+				int ac_member = a.getAc_member();
+				
+				String ac_cont=a.getAc_cont().replace("\n", "<br/>");
+				
+				ModelAndView m=new ModelAndView();
+				
+				
+				MemberVO mem=this.memberService.getAccusee(ac_member);
+				
+				m.setViewName("jsp/admin_accuse_info");
+				
+				m.addObject("ac_cont",ac_cont);
+				m.addObject("page",page);
+				m.addObject("a",a);
+				m.addObject("mem",mem);
+				
+				return m;
+			}
 	}
 		return null;
 	}
@@ -245,33 +259,40 @@ public class AccuseController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
-			/*신고 update문*/
-			AccuseVO ac = new AccuseVO();
-			ac.setAc_no(ac_no);
-			ac.setAc_reply(ac_reply);
-			ac.setAc_sender(adm_m.getMem_name());
-			
-			this.accuseService.updateAccuse(ac);
-			
-			/*신고 메일 보내기*/		
-			String subject = "안녕하세요.자몽입니다. 신고하신 사항에 대한 답변을 드립니다.";
-			StringBuilder sb = new StringBuilder();
-			sb.append("<h3 style=\"font-weight:normal\">");
-			sb.append(ac_reply);
-			sb.append("</h3>");
-			
-			boolean reply_ok = mailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail, null, request);
-			
-			if(reply_ok) {
+			if(adm_m.getMem_state() != 9) {
 				out.println("<script>");
-				out.println("alert('문의 답변이 완료되었습니다.');");
-				out.println("location='admin_accuse_info?no="+ac_no+"&page="+page+"';");
-				out.println("</script>");
-			}else {				
-				out.println("<script>");
-				out.println("alert('처리과정중 에러가 발생하였습니다!');");
+				out.println("alert('잘못된 접근입니다.');");
 				out.println("history.back();");
 				out.println("</script>");
+			}else {
+				/*신고 update문*/
+				AccuseVO ac = new AccuseVO();
+				ac.setAc_no(ac_no);
+				ac.setAc_reply(ac_reply);
+				ac.setAc_sender(adm_m.getMem_name());
+				
+				this.accuseService.updateAccuse(ac);
+				
+				/*신고 메일 보내기*/		
+				String subject = "안녕하세요.자몽입니다. 신고하신 사항에 대한 답변을 드립니다.";
+				StringBuilder sb = new StringBuilder();
+				sb.append("<h3 style=\"font-weight:normal\">");
+				sb.append(ac_reply);
+				sb.append("</h3>");
+				
+				boolean reply_ok = mailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail, null, request);
+				
+				if(reply_ok) {
+					out.println("<script>");
+					out.println("alert('문의 답변이 완료되었습니다.');");
+					out.println("location='admin_accuse_info?no="+ac_no+"&page="+page+"';");
+					out.println("</script>");
+				}else {				
+					out.println("<script>");
+					out.println("alert('처리과정중 에러가 발생하였습니다!');");
+					out.println("history.back();");
+					out.println("</script>");
+				}
 			}
 		}
 		return null;
@@ -293,11 +314,18 @@ public class AccuseController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
-			this.accuseService.accuseDel(ac_no);
-			out.println("<script>");
-			out.println("alert('삭제되었습니다.');");
-			out.println("location='admin_accuse';");
-			out.println("</script>");
+			if(adm_m.getMem_state() != 9) {
+				out.println("<script>");
+				out.println("alert('잘못된 접근입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+				this.accuseService.accuseDel(ac_no);
+				out.println("<script>");
+				out.println("alert('삭제되었습니다.');");
+				out.println("location='admin_accuse';");
+				out.println("</script>");
+			}
 		}
 		return null;
 	}

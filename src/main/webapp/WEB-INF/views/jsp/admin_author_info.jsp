@@ -157,18 +157,18 @@
 		
 		<tr>
 			<td class="author_td">
-			<c:if test="${empty a.aut_file1 && empty a.aut_file2 && empty a.aut_file3 }">
+			<c:if test="${fileName1 eq 'null' && fileName2 eq 'null' && fileName3 eq 'null' }">
 			첨부된 파일이 없습니다.
 			</c:if>
-			<c:if test="${!empty a.aut_file1}">
+			<c:if test="${!empty a.aut_file1 && !(fileName1 eq 'null')}">
 			첨부파일 1. <input type="submit" value="${fileName1}" onclick="javascript:form.action='author_file1';" class="down_file" /> 
 			</c:if>
 			<br/>
-			<c:if test="${!empty a.aut_file2}">
+			<c:if test="${!empty a.aut_file2 && !(fileName2 eq 'null')}">
 			첨부파일 2. <input type="submit" value="${fileName2}" onclick="javascript:form.action='author_file2';" class="down_file"/> 
 			</c:if>
 			<br/>
-			<c:if test="${!empty a.aut_file3}">
+			<c:if test="${!empty a.aut_file3 && !(fileName3 eq 'null')}">
 			첨부파일 3. <input type="submit" value="${fileName3}" onclick="javascript:form.action='author_file3';" class="down_file"/>
 			</c:if>
 			</td>

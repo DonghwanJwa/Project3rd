@@ -204,59 +204,66 @@ public class OfferController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		} else {
-			int page=1;
-			int limit=10; // 한 페이지에 보여지는 목록 개수
-			if(request.getParameter("page") != null) { // get 방식으로 전달된 쪽번호가 있는 경우
-				page=Integer.parseInt(request.getParameter("page")); // 전달된 쪽번호를 정수 숫자로 바꾼다.
+			if(adm_m.getMem_state() != 9) {
+				out.println("<script>");
+				out.println("alert('잘못된 접근입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+				int page=1;
+				int limit=10; // 한 페이지에 보여지는 목록 개수
+				if(request.getParameter("page") != null) { // get 방식으로 전달된 쪽번호가 있는 경우
+					page=Integer.parseInt(request.getParameter("page")); // 전달된 쪽번호를 정수 숫자로 바꾼다.
+				}
+				
+				String search_name=request.getParameter("search_name");
+				String search_field1=request.getParameter("search_field1");
+				String search_field2=request.getParameter("search_field2");
+				
+				ov.setSearch_name("%"+search_name+"%");
+				ov.setSearch_field1(search_field1);
+				ov.setSearch_field2(search_field2);
+				
+				ao.setSearch_name("%"+search_name+"%");
+				ao.setSearch_field1(search_field1);
+				ao.setSearch_field2(search_field2);
+				
+				
+				int offcount=this.offerService.offer_count(ov);
+				
+				ov.setStartrow((page-1)*10+1); // 시작 행 번호
+				ov.setEndrow(ao.getStartrow()+limit-1); // 끝 행 번호
+				
+				ao.setStartrow((page-1)*10+1); // 시작 행 번호
+				ao.setEndrow(ao.getStartrow()+limit-1); // 끝 행 번호
+				
+				List<AdminOfferVO> offList=this.offerService.offer_list(ao);
+				
+				// 총 페이지
+				int maxpage=(int)((double)offcount/limit+0.95);
+				// 시작페이지
+				int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+				// 마지막 페이지
+				int endpage=maxpage;
+				if(endpage > startpage+10-1) endpage=startpage+10-1;
+				
+				ModelAndView mv=new ModelAndView();
+				mv.setViewName("jsp/admin_offer");
+				
+				mv.addObject("ao",ao);
+				mv.addObject("ov",ov);
+				mv.addObject("offList",offList);
+				mv.addObject("offcount",offcount);
+				mv.addObject("page",page);
+				mv.addObject("startpage",startpage);
+				mv.addObject("endpage",endpage);
+				mv.addObject("maxpage",maxpage);
+				mv.addObject("search_field1",search_field1);
+				mv.addObject("search_field2",search_field2);
+				mv.addObject("search_name",search_name);
+				
+				return mv;
 			}
-			
-			String search_name=request.getParameter("search_name");
-			String search_field1=request.getParameter("search_field1");
-			String search_field2=request.getParameter("search_field2");
-			
-			ov.setSearch_name("%"+search_name+"%");
-			ov.setSearch_field1(search_field1);
-			ov.setSearch_field2(search_field2);
-			
-			ao.setSearch_name("%"+search_name+"%");
-			ao.setSearch_field1(search_field1);
-			ao.setSearch_field2(search_field2);
-			
-			
-			int offcount=this.offerService.offer_count(ov);
-			
-			ov.setStartrow((page-1)*10+1); // 시작 행 번호
-			ov.setEndrow(ao.getStartrow()+limit-1); // 끝 행 번호
-			
-			ao.setStartrow((page-1)*10+1); // 시작 행 번호
-			ao.setEndrow(ao.getStartrow()+limit-1); // 끝 행 번호
-			
-			List<AdminOfferVO> offList=this.offerService.offer_list(ao);
-			
-			// 총 페이지
-			int maxpage=(int)((double)offcount/limit+0.95);
-			// 시작페이지
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			// 마지막 페이지
-			int endpage=maxpage;
-			if(endpage > startpage+10-1) endpage=startpage+10-1;
-			
-			ModelAndView mv=new ModelAndView();
-			mv.setViewName("jsp/admin_offer");
-			
-			mv.addObject("ao",ao);
-			mv.addObject("ov",ov);
-			mv.addObject("offList",offList);
-			mv.addObject("offcount",offcount);
-			mv.addObject("page",page);
-			mv.addObject("startpage",startpage);
-			mv.addObject("endpage",endpage);
-			mv.addObject("maxpage",maxpage);
-			mv.addObject("search_field1",search_field1);
-			mv.addObject("search_field2",search_field2);
-			mv.addObject("search_name",search_name);
-			
-			return mv;
 		}
 		return null;
 	}
@@ -274,27 +281,34 @@ public class OfferController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		} else {
-			AdminOfferVO ao=this.offerService.offer_info(no);
-			page=1;
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));
+			if(adm_m.getMem_state() != 9) {
+				out.println("<script>");
+				out.println("alert('잘못된 접근입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+				AdminOfferVO ao=this.offerService.offer_info(no);
+				page=1;
+				if(request.getParameter("page") != null) {
+					page=Integer.parseInt(request.getParameter("page"));
+				}
+				
+				String fileName1=ao.getOff_file1().substring(ao.getOff_file1().lastIndexOf("/")+1);
+				String fileName2=ao.getOff_file2().substring(ao.getOff_file2().lastIndexOf("/")+1);
+				String fileName3=ao.getOff_file3().substring(ao.getOff_file3().lastIndexOf("/")+1);
+				
+				ModelAndView mv=new ModelAndView();
+				mv.setViewName("jsp/admin_offer_info");
+				
+				mv.addObject("ao",ao);
+				mv.addObject("page",page);
+				mv.addObject("no",no);
+				mv.addObject("fileName1",fileName1);
+				mv.addObject("fileName2",fileName2);
+				mv.addObject("fileName3",fileName3);
+				
+				return mv;
 			}
-			
-			String fileName1=ao.getOff_file1().substring(ao.getOff_file1().lastIndexOf("/")+1);
-			String fileName2=ao.getOff_file2().substring(ao.getOff_file2().lastIndexOf("/")+1);
-			String fileName3=ao.getOff_file3().substring(ao.getOff_file3().lastIndexOf("/")+1);
-			
-			ModelAndView mv=new ModelAndView();
-			mv.setViewName("jsp/admin_offer_info");
-			
-			mv.addObject("ao",ao);
-			mv.addObject("page",page);
-			mv.addObject("no",no);
-			mv.addObject("fileName1",fileName1);
-			mv.addObject("fileName2",fileName2);
-			mv.addObject("fileName3",fileName3);
-			
-			return mv;
 		}
 		
 		return null;

@@ -120,53 +120,61 @@ public class InquireController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
-			int page=1;
-			int limit=10;
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));
+			if(adm_m.getMem_state() != 9) {
+				out.println("<script>");
+				out.println("alert('잘못된 접근입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+				
+				int page=1;
+				int limit=10;
+				if(request.getParameter("page") != null) {
+					page=Integer.parseInt(request.getParameter("page"));
+				}
+				String search_field=request.getParameter("search_field");
+				String search_field_item=request.getParameter("search_field_item");
+				String search_field_handling=request.getParameter("search_field_handling");
+				String search_field_info=request.getParameter("search_field_info");
+				String search_name=request.getParameter("search_name");
+				
+				i.setSearch_name("%"+search_name+"%");
+				i.setSearch_field(search_field);
+				i.setSearch_field_item(search_field_item);
+				i.setSearch_field_handling(search_field_handling);
+				i.setSearch_field_info(search_field_info);
+				
+				
+				int listcount=this.inqService.getListCount(i);
+				
+				i.setStartrow((page-1)*10+1);
+				i.setEndrow(i.getStartrow()+limit-1);
+				
+				List<InquireVO> ilist=this.inqService.getInquireList(i);
+				
+				int maxpage=(int)((double)listcount/limit+0.95);
+				int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+				int endpage=maxpage;
+				if(endpage>startpage+10-1) endpage=startpage+10-1;
+				
+				ModelAndView m=new ModelAndView();
+				
+				m.addObject("ilist",ilist);
+				m.addObject("page",page);
+				m.addObject("startpage",startpage);
+				m.addObject("endpage",endpage);
+				m.addObject("maxpage",maxpage);
+				m.addObject("listcount",listcount);
+				m.addObject("search_field",search_field);		
+				m.addObject("search_field_item",search_field_item);
+				m.addObject("search_field_handling",search_field_handling);
+				m.addObject("search_field_info",search_field_info);
+				m.addObject("search_name",search_name);
+				
+				m.setViewName("jsp/admin_inquire");
+				
+				return m;
 			}
-			String search_field=request.getParameter("search_field");
-			String search_field_item=request.getParameter("search_field_item");
-			String search_field_handling=request.getParameter("search_field_handling");
-			String search_field_info=request.getParameter("search_field_info");
-			String search_name=request.getParameter("search_name");
-
-			i.setSearch_name("%"+search_name+"%");
-			i.setSearch_field(search_field);
-			i.setSearch_field_item(search_field_item);
-			i.setSearch_field_handling(search_field_handling);
-			i.setSearch_field_info(search_field_info);
-
-
-			int listcount=this.inqService.getListCount(i);
-
-			i.setStartrow((page-1)*10+1);
-			i.setEndrow(i.getStartrow()+limit-1);
-
-			List<InquireVO> ilist=this.inqService.getInquireList(i);
-
-			int maxpage=(int)((double)listcount/limit+0.95);
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			int endpage=maxpage;
-			if(endpage>startpage+10-1) endpage=startpage+10-1;
-
-			ModelAndView m=new ModelAndView();
-
-			m.addObject("ilist",ilist);
-			m.addObject("page",page);
-			m.addObject("startpage",startpage);
-			m.addObject("endpage",endpage);
-			m.addObject("maxpage",maxpage);
-			m.addObject("listcount",listcount);
-			m.addObject("search_field",search_field);		
-			m.addObject("search_field_item",search_field_item);
-			m.addObject("search_field_handling",search_field_handling);
-			m.addObject("search_field_info",search_field_info);
-			m.addObject("search_name",search_name);
-
-			m.setViewName("jsp/admin_inquire");
-
-			return m;
 		}	
 		return null;
 
@@ -192,33 +200,41 @@ public class InquireController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
-			int page=1;
-			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
-
-
-			i=this.inqService.getInquireMem(no);
-
-			String inq_cont=i.getInq_cont().replace("\n", "<br/>");
-			
-			ModelAndView m=new ModelAndView();
-			
-			String fileName1=i.getInq_file1().substring(i.getInq_file1().lastIndexOf("/")+1);
-			String fileName2=i.getInq_file2().substring(i.getInq_file2().lastIndexOf("/")+1);
-			String fileName3=i.getInq_file3().substring(i.getInq_file3().lastIndexOf("/")+1);
-			String fileName4=i.getInq_file4().substring(i.getInq_file4().lastIndexOf("/")+1);
-			
-			m.setViewName("jsp/admin_inquire_info");
-
-			m.addObject("no",no);
-			m.addObject("inq_cont",inq_cont);
-			m.addObject("page",page);
-			m.addObject("i",i);
-			m.addObject("fileName1",fileName1);
-			m.addObject("fileName2",fileName2);
-			m.addObject("fileName3",fileName3);
-			m.addObject("fileName4",fileName4);
-			
-			return m;
+			if(adm_m.getMem_state() != 9) {
+				out.println("<script>");
+				out.println("alert('잘못된 접근입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+				
+				int page=1;
+				if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
+				
+				
+				i=this.inqService.getInquireMem(no);
+				
+				String inq_cont=i.getInq_cont().replace("\n", "<br/>");
+				
+				ModelAndView m=new ModelAndView();
+				
+				String fileName1=i.getInq_file1().substring(i.getInq_file1().lastIndexOf("/")+1);
+				String fileName2=i.getInq_file2().substring(i.getInq_file2().lastIndexOf("/")+1);
+				String fileName3=i.getInq_file3().substring(i.getInq_file3().lastIndexOf("/")+1);
+				String fileName4=i.getInq_file4().substring(i.getInq_file4().lastIndexOf("/")+1);
+				
+				m.setViewName("jsp/admin_inquire_info");
+				
+				m.addObject("no",no);
+				m.addObject("inq_cont",inq_cont);
+				m.addObject("page",page);
+				m.addObject("i",i);
+				m.addObject("fileName1",fileName1);
+				m.addObject("fileName2",fileName2);
+				m.addObject("fileName3",fileName3);
+				m.addObject("fileName4",fileName4);
+				
+				return m;
+			}
 		}
 		return null;
 	}
@@ -245,40 +261,48 @@ public class InquireController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
-			int sMem_no = adm_m.getMem_no();
-			HashMap<String, Object> im = new HashMap<>();
-			
-			/*inq update문*/
-			InquireVO inq = new InquireVO();
-			inq.setInq_no(inq_no);
-			inq.setInq_reply(inq_reply);
-			inq.setInq_sender(adm_m.getMem_name());
-			inq.setMem_no(mem_no);
-			
-			im.put("inq",inq);
-			im.put("sMem_no",sMem_no);
-			
-			this.inqService.updateInquire(im);
-
-			/*inq 메일 보내기*/		
-			String subject = "안녕하세요.자몽입니다. 문의드린 사항에 대한 답변을 드립니다.";
-			StringBuilder sb = new StringBuilder();
-			sb.append("<h3 style=\"font-weight:normal\">");
-			sb.append(inq_reply);
-			sb.append("</h3>");
-
-			boolean reply_ok = mailService.send(subject, sb.toString(), "projectJamong@gmail.com", inq_email, null, request);
-
-			if(reply_ok) {
+			if(adm_m.getMem_state() != 9) {
 				out.println("<script>");
-				out.println("alert('문의 답변이 완료되었습니다.');");
-				out.println("location='admin_inquire_info?no="+inq_no+"&page="+page+"';");
-				out.println("</script>");
-			}else {				
-				out.println("<script>");
-				out.println("alert('처리과정중 에러가 발생하였습니다!');");
+				out.println("alert('잘못된 접근입니다.');");
 				out.println("history.back();");
 				out.println("</script>");
+			}else {
+				
+				int sMem_no = adm_m.getMem_no();
+				HashMap<String, Object> im = new HashMap<>();
+				
+				/*inq update문*/
+				InquireVO inq = new InquireVO();
+				inq.setInq_no(inq_no);
+				inq.setInq_reply(inq_reply);
+				inq.setInq_sender(adm_m.getMem_name());
+				inq.setMem_no(mem_no);
+				
+				im.put("inq",inq);
+				im.put("sMem_no",sMem_no);
+				
+				this.inqService.updateInquire(im);
+				
+				/*inq 메일 보내기*/		
+				String subject = "안녕하세요.자몽입니다. 문의드린 사항에 대한 답변을 드립니다.";
+				StringBuilder sb = new StringBuilder();
+				sb.append("<h3 style=\"font-weight:normal\">");
+				sb.append(inq_reply);
+				sb.append("</h3>");
+				
+				boolean reply_ok = mailService.send(subject, sb.toString(), "projectJamong@gmail.com", inq_email, null, request);
+				
+				if(reply_ok) {
+					out.println("<script>");
+					out.println("alert('문의 답변이 완료되었습니다.');");
+					out.println("location='admin_inquire_info?no="+inq_no+"&page="+page+"';");
+					out.println("</script>");
+				}else {				
+					out.println("<script>");
+					out.println("alert('처리과정중 에러가 발생하였습니다!');");
+					out.println("history.back();");
+					out.println("</script>");
+				}
 			}
 		}
 		return null;
@@ -557,11 +581,18 @@ public class InquireController {
 			out.println("location='login/1';");
 			out.println("</script>");
 		}else {
-			this.inqService.inquireDel(no);
-			out.println("<script>");
-			out.println("alert('삭제되었습니다.');");
-			out.println("location='admin_inquire';");
-			out.println("</script>");
+			if(adm_m.getMem_state() != 9) {
+				out.println("<script>");
+				out.println("alert('잘못된 접근입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+			}else {
+				this.inqService.inquireDel(no);
+				out.println("<script>");
+				out.println("alert('삭제되었습니다.');");
+				out.println("location='admin_inquire';");
+				out.println("</script>");
+			}
 		}
 		return null;
 	}
