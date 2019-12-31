@@ -16,18 +16,6 @@ public class BookVO {
 	private MemberVO memberVO;
 	private BoardVO boardVO;
 	
-	public BoardVO getBoardVO() {
-		return boardVO;
-	}
-	public void setBoardVO(BoardVO boardVO) {
-		this.boardVO = boardVO;
-	}
-	public MemberVO getMemberVO() {
-		return memberVO;
-	}
-	public void setMemberVO(MemberVO memberVO) {
-		this.memberVO = memberVO;
-	}
 	// Setter()
 	public void setBook_no(int book_no) 			   {		this.book_no = book_no;					}
 	public void setBook_name(String book_name) 		   {		this.book_name = book_name;				}
@@ -37,6 +25,8 @@ public class BookVO {
 	public void setBook_editdate(String book_editdate) {		this.book_editdate = book_editdate;		}
 	public void setCat_name(String cat_name) 	       {		this.cat_name = cat_name;				}
 	public void setMem_no(int mem_no) 				   {		this.mem_no = mem_no;					}			
+	public void setBoardVO(BoardVO boardVO) 		   {		this.boardVO = boardVO;					}
+	public void setMemberVO(MemberVO memberVO) 		   {		this.memberVO = memberVO;				}
 
 	// Getter()
 	public int getBook_no() 		 {		return book_no;			}
@@ -47,5 +37,7 @@ public class BookVO {
 	public String getBook_editdate() {		return book_editdate;	}
 	public String getCat_name() 	 {		return cat_name;		}
 	public int getMem_no() 			 {		return mem_no;			}
+	public BoardVO getBoardVO() 	 {		return boardVO;			}
+	public MemberVO getMemberVO() 	 {		return memberVO;		}
 	
 }

@@ -79,6 +79,10 @@
  delete from sympathy where mem_no=#{mem_no}
 </delete>
 
+<delete id="ArticleDeleteSym">
+ DELETE FROM sympathy WHERE bo_no=#{bo_no}
+</delete>
+
 <select id="ScrapArticle" resultMap="sympathyMap">
  SELECT 
       m.mem_no,

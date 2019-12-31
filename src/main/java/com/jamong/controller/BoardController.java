@@ -165,7 +165,7 @@ public class BoardController {
 		MemberVO artM = (MemberVO)session.getAttribute("m");		
 
 		if(artM != null) {
-			this.boardService.articleDelete(bo_no);
+			this.boardService.articleDelete(bo_no,artM.getMem_no());
 
 			flag = 1;
 		}else {
@@ -278,8 +278,6 @@ public class BoardController {
 			b.setBo_thumbnail(fileDBName);
 		} // if => 파일이 있을 때
 
-		System.out.println(bo_color);
-
 		b.setBo_color(bo_color);
 		b.setBo_title(bo_title);
 		b.setBo_subtitle(bo_subtitle);
@@ -292,10 +290,9 @@ public class BoardController {
 
 		HashMap<String,Object> bm = new HashMap<>();
 		bm.put("b",b);
-		bm.put("mem_no",mem_no);
 		bm.put("mem_id",m.getMem_id());
 
-		this.boardService.insertBoard(bm);
+		this.boardService.insertBoard(bm,mem_no);
 
 		out.println("<script>");
 		out.println("alert('게시글이 등록되었습니다!')");

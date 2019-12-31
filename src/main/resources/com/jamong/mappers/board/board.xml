@@ -96,6 +96,8 @@
   				 AND b.bo_no < #{bo_no})
  ]]>
  </select>
+ 
+ 
  <update id="bo_edit" parameterType="java.util.HashMap">
   UPDATE board
   SET bo_title=#{b.bo_title},
@@ -194,6 +196,8 @@
          b.bo_cont,
          b.bo_thumbnail,
          b.bo_date,
+         b.cat_name,
+         b.book_no,
          m.mem_id,
          m.mem_nickname,
          m.mem_keyword
@@ -310,6 +314,8 @@
          b.bo_cont,
          b.bo_thumbnail,
          b.bo_date,
+         b.cat_name,
+         b.book_no,
          m.mem_id,
          m.mem_nickname,
          m.mem_keyword
@@ -357,12 +363,13 @@
   <select id="cat_board" resultMap="boardMap">
   SELECT *
   FROM board b,member m
-  WHERE b.mem_no=m.mem_no
-  AND b.cat_name=#{cat_name}
+  WHERE b.mem_no = m.mem_no
+  AND b.cat_name = #{cat_name}
+  AND b.bo_lock = 1
   ORDER BY b.bo_no DESC
  </select>
 
 <update id="book_null">
- UPDATE board b SET b.book_no = NULL WHERE b.book_no = #{book_no}
+ UPDATE board b SET b.book_no = NULL, b.book_order = NULL WHERE b.book_no = #{book_no}
 </update>
 </mapper>

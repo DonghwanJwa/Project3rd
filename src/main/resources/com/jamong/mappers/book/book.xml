@@ -283,4 +283,18 @@
  <delete id="book_del">
   DELETE book WHERE book_no = #{book_no}
  </delete>
+ 
+ <select id="cat_book_list" resultMap="boardMap">
+  SELECT book_no,
+  		 book.book_cover,
+  		 book_name,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname
+  FROM book book
+  INNER JOIN member m
+  ON book.cat_name = #{cat_name}
+  AND book.mem_no = m.mem_no
+  ORDER BY book.book_no DESC
+ </select>
 </mapper>

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.SubscribeVO;
 
 public interface MemberDAO {
 
@@ -15,6 +16,8 @@ public interface MemberDAO {
 	MemberVO mem_emailCheck(MemberVO m);
 	int memberUpdate(HashMap<String, Object> bm);
 	void insertMember(MemberVO m);
+	void updateArticleCount(int mem_no, int i);
+	void updateSubCount(SubscribeVO subvo, int i);
 	MemberVO idCheck(String id);
 	MemberVO loginCheck(String login_id);
     MemberVO pwdCK(String pass_modify_id);

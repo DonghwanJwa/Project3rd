@@ -38,6 +38,10 @@ public class SympathyDAOImpl implements SympathyDAO{
 	public List<SympathyVO> getUserScrapArticle(int mem_no) {
 		return this.sqlSession.selectList("ScrapArticle",mem_no);
 	}
+	@Override
+	public void sympathyArticleDelete(int bo_no) {
+		this.sqlSession.delete("ArticleDeleteSym",bo_no);
+	}
 
 
 }
