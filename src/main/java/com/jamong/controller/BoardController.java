@@ -72,29 +72,53 @@ public class BoardController {
 		bo = this.boardService.getUserBoardCont(bo_no);
 
 		/** lock 0 비공개, 1 공개, 2 정지, 3 삭제 **/
+	
 		if(bo.getBo_lock() == 0) { // 비공개 글일때 ( lock가 0일때 )
 			if(readM == null) {
-					out.println("<script>");
-					out.println("alert('비공개 처리된 글 입니다.');");
-					out.println("history.back();");
-					out.println("</script>");
-					return null;
-			}else {
-				if(readM.getMem_no()!=bo.getMem_no()) {
-					out.println("<script>");
-					out.println("alert('비공개 처리된 글 입니다.');");
-					out.println("history.back();");
-					out.println("</script>");
-					return null;
-				}
-			}			
-		}else if(bo.getBo_lock() == 3) { // 삭제된 게시글일때 ( lock가 3일떄 )
-			out.println("<script>");
-			out.println("alert('삭제된 게시글 입니다.');");
-			out.println("history.back();");
-			out.println("</script>");
-			return null;
+				out.println("<script>");
+				out.println("alert('비공개 처리된 글 입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}else if(readM.getMem_state()==9) {
+				//관리자는 그냥 들어갈 수 있음
+			}else if(readM.getMem_no()!=bo.getMem_no()) {
+				out.println("<script>");
+				out.println("alert('비공개 처리된 글 입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}
+		}else if(bo.getBo_lock() == 3) { // 삭제된 게시글일때 ( lock가 3일때 )
+			if(readM == null) {
+				out.println("<script>");
+				out.println("alert('삭제된 게시글 입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}else if(readM.getMem_state()!=9) {
+				out.println("<script>");
+				out.println("alert('삭제된 게시글 입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}
+		}else if(bo.getBo_lock() == 2) {  //정지된 게시글일 때( lock가 2일때 )
+			if(readM == null) {
+				out.println("<script>");
+				out.println("alert('관리자에 의해 블락처리된 글입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}else if(readM.getMem_state()!=9) {
+				out.println("<script>");
+				out.println("alert('관리자에 의해 블락처리된 글입니다.');");
+				out.println("history.back();");
+				out.println("</script>");
+				return null;
+			}
 		}
+		
 		
 		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		int replyCount = this.repService.getUserReplyCount(bo_no);
@@ -165,7 +189,7 @@ public class BoardController {
 		MemberVO artM = (MemberVO)session.getAttribute("m");		
 
 		if(artM != null) {
-			this.boardService.articleDelete(bo_no);
+			this.boardService.articleDelete(bo_no,artM.getMem_no());
 
 			flag = 1;
 		}else {
@@ -278,8 +302,6 @@ public class BoardController {
 			b.setBo_thumbnail(fileDBName);
 		} // if => 파일이 있을 때
 
-		System.out.println(bo_color);
-
 		b.setBo_color(bo_color);
 		b.setBo_title(bo_title);
 		b.setBo_subtitle(bo_subtitle);
@@ -292,14 +314,13 @@ public class BoardController {
 
 		HashMap<String,Object> bm = new HashMap<>();
 		bm.put("b",b);
-		bm.put("mem_no",mem_no);
 		bm.put("mem_id",m.getMem_id());
 
-		this.boardService.insertBoard(bm);
+		this.boardService.insertBoard(bm,mem_no);
 
 		out.println("<script>");
 		out.println("alert('게시글이 등록되었습니다!')");
-		out.println("location='/jamong.com/';");
+		out.println("location='/jamong.com/@"+m.getMem_id()+"';");
 		out.println("</script>");
 
 		return null;
@@ -386,7 +407,7 @@ public class BoardController {
 			this.boardService.updateBoard(bm);
 			out.println("<script>");
 			out.println("alert('게시글이 수정되었습니다!');");
-			out.println("location='/jamong.com/';");
+			out.println("location='/jamong.com/@"+m.getMem_id()+"/"+bo_no+"';");
 			out.println("</script>");
 		} else {
 			out.println("<script>");
@@ -515,6 +536,30 @@ public class BoardController {
 		return result;
 	}
 
+	@RequestMapping("boardBan/{bo_no}/{bo_lock}")
+	@ResponseBody
+	public int boardBan(@PathVariable int bo_no,@PathVariable int bo_lock,
+			HttpServletRequest request,
+			HttpSession session) {
+		session = request.getSession();
+		MemberVO m = (MemberVO) session.getAttribute("m");
+		int re=1; //게시글 정지 실패 flag - 로그인안됨1/관리자아님2/성공-1
+		if(m!=null) {
+			if(m.getMem_state()==9) {
+				BoardVO bo = new BoardVO();
+				bo.setBo_no(bo_no);
+				bo.setBo_lock(bo_lock);
+				int result = this.boardService.boardBan(bo);
+				if(result>0) {
+					re=-1;
+				}
+			}else {
+				re=2;
+			}
+		}
+		return re;
+	}
+	
 	@RequestMapping("best_load")
 	public ResponseEntity<List<BoardVO>> best_load(){
 		ResponseEntity<List<BoardVO>> entity = null;
@@ -703,6 +748,6 @@ public class BoardController {
 			return memberList;
 		}
 		return null;
-	} 
+	}
 	
 }

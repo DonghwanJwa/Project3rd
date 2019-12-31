@@ -80,6 +80,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public int boardBan(BoardVO bo) {
+		return this.sqlSession.update("board_ban",bo);
+	}
+
+	@Override
 	public List<BoardVO> getSearchPost(HashMap<String, Object> searchMap) {
 		return this.sqlSession.selectList("search_post", searchMap);
 	}

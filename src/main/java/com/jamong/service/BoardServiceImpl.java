@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.jamong.dao.BoardDAO;
 import com.jamong.dao.FeedDAO;
+import com.jamong.dao.MemberDAO;
 import com.jamong.dao.ReplyDAO;
 import com.jamong.dao.SubscribeDAO;
 import com.jamong.dao.SympathyDAO;
@@ -21,7 +22,9 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO boardDao;
 	@Autowired
-	private SympathyDAO sympathyDao;	
+	private MemberDAO memberDao;
+	@Autowired
+	private SympathyDAO sympathyDao;
 	@Autowired
 	private ReplyDAO replyDao;
 	@Autowired
@@ -31,8 +34,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Transactional
 	@Override
-	public void insertBoard(HashMap<String, Object> bm) {
+	public void insertBoard(HashMap<String, Object> bm,int mem_no) {
 		this.boardDao.insertBoard(bm);
+		this.memberDao.updateArticleCount(mem_no,1);
 		BoardVO articleVO = this.boardDao.newArticleNum(bm.get("mem_no"));
 		// 최신글 번호( 세션 아이디에서 가장 최근 게시글 )
 		List<SubscribeVO> followerList = this.subDao.followerList(bm.get("mem_no"));
@@ -84,6 +88,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public int boardBan(BoardVO bo) {
+		return this.boardDao.boardBan(bo);
+	}
+
+	@Override
 	public List<BoardVO> bestList() {	
 		List<BoardVO> blist = this.boardDao.bestList(); 
 		for(BoardVO b : blist) {
@@ -126,10 +135,11 @@ public class BoardServiceImpl implements BoardService {
 
 	@Transactional
 	@Override
-	public void articleDelete(int bo_no) {
+	public void articleDelete(int bo_no,int mem_no) {
 		this.boardDao.articleDelete(bo_no);
 		this.replyDao.replyDelete(bo_no);
 		this.sympathyDao.sympathyArticleDelete(bo_no);
+		this.memberDao.updateArticleCount(mem_no,-1);
 	}
 
 	@Override

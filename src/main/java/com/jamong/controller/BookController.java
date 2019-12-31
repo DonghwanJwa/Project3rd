@@ -191,34 +191,32 @@ public class BookController {
 	}
 
 	@RequestMapping("book/del/{book_no}")
-	public int user_book_del(@PathVariable int book_no, HttpServletRequest request, HttpServletResponse response,
+	public String user_book_del(@PathVariable int book_no, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		session = request.getSession();
 		MemberVO m = (MemberVO) session.getAttribute("m");
-		int re = 0;
 
-		if (m != null) {
-			int mem_state = m.getMem_state();
+		if(m!=null) {
+		int mem_state = m.getMem_state();
 			if (mem_state == 9) {
 				this.bookService.bookDel(book_no);
-				re = 1;
+				out.println("<script>");
+				out.println("alert('책이 폐간되었습니다!')");
+				out.println("location='/jamong.com/';");
+				out.println("</script>");
 			} else {
 				out.println("<script> alert('제한된 접근입니다!'); location='/jamong.com/'; </script>");
-				re = 0;
 			}
 		}else {
-			out.println("<script> alert('제한된 접근입니다!'); location='/jamong.com/'; </script>");
-			re = 0;
+			out.println("<script>");
+			out.println("alert('로그인이 필요한 기능입니다.')");
+			out.println("location='/jamong.com/login/1';");
+			out.println("</script>");
 		}
 
-		out.println("<script>");
-		out.println("alert('책이 폐간되었습니다!')");
-		out.println("location='/jamong.com/';");
-		out.println("</script>");
-
-		return re;
+		return null;
 	}
 
 	@PostMapping("book_inner_info")

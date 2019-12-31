@@ -118,10 +118,21 @@
   <!-- 글 내용 부분 --> 
   <div id="write_cont" style="height:auto;">
        <div id="write_wrap_bg" style="min-width:940px;">
-         <c:if test="${(bo.memberVO.mem_no == m.mem_no && bo.book_no == 0) || m.mem_state==9}">
+         <c:if test="${bo.memberVO.mem_no == m.mem_no && bo.book_no == 0}">
        		<div id="edit_del_wrap">
    				<i class="user_edit_btn" title="글 수정" onclick="location.href='/jamong.com/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
    				<i class="user_del_btn" title="글 삭제" onclick="ArticleRemove();"></i>
+   			</div>
+   		 </c:if>
+   		 <c:if test="${m.mem_state==9}">
+   		 	<div id="edit_del_wrap">
+   				<i class="user_edit_btn" title="글 수정" onclick="location.href='/jamong.com/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
+   		 	 <c:if test="${bo.bo_lock==3}">
+   				<i class="user_del_recover_btn" title="글 복구" onclick="ArticleRemove();"></i>
+   			 </c:if>
+   			 <c:if test="${bo.bo_lock!=3}">
+   				<i class="user_del_btn" title="글 삭제" onclick="ArticleRemove();"></i>
+   			 </c:if>
    			</div>
    		 </c:if>
     <div class="write_cont_area write_cont_align_left" style="min-height:300px;">

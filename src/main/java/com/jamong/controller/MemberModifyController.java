@@ -1,6 +1,5 @@
 package com.jamong.controller;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
@@ -234,6 +233,27 @@ public class MemberModifyController {
 		return null;
 	}
 	
+	
+	
+	//되면 이제 인풋들 검증하고 마지막에 비번 수정하고 버튼 클릭할때 문구 내주고 로그인으로
+	@RequestMapping("find_id")
+	public String user_find_id(MemberVO vo,HttpSession session,
+			HttpServletRequest request,HttpServletResponse response)throws Exception { // 아이디 찾기 페이지
+		session = request.getSession();
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		
+		if(m != null) {//세션이 있으면 뒤로
+			out.println("<script>");
+			out.println("history.back();");
+			out.println("</script>");
+		}else {
+			return "jsp/find_id";
+		}
+		return null;
+	}
+	
 	@RequestMapping("member_modify_ok") //회원정보수정
 	public String member_modify_ok(MemberVO me,HttpSession session,HttpServletResponse response,HttpServletRequest request) throws Exception  {
 		response.setContentType("text/html;charset=UTF-8");
@@ -318,13 +338,6 @@ public class MemberModifyController {
 		}else {
 			return new ResponseEntity<String>("false", HttpStatus.OK);
 		}
-	}
-	
-	//되면 이제 인풋들 검증하고 마지막에 비번 수정하고 버튼 클릭할때 문구 내주고 로그인으로
-	@RequestMapping("find_id")
-	public String user_find_id() { // 아이디 찾기 페이지
-		
-		return "jsp/find_id";
 	}
 	
 	//비번을 바꾸려면 아이디나 이메일이 필요함
@@ -445,11 +458,6 @@ public class MemberModifyController {
 	@RequestMapping("cat_modify_ok")
 	@ResponseBody
 	public int cat_update(MemberVO vo,HttpSession session,String mem_fav1,String mem_fav2,String mem_fav3,HttpServletRequest request) throws Exception {
-		
-		System.out.println(mem_fav1);
-		System.out.println(mem_fav2);
-		System.out.println(mem_fav3);
-		
 		session = request.getSession();
 		MemberVO me = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
 		int re = 0;

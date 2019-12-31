@@ -96,7 +96,7 @@ public class FeedController {
 	@PostMapping("feedCount")
 	@ResponseBody
 	public int feedCount(HttpSession session, HttpServletRequest request, HttpServletResponse response){
-		int count = -1;
+		int count = 0;
 		session = request.getSession();
 		MemberVO feedM = (MemberVO)session.getAttribute("m");
 		if(feedM !=null) {
