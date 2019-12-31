@@ -58,18 +58,10 @@ public class InquireController {
 		PrintWriter out =response.getWriter();
 
 		MemberVO user=(MemberVO) session.getAttribute("m");
-	    
-		
-		System.out.println(1);
-
-
 		int maxSize = 10*1024*1024; // 10MB 제한
 		String filePath=request.getServletContext().getRealPath("resources/upload/inquire/");
 		
 		MultipartRequest multi = new MultipartRequest(request, filePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
-
-		System.out.println(2);
-
 		/* 입력값들을 multi 로부터 가져오는 역할을합니다 */
 
 		String inq_item1 = multi.getParameter("inq_item1");
@@ -96,37 +88,13 @@ public class InquireController {
 		i.setInq_phone(inq_phone);
 		i.setInq_cont(inq_cont);
 		
-		System.out.println(3);
-
-		/*		File UpFile = multi.getFile("inq_file1");
-
-		if(UpFile != null) {//첨부파일이 있는 경우
-			String fileName = UpFile.getName();//첨부한 파일명
-
-			Calendar c = Calendar.getInstance();
-			int year=c.get(Calendar.YEAR);
-			int month=c.get(Calendar.MONTH)+1;
-			int date=c.get(Calendar.DATE);
-
-
-			System.out.println(4);
-
-			/* 입력한 값들을 InquireVO객체 i에 저장 */
-
-			System.out.println(fileName1);
-			System.out.println(5);
-		 // if => 파일이 있을때*/
-		
-	
 			if(user != null) {
 			i.setMem_no(user.getMem_no());
 		}// if => 세션이 있을때
 
 
 		this.inqService.insertInquire(i); //쿼리문 실행 메서드
-
-		System.out.println(6);
-
+		
 		out.println("<script>");
 		out.println("alert('문의가 접수되었습니다!');");
 		out.println("location='/jamong.com';");
@@ -268,7 +236,6 @@ public class InquireController {
 
 		int page = Integer.parseInt(request.getParameter("page"));
 		int mem_no = Integer.parseInt(request.getParameter("mem_no"));
-		System.out.println(mem_no);
 		MemberVO adm_m = (MemberVO)session.getAttribute("m");
 		
 		if(adm_m == null) {
@@ -349,7 +316,6 @@ public class InquireController {
 
 			/* 서버 실제 경로의 파일을구함*/
 			String pathAndName1=request.getServletContext().getRealPath("/")+i.getInq_file1();
-			System.out.println(pathAndName1);
 			File inq_file1=new File(pathAndName1);
 
 			/* 읽어와야 하는 용량은 최대 업로드 용량을 초과히지 않는다. */
@@ -414,7 +380,6 @@ public class InquireController {
 			
 			/* 서버 실제 경로의 파일을구함*/
 			String pathAndName2=request.getServletContext().getRealPath("/")+i.getInq_file2();
-			System.out.println(pathAndName2);
 			File inq_file2=new File(pathAndName2);
 			
 			/* 읽어와야 하는 용량은 최대 업로드 용량을 초과히지 않는다. */
@@ -479,7 +444,6 @@ public class InquireController {
 			
 			/* 서버 실제 경로의 파일을구함*/
 			String pathAndName3=request.getServletContext().getRealPath("/")+i.getInq_file3();
-			System.out.println(pathAndName3);
 			File inq_file3=new File(pathAndName3);
 			
 			/* 읽어와야 하는 용량은 최대 업로드 용량을 초과히지 않는다. */
@@ -544,7 +508,6 @@ public class InquireController {
 			
 			/* 서버 실제 경로의 파일을구함*/
 			String pathAndName4=request.getServletContext().getRealPath("/")+i.getInq_file4();
-			System.out.println(pathAndName4);
 			File inq_file4=new File(pathAndName4);
 			
 			/* 읽어와야 하는 용량은 최대 업로드 용량을 초과히지 않는다. */

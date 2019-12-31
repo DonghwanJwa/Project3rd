@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jamong.domain.MemberVO;
+import com.jamong.domain.SubscribeVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO{
 
 	@Autowired
-	private SqlSession sqlSession;
-	
+	private SqlSession sqlSession;	
 	
 	@Override
 	public void cat_update(MemberVO vo) {
@@ -135,4 +135,18 @@ public class MemberDAOImpl implements MemberDAO{
 		this.sqlSession.update("profile_up",mp);
 	}
 	
+	@Override
+	public void updateArticleCount(int mem_no, int i) {
+		HashMap<String, Object> bm = new HashMap<>();
+		bm.put("mem_no",mem_no);
+		bm.put("UpCount",i);
+		this.sqlSession.update("ArticleCount",bm);
+	}
+	@Override
+	public void updateSubCount(SubscribeVO subvo, int i) {
+		HashMap<String, Object> sm = new HashMap<>();
+		sm.put("s",subvo);
+		sm.put("UpCount",i);
+		this.sqlSession.update("SubscribeCount",sm);
+	}
 }

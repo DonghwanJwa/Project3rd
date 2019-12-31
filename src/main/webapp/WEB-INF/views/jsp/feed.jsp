@@ -19,7 +19,9 @@
   
   <%-- 새글 보여주기 양식 --%>
    <c:if test="${empty fList}">
-    <h2>알림이 없습니다!</h2>
+    <div class="feed_scrap_no_info">
+     <span>알림이 없습니다.</span>
+    </div>
    </c:if>
   <c:forEach var="fList" items="${fList}">
    <c:if test="${!empty fList}">
@@ -60,6 +62,7 @@
       </div>
      </div>
     </a>
+    <a>X</a>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 3}">
@@ -160,7 +163,7 @@
    </c:if>
    <c:if test="${fList.feed_state == 1}">
    <c:if test="${fList.feed_step == 1}">
-   <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+   <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
@@ -178,7 +181,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 2}">
-    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
@@ -193,10 +196,11 @@
       </div>
      </div>
     </a>
+    <button type="button" id="feed_delete_btn" onclick="FeedDelete(event);">X</button>
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 3}">
-    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
@@ -214,7 +218,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 4}">
-     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a>
      <div class="feed_new_cont_profile">
@@ -232,7 +236,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 5}">
-     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
     <a>
      <div class="feed_new_cont_profile">
@@ -250,7 +254,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 6}">
-    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}" 
     onmouseleave="FeedMouseOut(event)">
     <a href="/jamong.com/book/@${fList.feed_mem_id}/${fList.feed_book_no}">
      <div class="feed_new_cont_profile">
@@ -314,15 +318,17 @@
      </a>
      <div class="feed_scrap_like_outer">
       <button class="feed_scrap_like_inner">
-       <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
+       <img class="feed_scrap_sym_img" src="/jamong.com/resources/img/heart.png" data-no="${art.boardVO.bo_no}"/>
       </button>
      </div>
      </div>
     </c:if>
-    <c:if test="${empty art}">
-    
-    </c:if>
     </c:forEach>   
+    <c:if test="${empty aList}">
+     <div class="feed_scrap_no_info">
+      <span>공감한 게시글이 없습니다.</span>
+     </div>
+    </c:if>
    </div>
     
    <div id="feed_scrap_book" style="display:none;">
@@ -342,15 +348,17 @@
      </a>
      <div class="feed_scrap_like_outer">
       <button class="feed_scrap_like_inner">
-       <img class="feed_scrap_like_img" src="/jamong.com/resources/img/heart.png"/>
+       <img class="feed_scrap_rec_img" src="/jamong.com/resources/img/heart.png" data-no="${book.bookVO.book_no}"/>
       </button>
      </div>
     </div>
     </c:if>
-    <c:if test="${empty book}">
-    
-    </c:if>
     </c:forEach> 
+    <c:if test="${empty bList}">
+    <div class="feed_scrap_no_info">
+     <span>추천한 책이 없습니다.</span>
+    </div>
+    </c:if>
    </div>
    
  

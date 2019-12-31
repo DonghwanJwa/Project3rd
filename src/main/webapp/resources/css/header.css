@@ -190,6 +190,19 @@ body{
 	margin-left:10px;
 }
 
+#head-menu-block{
+	height:30px;
+	margin-top: 2px;
+	margin-right: 20px;
+}
+
+.head-menu-block-img{
+	width: 22px;
+    height: 22px;
+    margin-top: 3px;
+	cursor:pointer;
+}
+
 #head-menu-accuse{
 	height:30px;
 	margin-right:20px;
@@ -219,15 +232,10 @@ body{
 	text-decoration: none;    
 }
 
-.head-menu-book-edit-img{
+.head-menu-book-del-img{
 	width: 24px;
     height: 24px;
-    margin-bottom: 1px;
-    margin-right: 5px;
-}
-
-#head-menu-book-edit span{
-	font-weight: bold;
+    margin-bottom: 5px;
 }
 
 #head-menu_search-empty{
@@ -640,6 +648,7 @@ body{
 }
 #head-profile-menu .head-feed-button{
 	height:20px;
+	text-decoration: none;
 }
 
 #head-profile-menu .head-feed-button img{
@@ -647,16 +656,18 @@ body{
 }
 #head-feed-count{
 	font-size: 10px;
-    position: absolute;
-    right: 165px;
+    position: relative;
+    display: inline-block;
+    right: 13px;
     text-align: center;
     background-color: red;
     color: white;
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     line-height: 16px;
     border-radius: 50%;
-    top: 4px;
+    bottom: 14px;
+    text-decoration: none;
 }
 #head-profile-info-wrap{
 	width:200px;

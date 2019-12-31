@@ -92,4 +92,9 @@ public class BookDAOImpl implements BookDAO {
 		this.sqlSession.delete("book_del",book_no);
 	}
 
+	@Override
+	public List<BoardVO> categoryArticleBK(String cat_name) {
+		return this.sqlSession.selectList("cat_book_list",cat_name);
+	}
+
 }

@@ -31,4 +31,9 @@ public class FeedServiceImpl implements FeedService {
 		return this.feedDao.feedCount(sMem_no);
 	}
 
+	@Override
+	public void feedDelete(int feed_no) {
+		this.feedDao.feedDelete(feed_no);
+	}
+
 }

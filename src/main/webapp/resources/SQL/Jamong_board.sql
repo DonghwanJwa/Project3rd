@@ -2,7 +2,7 @@
 CREATE TABLE board(
 bo_no NUMBER(38) PRIMARY KEY, 		-- 게시판 번호 (seq)
 bo_title VARCHAR2(200) NOT NULL, 	-- 제목
-bo_subtitle VARCHAR2(100),          -- 소제목(부제)
+bo_subtitle VARCHAR2(200),          -- 소제목(부제)
 bo_titlespace NUMBER(38),           -- 타이틀 상하 구분자
 bo_cont CLOB NOT NULL,    			-- 내용  ※CLOB이 간혹 셀렉트에러가 있다고함
 bo_thumbnail VARCHAR2(200),         -- 썸네일 이미지
@@ -40,6 +40,7 @@ ALTER TABLE board ADD bo_thumbnail VARCHAR2(200);
 ALTER TABLE board ADD bo_type NUMBER(38);
 ALTER TABLE board ADD bo_titlespace NUMBER(38);
 ALTER TABLE board ADD bo_color VARCHAR2(100);
+ALTER TABLE board MODIFY(bo_subtitle VARCHAR2(200));
 commit;
 -- 카테고리 테이블 참조컬럼 생성
 ALTER TABLE board

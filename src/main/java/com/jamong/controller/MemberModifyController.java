@@ -458,11 +458,6 @@ public class MemberModifyController {
 	@RequestMapping("cat_modify_ok")
 	@ResponseBody
 	public int cat_update(MemberVO vo,HttpSession session,String mem_fav1,String mem_fav2,String mem_fav3,HttpServletRequest request) throws Exception {
-		
-		System.out.println(mem_fav1);
-		System.out.println(mem_fav2);
-		System.out.println(mem_fav3);
-		
 		session = request.getSession();
 		MemberVO me = (MemberVO)session.getAttribute("m");//세션으로 엠키값을 객체로 가져온다
 		int re = 0;

@@ -74,16 +74,18 @@ body{
 
 #head-feed-count{
 	font-size: 10px;
-    position: absolute;
-    right: 165px;
-    text-align: center;
-    background-color: red;
-    color: white;
-    width: 16px;
-    height: 16px;
-    line-height: 16px;
-    border-radius: 50%;
-    top: 4px;
+	position: relative;
+	display: inline-block;
+	right: 13px;
+	text-align: center;
+	background-color: red;
+	color: white;
+	width: 15px;
+	height: 15px;
+	line-height: 16px;
+	border-radius: 50%;
+	bottom: 14px;
+	text-decoration: none;
 }
 
 #head-menu_open_button{
@@ -476,6 +478,7 @@ body{
 }
 #head-profile-menu .head-feed-button{
 	height:20px;
+	text-decoration: none;
 }
 
 #head-profile-menu .head-feed-button img{

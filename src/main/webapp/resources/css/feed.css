@@ -73,6 +73,7 @@
 
 /*새소식*/
 .feed_new_cont_article {
+	display:flex;
 	width: 540px;
 	padding:10px 50px;
 	margin-left: auto;
@@ -198,14 +199,32 @@
     margin: 10px -16px;
     padding: 0;
 }
+
+.feed_scrap_like_inner:hover .feed_scrap_sym_img{
+	width:22px;
+	height:22px;
 }
-.feed_scrap_like_inner:hover{
-}
-.feed_scrap_like_inner:active .feed_scrap_like_img{
+.feed_scrap_like_inner:active .feed_scrap_sym_img{
 	width:19px;
 	height:19px;
 }
-.feed_scrap_like_img{
+
+.feed_scrap_like_inner:hover .feed_scrap_rec_img{
+	width:22px;
+	height:22px;
+}
+.feed_scrap_like_inner:active .feed_scrap_rec_img{
+	width:19px;
+	height:19px;
+}
+
+.feed_scrap_sym_img{
+	cursor: pointer;
+	width:20px;
+	height:20px;
+	background-color: rgb(245,124,104);
+}
+.feed_scrap_rec_img{
 	cursor: pointer;
 	width:20px;
 	height:20px;
@@ -227,8 +246,24 @@
 	text-align:center;
 	margin:20px 0px;
 }
+#feed_delete_btn{
+	margin: 0px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+}
 
 
+.feed_scrap_no_info{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 20px;
+    font-weight: bold;
+}
 
 
 

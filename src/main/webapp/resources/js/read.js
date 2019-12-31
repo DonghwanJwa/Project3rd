@@ -286,7 +286,7 @@ $(document).ready(function(){
 					}else{
 						alert('로그인 유지시간이 만료되었습니다. \n'
 								+'다시 로그인 하시기 바립니다.')
-								window.location.replace("/jamong.com/login");
+								window.location.replace("/jamong.com/login/1");
 					}
 				},
 				error:function(){
@@ -309,7 +309,7 @@ $(document).ready(function(){
 					}else{
 						alert('로그인 유지시간이 만료되었습니다. \n'
 								+'다시 로그인 하시기 바립니다.')
-								window.location.replace("/jamong.com/login");
+								window.location.replace("/jamong.com/login/1");
 					}
 				},
 				error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
@@ -343,7 +343,7 @@ $(document).ready(function(){
 					}else{
 						alert('로그인 유지시간이 만료되었습니다. \n'
 								+'다시 로그인 하시기 바립니다.')
-								window.location.replace("/jamong.com/login");
+								window.location.replace("/jamong.com/login/1");
 					}
 				},
 				error:function(){
@@ -368,7 +368,57 @@ $(document).ready(function(){
 					}else{
 						alert('로그인 유지시간이 만료되었습니다. \n'
 								+'다시 로그인 하시기 바립니다.')
-								window.location.replace("/jamong.com/login");
+								window.location.replace("/jamong.com/login/1");
+					}
+				},
+				error:function(){
+					alert("data error");
+				}
+			});
+		}
+	});
+	
+	/*게시글정지*/
+	$('.head-menu-block-img').click(function(event){
+		if($(event.target).attr('data-state')!=2){
+			//정지
+			$.ajax({
+				type:"POST",
+				url:"/jamong.com/boardBan/"+para[5]+"/2",
+				success: function (data) {		
+					if(data==-1){
+						alert('게시글이 정지처리 되었습니다.');
+						window.location.reload();
+					}else if(re==1){
+						alert('로그인 유지시간이 만료되었습니다. \n'
+								+'다시 로그인 하시기 바립니다.');
+						window.location.replace("/jamong.com/login/1");
+					}else if(re==2){
+						alert('접근 권한이 없는 계정입니다.');
+						window.location.reload();
+					}
+				},
+				error:function(){
+					alert("data error");
+				}
+			});
+			
+		}else{
+			//정지해제
+			$.ajax({
+				type:"POST",
+				url:"/jamong.com/boardBan/"+para[5]+"/1",
+				success: function (data) {		
+					if(data==-1){
+						alert('게시글이 정지해제처리 되었습니다.');
+						window.location.reload();
+					}else if(re==1){
+						alert('로그인 유지시간이 만료되었습니다. \n'
+								+'다시 로그인 하시기 바립니다.');
+						window.location.replace("/jamong.com/login/1");
+					}else if(re==2){
+						alert('접근 권한이 없는 계정입니다.');
+						window.location.reload();
 					}
 				},
 				error:function(){

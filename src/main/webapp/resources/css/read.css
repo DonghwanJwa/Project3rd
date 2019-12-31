@@ -160,6 +160,28 @@ body a {
 	background-position-x :50%;
 	background-position-y :40%;
 }
+
+#edit_del_wrap .user_del_recover_btn {
+	background:url(../img/unblock.png);
+	background-repeat:no-repeat;
+	background-position-x :50%;
+	background-position-y :40%;
+}
+
+#edit_del_wrap .user_del_recover_btn:hover{
+	background:url(../img/unblock_on.png);
+	background-repeat:no-repeat;
+	background-position-x :50%;
+	background-position-y :40%;
+}
+
+#edit_del_wrap .user_del_recover_btn:active{
+	background:url(../img/unblock_on.png);
+	background-repeat:no-repeat;
+	background-size:25px 25px;
+	background-position-x :50%;
+	background-position-y :40%;
+}
 /*작가 프로필*/
 
 #author_profile {
