@@ -63,7 +63,7 @@ select * from(
     order by DBMS_RANDOM.RANDOM
 ) where rownum < 10;
 
-update member set mem_state=9 where mem_no=15;
+update member set mem_state=9 where mem_no=1;
 
 SELECT *
 FROM board b

@@ -6,9 +6,8 @@ body{
 }
 #my_info_main_wrap{
 	min-width: 100%;
-	min-height: 100%;
+	min-height:calc(100vh - 162px);
 	text-align: center;
-	padding-bottom: 105px
 }
 #my_info_main_wrap-2{
 	width: 860px;
@@ -73,14 +72,17 @@ body{
 }
 #my_info_btn{
 	background-color:white;
-	border:2px solid orange;
+	border: 1px solid #000;
+	border-radius: 25px;
+	padding: 5px 13px;
 	cursor:pointer;
 	font-size: 14px;
+	outline:none;
 	text-align: right;
 	margin-top: 15px;
 }
-#my_info_btn:hover{
-	background-color: orange;
+#my_info_btn:active{
+	background-color: black;
 	color: white;
 	outline: none;
 }
@@ -155,16 +157,19 @@ body{
 #my_info_before_btn, 
 #my_info_next_btn{
 	
-	background-color:white;
-	border:2px solid orange;
-	cursor:pointer;
-	font-size: 14px;
-	margin: 0 10px;
+background-color:white;	
+border: 1px solid #000;	
+border-radius: 25px;	
+padding: 5px 13px;	
+outline:none;
+cursor:pointer;	
+font-size: 14px;	
+margin: 0 10px;
 }
 
-#my_info_before_btn:hover, 
+#my_info_before_btn:active, 
 #my_info_next_btn:hover{
-	background-color: orange;
+	background-color: #000;
 	color: white;
 	outline: none;
 }
@@ -285,14 +290,19 @@ body{
 #my_info_layerLeave .my_info_confirm_btn{
     width: 130px;
     height: 40px;
-    /* border-radius: 22px; */
-    border: solid 2px orange;
+    border-radius: 25px;
+    border: solid 1px #000;
     color: black;
     font-size: 16px;
     margin-top: 10px;
     background-color: white;
     margin-left: 156px;
     cursor: pointer;
+    outline: none;
+}
+#my_info_layerLeave .my_info_confirm_btn:active{
+	background-color:#000;
+	color:#FFF;
 }
 .my_info_leave_text{
 	resize: none;
@@ -312,7 +322,6 @@ body{
     line-height: 20px;
     margin-top: 10px;
     font-size: 12px;
-    /* padding-left: 50px; */
     margin: 0 auto;
     color: red;
     

@@ -128,7 +128,7 @@
 						</div>
 						<div id="member_modify_next_btn_div">
 						<div id="member_modify_p"><p>* 이메일이 수정되었을 때 인증버튼이 활성화됩니다 </p></div>
-						<input type="submit" id="member_modify_next_btn"  value="수정완료" />
+						<input type="submit" id="member_modify_next_btn"  value="수정하기" />
 						</div>
 				</div>
 	</form>

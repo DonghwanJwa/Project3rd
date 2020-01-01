@@ -292,10 +292,21 @@ public class MemberController {
 		
 		this.memberService.insertMember(m);	//쿼리문 실행을 위한 메서드
 		
-		out.println("<script>");
-		out.println("alert('회원가입이 되셨습니다!');");
-		out.println("location='login/2';");
-		out.println("</script>");
+		out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+				"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+				"<body>\r\n" + 
+				"<script>\r\n" + 
+				"Swal.fire({\r\n" + 
+				"		title : 'Success!',\r\n" + 
+				"		text : '회원가입이 되셨습니다!',\r\n" + 
+				"		icon: 'success',\r\n" + 
+				"		}).then((result) => {\r\n" + 
+				"			if(result.value){\r\n" + 
+				"				location='login/2';\r\n" + 
+				"			}\r\n" + 
+				"		});\r\n" + 
+				"</script>\r\n" + 
+				"</body>");
 		
 		return null;
 	}
@@ -373,10 +384,21 @@ public class MemberController {
 			}
 			
 			if(state == 1 || state == 2 || mp == null) {
-				out.println("<script>");
-				out.println("alert('등록된 계정이 아닙니다');");
-				out.print("hitory.back();");
-				out.println("</script>");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Block!',\r\n" + 
+						"		text : '탈퇴했거나 정지된 회원입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
 			}else {
 				mv.addObject("mp",mp);
 				mv.addObject("sub",sub);
@@ -399,10 +421,26 @@ public class MemberController {
 	
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		if(m==null) {
-			out.print("<script>");
-			out.print("alert('로그인 이필요한 페이지 입니다!');");
-			out.print("location='/jamong.com/login/1';");
-			out.print("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login/1';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
 			mp = this.memberService.profileCheck(m.getMem_id());
 			mv.addObject("mp",mp);
@@ -422,10 +460,26 @@ public class MemberController {
 		session = request.getSession();
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		if(m==null) {
-			out.print("<script>");
-			out.print("alert('로그인 이필요한 페이지 입니다!');");
-			out.print("location='/jamong.com/login/1';");
-			out.print("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login/1';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
 			
 			// 프로필 이미지 저장경로 추가
@@ -488,10 +542,22 @@ public class MemberController {
 			this.memberService.updateProfile(mp);
 			
 			
-			out.print("<script>");
-			out.print("alert('변경되었습니다');");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Success!',\r\n" + 
+					"		text : '성공적으로 수정되었습니다!',\r\n" + 
+					"		icon: 'success',\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/@"+m.getMem_id()+"';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 			out.print("location='/jamong.com/@"+m.getMem_id()+"';");
-			out.print("</script>");
 		
 		}
 		return null;

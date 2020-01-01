@@ -45,23 +45,33 @@ function preNullError(){
 }
 function CommentRemove(e){
 	var rep_no = $(e.target).data("no");
-	var removeOK = confirm('댓글을 삭제하시겠습니까?');
-
-	if(removeOK == true){
+	Swal.fire({
+		icon : 'question',
+		title : '댓글을 삭제하시겠습니까?',
+		showCancelButton : true,
+		cancelButtonText : '아니오',
+		confirmButtonText : '예'
+	}).then(function(){
 		$.ajax({
 			type : "POST",
 			data : {"rep_no":rep_no},
 			url : "/jamong.com/commentremove",
 			success : function(data){
 				if(data == 1){
-					alert('댓글 삭제에 성공했습니다!');
-					window.location.reload();
+					Swal.fire(
+							'Good Job!',
+							'댓글 삭제에 성공했습니다!',
+							'success'
+					).then(function(){
+						window.location.reload();
+					})
 				}else if(data == 2)
-					alert('로그인이 필요합니다!');
+					swal('로그인이 필요합니다!');
 			}
 		});
-	}
+	});	
 }
+
 function addComment(){
 	var para = document.location.href.split("/");
 	var com_cont = $(".rep_textarea").html();

@@ -33,6 +33,8 @@ NOCACHE;
 
 DROP SEQUENCE off_no_seq;
 
+SELECT off_no_seq.nextval FROM DUAL
+
 -- 참조키 설정
 ALTER TABLE offer
 ADD CONSTRAINT off_mem_no_fk FOREIGN KEY (mem_no)
