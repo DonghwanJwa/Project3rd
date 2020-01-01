@@ -319,7 +319,12 @@
     <div class="feed_scrap_inner">
      <a class="feed_scrap_link" href="/jamong.com/@${art.memberVO.mem_id}/${art.boardVO.bo_no}">
       <div class="feed_scrap_img_container">
-       <img class="feed_scrap_img" src="${art.boardVO.bo_thumbnail}" alt="그림 안나옴">
+       <c:if test="${art.boardVO.bo_thumbnail ne null}">
+        <img class="feed_scrap_img" src="${art.boardVO.bo_thumbnail}" alt="그림 안나옴">
+       </c:if>
+       <c:if test="${art.boardVO.bo_thumbnail eq null}">
+        <img class="feed_scrap_img" src="/jamong.com/resources/img/profile_logout.png" alt="그림 안나옴">
+       </c:if>
       </div>
       <div class="feed_scrap_cont">
        <div class="feed_scrap_type">Article</div>
@@ -349,7 +354,12 @@
     <div class="feed_scrap_inner">
      <a class="feed_scrap_link" href="/jamong.com/book/@${book.memberVO.mem_id}/${book.bookVO.book_no}">
       <div class="feed_scrap_img_container">
-       <img class="feed_scrap_img" src="${book.bookVO.book_cover}"/>
+      <c:if test="${book.bookVO.book_cover ne null}">
+        <img class="feed_scrap_img" src="${book.bookVO.book_cover}"/>
+       </c:if>
+       <c:if test="${book.bookVO.book_cover eq null}">
+        <img class="feed_scrap_img" src="/jamong.com/resources/img/profile_logout.png"/>
+       </c:if>
       </div>
       <div class="feed_scrap_cont">
        <div class="feed_scrap_type">Book</div>
