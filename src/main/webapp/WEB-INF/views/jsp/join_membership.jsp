@@ -119,7 +119,7 @@
 						<div class="join_membership_error" id="join_membership_error_email_check"></div>
 						</div>
 					</div>
-					<div>
+					<div class="join_membership_button_div">
 					<%-- 메일인증 구현해야됨!!! --%> 
 						<div class="join_membership_policy_box">
 					 	 <input id="join_membership_check" type="checkbox" name="agree" >

@@ -54,8 +54,9 @@
 					</tr>
 					
 					<tr>
-					<th></th>
-					<td><a href="/jamong.com/pass_modify"><button id="my_info_btn">회원정보수정</button></a></td>
+					<th colspan="2" style="text-align:center;">
+					<a href="/jamong.com/pass_modify"><button id="my_info_btn">회원정보수정</button></a>
+					</th>
 					</tr>
 					</tbody>
 				</table>

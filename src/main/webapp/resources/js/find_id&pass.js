@@ -38,17 +38,27 @@ $(function(){
 					//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
 					//readonly false면 값변경이 가능
 					//disabled 태그 속성 활성화 false 비활성화
-					alert("입력하신 이메일로 아이디가 발송되었습니다.\n비밀번호 찾기 페이지로 이동됩니다.");
-					$("#find_id_sub_box_id").css("display","none");
-					$("#find_id_sub_box_pass").css("display","block");
-					$(".find_pass_link2").css("background","orange");
-					$(".find_pass_link2").css("color","white");
-					$(".find_id_link1").css("background","lightgray");
+					Swal.fire({
+						icon : 'info',
+						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 비밀번호 찾기 페이지로 이동합니다.'
+					}).then(function(){
+						$("#find_id_sub_box_id").css("display","none");
+						$("#find_id_sub_box_pass").css("display","block");
+						$(".find_pass_link2").css("background","orange");
+						$(".find_pass_link2").css("color","white");
+						$(".find_id_link1").css("background","lightgray");						
+					})
 				}else if(data==-1){
 					alert("입력하신 정보에 해당하는 계정이 없습니다.");
+					Swal.fire({
+						icon : 'error',
+						text : '입력하신 정보에 해당하는 계정이 없습니다!'
+					});
 				}else if(data==-2){
-					alert("이메일 전송중 에러가 발생하였습니다.\n다시한번 시도해 주시기 바랍니다.\n" +
-							"+오류가 반복될 경우 '문의하기'페이지를 통해\n문의 해 주시기 바립니다.");
+					Swal.fire({
+						icon : 'error',
+						text : '이메일 전송중 오류가 발생하였습니다!'
+					});
 				}
 			},
 			beforeSend:function(){
@@ -105,27 +115,38 @@ $(function(){
 			datatype:"int",
 			success : function(data){
 				if(data==1){
-					alert("입력하신 이메일로 인증번호가 발송되었습니다.");
+					Swal.fire({
+						icon : 'info',
+						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 비밀번호 찾기 페이지로 이동합니다.'
+					}).then(function(){
+						$('#find_id_pass_email_Certified_btn').attr("disabled",true);//버튼을 못쓰게 막음
+						$('#find_id_pass_before_certified').show();
+						$('#find_id_pass_Certified').val('');
+						$('#find_id_pass_Certified').attr('readonly',false);//readonly false면 쓰기 가능 true면 글을 못씀
+						$('#find_id_pass_email_Certified_next_btn').attr('disabled',false);						
+					});
 					//readonly는 읽기만 가능 값변경 불가능 form으로 값보낼떄는 가능 
 					//readonly false면 값변경이 가능
 					//disabled true가 비활성화 false가 활성화
-					$('#find_id_pass_email_Certified_btn').attr("disabled",true);//버튼을 못쓰게 막음
-					$('#find_id_pass_before_certified').show();
-					$('#find_id_pass_Certified').val('');
-					$('#find_id_pass_Certified').attr('readonly',false);//readonly false면 쓰기 가능 true면 글을 못씀
-					$('#find_id_pass_email_Certified_next_btn').attr('disabled',false);
 				}else if(data==-1){
 					alert("입력하신 정보에 해당하는 계정이 없습니다.");
-					$('#find_id_pass_email').val("");	
-					$('#find_id_pass_domain').val("");
-					$('#find_id_pass_name').val("");
-					$('#find_id_pass_id').val("");
-					$('#find_id_pass_Certified').val("");
-					$('#find_id_pass_pass').val("");
-					$('#find_id_pass_pass_check').val("");
+					Swal.fire({
+						icon : 'error',
+						text : '입력하신 정보에 해당하는 계정이 없습니다!'
+					}).then(function(){
+						$('#find_id_pass_email').val("");	
+						$('#find_id_pass_domain').val("");
+						$('#find_id_pass_name').val("");
+						$('#find_id_pass_id').val("");
+						$('#find_id_pass_Certified').val("");
+						$('#find_id_pass_pass').val("");
+						$('#find_id_pass_pass_check').val("");					
+					});
 				}else if(data==-2){
-					alert("이메일 전송중 에러가 발생하였습니다.\n다시한번 시도해 주시기 바랍니다.\n" +
-					"+오류가 반복될 경우 '문의하기'페이지를 통해\n문의 해 주시기 바립니다.");
+					Swal.fire({
+						icon : 'error',
+						text : '이메일 전송중 오류가 발생하였습니다!'
+					});
 				}
 			},
 			beforeSend:function(){
@@ -156,14 +177,22 @@ $(function(){
 			success:function(data){
 				if(data=="complete"){
 					alert("인증이 완료되었습니다.");
-					$('#find_id_pass_email_Certified_next_btn').attr('disabled', true);//비활성화
-					$('#find_id_pass_Certified').attr('readonly',true);
-					$('#find_pass_email_box').hide();
-					$('#find_id_pass_before_certified').hide();
-					$('#find_id_pass_after_certified').show();
-					sessionStorage.removeItem('authCode');
+					Swal.fire({
+						icon : 'success',
+						text : '인증이 완료되었습니다!'
+					}).then(function(){
+						$('#find_id_pass_email_Certified_next_btn').attr('disabled', true);//비활성화
+						$('#find_id_pass_Certified').attr('readonly',true);
+						$('#find_pass_email_box').hide();
+						$('#find_id_pass_before_certified').hide();
+						$('#find_id_pass_after_certified').show();
+						sessionStorage.removeItem('authCode');						
+					})
 				}else if(data == "false"){
-					alert("인증번호를 잘못 입력하셨습니다.")
+					Swal.fire({
+						icon : 'error',
+						title : '인증번호가 틀렸습니다!'
+					});
 				}
 			},
 			beforeSend:function(){

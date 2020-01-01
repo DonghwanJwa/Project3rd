@@ -62,8 +62,18 @@ $(document).ready(function() {
 						$(event.target).attr("data-disabled",'false');
 					},2000);
 				}else if(data == 2){   
-					alert('로그인이 필요한 페이지입니다!');
-					window.location.replace("/jamong.com/login/1");
+					Swal.fire({
+						icon : 'info',
+						title : 'Oops!',
+						text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+						showCancelButton : true,
+						confirmButtonText : '예',
+						cancelButtonText : '아니오'
+					}).then((result) => {
+						if(result.value){
+							location.href='/jamong.com/login/1';
+						}
+					});
 				}
 			},
 			error:function(){
@@ -87,8 +97,18 @@ $(document).ready(function() {
 							$(event.target).attr("data-disabled",'false');
 						},2000);
 					}else if(data == 2){
-						alert('로그인이 필요한 페이지입니다!');
-						window.location.replace("/jamong.com/login/1");
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
 					}
 				},
 				error:function(){
@@ -238,9 +258,20 @@ $(document).ready(function() {
 							$(event.target).attr("data-disabled",'false');
 						},2000);
 					}else{
-						alert('로그인 유지시간이 만료되었습니다. \n'
-								+'다시 로그인 하시기 바립니다.');
-						window.location.reload();
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '세션이 만료되었습니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}else if(result.dismiss === Swal.DismissReason.cancel){
+								window.location.reload();								
+							}
+						});
 					}
 				},
 				error:function(){
@@ -262,9 +293,20 @@ $(document).ready(function() {
 							$(event.target).attr("data-disabled",'false');
 						},2000);
 					}else {
-						alert('로그인 유지시간이 만료되었습니다. \n'
-								+'다시 로그인 하시기 바립니다.');
-						window.location.reload();
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '세션이 만료되었습니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}else if(result.dismiss === Swal.DismissReason.cancel){
+								window.location.reload();								
+							}
+						});
 					}
 				},
 				error:function(){
@@ -333,7 +375,10 @@ $(document).ready(function() {
 		var self = $(this);
 
 		if (e.keyCode == 32) {// 스페이스 바 입력 안되도록
-			alert('띄어쓰기는 사용할 수 없습니다');
+			Swal.fire({
+				icon : 'error',
+				text : '띄어쓰기는 사용할 수 없습니다'
+			});
 			return false;
 		}
 		// input 에 focus 되있을 때 엔터 입력 ( )
@@ -505,7 +550,10 @@ $(document).ready(function(){
 	$('#profile_editor').on("keypress",function(e){
 		var p_edit =$(this).val();
 		if(e.keyCode == 13){
-			alert('작가이름은 줄바꿈을 사용할 수 없습니다!');
+			Swal.fire({
+				icon : 'error',
+				text : '닉네임엔 엔터키를 사용할 수 없습니다!'
+			});
 			return false;
 		}
 		e.preventDefault;
@@ -515,7 +563,10 @@ $(document).ready(function(){
 	$('.e').on("keypress",function(e){
 		var p_edit =$(this).val();
 		if(e.keyCode == 13){
-			alert('자기소개는 줄바꿈을 사용할 수 없습니다!');
+			Swal.fire({
+				icon : 'error',
+				text : '자기소개에는 엔터키를 사용할 수 없습니다!'
+			});
 			return false;
 		}
 		e.preventDefault;
