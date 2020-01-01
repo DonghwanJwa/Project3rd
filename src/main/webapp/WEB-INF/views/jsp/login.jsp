@@ -8,10 +8,10 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font.css"/>	
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sweetalert2.css" />
 
-<script src="${pageContext.request.contextPath}/resources/js/sweetalert2.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
-<title>로그인 페이지입니다</title>
+<script src="${pageContext.request.contextPath}/resources/js/sweetalert2.min.js"></script>
+<title>글에 꿈을 담다, 자몽</title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 <div id ="login_main_wrap">
@@ -24,7 +24,7 @@
    </div>
    <div id="login_mid">
     <div class="login_color">
-     <input id="login_id" name="login_id" type="text" placeholder="아이디" autocomplete="off" tabindex="1">
+     <input id="login_id" name="login_id" type="text" placeholder="아이디" autocomplete="off" tabindex="1" value="${fail_id}">
     </div> 
     <div class="login_error" id="login_id_error"></div>
     <div class="login_color">

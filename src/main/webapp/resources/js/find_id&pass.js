@@ -49,7 +49,6 @@ $(function(){
 						$(".find_id_link1").css("background","lightgray");						
 					})
 				}else if(data==-1){
-					alert("입력하신 정보에 해당하는 계정이 없습니다.");
 					Swal.fire({
 						icon : 'error',
 						text : '입력하신 정보에 해당하는 계정이 없습니다!'
