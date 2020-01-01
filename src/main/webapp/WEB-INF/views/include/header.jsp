@@ -10,8 +10,8 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font.css"/> <%-- 폰트 적용 css --%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sweetalert2.css" />
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.word-break-keep-all.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.word-break-keep-all.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert2.min.js"></script>
 <title>글에 꿈을 담다, 자몽</title>

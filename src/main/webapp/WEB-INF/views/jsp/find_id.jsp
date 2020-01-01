@@ -6,9 +6,11 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/find_id.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sweetalert2.css" />
 <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/find_id&pass.js"></script>
-<title></title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert2.min.js"></script>
+<title>글에 꿈을 담다, 자몽</title>
 </head>
 <body >
 <div id="find_id_main_wrap">

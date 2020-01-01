@@ -64,9 +64,14 @@ public class MemberController {
 		String pv = (String)session.getAttribute("loginmain");
 		String prev = (String)session.getAttribute("ref");
 		String fail = (String)session.getAttribute("login_fail");
+		String fail_id = (String)session.getAttribute("fail_id");
 		if(fail!=null) {
 			mo.addAttribute("login_fail",fail);
 			session.removeAttribute("login_fail");
+		}
+		if(fail_id!=null) {
+			mo.addAttribute("fail_id",fail_id);
+			session.removeAttribute("fail_id");
 		}
 
 		if(m != null) {
@@ -112,6 +117,7 @@ public class MemberController {
 			MemberVO dm=this.memberService.loginCheck(login_id);//로그인 인증
 			if(dm==null) {		//일치하는 회원정보가 없을 때
 				session.setAttribute("login_fail","fail");
+				session.setAttribute("fail_id",login_id);
 				result = "redirect:/login";
 			}else {		//일치하는 회원정보가 있을 때
 				if(dm.getMem_state()==1) {	//정지 회원일 때
@@ -138,6 +144,7 @@ public class MemberController {
 							"</body>");
 				}else if(dm.getMem_state()==2){ //탈퇴 회원일 때
 					session.setAttribute("login_fail","fail");
+					session.setAttribute("fail_id",login_id);
 					result = "redirect:/login";
 				}else {
 					if(dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))){
@@ -164,6 +171,7 @@ public class MemberController {
 						result = "redirect:"+redirectUrl;
 					}else { //비밀번호가 틀렸을때
 						session.setAttribute("login_fail","fail");
+						session.setAttribute("fail_id",login_id);
 						result = "redirect:/login";
 					}
 				}
