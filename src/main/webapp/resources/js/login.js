@@ -34,6 +34,28 @@ function getCategorySelect(){
 	  });
 }
 
+/*로그인창에서 로그인 버튼 클릭시 */
+function loginOk() {
+	var login_id = $('#login_id').val();
+	var login_pwd = $('#login_pwd').val();
+
+	$('.login_error').text('');//에러택스트 초기화
+
+	//아이디 공백 검증
+	if ($.trim($('#login_id').val()) == "") {
+		$('#login_id_error').text('아이디를 입력해주세요!');
+		$("#login_id").val("").focus();
+		return false;
+	}
+
+	//비밀번호 공백 검증
+	if ($.trim($('#login_pwd').val())=="") {
+		$('#login_pwd_error').text('비밀번호를 입력해주세요!');
+		$("#login_pwd").val("").focus();
+		return false;
+	}
+}
+
 $(document).ready(function(){
 	
 	/*엔터로 로그인진행*/
@@ -49,27 +71,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	/*로그인창에서 로그인 버튼 클릭시 */
-	$("#login_btn").click(function() {
-		var login_id = $('#login_id').val();
-		var login_pwd = $('#login_pwd').val();
-	
-		$('.login_error').text('');//에러택스트 초기화
-	
-		//아이디 공백 검증
-		if ($.trim($('#login_id').val()) == "") {
-			$('#login_id_error').text('아이디를 입력해주세요!');
-			$("#login_id").val("").focus();
-			return false;
-		}
-	
-		//비밀번호 공백 검증
-		if ($.trim($('#login_pwd').val())=="") {
-			$('#login_pwd_error').text('비밀번호를 입력해주세요!');
-			$("#login_pwd").val("").focus();
-			return false;
-		}
-		var ref= $('#login_back_page').val();
+		/*var ref= $('#login_back_page').val();
 		var para = document.location.href.split("/");
 		$.ajax({
 			type:"POST",
@@ -106,8 +108,8 @@ $(document).ready(function(){
 			error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
 				alert("data error");
 			}
-		});
-	});
+		});*/
+	
 	
 	/*	회원가입 기본정보 기입란 다음버튼 클릭시 유효성검증	*/
 	
@@ -789,7 +791,7 @@ $(document).ready(function(){
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
-		if (!third.test($('#join_membership_tel3').val())) {
+		if (!tel_third.test($('#join_membership_tel3').val())) {
 			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
 			return false;
 		}
@@ -798,7 +800,7 @@ $(document).ready(function(){
 			$('#join_membership_error_tel').text('핸드폰번호를 입력해주세요!');
 			return false;
 		}
-		if (!third.test($('#join_membership_tel3').val())) {
+		if (!tel_third.test($('#join_membership_tel3').val())) {
 			$('#join_membership_error_tel').text('정확한 번호를 입력해주세요!');
 			return false;
 		}

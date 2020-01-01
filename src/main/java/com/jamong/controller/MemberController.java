@@ -52,8 +52,8 @@ public class MemberController {
 	@Autowired
 	private SubscribeService subService;
 	
-	@RequestMapping("login/{page}")
-	public String user_login(@PathVariable("page") int page,Model mo,
+	@RequestMapping("login")
+	public String user_login(Model mo,
 			HttpServletRequest request,
 			HttpServletResponse response,
 			HttpSession session)throws Exception { // 로그인 페이지
@@ -61,44 +61,86 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 		session=request.getSession();
 		MemberVO m = (MemberVO)session.getAttribute("m");
-		
-		String ref = request.getHeader("Referer");
-		mo.addAttribute("ref", ref);
+		String pv = (String)session.getAttribute("loginmain");
+		String prev = (String)session.getAttribute("ref");
+		String fail = (String)session.getAttribute("login_fail");
+		if(fail!=null) {
+			mo.addAttribute("login_fail",fail);
+			session.removeAttribute("login_fail");
+		}
+
 		if(m != null) {
 			out.println("<script>");
 			out.println("history.back();");
 			out.println("</script>");
-		}else {			
+		}else {		
+			if(pv==null) {//이전단계가 회원가입이 아니였을 경우
+				String ref = request.getHeader("Referer");
+				if(ref==null) {//이전페이지가 없을경우
+					session.setAttribute("ref","/jamong.com/");
+				}else {//이전페이지가 있을경우
+					if(prev==null) {	//이전페이지가 저장되어있지 않은 경우
+						session.setAttribute("ref", ref);
+					}else {
+						session.setAttribute("ref", prev);
+					}
+				}
+			}else {//이전단계가 회원가입이였을 경우
+				session.setAttribute("ref","/jamong.com/");
+				session.removeAttribute("loginmain");
+			}
 			return "jsp/login";
 		}
 		return null;
 	}
 	
-	@RequestMapping("login_ok/{page}")
-	@ResponseBody
-	public int member_login_ok(@PathVariable("page") int page,String login_id, String login_pwd,MemberVO m,
+	@RequestMapping("login_ok")
+	public String member_login_ok(String login_id, String login_pwd,MemberVO m,Model mv,
 			HttpServletResponse response,HttpServletRequest request,
 			HttpSession session) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
 		session=request.getSession();
 		session.setMaxInactiveInterval(120*60);		//세션 유지시간 2시간
 		MemberVO mem_m = (MemberVO)session.getAttribute("m");
+		String redirectUrl = (String)session.getAttribute("ref");
 		
-		int re = 1;	//로그인 가능여부 변수 : 1 불가능, 2이미 로그인됨 , 3 계정정지, -1 & -2가능
-		
+		String result = null;
 		if(mem_m != null) {
-			re = 2;
+			result = "redirect:/";
 		}else {			
 			MemberVO dm=this.memberService.loginCheck(login_id);//로그인 인증
-			if(dm!=null) {		//안에 디비값이 있을떄
-				if(dm.getMem_state()==1) {
-					re=3;
+			if(dm==null) {		//일치하는 회원정보가 없을 때
+				session.setAttribute("login_fail","fail");
+				result = "redirect:/login";
+			}else {		//일치하는 회원정보가 있을 때
+				if(dm.getMem_state()==1) {	//정지 회원일 때
+					session.removeAttribute("ref");
+					out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+							"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+							"<body>\r\n" + 
+							"<script>\r\n" + 
+							"Swal.fire({\r\n" + 
+							"		icon : 'warning',\r\n" +
+							"		title : 'Block!',\r\n" + 
+							"		text : '자몽 정책에 위배되는 활동으로 인해 정지된 계정입니다. \n자세한 사항은 문의를 통해 확인하여 주시기 바랍니다.',\r\n" +
+							"		showCancelButton : true,\r\n" +
+							"		cancelButtonText : '문의하기',\r\n" +
+							"		confirmButtonText : '메인으로',\r\n" +
+							"		}).then((result) => {\r\n" +
+							"		if(result.value){\r\n" +
+							"			window.location.replace('/jamong.com/');\r\n" +						
+							"		}else if(result.dismiss === Swal.DismissReason.cancel){\r\n" +
+							"			window.location.replace('/jamong.com/inquire');\r\n" +
+							"		}\r\n" +
+							"		});\r\n" + 
+							"</script>\r\n" + 
+							"</body>");
+				}else if(dm.getMem_state()==2){ //탈퇴 회원일 때
+					session.setAttribute("login_fail","fail");
+					result = "redirect:/login";
 				}else {
 					if(dm.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))){
-						if(page==1) {	//메뉴에서 로그인 시도시
-							re=-1;						
-						}else {			//회원가입에서 로그인 시도시
-							re=-2;
-						}
 						m.setMem_no(dm.getMem_no());
 						m.setMem_id(dm.getMem_id());
 						m.setMem_nickname(dm.getMem_nickname());
@@ -118,11 +160,16 @@ public class MemberController {
 							m.setMem_name(dm.getMem_name());
 						}
 						session.setAttribute("m", m);
+						session.removeAttribute("ref");
+						result = "redirect:"+redirectUrl;
+					}else { //비밀번호가 틀렸을때
+						session.setAttribute("login_fail","fail");
+						result = "redirect:/login";
 					}
 				}
 			}
 		}
-		return re;
+		return result;
 	}//member_login_ok()
 	
 	@RequestMapping("logout")
@@ -211,8 +258,8 @@ public class MemberController {
 	
 	@RequestMapping("join_membership_ok")
 	public String user_membership_ok(MemberVO m,HttpServletRequest request, 
-			HttpServletResponse response) throws Exception {//회원가입에서 가입하기 버튼 클릭 시
-		
+			HttpServletResponse response,HttpSession session) throws Exception {//회원가입에서 가입하기 버튼 클릭 시
+		session=request.getSession();
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
@@ -291,7 +338,7 @@ public class MemberController {
 		}
 		
 		this.memberService.insertMember(m);	//쿼리문 실행을 위한 메서드
-		
+		session.setAttribute("loginmain","/jamong.com/");
 		out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 				"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
 				"<body>\r\n" + 
@@ -302,7 +349,7 @@ public class MemberController {
 				"		icon: 'success',\r\n" + 
 				"		}).then((result) => {\r\n" + 
 				"			if(result.value){\r\n" + 
-				"				location='login/2';\r\n" + 
+				"				location='login';\r\n" + 
 				"			}\r\n" + 
 				"		});\r\n" + 
 				"</script>\r\n" + 
@@ -434,7 +481,7 @@ public class MemberController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 
@@ -473,7 +520,7 @@ public class MemberController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 

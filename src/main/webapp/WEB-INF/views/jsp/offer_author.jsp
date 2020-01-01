@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<link rel="stylesheet" type="text/css"  href="/jamong.com/resources/css/offer_author.css" />
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/resources/css/offer_author.css" />
 <script>
 function offer_check() {
 	if(!($('#r1').prop('checked') || $('#r2').prop('checked') || $('#r3').prop('checked') || $('#r4').prop('checked') || $('#r5').prop('checked'))) {
@@ -103,12 +103,12 @@ $(document).ready(function() {
 <body>
 	 <div class="wrap-loading" style="display:none">
       <div>
-       <img src="/jamong.com/resources/img/loading1.gif" />
+       <img src="${pageContext.request.contextPath}/resources/img/loading1.gif" />
       </div>
 	 </div> 
 <div id="offer_back">
 <div id="offer_wrap">
-<form method="post" onsubmit="return offer_check();" action="/jamong.com/offer_send" enctype="Multipart/form-data">
+<form method="post" onsubmit="return offer_check();" action="${pageContext.request.contextPath}/offer_send" enctype="Multipart/form-data">
 <input type="hidden" name="id" value="${author.mem_id}" />
 	<div id="offer_intro">
 		<h2><span class="offer_author_name">${author.mem_nickname}</span><br/> 작가님께 제안합니다.</h2>

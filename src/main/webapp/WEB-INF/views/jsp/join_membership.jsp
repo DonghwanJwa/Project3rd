@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/joinmembership.css" />
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css" />
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/header.css" />
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<script src="/jamong.com/resources/js/login.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/joinmembership.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css" />
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 <title>회원가입 페이지입니다</title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
@@ -16,7 +16,7 @@
 	<div id="join_membership_main_wrap">
 	 <div class="wrap-loading" style="display:none">
       <div>
-       <img src="/jamong.com/resources/img/loading1.gif" />
+       <img src="${pageContext.request.contextPath}/resources/img/loading1.gif" />
       </div>
 	 </div>
 
@@ -24,7 +24,7 @@
 			<div id="join_membership_main_div">
 				<!-------------------------------로고------------------------------------>
 				<div id="join_membership_img_logo">
-					<a href="/jamong.com/"><img src="/jamong.com/resources/img/logo2.png" /></a>
+					<a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/img/logo2.png" /></a>
 					<div id="join_membership_sequence_box">
 						<ol id="join_membership_sequence">
 							<li>
@@ -124,7 +124,7 @@
 						<div class="join_membership_policy_box">
 					 	 <input id="join_membership_check" type="checkbox" name="agree" >
 					 	 <label id="join_membership_check_comment" id="inq_check" for="agree">
-					 	   자몽의 <a href="/jamong.com/policy_terms" target="_blank">이용약관</a> 및 <a href="/jamong.com/policy_privacy" target="_blank">개인정보 처리방침</a>에 동의합니다.
+					 	   자몽의 <a href="${pageContext.request.contextPath}/policy_terms" target="_blank">이용약관</a> 및 <a href="${pageContext.request.contextPath}/policy_privacy" target="_blank">개인정보 처리방침</a>에 동의합니다.
 					 	 </label>
 					 	 <div class="join_membership_error" id="join_membership_policy_error"></div>
 					 	</div>

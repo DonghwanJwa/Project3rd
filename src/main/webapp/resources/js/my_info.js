@@ -88,7 +88,7 @@ $(document).ready(function(){
 								cancelButtonText : '아니오'
 							}).then((result) => {
 								if(result.value){
-									location.href='/jamong.com/login/1';
+									location.href='/jamong.com/login';
 								}
 							});
 						}

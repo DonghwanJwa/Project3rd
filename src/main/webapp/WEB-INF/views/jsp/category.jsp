@@ -2,8 +2,8 @@
 <%@ include file="../include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/category.css" />
-<script type="text/javascript" src="/jamong.com/resources/js/category.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/category.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/category.js"></script>
  <div id=cat_empty oncontextmenu="return false" ondragstart="return false"
   onselectstart="return false">
   <div id=cat_title_name><strong>${cat_name}</strong></div>
@@ -11,11 +11,11 @@
     <div id=cat_writer_title><b>추천작가</b></div>
      <div id=cat_writer_list>
       <c:forEach var="cat" items="${mlist}">
-       <a class=cat_writer_a align="center" href="/jamong.com/@${cat.mem_id}">
+       <a class=cat_writer_a align="center" href="${pageContext.request.contextPath}/@${cat.mem_id}">
       	<div id=cat_writer_list1>
       	
        		<div id=cat_writer_face1>
-        		<img class="cat_face_img" src="/jamong.com/resources/img/cat_writer_face1.jpg" alt="작가이미지" />
+        		<img class="cat_face_img" src="${pageContext.request.contextPath}/resources/img/cat_writer_face1.jpg" alt="작가이미지" />
        		</div>
        		<div class=cat_writer_name><strong>${cat.mem_nickname}</strong></div>
        		<div id=cat_write_count>글:${cat.mem_article}</div>
@@ -51,7 +51,7 @@
 	  <div class="cat_writing_img-div">
 	   <img class="cat_writing_img" src="${blist.bo_thumbnail}" alt="글" />
 	  </div>
-	 <a class=cat_write_top href="/jamong.com/@${blist.memberVO.mem_id}/${blist.bo_no}">
+	 <a class=cat_write_top href="${pageContext.request.contextPath}/@${blist.memberVO.mem_id}/${blist.bo_no}">
 	  <div class=cat_writing_top>
 	  	<p class=cat_write_title>
 	  	<strong>
@@ -75,13 +75,13 @@
 	  </div>
 	</a>
 	  <div class=cat_writing_bottom>
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
 	   <b>${blist.memberVO.mem_fav1}</b>
 	   </button>
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
-	   <b>${blist.memberVO.mem_fav2}</b>	   
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
+	   <b>${blist.memberVO.mem_fav2}</b>
 	   </button>
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
 	   <b>${blist.memberVO.mem_fav3}</b>
 	   </button>
 	  </div>
@@ -93,7 +93,7 @@
 	 <div class=cat_writing style="border-bottom: 1px solid #f57c68;">
 	  <div class="cat_writing_img-div">
 	  </div>
-	 <a class=cat_write_top href="/jamong.com/@${blist.memberVO.mem_id}/${blist.bo_no}">
+	 <a class=cat_write_top href="${pageContext.request.contextPath}/@${blist.memberVO.mem_id}/${blist.bo_no}">
 	  <div class=cat_writing_top>
 	  	<p class=cat_write_title>
 	  	<strong style="color:#333">
@@ -118,17 +118,17 @@
 	</a>
 	  <div class=cat_writing_bottom>
 	   <c:if test="${!empty blist.memberVO.mem_fav1}">
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
 	   <b style="color:#333">${blist.memberVO.mem_fav1}</b>
 	   </button>
 	   </c:if>
 	   <c:if test="${!empty blist.memberVO.mem_fav2}">
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
 	   <b style="color:#333">${blist.memberVO.mem_fav2}</b>	   
 	   </button>
 	   </c:if>
 	   <c:if test="${!empty blist.memberVO.mem_fav3}">
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018/jamong.com/search?result=post'">
+	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
 	   <b style="color:#333">${blist.memberVO.mem_fav3}</b>
 	   </button>
 	   </c:if>
@@ -147,7 +147,7 @@
 	<!-- 책부분 시작 -->
 	<div class=cat_book_block style="display:none;">	
 	<c:forEach var="bklist" items="${bklist}">
-	 <div class=cat_book onclick="location.href='/jamong.com/book/@${bklist.memberVO.mem_id}/${bklist.bookVO.book_no}'">
+	 <div class=cat_book onclick="location.href='${pageContext.request.contextPath}/book/@${bklist.memberVO.mem_id}/${bklist.bookVO.book_no}'">
 	   <img class="cat_book_img" src="${bklist.bookVO.book_cover }" alt="글" />
 		<div class="cat_book_inner">
 			<p class=cat_book_title><strong>${bklist.bookVO.book_name}</strong></p>

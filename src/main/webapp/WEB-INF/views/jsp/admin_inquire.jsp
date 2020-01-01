@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <meta charset="UTF-8">
 <%@ include file="../include/admin_header.jsp" %>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/admin_inquire.css"/>
-<script src="/jamong.com/resources/js/admin_inquire.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin_inquire.css"/>
+<script src="${pageContext.request.contextPath}/resources/js/admin_inquire.js"></script>
  <h3 class=admin_inq_title>문의목록</h3>
 <form action="admin_inquire">
  <div class=admin_inq_main>
@@ -22,7 +22,7 @@
      
      <c:if test="${!empty ilist}">
      	<c:forEach var="i" items="${ilist}">   	 	
-     	 <tr onclick="location.href='/jamong.com/admin_inquire_info?no=${i.inq_no}&page=${page}'" class="inq_adm_tr">
+     	 <tr onclick="location.href='${pageContext.request.contextPath}/admin_inquire_info?no=${i.inq_no}&page=${page}'" class="inq_adm_tr">
      	 	<td align="center" class="inq_list_underline">
      	 	  ${i.inq_no}
      	 	</td>

@@ -6,7 +6,7 @@
 <title>글에 꿈을 담다, 자몽</title>
 </head>
 <%@include file="../include/header.jsp" %>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/notice.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/notice.css"/>
 <div id="main_page_notice_wrap">
 	<form action="notice">
 	<div id="main_notice_wrap">

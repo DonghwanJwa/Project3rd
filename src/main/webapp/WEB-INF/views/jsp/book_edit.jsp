@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<script src="/jamong.com/resources/js/book_create.js"></script>
-<script src="/jamong.com/resources/js/jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/book_create.css">
+<script src="${pageContext.request.contextPath}/resources/js/book_create.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/book_create.css">
 
 <div id="book_create_wrap">
  <div id="book_create_base">
@@ -46,7 +46,7 @@
       <img src="${profile_photo}">
      </c:if>
      <c:if test='${empty profile_photo}'>
-      <img src="/jamong.com/resources/img/profile_logout.png">
+      <img src="${pageContext.request.contextPath}/resources/img/profile_logout.png">
      </c:if>
      </span>
      <div id="book_create_author_desc">
