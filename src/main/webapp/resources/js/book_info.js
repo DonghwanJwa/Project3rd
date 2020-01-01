@@ -18,8 +18,20 @@ $(document).ready(function(){
 							$(event.target).prop("disabled",false);
 						},2000);
 					}else{
-						alert('로그인 유지시간이 만료되었습니다 \n 다시 로그인 하시기 바랍니다');
-						window.location.replace("/jamong.com/login/1");
+						Swal.fire({ 
+							title : 'Oops!', 
+							text : '세션이 만료되어 로그인이 필요합니다!',
+							icon: 'error',
+							showCancelButton : true,
+							confirmButtonText : '로그인',
+							cancelButtonText : '메인으로'
+							}).then((result) => {
+								if(result.value){
+									location='/jamong.com/login/1';
+								}else if(result.dismiss === Swal.DismissReason.cancel) {
+									location='/jamong.com/';
+								}
+							});
 					}
 				},//success
 				error:function(){
@@ -39,8 +51,20 @@ $(document).ready(function(){
 							$(event.target).prop("disabled",false);
 						},2000);
 					}else{
-						alert("로그인 유지시간이 말료되었습니다 \n 다시 로그인 하시기 바랍니다");
-						window.location.replace("/jamong.com/login/1");
+						Swal.fire({ 
+							title : 'Oops!', 
+							text : '세션이 만료되어 로그인이 필요합니다!',
+							icon: 'error',
+							showCancelButton : true,
+							confirmButtonText : '로그인',
+							cancelButtonText : '메인으로'
+							}).then((result) => {
+								if(result.value){
+									location='/jamong.com/login/1';
+								}else if(result.dismiss === Swal.DismissReason.cancel) {
+									location='/jamong.com/';
+								}
+							});
 					}
 				},//success
 				error:function(){

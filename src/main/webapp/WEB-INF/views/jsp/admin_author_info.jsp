@@ -180,14 +180,21 @@
 <div id="cont_button_wrap">
 <script>
 	function judge_check() {
-		var con=confirm('회원님의 작가신청을 심사하시겠습니까? \n심사결과가 회원님의 이메일로 발송됩니다.');
-			
-		if(con == true) {
-		    $('.wrap-loading').attr('style','display:block;');
-			alert('심사결과가 저장되었습니다.');
-		}else {
-			return false;
-		}
+		Swal.fire({
+			icon : 'question',
+			test : '해당 회원님의 작가신청을 심사하시겠습니까? \n심사결과는 해당 계정에 등록되어있는 이메일로 발송됩니다.',
+			showCancelButton : true,
+			cancelButtonText : '아니오',
+			confirmButtonText : '예'
+		}).then((result) => {
+			if(result.value){
+		   		 $('.wrap-loading').attr('style','display:block;');
+		   		 Swal.fire({
+		   			 text : '심사 결과가 저장되었습니다!',
+		   			 icon : 'success'
+		   		});
+			}
+		});
 	}
 </script>
 	<form name="form2" method="post" onsubmit="return judge_check()">

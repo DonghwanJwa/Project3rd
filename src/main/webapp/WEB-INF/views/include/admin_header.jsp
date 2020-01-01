@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>자몽 관리자 페이지</title>
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/admin.css" />
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/sweetalert2.css" />
+
+<script src="/jamong.com/resources/js/sweetalert2.min.js"></script>
 <script src="/jamong.com/resources/js/jquery.js"></script>
 <script src="/jamong.com/resources/js/admin.js"></script>
 </head>

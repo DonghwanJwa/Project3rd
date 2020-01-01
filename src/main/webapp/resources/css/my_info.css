@@ -195,7 +195,7 @@ margin: 0 10px;
     outline: none;
 }
 #my_info_layerLeave{
-	z-index:1000000000;
+	z-index:10021;
 	position:fixed;
 	top:0;
 	left:0;

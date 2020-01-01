@@ -48,9 +48,10 @@ public class AdminController {
 		if(adm_m == null) {
 			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<script src=\"/jamong.com/resources/js/jquery.js\"></script>\r\n"+
 					"<body>\r\n" + 
 					"<script>\r\n" + 
-					"$('.wrap-loading').hide();" +
+					"$('.wrap-loading').hide();\r\n" +
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '세션이 만료되었습니다!',\r\n" + 

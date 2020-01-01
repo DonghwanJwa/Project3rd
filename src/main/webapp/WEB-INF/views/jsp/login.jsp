@@ -5,6 +5,9 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/login.css" />
 <link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>	
+<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/sweetalert2.css" />
+
+<script src="/jamong.com/resources/js/sweetalert2.min.js"></script>
 <script src="/jamong.com/resources/js/jquery.js"></script>
 <script src="/jamong.com/resources/js/login.js"></script>
 <title>로그인 페이지입니다</title>

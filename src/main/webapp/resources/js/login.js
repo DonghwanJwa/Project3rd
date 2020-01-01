@@ -83,9 +83,20 @@ $(document).ready(function(){
 				}else if(data==2){				//이미 로그인 되어진 상황이라면 이전페이지로
 					history.back();
 				}else if(data==3){
-					alert('자몽 정책에 위배되는 활동으로 인하여 \n 정지된 계정입니다. 자세한 사항은'
-							+ '\n 문의하기를 통하여 요청하시기 바랍니다.');
-					window.location.replace("/jamong.com/");
+					Swal.fire({
+						icon : 'warning',
+						title : 'Block!',
+						text : '자몽 정책에 위배되는 활동으로 인해 정지된 계정입니다. \n자세한 사항은 문의를 통해 확인하여 주시기 바랍니다.',
+						showCancelButton : true,
+						cancelButtonText : '문의하기',
+						confirmButtonText : '메인으로',
+					}).then((result) => {
+						if(result.value){
+							window.location.replace("/jamong.com/");							
+						}else if(result.dismiss === Swal.DismissReason.cancel){
+							window.location.replace("/jamong.com/inquire");
+						}
+					});
 				}else if(data==-1){
 					window.location=ref;
 				}else if(data==-2){

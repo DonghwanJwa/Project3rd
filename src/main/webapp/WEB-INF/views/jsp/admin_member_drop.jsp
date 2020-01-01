@@ -8,20 +8,31 @@
 <div id="mem_drop_wrap">
 <script>
 function drop_check() {
+	var flag;
+	
 	if($('#drop_reason').val() == '') {
-		alert('정지사유를 선택하세요.');
-		$('#drop_reason').focus();
+		Swal.fire({
+			icon : 'info',
+			title : 'Reason Choice!',
+			text :'정지사유를 선택하세요'
+		}).then(function(){
+			$('#drop_reason').focus();			
+		})
 		return false;
-	}
+	};
 	if($('#drop_cont').val().trim() == '') {
-		alert('정지사유를 500자 이내로 입력하세요.');
-		$('#drop_cont').val('').focus();
+		Swal.fire({
+			icon : 'warning',
+			title : 'Exceed!',
+			text : '정지사유는 500자 이내로 입력하세요!'
+		}).then(function(){
+			$('#drop_cont').val('').focus();
+		});
 		return false;
-	}
+	};
 	
-	var con=confirm('정말로 회원의 계정을 정지시키겠습니까?');
-	
-	if (con === false) {
+	var reject = confirm('정말로 해당 계정을 정지시키시겠습니까?');
+	if(reject === false){
 		return false;
 	}
 }
@@ -32,14 +43,19 @@ $(document).ready(function() {
     	$('#counter').html("("+cont.length+" / 500)");
     	
         if($(this).val().length > 500) {
-        	alert('최대 500자 까지만 입력해주세요.');
-            $(this).val($(this).val().substring(0, 500));
-            $('#counter').html("(500 / 500)");
+        	Swal.fire({
+    			icon : 'warning',
+    			title : 'Exceed!',
+    			text : '정지사유는 500자 이내로 입력하세요!'
+    		}).then(function(){
+	            $('#drop_cont').val($('#drop_cont').val().substring(0, 500));
+   		        $('#counter').html("(500 / 500)");
+    		});
         }
     });
 });
 </script>
-<form action="admin_member_drop_ok" onsubmit="return drop_check();">
+<form action='admin_member_drop_ok' onsubmit="return drop_check();">
 <input type="hidden" name="no" value="${no}" />
 <input type="hidden" name="page" value="${page}" />
 	<div id="drop_cont_wrap">

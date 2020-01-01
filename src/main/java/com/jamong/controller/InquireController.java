@@ -322,6 +322,7 @@ public class InquireController {
 		if(adm_m == null) {
 			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<script src=\"/jamong.com/resources/js/jquery.js\"></script>\r\n" +
 					"<body>\r\n" + 
 					"<script>\r\n" + 
 					"$('.wrap-loading').hide();" +

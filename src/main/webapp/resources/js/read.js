@@ -9,21 +9,46 @@ getSympathyState();
 function ArticleRemove(){
 	var para = document.location.href.split("/");
 	var removeOK = confirm('게시글을 삭제하시겠습니까?');
-	
-	if(removeOK == true){
-		$.ajax({
-			type : "POST",
-			url : "/jamong.com/artdel/"+para[5],
-			success : function(data){
-				if(data == 1){
-					alert('게시글이 삭제되었습니다!');
-					location.href = "/jamong.com/"+para[4];
-				}else if(data == 2){
-					alert('로그인이 필요합니다!');
+	Swal.fire({
+		icon : 'question',
+		title : 'Delete?',
+		text : '게시글을 삭제 하시겠습니까?',
+		showCancelButton : true,
+		confirmButtonText : '예',
+		cancelButtonText : '아니오'
+	}).then((result) => {
+		if(result.value){
+			$.ajax({
+				type : "POST",
+				url : "/jamong.com/artdel/"+para[5],
+				success : function(data){
+					if(data == 1){
+						alert('게시글이 삭제되었습니다!');
+						Swal.fire({
+							icon : 'success',
+							text : '게시글이 삭제되었습니다!'
+						}).then(function(){
+							location.href = "/jamong.com/"+para[4];							
+						});
+					}else if(data == 2){
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
+					}
 				}
-			}
-		});
-	}
+			});			
+		}		
+	});
+
 }
 function nextNullError(){
 	$(".write_title_error").addClass('write_top_error');
@@ -51,24 +76,37 @@ function CommentRemove(e){
 		showCancelButton : true,
 		cancelButtonText : '아니오',
 		confirmButtonText : '예'
-	}).then(function(){
-		$.ajax({
-			type : "POST",
-			data : {"rep_no":rep_no},
-			url : "/jamong.com/commentremove",
-			success : function(data){
-				if(data == 1){
-					Swal.fire(
-							'Good Job!',
-							'댓글 삭제에 성공했습니다!',
-							'success'
-					).then(function(){
-						window.location.reload();
-					})
-				}else if(data == 2)
-					swal('로그인이 필요합니다!');
-			}
-		});
+	}).then((result) => {
+		if(result.value){
+			$.ajax({
+				type : "POST",
+				data : {"rep_no":rep_no},
+				url : "/jamong.com/commentremove",
+				success : function(data){
+					if(data == 1){
+						Swal.fire(
+								'Good Job!',
+								'댓글 삭제에 성공했습니다!',
+								'success'
+						).then(function(){
+							window.location.reload();
+						})
+					}else if(data == 2)
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
+				}
+			});
+		}
 	});	
 }
 
@@ -76,26 +114,49 @@ function addComment(){
 	var para = document.location.href.split("/");
 	var com_cont = $(".rep_textarea").html();
 	var mem_no = $("#mem_no").val();
-	var CommentOK = confirm('댓글을 작성하시겠습니까?');
-
-	if(CommentOK == true){
-		$.ajax({
-			type:"POST",
-			data:{"com_cont" : com_cont,
-				"mem_no" : mem_no,
-				"mem_id" : para[4]
-			},
-			url:"/jamong.com/comment/"+para[5],
-			success:function(data){
-				if(data == 1){
-					alert('댓글 작성에 성공했습니다!');
-					window.location.reload();
-				}else if(data == 2){
-					alert('로그인이 필요합니다!');
+	Swal.fire({
+		icon : 'question',
+		title : 'Comment?',
+		text : '댓글을 작성하시겠습니까?',
+		showCancelButton : true,
+		confirmButtonText : '댓글작성',
+		cancelButtonText : '취소',
+	}).then((result) => {
+		if(result.value){			
+			$.ajax({
+				type:"POST",
+				data:{"com_cont" : com_cont,
+					"mem_no" : mem_no,
+					"mem_id" : para[4]
+				},
+				url:"/jamong.com/comment/"+para[5],
+				success:function(data){
+					if(data == 1){
+						alert('댓글 작성에 성공했습니다!');
+						Swal.fire({
+							icon : 'success',
+							text : '댓글 작성에 성공했습니다!'
+						}).then(function(){
+							window.location.reload();							
+						})
+					}else if(data == 2){
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
+					}
 				}
-			}
-		});
-	}
+			});			
+		}
+	});
 }
 function addReply(e){
 	var para = document.location.href.split("/");
@@ -104,54 +165,102 @@ function addReply(e){
 	var rep_step = e.target.getAttribute('data-step');
 	var rep_level = e.target.getAttribute('data-level');
 	var mem_no = e.target.getAttribute('data-mem');
-	var ReplyOK = confirm('답글을 작성하시겠습니까?');
 
-	if(ReplyOK == true){
-		$.ajax({
-			type:"POST",
-			data:{"rep_cont":rep_cont,
-				"rep_ref":rep_ref,
-				"rep_step":rep_step,
-				"rep_level":rep_level,
-				"mem_no" : mem_no,
-				"mem_id" : para[4]
-			},
-			url:"/jamong.com/reply/"+para[5],
-			success:function(data){
-				if(data == 1){
-					alert('답글 작성에 성공했습니다!');
-					window.location.reload();
-				}else if(data == 2){
-					alert('로그인이 필요합니다!');
+	Swal.fire({
+		icon : 'question',
+		title : 'ReplyComment?',
+		text : '답글을 작성하시겠습니까?',
+		showCancelButton : true,
+		confirmButtonText : '댓글작성',
+		cancelButtonText : '취소',
+	}).then((result) => {
+		if(result.value){			
+			$.ajax({
+				type:"POST",
+				data:{"rep_cont":rep_cont,
+					"rep_ref":rep_ref,
+					"rep_step":rep_step,
+					"rep_level":rep_level,
+					"mem_no" : mem_no,
+					"mem_id" : para[4]
+				},
+				url:"/jamong.com/reply/"+para[5],
+				success:function(data){
+					if(data == 1){
+						alert('답글 작성에 성공했습니다!');
+						Swal.fire({
+							icon : 'success',
+							text : '답글 작성에 성공했습니다!'
+						}).then(function(){
+							window.location.reload();							
+						})
+					}else if(data == 2){
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
+					}
 				}
-			}
-		});
-	}
+			});					
+		}
+	});
 }
 
 function replyEditOK(e){
 	var editCont = $("#comment_editarea").html();
 	var rep_no = $(e.target).data("no");
 	var editOK = confirm('댓글을 수정하시겠습니까?');
+	Swal.fire({
+		icon : 'question',
+		title : 'ReplyEdit?',
+		text : '댓글을 수정하시겠습니까?',
+		showCancelButton : true,
+		cancelButtonText : '취소',
+		confirmButtonText : '수정',
+	}).then((result) => {
+		if(result.value){
+			$.ajax({
+				type : "POST",
+				data : {"editCont" : editCont,
+					"rep_no" : rep_no
+				},
+				url : "/jamong.com/replyedit",
+				success : function(data){
+					if(data == 1){
+						alert('댓글 수정에 성공했습니다!');
+						Swal.fire({
+							icon : 'success',
+							text : '댓글 수정에 성공했습니다!'
+						}).then(function(){
+							window.location.reload();							
+						})
+					}else if(data == 2){
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
+					}
+				}				
+			});			
+		}
+	});
 
-	if(editOK == true){
-		$.ajax({
-			type : "POST",
-			data : {"editCont" : editCont,
-				"rep_no" : rep_no
-			},
-			url : "/jamong.com/replyedit",
-			success : function(data){
-				if(data == 1){
-					alert('댓글 수정에 성공했습니다!');
-					window.location.reload();
-				}else if(data == 2){
-					alert('로그인이 필요합니다!');
-				}
-			}
-
-		});
-	}
 }
 
 function showHide() {
@@ -256,17 +365,17 @@ $(document).on("keydown","#comment_editarea",function(e){
 });
 $(document).on("keydown",".reply_textarea",function(e){
 	if(e.keyCode == '8'){
-			if(($(".reply_textarea p:first-child").text() == "" && $(".reply_textarea p").length == 1)){
-				return false;
-			}// if
-		}
+		if(($(".reply_textarea p:first-child").text() == "" && $(".reply_textarea p").length == 1)){
+			return false;
+		}// if
+	}
 })
 
 
 $(document).ready(function(){
 
 	var para = document.location.href.split("/");
-	
+
 	$('.rep_textarea').keydown(function(e){
 		if(e.keyCode == '8'){
 			if(($(".rep_textarea p:first-child").text() == "" && $(".rep_textarea p").length == 1)){
@@ -294,9 +403,18 @@ $(document).ready(function(){
 							$(event.target).attr("data-disabled",'false');
 						},2000);
 					}else{
-						alert('로그인 유지시간이 만료되었습니다. \n'
-								+'다시 로그인 하시기 바립니다.')
-								window.location.replace("/jamong.com/login/1");
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
 					}
 				},
 				error:function(){
@@ -317,9 +435,18 @@ $(document).ready(function(){
 							$(event.target).attr("data-disabled",'false');
 						},2000);
 					}else{
-						alert('로그인 유지시간이 만료되었습니다. \n'
-								+'다시 로그인 하시기 바립니다.')
-								window.location.replace("/jamong.com/login/1");
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
 					}
 				},
 				error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
@@ -336,7 +463,7 @@ $(document).ready(function(){
 		var lockImg = "/jamong.com/resources/img/lock.png";
 		var unlockImg = "/jamong.com/resources/img/unlock.png";
 		if($(event.target).hasClass('lock')){
-			
+
 			//lock -> unlock
 			$.ajax({
 				type:"POST",
@@ -351,16 +478,25 @@ $(document).ready(function(){
 							$(event.target).attr("data-disabled",'false');
 						},2000);
 					}else{
-						alert('로그인 유지시간이 만료되었습니다. \n'
-								+'다시 로그인 하시기 바립니다.')
-								window.location.replace("/jamong.com/login/1");
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
 					}
 				},
 				error:function(){
 					alert("data error");
 				}
 			});
-			
+
 		}else{
 			//lock -> unlock
 			$.ajax({
@@ -376,9 +512,18 @@ $(document).ready(function(){
 							$(event.target).attr("data-disabled",'false');
 						},2000);
 					}else{
-						alert('로그인 유지시간이 만료되었습니다. \n'
-								+'다시 로그인 하시기 바립니다.')
-								window.location.replace("/jamong.com/login/1");
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
 					}
 				},
 				error:function(){
@@ -387,7 +532,7 @@ $(document).ready(function(){
 			});
 		}
 	});
-	
+
 	/*게시글정지*/
 	$('.head-menu-block-img').click(function(event){
 		if($(event.target).attr('data-state')!=2){
@@ -397,22 +542,42 @@ $(document).ready(function(){
 				url:"/jamong.com/boardBan/"+para[5]+"/2",
 				success: function (data) {		
 					if(data==-1){
-						alert('게시글이 정지처리 되었습니다.');
-						window.location.reload();
+						Swal.fire({
+							icon : 'info',
+							title : 'Article Block.',
+							text : '게시글이 정지되었습니다!'
+						}).then(function(){
+							window.location.reload();							
+						});
 					}else if(re==1){
-						alert('로그인 유지시간이 만료되었습니다. \n'
-								+'다시 로그인 하시기 바립니다.');
-						window.location.replace("/jamong.com/login/1");
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
 					}else if(re==2){
+						Swal.fire({
+							icon : 'error',
+							title : 'Oops!',
+							text : '접근권한이 없는 계정입니다!'
+						}).then(function(){
+							window.location.reload();							
+						})
 						alert('접근 권한이 없는 계정입니다.');
-						window.location.reload();
 					}
 				},
 				error:function(){
 					alert("data error");
 				}
 			});
-			
+
 		}else{
 			//정지해제
 			$.ajax({
@@ -420,15 +585,34 @@ $(document).ready(function(){
 				url:"/jamong.com/boardBan/"+para[5]+"/1",
 				success: function (data) {		
 					if(data==-1){
-						alert('게시글이 정지해제처리 되었습니다.');
-						window.location.reload();
+						Swal.fire({
+							icon : 'success',
+							title : 'UnBlock!',
+							text : '게시글 정지가 해제되었습니다!'
+						}).then(function(){
+							window.location.reload();							
+						});
 					}else if(re==1){
-						alert('로그인 유지시간이 만료되었습니다. \n'
-								+'다시 로그인 하시기 바립니다.');
-						window.location.replace("/jamong.com/login/1");
+						Swal.fire({
+							icon : 'info',
+							title : 'Oops!',
+							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							showCancelButton : true,
+							confirmButtonText : '예',
+							cancelButtonText : '아니오'
+						}).then((result) => {
+							if(result.value){
+								location.href='/jamong.com/login/1';
+							}
+						});
 					}else if(re==2){
-						alert('접근 권한이 없는 계정입니다.');
-						window.location.reload();
+						Swal.fire({
+							icon : 'error',
+							title : 'Oops!',
+							text : '접근권한이 없는 계정입니다!'
+						}).then(function(){
+							window.location.reload();							
+						});
 					}
 				},
 				error:function(){
@@ -437,56 +621,108 @@ $(document).ready(function(){
 			});
 		}
 	});
-	
+
 	/*admin_게시글 삭제*/
 	$('.admin_art_del_recover_btn').click(function(event){
 		var para = document.location.href.split("/");
 		var recoverOK = confirm('게시글을 복구처리 하시겠습니까?');
-	
-		if(recoverOK == true){
-			var mem_no = $('#user_del_no').val();
-			
-			$.ajax({
-				type : "POST",
-				url : "/jamong.com/artdel/"+mem_no+"/"+para[5]+"/1",
-				success : function(data){
-					if(data == 1){
-						alert('게시글이 삭제되었습니다!');
-						window.location.reload();
-					}else if(data == 2){
-						alert('로그인이 필요합니다!');
-						location.href = "/jamong.com/login/1";
-					}else if(data == 3){
-						alert('접근 권한이 없는 계정입니다.');
+		Swal.fire({
+			icon : 'question',
+			title : 'Restore?',
+			text : '해당 게시글을 복구하시겠습니까?',
+			showCancelButton : true,
+			cancelButtonText : '아니오',
+			confirmButtonText : '예'
+		}).then((result) => {
+			if(result.value){
+				var mem_no = $('#user_del_no').val();
+
+				$.ajax({
+					type : "POST",
+					url : "/jamong.com/artdel/"+mem_no+"/"+para[5]+"/1",
+					success : function(data){
+						if(data == 1){
+							Swal.fire({
+								icon : 'success',
+								title : 'Success!',
+								text : '해당 게시글이 복구되었습니다!'
+							}).then(function(){
+								window.location.reload();								
+							})
+						}else if(data == 2){
+							Swal.fire({
+								icon : 'info',
+								title : 'Oops!',
+								text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+								showCancelButton : true,
+								confirmButtonText : '예',
+								cancelButtonText : '아니오'
+							}).then((result) => {
+								if(result.value){
+									location.href='/jamong.com/login/1';
+								}
+							});
+						}else if(data == 3){
+							Swal.fire({
+								icon : 'error',
+								title : 'Oops!',
+								text : '접근권한이 없는 계정입니다!'
+							});
+						}
 					}
-				}
-			});
-		}
+				});				
+			}
+		})
 	});	
-	
+
 	$('.admin_art_del_btn').click(function(event){
 		var para = document.location.href.split("/");
-		var removeOK = confirm('게시글을 삭제처리 하시겠습니까?');
-	
-		if(removeOK == true){
-			var mem_no = $('#user_del_no').val();
-			
-			$.ajax({
-				type : "POST",
-				url : "/jamong.com/artdel/"+mem_no+"/"+para[5]+"/-1",
-				success : function(data){
-					if(data == 1){
-						alert('게시글이 복구 되었습니다!');
-						window.location.reload();
-					}else if(data == 2){
-						alert('로그인이 필요합니다!');
-						location.href = "/jamong.com/login/1";
-					}else if(data == 3){
-						alert('접근 권한이 없는 계정입니다.');
+		Swal.fire({
+			icon : 'question',
+			title : 'Restore?',
+			text : '해당 게시글을 삭제하시겠습니까?',
+			showCancelButton : true,
+			cancelButtonText : '아니오',
+			confirmButtonText : '예'
+		}).then((result) => {
+			if(result.value){
+				var mem_no = $('#user_del_no').val();
+
+				$.ajax({
+					type : "POST",
+					url : "/jamong.com/artdel/"+mem_no+"/"+para[5]+"/-1",
+					success : function(data){
+						if(data == 1){
+							Swal.fire({
+								icon : 'success',
+								title : 'Success!',
+								text : '해당 게시글이 삭제되었습니다!'
+							}).then(function(){
+								window.location.reload();								
+							})
+						}else if(data == 2){
+							Swal.fire({
+								icon : 'info',
+								title : 'Oops!',
+								text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+								showCancelButton : true,
+								confirmButtonText : '예',
+								cancelButtonText : '아니오'
+							}).then((result) => {
+								if(result.value){
+									location.href='/jamong.com/login/1';
+								}
+							});
+						}else if(data == 3){
+							Swal.fire({
+								icon : 'error',
+								title : 'Oops!',
+								text : '접근권한이 없는 계정입니다!'
+							});
+						}
 					}
-				}
-			});
-		}
-	});	
-	
+				});				
+			}
+		});
+	});
 });

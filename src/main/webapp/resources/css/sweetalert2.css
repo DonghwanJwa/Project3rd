@@ -200,6 +200,7 @@
 .swal2-container.swal2-center {
   -webkit-box-align: center;
           align-items: center;
+          z-index:10050;
 }
 .swal2-container.swal2-center-start, .swal2-container.swal2-center-left {
   -webkit-box-align: center;
