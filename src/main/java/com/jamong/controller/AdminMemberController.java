@@ -44,7 +44,7 @@ public class AdminMemberController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 
@@ -146,7 +146,7 @@ public class AdminMemberController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 
@@ -230,7 +230,7 @@ public class AdminMemberController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 
@@ -293,7 +293,7 @@ public class AdminMemberController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 
@@ -375,7 +375,7 @@ public class AdminMemberController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 

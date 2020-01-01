@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/search_result.css" />
-<script src="/jamong.com/resources/js/search.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/search_result.css" />
+<script src="${pageContext.request.contextPath}/resources/js/search.js"></script>
 
 <div id="search_wrap">
  <div id="search_inner_wrap">
@@ -78,12 +78,12 @@
 	       </c:if>
 	       >
 	        <div class="post_cont_catbook">
-	         <a href="/jamong.com/category/${board.cat_name}" class="post_cont_cat">${board.cat_name}</a>
+	         <a href="${pageContext.request.contextPath}/category/${board.cat_name}" class="post_cont_cat">${board.cat_name}</a>
 	         <c:if test="${board.book_no ne 0}">
 	          <span class="post_cont_book">Book</span>
 	         </c:if>
 	        </div>
-	        <a href="/jamong.com/@${board.memberVO.mem_id}/${board.bo_no}">  
+	        <a href="${pageContext.request.contextPath}/@${board.memberVO.mem_id}/${board.bo_no}">  
 	        <div id="post_title">
 	        ${board.bo_title}
 	        </div>
@@ -96,12 +96,12 @@
 	         ${board.bo_cont}
 	        </div>
 	        </a>
-	        <a href="/jamong.com/@${board.memberVO.mem_id}" class="post_writer"><i>by&nbsp;&nbsp;</i>${board.memberVO.mem_nickname}</a>
+	        <a href="${pageContext.request.contextPath}/@${board.memberVO.mem_id}" class="post_writer"><i>by&nbsp;&nbsp;</i>${board.memberVO.mem_nickname}</a>
 	        <div class="post_ago">${board.bo_date}</div>
 	       </div>
 	       <c:set var="img" value="${board.bo_thumbnail}" />
 	       <c:if test="${not empty img}">
-	       <a href="/jamong.com/@${board.memberVO.mem_id}/${board.bo_no}" class="post_img_wrap">
+	       <a href="${pageContext.request.contextPath}/@${board.memberVO.mem_id}/${board.bo_no}" class="post_img_wrap">
 	        <img class="post_img" src="${board.bo_thumbnail}" alt="thumbnail">
 	       </a>
 	       </c:if>
@@ -127,7 +127,7 @@
 		</div>	    
 	   </c:if>
 	   <c:forEach var="bookList" items="${bookList}" varStatus="status">
-	    <a href="/jamong.com/book/@${bookList.memberVO.mem_id}/${bookList.bookVO.book_no}" class="scrolling" data-no="${status.count}">
+	    <a href="${pageContext.request.contextPath}/book/@${bookList.memberVO.mem_id}/${bookList.bookVO.book_no}" class="scrolling" data-no="${status.count}">
 	     <div class="work_cont">
 	      <c:if test="${bookList.bookVO.book_cover eq null}">
 		   <img id="work_img" style="background-color:#f2f2f2">
@@ -191,7 +191,7 @@
 	   <ul id="search_author_list">
 	    <c:forEach var="member" items="${memberList}" varStatus="status">
 	    <li class="scrolling" data-no="${status.count}">
-	     <a href="/jamong.com/@${member.mem_id}">
+	     <a href="${pageContext.request.contextPath}/@${member.mem_id}">
 	      <div class="search_result_author_profile">
 	       <img class="search_result_author_profile_img" src="${member.profile_photo}" alt="프로필 사진">
 	       <div class="search_result_author_profile_info">

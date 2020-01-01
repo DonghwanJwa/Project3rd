@@ -66,7 +66,7 @@ public class MemberModifyController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 
@@ -159,29 +159,70 @@ public class MemberModifyController {
 	//pass_modify에서 submit을 하면 pass_modify의 정보를 pass_modify_ok에 보낸다  pass_modify_ok controller를
 	//수행하고 리턴 값으로 맞으면 member_modify 틀리면 pass_modify로 와야 한다
 	@RequestMapping("pass_modify_ok")
-	@ResponseBody
-	public int pass_login_ok(MemberVO m, 
+	public String pass_login_ok(MemberVO m, 
 			String pass_modify_id, String pass_modify_pass,
 			HttpServletResponse response, HttpSession session, 
 			HttpServletRequest request) throws Exception {
-		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
 		session = request.getSession();
 		MemberVO session_m = (MemberVO) session.getAttribute("m");
-		int re = 1;
-		if(session_m == null) {
-			re = 2;
+		if(session_m == null) {	//로그인이 되어있지 않으면
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		icon : 'info',\r\n" +
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다. 로그인 하시겠습니까?',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '예',\r\n" + 
+					"		cancelButtonText : '아니오'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
+			return null;
 		}else {
 			MemberVO ck = this.memberService.pwdcheck(pass_modify_id);
 			//아이디를 기준으로 sql문에서 아이디를 조회해서 맞으면 그 아이디에 맞는 회원정보를 가져온 것을 담은 것이 ck
-			if (ck != null) {// 비어 있지 않을때
+			if (ck == null) {	//검색이 되지 않으면
+				//회원정보 변경하러 들어가는데 아이디가 맞지 않는다는것은
+				//1. 회원정보를 불러올때 이상이 생긴것
+				//2. 회원이 직접적으로 html을 수정하여 아이디를 바꾼것
+				//으로 볼 수 있다.
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {	//검색되고
 				if (ck.getMem_pwd().equals(PwdChange.getPassWordToXEMD5String(pass_modify_pass))) {
-					re= -1;
-					//m객체를 mv에 담고 view에 담는다
-					//view를 리턴하면 jsp에서 view에 담긴 값들을 사용할수 있다
+					return "redirect:/member_modify";
+				}else {	//비번이 틀리면
+					session.setAttribute("modify_fail", "fail");
+					return "redirect:/pass_modify";
 				}
 			}
 		}
-		return re;
+		return null;
 	}// pass_login_ok
 			
 			
@@ -225,7 +266,7 @@ public class MemberModifyController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 
@@ -250,6 +291,11 @@ public class MemberModifyController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		MemberVO session_m = (MemberVO)session.getAttribute("m");
+		String fail = (String)session.getAttribute("modify_fail");
+		if(fail!=null) {
+			view.addObject("modify_fail",fail);
+			session.removeAttribute("login_fail");
+		}
 		
 		if(session_m == null	) {
 			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
@@ -265,7 +311,7 @@ public class MemberModifyController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 
@@ -273,12 +319,12 @@ public class MemberModifyController {
 					"</script>\r\n" + 
 					"</body>");
 		}else {
-		MemberVO vov = this.memberService.get(session_m.getMem_id());
-		view.addObject("vo", vov);
-		view.setViewName("jsp/pass_modify");
-		return view;
+			MemberVO vov = this.memberService.get(session_m.getMem_id());
+			view.addObject("vo", vov);
+			view.setViewName("jsp/pass_modify");
+			return view;
 		}
-		return null;
+			return null;
 	}
 	
 	
@@ -322,7 +368,7 @@ public class MemberModifyController {
 					"		cancelButtonText : '메인으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/1';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
 					"			}\r\n" + 
@@ -444,12 +490,12 @@ public class MemberModifyController {
 					"		icon: 'success',\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
-					"				location='/jamong.com/login/2';\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
 					"			}\r\n" + 
 					"		});\r\n" + 
 					"</script>\r\n" + 
 					"</body>");
-			out.println("location='/jamong.com/login/2';");
+			out.println("location='/jamong.com/login';");
 			session.invalidate();
 		return null;
 	}

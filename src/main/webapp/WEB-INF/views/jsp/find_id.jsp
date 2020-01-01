@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/find_id.css" />
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<script src="/jamong.com/resources/js/find_id&pass.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/find_id.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font.css"/>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/find_id&pass.js"></script>
 <title></title>
 </head>
 <body >
@@ -15,12 +15,12 @@
 <form  method="post" action="find_pass_ok" autocomplete="off" >
 <div class="wrap-loading" style="display:none">
      <div>
-       <img src="/jamong.com/resources/img/loading1.gif" />
+       <img src="${pageContext.request.contextPath}/resources/img/loading1.gif" />
      </div>
 </div>
 	<div id="find_id_main_div">
 		<div>
-			<a id="find_id_img_logo_link" href="/jamong.com/"><img id="find_id_img_logo"src="/jamong.com/resources/img/logo2.png" /></a>
+			<a id="find_id_img_logo_link" href="${pageContext.request.contextPath}/"><img id="find_id_img_logo"src="${pageContext.request.contextPath}/resources/img/logo2.png" /></a>
 		</div>
 			<div id="find_id_btn_box">
 				<a class="find_id_link1 active" >아이디 찾기</a><a class="find_pass_link2">비밀번호 찾기</a>

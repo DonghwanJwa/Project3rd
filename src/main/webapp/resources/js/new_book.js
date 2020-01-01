@@ -408,7 +408,7 @@ $(document).ready(function() {
 							+	"</div>"
 							+	"</div>"
 							+	"</div>"
-							+	"<a href='./profile' target='_blank'>"
+							+	"<a href='/jamong.com/@"+this.memberVO.mem_id+"' target='_blank'>"
 							+	"<div class='new_book_author'>"
 							+	"<div class='new_book_user_image' style='background-image: url(" + this.memberVO.profile_photo + ")'></div>"
 							+	"<div class='new_book_user_name'>" + this.memberVO.mem_nickname + "</div>"

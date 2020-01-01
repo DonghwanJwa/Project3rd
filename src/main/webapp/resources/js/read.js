@@ -40,7 +40,7 @@ function ArticleRemove(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 					}
@@ -101,7 +101,7 @@ function CommentRemove(e){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 				}
@@ -149,7 +149,7 @@ function addComment(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 					}
@@ -204,7 +204,7 @@ function addReply(e){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 					}
@@ -252,7 +252,7 @@ function replyEditOK(e){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 					}
@@ -412,7 +412,7 @@ $(document).ready(function(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 					}
@@ -444,7 +444,7 @@ $(document).ready(function(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 					}
@@ -487,7 +487,7 @@ $(document).ready(function(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 					}
@@ -521,7 +521,7 @@ $(document).ready(function(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 					}
@@ -559,7 +559,7 @@ $(document).ready(function(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 					}else if(re==2){
@@ -602,7 +602,7 @@ $(document).ready(function(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login/1';
+								location.href='/jamong.com/login';
 							}
 						});
 					}else if(re==2){
@@ -659,7 +659,7 @@ $(document).ready(function(){
 								cancelButtonText : '아니오'
 							}).then((result) => {
 								if(result.value){
-									location.href='/jamong.com/login/1';
+									location.href='/jamong.com/login';
 								}
 							});
 						}else if(data == 3){
@@ -710,7 +710,7 @@ $(document).ready(function(){
 								cancelButtonText : '아니오'
 							}).then((result) => {
 								if(result.value){
-									location.href='/jamong.com/login/1';
+									location.href='/jamong.com/login';
 								}
 							});
 						}else if(data == 3){

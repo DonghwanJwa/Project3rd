@@ -5,7 +5,7 @@
 	
 	<div id="adm_main_footer">
 		<div class="adm_footer_div">
-			<img src="./resources/img/logo.png" />
+			<img src="${pageContext.request.contextPath}/resources/img/logo.png" />
 		</div>
 
 		<div class="adm_footer_div">

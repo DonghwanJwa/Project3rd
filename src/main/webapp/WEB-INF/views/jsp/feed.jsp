@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/feed.css" />
-<script type="text/javascript" src="/jamong.com/resources/js/feed.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/feed.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/feed.js"></script>
 
 <div id="feed_wrap">
  <div id="feed_menu"><%-- 피드 메뉴버튼 --%>
@@ -29,7 +29,7 @@
    <c:if test="${fList.feed_step == 1}">
    <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
-    <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
+    <a href="${pageContext.request.contextPath}/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
      </div>
@@ -49,7 +49,7 @@
    <c:if test="${fList.feed_step == 2}">
     <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
-    <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
+    <a href="${pageContext.request.contextPath}/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
      </div>
@@ -69,7 +69,7 @@
    <c:if test="${fList.feed_step == 3}">
     <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
-    <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
+    <a href="${pageContext.request.contextPath}/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}" />
      </div>
@@ -91,7 +91,7 @@
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
     <a>
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
+      <img class="feed_new_cont_profile_img" src="${pageContext.request.contextPath}/resources/img/logo.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -111,7 +111,7 @@
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
     <a>
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
+      <img class="feed_new_cont_profile_img" src="${pageContext.request.contextPath}/resources/img/logo.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -129,7 +129,7 @@
    <c:if test="${fList.feed_step == 6}">
     <div class="feed_new_cont_article" onmouseover="FeedMouseUp(event);" 
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
-    <a href="/jamong.com/book/@${fList.feed_mem_id}/${fList.feed_book_no}">
+    <a href="${pageContext.request.contextPath}/book/@${fList.feed_mem_id}/${fList.feed_book_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
      </div>
@@ -151,7 +151,7 @@
     onmouseleave="FeedMouseOut(event)" data-no="${fList.feed_no}" >
     <a>
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
+      <img class="feed_new_cont_profile_img" src="${pageContext.request.contextPath}/resources/img/logo.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -171,7 +171,7 @@
    <c:if test="${fList.feed_step == 1}">
    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
-    <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
+    <a href="${pageContext.request.contextPath}/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
      </div>
@@ -190,7 +190,7 @@
    <c:if test="${fList.feed_step == 2}">
     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
-    <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
+    <a href="${pageContext.request.contextPath}/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
      </div>
@@ -209,7 +209,7 @@
    <c:if test="${fList.feed_step == 3}">
     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}"
     onmouseleave="FeedMouseOut(event)">
-    <a href="/jamong.com/@${fList.feed_mem_id}/${fList.feed_bo_no}">
+    <a href="${pageContext.request.contextPath}/@${fList.feed_mem_id}/${fList.feed_bo_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}" />
      </div>
@@ -230,7 +230,7 @@
     onmouseleave="FeedMouseOut(event)">
     <a>
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
+      <img class="feed_new_cont_profile_img" src="${pageContext.request.contextPath}/resources/img/logo.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -249,7 +249,7 @@
     onmouseleave="FeedMouseOut(event)">
     <a>
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
+      <img class="feed_new_cont_profile_img" src="${pageContext.request.contextPath}/resources/img/logo.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -266,7 +266,7 @@
    <c:if test="${fList.feed_step == 6}">
     <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no}" 
     onmouseleave="FeedMouseOut(event)">
-    <a href="/jamong.com/book/@${fList.feed_mem_id}/${fList.feed_book_no}">
+    <a href="${pageContext.request.contextPath}/book/@${fList.feed_mem_id}/${fList.feed_book_no}">
      <div class="feed_new_cont_profile">
       <img class="feed_new_cont_profile_img" src="${fList.memberVO.profile_photo}"/>
      </div>
@@ -287,7 +287,7 @@
     onmouseleave="FeedMouseOut(event)">
     <a>
      <div class="feed_new_cont_profile">
-      <img class="feed_new_cont_profile_img" src="/jamong.com/resources/img/logo.png"/>
+      <img class="feed_new_cont_profile_img" src="${pageContext.request.contextPath}/resources/img/logo.png"/>
      </div>
      <div class="feed_new_cont_text">
       <div class="feed_new_cont_message">
@@ -317,13 +317,13 @@
     <c:forEach var="art" items="${aList}">
     <c:if test="${!empty art}">
     <div class="feed_scrap_inner">
-     <a class="feed_scrap_link" href="/jamong.com/@${art.memberVO.mem_id}/${art.boardVO.bo_no}">
+     <a class="feed_scrap_link" href="${pageContext.request.contextPath}/@${art.memberVO.mem_id}/${art.boardVO.bo_no}">
       <div class="feed_scrap_img_container">
        <c:if test="${art.boardVO.bo_thumbnail ne null}">
         <img class="feed_scrap_img" src="${art.boardVO.bo_thumbnail}" alt="그림 안나옴">
        </c:if>
        <c:if test="${art.boardVO.bo_thumbnail eq null}">
-        <img class="feed_scrap_img" src="/jamong.com/resources/img/profile_logout.png" alt="그림 안나옴">
+        <img class="feed_scrap_img" src="${pageContext.request.contextPath}/resources/img/profile_logout.png" alt="그림 안나옴">
        </c:if>
       </div>
       <div class="feed_scrap_cont">
@@ -335,7 +335,7 @@
      </a>
      <div class="feed_scrap_like_outer">
       <button class="feed_scrap_like_inner">
-       <img class="feed_scrap_sym_img" src="/jamong.com/resources/img/heart.png" data-no="${art.boardVO.bo_no}"/>
+       <img class="feed_scrap_sym_img" src="${pageContext.request.contextPath}/resources/img/heart.png" data-no="${art.boardVO.bo_no}"/>
       </button>
      </div>
      </div>
@@ -352,13 +352,13 @@
    <c:forEach var="book" items="${bList}">
    <c:if test="${!empty book}">
     <div class="feed_scrap_inner">
-     <a class="feed_scrap_link" href="/jamong.com/book/@${book.memberVO.mem_id}/${book.bookVO.book_no}">
+     <a class="feed_scrap_link" href="${pageContext.request.contextPath}/book/@${book.memberVO.mem_id}/${book.bookVO.book_no}">
       <div class="feed_scrap_img_container">
       <c:if test="${book.bookVO.book_cover ne null}">
         <img class="feed_scrap_img" src="${book.bookVO.book_cover}"/>
        </c:if>
        <c:if test="${book.bookVO.book_cover eq null}">
-        <img class="feed_scrap_img" src="/jamong.com/resources/img/profile_logout.png"/>
+        <img class="feed_scrap_img" src="${pageContext.request.contextPath}/resources/img/profile_logout.png"/>
        </c:if>
       </div>
       <div class="feed_scrap_cont">
@@ -370,7 +370,7 @@
      </a>
      <div class="feed_scrap_like_outer">
       <button class="feed_scrap_like_inner">
-       <img class="feed_scrap_rec_img" src="/jamong.com/resources/img/heart.png" data-no="${book.bookVO.book_no}"/>
+       <img class="feed_scrap_rec_img" src="${pageContext.request.contextPath}/resources/img/heart.png" data-no="${book.bookVO.book_no}"/>
       </button>
      </div>
     </div>

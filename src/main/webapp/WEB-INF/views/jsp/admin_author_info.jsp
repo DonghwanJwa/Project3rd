@@ -7,7 +7,7 @@
 <%@include file="../include/admin_header.jsp" %>
 	 <div class="wrap-loading" style="display:none">
       <div>
-       <img src="/jamong.com/resources/img/loading1.gif" />
+       <img src="${pageContext.request.contextPath}/resources/img/loading1.gif" />
       </div>
 	 </div> 
 <div id="adm_page_title"><h3 class="adm_page_title">작가신청 열람</h3></div>

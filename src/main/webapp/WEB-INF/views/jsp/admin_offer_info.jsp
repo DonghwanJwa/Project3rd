@@ -139,7 +139,7 @@
 	</table>
 	</div>
 	<div id="cont_button_wrap">
-		<input type="button" class="notice_btn" value="작가 프로필 보기" onclick="window.open('/jamong.com/@${ao.mem_id}');" />
+		<input type="button" class="notice_btn" value="작가 프로필 보기" onclick="window.open('${pageContext.request.contextPath}/@${ao.mem_id}');" />
 	</div>
 	<h4>2.&nbsp;제안정보</h4>
 	<div class="adm_table_wrap">
@@ -179,7 +179,7 @@
 </div>
 
 <div id="cont_button_wrap">
-		<input type="button" class="notice_btn" value="회원 프로필 보기" onclick="window.open('/jamong.com/@${ao.off_id}');" />
+		<input type="button" class="notice_btn" value="회원 프로필 보기" onclick="window.open('${pageContext.request.contextPath}/@${ao.off_id}');" />
 		<input type="button" class="notice_btn" value="목록" onclick="location='admin_offer?page=${page}';" />
 </div>
 <%@include file="../include/admin_footer.jsp" %>

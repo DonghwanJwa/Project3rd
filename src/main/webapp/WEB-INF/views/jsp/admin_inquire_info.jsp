@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 </head>
 <%@include file="../include/admin_header.jsp" %>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/admin_inquire_info.css"/>
-<script src="/jamong.com/resources/js/admin_inquire_info.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin_inquire_info.css"/>
+<script src="${pageContext.request.contextPath}/resources/js/admin_inquire_info.js"></script>
 <div class="wrap-loading" style="display:none">
  <div>
-  <img src="/jamong.com/resources/img/loading1.gif" />
+  <img src="${pageContext.request.contextPath}/resources/img/loading1.gif" />
  </div>
 </div>
 <div id="adm_inq_title"><h3 class="adm_inq_title">문의내용 열람</h3></div>

@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <title>공지</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/notice.css"/>
-<script src="/jamong.com/resources/js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/notice.css"/>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 <body>
 <div id="notice_cont_pop_container">
    <div class="notice_cont_pop_body">

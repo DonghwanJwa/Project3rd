@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<script src="/jamong.com/resources/js/book_info.js"></script>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/book_info.css"/>
+<script src="${pageContext.request.contextPath}/resources/js/book_info.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/book_info.css"/>
 <div id="book_info_wrap">
  <div id="book_info_base">
   <div id="book_info_about">
@@ -30,7 +30,7 @@
     <div id="book_info_intro_inner">
      <div id="book_info_intro_like">
       <button id="book_info_intro_like_inner">
-       <img id="book_info_intro_like_img" src="/jamong.com/resources/img/heart.png"/>
+       <img id="book_info_intro_like_img" src="${pageContext.request.contextPath}/resources/img/heart.png"/>
       </button>
      </div>
      <strong id="book_info_intro_title">자몽 책 소개</strong>
@@ -41,7 +41,7 @@
    </div>
    
    <div id="book_info_author" class="book_info_about_div">
-    <a id="book_info_author_wrap" href="/jamong.com/@${mem_id}">
+    <a id="book_info_author_wrap" href="${pageContext.request.contextPath}/@${mem_id}">
      <div id="book_info_author_head">
      
      </div>
@@ -68,7 +68,7 @@
    <div id="book_info_article_inner">
    <c:forEach var="bk" items="${bkList}" varStatus="bs">
     <div class="book_info_article_list">
-     <a href="/jamong.com/@${bk.memberVO.mem_id}/${bk.bo_no}" class="book_info_article_link">
+     <a href="${pageContext.request.contextPath}/@${bk.memberVO.mem_id}/${bk.bo_no}" class="book_info_article_link">
       <div class="book_info_article_num">
 	   <em class="book_info_num_txt">${bs.count}</em>
       </div>
