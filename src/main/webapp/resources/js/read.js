@@ -625,7 +625,7 @@ $(document).ready(function(){
 	/*admin_게시글 삭제*/
 	$('.admin_art_del_recover_btn').click(function(event){
 		var para = document.location.href.split("/");
-		var recoverOK = confirm('게시글을 복구처리 하시겠습니까?');
+
 		Swal.fire({
 			icon : 'question',
 			title : 'Restore?',

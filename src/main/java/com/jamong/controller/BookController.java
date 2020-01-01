@@ -228,8 +228,9 @@ public class BookController {
 		return null;
 	}
 
-	@RequestMapping("book/del/{book_no}")
-	public String user_book_del(@PathVariable int book_no, HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping("book/del/{mem_id}/{book_no}")
+	public String user_book_del(@PathVariable String mem_id,@PathVariable int book_no, 
+			HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -240,6 +241,7 @@ public class BookController {
 		int mem_state = m.getMem_state();
 			if (mem_state == 9) {
 				this.bookService.bookDel(book_no);
+
 				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
 						"<body>\r\n" + 
@@ -255,6 +257,7 @@ public class BookController {
 						"		});\r\n" + 
 						"</script>\r\n" + 
 						"</body>");
+
 			} else {
 				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
