@@ -201,7 +201,7 @@ body{
 	border-right: none;
 	border-top: none;
 	height: 30px;
-	width: 111px;
+	width: 108px;
 	font-size:16px;
 	outline: 0;
 	padding: 0px;
@@ -267,13 +267,12 @@ body{
 }
 
 #join_membership_emailcheck_btn{
-	width: 48px;
-	height: 34px;
-	background-color:white;
-	border: solid 2px orange;
-	outline: 0;
-	margin-left: 5px;
-	cursor: pointer;
+padding: 5px 13px;
+    border-radius: 25px;
+    background-color: white;
+    border: solid 1px orange;
+    outline: 0;
+    cursor: pointer;
 }
 #join_membership_emailcheck_btn:active{
 	border:none;
