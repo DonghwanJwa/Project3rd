@@ -37,7 +37,7 @@ public interface BookDAO {
 
 	void recommendDownUpdate(BookVO bk);
 
-	List<BoardVO> bookScroll(HashMap<Object, Object> bookScroll);
+	List<BoardVO> bookScroll(HashMap<String, Object> bookScroll);
 
 	void bookDel(int book_no);
 

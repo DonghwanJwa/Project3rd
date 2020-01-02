@@ -115,8 +115,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> getProfile(int mem_no) {
-		return this.sqlSession.selectList("profileList", mem_no);
+	public List<BoardVO> getProfile(HashMap<String, Object> profileMap) {
+		return this.sqlSession.selectList("profileList", profileMap);
 	}
 
 	@Override

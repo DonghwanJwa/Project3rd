@@ -42,6 +42,7 @@ $(document).ready(function() {
 		}
 		//p.follow 클래스가 없을때
 		var para = document.location.href.split("/");
+		var follower = $(".profile_line_num").text();
 		if($(".profile_button_type2").hasClass("p_follow") === false){
 			
 			var text = $(this).text();
@@ -57,10 +58,8 @@ $(document).ready(function() {
 				if(data == 1){
 					$(".profile_button_type2").addClass("p_follow");
 					$(".profile_button_type2").text("구독중");
-					 var  plus = parseFloat($(".profile_line_num").text() + 1);
-			            if (!isNaN(plus)){
-			                $(".profile_line_num").text(plus); 
-			            } 
+					 var  plus = parseFloat(follower) + 1;
+	                $(".profile_line_num").text(plus); 
 					$(event.target).attr("data-disabled",'true');
 					setTimeout(function(){
 						$(event.target).attr("data-disabled",'false');
@@ -84,15 +83,16 @@ $(document).ready(function() {
 				alert('data error');
 			}
 			})
-			
 		});
 		} else {
 			$(".profile_button_type2").removeClass("p_follow");
-			$(".p_follow").html();
 			$(".profile_button_type2").text("구독하기");
-			var  minus = parseFloat($(".profile_line_num").text() - 1);
-            if (!isNaN(minus)){
-                $(".profile_line_num").text(minus); 
+			
+			var  minus = parseFloat(follower) - 1;
+            if (minus<=0){
+            	$(".profile_line_num").text(0); 
+            }else{
+            	$(".profile_line_num").text(minus); 
             } 
 			$.ajax({
 				type : "POST",
@@ -131,6 +131,88 @@ $(document).ready(function() {
 		}, function(){
 		  $(".p_follow").text("구독중");
 		});
+	// 자신의 글목록 공개 비공개 여부 선택
+	$(document).on('click','.private',function(event) {
+			var num = $(this).attr("data-no");
+			if(event.target.getAttribute("data-disabled")=='true'){
+				return false;
+			}
+			console.log(num);
+			var lockImg = "/jamong.com/resources/img/lock.png";
+			var unlockImg = "/jamong.com/resources/img/unlock.png";
+			if($(event.target).hasClass('unlock')){
+				// 공개 -> 비공개
+				$.ajax({
+					type : "POST",
+					url : "/jamong.com/boardLock/"+num+"/0",
+					success : function(data){
+						if(data!=-1){
+							$(event.target).removeClass("unlock");
+							$(event.target).addClass("lock");
+							$(event.target).attr("src",lockImg);
+							$(event.target).attr("data-disabled",'true');
+							setTimeout(function(){
+								$(event.target).attr("data-disabled",'false');
+							},2000);
+						}else{
+							Swal.fire({
+								icon : 'info',
+								title : 'Oops!',
+								text : '세션이 만료되었습니다. 로그인 하시겠습니까?',
+								showCancelButton : true,
+								confirmButtonText : '예',
+								cancelButtonText : '아니오'
+							}).then((result) => {
+								if(result.value){
+									location.href='/jamong.com/login';
+								}else if(result.dismiss === Swal.DismissReason.cancel){
+									window.location.reload();								
+								}
+							});
+						}
+					},
+					error:function(){
+						alert("data error");
+					}
+				});
+				// 비공개 -> 공개
+			}else {
+				$.ajax({
+					type : "POST",
+					url : "/jamong.com/boardLock/"+num+"/1",
+					success : function(data){
+						if(data!=-1){
+							$(event.target).removeClass("lock");
+							$(event.target).addClass("unlock");
+							$(event.target).attr("src",unlockImg);
+							$(event.target).attr("data-disabled",'true');
+							setTimeout(function(){
+								$(event.target).attr("data-disabled",'false');
+							},2000);
+						}else {
+							Swal.fire({
+								icon : 'info',
+								title : 'Oops!',
+								text : '세션이 만료되었습니다. 로그인 하시겠습니까?',
+								showCancelButton : true,
+								confirmButtonText : '예',
+								cancelButtonText : '아니오'
+							}).then((result) => {
+								if(result.value){
+									location.href='/jamong.com/login';
+								}else if(result.dismiss === Swal.DismissReason.cancel){
+									window.location.reload();								
+								}
+							});
+						}
+					},
+					error:function(){
+						alert('data error');
+					}
+				})
+			}
+		});
+		$('.tit_cover').children().wordBreakKeepAll();
 });
 //새로고침 시 스크롤 맨 위로 이동
 $(window).on("beforeunload",function(){
@@ -146,9 +228,7 @@ $(window).scroll(function(){
 		var para = article.split('/');
 		var pb = $('#profile_menu_check').val();
 		//ajax를 이용하여 현재 로딩 된 게시글의 마지막 bo_no를 서버로 보내어 그 다음 10개의 게시물 데이터를 받아온다.
-		
 		if(pb == 'article'){
-			
 		$.ajax({
 			type : "post",
 			url : "profile_scroll",
@@ -164,31 +244,38 @@ $(window).scroll(function(){
 				// 받아온 데이터가 "" 이거나 null이 아닌경우 DOM handling?을 해준다
 				if(data != ""){
 				// 서버로 부터 받아온 data가 list이므로 each문을 사용하여 접근	
-					$(data).each(function(){
+					$(data).each(
+							function(){
 						para[2]++;
-						str += '<li class="profile_articles scrolling" data-no="'+ para[0] + '/' + this.bo_no + '/' + para[2] +'">'
-						+  '<div class="profile_article_main">' 
-						+  '<a href="/jamong.com/category/' + this.cat_name + '" class = "profile_cat_color">' + this.cat_name +"</a>"
-						if(this.book_no != 0){
-							str +=	'<span class="profile_book_color">Book</span>'
-						}
-						str +=  "</div>"
-							+	'<a href="/jamong.com/@' + this.memberVO.mem_id + '/' + this.bo_no + '">'
-							+	'<strong class="pf_bo_title">' + this.bo_title + '</strong>'
-							+  	'<div class="article_cont">' +	this.bo_cont + "</div> <div>"
+						str += '<li class="profile_articles scrolling" data-no="'+ para[0] + '/' + this.bo_no + '/' + para[2] +'"> <div>' 
+						
+							+  '<div class="profile_article_main">' 
+							if(this.bo_lock == 0 && this.book_no == 0){
+								str += '<img class="private lock" src="/jamong.com/resources/img/lock.png" data-no="' + this.bo_no + '" data-disabled="false" />'
+							}else if(this.bo_lock == 1 && this.book_no == 0){
+								str += '<img class="private lock" src="/jamong.com/resources/img/unlock.png" data-no="' + this.bo_no + '" data-disabled="false" />'
+							}
+							str +=  '<a href="/jamong.com/category/' + this.cat_name + '" class = "profile_cat_color">' + this.cat_name +"</a>"
+							if(this.book_no != 0){
+								str +=	'<span class="profile_book_color">Book</span>'
+							}
+							str +=  '</div>'
+								+	'<a href="/jamong.com/@' + this.memberVO.mem_id + '/' + this.bo_no + '">'
+								+	'<strong class="pf_bo_title">' + this.bo_title + '</strong>'
+								+  	'<div class="article_cont">' +	this.bo_cont + '</div> <div>' 
 						if(this.bo_thumnail != null){
-							str += "<img class='profile_post_img' alt='이미지 정보'	src='" + this.bo_thumnail + "'/>"
+							str += ' <img class="profile_post_img" alt="이미지 정보"	src="' + this.bo_thumnail + '"/>'
 						}
-						str += "</div> </a> </div> <span class='pf_post_date'>" + this.bo_date + "</span></li>"
+						str += '</div> </a> </div></div> <span class="pf_post_date">' + this.bo_date + '</span></li>'
 					}); // each
 					$(".scrolling:last").after(str);
 				} // if data
 			} // success
 		}); // ajax
-	} // article
-		
+	}
 		if(pb == 'magazine'){
 		var article = $(".bookList:last").attr("data-no");
+		var checking = $(".lock_checking").val();
 		var para = article.split('/');
 		//ajax를 이용하여 현재 로딩 된 게시글의 마지막 bo_no를 서버로 보내어 그 다음 10개의 게시물 데이터를 받아온다.
 		$.ajax({
@@ -208,11 +295,6 @@ $(window).scroll(function(){
 					// 서버로 부터 받아온 data가 list이므로 each문을 사용하여 접근	
 						$(data).each(function(){
 							para[2]++;
-//						      if(this.bo_lock == 0){ //비공개  글
-//		                          str += '<img class="private unlock" src="/jamong.com/resources/img/unlock.png" data-no="' + this.bo_no + '" data-disabled="false" />'
-//		                          }else if (this.bo_lock == 1){ // 공개 글
-//		                          str += '<img class="private lock" src="/jamong.com/resources/img/lock.png" data-no="' + this.bo_no + '" data-disabled="false" />'
-//		                         }
 							str += '<div class="box_contents bookList" data-no="'+ this.memberVO.mem_no +'/'+ this.book_no +'">' 
 								+  '<div class="cover_book">'
 								+  '<a href="/jamong.com/book/@'+ this.memberVO.mem_id + '/' + this.bookVO.book_no +'">'
@@ -238,7 +320,7 @@ $(window).scroll(function(){
 								+    '</dd><dt> <img class="relate" src="/jamong.com/resources/img/heart.png"/>'
 								+	'</dt>'
 								+	'<dd class="box_contents_num"></dd>	</dl>	</div>	</div>'
-						}); // each
+		                     }); // each
 						$(".bookList:last").after(str);
 					} // if data
 				} // success
@@ -248,89 +330,7 @@ $(window).scroll(function(){
 }); // scroll
 			
 
-// 자신의 글목록 공개 비공개 여부 선택
-$(document).ready(function() { 
-	$(".private").on("click",function(event) {
-		var num = $(this).attr("data-no");
-		if(event.target.getAttribute("data-disabled")=='true'){
-			return false;
-		}
-		var lockImg = "/jamong.com/resources/img/lock.png";
-		var unlockImg = "/jamong.com/resources/img/unlock.png";
-		if($(event.target).hasClass('unlock')){
-			// 공개 -> 비공개
-			$.ajax({
-				type : "POST",
-				url : "/jamong.com/boardLock/"+num+"/0",
-				success : function(data){
-					if(data!=-1){
-						$(event.target).removeClass("unlock");
-						$(event.target).addClass("lock");
-						$(event.target).attr("src",lockImg);
-						$(event.target).attr("data-disabled",'true');
-						setTimeout(function(){
-							$(event.target).attr("data-disabled",'false');
-						},2000);
-					}else{
-						Swal.fire({
-							icon : 'info',
-							title : 'Oops!',
-							text : '세션이 만료되었습니다. 로그인 하시겠습니까?',
-							showCancelButton : true,
-							confirmButtonText : '예',
-							cancelButtonText : '아니오'
-						}).then((result) => {
-							if(result.value){
-								location.href='/jamong.com/login';
-							}else if(result.dismiss === Swal.DismissReason.cancel){
-								window.location.reload();								
-							}
-						});
-					}
-				},
-				error:function(){
-					alert("data error");
-				}
-			});
-			// 비공개 -> 공개
-		}else {
-			$.ajax({
-				type : "POST",
-				url : "/jamong.com/boardLock/"+num+"/1",
-				success : function(data){
-					if(data!=-1){
-						$(event.target).removeClass("lock");
-						$(event.target).addClass("unlock");
-						$(event.target).attr("src",unlockImg);
-						$(event.target).attr("data-disabled",'true');
-						setTimeout(function(){
-							$(event.target).attr("data-disabled",'false');
-						},2000);
-					}else {
-						Swal.fire({
-							icon : 'info',
-							title : 'Oops!',
-							text : '세션이 만료되었습니다. 로그인 하시겠습니까?',
-							showCancelButton : true,
-							confirmButtonText : '예',
-							cancelButtonText : '아니오'
-						}).then((result) => {
-							if(result.value){
-								location.href='/jamong.com/login';
-							}else if(result.dismiss === Swal.DismissReason.cancel){
-								window.location.reload();								
-							}
-						});
-					}
-				},
-				error:function(){
-					alert('data error');
-				}
-			})
-		}
-	});
-	$('.tit_cover').children().wordBreakKeepAll();
-});
+
 
 	
 
@@ -363,7 +363,7 @@ $(document).ready(function() {
 	for(var i=0;i<tag.length;i++){	
 		addTag(tag[i].childNodes[0].textContent);
 	}
-	$('#profile_editor').on("focusout",function(e){
+	$('#profile_editor').on("focusout keydown",function(e){
 		var p_edit =$(this).val();
 		 if(e.type === 'focusout'){
 		if(p_edit.length >0){
@@ -508,7 +508,7 @@ function profileImgSelect(e){
 function profileCheck(){
 	
 	if(($.trim($('#pf_info').val()) !== "") && ($.trim($('#profile_editor').val()) !== "")){
-		var result = confirm('저장하시겠습니까?');
+		var result = confirm('저장하시겠습니까? (닉네임은 작성하지 않을경우 아이디로 자동 저장됩니다.)');
 		if (result) {
 			history.back();
 		} else {
@@ -517,9 +517,9 @@ function profileCheck(){
 	} 
 		
 	if($.trim($('#profile_editor').val())==""){
-		$('#profile_editor_error').text('작가명을 작성해주세요!');
-		$("#profile_editor").val("").focus();
-		return false;
+		$('#profile_editor_error').text('닉네임을 작성해주세요!');
+		$("#profile_editor").val().focus();
+		
 	}else{
 		$('#profile_editor_error').text('');
 	}
@@ -542,7 +542,7 @@ $(document).ready(function(){
 	
 	$("#profile_editor").on("keyup", function(e) {
 	if($.trim($('#profile_editor').val()).length > $(this).attr('maxlength')){
-		$('#profile_editor_error').text('작가명은 10자 이하까지만 작성가능합니다!');
+		$('#profile_editor_error').text('닉네임은 10자 이하까지만 작성가능합니다!');
 		
 		$("#profile_info").val("").focus();
 		return false;

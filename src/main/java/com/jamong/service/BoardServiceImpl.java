@@ -142,8 +142,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getProfile(int mem_no) {
-		return this.boardDao.getProfile(mem_no);
+	public List<BoardVO> getProfile(HashMap<String, Object> profileMap) {
+		return this.boardDao.getProfile(profileMap);
 	}
 
 	@Transactional

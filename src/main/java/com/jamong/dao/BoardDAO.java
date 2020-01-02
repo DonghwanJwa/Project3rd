@@ -25,7 +25,7 @@ public interface BoardDAO {
 	List<BoardVO> getSearchScrollPost(HashMap<String, Object> searchMap);
 	List<BoardVO> infinitiScrollDown(int bo_no);
 	List<BoardVO> categoryArticle(String cat_name);
-	List<BoardVO> getProfile(int mem_no);
+	List<BoardVO> getProfile(HashMap<String, Object> profileMap);
 	void updateHit(int bo_no);
 	void updateBoard(HashMap<String, Object> bm);
 	List<BoardVO> getUserBoardContList(int mem_no);

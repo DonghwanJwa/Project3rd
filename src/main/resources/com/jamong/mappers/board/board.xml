@@ -298,12 +298,13 @@
  ]]>
  </select>
  <!-- 프로필 글목록 -->
-  <select id="profileList" resultMap="boardMap">
+  <select id="profileList" parameterType="java.util.HashMap" resultMap="boardMap">
 SELECT * FROM
 (SELECT ROWNUM RN,X.* FROM
  (SELECT m.mem_no as m_mem_no,
     	m.mem_id, 
     	m.mem_author, 
+    	m.mem_state, 
     	m.profile_photo, 
     	m.profile_cont, 
     	m.mem_nickname, 
@@ -327,8 +328,15 @@ SELECT * FROM
     FROM member m
     INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
  	ON m.mem_no = b.mem_no
-    WHERE m.mem_no = #{mem_no})
+ 	<if test ="mp_no != m_no and state != '9'">
+ 	AND b.bo_lock = 1
+    WHERE m.mem_no = #{mp_no})
     X)
+ 	</if>
+ 	<if test ="mp_no == m_no or state == '9'">
+    WHERE m.mem_no = #{mp_no})
+    X)
+ 	</if>
     WHERE RN &lt;= 10
 </select>
  <!-- 프로필 글목록 스크롤시 불러오는  목록-->
@@ -337,7 +345,8 @@ SELECT * FROM
 (SELECT ROWNUM RN,X.* FROM
  (SELECT m.mem_no as m_mem_no,
     	m.mem_id, 
-    	m.mem_author, 
+    	m.mem_author,
+    	m.mem_state, 
     	m.profile_photo, 
     	m.profile_cont, 
     	m.mem_nickname, 
@@ -361,9 +370,16 @@ SELECT * FROM
     FROM member m
     INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
  	ON m.mem_no = b.mem_no
-    WHERE m.mem_no = #{mem_no})
+ 	<if test ="mp_no != m_no and state != '9'">
+ 	AND b.bo_lock = 1
+    WHERE m.mem_no = #{mp_no})
     X)
-    WHERE RN BETWEEN (#{n}+1) AND (#{n}+10)
+ 	</if>
+ 	<if test ="mp_no == m_no or state == '9'">
+    WHERE m.mem_no = #{mp_no})
+    X)
+ 	</if>
+ 	WHERE RN BETWEEN (#{n}+1) AND (#{n}+10)
 </select>
  
   <select id="cat_board" resultMap="boardMap">

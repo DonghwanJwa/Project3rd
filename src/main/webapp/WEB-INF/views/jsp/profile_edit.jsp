@@ -41,9 +41,9 @@
 								<!--  for을 사용해서 라벨을 눌러도 텍스트 박스에 적용되도록 함(구조?) -->
 								<span></span>
 							</h3>
-							<input id="profile_editor" class="error_text"name="mem_nickname" placeholder="이름을 입력해주세요(10자 이내로)"	
+							<input id="profile_editor" name="mem_nickname" placeholder="이름을 입력해주세요(10자 이내로)"	
 									maxlength="10" value="${mp.mem_nickname}"/>
-							<div id="profile_editor_error"></div>
+							<div id="profile_editor_error" class="error_text"></div>
 						</div>
 					</div>
 				</div>
@@ -57,10 +57,10 @@
 						<h3 class="profile_edit_font">자기소개</h3>
 					</div>
 					<div class="profile_editor_box">
-						<textarea id="pf_info" class="profile_edit_info e error_text" name="profile_cont" 
+						<textarea id="pf_info" class="profile_edit_info e " name="profile_cont" 
 						placeholder="자신을 소개해보세요(90자 이내로)" maxlength="90">${mp.profile_cont}</textarea>
 					</div>
-					<div id="profile_info_error"></div>
+					<div id="profile_info_error" class="error_text"></div>
 				<!-- 여기서부터는 작가항목입니다 -->
 				<c:if test="${mp.mem_author == 1}">
 					<div>
