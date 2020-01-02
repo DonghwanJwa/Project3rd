@@ -12,7 +12,7 @@
     <img id="book_info_cover_img" src="${book_cover}">
     </c:if>
     <c:if test="${empty book_cover}">
-    <div id="book_info_cover_img" style="background-color: #f2f2f2"></div>
+    <img id="book_info_cover_img" src="${pageContext.request.contextPath}/resources/img/book_cover.jpg">
     </c:if>
     <div id="book_info_cover_txt">
 	 <div id="book_info_cover_head">
@@ -74,14 +74,21 @@
       </div>
       <div class="book_info_article_cont">
        <strong class="book_info_article_head">${bk.bo_title}</strong>
-       <span class="book_info_article_main">
+       <span class="book_info_article_main 
+       <c:if test="${empty bk.bo_thumbnail}">
+        book_info_no_img
+       </c:if>
+       
+       ">
        ${bk.bo_cont}
        </span>
        <em class="book_info_time">${bk.bo_date}</em>
       </div>
+      <c:if test="${! empty bk.bo_thumbnail}">
       <div class="book_info_article_img">
        <img src="${bk.bo_thumbnail}">
       </div>
+      </c:if>
      </a>
     </div>
     </c:forEach>

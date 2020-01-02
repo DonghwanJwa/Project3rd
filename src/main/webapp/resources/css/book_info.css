@@ -37,7 +37,6 @@ a {
 	height:430px;
 	width:300px;
 	object-fit:cover;
-	filter: brightness(80%);
 }
 #book_info_cover_txt{
 	position: absolute;
@@ -270,6 +269,7 @@ a {
 	width:450px;
 	padding:10px 0px;
 }
+
 .book_info_article_head{
 	display:inline-block;
 	width:450px;
@@ -299,10 +299,14 @@ a {
     -webkit-line-clamp: 2; /*보여줄 줄 갯수*/
     -webkit-box-orient: vertical; /*플렉스 박스의 방향 설정*/
 }
+.book_info_article_main.book_info_no_img{
+	width:600px;
+	margin-right: 0;
+}
 .book_info_time{
 	display: inline-block;
 	width:450px;
-	text-align:right;
+	text-align:left;
 	font-size: 14px;
 	color: #959595;
 	font-style: normal;

@@ -67,7 +67,7 @@ a {
 	background-repeat: no-repeat;
 	background-size: cover;
     background-position: center;
-	filter:brightness(80%);
+    background-image: url(/jamong.com/resources/img/book_cover.jpg);
 }
 
 #book_create_cover_imgFile {
@@ -83,7 +83,6 @@ a {
 	left: 50%;
 	bottom: 0;
 	transform: translate(-50%);
-	/* cursor: pointer; */
 }
 
 #book_create_cover_head {
@@ -166,6 +165,22 @@ a {
 	height: 100%;
 	background: rgba(0, 0, 0, .05);
 	content: '';
+}
+
+#book_create_cover_delete {
+	position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url(/jamong.com/resources/img/writepage_icon/b_del.png);
+    width: 33px;
+    height: 32px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0);
+    outline: none;
+}
+#book_create_cover_delete:hover {
+	background-image: url(/jamong.com/resources/img/writepage_icon/j_del.png);
 }
 
 /* 책 소개 */

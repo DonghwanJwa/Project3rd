@@ -34,6 +34,7 @@
       <span>Jamong Book</span>
      </div>
     </div>
+    <input type="button" id="book_create_cover_delete" title="커버 삭제">
     <span id="book_create_cover_line"></span>
    </div>
    <!-- 책 소개 -->

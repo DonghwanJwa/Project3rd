@@ -420,6 +420,7 @@
 	object-fit: cover;
 	box-sizing: border-box;
 	border: 1px solid #eee;
+	border-radius: 2px 6px 6px 2px;
 }
 
 .item_work .title {
@@ -504,6 +505,47 @@
 
 .button:active {
 	outline: none;
+}
+
+.item_work_book_cont {
+	position: absolute;
+	display: inline;
+	text-align: center;
+	height: 400px;
+	width: 280px;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.item_work_book_cont_top {
+	height: 160px;
+	margin: 0 84px 0 67px;
+	margin-top: 63px;
+	background: #ffffffe0;
+	color: #333;
+}
+
+.item_work_book_cont_top strong {
+	font-family: 'NanumMyeongjo', 'serif';
+	display: table-cell;
+	vertical-align: middle;
+	width: 160px;
+	margin: 0;
+	padding: 0 10px;
+	font-size: 17.4px;
+	height: 160px;
+}
+
+.item_work_book_cont_bottom {
+	display: block;
+	height: 40px;
+	margin: 0;
+	padding: 0 20px 0 8px;
+	padding-top: 41px;
+	font-size: 13px;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 0 0 3px #333;
 }
 
 /* 책 상세 */
@@ -679,6 +721,7 @@
 	background-size: cover;
 	position: relative;
 	font-size: 0;
+	border-radius: 2px 6px 6px 2px;
 }
 
 .new_book_inner_info .new_book_desc .new_book_image .border_left {
@@ -794,4 +837,45 @@
 	letter-spacing: -0.3px;
 	text-align: left;
 	color: rgba(255, 255, 255, 0.7);
+}
+
+.inner_info_cont {
+	position: absolute;
+	display: inline;
+	text-align: center;
+	height: 220px;
+	width: 162px;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.inner_info_cont_top {
+	height: 129px;
+	margin: 0px 28px 0px 29px;
+	margin-top: 42px;
+	background: #ffffffe0;
+	color: #333;
+}
+
+.inner_info_cont_top strong {
+	font-family: 'NanumMyeongjo', 'serif';
+	display: table-cell;
+	vertical-align: middle;
+	width: 160px;
+	margin: 0;
+	padding: 0 10px;
+	font-size: 13px;
+	height: 129px;
+}
+
+.inner_info_cont_bottom {
+	display: block;
+	height: 40px;
+	margin: 0;
+	padding: 0 20px;
+	padding-top: 30px;
+	font-size: 6px;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 0 0 3px #333;
 }
