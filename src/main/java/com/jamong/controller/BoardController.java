@@ -489,7 +489,7 @@ public class BoardController {
 		int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
 		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
-
+		
 		int flag = Integer.parseInt(multi.getParameter("thumb_remove"));
 
 		MemberVO m = (MemberVO) session.getAttribute("m");
@@ -522,15 +522,14 @@ public class BoardController {
 
 			b.setBo_thumbnail(fileDBName);
 		} // if => 파일이 있을 때
-
-		if(flag == 1) {
-			b.setBo_color("1");
-		}else if(flag == 0) {
-			b.setBo_color(bo_color);
-		}else if(bo_color == null) {
-			b.setBo_color("1");
-		}
-
+		// 수정을 안했을때 => 기존 color와 thumbnail 유지
+		
+		// 썸네일 수정했을때 => 썸네일이 들어가겠지 씨2발 업파일은 있음 / 컬러에서 썸네일로 바뀔때 컬러가 없어져야함
+		
+		// 컬러 수정했을 때 => 썸네일이 눌이되고 컬러가 바껴야함 
+		
+		// 둘다 썸네일 없애고싶을 때 => 썸네일과 컬러가 눌이되야함
+		b.setBo_color(bo_color);
 		b.setBo_title(bo_title);
 		b.setBo_subtitle(bo_subtitle);
 		b.setBo_cont(bo_cont);
@@ -540,6 +539,7 @@ public class BoardController {
 
 		bm.put("b",b);
 		bm.put("bo_no",bo_no);
+		bm.put("flag",flag);
 
 		if(m != null) {
 			this.boardService.updateBoard(bm);
