@@ -39,7 +39,7 @@ function ArticleRemove(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login';
+								location.href='/jamong.com/login/1';
 							}
 						});
 					}
@@ -100,7 +100,7 @@ function CommentRemove(e){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login';
+								location.href='/jamong.com/login/1';
 							}
 						});
 				}
@@ -147,7 +147,7 @@ function addComment(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login';
+								location.href='/jamong.com/login/1';
 							}
 						});
 					}
@@ -201,7 +201,7 @@ function addReply(e){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login';
+								location.href='/jamong.com/login/1';
 							}
 						});
 					}
@@ -214,7 +214,6 @@ function addReply(e){
 function replyEditOK(e){
 	var editCont = $("#comment_editarea").html();
 	var rep_no = $(e.target).data("no");
-	var editOK = confirm('댓글을 수정하시겠습니까?');
 	Swal.fire({
 		icon : 'question',
 		title : 'ReplyEdit?',

@@ -24,7 +24,6 @@
  <form method="post" action="write_ok" onsubmit="return saveCheck();" enctype="multipart/form-data">
  <input type="hidden" id="bo_titlespace" name="bo_titlespace" <c:if test="${!empty bo.bo_titlespace}">value="${bo.bo_titlespace}"</c:if> />
  <input type="hidden" id="bo_color" name="bo_color" <c:if test="${!empty bo.bo_color}">value="${bo.bo_color}"</c:if> />
- <input type="hidden" id="thumb_remove" name="thumb_remove" value="0" />
  <div id="write_wrap">
   <div class="write_title_error">
    <span class="write_error_message"></span>
