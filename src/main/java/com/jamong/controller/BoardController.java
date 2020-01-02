@@ -289,8 +289,6 @@ public class BoardController {
 		ModelAndView mv = new ModelAndView();
 
 		MemberVO m = (MemberVO)session.getAttribute("m");
-		System.out.println(mem_id);
-		System.out.println(m.getMem_id());
 		if (m != null) {
 			if(mem_id.equals(m.getMem_id())) {
 				bo = this.boardService.getUserBoardCont(bo_no);
