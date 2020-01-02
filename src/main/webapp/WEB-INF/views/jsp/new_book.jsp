@@ -14,7 +14,7 @@
 <c:when test="${status.count eq 1}"> style="background-color: #ef844f; top: 0px;" </c:when>
 <c:when test="${status.count eq 2}"> style="background-color: #388e80; top: 400px;" </c:when>
 <c:when test="${status.count eq 3}"> style="background-color: #ea6262; top: 400px;" </c:when>
-<c:when test="${status.count eq 4}"> style="background-color: #6a8c1e; top: 400px;" </c:when>
+<c:when test="${status.count eq 4}"> style="background-color: #ad90fb; top: 400px;" </c:when>
 <c:when test="${status.count eq 5}"> style="background-color: #005365; top: 400px;" </c:when>
 </c:choose>
 >
@@ -45,7 +45,7 @@
         <img src="${bkBanner.bookVO.book_cover}" alt="책 커버 이미지">
        </c:if>
        <c:if test="${empty bkBanner.bookVO.book_cover}">
-        <img src="${pageContext.request.contextPath}/resources/img/자몽.jpg" alt="책 커버 이미지">
+        <img src="${pageContext.request.contextPath}/resources/img/book_cover.jpg" alt="책 커버 이미지">
        </c:if>
       <div class="new_book_banner_book_cont">
        <div class="new_book_banner_book_cont_top">
@@ -82,11 +82,11 @@
  <div class="new_book_inner_list_work">
   <div class="new_book_list_work_title">
    <span class="title">자몽의 최신 책들</span>
-   <span class="new_book_list_page">
-    <span id="all" class="page_type visible" data-grade="all">전체</span>
-    <span id="column" class="page_type" data-grade="column">컬럼</span>
-    <span id="essay" class="page_type" data-grade="essay">에세이</span>
-   </span>
+<!--    <span class="new_book_list_page"> -->
+<!--     <span id="all" class="page_type visible" data-grade="all">전체</span> -->
+<!--     <span id="column" class="page_type" data-grade="column">컬럼</span> -->
+<!--     <span id="essay" class="page_type" data-grade="essay">에세이</span> -->
+<!--    </span> -->
    <span class="sub_title">JaMong-Book Project</span>
   </div>
   <div class="new_book_list_item" id="new_book_list">
@@ -100,8 +100,16 @@
        <img class="img_cover" src="${book.bookVO.book_cover}">
       </c:if>
       <c:if test="${empty img}">
-       <img class="img_cover" src="${pageContext.request.contextPath}/resources/img/feed.png">
+       <img class="img_cover" src="${pageContext.request.contextPath}/resources/img/book_cover.jpg">
       </c:if>
+       <div class="item_work_book_cont">
+        <div class="item_work_book_cont_top">
+         <strong>${book.bookVO.book_name}</strong>
+        </div>
+        <div class="item_work_book_cont_bottom">
+         <span>Jamong Book</span>
+        </div>
+       </div>
       </div>
       <p class="title">${book.bookVO.book_name}</p>
       <p class="author">

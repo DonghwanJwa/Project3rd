@@ -86,7 +86,7 @@
  
  <update id="book_no_up" parameterType="java.util.HashMap">
   <foreach collection="bo_no" index="index" item="bc" separator=";" open="DECLARE BEGIN" close="; END;">
-   UPDATE board SET book_no = #{book_no}, book_order = #{index + 1}, bo_lock = 1 WHERE bo_no=#{bc}
+   UPDATE board SET book_no = #{book_no}, book_order = (#{index} + 1), bo_lock = 1 WHERE bo_no=#{bc}
   </foreach>
  </update>
  
@@ -141,7 +141,7 @@
 	OR REGEXP_LIKE(m.mem_nickname,#{q})
 	OR REGEXP_LIKE(bo_title,#{q}) 
 	OR REGEXP_LIKE(bo_cont,#{q})
-	AND m.mem_state = 0
+	AND m.mem_state = 1
 	AND bo_lock=1
 	GROUP BY bk.book_no,
 		 	 bk.book_name,
@@ -212,7 +212,7 @@
   ON book.mem_no = m.mem_no
   INNER JOIN board b
   ON b.book_no = #{book_no}
-  AND b.book_order = 0
+  AND b.book_order = 1
   WHERE book.book_no = #{book_no}
  </select>
  

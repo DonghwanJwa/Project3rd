@@ -6,13 +6,13 @@ $(document).ready(function(){
 	var para = document.location.href.split("/");
 	$('#book_info_intro_like_img').click(function(event){
 		if($(event.target).css('background-color')=='rgb(255, 255, 255)'){
-			$(event.target).css('background-color','RGB(245,124,104)');
 			/* 추천 테이블에 저장 및 책 테이블에 book_recommend 증가 */
 			$.ajax({
 				type:"POST",
 				url:"/jamong.com/book/recommend_up/" + para[6],
 				success:function(data){
 					if(data!=-1){
+						$(event.target).css('background-color','RGB(245,124,104)');
 						$(event.target).prop("disabled",true);
 						setTimeout(function(){
 							$(event.target).prop("disabled",false);

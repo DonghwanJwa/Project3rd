@@ -31,10 +31,10 @@
         </div>
         <a href="${pageContext.request.contextPath}/@${b.memberVO.mem_id}/${b.bo_no}">
          <div id="new_post_loading_cont_text_title">
-          <c:if test="${fn:length(b.bo_title)>20}">
-          ${fn:substring(b.bo_title,0,20)}...
+          <c:if test="${fn:length(b.bo_title)>22}">
+          ${fn:substring(b.bo_title,0,22)}...
          </c:if>
-          <c:if test="${fn:length(b.bo_title)<20}">
+          <c:if test="${fn:length(b.bo_title)<22}">
           ${b.bo_title}
          </c:if>
          </div>

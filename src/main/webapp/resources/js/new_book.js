@@ -391,9 +391,17 @@ $(document).ready(function() {
 							if(this.bookVO.book_cover != null){
 								str += "<div class='new_book_image' style='background-image:url(" + this.bookVO.book_cover + ")'>"
 							}else{
-								str += "<div class='new_book_image' style='background-image:url(/jamong.com/resources/img/feed.png)'>"
+								str += "<div class='new_book_image' style='background-image:url(/jamong.com/resources/img/book_cover.jpg)'>"
 							}
-						str	+=	"<div class='border_left'></div>"
+						str	+=	"<div class='inner_info_cont'>"
+							+	"<div class='inner_info_cont_top'>"
+							+	"<strong>" + this.bookVO.book_name + "</strong>"
+							+	"</div>"
+							+	"<div class='inner_info_cont_bottom'>"
+							+	"<span>Jamong Book</span>"
+							+	"</div>"
+							+	"</div>"
+							+	"<div class='border_left'></div>"
 							+	"</div>"
 							+	"</a>"
 							+	"<div class='new_book_share_sentence'>"

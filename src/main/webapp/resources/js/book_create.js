@@ -14,6 +14,11 @@ $(document).ready(function() {
 
 	/* 책 커버 이미지 미리보기 */
 	$("#book_create_cover_imgFile").on("change", handleImgFileSelect);
+	/* 미리보기 이미지 삭제 / 취소 */
+	$("#book_create_cover_delete").click(function(){
+		$("#book_create_cover_img").css("background-image","url(/jamong.com/resources/img/book_cover.jpg)");
+		$("#book_create_cover_imgFile").val("");
+	});
 
 	/* post_list의 li 전체 선택 / 전체 해제 */
 	$("#post_list_checkAll").click(function() {
