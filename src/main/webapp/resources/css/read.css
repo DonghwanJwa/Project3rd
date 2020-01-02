@@ -576,7 +576,7 @@ body a {
 .another_cont {
 	min-width:400px;
 	max-height: 50px;
-    line-height: 25px;
+	line-height:25px;
 	font-family: 'NanumMyeongjo','serif';
 	position:absolute;
 	top:42%;
@@ -585,18 +585,32 @@ body a {
 	color:white;
 	transform:translate(-50%);
 	text-align:center;
+	overflow: hidden;
+	white-space: normal;
+	word-wrap: break-word;	
+	text-overflow: ellipsis;
+	display: -webkit-box; 
+	-webkit-line-clamp: 2; 
+	-webkit-box-orient: vertical;
 }
+
 .another_cont_noimg {
 	min-width:400px;
+	max-height: 50px;
+	line-height:25px;
 	font-family: 'NanumMyeongjo','serif';
 	position:absolute;
 	top:42%;
 	left:50%;
 	transform:translate(-50%);
 	text-align:center;
-}
-.another_cont_noimg p{
-	color:#333 !important;
+	overflow: hidden;
+	white-space: normal;
+	word-wrap: break-word;	
+	text-overflow: ellipsis;
+	display: -webkit-box; 
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 }
 
 .another_auth {
