@@ -15,12 +15,12 @@ function accuseShow(a) {
 							icon: 'error',
 							showCancelButton : true,
 							confirmButtonText : '로그인',
-							cancelButtonText : '메인으로'
+							cancelButtonText : '이전으로'
 							}).then((result) => {
 								if(result.value){
 									location='/jamong.com/login';
 								}else if(result.dismiss === Swal.DismissReason.cancel) {
-									location='/jamong.com/';
+									
 								}
 							});
 			}else if(data==1){

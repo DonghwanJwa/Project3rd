@@ -60,12 +60,12 @@ public class OfferController {
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
-					"		cancelButtonText : '메인으로'\r\n" + 
+					"		cancelButtonText : '이전으로'\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
 					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
-					"				location='/jamong.com/';\r\n" + 
+					"				history.back();\r\n" + 
 					"			}\r\n" + 
 					"		});\r\n" + 
 					"</script>\r\n" + 
