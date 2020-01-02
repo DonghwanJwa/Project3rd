@@ -30,8 +30,18 @@
  	 </a>
  	</div>
  	
- 	<div id="head-menu-empty">
  	<%-- 읽기페이지에 필요한 버튼 --%>
+ 	<c:if test="${! empty bo}">
+ 	 <div id="head-menu-readpage-info">
+ 	  <c:if test="${bo.cat_name ne null}">
+ 	   <a id="head-menu-readpage-cat" href="${pageContext.request.contextPath}/category/${bo.cat_name}">${bo.cat_name}</a>
+ 	  </c:if>
+ 	  <c:if test="${bo.book_no != 0}">
+ 	   <a id="head-menu-readpage-booklink" href="${pageContext.request.contextPath}/book/@${bo.memberVO.mem_id}/${bo.book_no}">Book</a>
+ 	  </c:if>
+ 	 </div>
+ 	</c:if>
+ 	<div id="head-menu-empty">
  	<c:if test="${! empty bo}">
  	<div id="head-menu-readpage">
  	 <c:if test="${(mem_id eq m.mem_id) && (bo.book_no == 0)}">

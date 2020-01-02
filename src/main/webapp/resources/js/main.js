@@ -5,6 +5,7 @@
 //js페이지가 로딩되면 메뉴에 요소들을 불러옴(중단에 메서드 있음)
 var slideIndex = 0;
 var timerID;
+var buttonTimerID;
 getCategory();
 getBestList();
 getHeaderNotice();
@@ -81,6 +82,7 @@ function hotscroll(where,number){
 }
 
 function showSlides() {
+	clearTimeout(buttonTimerID);
 	if($('#recom_book-cont').length>0){
 		slideIndex++;
 		if (slideIndex > 3) {slideIndex = 1}    
@@ -108,7 +110,7 @@ function slideButton(a){
 	$('.recom-book-page').attr("data-disabled",'true');
 	clearTimeout(timerID);
 	slideIndex = a;
-	timerID = setTimeout(showSlides, 1000);
+	buttonTimerID = setTimeout(showSlides, 1000);
 	setTimeout(function(){
 		$('.recom-book-page').attr("data-disabled",'false');
 	},2000);

@@ -419,7 +419,7 @@ $(document).keydown(function(e){
           <div class="recom_book-item-head">
            <div class="book-item-head-inner">
            <c:if test="${bolist.bookVO.book_cover eq null}">
-            <img class="book-item-head-inner-img" style="background-color:#f2f2f2">
+            <img class="book-item-head-inner-img" src="${pageContext.request.contextPath}/resources/img/book_cover.jpg">
            </c:if>
            <c:if test="${bolist.bookVO.book_cover ne null}">
             <img class="book-item-head-inner-img" src="${bolist.bookVO.book_cover}">

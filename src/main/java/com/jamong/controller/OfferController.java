@@ -50,6 +50,8 @@ public class OfferController {
 		
 		
 		if(m == null) {
+			String ref = request.getHeader("Referer");
+			session.setAttribute("ref", ref);
 			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
 					"<body>\r\n" + 
@@ -66,6 +68,7 @@ public class OfferController {
 					"				location='/jamong.com/login';\r\n" + 
 					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
 					"				history.back();\r\n" + 
+					"				window.sessionStorage.removeItem('ref');\r\n" +
 					"			}\r\n" + 
 					"		});\r\n" + 
 					"</script>\r\n" + 

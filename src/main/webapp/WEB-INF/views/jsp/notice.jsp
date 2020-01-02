@@ -126,9 +126,6 @@
 			<option value="noti_cont" <c:if test="${search_field == 'noti_cont'}">${'selected'}</c:if>>
 				내용
 			</option>
-			<option value="noti_name" <c:if test="${search_field == 'noti_name'}">${'selected'}</c:if>>
-				작성자
-			</option>
 		</select>
 		<input name="search_name" id="search_name" size="15" value="${search_name}" />
 		<input type="submit" value="검색" class="notice_btn"/>

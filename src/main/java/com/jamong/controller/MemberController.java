@@ -73,7 +73,7 @@ public class MemberController {
 			mo.addAttribute("fail_id",fail_id);
 			session.removeAttribute("fail_id");
 		}
-
+		
 		if(m != null) {
 			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 

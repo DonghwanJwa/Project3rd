@@ -71,9 +71,6 @@ $(document).ready(function(){
 	});
 	
 	$("#login_pwd").on("keyup keydown", function(key){
-		if (key.keyCode == 13) {
-			$("#login_btn").trigger("click");
-		}
 		 if(key.type === 'keydown'){
 	          if(key.keyCode == 32) {
 	             return false;

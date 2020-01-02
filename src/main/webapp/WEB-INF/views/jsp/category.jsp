@@ -43,6 +43,11 @@
    </div>
    
     <!-- 글 내용부분 -->
+    <c:if test="${empty blist}">
+	 <div class=cat_writing_block>
+	  <h3>해당 카테고리에 검색결과가 없습니다!</h3>
+	 </div>
+	</c:if>
     <c:if test="${!empty blist}">
     <c:forEach var="blist" items="${blist}">
 	 <c:if test="${!empty blist.bo_thumbnail}">
@@ -144,18 +149,24 @@
 	  </c:if>
 	</c:forEach>
 	  </c:if>
-	  <c:if test="${empty blist}">
-	  <div class=cat_writing_block>
-	  <h3>해당 카테고리에 검색결과가 없습니다!</h3>
-	  </div>
-	  </c:if>
+	 
 	
 	<!-- 책부분 시작 -->
+	<c:if test="${empty bklist}">
+	 <div class=cat_book_block style="display:none;">
+	  <h3>해당 카테고리에 검색결과가 없습니다!</h3>
+	 </div>
+	</c:if>
    <c:if test="${!empty bklist}">
 	<div class=cat_book_block style="display:none;">	
 	<c:forEach var="bklist" items="${bklist}">
 	 <div class=cat_book onclick="location.href='${pageContext.request.contextPath}/book/@${bklist.memberVO.mem_id}/${bklist.bookVO.book_no}'">
-	   <img class="cat_book_img" src="${bklist.bookVO.book_cover }" alt="글" />
+	  <c:if test="${bklist.bookVO.book_cover ne null}">
+	   <img class="cat_book_img" src="${bklist.bookVO.book_cover }" alt="책" />
+	  </c:if>
+	  <c:if test="${bklist.bookVO.book_cover eq null}">
+	   <img class="cat_book_img" src="${pageContext.request.contextPath}/resources/img/book_cover.jpg" alt="책" />
+	  </c:if>
 		<div class="cat_book_inner">
 			<p class=cat_book_title><strong>${bklist.bookVO.book_name}</strong></p>
 			<span class=cat_story_writer><i>by</i>&nbsp;${bklist.memberVO.mem_nickname}</span>
@@ -165,12 +176,6 @@
 	 </div>
 	 </c:forEach>
 	</div>
-  </c:if>
-  
-   <c:if test="${empty bklist}">
-	  <div class=cat_book_block>
-	  <h3>해당 카테고리에 검색결과가 없습니다!</h3>
-	  </div>
-	  </c:if>		
+  </c:if>		
    </div>
 <%@ include file="../include/footer.jsp" %>

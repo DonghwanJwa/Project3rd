@@ -9,8 +9,11 @@
  <div id="book_create_base">
  <div id="book_create_announce">
   <img id="book_create_anno_img" src="${pageContext.request.contextPath}/resources/img/alert.png" alt="주의">
-  <div id="book_create_anno_cont">  
-  	자몽에서는 작가님들의 책임있는 출판활동을 권고하기 위하여 완성된 책에 대한 수정 삭제 기능이 없음을 안내드립니다.
+  <div id="book_create_anno_cont" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">  
+  	<span style="font-weight:bold;">책발간시 유의사항</span>
+  	<span>1. 자몽에서는 작가님들의 책임있는 출판활동을 권고하기 위하여 완성된 책에 대한 수정 삭제 기능이 없음을 안내드립니다.</span>
+  	<span>2. 비공개 처리된 글의 경우 발간되는 책에 추가하시게 되면 공개글로 자동 전환되며, 수정 및 비공개 처리하실 수 없습니다. </span>
+  	
   </div>
  </div>
   <form method="post" action="book_create_ok" onsubmit="return createBookCheck();" enctype="multipart/form-data">
