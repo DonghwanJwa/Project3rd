@@ -26,7 +26,6 @@ mem_fav3 VARCHAR2(50),
 mem_article NUMBER(38) DEFAULT 0,	  -- 게시글 수
 mem_subscribe NUMBER(38) DEFAULT 0,	  -- 팔로우(구독자)수
 mem_portfolio CLOB,		  			  -- 작가 포트폴리오 내용 (12/03 추가)
-drop_reason VARCHAR2(50), 			  -- 회원 탈퇴사유 종류 (12/19 추가)
 drop_cont VARCHAR2(4000), 			  -- 회원 탈퇴사유 내용
 drop_date DATE       				  -- 회원 탈퇴 날짜 (12/19 추가)
 );
@@ -51,7 +50,6 @@ where mem_no=28
 
 -- 회원 테이블에 작가 포트폴리오 내용 추가
 ALTER member ADD (mem_portflio CLOB);
-ALTER table member ADD (drop_reason VARCHAR2(50));
 ALTER table member ADD (drop_cont VARCHAR2(4000));
 ALTER table member ADD (drop_date DATE);
 ALTER TABLE member ADD (mem_article NUMBER(38) DEFAULT 0);

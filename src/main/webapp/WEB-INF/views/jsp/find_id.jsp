@@ -55,7 +55,7 @@
 				</div>
 				<div id="find_id_pass_after_certified">
 					<input type="password" class="find_id_pass_text" id="find_id_pass_pass" name="mem_pwd" placeholder="비밀번호 수정" autocomplete="off"/>
-					<div class="find_id_error" id="find_pass_error_pass"></div>
+					<div class="find_id_error long" id="find_pass_error_pass"></div>
 					<input type="password" class="find_id_pass_text" id="find_id_pass_pass_check" placeholder="비밀번호  수정 확인" autocomplete="off"/>
 					<div class="find_id_error" id="find_pass_error_pass_check"></div>
 				</div>

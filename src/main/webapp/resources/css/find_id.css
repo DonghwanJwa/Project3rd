@@ -86,7 +86,9 @@ display: inline-block;
 	color:#ff0000;
 	font-size:12px;	
 }
-
+.find_id_error.long{
+	padding-left:81px;
+}
 #find_id_label{
 	font-size: 25px;
 	margin-bottom: 10px;
@@ -200,13 +202,14 @@ display: inline-block;
 	cursor: pointer;
 }
 #find_id_pass_email_Certified_next_btn{
-	border: 2px solid orange;
-    background-color: white;
-    width: 36px;
-    height: 25px;
-    font-size: 1px;
-    outline: none;
-    cursor: pointer;
+	border: 1px solid orange;
+	background-color: white;
+	width: 36px;
+	height: 25px;
+	border-radius: 25px;
+	font-size: 10px;
+	outline: none;
+	cursor: pointer;
 }
 
 #find_id_pass_before_certified{
@@ -215,7 +218,7 @@ display: inline-block;
 
 #find_id_pass_after_certified{
 	display: none;
-}
+}	
 
 #find_pass_pass_modify{
 	width: 250px;
