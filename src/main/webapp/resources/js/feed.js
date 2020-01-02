@@ -46,9 +46,18 @@ $(document).ready(function(){
 							if(data!=-1){
 								$(event.target).parent().parent().parent().remove();
 							}else{
-								alert('로그인 유지시간이 만료되었습니다. \n'
-										+'다시 로그인 하시기 바립니다.')
+								Swal.fire({
+									icon : 'info',
+									title : 'Oops!',
+									text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+									showCancelButton : true,
+									confirmButtonText : '예',
+									cancelButtonText : '아니오'
+								}).then((result) => {
+									if(result.value){
 										window.location.replace("/jamong.com/login");
+									}
+								});
 							}
 						},
 						error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
@@ -86,8 +95,18 @@ $(document).ready(function(){
 						if(data!=-1){
 							$(event.target).parent().parent().parent().remove();
 						}else{
-							alert("로그인 유지시간이 말료되었습니다 \n 다시 로그인 하시기 바랍니다");
-							window.location.replace("/jamong.com/login");
+							Swal.fire({
+								icon : 'info',
+								title : 'Oops!',
+								text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+								showCancelButton : true,
+								confirmButtonText : '예',
+								cancelButtonText : '아니오'
+							}).then((result) => {
+								if(result.value){
+									location.href='/jamong.com/login';
+								}
+							});
 						}
 					},
 					error:function(){

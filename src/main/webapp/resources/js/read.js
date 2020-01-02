@@ -23,7 +23,6 @@ function ArticleRemove(){
 				url : "/jamong.com/artdel/"+para[5],
 				success : function(data){
 					if(data == 1){
-						alert('게시글이 삭제되었습니다!');
 						Swal.fire({
 							icon : 'success',
 							text : '게시글이 삭제되었습니다!'
@@ -132,7 +131,6 @@ function addComment(){
 				url:"/jamong.com/comment/"+para[5],
 				success:function(data){
 					if(data == 1){
-						alert('댓글 작성에 성공했습니다!');
 						Swal.fire({
 							icon : 'success',
 							text : '댓글 작성에 성공했습니다!'
@@ -187,7 +185,6 @@ function addReply(e){
 				url:"/jamong.com/reply/"+para[5],
 				success:function(data){
 					if(data == 1){
-						alert('답글 작성에 성공했습니다!');
 						Swal.fire({
 							icon : 'success',
 							text : '답글 작성에 성공했습니다!'
@@ -235,7 +232,6 @@ function replyEditOK(e){
 				url : "/jamong.com/replyedit",
 				success : function(data){
 					if(data == 1){
-						alert('댓글 수정에 성공했습니다!');
 						Swal.fire({
 							icon : 'success',
 							text : '댓글 수정에 성공했습니다!'
@@ -570,7 +566,6 @@ $(document).ready(function(){
 						}).then(function(){
 							window.location.reload();							
 						})
-						alert('접근 권한이 없는 계정입니다.');
 					}
 				},
 				error:function(){

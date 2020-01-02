@@ -94,7 +94,7 @@ public class AuthorController {
 							"<script>\r\n" + 
 							"Swal.fire({\r\n" + 
 							"		title : 'Screening...',\r\n" + 
-							"		text : '심사중인 신청이 있습니다.\n결과를 기다려주세요!',\r\n" + 
+							"		text : '심사중인 신청이 있습니다.\\n결과를 기다려주세요!',\r\n" + 
 							"		icon: 'info',\r\n" + 
 							"		}).then((result) => {\r\n" + 
 							"			if(result.value){\r\n" + 
@@ -169,7 +169,7 @@ public class AuthorController {
 				"<script>\r\n" + 
 				"Swal.fire({\r\n" + 
 				"		title : 'Success',\r\n" + 
-				"		text : '작가신청에 성공했습니다! \n 결과를 기다려주세요!',\r\n" + 
+				"		text : '작가신청에 성공했습니다! \\n 결과를 기다려주세요!',\r\n" + 
 				"		icon: 'Success',\r\n" + 
 				"		}).then((result) => {\r\n" + 
 				"			if(result.value){\r\n" + 
