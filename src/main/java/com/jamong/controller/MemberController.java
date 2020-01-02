@@ -75,9 +75,21 @@ public class MemberController {
 		}
 
 		if(m != null) {
-			out.println("<script>");
-			out.println("history.back();");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '이미 로그인이 되어있습니다!',\r\n" + 
+					"		icon: 'warning',\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {		
 			if(pv==null) {//이전단계가 회원가입이 아니였을 경우
 				String ref = request.getHeader("Referer");
@@ -112,7 +124,22 @@ public class MemberController {
 		
 		String result = null;
 		if(mem_m != null) {
-			result = "redirect:/";
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '이미 로그인이 되어있습니다!',\r\n" + 
+					"		icon: 'warning',\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
+			return null;
 		}else {			
 			MemberVO dm=this.memberService.loginCheck(login_id);//로그인 인증
 			if(dm==null) {		//일치하는 회원정보가 없을 때

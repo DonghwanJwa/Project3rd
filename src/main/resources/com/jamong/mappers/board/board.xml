@@ -228,7 +228,7 @@
   OR REGEXP_LIKE(m.mem_nickname,#{q}) 
   OR REGEXP_LIKE(m.mem_keyword,#{q}))
   <if test="s == 'accuracy'">
-  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC,bo_date DESC) 
+  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC, REGEXP_COUNT(mem_nickname,#{q}) DESC) 
   </if>
   <if test="s == 'recent'">
   ORDER BY bo_date DESC)
