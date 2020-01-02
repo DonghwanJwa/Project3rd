@@ -209,7 +209,7 @@ function restore_check() {
 	</div>
 	
 	<div id="cont_button_wrap">
-		<input type="button" value="회원 프로필" class="notice_btn" onclick="window.open('/jamong.com/@${me.mem_id}');" />
+		<input type="button" value="회원 프로필" class="notice_btn" onclick="window.open('${pageContext.request.contextPath}/@${me.mem_id}');" />
 		
 		<c:if test="${me.mem_state == 0}">
 		<input type="button" value="계정정지" class="notice_btn" onclick="location='admin_member_drop?no=${me.mem_no}&page=${page}';" />

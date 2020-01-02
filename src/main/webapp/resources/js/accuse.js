@@ -18,7 +18,7 @@ function accuseShow(a) {
 							cancelButtonText : '메인으로'
 							}).then((result) => {
 								if(result.value){
-									location='/jamong.com/login/1';
+									location='/jamong.com/login';
 								}else if(result.dismiss === Swal.DismissReason.cancel) {
 									location='/jamong.com/';
 								}

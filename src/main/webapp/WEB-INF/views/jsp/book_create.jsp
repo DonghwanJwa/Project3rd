@@ -1,14 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<script src="/jamong.com/resources/js/book_create.js"></script>
-<script src="/jamong.com/resources/js/jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/book_create.css">
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/write.css">
+<script src="${pageContext.request.contextPath}/resources/js/book_create.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/book_create.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/write.css">
 
 <div id="book_create_wrap">
  <div id="book_create_base">
  <div id="book_create_announce">
-  <img id="book_create_anno_img" src="/jamong.com/resources/img/alert.png" alt="주의">
+  <img id="book_create_anno_img" src="${pageContext.request.contextPath}/resources/img/alert.png" alt="주의">
   <div id="book_create_anno_cont">  
   	자몽에서는 작가님들의 책임있는 출판활동을 권고하기 위하여 완성된 책에 대한 수정 삭제 기능이 없음을 안내드립니다.
   </div>
@@ -54,7 +54,7 @@
       <img src="${profile_photo}">
      </c:if>
      <c:if test='${empty profile_photo}'>
-      <img src="/jamong.com/resources/img/profile_logout.png">
+      <img src="${pageContext.request.contextPath}/resources/img/profile_logout.png">
      </c:if>
      </span>
      <div id="book_create_author_desc">
@@ -86,10 +86,10 @@
        <div class="post_list_cont">
        <div class="post_list_lock">
        <c:if test="${b.bo_lock==0}">
-        <img class="post_list_lock_img" src="/jamong.com/resources/img/lock.png">
+        <img class="post_list_lock_img" src="${pageContext.request.contextPath}/resources/img/lock.png">
        </c:if>
        <c:if test="${b.bo_lock==1}">
-        <img class="post_list_lock_img" src="/jamong.com/resources/img/unlock.png">
+        <img class="post_list_lock_img" src="${pageContext.request.contextPath}/resources/img/unlock.png">
        </c:if>
        </div>
         <div class="post_list_cont_title">

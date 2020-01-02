@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel=stylesheet type="text/css" href="/jamong.com/resources/css/profile.css">
-<script src="/jamong.com/resources/js/profile.js"></script>
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<script src="/jamong.com/resources/js/jquery.word-break-keep-all.min.js"></script>
+<link rel=stylesheet type="text/css" href="${pageContext.request.contextPath}/resources/css/profile.css">
+<script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.word-break-keep-all.min.js"></script>
 <title></title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false" >
@@ -50,13 +50,13 @@
 								<div id="profile_button">
 									<%--해당되는 아이디로 로그인 했을때 --%>
 									<c:if test="${m.mem_id == mp.mem_id}">
-										<a href="/jamong.com/write" class="profile_button_type subscribe_check">글쓰기</a>
+										<a href="${pageContext.request.contextPath}/write" class="profile_button_type subscribe_check">글쓰기</a>
 										 <c:if test="${mp.mem_author == 1}">
-										  <a href="/jamong.com/book_create" class="profile_button_type subscribe_check">책 발간</a>
+										  <a href="${pageContext.request.contextPath}/book_create" class="profile_button_type subscribe_check">책 발간</a>
 										 </c:if>
 									</c:if>
 									<c:if test="${mp.mem_author == 1 && m.mem_id != mp.mem_id}">
-                                        <a href="/jamong.com/offer_author/@${mp.mem_id}" class="profile_button_type">제안하기</a>
+                                        <a href="${pageContext.request.contextPath}/offer_author/@${mp.mem_id}" class="profile_button_type">제안하기</a>
                                         </c:if>
 									<c:if test="${m.mem_id != mp.mem_id }">
 										<span>
@@ -77,7 +77,7 @@
 								<c:forEach items="${mp.mem_keyword.split('/')}" var="tag">
 							 		<li>
 							 		<a class="profile_button_keyword profile_line" 
-							 		href="/jamong.com/search?w=post&s=accuracy&q=${tag}">${tag}</a>	        
+							 		href="${pageContext.request.contextPath}/search?w=post&s=accuracy&q=${tag}">${tag}</a>	        
 								</li>
 								
 								</c:forEach>
@@ -141,19 +141,19 @@
 						<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
 							<div>
 								<c:if test="${fp.bo_lock == 0 }"> <%-- 0 = 비공개 --%>
-									<img class="private lock" src="/jamong.com/resources/img/lock.png" data-no="${fp.bo_no}" data-disabled="false" />
+									<img class="private lock" src="${pageContext.request.contextPath}/resources/img/lock.png" data-no="${fp.bo_no}" data-disabled="false" />
 									</c:if>
 									<c:if test="${fp.bo_lock == 1 }"> <%-- 1 = 공개 --%>
-									<img class="private unlock" src="/jamong.com/resources/img/unlock.png" data-no="${fp.bo_no}" data-disabled="false" />
+									<img class="private unlock" src="${pageContext.request.contextPath}/resources/img/unlock.png" data-no="${fp.bo_no}" data-disabled="false" />
 									</c:if>
 								<div class="profile_article_main">
-							         <a href="/jamong.com/category/${fp.cat_name}"
+							         <a href="${pageContext.request.contextPath}/category/${fp.cat_name}"
 							         	class="profile_cat_color">${fp.cat_name}</a>
 										<c:if test="${fp.book_no ne 0}">
 											<span class="profile_book_color">Book</span>
 													</c:if>
 													</div>
-												<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
+												<a href="${pageContext.request.contextPath}/@${mp.mem_id}/${fp.bo_no}"> 
 											<strong class="pf_bo_title">${fp.bo_title}</strong> 
 											<div class="article_cont">
 											<%-- <em class="profile_font_size">${fp.bo_subtitle}</em>--%>
@@ -186,14 +186,14 @@
 									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
 										<div>
 												<div class="profile_article_main">
-												         <a href="/jamong.com/category/${fp.cat_name}"
+												         <a href="${pageContext.request.contextPath}/category/${fp.cat_name}"
 															class="profile_cat_color">${fp.cat_name}</a>
 													<c:if test="${fp.book_no ne 0}">
 														<span class="profile_book_color"
 														>Book</span>
 													</c:if>
 												</div>
-												<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
+												<a href="${pageContext.request.contextPath}/@${mp.mem_id}/${fp.bo_no}"> 
 											<strong class="pf_bo_title">${fp.bo_title}</strong> 
 											<div class="article_cont">
 											<%-- <em class="profile_font_size">${fp.bo_subtitle}</em>--%>
@@ -218,20 +218,20 @@
 									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
 											<div>
 											<c:if test="${fp.bo_lock == 0 }"> <%-- 0 = 비공개 --%>
-												<img class="private lock" src="/jamong.com/resources/img/lock.png" data-no="${fp.bo_no}" data-disabled="false" />
+												<img class="private lock" src="${pageContext.request.contextPath}/resources/img/lock.png" data-no="${fp.bo_no}" data-disabled="false" />
 											</c:if>
 											<c:if test="${fp.bo_lock == 1 }"> <%-- 1 = 공개 --%>
-												<img class="private unlock" src="/jamong.com/resources/img/unlock.png" data-no="${fp.bo_no}" data-disabled="false" />
+												<img class="private unlock" src="${pageContext.request.contextPath}/resources/img/unlock.png" data-no="${fp.bo_no}" data-disabled="false" />
 											</c:if>
 												<div class="profile_article_main">
-												         <a href="/jamong.com/category/${fp.cat_name}"
+												         <a href="${pageContext.request.contextPath}/category/${fp.cat_name}"
 															class="profile_cat_color">${fp.cat_name}</a>
 													<c:if test="${fp.book_no ne 0}">
 														<span class="profile_book_color"
 														>Book</span>
 													</c:if>
 													</div>
-												<a href="/jamong.com/@${mp.mem_id}/${fp.bo_no}"> 
+												<a href="${pageContext.request.contextPath}/@${mp.mem_id}/${fp.bo_no}"> 
 											<strong class="pf_bo_title">${fp.bo_title}</strong> 
 											<div class="article_cont">
 											<%-- <em class="profile_font_size">${fp.bo_subtitle}</em>--%>
@@ -268,7 +268,7 @@
 				<c:if test="${!empty mb.bookVO.book_no}">
 						<div class="box_contents bookList" data-no="${mp.mem_no}/${mb.bookVO.book_no}/${status.count}">
 								<div class="cover_book">
-								<a href="/jamong.com/book/@${mp.mem_id}/${mb.bookVO.book_no}">
+								<a href="${pageContext.request.contextPath}/book/@${mp.mem_id}/${mb.bookVO.book_no}">
 								<c:set var="img" value="${mb.bookVO.book_cover}" />
 								<c:if test="${not empty img }">
 									<img class="cover_img" src="${img}">
@@ -284,7 +284,7 @@
 						</div>
 						<strong>Category ${mb.bookVO.cat_name}</strong> 
 						<strong class="pf_date">${mb.bookVO.book_date}</strong>
-						<a class="profile_jm" href="/jamong.com/book/@${mp.mem_id}/${mb.bookVO.book_no}">${mb.bookVO.book_name}</a>
+						<a class="profile_jm" href="${pageContext.request.contextPath}/book/@${mp.mem_id}/${mb.bookVO.book_no}">${mb.bookVO.book_name}</a>
 						<div>
 						<dl class="j_list_info">
 							<dt>

@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
-<script src="./resources/js/profile.js"></script>
-<link rel=stylesheet type="text/css" href="./resources/css/profile.css">
+<script src="${pageContext.request.contextPath}/resources/js/profile.js"></script>
+<link rel=stylesheet type="text/css" href="${pageContext.request.contextPath}/resources/css/profile.css">
 <title></title>
 </head>
 	<div id="profile_main_edit" oncontextmenu="return false" ondragstart="return false" >

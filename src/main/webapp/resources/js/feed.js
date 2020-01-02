@@ -87,7 +87,7 @@ $(document).ready(function(){
 							$(event.target).parent().parent().parent().remove();
 						}else{
 							alert("로그인 유지시간이 말료되었습니다 \n 다시 로그인 하시기 바랍니다");
-							window.location.replace("/jamong.com/login/1");
+							window.location.replace("/jamong.com/login");
 						}
 					},
 					error:function(){
