@@ -126,7 +126,6 @@
    		 </c:if>
    		 <c:if test="${m.mem_state==9}">
    		 	<div id="edit_del_wrap">
-   				<i class="user_edit_btn" title="글 수정" onclick="location.href='${pageContext.request.contextPath}/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
    		 	 <c:if test="${bo.bo_lock==3}">
    				<i class="admin_art_del_recover_btn" title="글 복구"></i>
    			 </c:if>
