@@ -18,9 +18,9 @@ function inq(){
 		$('#phone').focus();
 		return false;
 	}
-	if($('#info').val() == ""){
+	if($('#inq_cont').val() == ""){
 		$('#inq_vali_info').text('문의내용을 입력해 주세요.');
-		$('#info').focus();
+		$('#inq_cont').focus();
 		return false;
 	}
 	if($('#agree').is(":checked") == true){

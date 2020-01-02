@@ -8,7 +8,7 @@
   onselectstart="return false">
   <div id=cat_title_name><strong>${cat_name}</strong></div>
    <div id=cat_writer_block>
-    <div id=cat_writer_title><b>추천작가</b></div>
+    <div id=cat_writer_title><b>Recommend Author</b></div>
      <div id=cat_writer_list>
       <c:forEach var="cat" items="${mlist}">
        <a class=cat_writer_a align="center" href="${pageContext.request.contextPath}/@${cat.mem_id}">
@@ -18,8 +18,8 @@
         		<img class="cat_face_img" src="${pageContext.request.contextPath}/resources/img/cat_writer_face1.jpg" alt="작가이미지" />
        		</div>
        		<div class=cat_writer_name><strong>${cat.mem_nickname}</strong></div>
-       		<div id=cat_write_count>글:${cat.mem_article}</div>
-       		<div id=cat_sub_count>구독자:${cat.mem_subscribe}</div>
+       		<div id=cat_write_count>Article:${cat.mem_article}</div>
+       		<div id=cat_sub_count>Subscriber:${cat.mem_subscribe}</div>
       		 <div class=cat_writer_keyword_div>
       			<c:if test="${!empty cat.mem_fav1}">
       		 	<button class="cat_writer_keyword" ><strong>${cat.mem_fav1}</strong></button>
@@ -37,8 +37,8 @@
      </div>
      
      <div class=cat_write_button>
-      <button type="button" id="cat_write_button" class="cat_write_btn" onclick="location.href='#article';">Article</button>
-      <button type="button" id="cat_book_button" class="cat_book_btn" onclick="location.href='#book';">Book</button>     	 
+      <button type="button" id="cat_write_button" class="cat_write_btn" onclick="location.href='#article';">글</button>
+      <button type="button" id="cat_book_button" class="cat_book_btn" onclick="location.href='#book';">작품</button>     	 
      </div>
    </div>
    
@@ -75,15 +75,21 @@
 	  </div>
 	</a>
 	  <div class=cat_writing_bottom>
+	  <c:if test="${!empty blist.memberVO.mem_fav1}"> 
 	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
 	   <b>${blist.memberVO.mem_fav1}</b>
 	   </button>
+	  </c:if> 
+	  <c:if test="${!empty blist.memberVO.mem_fav2}"> 
 	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
 	   <b>${blist.memberVO.mem_fav2}</b>
 	   </button>
+	  </c:if>
+	  <c:if test="${!empty blist.memberVO.mem_fav3}">
 	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
 	   <b>${blist.memberVO.mem_fav3}</b>
 	   </button>
+	  </c:if>
 	  </div>
 	 </div>
 	</div>
@@ -145,6 +151,7 @@
 	  </c:if>
 	
 	<!-- 책부분 시작 -->
+   <c:if test="${!empty bklist}">
 	<div class=cat_book_block style="display:none;">	
 	<c:forEach var="bklist" items="${bklist}">
 	 <div class=cat_book onclick="location.href='${pageContext.request.contextPath}/book/@${bklist.memberVO.mem_id}/${bklist.bookVO.book_no}'">
@@ -157,6 +164,13 @@
 		<span class=cat_jamong_book>Jamong Book</span>
 	 </div>
 	 </c:forEach>
-	</div>	
+	</div>
+  </c:if>
+  
+   <c:if test="${empty bklist}">
+	  <div class=cat_book_block>
+	  <h3>해당 카테고리에 검색결과가 없습니다!</h3>
+	  </div>
+	  </c:if>		
    </div>
 <%@ include file="../include/footer.jsp" %>
