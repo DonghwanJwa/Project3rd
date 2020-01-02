@@ -176,9 +176,13 @@
 								<c:if test="${empty fp}">
 								</c:if>
 								<%-- 다른사람의 프로필을 들어갔을때 --%>
-								<c:if
-									test="${m.mem_id != mp.mem_id && fp.bo_lock != 0 && m.mem_id == null}"
-								>
+								
+								<%-- 비공개 된 글만 있거나 아예 글이 없을 경우  --%>
+                                <c:if test="${m.mem_id != mp.mem_id && fp.bo_lock == 1 || empty mplist}">
+                                <div class="profile_none"> 작성한 글이 없습니다 </div>
+                                </c:if>
+                                <c:if test="${m.mem_id != mp.mem_id && fp.bo_lock != 0}" >
+								
 									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
 										<div>
 												<div class="profile_article_main">
@@ -290,7 +294,7 @@
 								<b></b>
 							</dd>
 							<dt>
-								<span class="relate"></span>
+								<img class="relate" src="/jamong.com/resources/img/heart.png"/>
 							</dt>
 							<dd class="box_contents_num"></dd>
 						</dl>

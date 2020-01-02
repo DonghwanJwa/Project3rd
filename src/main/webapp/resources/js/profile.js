@@ -57,6 +57,10 @@ $(document).ready(function() {
 				if(data == 1){
 					$(".profile_button_type2").addClass("p_follow");
 					$(".profile_button_type2").text("구독중");
+					 var  plus = parseFloat($(".profile_line_num").text() + 1);
+			            if (!isNaN(plus)){
+			                $(".profile_line_num").text(plus); 
+			            } 
 					$(event.target).attr("data-disabled",'true');
 					setTimeout(function(){
 						$(event.target).attr("data-disabled",'false');
@@ -86,6 +90,10 @@ $(document).ready(function() {
 			$(".profile_button_type2").removeClass("p_follow");
 			$(".p_follow").html();
 			$(".profile_button_type2").text("구독하기");
+			var  minus = parseFloat($(".profile_line_num").text() - 1);
+            if (!isNaN(minus)){
+                $(".profile_line_num").text(minus); 
+            } 
 			$.ajax({
 				type : "POST",
 				url : "unfollow/"+para[4].substring(1),
@@ -200,6 +208,11 @@ $(window).scroll(function(){
 					// 서버로 부터 받아온 data가 list이므로 each문을 사용하여 접근	
 						$(data).each(function(){
 							para[2]++;
+//						      if(this.bo_lock == 0){ //비공개  글
+//		                          str += '<img class="private unlock" src="/jamong.com/resources/img/unlock.png" data-no="' + this.bo_no + '" data-disabled="false" />'
+//		                          }else if (this.bo_lock == 1){ // 공개 글
+//		                          str += '<img class="private lock" src="/jamong.com/resources/img/lock.png" data-no="' + this.bo_no + '" data-disabled="false" />'
+//		                         }
 							str += '<div class="box_contents bookList" data-no="'+ this.memberVO.mem_no +'/'+ this.book_no +'">' 
 								+  '<div class="cover_book">'
 								+  '<a href="/jamong.com/book/@'+ this.memberVO.mem_id + '/' + this.bookVO.book_no +'">'
@@ -222,7 +235,7 @@ $(window).scroll(function(){
 								+	'</dt>'
 								+	'<dd class="box_contents_num">'
 								+	'<b></b>'
-								+	'</dd><dt> <span class="relate">'+ ' ' +'</span>'
+								+    '</dd><dt> <img class="relate" src="/jamong.com/resources/img/heart.png"/>'
 								+	'</dt>'
 								+	'<dd class="box_contents_num"></dd>	</dl>	</div>	</div>'
 						}); // each

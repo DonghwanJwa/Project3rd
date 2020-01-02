@@ -129,7 +129,7 @@ public class MemberController {
 							"Swal.fire({\r\n" + 
 							"		icon : 'warning',\r\n" +
 							"		title : 'Block!',\r\n" + 
-							"		text : '자몽 정책에 위배되는 활동으로 인해 정지된 계정입니다. \n자세한 사항은 문의를 통해 확인하여 주시기 바랍니다.',\r\n" +
+							"		text : '자몽 정책에 위배되는 활동으로 인해 정지된 계정입니다. \\n자세한 사항은 문의를 통해 확인하여 주시기 바랍니다.',\r\n" +
 							"		showCancelButton : true,\r\n" +
 							"		cancelButtonText : '문의하기',\r\n" +
 							"		confirmButtonText : '메인으로',\r\n" +

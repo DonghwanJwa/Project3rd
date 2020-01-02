@@ -81,46 +81,6 @@ $(document).ready(function(){
 	      }
 	});
 
-		/*var ref= $('#login_back_page').val();
-		var para = document.location.href.split("/");
-		$.ajax({
-			type:"POST",
-			url:"/jamong.com/login_ok/"+para[5], 
-			data: {"login_id":login_id ,"login_pwd":login_pwd},
-			datatype:"int",					//서버의 실행된 결과값을 사용자로 받아오는 방법
-			success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
-				if(data==1){					//아이디가없거나 비밀번호가 틀리다면
-					$('#login_pwd_error').text('가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.!');
-					return false;
-				}else if(data==2){				//이미 로그인 되어진 상황이라면 이전페이지로
-					history.back();
-				}else if(data==3){
-					Swal.fire({
-						icon : 'warning',
-						title : 'Block!',
-						text : '자몽 정책에 위배되는 활동으로 인해 정지된 계정입니다. \n자세한 사항은 문의를 통해 확인하여 주시기 바랍니다.',
-						showCancelButton : true,
-						cancelButtonText : '문의하기',
-						confirmButtonText : '메인으로',
-					}).then((result) => {
-						if(result.value){
-							window.location.replace("/jamong.com/");							
-						}else if(result.dismiss === Swal.DismissReason.cancel){
-							window.location.replace("/jamong.com/inquire");
-						}
-					});
-				}else if(data==-1){
-					window.location=ref;
-				}else if(data==-2){
-					window.location.replace("/jamong.com/");										
-				}
-			},
-			error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
-				alert("data error");
-			}
-		});*/
-	
-	
 	/*	회원가입 기본정보 기입란 다음버튼 클릭시 유효성검증	*/
 	
 	$("#join_membership_next_btn").click(function() {
@@ -1079,11 +1039,15 @@ $(function(){
 			url : "join_emailCert",
 			data : {"email": email,"domain":domain},
 			success : function(data){
-				alert("입력하신 이메일로 인증번호가 발송되었습니다. 인증번호를 입력해주세요.");
+					Swal.fire({
+						icon : 'info',
+						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 인증번호를 입력해주세요'
+					}).then((result) => {
 				$('#join_membership_certified_btn').attr("disabled",true);
 				$('#join_membership_emailcheck').val('');
 				$('#join_membership_emailcheck').attr('readonly',false);
-				$('#join_membership_emailcheck_btn').attr('disabled',false);
+				$('#join_membership_emailcheck_btn').attr('disabled',false);					
+					});
 			},
 			beforeSend:function(){
 			        //(이미지 보여주기 처리)
@@ -1110,14 +1074,21 @@ $(function(){
 			data:{"authCode":authCode},
 			success:function(data){
 				if(data=="complete"){
-					alert("인증이 완료되었습니다.");
+					Swal.fire({
+						icon : 'success',
+						text : '인증이 완료되었습니다!'
+					}).then(function(){
 					$('#join_membership_email_flag').val('2');
 					$('#join_membership_next_btn').attr('disabled', false);
 					$('#join_membership_emailcheck').attr('readonly',true);
 					$('#join_membership_emailcheck_btn').attr('disabled',true);
-					sessionStorage.removeItem('authCode');
+					sessionStorage.removeItem('authCode');					
+					});
 				}else if(data == "false"){
-					alert("인증번호를 잘못 입력하셨습니다.")
+					Swal.fire({
+						icon : 'warning',
+						text : '인증번호가 틀렸습니다!'
+					});
 				}
 			},
 			beforeSend:function(){
