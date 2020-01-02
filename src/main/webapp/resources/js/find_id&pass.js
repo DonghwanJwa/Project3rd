@@ -15,7 +15,6 @@ $(function(){
 		
 		if (name=="") {
 			$('#find_id_error_id').text('이름을 입력해주세요!');
-			name.val("").focus();
 			return false;
 		}
 		if (email=="") {
@@ -148,14 +147,10 @@ $(function(){
 				}
 			},
 			beforeSend:function(){
-				//(이미지 보여주기 처리)
-				$('.wrap-loading').show();
+				$('#find_id_pass_email_Certified_btn').attr("disabled",true);
 			},
 			complete:function(){
-				//(이미지 감추기 처리)
-				$('.wrap-loading').hide();
-				
-				//비번찾기로 넘어가도 된다
+				$('#find_id_pass_email_Certified_btn').attr("disabled",false	);
 			},
 			error: function(data){
 				alert("data error");
@@ -274,6 +269,11 @@ $(function(){
 		    event.preventDefault();
 		  };
 		}, true);
+	document.addEventListener('keydown', function(event) {//엔터키 서브밋 막기 이벤트
+		if (event.keyCode === 32) {
+			event.preventDefault();
+		};
+	}, true);
 	//disabled true가 비활성화 false가 활성화
 	//비밀번호 변경 버튼 누를 려면 인증버튼이 비활성화 되어 있어야 하고 비밀번호 정규식 넣어주어야 함
 	//확인버튼이 비활성화가 되어 있지 않으면
@@ -308,7 +308,7 @@ $(function(){
 		
 		//비밀번호 정규식 = 영문,숫자,특수문자의 조합
 		if(!regExpPw.test($("#find_id_pass_pass").val())){ 
-			$('#find_pass_error_pass').text('영문,숫자,특수문자의 조합으로 입력해주세요!');
+			$('#find_pass_error_pass').text('영문,숫자,특수문자로 입력해주세요!');
 			$("#find_pass_error_pass_check").val("")
 			$("#find_id_pass_pass").val("").focus();
 			return false; 

@@ -50,7 +50,6 @@ where mem_no=28
 
 -- 회원 테이블에 작가 포트폴리오 내용 추가
 ALTER member ADD (mem_portflio CLOB);
-ALTER table member ADD (drop_reason VARCHAR2(50));
 ALTER table member ADD (drop_cont VARCHAR2(4000));
 ALTER table member ADD (drop_date DATE);
 ALTER TABLE member ADD (mem_article NUMBER(38) DEFAULT 0);
