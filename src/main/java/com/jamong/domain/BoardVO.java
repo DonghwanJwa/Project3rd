@@ -14,7 +14,6 @@ public class BoardVO {
 	private String bo_color;
 	private int bo_titlespace;
 	private int bo_lock;
-	private int bo_type;
 	private int bo_like;
 	private int book_order;
 	private String cat_name;
@@ -49,7 +48,6 @@ public class BoardVO {
 	public void setBo_cont(String bo_cont) 		   	 {		this.bo_cont = bo_cont;				}
 	public void setBo_hit(int bo_hit) 			  	 {		this.bo_hit = bo_hit;				}
 	public void setBo_thumbnail(String bo_thumbnail) {		this.bo_thumbnail = bo_thumbnail;	}
-	public void setBo_type(int bo_type) 			 {		this.bo_type = bo_type;				}
 	public void setFind_field(String find_field)   	 {		this.find_field = find_field;		}
 	public void setFind_field2(String find_field2) 	 {		this.find_field2 = find_field2;		}
 	public void setFind_field3(String find_field3) 	 {		this.find_field3 = find_field3;		}
@@ -76,7 +74,6 @@ public class BoardVO {
 	public int getMem_no() 		   	{		return mem_no;			}
 	public int getBook_no() 	   	{		return book_no;			}
 	public String getBo_thumbnail() {		return bo_thumbnail;	}
-	public int getBo_type() 		{		return bo_type;			}
 	public String getFind_name()   	{		return find_name;		}
 	public String getFind_field()  	{		return find_field;		}
 	public String getFind_field2() 	{		return find_field2;		}

@@ -283,7 +283,7 @@
    </div>
    </c:if>
    <c:if test="${fList.feed_step == 7}">
-    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" 
+    <div class="feed_new_cont_article" onmouseover="FeedMouseOn(event);" data-no="${fList.feed_no} 
     onmouseleave="FeedMouseOut(event)">
     <a>
      <div class="feed_new_cont_profile">

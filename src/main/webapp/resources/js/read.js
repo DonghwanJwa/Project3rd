@@ -247,7 +247,7 @@ function replyEditOK(e){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login';
+								location.href='/jamong.com/login/1';
 							}
 						});
 					}
@@ -450,7 +450,6 @@ $(document).ready(function(){
 			});
 		}
 	});
-	//http://localhost:8182/jamong.com/@qwer1234/3
 	$('.head-menu-lock-img').click(function(event){
 		if(event.target.getAttribute("data-disabled")=='true'){
 			return false;
@@ -482,7 +481,7 @@ $(document).ready(function(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login';
+								location.href='/jamong.com/login/1';
 							}
 						});
 					}
@@ -493,7 +492,7 @@ $(document).ready(function(){
 			});
 
 		}else{
-			//lock -> unlock
+			// unlock -> lock
 			$.ajax({
 				type:"POST",
 				url:"/jamong.com/boardLock/"+para[5]+"/0",
@@ -516,7 +515,7 @@ $(document).ready(function(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login';
+								location.href='/jamong.com/login/1';
 							}
 						});
 					}
@@ -554,7 +553,7 @@ $(document).ready(function(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login';
+								location.href='/jamong.com/login/1';
 							}
 						});
 					}else if(re==2){
@@ -596,7 +595,7 @@ $(document).ready(function(){
 							cancelButtonText : '아니오'
 						}).then((result) => {
 							if(result.value){
-								location.href='/jamong.com/login';
+								location.href='/jamong.com/login/1';
 							}
 						});
 					}else if(re==2){
@@ -653,7 +652,7 @@ $(document).ready(function(){
 								cancelButtonText : '아니오'
 							}).then((result) => {
 								if(result.value){
-									location.href='/jamong.com/login';
+									location.href='/jamong.com/login/1';
 								}
 							});
 						}else if(data == 3){
@@ -704,7 +703,7 @@ $(document).ready(function(){
 								cancelButtonText : '아니오'
 							}).then((result) => {
 								if(result.value){
-									location.href='/jamong.com/login';
+									location.href='/jamong.com/login/1';
 								}
 							});
 						}else if(data == 3){
