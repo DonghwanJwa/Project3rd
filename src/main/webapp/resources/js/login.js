@@ -1033,11 +1033,15 @@ $(function(){
 			url : "join_emailCert",
 			data : {"email": email,"domain":domain},
 			success : function(data){
-				alert("입력하신 이메일로 인증번호가 발송되었습니다. 인증번호를 입력해주세요.");
+					Swal.fire({
+						icon : 'info',
+						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 인증번호를 입력해주세요'
+					}).then((result) => {
 				$('#join_membership_certified_btn').attr("disabled",true);
 				$('#join_membership_emailcheck').val('');
 				$('#join_membership_emailcheck').attr('readonly',false);
-				$('#join_membership_emailcheck_btn').attr('disabled',false);
+				$('#join_membership_emailcheck_btn').attr('disabled',false);					
+					});
 			},
 			beforeSend:function(){
 			        //(이미지 보여주기 처리)
@@ -1064,14 +1068,21 @@ $(function(){
 			data:{"authCode":authCode},
 			success:function(data){
 				if(data=="complete"){
-					alert("인증이 완료되었습니다.");
+					Swal.fire({
+						icon : 'success',
+						text : '인증이 완료되었습니다!'
+					}).then(function(){
 					$('#join_membership_email_flag').val('2');
 					$('#join_membership_next_btn').attr('disabled', false);
 					$('#join_membership_emailcheck').attr('readonly',true);
 					$('#join_membership_emailcheck_btn').attr('disabled',true);
-					sessionStorage.removeItem('authCode');
+					sessionStorage.removeItem('authCode');					
+					});
 				}else if(data == "false"){
-					alert("인증번호를 잘못 입력하셨습니다.")
+					Swal.fire({
+						icon : 'warning',
+						text : '인증번호가 틀렸습니다!'
+					});
 				}
 			},
 			beforeSend:function(){

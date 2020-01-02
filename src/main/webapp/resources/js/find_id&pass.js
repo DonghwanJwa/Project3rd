@@ -128,7 +128,6 @@ $(function(){
 					//readonly false면 값변경이 가능
 					//disabled true가 비활성화 false가 활성화
 				}else if(data==-1){
-					alert("입력하신 정보에 해당하는 계정이 없습니다.");
 					Swal.fire({
 						icon : 'error',
 						text : '입력하신 정보에 해당하는 계정이 없습니다!'
@@ -175,7 +174,6 @@ $(function(){
 			data:{"authCode":authCode},
 			success:function(data){
 				if(data=="complete"){
-					alert("인증이 완료되었습니다.");
 					Swal.fire({
 						icon : 'success',
 						text : '인증이 완료되었습니다!'
