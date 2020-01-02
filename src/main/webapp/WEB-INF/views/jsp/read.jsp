@@ -185,7 +185,6 @@
 			<%-- 구독/제안 버튼부 --%>
 			<div class="author_button_wrap">
 				<c:if test="${bo.memberVO.mem_no ne m.mem_no}">
-					<a href="#" class="subscribe">구독하기</a>
 					<c:if test="${bo.memberVO.mem_author==1}">
 					 <a href="${pageContext.request.contextPath}/offer_author/@${bo.memberVO.mem_id}" class="offer">제안하기</a>
 					</c:if>
@@ -320,7 +319,7 @@
 						</div>
 						
 						<div class="another_cont">
-						${catList.bo_cont}
+							${catList.bo_cont}
 						</div>
 						
 						<div class="another_auth">
@@ -349,7 +348,7 @@
 						</div>
 						
 						<div class="another_cont_noimg">
-						<p>${catList.bo_cont}</p>
+							${catList.bo_cont}
 						</div>
 						
 						<div class="another_auth">

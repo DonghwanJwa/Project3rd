@@ -223,9 +223,12 @@ public class BoardController {
 			}
 		}
 		for(int i=0;i<catList.size();i++) {
+			String htmlTitle = catList.get(i).getBo_title();
+			String normalTitle = htmlTitle.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String htmlText = catList.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String oneSpace = normalText.replaceAll("&nbsp; "," ");
+			catList.get(i).setBo_title(normalTitle);
 			if(normalText.length()>100) {
 				String hundredText = oneSpace.substring(0,100);							
 				catList.get(i).setBo_cont(hundredText);
