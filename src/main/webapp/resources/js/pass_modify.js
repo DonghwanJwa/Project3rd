@@ -16,9 +16,14 @@ $(document).ready(function(){
 	var regExpPw = RegExp(/^(?=.*\d{1,50})(?=.*[~`!@#$%\^&*()\-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/);//비번	
 
 	/*엔터로 로그인 진행시*/
-	$("#pass_modify_pass").on("keyup",function(key){
+	$("#pass_modify_pass").on("keyup keydown",function(key){
 			if(key.keyCode == 13){
 				$("#pass_modify_lastbtn").trigger("click");
 			}
+			 if(key.type === 'keydown'){
+		          if(key.keyCode == 32) {
+		             return false;
+		          }
+		      }
 	});
 });

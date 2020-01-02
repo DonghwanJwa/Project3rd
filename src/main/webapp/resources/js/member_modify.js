@@ -452,7 +452,9 @@ $(document).ready(function(){
 
 
 	//비밀번호 확인 유효성 검증
-	$("#member_modify_pass").on("focusout", function() {
+	$("#member_modify_pass").on("focusout keydown", function(e) {
+		
+		if(e.type === 'focusout'){
 		if ($.trim($('#member_modify_pass').val())=="") {
 			$('#member_modify_error_pass_check').text('비밀번호 확인을 입력해주세요!');
 			return false;
@@ -461,6 +463,12 @@ $(document).ready(function(){
 			$('#member_modify_error_pass_check').text('비밀번호가 같지 않습니다!');
 			return false;
 		}
+	   }
+		 if(e.type === 'keydown'){
+	          if(e.keyCode == 32) {
+	             return false;
+	          }
+	     }
 		$('#member_modify_error_pass_check').text('');
 	}).on("keyup", function(key) {
 		if ($.trim($('#member_modify_pass').val())=="") {
@@ -477,7 +485,8 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#member_modify_pass_check").on("focusout", function() {
+	$("#member_modify_pass_check").on("focusout keydown", function(e) {
+		if(e.type === 'focusout'){
 		if ($.trim($('#member_modify_pass_check').val())=="") {
 			$('#member_modify_error_pass_check').text('비밀번호 확인을 입력해주세요!');
 			return false;
@@ -486,6 +495,12 @@ $(document).ready(function(){
 			$('#member_modify_error_pass_check').text('비밀번호가 같지 않습니다!');
 			return false;
 		}
+	   }
+		if(e.type === 'keydown'){
+	          if(e.keyCode == 32) {
+	             return false;
+	          }
+	     }
 		$('#member_modify_error_pass_check').text('');
 	}).on("keyup", function(key) {
 		if ($.trim($('#member_modify_pass_check').val())=="") {
@@ -640,12 +655,6 @@ function updateCheck(){
 		if($("#member_modify_pass").attr("name")=="mem_pwd"){ //비밀번호란이 활성화 되었을때만 유효성 검사
 			if ($.trim($('#member_modify_pass').val())=="") {
 				$('#member_modify_error_pass_check').text('비밀번호를 입력해주세요!');
-				return false;
-			}
-			if ($.trim($('#member_modify_pass').val().replace(/ /g,""))) {
-				$('#member_modify_error_pass').text('공백은 사용 불가능!');
-				$("#member_modify_pass").val("").focus();
-				$("#member_modify_pass_check").val("")
 				return false;
 			}
 			if($.trim($('#member_modify_pass').val()).length<8 || $.trim($('#join_membership_pass').val()).length>50){

@@ -212,6 +212,8 @@ public class MemberController {
 		int re=-1;//중복아이디가 없을때 반환값
 		if(check_id != null) {//중복아이디가 있을때
 			re=1;
+		}else {
+			re=2;
 		}
 		return re;
 	}//member_idcheck() 

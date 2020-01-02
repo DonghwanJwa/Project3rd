@@ -59,18 +59,28 @@ function loginOk() {
 $(document).ready(function(){
 	
 	/*엔터로 로그인진행*/
-	$('#login_id').on("keyup", function(key) {
+	$('#login_id').on("keyup keydown", function(key) {
 		if (key.keyCode == 13) {
 			$("#login_pwd").focus();
 		}
+		 if(key.type === 'keydown'){
+	          if(key.keyCode == 32) {
+	             return false;
+	          }
+	      }
 	});
 	
-	$("#login_pwd").on("keyup", function(key){
+	$("#login_pwd").on("keyup keydown", function(key){
 		if (key.keyCode == 13) {
 			$("#login_btn").trigger("click");
 		}
+		 if(key.type === 'keydown'){
+	          if(key.keyCode == 32) {
+	             return false;
+	          }
+	      }
 	});
-		
+
 	/*	회원가입 기본정보 기입란 다음버튼 클릭시 유효성검증	*/
 	
 	$("#join_membership_next_btn").click(function() {
@@ -340,8 +350,11 @@ $(document).ready(function(){
 	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
 	      	  if(data==1){	//중복 아이디가 있다면
 	      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+	      		$('#join_membership_next_btn2').attr("disabled",true);
 	          	return false;
-	      	  }  
+	      	  }else if(data==2){
+	      		$('#join_membership_next_btn2').attr("disabled",false);
+	      	  }
 	        },
 	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
 	    		  alert("data error");
@@ -396,8 +409,11 @@ $(document).ready(function(){
 	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
 	      	  if(data==1){	//중복 아이디가 있다면
 	      		$('#join_membership_error_id').text('중복아이디 입니다!');
+	      		$('#join_membership_next_btn').attr("disabled",true);
 	          	return false;
-	      	  }  
+	      	  }else if(data==2){
+	      		$('#join_membership_next_btn').attr("disabled",false);
+	      	  }
 	        },
 	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
 	    		  alert("data error");
@@ -429,8 +445,11 @@ $(document).ready(function(){
 	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
 	      	  if(data==1){	//중복 아이디가 있다면
 	      		$('#join_membership_error_id').text('중복아이디 입니다!');
+	      		$('#join_membership_next_btn').attr("disabled",true);
 	          	return false;
-	      	  }  
+	      	  }else if(data==2){
+	      		$('#join_membership_next_btn').attr("disabled",false);
+	      	  }
 	        },
 	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
 	    		  alert("data error");
@@ -445,7 +464,9 @@ $(document).ready(function(){
 	});
 	
 	/*비밀번호 검사*/
-	$("#join_membership_pass").on("focusout", function() {
+	$("#join_membership_pass").on("focusout keydown", function(e) {
+		
+	    if(e.type === 'focusout'){
 		if ($.trim($('#join_membership_pass').val())=="") {
 			$('#join_membership_error_pass').text('비밀번호를 입력해주세요!');
 			return false;
@@ -462,6 +483,12 @@ $(document).ready(function(){
 			$('#join_membership_error_pass').text('아이디와 비밀번호가 같습니다');
 			return false; 
 		}
+	   }
+	    if(e.type === 'keydown'){
+	         if(e.keyCode == 32) {
+	            return false;
+	         }
+	      }
 		$('#join_membership_error_pass').text('');
 	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_pass').val())=="") {
@@ -489,7 +516,9 @@ $(document).ready(function(){
 	});
 	
 	/*비밀번호 확인 유효성 검증*/
-	$("#join_membership_pass_check").on("focusout", function() {
+	$("#join_membership_pass_check").on("focusout keydown", function(e) {
+		
+	   if(e.type === 'focusout'){
 		if ($.trim($('#join_membership_pass_check').val())=="") {
 			$('#join_membership_error_pass_check').text('비밀번호 확인을 입력해주세요!');
 			return false;
@@ -498,6 +527,12 @@ $(document).ready(function(){
 			$('#join_membership_error_pass_check').text('비밀번호가 같지 않습니다!');
 			return false;
 		}
+	   }
+	    if(e.type === 'keydown'){
+	         if(e.keyCode == 32) {
+	            return false;
+	         }
+	      }
 		$('#join_membership_error_pass_check').text('');
 	}).on("keyup", function(key) {
 		if ($.trim($('#join_membership_pass_check').val())=="") {
@@ -858,8 +893,13 @@ $(document).ready(function(){
 	});
 */	
 	/*닉네임 유효성 검증*/
-	$("#join_membership_profile_editor").on("focusout", function() {//포커스가 나갈때
+	$("#join_membership_profile_editor").on("focusout keydown", function(e) {//포커스가 나갈때
 		var nickname = $(this).val();		
+		if(e.type === 'keydown'){
+			if(e.keyCode == 32){
+				 return false;
+			}
+		}
 		$.ajax({
 	        type:"POST",
 	        url:"join_membership_idcheck", 
@@ -868,8 +908,11 @@ $(document).ready(function(){
 	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
 	      	  if(data==1){	//중복 아이디가 있다면
 	      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+	      		$('#join_membership_next_btn').attr("disabled",true);
 	          	return false;
-	      	  }  
+	      	  }else if(data==2){
+	      		$('#join_membership_next_btn').attr("disabled",false);
+	      	  }
 	        },
 	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
 	    		  alert("data error");
@@ -886,8 +929,11 @@ $(document).ready(function(){
 	        success: function (data) {		//아작스로 받아오는것이 성공했을경우 서버 데이터를 data변수에 저장
 	      	  if(data==1){	//중복 아이디가 있다면
 	      		$('#join_membership_profile_editor_error').text('중복된 작가명 입니다!');
+	      		$('#join_membership_next_btn2').attr("disabled",true);
 	          	return false;
-	      	  }  
+	      	  }else if(data==2){
+	      		$('#join_membership_next_btn2').attr("disabled",false);
+	      	  }
 	        },
 	    	  error:function(){//비동기식 아작스로 서버디비 데이터를 못가져와서 에러가 발생했을 때 호출되는 함수이다.
 	    		  alert("data error");

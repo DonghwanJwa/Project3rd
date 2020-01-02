@@ -75,7 +75,7 @@
 	outline: 0;
 }
 #member_modify_pwd_modify:active{
-	background-color: orange;
+	background-color: #000;
 	color: white;
 }
 .member_modify_text { /* 인풋박스 설정 */
@@ -136,7 +136,7 @@
 	width: 114px;
 }
 .member_modify_text.emailcheck{
-	width: 276px;
+	width: 270px;
 	height: 15px;
 	outline: 0;
 	border-left: none;
@@ -197,7 +197,10 @@
     margin-bottom: 5px;
     font-size: 10px;
 }
-
+#member_modify_emailcheck_btn:active{
+	background-color: orange;
+	color: white;
+}
 #member_modify_next_btn_div{
 	border-top: 1px solid gray;
 	text-align: right;
