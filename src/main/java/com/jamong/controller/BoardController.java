@@ -227,7 +227,7 @@ public class BoardController {
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String oneSpace = normalText.replaceAll("&nbsp; "," ");
 			if(normalText.length()>100) {
-				String hundredText = oneSpace.substring(0,100);								
+				String hundredText = oneSpace.substring(0,100);							
 				catList.get(i).setBo_cont(hundredText);
 			}else {
 				catList.get(i).setBo_cont(oneSpace);
@@ -489,8 +489,6 @@ public class BoardController {
 		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
 		
-		int flag = Integer.parseInt(multi.getParameter("thumb_remove"));
-
 		MemberVO m = (MemberVO) session.getAttribute("m");
 
 		File UpFile1 = multi.getFile("bo_thumbnail");
@@ -535,10 +533,9 @@ public class BoardController {
 		b.setBo_titlespace(bo_titlespace);
 		b.setBo_lock(bo_lock);
 		b.setCat_name(cat_name);
-
+		
 		bm.put("b",b);
 		bm.put("bo_no",bo_no);
-		bm.put("flag",flag);
 
 		if(m != null) {
 			this.boardService.updateBoard(bm);

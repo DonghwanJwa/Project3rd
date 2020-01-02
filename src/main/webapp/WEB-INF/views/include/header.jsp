@@ -318,6 +318,7 @@
       <div id="head-profile-menu">
        <a href="${pageContext.request.contextPath}/feed" class="head-feed-button">
         <img src="${pageContext.request.contextPath}/resources/img/feed.png" alt="피드"/>
+        <span id="head-feed-count"></span>
        </a>
        <a href="${pageContext.request.contextPath}/admin_main" class="head-feed-button">
         <img src="${pageContext.request.contextPath}/resources/img/admin_icon.png" alt="관리자">

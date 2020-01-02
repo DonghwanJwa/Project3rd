@@ -284,6 +284,7 @@
 		<%-- 리스트 반복문으로 처리 할 것. --%>
 		<h3>같은 작가의 다른 글</h3>
 		 <c:forEach var="blist" items="${bList}">
+		  <c:if test="${!empty blist.bo_thumbnail}">
 			<a href="${pageContext.request.contextPath}/@${blist.memberVO.mem_id}/${blist.bo_no}">
 			<div class="list">
 				<p style="font-weight:bold;">${blist.bo_title}</p>
@@ -291,6 +292,15 @@
 				<img src="${blist.bo_thumbnail}">
 			</div>
 			</a>
+		  </c:if>
+		  <c:if test="${empty blist.bo_thumbnail}">
+			<a href="${pageContext.request.contextPath}/@${blist.memberVO.mem_id}/${blist.bo_no}">
+			<div class="list">
+				<p style="font-weight:bold; width:700px">${blist.bo_title}</p>
+				<span id="read_list_date">${blist.bo_date}</span>
+			</div>
+			</a>
+		  </c:if>
 		 </c:forEach>
 		</div>
 		
