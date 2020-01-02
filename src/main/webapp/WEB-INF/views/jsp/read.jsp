@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title> </title>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/read.css"/>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/write.css" />
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<script src="/jamong.com/resources/js/read.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/read.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/write.css" />
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/read.js"></script>
 </head>
 <body>
 	<%-- 본문 구역 쓰기 페이지와 같음 --%>
@@ -120,19 +120,20 @@
        <div id="write_wrap_bg" style="min-width:940px;">
          <c:if test="${bo.memberVO.mem_no == m.mem_no && bo.book_no == 0}">
        		<div id="edit_del_wrap">
-   				<i class="user_edit_btn" title="글 수정" onclick="location.href='/jamong.com/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
+   				<i class="user_edit_btn" title="글 수정" onclick="location.href='${pageContext.request.contextPath}/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
    				<i class="user_del_btn" title="글 삭제" onclick="ArticleRemove();"></i>
    			</div>
    		 </c:if>
    		 <c:if test="${m.mem_state==9}">
    		 	<div id="edit_del_wrap">
-   				<i class="user_edit_btn" title="글 수정" onclick="location.href='/jamong.com/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
+   				<i class="user_edit_btn" title="글 수정" onclick="location.href='${pageContext.request.contextPath}/@${bo.memberVO.mem_id}/${bo.bo_no}/write';"></i>
    		 	 <c:if test="${bo.bo_lock==3}">
-   				<i class="user_del_recover_btn" title="글 복구" onclick="ArticleRemove();"></i>
+   				<i class="admin_art_del_recover_btn" title="글 복구"></i>
    			 </c:if>
    			 <c:if test="${bo.bo_lock!=3}">
-   				<i class="user_del_btn" title="글 삭제" onclick="ArticleRemove();"></i>
+   				<i class="admin_art_del_btn" title="글 삭제"></i>
    			 </c:if>
+   			 <input type="hidden" id="user_del_no" value="${bo.memberVO.mem_no}" readonly>
    			</div>
    		 </c:if>
     <div class="write_cont_area write_cont_align_left" style="min-height:300px;">
@@ -149,26 +150,26 @@
 	<div id="read_back">
 	<div id="border_line_wrap">
 		<hr class="border_line"/>
-		<img src="/jamong.com/resources/img/logo.png"/>
+		<img src="${pageContext.request.contextPath}/resources/img/logo.png"/>
 		<hr class="border_line"/>
 	</div>
 		<div id="white_back">	
 		<%-- 작가 프로필 --%>
 		<div id="author_profile">
 			<%-- 프로필사진, 이름 --%>
-			<a href="/jamong.com/@${bo.memberVO.mem_id}"><img class="author_img" src="${bo.memberVO.profile_photo}" alt="글쓴이 프로필사진"/></a>
-			<a href="/jamong.com/@${bo.memberVO.mem_id}"><span><strong>${bo.memberVO.mem_nickname}</strong></span></a>
+			<a href="${pageContext.request.contextPath}/@${bo.memberVO.mem_id}"><img class="author_img" src="${bo.memberVO.profile_photo}" alt="글쓴이 프로필사진"/></a>
+			<a href="${pageContext.request.contextPath}/@${bo.memberVO.mem_id}"><span><strong>${bo.memberVO.mem_nickname}</strong></span></a>
 			
 			<%-- 작가 키워드 --%>
 			<div class="author_keyword">
 			 <c:if test="${!empty bo.memberVO.mem_fav1}">
-				<a href="/jamong.com/search?result=post">${bo.memberVO.mem_fav1}</a>
+				<a href="${pageContext.request.contextPath}/search?result=post">${bo.memberVO.mem_fav1}</a>
 			 </c:if>
 			 <c:if test="${!empty bo.memberVO.mem_fav2}">
-				<a href="/jamong.com/search?result=post">${bo.memberVO.mem_fav2}</a>
+				<a href="${pageContext.request.contextPath}/search?result=post">${bo.memberVO.mem_fav2}</a>
 			 </c:if>
 			 <c:if test="${!empty bo.memberVO.mem_fav3}">
-				<a href="/jamong.com/search?result=post">${bo.memberVO.mem_fav3}</a>
+				<a href="${pageContext.request.contextPath}/search?result=post">${bo.memberVO.mem_fav3}</a>
 			 </c:if>
 			</div>
 			
@@ -186,7 +187,7 @@
 				<c:if test="${bo.memberVO.mem_no ne m.mem_no}">
 					<a href="#" class="subscribe">구독하기</a>
 					<c:if test="${bo.memberVO.mem_author==1}">
-					 <a href="/jamong.com/offer_author/@${bo.memberVO.mem_id}" class="offer">제안하기</a>
+					 <a href="${pageContext.request.contextPath}/offer_author/@${bo.memberVO.mem_id}" class="offer">제안하기</a>
 					</c:if>
 				</c:if>
 			</div>
@@ -202,9 +203,9 @@
 			 <%-- 댓글일 때 --%>
 			  <c:if test="${r.rep_step == 0}">
 				<li class="comment_frame" onmouseenter="replyBtnShow(event);" onmouseleave="replyBtnHide(event);">
-					<a href="/jamong.com/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
+					<a href="${pageContext.request.contextPath}/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
 					<div class="comment_info_wrap">
-					<a href="/jamong.com/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
+					<a href="${pageContext.request.contextPath}/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
 					<span class="comment_info_icon">·</span>
 					<span class="comment_date">${r.rep_date}</span>
 					<span class="comment_menu">
@@ -228,9 +229,9 @@
 			  <c:if test="${r.rep_step != 0}">
 				<li class="comment_frame" onmouseenter="replyBtnShow(event);" onmouseleave="replyBtnHide(event);">
 					<span class="comment_enter_icon">ㄴ</span><span class="comment_enter_re">RE:</span>
-					<a href="/jamong.com/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
+					<a href="${pageContext.request.contextPath}/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
 					<div class="comment_info_wrap">
-					<a href="/jamong.com/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
+					<a href="${pageContext.request.contextPath}/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
 					<span class="comment_info_icon">·</span>
 					<span class="comment_date">${r.rep_date}</span>
 					<span class="comment_menu">
@@ -265,13 +266,13 @@
 		
 			<div class="remote_button">
 				<c:if test="${!empty pre}">
-                <a href="/jamong.com/@${pre.memberVO.mem_id}/${pre.bo_no}"> < 이전글 </a>
+                <a href="${pageContext.request.contextPath}/@${pre.memberVO.mem_id}/${pre.bo_no}"> < 이전글 </a>
                 </c:if>
                 <c:if test="${empty pre}">
                 <a class="read_preArt_btn" onclick="preNullError();"> < 이전글 </a>
                 </c:if>
                 <c:if test="${!empty next}">
-                <a href="/jamong.com/@${next.memberVO.mem_id}/${next.bo_no}"> 다음글 > </a>
+                <a href="${pageContext.request.contextPath}/@${next.memberVO.mem_id}/${next.bo_no}"> 다음글 > </a>
                 </c:if>
                 <c:if test="${empty next}">
                 <a class="read_nextArt_btn" onclick="nextNullError();"> 다음글 > </a>
@@ -283,7 +284,7 @@
 		<%-- 리스트 반복문으로 처리 할 것. --%>
 		<h3>같은 작가의 다른 글</h3>
 		 <c:forEach var="blist" items="${bList}">
-			<a href="/jamong.com/@${blist.memberVO.mem_id}/${blist.bo_no}">
+			<a href="${pageContext.request.contextPath}/@${blist.memberVO.mem_id}/${blist.bo_no}">
 			<div class="list">
 				<p style="font-weight:bold;">${blist.bo_title}</p>
 				<span id="read_list_date">${blist.bo_date}</span>
@@ -299,7 +300,7 @@
 			<div class="another_wrap">
 				<h3>같은 카테고리 다른 글</h3>
 				<c:forEach var="catList" items="${catList}">
-				<a href="/jamong.com/@${catList.memberVO.mem_id}/${catList.bo_no}">
+				<a href="${pageContext.request.contextPath}/@${catList.memberVO.mem_id}/${catList.bo_no}">
 				  <!-- 썸네일 있을때 -->
 				   <c:if test="${!empty catList.bo_thumbnail}">
 					<div class="another_cover">

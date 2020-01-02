@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <meta charset="UTF-8">
 <%@ include file="../include/admin_header.jsp" %>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/admin_accuse.css"/>
-<script src="/jamong.com/resources/js/admin_accuse.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin_accuse.css"/>
+<script src="${pageContext.request.contextPath}/resources/js/admin_accuse.js"></script>
  <h3 class=admin_acc_title>신고목록</h3>
 <form action="admin_accuse">
  <div class=admin_acc_main>
@@ -22,7 +22,7 @@
      
      <c:if test="${!empty alist}">
      	<c:forEach var="a" items="${alist}">   	 	
-     	 <tr onclick="location.href='/jamong.com/admin_accuse_info?no=${a.ac_no}&page=${page}'" class="ac_adm_tr">
+     	 <tr onclick="location.href='${pageContext.request.contextPath}/admin_accuse_info?no=${a.ac_no}&page=${page}'" class="ac_adm_tr">
      	 	<td align="center" class="ac_list_underline">
      	 	  ${a.ac_no}
      	 	</td>

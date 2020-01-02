@@ -92,6 +92,19 @@ public class BoardServiceImpl implements BoardService {
 		return this.boardDao.boardBan(bo);
 	}
 
+	@Transactional
+	@Override
+	public void adminArticleDelete(int bo_no, int mem_no, int state) {
+		if(state == -1) {
+			this.sympathyDao.sympathyArticleDelete(bo_no);
+			this.replyDao.replyDelete(bo_no);
+			this.boardDao.articleDelete(bo_no);
+		}else if(state == 1) {
+			this.boardDao.articleRecover(bo_no);
+		}
+		this.memberDao.updateArticleCount(mem_no,state);
+	}
+
 	@Override
 	public List<BoardVO> bestList() {	
 		List<BoardVO> blist = this.boardDao.bestList(); 
@@ -158,14 +171,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO getPreBoardCont(HashMap<String, Object> bm) {
-		return this.boardDao.getPreBoardCont(bm);
+	public List<BoardVO> profileScroll(HashMap<String, Object> scroll) {
+		return this.boardDao.profileScroll(scroll);
 	}
 
 	@Override
-	public List<BoardVO> profileScroll(HashMap<Object, Object> scroll) {
-		return this.boardDao.profileScroll(scroll);
+	public BoardVO getPreBoardCont(HashMap<String, Object> bm) {
+		return this.boardDao.getPreBoardCont(bm);
 	}
-	
 	
 }

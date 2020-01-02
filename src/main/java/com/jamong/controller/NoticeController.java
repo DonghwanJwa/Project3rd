@@ -36,47 +36,82 @@ public class NoticeController {
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");			
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");		
 		}else {
-			int page=1;
-			int limit=10;
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				
+				int page=1;
+				int limit=10;
+				if(request.getParameter("page") != null) {
+					page=Integer.parseInt(request.getParameter("page"));
+				}
+				String search_name=request.getParameter("search_name");
+				String search_field=request.getParameter("search_field");
+				
+				n.setSearch_name("%"+search_name+"%");
+				n.setSearch_field(search_field);
+				
+				int listcount=this.noticeService.getListCount(n);
+				
+				n.setStartrow((page-1)*10+1);
+				n.setEndrow(n.getStartrow()+limit-1);
+				
+				List<NoticeVO> nlist=this.noticeService.getNoticeList(n);
+				
+				int maxpage=(int)((double)listcount/limit+0.95);
+				int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+				int endpage=maxpage;
+				if(endpage>startpage+10-1) endpage=startpage+10-1;
+				
+				ModelAndView m=new ModelAndView("jsp/admin_notice");
+				
+				m.addObject("n",n);
+				m.addObject("nlist",nlist);
+				m.addObject("page",page);
+				m.addObject("startpage",startpage);
+				m.addObject("endpage",endpage);
+				m.addObject("maxpage",maxpage);
+				m.addObject("search_name",search_name);
+				m.addObject("search_field"+search_field);
+				m.addObject("listcount",listcount);
+				
+				return m;
 			}
-			String search_name=request.getParameter("search_name");
-			String search_field=request.getParameter("search_field");
-			
-			n.setSearch_name("%"+search_name+"%");
-			n.setSearch_field(search_field);
-			
-			int listcount=this.noticeService.getListCount(n);
-			
-			n.setStartrow((page-1)*10+1);
-			n.setEndrow(n.getStartrow()+limit-1);
-			
-			List<NoticeVO> nlist=this.noticeService.getNoticeList(n);
-			
-			int maxpage=(int)((double)listcount/limit+0.95);
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			int endpage=maxpage;
-			if(endpage>startpage+10-1) endpage=startpage+10-1;
-			
-			ModelAndView m=new ModelAndView("jsp/admin_notice");
-			
-			m.addObject("n",n);
-			m.addObject("nlist",nlist);
-			m.addObject("page",page);
-			m.addObject("startpage",startpage);
-			m.addObject("endpage",endpage);
-			m.addObject("maxpage",maxpage);
-			m.addObject("search_name",search_name);
-			m.addObject("search_field"+search_field);
-			m.addObject("listcount",listcount);
-			
-			return m;
 		}
 		return null;
 	}
@@ -91,20 +126,54 @@ public class NoticeController {
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
-			int page=1;
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				int page=1;
+				if(request.getParameter("page") != null) {
+					page=Integer.parseInt(request.getParameter("page"));
+				}
+				ModelAndView m=new ModelAndView();
+				m.addObject("page",page); // 목록가기로 돌아 갔을 때 책갈피 기능
+				m.setViewName("jsp/admin_notice_write");
+				
+				return m;
 			}
-			ModelAndView m=new ModelAndView();
-			m.addObject("page",page); // 목록가기로 돌아 갔을 때 책갈피 기능
-			m.setViewName("jsp/admin_notice_write");
-			
-			return m;
 		}
 		return null;
 	} // admin_notice_write()
@@ -127,32 +196,72 @@ public class NoticeController {
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
-			int page=1;
-			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
-			
-			n=this.noticeService.getNoticeCont(no);
-			
-			String noti_cont=n.getNoti_cont().replace("\n", "<br/>");
-			
-			ModelAndView m=new ModelAndView();
-			
-			m.addObject("n",n);
-			m.addObject("noti_cont",noti_cont);
-			m.addObject("page",page);
-			
-			if(state.equals("cont")) {
-				m.setViewName("jsp/admin_notice_cont");
-			}else if(state.equals("edit")) {
-				m.setViewName("jsp/admin_notice_edit");
-			}else if(state.equals("del")) {
-				m.setViewName("jsp/admin_notice_del");
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Oops!',\r\n" + 
+						"		text : '로그인이 필요합니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		showCancelButton : true,\r\n" + 
+						"		confirmButtonText : '로그인',\r\n" + 
+						"		cancelButtonText : '메인으로'\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				location='/jamong.com/login';\r\n" + 
+						"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+						"				location='/jamong.com/';\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				
+				int page=1;
+				if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
+				
+				n=this.noticeService.getNoticeCont(no);
+				
+				String noti_cont=n.getNoti_cont().replace("\n", "<br/>");
+				
+				ModelAndView m=new ModelAndView();
+				
+				m.addObject("n",n);
+				m.addObject("noti_cont",noti_cont);
+				m.addObject("page",page);
+				
+				if(state.equals("cont")) {
+					m.setViewName("jsp/admin_notice_cont");
+				}else if(state.equals("edit")) {
+					m.setViewName("jsp/admin_notice_edit");
+				}else if(state.equals("del")) {
+					m.setViewName("jsp/admin_notice_del");
+				}
+				return m;
 			}
-			return m;
 		}
 		return null;
 	} // admin_notice_cont()
@@ -170,22 +279,67 @@ public class NoticeController {
 		String noti_pwd=request.getParameter("noti_pwd");
 		
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
-			if(!noti_pwd.equals(db_pwd.getNoti_pwd())) {
-				out.println("<script>");
-				out.println("alert('게시글 비밀번호가 다릅니다.');");
-				out.println("history.back();");
-				out.println("</script>");
-			} else {
-				this.noticeService.noticeEdit(n);
-				
-				ModelAndView m=new ModelAndView("redirect:/admin_notice_cont?no="+n.getNoti_no()+"&page="+page+"&state=cont");
-				
-				return m;
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				if(!noti_pwd.equals(db_pwd.getNoti_pwd())) {
+					out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+							"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+							"<body>\r\n" + 
+							"<script>\r\n" + 
+							"Swal.fire({\r\n" + 
+							"		title : 'Wrong Password!',\r\n" + 
+							"		text : '게시글 비밀번호가 틀렸습니다!',\r\n" + 
+							"		icon: 'warning',\r\n" + 
+							"		}).then((result) => {\r\n" + 
+							"			if(result.value){\r\n" + 
+							"				history.back();\r\n" + 
+							"			}\r\n" + 
+							"		});\r\n" + 
+							"</script>\r\n" + 
+							"</body>");
+				} else {
+					this.noticeService.noticeEdit(n);
+					
+					ModelAndView m=new ModelAndView("redirect:/admin_notice_cont?no="+n.getNoti_no()+"&page="+page+"&state=cont");
+					
+					return m;
+				}
 			}
 		}
 		return null;
@@ -204,21 +358,66 @@ public class NoticeController {
 		String noti_pwd=request.getParameter("noti_pwd");
 		
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
-			if(!noti_pwd.equals(db_pwd.getNoti_pwd())) {
-				out.println("<script>");
-				out.println("alert('게시글 비밀번호가 다릅니다.');");
-				out.println("history.back();");
-				out.println("</script>");
-			} else {
-				this.noticeService.noticeDel(n.getNoti_no());
-				ModelAndView m=new ModelAndView("redirect:/admin_notice?page="+page);
-				
-				return m;
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				if(!noti_pwd.equals(db_pwd.getNoti_pwd())) {
+					out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+							"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+							"<body>\r\n" + 
+							"<script>\r\n" + 
+							"Swal.fire({\r\n" + 
+							"		title : 'Wrong Password!',\r\n" + 
+							"		text : '게시글 비밀번호가 틀렸습니다!',\r\n" + 
+							"		icon: 'warning',\r\n" + 
+							"		}).then((result) => {\r\n" + 
+							"			if(result.value){\r\n" + 
+							"				history.back();\r\n" + 
+							"			}\r\n" + 
+							"		});\r\n" + 
+							"</script>\r\n" + 
+							"</body>");
+				} else {
+					this.noticeService.noticeDel(n.getNoti_no());
+					ModelAndView m=new ModelAndView("redirect:/admin_notice?page="+page);
+					
+					return m;
+				}
 			}
 		}
 		return null;

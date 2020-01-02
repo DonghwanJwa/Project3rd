@@ -9,14 +9,17 @@
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sweetalert2.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert2.min.js"></script>
 
 <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-<link rel="stylesheet" type="text/css" href="./resources/css/write.css" />
-<script src="./resources/js/jamong_write.js"></script>
-<script src="./resources/js/summernote-ko-KR.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/write.css" />
+<script src="${pageContext.request.contextPath}/resources/js/jamong_write.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/summernote-ko-KR.js"></script>
 <title> </title>
 </head>
 <body>

@@ -72,7 +72,12 @@ public class BookDAOImpl implements BookDAO {
 		return this.sqlSession.selectList("my_book_List",mem_no);
 	}
 	
-	@Override
+  @Override
+	public List<BoardVO> bookScroll(HashMap<Object, Object> bookScroll) {
+		return this.sqlSession.selectList("my_book_scroll",bookScroll);
+	}
+
+  @Override
 	public void recommendUpUpdate(BookVO bk) {
 		this.sqlSession.update("rec_up",bk);
 	}

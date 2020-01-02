@@ -15,6 +15,7 @@ body{
 	margin-top: 37px;
 }
 #cat_title_name{
+	font-family:"NanumMyeongJo";
 	width:200px;
 	height:60px;
 	font-size: 31px;
@@ -75,6 +76,7 @@ body{
 	margin-bottom: 100px;
 }
 #cat_writer_title{
+	font-family:"NanumMyeongJo";
 	height: 42px;
 	width:910px;
 	font-size:24px;

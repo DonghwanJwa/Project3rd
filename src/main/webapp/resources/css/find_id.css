@@ -190,13 +190,14 @@ display: inline-block;
 }
 
 #find_id_pass_email_Certified_btn{
-	border: 2px solid orange;
-    background-color: white;
-    width: 36px;
-    height: 25px;
-    font-size: 1px;
-    outline: none;
-    cursor: pointer;
+	border: 1px solid orange;
+	background-color: white;
+	width: 36px;
+	height: 25px;
+	border-radius: 25px;
+	font-size: 10px;
+	outline: none;
+	cursor: pointer;
 }
 #find_id_pass_email_Certified_next_btn{
 	border: 2px solid orange;
@@ -217,16 +218,16 @@ display: inline-block;
 }
 
 #find_pass_pass_modify{
-	width: 223px;
-    height: 45px;
-    font-size: 1rem;
-    margin-top: 10px;
-    background-color: white;
-    border: solid 2px orange;
-    color: black;
-    outline: 0;
-    cursor: pointer;
-    margin-bottom: 50px;
+	width: 250px;
+	height: 45px;
+	font-size: 1rem;
+	margin-top: 10px;
+	background-color: white;
+	border: solid 2px orange;
+	color: black;
+	outline: 0;
+	cursor: pointer;
+	margin-bottom: 50px;
 }
 
 

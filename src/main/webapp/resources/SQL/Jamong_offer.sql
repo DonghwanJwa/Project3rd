@@ -19,6 +19,11 @@ mem_no NUMBER(38)                   -- 작가 회원번호
 
 DROP TABLE offer;
 
+SELECT * FROM board order by bo_no desc;
+
+ALTER TABLE member ADD (mem_article NUMBER(38) DEFAULT 0);
+ALTER TABLE member ADD (mem_subscribe NUMBER(38) DEFAULT 0);
+
 -- 시퀀스 생성
 CREATE SEQUENCE off_no_seq
 START WITH 0
@@ -27,6 +32,8 @@ MINVALUE 0
 NOCACHE;
 
 DROP SEQUENCE off_no_seq;
+
+SELECT off_no_seq.nextval FROM DUAL
 
 -- 참조키 설정
 ALTER TABLE offer

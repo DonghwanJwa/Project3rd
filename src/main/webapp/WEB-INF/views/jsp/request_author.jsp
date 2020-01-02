@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/request_author.css"/>
-<script src="/jamong.com/resources/js/request_author.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/request_author.css"/>
+<script src="${pageContext.request.contextPath}/resources/js/request_author.js"></script>
 <script>
 function req_check() {
 	

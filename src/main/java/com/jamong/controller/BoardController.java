@@ -60,7 +60,7 @@ public class BoardController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		session=request.getSession();
-		
+
 		MemberVO readM = (MemberVO)session.getAttribute("m");
 
 		HashMap<String,Object> bm = new HashMap<>();
@@ -72,54 +72,120 @@ public class BoardController {
 		bo = this.boardService.getUserBoardCont(bo_no);
 
 		/** lock 0 비공개, 1 공개, 2 정지, 3 삭제 **/
-	
+
 		if(bo.getBo_lock() == 0) { // 비공개 글일때 ( lock가 0일때 )
 			if(readM == null) {
-				out.println("<script>");
-				out.println("alert('비공개 처리된 글 입니다.');");
-				out.println("history.back();");
-				out.println("</script>");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Warning',\r\n" + 
+						"		text : '비공개 게시물입니다!',\r\n" + 
+						"		icon: 'warning',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
 				return null;
 			}else if(readM.getMem_state()==9) {
 				//관리자는 그냥 들어갈 수 있음
 			}else if(readM.getMem_no()!=bo.getMem_no()) {
-				out.println("<script>");
-				out.println("alert('비공개 처리된 글 입니다.');");
-				out.println("history.back();");
-				out.println("</script>");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Warning',\r\n" + 
+						"		text : '비공개 게시물입니다!',\r\n" + 
+						"		icon: 'warning',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
 				return null;
 			}
 		}else if(bo.getBo_lock() == 3) { // 삭제된 게시글일때 ( lock가 3일때 )
 			if(readM == null) {
-				out.println("<script>");
-				out.println("alert('삭제된 게시글 입니다.');");
-				out.println("history.back();");
-				out.println("</script>");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Warning',\r\n" + 
+						"		text : '삭제된 게시물입니다!',\r\n" + 
+						"		icon: 'warning',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
 				return null;
 			}else if(readM.getMem_state()!=9) {
-				out.println("<script>");
-				out.println("alert('삭제된 게시글 입니다.');");
-				out.println("history.back();");
-				out.println("</script>");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Warning',\r\n" + 
+						"		text : '삭제된 게시물입니다!',\r\n" + 
+						"		icon: 'warning',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
 				return null;
 			}
 		}else if(bo.getBo_lock() == 2) {  //정지된 게시글일 때( lock가 2일때 )
 			if(readM == null) {
-				out.println("<script>");
-				out.println("alert('관리자에 의해 블락처리된 글입니다.');");
-				out.println("history.back();");
-				out.println("</script>");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Warning',\r\n" + 
+						"		text : '관리자에 의해 비공개 처리된 게시글입니다!',\r\n" + 
+						"		icon: 'warning',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
 				return null;
 			}else if(readM.getMem_state()!=9) {
-				out.println("<script>");
-				out.println("alert('관리자에 의해 블락처리된 글입니다.');");
-				out.println("history.back();");
-				out.println("</script>");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Warning',\r\n" + 
+						"		text : '관리자에 의해 비공개 처리된 게시글입니다!',\r\n" + 
+						"		icon: 'warning',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
 				return null;
 			}
 		}
-		
-		
+
+
 		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		int replyCount = this.repService.getUserReplyCount(bo_no);
 		List<BoardVO> catList = this.boardService.getUserBoardCatArticle(bo.getCat_name());
@@ -185,18 +251,33 @@ public class BoardController {
 	public int user_delArticle(@PathVariable int bo_no,
 			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		int flag = 0;
-
 		MemberVO artM = (MemberVO)session.getAttribute("m");		
-
 		if(artM != null) {
 			this.boardService.articleDelete(bo_no,artM.getMem_no());
-
 			flag = 1;
 		}else {
-
 			flag = 2;
 		}
+		return flag;
+	}// 게시글 삭제
 
+	@PostMapping("artdel/{mem_no}/{bo_no}/{state}")
+	@ResponseBody
+	public int admin_delArticle(@PathVariable int mem_no, @PathVariable int bo_no, @PathVariable int state,
+			HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		int flag = 0;
+		MemberVO artM = (MemberVO)session.getAttribute("m");
+
+		if(artM != null) {
+			if(artM.getMem_state()==9) {
+				this.boardService.adminArticleDelete(bo_no,mem_no,state);
+				flag = 1; //성공
+			}else {
+				flag = 3; //관리자가 아님
+			}
+		}else {
+			flag = 2; //세션만료
+		}
 		return flag;
 	}// 게시글 삭제
 
@@ -210,15 +291,49 @@ public class BoardController {
 		MemberVO m = (MemberVO)session.getAttribute("m");
 
 		if (m != null) {
-			bo = this.boardService.getUserBoardCont(bo_no);
-			mv.addObject("bo",bo);
-			mv.setViewName("jsp/jamong_edit");
-			return mv;
+			if(mem_id == m.getMem_id()) {
+				bo = this.boardService.getUserBoardCont(bo_no);
+				mv.addObject("bo",bo);
+				mv.setViewName("jsp/jamong_edit");
+				return mv;
+			}else {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				location='/jamong.com/';\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			} // if => 재로그인한 계정이 해당 게시글 수정 가능 계정이 아닐 때
 		}else {
-			out.println("<script>");
-			out.println("alert('로그인이 필요한 페이지입니다!');");
-			out.println("location='/jamong.com/login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '세션이 만료되었습니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}
 		return null;
 	} // 수정 폼 이동
@@ -234,10 +349,26 @@ public class BoardController {
 		MemberVO m = (MemberVO) session.getAttribute("m");
 
 		if (m == null) {
-			out.println("<script>");
-			out.println("alert('로그인이 필요한 페이지입니다!');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요한 페이지입니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		} else {
 			mv.setViewName("jsp/jamong_write");
 			return mv;
@@ -266,7 +397,6 @@ public class BoardController {
 		String bo_cont = multi.getParameter("bo_cont");
 		String bo_color = multi.getParameter("bo_color");
 		int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
-		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
 		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
 
@@ -308,7 +438,6 @@ public class BoardController {
 		b.setBo_cont(bo_cont);
 		b.setBo_titlespace(bo_titlespace);
 		b.setBo_lock(bo_lock);
-		b.setBo_type(bo_type);
 		b.setCat_name(cat_name);
 		b.setMem_no(mem_no);
 
@@ -318,10 +447,21 @@ public class BoardController {
 
 		this.boardService.insertBoard(bm,mem_no);
 
-		out.println("<script>");
-		out.println("alert('게시글이 등록되었습니다!')");
-		out.println("location='/jamong.com/@"+m.getMem_id()+"';");
-		out.println("</script>");
+		out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+				"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+				"<body>\r\n" + 
+				"<script>\r\n" + 
+				"Swal.fire({\r\n" + 
+				"		title : 'Good Job!',\r\n" + 
+				"		text : '게시글이 등록되었습니다!',\r\n" + 
+				"		icon: 'success',\r\n" + 
+				"		}).then((result) => {\r\n" + 
+				"			if(result.value){\r\n" + 
+				"				location='/jamong.com/@"+m.getMem_id()+"';\r\n" + 
+				"			}\r\n" + 
+				"		});\r\n" + 
+				"</script>\r\n" + 
+				"</body>");
 
 		return null;
 	}// user_write_ok() => 유저 글 등록
@@ -347,10 +487,9 @@ public class BoardController {
 		String bo_cont = multi.getParameter("bo_cont");
 		String bo_color = multi.getParameter("bo_color");
 		int bo_lock = Integer.parseInt(multi.getParameter("bo_lock"));
-		int bo_type = Integer.parseInt(multi.getParameter("bo_type"));
 		int bo_titlespace=Integer.parseInt(multi.getParameter("bo_titlespace"));
 		String cat_name = multi.getParameter("cat_name");
-		
+
 		int flag = Integer.parseInt(multi.getParameter("thumb_remove"));
 
 		MemberVO m = (MemberVO) session.getAttribute("m");
@@ -397,7 +536,6 @@ public class BoardController {
 		b.setBo_cont(bo_cont);
 		b.setBo_titlespace(bo_titlespace);
 		b.setBo_lock(bo_lock);
-		b.setBo_type(bo_type);
 		b.setCat_name(cat_name);
 
 		bm.put("b",b);
@@ -405,15 +543,42 @@ public class BoardController {
 
 		if(m != null) {
 			this.boardService.updateBoard(bm);
-			out.println("<script>");
-			out.println("alert('게시글이 수정되었습니다!');");
-			out.println("location='/jamong.com/@"+m.getMem_id()+"/"+bo_no+"';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Good Job!',\r\n" + 
+					"		text : '게시글이 수정되었습니다!',\r\n" + 
+					"		icon: 'success',\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/@"+m.getMem_id()+"/"+bo_no+"';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		} else {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다 로그인페이지로 돌아갑니다.');");
-			out.println("location='/jamong.com/login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}
 		return null;
 	} // 게시글 수정 컨트롤러
@@ -559,7 +724,7 @@ public class BoardController {
 		}
 		return re;
 	}
-	
+
 	@RequestMapping("best_load")
 	public ResponseEntity<List<BoardVO>> best_load(){
 		ResponseEntity<List<BoardVO>> entity = null;
@@ -661,42 +826,69 @@ public class BoardController {
 	@PostMapping("profile_scroll")
 	@ResponseBody
 	public List<BoardVO> profileScrolling(
-			String bo_no, String mem_no,
+			String bo_no, String mem_no, String book_no,
+			String num, String pb,
 			HttpServletResponse response, 
 			HttpServletRequest request
 			) throws Exception{
-		System.out.println(bo_no);
-		System.out.println(mem_no);
-		int data_bo = Integer.parseInt(bo_no);
-		int data_mno = Integer.parseInt(mem_no);
-		
+
 		SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));	
-		HashMap<Object,Object> scroll = new HashMap<>();
-		scroll.put("bo_no", data_bo);
-		scroll.put("mem_no", data_mno);
-		List<BoardVO> pfData = this.boardService.profileScroll(scroll);
-		for(int i=0; i<scroll.size(); i++) {
 
-			Date mpListFormat_date = b_format.parse(pfData.get(i).getBo_date());
-			String mpListTitle_date = TIME_MAXIMUM.formatTimeString(mpListFormat_date);
-			pfData.get(i).setBo_date(mpListTitle_date);
-			
-			// 미리보여주는 글 태그 없앰 (제목)
-			String titleText = pfData.get(i).getBo_title();
-			String titleNomarText = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			pfData.get(i).setBo_title(titleNomarText);
+		HashMap<String,Object> scroll = new HashMap<>();
+		scroll.put("bo_no", bo_no);
+		scroll.put("mem_no", mem_no);
+		scroll.put("n", num);
+		if(pb.equals("article")) {
 
-			//미리보여주는 글 태그 없앰 (내용)
-			String htmlText = pfData.get(i).getBo_cont();
-			String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-			String oneSpace = nomalText.replaceAll("&nbsp; "," ");
-			pfData.get(i).setBo_cont(oneSpace);
-			System.out.println(pfData.get(i).getBo_no());
+			List<BoardVO> mplist = this.boardService.profileScroll(scroll);
+
+			for(int i=0; i<scroll.size(); i++) {
+				if( !mplist.isEmpty() ) {
+					Date mpListFormat_date = b_format.parse(mplist.get(i).getBo_date());
+					String mpListTitle_date = TIME_MAXIMUM.formatTimeString(mpListFormat_date);
+					mplist.get(i).setBo_date(mpListTitle_date);
+
+					// 미리보여주는 글 태그 없앰 (제목)
+					String titleText = mplist.get(i).getBo_title();
+					String titleNomarText = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+					mplist.get(i).setBo_title(titleNomarText);
+
+					//미리보여주는 글 태그 없앰 (내용)
+					String htmlText = mplist.get(i).getBo_cont();
+					String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+					String oneSpace = nomalText.replaceAll("&nbsp; "," ");
+					if(oneSpace.length()>200) {
+						String hundredText = oneSpace.substring(0,200);								//100글자만 홈페이지에 노출되도록 변경
+						mplist.get(i).setBo_cont(hundredText);
+					}else {
+						mplist.get(i).setBo_cont(oneSpace);
+					}
+				}
+			}
+			return mplist;
+		}else if(pb.equals("magazine")) {
+			HashMap<Object,Object> bookScroll = new HashMap<>();
+			bookScroll.put("book_no", book_no);
+			bookScroll.put("mem_no", mem_no);
+			bookScroll.put("n",num);
+			List<BoardVO> mybook = this.bookService.bookScroll(bookScroll);
+
+			for(int i=0;i<mybook.size();i++) {
+				Date mbListFormat_date = b_format.parse(mybook.get(i).getBookVO().getBook_date());
+				String mbListTitle_date = date_format.format(mbListFormat_date);
+				mybook.get(i).getBookVO().setBook_date(mbListTitle_date);
+
+				String bookHtmlText = mybook.get(i).getBookVO().getBook_name();
+				String bookStrippedText = bookHtmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");	
+				mybook.get(i).getBookVO().setBook_name(bookOneSpace);
+			}
+			return mybook;
 		}
-		return pfData;
+		return null;
 	}
-	
+
 	@PostMapping("search_scroll")
 	@ResponseBody
 	public Object search_scroll(
@@ -714,7 +906,6 @@ public class BoardController {
 
 		if(w.equals("post")) {				//글검색
 			List<BoardVO> boardList = this.boardService.getSearchScrollPost(searchMap);			
-
 			for (int i = 0; i < boardList.size(); i++) {
 				// 시간 계산 해서 방금, 몇분전 띄우기
 				Date bListFormat_date = org_format.parse(boardList.get(i).getBo_date());
@@ -725,6 +916,7 @@ public class BoardController {
 				String htmlText = boardList.get(i).getBo_cont();
 				String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 				String oneSpace = normalText.replaceAll("&nbsp;"," ");
+
 				if(oneSpace.length()>200) {
 					String hundredText = oneSpace.substring(0,200);								//100글자만 홈페이지에 노출되도록 변경
 					boardList.get(i).setBo_cont(hundredText);
@@ -741,6 +933,7 @@ public class BoardController {
 				String bookStrippedText = bookHtmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 				String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");					
 				bookList.get(i).getBookVO().setBook_name(bookOneSpace);
+
 			}
 			return bookList;
 		}else if(w.equals("author")) {		//작가검색
@@ -749,5 +942,5 @@ public class BoardController {
 		}
 		return null;
 	}
-	
+
 }

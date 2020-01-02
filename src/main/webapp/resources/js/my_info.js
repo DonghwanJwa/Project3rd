@@ -54,29 +54,51 @@ $(document).ready(function(){
 			$('#leaveagree').focus();
 			return false;
 		}
-
-		var removeOK = confirm('정말로 탈퇴하시겠습니까?');
-
-		if(removeOK == true){
-			$.ajax({
-				type:"POST",
-				url:"Withdrawal_ok",
-				data: {"my_info_leave_text_id":my_info_leave_text_id},
-				datatype:"int",
-				success: function (data){
-					if(data==1){
-						alert("탈퇴가 완료되었습니다. 이용해 주셔서 감사합니다.")
-						window.location.replace("/jamong.com/");					
-					}else{
-						alert("로그인 시간이 만료되었습니다. 다시 로그인 해주세요")
-						window.location.replace("/jamong.com/login");
+		Swal.fire({
+			icon : 'question',
+			title : 'Caution!',
+			text : '정말로 회원탈퇴 하시겠습니까?',
+			showCancelButton : true,
+			confirmButtonText : '예',
+			cancelButtonText : '아니오',
+			focusConfirm : false,
+			reverseButtons : true
+		}).then((result) => {
+			if(result.value){
+				$.ajax({
+					type:"POST",
+					url:"Withdrawal_ok",
+					data: {"my_info_leave_text_id":my_info_leave_text_id},
+					datatype:"int",
+					success: function (data){
+						if(data==1){
+							Swal.fire({
+								icon : 'success',
+								text : '탈퇴되었습니다. 이용해 주셔서 감사합니다.'
+							}).then(function(){
+								window.location.replace("/jamong.com/");								
+							});
+						}else{
+							Swal.fire({
+								icon : 'info',
+								title : 'Oops!',
+								text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+								showCancelButton : true,
+								confirmButtonText : '예',
+								cancelButtonText : '아니오'
+							}).then((result) => {
+								if(result.value){
+									location.href='/jamong.com/login';
+								}
+							});
+						}
+					},
+					error:function(){
+						alert("data error");
 					}
-				},
-				error:function(){
-					alert("data error");
-				}
-			});
-		}
+				});				
+			}
+		});
 	});
 
 	$("#my_info_before_btn").click(function(){
@@ -91,10 +113,23 @@ $(document).ready(function(){
 			datatype:"int",
 			success: function (data){
 				if(data==1){
-					alert("카테고리가 수정되었습니다");
+					Swal.fire({
+						icon : 'success',
+						text : '카테고리가 수정되었습니다!'
+					})
 				}else{
-					alert("로그인 시간이 만료되었습니다. 다시 로그인 해주세요")
-					window.location.replace("/jamong.com/login");
+					Swal.fire({
+						icon : 'info',
+						title : 'Oops!',
+						text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+						showCancelButton : true,
+						confirmButtonText : '예',
+						cancelButtonText : '아니오'
+					}).then((result) => {
+						if(result.value){
+							location.href='/jamong.com/login';
+						}
+					});
 				}
 			},
 			error:function(){

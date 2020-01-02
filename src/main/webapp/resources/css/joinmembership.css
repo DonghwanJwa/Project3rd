@@ -14,7 +14,6 @@ body{
 	justify-content:center;
 	align-items: center;	
 }
-	
 #join_membership_main_wrap{
 	outline: 1px solid #fee1b6;
 	width:840px;
@@ -42,7 +41,7 @@ body{
 
 #join_membership_img_logo img{
 	width: 200px;
-	height: 75px;
+	height: 90px;
 }
 
 #join_membership_sequence_box {
@@ -61,18 +60,17 @@ body{
 }
 
 .join_membership_sequence_list{
+	background-color: #fdfeff;
 	margin: 0 10px;
 	padding: 5px;
 	font-size: 18px;
-	border:2px solid #F5F0F0;
-	border-radius: 5px;
 }
 
 .membership_step{
-	border:2px solid orange;
+	border-bottom:1px solid orange;
 }
 .membership_complete{
-	border:2px solid #00ff00;
+	border-bottom:1px solid #00ff00;
 }
 
 #join_membership_sub_div_1{
@@ -207,7 +205,7 @@ body{
 	font-size:16px;
 	outline: 0;
 	padding: 0px;
-	padding-left: 15px;
+	padding-left: 10px;
 }
 
 #join_membership_email_atMark{
@@ -236,12 +234,11 @@ body{
 	border-bottom: 2px solid orange;
 }
 #join_membership_certified_btn{
-	width: 48px;
-	height: 34px;
+	padding: 5px 13px;
+	border-radius: 25px;
 	background-color:white;
-	border: solid 2px orange;
+	border: solid 1px orange;
 	outline: 0;
-	margin-left: 5px;
 	cursor: pointer;
 }
 #join_membership_certified_btn:active{
@@ -283,7 +280,9 @@ body{
 	background-color: orange;
 	color:white;
 }
-
+.join_membership_button_div{
+	text-align:center;
+}
 .join_membership_policy_box{
 	display: flex;
     align-items: center;
@@ -305,13 +304,14 @@ body{
 }
 
 #join_membership_next_btn{
-	border: solid 2px orange;
+	border: solid 1px orange;
 	width: 200px;
 	height: 50px;
+	border-radius: 25px;
 	background-color: white;
 	cursor: pointer;
 	outline: 0;
-	margin: 0px 300px;
+	/* margin: 0px auto; */
 }
 
 #join_membership_next_btn:active{
@@ -422,7 +422,7 @@ body{
     outline: none;
     border: none;
     border-bottom: 1px solid #eee;
-    width: 40%;
+    width: 43%;
 }
 
 #join_membership_profile_editor_error{
@@ -475,14 +475,15 @@ body{
 	justify-content: center;
 }
 #join_membership_before_btn2, #join_membership_next_btn2{
-	border: solid 2px orange;
+	border: 1px solid orange;
 	min-width: 200px;
 	height: 50px;
+	border-radius: 25px;
 	background-color: white;
 	cursor: pointer;
 	outline: 0;
-	margin:0 45px;
-	margin-top: 25px
+	margin: 0 40px;
+	margin-top: 25px;
 }
 #join_membership_before_btn2:active{
 	background-color: orange;
@@ -509,10 +510,10 @@ body{
 	width:470px;
 	font-weight: normal;
 	font-size:14px;
-	padding-left: 55px;
 	color:#3d3d3d;
-	margin:0 85px;
-	margin-bottom:10px;	
+	text-align: center;
+	margin: 0 auto;
+	margin-bottom:10px;
 }
 
 #join_membership_category-list{
@@ -550,13 +551,14 @@ body{
 }
 
 #join_membership_before_btn3, #join_membership_next_btn3{
-	border: solid 2px orange;
+	border: 1px solid orange;
 	width: 200px;
 	height: 50px;
 	background-color: white;
 	cursor: pointer;
+	border-radius: 25px;
 	outline: 0;
-	margin:0 45px;
+	margin: 0 40px;
 	margin-top: 37px;
 }
 #join_membership_before_btn3:active{

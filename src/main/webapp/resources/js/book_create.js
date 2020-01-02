@@ -119,21 +119,33 @@ $(document).on(
 
 function createCheck() {
 	if ($.trim($("#book_create_cover_title").text()) == "") {
-		alert("책 제목을 입력하세요.");
+		Swal.fire({
+			text : '책 제목을 입력해주세요.',
+			icon : 'info'
+			});
 		$("#book_create_cover_title").text("").focus();
 		return false;
 	}
 	if ($.trim($("#book_create_intro_cont").text()) == "") {
-		alert("책 소개를 입력하세요.");
+		Swal.fire({
+			text : '책 소개를 입력해주세요.',
+			icon : 'info'
+			});
 		$("#book_create_intro_cont").text("").focus();
 		return false;
 	}
 	if ($("#create_list").children().length == "") {
-		alert("책으로 만들 글을 선택해 주세요.");
+		Swal.fire({
+			text : '글을 선택해 주세요.',
+			icon : 'info'
+			});
 		return false;
 	}// ul 리스트가 비어있으면
 	if ($("#create_list").children().length < 5) {
-		alert("책으로 만들 글을 5개 이상 선택해 주세요.");
+		Swal.fire({
+			text : '책 집필엔 최소 5개의 글이 선택되어야 합니다!',
+			icon : 'warning'
+			});
 		return false
 	}// ul 리스트 글 5개 미만
 	var screenWidth = $(document).width();
@@ -148,7 +160,10 @@ function createCheck() {
 
 function createBookCheck() {
 	if (category_count == 0) {
-		alert("카테고리를 선택해 주세요");
+		Swal.fire({
+			text : '카테고리를 선택하세요!',
+			icon : 'warning'
+			});
 		return false;
 	}
 	$("#create_list [type=checkbox]").prop("checked", true);
@@ -164,7 +179,10 @@ function handleImgFileSelect(e) {
 
 	filesArr.forEach(function(f) {
 		if (!f.type.match("image.*")) {
-			alert('확장자는 이미지 확장자만 가능합니다!');
+			Swal.fire({
+				text : '확장자는 이미지 확장자만 선택 가능합니다!',
+				icon : 'warning'
+				});
 			return;
 		}
 		sel_file = f;

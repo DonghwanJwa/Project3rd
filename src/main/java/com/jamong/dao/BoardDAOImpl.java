@@ -55,6 +55,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
+	public void articleRecover(int bo_no) {
+		this.sqlSession.update("article_rec", bo_no);
+	}
+
+	@Override
 	public List<BoardVO> recomArticle() {
 		return this.sqlSession.selectList("board.index_article");
 	}
@@ -150,7 +155,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
   @Override
-  public List<BoardVO> profileScroll(HashMap<Object, Object> scroll) {
+  public List<BoardVO> profileScroll(HashMap<String, Object> scroll) {
 	return this.sqlSession.selectList("profileScroll",scroll);
 	}
 

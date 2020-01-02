@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/joinmembership.css" />
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css" />
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/header.css" />
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<script src="/jamong.com/resources/js/login.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/joinmembership.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sweetalert2.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert2.min.js"></script>
 <title>회원가입 페이지입니다</title>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
@@ -16,7 +17,7 @@
 	<div id="join_membership_main_wrap">
 	 <div class="wrap-loading" style="display:none">
       <div>
-       <img src="/jamong.com/resources/img/loading1.gif" />
+       <img src="${pageContext.request.contextPath}/resources/img/loading1.gif" />
       </div>
 	 </div>
 
@@ -24,7 +25,7 @@
 			<div id="join_membership_main_div">
 				<!-------------------------------로고------------------------------------>
 				<div id="join_membership_img_logo">
-					<a href="/jamong.com/"><img src="/jamong.com/resources/img/logo2.png" /></a>
+					<a href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/resources/img/logo2.png" /></a>
 					<div id="join_membership_sequence_box">
 						<ol id="join_membership_sequence">
 							<li>
@@ -119,12 +120,12 @@
 						<div class="join_membership_error" id="join_membership_error_email_check"></div>
 						</div>
 					</div>
-					<div>
+					<div class="join_membership_button_div">
 					<%-- 메일인증 구현해야됨!!! --%> 
 						<div class="join_membership_policy_box">
 					 	 <input id="join_membership_check" type="checkbox" name="agree" >
 					 	 <label id="join_membership_check_comment" id="inq_check" for="agree">
-					 	   자몽의 <a href="/jamong.com/policy_terms" target="_blank">이용약관</a> 및 <a href="/jamong.com/policy_privacy" target="_blank">개인정보 처리방침</a>에 동의합니다.
+					 	   자몽의 <a href="${pageContext.request.contextPath}/policy_terms" target="_blank">이용약관</a> 및 <a href="${pageContext.request.contextPath}/policy_privacy" target="_blank">개인정보 처리방침</a>에 동의합니다.
 					 	 </label>
 					 	 <div class="join_membership_error" id="join_membership_policy_error"></div>
 					 	</div>
@@ -154,8 +155,8 @@
 										<h3>
 											<label for="join_membership_profile_editor"	class="join_membership_profile_font">닉네임</label> 
 										</h3>
-										<textarea id="join_membership_profile_editor" name="mem_nickname" placeholder="이름을 입력해주세요(30자 이내)" maxlength="30"></textarea>
-										<b class="join_membership_profile_anoun">작가명을 입력하지 않으시면 아이디로 지정이 됩니다.</b>
+										<textarea id="join_membership_profile_editor" name="mem_nickname" placeholder="닉네임을 입력해주세요(10자 이내)" maxlength="10"></textarea>
+										<b class="join_membership_profile_anoun">닉네임을 입력하지 않으시면 아이디로 지정이 됩니다.</b>
 										<div id="join_membership_profile_editor_error"></div>
 									</div>
 								</div>

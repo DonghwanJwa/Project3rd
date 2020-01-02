@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<script src="/jamong.com/resources/js/new_book.js"></script>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/new_book.css">
+<script src="${pageContext.request.contextPath}/resources/js/new_book.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/new_book.css">
 
 <%-- 상단 슬라이드 배너 --%>
 <section class="new_book_list_banner">
@@ -18,7 +18,7 @@
 <c:when test="${status.count eq 5}"> style="background-color: #005365; top: 400px;" </c:when>
 </c:choose>
 >
-   <a target="_blank" href="/jamong.com/book/@${bkBanner.memberVO.mem_id}/${bkBanner.bookVO.book_no}">
+   <a target="_blank" href="${pageContext.request.contextPath}/book/@${bkBanner.memberVO.mem_id}/${bkBanner.bookVO.book_no}">
     <div class="new_book_banner_book">
      <div class="new_book_banner_book_info">
       <p class="text_banner_book_title">
@@ -45,7 +45,7 @@
         <img src="${bkBanner.bookVO.book_cover}" alt="책 커버 이미지">
        </c:if>
        <c:if test="${empty bkBanner.bookVO.book_cover}">
-        <img src="/jamong.com/resources/img/자몽.jpg" alt="책 커버 이미지">
+        <img src="${pageContext.request.contextPath}/resources/img/자몽.jpg" alt="책 커버 이미지">
        </c:if>
       <div class="new_book_banner_book_cont">
        <div class="new_book_banner_book_cont_top">
@@ -100,7 +100,7 @@
        <img class="img_cover" src="${book.bookVO.book_cover}">
       </c:if>
       <c:if test="${empty img}">
-       <img class="img_cover" src="/jamong.com/resources/img/feed.png">
+       <img class="img_cover" src="${pageContext.request.contextPath}/resources/img/feed.png">
       </c:if>
       </div>
       <p class="title">${book.bookVO.book_name}</p>

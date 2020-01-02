@@ -9,8 +9,20 @@ function accuseShow(a) {
 		url:"/jamong.com/accuse_ok",
 		success: function (data) {		
 			if(data==-1){
-				alert('로그인이 필요한 페이지 입니다.');
-				location="/jamong.com/login/1";
+				Swal.fire({ 
+							title : 'Oops!', 
+							text : '로그인이 필요합니다!',
+							icon: 'error',
+							showCancelButton : true,
+							confirmButtonText : '로그인',
+							cancelButtonText : '메인으로'
+							}).then((result) => {
+								if(result.value){
+									location='/jamong.com/login';
+								}else if(result.dismiss === Swal.DismissReason.cancel) {
+									location='/jamong.com/';
+								}
+							});
 			}else if(data==1){
 				if($('#acc_wrap').css("display") == "none") {
 					$('#acc_wrap').show();

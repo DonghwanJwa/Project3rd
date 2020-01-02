@@ -46,25 +46,63 @@ public class AuthorController {
 		MemberVO m=(MemberVO)session.getAttribute("m");
 		
 		if(m == null) {
-			out.println("<script>");
-			out.println("alert('로그인이 필요한 서비스입니다. 로그인 해주세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '세션이 만료되었습니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
 			if(m.getMem_author() == 1) {
-				out.println("<script>");
-				out.println("alert('잘못된 접근입니다.');");
-				out.println("history.back();");
-				out.println("</script>");
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
 			} else {
 				int no=m.getMem_no();
 				int acheck=this.authorService.authorcheck(no);
 
 				if(acheck != 0) {
-					out.println("<script>");
-					out.println("alert('심사중인 작가신청이 존재합니다.\\n결과를 기다려주세요!');");
-					out.println("history.back();");
-					out.println("</script>");
+					out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+							"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+							"<body>\r\n" + 
+							"<script>\r\n" + 
+							"Swal.fire({\r\n" + 
+							"		title : 'Screening...',\r\n" + 
+							"		text : '심사중인 신청이 있습니다.\n결과를 기다려주세요!',\r\n" + 
+							"		icon: 'info',\r\n" + 
+							"		}).then((result) => {\r\n" + 
+							"			if(result.value){\r\n" + 
+							"				history.back();\r\n" + 
+							"			}\r\n" + 
+							"		});\r\n" + 
+							"</script>\r\n" + 
+							"</body>");
 				}else {
 					return new ModelAndView("jsp/request_author");
 				}
@@ -125,10 +163,21 @@ public class AuthorController {
 		
 		this.authorService.sendAuthor(a);
 		
-		out.println("<script>");
-		out.println("alert('작가신청이 완료되었습니다.');");
-		out.println("history.go(-2);");
-		out.println("</script>");
+		out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+				"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+				"<body>\r\n" + 
+				"<script>\r\n" + 
+				"Swal.fire({\r\n" + 
+				"		title : 'Success',\r\n" + 
+				"		text : '작가신청에 성공했습니다! \n 결과를 기다려주세요!',\r\n" + 
+				"		icon: 'Success',\r\n" + 
+				"		}).then((result) => {\r\n" + 
+				"			if(result.value){\r\n" + 
+				"				history.back();\r\n" + 
+				"			}\r\n" + 
+				"		});\r\n" + 
+				"</script>\r\n" + 
+				"</body>");
 		
 		return null;
 	} // request_author_in()
@@ -141,55 +190,89 @@ public class AuthorController {
 		MemberVO adm_m=(MemberVO)session.getAttribute("m"); // 세션에 저장된 값 가져오기
 		
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1'");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '세션이 만료되었습니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
-			int page=1;
-			int limit=10;
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				int page=1;
+				int limit=10;
+				if(request.getParameter("page") != null) {
+					page=Integer.parseInt(request.getParameter("page"));
+				}
+				String search_name=request.getParameter("search_name");
+				String search_field1=request.getParameter("search_field1");
+				String search_field2=request.getParameter("search_field2");
+				
+				a.setSearch_name("%"+search_name+"%");
+				a.setSearch_field1(search_field1);
+				a.setSearch_field2(search_field2);
+				
+				int listcount=this.authorService.req_count(a);
+				
+				a.setStartrow((page-1)*10+1);
+				a.setEndrow(a.getStartrow()+limit-1);
+				
+				List<AuthorVO> reqlist=this.authorService.req_list(a);
+				
+				// 총 페이지
+				int maxpage=(int)((double)listcount/limit+0.95);
+				// 시작페이지
+				int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+				// 마지막 페이지
+				int endpage=maxpage;
+				if(endpage > startpage+10-1) endpage=startpage+10-1;
+				
+				ModelAndView mv=new ModelAndView();
+				
+				mv.addObject("a",a);
+				mv.addObject("reqlist",reqlist);
+				mv.addObject("listcount",listcount);
+				mv.addObject("page",page);
+				mv.addObject("startpage",startpage);
+				mv.addObject("maxpage",maxpage);
+				mv.addObject("endpage",endpage);
+				mv.addObject("search_name",search_name);
+				mv.addObject("search_field1",search_field1);
+				mv.addObject("search_field2",search_field2);
+				
+				mv.setViewName("jsp/admin_author");
+				
+				return mv;
 			}
-			String search_name=request.getParameter("search_name");
-			String search_field1=request.getParameter("search_field1");
-			String search_field2=request.getParameter("search_field2");
-			
-			a.setSearch_name("%"+search_name+"%");
-			a.setSearch_field1(search_field1);
-			a.setSearch_field2(search_field2);
-
-			int listcount=this.authorService.req_count(a);
-			
-			a.setStartrow((page-1)*10+1);
-			a.setEndrow(a.getStartrow()+limit-1);
-			
-			List<AuthorVO> reqlist=this.authorService.req_list(a);
-			
-			// 총 페이지
-			int maxpage=(int)((double)listcount/limit+0.95);
-			// 시작페이지
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			// 마지막 페이지
-			int endpage=maxpage;
-			if(endpage > startpage+10-1) endpage=startpage+10-1;
-			
-			ModelAndView mv=new ModelAndView();
-						
-			mv.addObject("a",a);
-			mv.addObject("reqlist",reqlist);
-			mv.addObject("listcount",listcount);
-			mv.addObject("page",page);
-			mv.addObject("startpage",startpage);
-			mv.addObject("maxpage",maxpage);
-			mv.addObject("endpage",endpage);
-			mv.addObject("search_name",search_name);
-			mv.addObject("search_field1",search_field1);
-			mv.addObject("search_field2",search_field2);
-			
-			mv.setViewName("jsp/admin_author");
-			
-			return mv;
 		}
 		return null;
 	} // admin_author()
@@ -204,42 +287,77 @@ public class AuthorController {
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '세션이 만료되었습니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
-			ModelAndView mv=new ModelAndView();
-			int page=1;
-			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
-			
-			AuthorVO a=this.authorService.req_info(no);
-			
-			String aut_intro=a.getAut_intro();
-			String aut_plan=a.getAut_plan();
-			
-			if(a.getAut_intro() != null) {
-				aut_intro=a.getAut_intro().replace("\n", "<br/>");
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				
+				ModelAndView mv=new ModelAndView();
+				int page=1;
+				if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
+				
+				AuthorVO a=this.authorService.req_info(no);
+				
+				String aut_intro=a.getAut_intro();
+				String aut_plan=a.getAut_plan();
+				
+				if(a.getAut_intro() != null) {
+					aut_intro=a.getAut_intro().replace("\n", "<br/>");
+				}
+				if(a.getAut_plan() != null) {
+					aut_plan=a.getAut_plan().replace("\n", "<br/>");
+				}
+				String fileName1=a.getAut_file1().substring(a.getAut_file1().lastIndexOf("/")+1);
+				String fileName2=a.getAut_file2().substring(a.getAut_file2().lastIndexOf("/")+1);
+				String fileName3=a.getAut_file3().substring(a.getAut_file3().lastIndexOf("/")+1);
+				
+				mv.setViewName("jsp/admin_author_info");
+				
+				mv.addObject("a",a);
+				mv.addObject("no",no);
+				mv.addObject("page",page);
+				mv.addObject("aut_intro",aut_intro);
+				mv.addObject("aut_plan",aut_plan);
+				mv.addObject("fileName1",fileName1);
+				mv.addObject("fileName2",fileName2);
+				mv.addObject("fileName3",fileName3);
+				
+				return mv;
 			}
-			if(a.getAut_plan() != null) {
-				aut_plan=a.getAut_plan().replace("\n", "<br/>");
-			}
-			String fileName1=a.getAut_file1().substring(a.getAut_file1().lastIndexOf("/")+1);
-			String fileName2=a.getAut_file2().substring(a.getAut_file2().lastIndexOf("/")+1);
-			String fileName3=a.getAut_file3().substring(a.getAut_file3().lastIndexOf("/")+1);
-			
-			mv.setViewName("jsp/admin_author_info");
-			
-			mv.addObject("a",a);
-			mv.addObject("no",no);
-			mv.addObject("page",page);
-			mv.addObject("aut_intro",aut_intro);
-			mv.addObject("aut_plan",aut_plan);
-			mv.addObject("fileName1",fileName1);
-			mv.addObject("fileName2",fileName2);
-			mv.addObject("fileName3",fileName3);
-			
-			return mv;
 		}
 		
 		return null;
@@ -428,51 +546,84 @@ public class AuthorController {
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 				
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");	
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '세션이 만료되었습니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		} else {
-			int page=1;
-			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
-			
-			a=this.authorService.req_info(no);
-			int sMem_no = adm_m.getMem_no();
-			HashMap<String, Object> am = new HashMap<>();
-			
-			String subject="자몽 작가신청 결과내용입니다.";
-			String to=a.getMemberVO().getEmail_id()+"@"+a.getMemberVO().getEmail_domain();
-			
-			am.put("a",a);
-			am.put("sMem_no", sMem_no);
-
-			if(state.equals("accept")) {
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				int page=1;
+				if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
 				
-				StringBuilder mailCont=new StringBuilder();
-				mailCont.append("<h3 style=\"font-weight:normal\">안녕하세요. "+a.getMemberVO().getMem_nickname()+"님, 글에 꿈을 담다, 자몽입니다.</h3><br/><br/>");
-				mailCont.append("우선 자몽 작가에 신청해주셔서 정말 감사드립니다. 작가님의 신청내역을 꼼꼼히 읽고 내부에서 심사한 결과, <br/><br/>");
-				mailCont.append("<b>회원님의 신청이 승인되어 자몽작가로 선정되었음을 알려드립니다.</b><br/><br/>");
-				mailCont.append("앞으로도 작가님의 자몽 생활을 응원합니다.<br/><br/> 감사합니다.");
+				a=this.authorService.req_info(no);
+				int sMem_no = adm_m.getMem_no();
+				HashMap<String, Object> am = new HashMap<>();
 				
-				this.authorService.acceptAuthor(am);
-				this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, null, request);
+				String subject="자몽 작가신청 결과내용입니다.";
+				String to=a.getMemberVO().getEmail_id()+"@"+a.getMemberVO().getEmail_domain();
 				
-				return new ModelAndView("redirect:/admin_author?page="+page);
-			}else if(state.equals("reject")) {
+				am.put("a",a);
+				am.put("sMem_no", sMem_no);
 				
-				StringBuilder mailCont=new StringBuilder();
-				mailCont.append("<h3 style=\"font-weight:normal\">안녕하세요. "+a.getMemberVO().getMem_nickname()+"님, 글에 꿈을 담다, 자몽입니다.</h3><br/><br/>");
-				mailCont.append("우선 자몽 작가에 신청해주셔서 정말 감사드립니다. 작가님의 신청내역을 꼼꼼히 읽고 내부에서 심사한 결과, <br/><br/>");
-				mailCont.append("<b>아쉽게도 다음기회에 회원님의 작가활동을 기대해야 할 것 같습니다.</b><br/><br/>");
-				mailCont.append("준비가 되면 언제든 자몽의 문을 두드려주세요!<br/><br/> 감사합니다.");
-				
-				this.authorService.rejectAuthor(am);
-				this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, null, request);
-				
-				return new ModelAndView("redirect:/admin_author?page="+page);
+				if(state.equals("accept")) {
+					
+					StringBuilder mailCont=new StringBuilder();
+					mailCont.append("<h3 style=\"font-weight:normal\">안녕하세요. "+a.getMemberVO().getMem_nickname()+"님, 글에 꿈을 담다, 자몽입니다.</h3><br/><br/>");
+					mailCont.append("우선 자몽 작가에 신청해주셔서 정말 감사드립니다. 작가님의 신청내역을 꼼꼼히 읽고 내부에서 심사한 결과, <br/><br/>");
+					mailCont.append("<b>회원님의 신청이 승인되어 자몽작가로 선정되었음을 알려드립니다.</b><br/><br/>");
+					mailCont.append("앞으로도 작가님의 자몽 생활을 응원합니다.<br/><br/> 감사합니다.");
+					
+					this.authorService.acceptAuthor(am);
+					this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, null, request);
+					
+					return new ModelAndView("redirect:/admin_author?page="+page);
+				}else if(state.equals("reject")) {
+					
+					StringBuilder mailCont=new StringBuilder();
+					mailCont.append("<h3 style=\"font-weight:normal\">안녕하세요. "+a.getMemberVO().getMem_nickname()+"님, 글에 꿈을 담다, 자몽입니다.</h3><br/><br/>");
+					mailCont.append("우선 자몽 작가에 신청해주셔서 정말 감사드립니다. 작가님의 신청내역을 꼼꼼히 읽고 내부에서 심사한 결과, <br/><br/>");
+					mailCont.append("<b>아쉽게도 다음기회에 회원님의 작가활동을 기대해야 할 것 같습니다.</b><br/><br/>");
+					mailCont.append("준비가 되면 언제든 자몽의 문을 두드려주세요!<br/><br/> 감사합니다.");
+					
+					this.authorService.rejectAuthor(am);
+					this.mailService.send(subject, mailCont.toString(), "projectJamong@gmail.com", to, null, request);
+					
+					return new ModelAndView("redirect:/admin_author?page="+page);
+				}
 			}
 		}
-		
 		return null;
 	}
 	

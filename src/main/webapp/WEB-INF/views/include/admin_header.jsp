@@ -5,9 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>자몽 관리자 페이지</title>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/admin.css" />
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<script src="/jamong.com/resources/js/admin.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/admin.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sweetalert2.css" />
+
+<script src="${pageContext.request.contextPath}/resources/js/sweetalert2.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
 </head>
 <body>
 	<%-- 관리자 페이지 상단 (HEADER) 시작 --%>
@@ -15,7 +18,7 @@
 	<div id="adm_main_header">
 		<%-- 로고 --%>
 		<div id="adm_main_logo">
-			<a href="admin_main"><img src="/jamong.com/resources/img/logo2.png" /></a>
+			<a href="admin_main"><img src="${pageContext.request.contextPath}/resources/img/logo2.png" /></a>
 		</div>
 		
 		<%-- 메뉴 --%>
@@ -23,7 +26,7 @@
 			<div id="adm_main_welcome">
 				${m.mem_name}님 환영합니다.&nbsp;&nbsp;&nbsp;
 				<a name="adm_logout" id="adm_logout" href="admin_logout">로그아웃</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a name="jamong_main_page" id="jamong_main_page" href="/jamong.com/">메인으로</a>
+				<a name="jamong_main_page" id="jamong_main_page" href="${pageContext.request.contextPath}/">메인으로</a>
 			</div>
 			<nav>
 			<ul>

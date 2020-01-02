@@ -241,6 +241,7 @@
  </select>
  
  <select id="my_book_List" resultMap="boardMap">
+  <![CDATA[
   SELECT book.book_no,
   		 book.book_name,
   		 book.book_cover,
@@ -256,8 +257,30 @@
   INNER JOIN member m
   ON book.mem_no = m.mem_no
   WHERE m.mem_no = #{mem_no}
+  AND rowNum <= 6
+  ]]>
   </select>
-
+ <select id="my_book_scroll" parameterType="java.util.HashMap" resultMap="boardMap">
+SELECT * FROM
+(SELECT ROWNUM RN,X.* FROM
+ (SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.book_date,
+  		 book.book_editdate,
+  		 book.cat_name,
+  		 book.mem_no as book_mem_no,
+  		 m.mem_no as m_mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname
+  FROM (SELECT * FROM book ORDER BY book_date)book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  WHERE m.mem_no = #{mem_no})
+  X)
+  WHERE RN BETWEEN (#{n}+1) AND (#{n}+10)
+ </select>
  <!-- 추천 증가 -->
  <update id="rec_up">
   UPDATE book SET book_recommend = book_recommend + 1 WHERE book_no = #{book_no}

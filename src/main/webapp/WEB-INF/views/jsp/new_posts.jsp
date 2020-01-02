@@ -1,12 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../include/header.jsp"%>
-<script src="/jamong.com/resources/js/jquery-ui.min.js"></script>
-<script src="/jamong.com/resources/js/new_posts.js"></script>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/new_post.css" />
+<script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/new_posts.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/new_post.css" />
 
 <div class="wrap-loading" style="display: none">
  <div>
-  <img src="./resources/img/loading1.gif" />
+  <img src="${pageContext.request.contextPath}/resources/img/loading1.gif" />
  </div>
 </div>
 
@@ -24,12 +24,12 @@
       <div id="new_post_loading_cont">
        <div id="new_post_loading_cont_text">
         <div class="new_post_cont_catbook">
-         <a href="/jamong.com/category/${b.cat_name}" class="new_post_cont_cat">${b.cat_name}</a>
+         <a href="${pageContext.request.contextPath}/category/${b.cat_name}" class="new_post_cont_cat">${b.cat_name}</a>
          <c:if test="${b.book_no ne 0}">
           <span class="new_post_cont_book">Book</span>
          </c:if>
         </div>
-        <a href="/jamong.com/@${b.memberVO.mem_id}/${b.bo_no}">
+        <a href="${pageContext.request.contextPath}/@${b.memberVO.mem_id}/${b.bo_no}">
          <div id="new_post_loading_cont_text_title">
           <c:if test="${fn:length(b.bo_title)>20}">
           ${fn:substring(b.bo_title,0,20)}...
@@ -50,7 +50,7 @@
           ${b.bo_cont}
          </c:if>
          </div>
-        </a> <a href="/jamong.com/@${b.memberVO.mem_id}">
+        </a> <a href="${pageContext.request.contextPath}/@${b.memberVO.mem_id}">
          <div id="new_post_loading_cont_text_writer">
           <i>by&nbsp;&nbsp;</i>${b.memberVO.mem_nickname}
          </div>
@@ -58,7 +58,7 @@
         <div id="new_post_loading_cont_text_ago">${b.bo_date}</div>
        </div>
        <c:if test="${not empty img}">
-        <a href="/jamong.com/@${b.memberVO.mem_id}/${b.bo_no}">
+        <a href="${pageContext.request.contextPath}/@${b.memberVO.mem_id}/${b.bo_no}">
         <img id="new_post_loading_cont_img" src="${b.bo_thumbnail}">
         </a>
        </c:if>

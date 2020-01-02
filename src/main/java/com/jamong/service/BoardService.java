@@ -23,6 +23,7 @@ public interface BoardService {
 	int sympathyUp(BoardVO bo);
 	int sympathyDown(BoardVO bo);
 	int switchBoardLock(BoardVO bo);
+	void adminArticleDelete(int bo_no, int mem_no, int state);
 	int boardBan(BoardVO bo);
 	void articleDelete(int bo_no, int mem_no);
 	void updateBoard(HashMap<String, Object> bm);
@@ -33,6 +34,6 @@ public interface BoardService {
 	List<BoardVO> getUserBoardCatArticle(String cat_name);
 	List<BoardVO> categoryArticle(String cat_name);
 	List<BoardVO> getUserBoardContList(int mem_no);
-	List<BoardVO> profileScroll(HashMap<Object, Object> scroll);
+	List<BoardVO> profileScroll(HashMap<String, Object> scroll);
 
 }

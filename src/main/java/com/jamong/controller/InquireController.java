@@ -95,10 +95,21 @@ public class InquireController {
 
 		this.inqService.insertInquire(i); //쿼리문 실행 메서드
 		
-		out.println("<script>");
-		out.println("alert('문의가 접수되었습니다!');");
-		out.println("location='/jamong.com';");
-		out.println("</script>");
+		out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+				"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+				"<body>\r\n" + 
+				"<script>\r\n" + 
+				"Swal.fire({\r\n" + 
+				"		title : 'Success!',\r\n" + 
+				"		text : '문의가 접수되었습니다!',\r\n" + 
+				"		icon: 'success',\r\n" + 
+				"		}).then((result) => {\r\n" + 
+				"			if(result.value){\r\n" + 
+				"				location='/jamong.com/';\r\n" + 
+				"			}\r\n" + 
+				"		});\r\n" + 
+				"</script>\r\n" + 
+				"</body>");
 
 		return null;
 	}
@@ -115,58 +126,93 @@ public class InquireController {
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
-			int page=1;
-			int limit=10;
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				
+				int page=1;
+				int limit=10;
+				if(request.getParameter("page") != null) {
+					page=Integer.parseInt(request.getParameter("page"));
+				}
+				String search_field=request.getParameter("search_field");
+				String search_field_item=request.getParameter("search_field_item");
+				String search_field_handling=request.getParameter("search_field_handling");
+				String search_field_info=request.getParameter("search_field_info");
+				String search_name=request.getParameter("search_name");
+				
+				i.setSearch_name("%"+search_name+"%");
+				i.setSearch_field(search_field);
+				i.setSearch_field_item(search_field_item);
+				i.setSearch_field_handling(search_field_handling);
+				i.setSearch_field_info(search_field_info);
+				
+				
+				int listcount=this.inqService.getListCount(i);
+				
+				i.setStartrow((page-1)*10+1);
+				i.setEndrow(i.getStartrow()+limit-1);
+				
+				List<InquireVO> ilist=this.inqService.getInquireList(i);
+				
+				int maxpage=(int)((double)listcount/limit+0.95);
+				int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+				int endpage=maxpage;
+				if(endpage>startpage+10-1) endpage=startpage+10-1;
+				
+				ModelAndView m=new ModelAndView();
+				
+				m.addObject("ilist",ilist);
+				m.addObject("page",page);
+				m.addObject("startpage",startpage);
+				m.addObject("endpage",endpage);
+				m.addObject("maxpage",maxpage);
+				m.addObject("listcount",listcount);
+				m.addObject("search_field",search_field);		
+				m.addObject("search_field_item",search_field_item);
+				m.addObject("search_field_handling",search_field_handling);
+				m.addObject("search_field_info",search_field_info);
+				m.addObject("search_name",search_name);
+				
+				m.setViewName("jsp/admin_inquire");
+				
+				return m;
 			}
-			String search_field=request.getParameter("search_field");
-			String search_field_item=request.getParameter("search_field_item");
-			String search_field_handling=request.getParameter("search_field_handling");
-			String search_field_info=request.getParameter("search_field_info");
-			String search_name=request.getParameter("search_name");
-
-			i.setSearch_name("%"+search_name+"%");
-			i.setSearch_field(search_field);
-			i.setSearch_field_item(search_field_item);
-			i.setSearch_field_handling(search_field_handling);
-			i.setSearch_field_info(search_field_info);
-
-
-			int listcount=this.inqService.getListCount(i);
-
-			i.setStartrow((page-1)*10+1);
-			i.setEndrow(i.getStartrow()+limit-1);
-
-			List<InquireVO> ilist=this.inqService.getInquireList(i);
-
-			int maxpage=(int)((double)listcount/limit+0.95);
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			int endpage=maxpage;
-			if(endpage>startpage+10-1) endpage=startpage+10-1;
-
-			ModelAndView m=new ModelAndView();
-
-			m.addObject("ilist",ilist);
-			m.addObject("page",page);
-			m.addObject("startpage",startpage);
-			m.addObject("endpage",endpage);
-			m.addObject("maxpage",maxpage);
-			m.addObject("listcount",listcount);
-			m.addObject("search_field",search_field);		
-			m.addObject("search_field_item",search_field_item);
-			m.addObject("search_field_handling",search_field_handling);
-			m.addObject("search_field_info",search_field_info);
-			m.addObject("search_name",search_name);
-
-			m.setViewName("jsp/admin_inquire");
-
-			return m;
 		}	
 		return null;
 
@@ -187,38 +233,73 @@ public class InquireController {
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");	
 
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
-			int page=1;
-			if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
-
-
-			i=this.inqService.getInquireMem(no);
-
-			String inq_cont=i.getInq_cont().replace("\n", "<br/>");
-			
-			ModelAndView m=new ModelAndView();
-			
-			String fileName1=i.getInq_file1().substring(i.getInq_file1().lastIndexOf("/")+1);
-			String fileName2=i.getInq_file2().substring(i.getInq_file2().lastIndexOf("/")+1);
-			String fileName3=i.getInq_file3().substring(i.getInq_file3().lastIndexOf("/")+1);
-			String fileName4=i.getInq_file4().substring(i.getInq_file4().lastIndexOf("/")+1);
-			
-			m.setViewName("jsp/admin_inquire_info");
-
-			m.addObject("no",no);
-			m.addObject("inq_cont",inq_cont);
-			m.addObject("page",page);
-			m.addObject("i",i);
-			m.addObject("fileName1",fileName1);
-			m.addObject("fileName2",fileName2);
-			m.addObject("fileName3",fileName3);
-			m.addObject("fileName4",fileName4);
-			
-			return m;
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				
+				int page=1;
+				if(request.getParameter("page") != null) page=Integer.parseInt(request.getParameter("page"));
+				
+				
+				i=this.inqService.getInquireMem(no);
+				
+				String inq_cont=i.getInq_cont().replace("\n", "<br/>");
+				
+				ModelAndView m=new ModelAndView();
+				
+				String fileName1=i.getInq_file1().substring(i.getInq_file1().lastIndexOf("/")+1);
+				String fileName2=i.getInq_file2().substring(i.getInq_file2().lastIndexOf("/")+1);
+				String fileName3=i.getInq_file3().substring(i.getInq_file3().lastIndexOf("/")+1);
+				String fileName4=i.getInq_file4().substring(i.getInq_file4().lastIndexOf("/")+1);
+				
+				m.setViewName("jsp/admin_inquire_info");
+				
+				m.addObject("no",no);
+				m.addObject("inq_cont",inq_cont);
+				m.addObject("page",page);
+				m.addObject("i",i);
+				m.addObject("fileName1",fileName1);
+				m.addObject("fileName2",fileName2);
+				m.addObject("fileName3",fileName3);
+				m.addObject("fileName4",fileName4);
+				
+				return m;
+			}
 		}
 		return null;
 	}
@@ -239,46 +320,104 @@ public class InquireController {
 		MemberVO adm_m = (MemberVO)session.getAttribute("m");
 		
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("$('.wrap-loading').hide();");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<script src=\"/jamong.com/resources/js/jquery.js\"></script>\r\n" +
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"$('.wrap-loading').hide();" +
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
-			int sMem_no = adm_m.getMem_no();
-			HashMap<String, Object> im = new HashMap<>();
-			
-			/*inq update문*/
-			InquireVO inq = new InquireVO();
-			inq.setInq_no(inq_no);
-			inq.setInq_reply(inq_reply);
-			inq.setInq_sender(adm_m.getMem_name());
-			inq.setMem_no(mem_no);
-			
-			im.put("inq",inq);
-			im.put("sMem_no",sMem_no);
-			
-			this.inqService.updateInquire(im);
-
-			/*inq 메일 보내기*/		
-			String subject = "안녕하세요.자몽입니다. 문의드린 사항에 대한 답변을 드립니다.";
-			StringBuilder sb = new StringBuilder();
-			sb.append("<h3 style=\"font-weight:normal\">");
-			sb.append(inq_reply);
-			sb.append("</h3>");
-
-			boolean reply_ok = mailService.send(subject, sb.toString(), "projectJamong@gmail.com", inq_email, null, request);
-
-			if(reply_ok) {
-				out.println("<script>");
-				out.println("alert('문의 답변이 완료되었습니다.');");
-				out.println("location='admin_inquire_info?no="+inq_no+"&page="+page+"';");
-				out.println("</script>");
-			}else {				
-				out.println("<script>");
-				out.println("alert('처리과정중 에러가 발생하였습니다!');");
-				out.println("history.back();");
-				out.println("</script>");
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				
+				int sMem_no = adm_m.getMem_no();
+				HashMap<String, Object> im = new HashMap<>();
+				
+				/*inq update문*/
+				InquireVO inq = new InquireVO();
+				inq.setInq_no(inq_no);
+				inq.setInq_reply(inq_reply);
+				inq.setInq_sender(adm_m.getMem_name());
+				inq.setMem_no(mem_no);
+				
+				im.put("inq",inq);
+				im.put("sMem_no",sMem_no);
+				
+				this.inqService.updateInquire(im);
+				
+				/*inq 메일 보내기*/		
+				String subject = "안녕하세요.자몽입니다. 문의드린 사항에 대한 답변을 드립니다.";
+				StringBuilder sb = new StringBuilder();
+				sb.append("<h3 style=\"font-weight:normal\">");
+				sb.append(inq_reply);
+				sb.append("</h3>");
+				
+				boolean reply_ok = mailService.send(subject, sb.toString(), "projectJamong@gmail.com", inq_email, null, request);
+				
+				if(reply_ok) {
+					out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+							"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+							"<body>\r\n" + 
+							"<script>\r\n" + 
+							"Swal.fire({\r\n" + 
+							"		title : 'Success!',\r\n" + 
+							"		text : '문의 답변이 완료되었습니다!',\r\n" + 
+							"		icon: 'success',\r\n" + 
+							"		}).then((result) => {\r\n" + 
+							"			if(result.value){\r\n" + 
+							"				location='admin_inquire_info?no="+inq_no+"&page="+page+"';\r\n" + 
+							"			}\r\n" + 
+							"		});\r\n" + 
+							"</script>\r\n" + 
+							"</body>");
+				}else {				
+					out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+							"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+							"<body>\r\n" + 
+							"<script>\r\n" + 
+							"Swal.fire({\r\n" + 
+							"		title : 'Error!',\r\n" + 
+							"		text : '처리중 오류가 발생했습니다!',\r\n" + 
+							"		icon: 'error',\r\n" + 
+							"		}).then((result) => {\r\n" + 
+							"			if(result.value){\r\n" + 
+							"				history.back();\r\n" + 
+							"			}\r\n" + 
+							"		});\r\n" + 
+							"</script>\r\n" + 
+							"</body>");
+				}
 			}
 		}
 		return null;
@@ -552,16 +691,62 @@ public class InquireController {
 		
 		no=Integer.parseInt(request.getParameter("no"));
 		if(adm_m == null) {
-			out.println("<script>");
-			out.println("alert('세션이 만료되었습니다. 다시 로그인하세요.');");
-			out.println("location='login/1';");
-			out.println("</script>");
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
 		}else {
-			this.inqService.inquireDel(no);
-			out.println("<script>");
-			out.println("alert('삭제되었습니다.');");
-			out.println("location='admin_inquire';");
-			out.println("</script>");
+			if(adm_m.getMem_state() != 9) {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}else {
+				this.inqService.inquireDel(no);
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Success!',\r\n" + 
+						"		text : '성공적으로 삭제되었습니다!',\r\n" + 
+						"		icon: 'success',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				location='admin_inquire';\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+				out.println("location='admin_inquire';");
+			}
 		}
 		return null;
 	}

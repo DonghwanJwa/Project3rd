@@ -371,14 +371,18 @@ $(document).ready(function(){
 					//readonly false면 값변경이 가능
 					//disabled 태그 속성 활성화 false 비활성화
 					//#01ea137a 확인된 곳엔 색 주기
-					alert("입력하신 이메일로 인증번호가 발송되었습니다.\n 인증번호를 입력해주세요.");
-					$('#member_modify_next_btn').attr('disabled', true);
-					$('#member_modify_certified_btn').attr("disabled",true);//disabled 태그 속성 활성화 true
-					$('#member_modify_certified_btn').css('cursor','default');
-					$('#member_modify_emailcheck').val('');//이메일 인증체크 디브를 공백으로 만들어줌
-					$('#member_modify_emailcheck').attr('readonly',false);
-					$('#member_modify_emailcheck_btn').attr('disabled',false);
-					$(".member_modify_emailcheck_div").show();
+					Swal.fire({
+						icon : 'info',
+						text : '입력하신 이메일로 아이디가 발송되었습니다.'
+					}).then(function(){						
+						$('#member_modify_next_btn').attr('disabled', true);
+						$('#member_modify_certified_btn').attr("disabled",true);//disabled 태그 속성 활성화 true
+						$('#member_modify_certified_btn').css('cursor','default');
+						$('#member_modify_emailcheck').val('');//이메일 인증체크 디브를 공백으로 만들어줌
+						$('#member_modify_emailcheck').attr('readonly',false);
+						$('#member_modify_emailcheck_btn').attr('disabled',false);
+						$(".member_modify_emailcheck_div").show();
+					});
 				}
 			},
 			beforeSend:function(){
@@ -406,12 +410,16 @@ $(document).ready(function(){
 			data:{"authCode":authCode},
 			success:function(data){
 				if(data=="complete"){
-					alert("이메일 인증이 완료되었습니다..");
-					$('#member_modify_next_btn').attr('disabled', false);//수정완료버튼 활성화
-					$('#member_modify_emailcheck').attr('readonly',true);//이메일 체크 못쓰게함
-					$('#member_modify_emailcheck_btn').attr('disabled',true);//확인버튼 못쓰게함
-					$('#member_modify_emailcheck_btn').css('cursor','default');
-					sessionStorage.removeItem('authCode');
+					Swal.fire({
+						icon : 'success',
+						text : '이메일 인증에 성공하셨습니다!'
+					}).then(function(){
+						$('#member_modify_next_btn').attr('disabled', false);//수정완료버튼 활성화
+						$('#member_modify_emailcheck').attr('readonly',true);//이메일 체크 못쓰게함
+						$('#member_modify_emailcheck_btn').attr('disabled',true);//확인버튼 못쓰게함
+						$('#member_modify_emailcheck_btn').css('cursor','default');
+						sessionStorage.removeItem('authCode');						
+					});
 					//sessionStorage.removeItem('authCode'); 란 세션스토리지에 저장되어 있는 인증번호값을 리무브아이템으로 
 					//세션에 저장된 인증번호 값을 지운다 인증이 다 끝났으니깐 안지우면 다시 받을 때 문제가 될 것 같다.
 				}else if(data == "false"){

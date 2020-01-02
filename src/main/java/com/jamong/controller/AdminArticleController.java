@@ -12,46 +12,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jamong.domain.AccuseVO;
-import com.jamong.domain.InquireVO;
+import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
-import com.jamong.domain.NoticeVO;
-import com.jamong.service.AccuseService;
 import com.jamong.service.AdminService;
-import com.jamong.service.InquireService;
-import com.jamong.service.MemberService;
 
 @Controller
-public class AdminController {
+public class AdminArticleController {
 	@Autowired
 	private AdminService adminService;
 	
-	@Autowired
-	private AccuseService accuseService;
-
-	@Autowired
-	private InquireService inquireService;
-	
-	
-	@Autowired
-	private MemberService memberService;
-	
-	@RequestMapping("admin_main")
-	public ModelAndView admin_main(HttpSession session, HttpServletRequest request, HttpServletResponse response, NoticeVO n,AccuseVO a,InquireVO i) throws Exception {
+	@RequestMapping("admin_article")
+	public ModelAndView admin_article(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		session=request.getSession();
 		
 		MemberVO adm_m=(MemberVO)session.getAttribute("m");
 		
-		/* 세션 유효성 검증 */
 		if(adm_m == null) {
 			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
-					"<script src=\"/jamong.com/resources/js/jquery.js\"></script>\r\n"+
 					"<body>\r\n" + 
 					"<script>\r\n" + 
-					"$('.wrap-loading').hide();\r\n" +
+					"$('.wrap-loading').hide();" +
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '세션이 만료되었습니다!',\r\n" + 
@@ -86,54 +69,57 @@ public class AdminController {
 						"</script>\r\n" + 
 						"</body>");
 			}else {
-				// 최신공지 띄우기
-				List<NoticeVO> newNotice=this.adminService.newNotice(n);
-				List<AccuseVO> newAccuse=this.accuseService.newAccuse(a);
-				List<InquireVO> newInquire=this.inquireService.newInquire(i);
-
-					
-				ModelAndView m=new ModelAndView();
+				BoardVO b=new BoardVO();
 				
-				m.addObject("newNotice",newNotice);
-				m.addObject("newAccuse",newAccuse);
-				m.addObject("newInquire",newInquire);
-				m.addObject("n",n);
-				m.addObject("a",a);
-				m.addObject("i",i);
+				int page=1;
+				int limit=10; // 한 페이지에 보여지는 목록 개수
+				if(request.getParameter("page") != null) { // get 방식으로 전달된 쪽번호가 있는 경우
+					page=Integer.parseInt(request.getParameter("page")); // 전달된 쪽번호를 정수 숫자로 바꾼다.
+				}
 				
-				m.setViewName("jsp/admin_main");
+				String find_name=request.getParameter("find_name");
+				String find_field=request.getParameter("find_field");
+				String find_field2=request.getParameter("find_field2");
+				String find_field3=request.getParameter("find_field3");
 				
-				return m;
+				b.setFind_name("%"+find_name+"%");
+				b.setFind_field(find_field);
+				b.setFind_field2(find_field2);
+				b.setFind_field3(find_field3);
+				int bcount=this.adminService.articleCount(b);
+				
+				b.setStartrow((page-1)*10+1);
+				b.setEndrow(b.getStartrow()+limit-1);
+				
+				List<BoardVO> blist=this.adminService.articleList(b);
+				
+				// 총 페이지
+				int maxpage=(int)((double)bcount/limit+0.95);
+				// 시작페이지
+				int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+				// 마지막 페이지
+				int endpage=maxpage;
+				if(endpage > startpage+10-1) endpage=startpage+10-1;
+				
+				ModelAndView mv=new ModelAndView("jsp/admin_article");
+				
+				mv.addObject("b",b);
+				mv.addObject("blist",blist);
+				mv.addObject("bcount",bcount);
+				
+				mv.addObject("page",page);
+				mv.addObject("startpage",startpage);
+				mv.addObject("endpage",endpage);
+				mv.addObject("maxpage",maxpage);
+				
+				mv.addObject("find_name",find_name);
+				mv.addObject("find_field",find_field);
+				mv.addObject("find_field2",find_field2);
+				mv.addObject("find_field3",find_field3);
+				
+				return mv;
 			}
 		}
-		return null;
-	} // admin_main()
-	
-	/* 로그아웃 */
-	@RequestMapping("admin_logout")
-	public ModelAndView admin_logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out=response.getWriter();
-		session=request.getSession();
-		
-		session.invalidate();
-		
-		out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
-				"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
-				"<body>\r\n" + 
-				"<script>\r\n" + 
-				"Swal.fire({\r\n" + 
-				"		title : 'Success!',\r\n" + 
-				"		text : '로그아웃 되었습니다!',\r\n" + 
-				"		icon: 'success',\r\n" + 
-				"		}).then((result) => {\r\n" + 
-				"			if(result.value){\r\n" + 
-				"				location='/jamong.com/';\r\n" + 
-				"			}\r\n" + 
-				"		});\r\n" + 
-				"</script>\r\n" + 
-				"</body>");
-		
 		return null;
 	}
 }

@@ -3,10 +3,10 @@
 
 <%@ include file="../include/header.jsp"%>
 <meta charset="EUC-KR">
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/my_info.css" />
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/font.css"/>
-<script src="/jamong.com/resources/js/jquery.js"></script>
-<script src="/jamong.com/resources/js/my_info.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/my_info.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/font.css"/>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/my_info.js"></script>
 </head>
 <body>									
 	<div id="my_info_main_wrap"><!-- 메인박스 -->
@@ -54,8 +54,9 @@
 					</tr>
 					
 					<tr>
-					<th></th>
-					<td><a href="/jamong.com/pass_modify"><button id="my_info_btn">회원정보수정</button></a></td>
+					<th colspan="2" style="text-align:center;">
+					<a href="${pageContext.request.contextPath}/pass_modify"><button id="my_info_btn">회원정보수정</button></a>
+					</th>
 					</tr>
 					</tbody>
 				</table>

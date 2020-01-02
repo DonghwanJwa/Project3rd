@@ -15,9 +15,9 @@
 <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-<link rel="stylesheet" type="text/css" href="/jamong.com/resources/css/write.css" />
-<script src="/jamong.com/resources/js/jamong_write.js"></script>
-<script src="/jamong.com/resources/js/summernote-ko-KR.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/write.css" />
+<script src="${pageContext.request.contextPath}/resources/js/jamong_write.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/summernote-ko-KR.js"></script>
 <title> </title>
 </head>
 <body>
@@ -222,21 +222,6 @@
       </td>
      </tr>
     </table>
-   </div>
-   <div class="write_type_choice_panel">
-   <table>
-   <caption>글 종류</caption>
-   <tr>
-    <td>
-    <input type="radio" name="bo_type" id="write_column" value="0" <c:if test="${bo.bo_type == 0}">checked</c:if> /> 칼럼
-    </td>   
-   </tr>
-   <tr>
-    <td>
-    <input type="radio" name="bo_type" id="write_essay" value="1" <c:if test="${bo.bo_type == 1}">checked</c:if> /> 에세이
-    </td>
-   </tr>
-   </table>
    </div>
    <div class="write_choice_btn_panel">
     <input type="submit" class="write_choice_save_btn" value="수정" />

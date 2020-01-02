@@ -14,6 +14,7 @@ public interface BoardDAO {
 	void sympathyUpUpdate(BoardVO bo);
 	void sympathyDownUpdate(BoardVO bo);
 	void articleDelete(int bo_no);
+	void articleRecover(int bo_no);
 	int sympathyNum(BoardVO bo);
 	int switchBoardLock(BoardVO bo);
 	int boardBan(BoardVO bo);
@@ -33,7 +34,7 @@ public interface BoardDAO {
 	List<BoardVO> getBKList(int book_no);
 	BoardVO newArticleNum(Object object);
 	List<BoardVO> bookInfoCont(HashMap<String, Object> binfo);
-	List<BoardVO> profileScroll(HashMap<Object, Object> scroll);
+	List<BoardVO> profileScroll(HashMap<String, Object> scroll);
 	List<BoardVO> bkEditList(HashMap<String, Object> be);
 	void bookNull(int book_no);
 
