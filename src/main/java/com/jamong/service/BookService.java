@@ -39,7 +39,7 @@ public interface BookService {
 
 	List<BoardVO> bkEditList(HashMap<String, Object> be);
 
-	List<BoardVO> bookScroll(HashMap<Object, Object> bookScroll);
+	List<BoardVO> bookScroll(HashMap<String, Object> bookScroll);
 
 	void bookDel(int book_no);
 

@@ -828,46 +828,60 @@ public class BoardController {
 			String bo_no, String mem_no, String book_no,
 			String num, String pb,
 			HttpServletResponse response, 
-			HttpServletRequest request
+			HttpServletRequest request,
+			HttpSession session
 			) throws Exception{
 
 		SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));	
 
+		MemberVO m = (MemberVO)session.getAttribute("m");
+		
 		HashMap<String,Object> scroll = new HashMap<>();
-		scroll.put("bo_no", bo_no);
-		scroll.put("mem_no", mem_no);
-		scroll.put("n", num);
+		if(m != null) {
+		 scroll.put("bo_no", bo_no);
+		 scroll.put("mp_no", mem_no);
+		 scroll.put("m_no", m.getMem_no());
+		 scroll.put("state",m.getMem_state());
+		 scroll.put("n", num);
+		}else {
+		 scroll.put("bo_no", bo_no);
+		 scroll.put("mp_no", mem_no);
+		 scroll.put("m_no", 0); //session값
+		 scroll.put("state", 0); //session 등급 값
+		 scroll.put("n", num); 
+		}
+		
 		if(pb.equals("article")) {
-
 			List<BoardVO> mplist = this.boardService.profileScroll(scroll);
-
-			for(int i=0; i<scroll.size(); i++) {
-				if( !mplist.isEmpty() ) {
+			for(int i=0; i<mplist.size(); i++) {
 					Date mpListFormat_date = b_format.parse(mplist.get(i).getBo_date());
 					String mpListTitle_date = TIME_MAXIMUM.formatTimeString(mpListFormat_date);
 					mplist.get(i).setBo_date(mpListTitle_date);
-
 					// 미리보여주는 글 태그 없앰 (제목)
+				
+					if(m == null) {
+						mplist.get(i).setBo_lock(4);
+					}else if(m.getMem_no() != Integer.parseInt(mem_no) && m.getMem_state() != 9) {
+						mplist.get(i).setBo_lock(4);
+					}
 					String titleText = mplist.get(i).getBo_title();
-					String titleNomarText = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+					String titleNomarText = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*"," ");
 					mplist.get(i).setBo_title(titleNomarText);
-
 					//미리보여주는 글 태그 없앰 (내용)
 					String htmlText = mplist.get(i).getBo_cont();
 					String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 					String oneSpace = nomalText.replaceAll("&nbsp; "," ");
 					if(oneSpace.length()>200) {
-						String hundredText = oneSpace.substring(0,200);								//100글자만 홈페이지에 노출되도록 변경
+						String hundredText = oneSpace.substring(0,200);	
 						mplist.get(i).setBo_cont(hundredText);
 					}else {
 						mplist.get(i).setBo_cont(oneSpace);
-					}
 				}
 			}
 			return mplist;
 		}else if(pb.equals("magazine")) {
-			HashMap<Object,Object> bookScroll = new HashMap<>();
+			HashMap<String,Object> bookScroll = new HashMap<>();
 			bookScroll.put("book_no", book_no);
 			bookScroll.put("mem_no", mem_no);
 			bookScroll.put("n",num);
@@ -932,7 +946,6 @@ public class BoardController {
 				String bookStrippedText = bookHtmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 				String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");					
 				bookList.get(i).getBookVO().setBook_name(bookOneSpace);
-
 			}
 			return bookList;
 		}else if(w.equals("author")) {		//작가검색

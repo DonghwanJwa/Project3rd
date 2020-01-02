@@ -136,56 +136,24 @@
 						</c:if>
 						<c:if test="${!empty mplist}"> 
 						<c:forEach var="fp" items="${mplist}" varStatus="status">
-						<%--관리자 일때 --%>
-						<c:if test="${m.mem_state == 9}">
-						<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
-							<div>
-								<c:if test="${fp.bo_lock == 0 }"> <%-- 0 = 비공개 --%>
-									<img class="private lock" src="${pageContext.request.contextPath}/resources/img/lock.png" data-no="${fp.bo_no}" data-disabled="false" />
-									</c:if>
-									<c:if test="${fp.bo_lock == 1 }"> <%-- 1 = 공개 --%>
-									<img class="private unlock" src="${pageContext.request.contextPath}/resources/img/unlock.png" data-no="${fp.bo_no}" data-disabled="false" />
-									</c:if>
-								<div class="profile_article_main">
-							         <a href="${pageContext.request.contextPath}/category/${fp.cat_name}"
-							         	class="profile_cat_color">${fp.cat_name}</a>
-										<c:if test="${fp.book_no ne 0}">
-											<span class="profile_book_color">Book</span>
-													</c:if>
-													</div>
-												<a href="${pageContext.request.contextPath}/@${mp.mem_id}/${fp.bo_no}"> 
-											<strong class="pf_bo_title">${fp.bo_title}</strong> 
-											<div class="article_cont">
-											<%-- <em class="profile_font_size">${fp.bo_subtitle}</em>--%>
-											${fp.bo_cont}
-											</div>
-											<div>
-													<c:set var="img" value="${fp.bo_thumbnail}" />
-													<c:if test="${!empty img}">
-														<img class="profile_post_img" alt="이미지 정보"
-															src="${fp.bo_thumbnail}">
-													</c:if>
-													<c:if test="${empty img}">
-													</c:if>
-											</div>
-											</a>
-										</div> <span class="pf_post_date">${fp.bo_date}</span>
-									</li>
-						</c:if>
-							<c:if test="${fp.bo_lock != 2 && fp.bo_lock != 3}">
+						 <c:if test="${fp.bo_lock != 2 && fp.bo_lock != 3}">
 								<c:if test="${empty fp}">
 								</c:if>
 								<%-- 다른사람의 프로필을 들어갔을때 --%>
-								
-								<%-- 비공개 된 글만 있거나 아예 글이 없을 경우  --%>
-                                <c:if test="${m.mem_id != mp.mem_id && fp.bo_lock == 1 || empty mplist}">
-                                <div class="profile_none"> 작성한 글이 없습니다 </div>
-                                </c:if>
-                                <c:if test="${m.mem_id != mp.mem_id && fp.bo_lock != 0}" >
+                                <c:if test="${m.mem_id != mp.mem_id || empty m }" >
 								
 									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
 										<div>
 												<div class="profile_article_main">
+											<%--관리자 권한일때 --%>
+											<c:if test="${m.mem_state == 9 }">
+												<c:if test="${fp.bo_lock == 0 && fp.book_no eq 0 }"> <%-- 0 = 비공개 --%>
+													<img class="private lock" src="${pageContext.request.contextPath}/resources/img/lock.png" data-no="${fp.bo_no}" data-disabled="false" />
+												</c:if>
+												<c:if test="${fp.bo_lock == 1 && fp.book_no eq 0 }"> <%-- 1 = 공개 --%>
+													<img class="private unlock" src="${pageContext.request.contextPath}/resources/img/unlock.png" data-no="${fp.bo_no}" data-disabled="false" />
+												</c:if>
+											</c:if>
 												         <a href="${pageContext.request.contextPath}/category/${fp.cat_name}"
 															class="profile_cat_color">${fp.cat_name}</a>
 													<c:if test="${fp.book_no ne 0}">
@@ -195,35 +163,31 @@
 												</div>
 												<a href="${pageContext.request.contextPath}/@${mp.mem_id}/${fp.bo_no}"> 
 											<strong class="pf_bo_title">${fp.bo_title}</strong> 
-											<div class="article_cont">
 											<%-- <em class="profile_font_size">${fp.bo_subtitle}</em>--%>
-											${fp.bo_cont}
-											</div>
+											<div class="article_cont">${fp.bo_cont}</div>
 											<div>
 													<c:set var="img" value="${fp.bo_thumbnail}" />
 													<c:if test="${!empty img}">
 														<img class="profile_post_img" alt="이미지 정보"
-															src="${fp.bo_thumbnail}"
-														>
+															src="${fp.bo_thumbnail}">
 													</c:if>
-													<c:if test="${empty img}">
-													</c:if>
+													<c:if test="${empty img}"></c:if>
 											</div>
 											</a>
 										</div> <span class="pf_post_date">${fp.bo_date}</span>
 									</li>
 								</c:if>
 								<%-- 자신의 아이디로 로그인시 --%>
-								<c:if test="${ m.mem_id == mp.mem_id}">
+								<c:if test="${ m.mem_id == mp.mem_id || m.mem_author == 9}">
 									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
 											<div>
-											<c:if test="${fp.bo_lock == 0 }"> <%-- 0 = 비공개 --%>
+												<div class="profile_article_main">
+													<c:if test="${fp.bo_lock == 0 && fp.book_no eq 0 }"> <%-- 0 = 비공개 --%>
 												<img class="private lock" src="${pageContext.request.contextPath}/resources/img/lock.png" data-no="${fp.bo_no}" data-disabled="false" />
-											</c:if>
-											<c:if test="${fp.bo_lock == 1 }"> <%-- 1 = 공개 --%>
+													</c:if>
+													<c:if test="${fp.bo_lock == 1 && fp.book_no eq 0 }"> <%-- 1 = 공개 --%>
 												<img class="private unlock" src="${pageContext.request.contextPath}/resources/img/unlock.png" data-no="${fp.bo_no}" data-disabled="false" />
 											</c:if>
-												<div class="profile_article_main">
 												         <a href="${pageContext.request.contextPath}/category/${fp.cat_name}"
 															class="profile_cat_color">${fp.cat_name}</a>
 													<c:if test="${fp.book_no ne 0}">
@@ -241,10 +205,8 @@
 													<c:set var="img" value="${fp.bo_thumbnail}" />
 													<c:if test="${!empty img}">
 														<img class="profile_post_img" alt="이미지 정보"
-															src="${fp.bo_thumbnail}">
-													</c:if>
-													<c:if test="${empty img}">
-													</c:if>
+															src="${fp.bo_thumbnail}"></c:if>
+													<c:if test="${empty img}"></c:if>
 											</div>
 											</a>
 										</div> <span class="pf_post_date">${fp.bo_date}</span>

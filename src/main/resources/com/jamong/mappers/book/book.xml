@@ -273,12 +273,12 @@ SELECT * FROM
   		 m.mem_no as m_mem_no,
   		 m.mem_id,
   		 m.mem_nickname
-  FROM (SELECT * FROM book ORDER BY book_date)book
+  FROM (SELECT * FROM book ORDER BY book_date DESC)book
   INNER JOIN member m
   ON book.mem_no = m.mem_no
-  WHERE m.mem_no = #{mem_no})
+  WHERE m.mem_no = #{mem_no} )
   X)
-  WHERE RN BETWEEN (#{n}+1) AND (#{n}+10)
+  WHERE RN BETWEEN (#{n}+1) AND (#{n}+6)
  </select>
  <!-- 추천 증가 -->
  <update id="rec_up">

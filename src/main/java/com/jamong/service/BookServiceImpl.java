@@ -117,7 +117,7 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
-	public List<BoardVO> bookScroll(HashMap<Object, Object> bookScroll) {
+	public List<BoardVO> bookScroll(HashMap<String, Object> bookScroll) {
 		return this.bookDao.bookScroll(bookScroll);
 	}
 

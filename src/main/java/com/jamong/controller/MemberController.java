@@ -430,8 +430,18 @@ public class MemberController {
             portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
             mp.setMem_portfolio(portfolio);
             }
-		
-			List<BoardVO> mplist = this.boardService.getProfile(mp.getMem_no());
+			HashMap<String, Object> profileMap =new HashMap<>();
+			if(m != null) {
+				profileMap.put("mp_no", mp.getMem_no());
+				profileMap.put("m_no", m.getMem_no());
+				profileMap.put("state",m.getMem_state());
+				}else {
+				profileMap.put("mp_no", mp.getMem_no());
+				profileMap.put("m_no", 0); //session값
+				profileMap.put("state", 0); //session 등급 값
+				}
+			
+ 			List<BoardVO> mplist = this.boardService.getProfile(profileMap);
 			
 			SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
@@ -578,6 +588,7 @@ public class MemberController {
 			multi = new MultipartRequest(request, saveFolder, fileSize, "UTF-8");
 	
 			// 입력한 값들을 multi로 부터 가져옴
+			
 			String mem_nickname = multi.getParameter("mem_nickname");
 			String profile_cont = multi.getParameter("profile_cont");
 			String mem_keyword = multi.getParameter("mem_keyword");
@@ -616,10 +627,15 @@ public class MemberController {
 			}
 			// 입력된 데이터 업데이트
 			mp.setMem_id(m.getMem_id());
-			
-			mp.setMem_nickname(mem_nickname); 		mp.setProfile_cont(profile_cont);
+			if(mem_nickname.trim().length()<=0) {//닉네임 등록 안했을때 아이디로 대체
+				mp.setMem_nickname(m.getMem_id());
+			}else {
+				mp.setMem_nickname(mem_nickname);
+			}
+				mp.setProfile_cont(profile_cont);
 			// 키워드 항목 나누어서 
 			mp.setMem_keyword(mem_keyword); 		mp.setMem_portfolio(mem_portfolio);
+			
 			m.setMem_nickname(mem_nickname);
 			
 			session.setAttribute("m", m);
