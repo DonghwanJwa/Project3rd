@@ -262,6 +262,7 @@ body{
 .cat_book_img{
 	width:260px;
 	height:390px;
+	object-fit: cover;
 	filter: brightness(80%);
 }
 .cat_book_title{
@@ -311,7 +312,7 @@ body{
 	width: 11px;
     position: absolute;
     top: 0;
-    left: 18px;
+    left: 11px;
     height: 100%;
 }
 .cat_inner_line:after {

@@ -15,7 +15,7 @@
       	<div id=cat_writer_list1>
       	
        		<div id=cat_writer_face1>
-        		<img class="cat_face_img" src="${pageContext.request.contextPath}/resources/img/cat_writer_face1.jpg" alt="작가이미지" />
+        		<img class="cat_face_img" src="${cat.profile_photo}" alt="작가이미지" />
        		</div>
        		<div class=cat_writer_name><strong>${cat.mem_nickname}</strong></div>
        		<div id=cat_write_count>글:${cat.mem_article}</div>
