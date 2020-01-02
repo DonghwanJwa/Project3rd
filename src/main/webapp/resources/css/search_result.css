@@ -178,6 +178,9 @@ ul li {
 .post_cont_book{
 	color:#e0849d;
 }
+.post_cont_book:hover{
+	text-decoration: underline;
+}
 
 .post_img_wrap{
 	margin-top: 25px;

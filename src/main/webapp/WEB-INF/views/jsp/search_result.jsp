@@ -80,7 +80,7 @@
 	        <div class="post_cont_catbook">
 	         <a href="${pageContext.request.contextPath}/category/${board.cat_name}" class="post_cont_cat">${board.cat_name}</a>
 	         <c:if test="${board.book_no ne 0}">
-	          <span class="post_cont_book">Book</span>
+	          <a class="post_cont_book" href="${pageContext.request.contextPath}/book/@${board.memberVO.mem_id}/${board.book_no}">Book</a>
 	         </c:if>
 	        </div>
 	        <a href="${pageContext.request.contextPath}/@${board.memberVO.mem_id}/${board.bo_no}">  
@@ -130,7 +130,7 @@
 	    <a href="${pageContext.request.contextPath}/book/@${bookList.memberVO.mem_id}/${bookList.bookVO.book_no}" class="scrolling" data-no="${status.count}">
 	     <div class="work_cont">
 	      <c:if test="${bookList.bookVO.book_cover eq null}">
-		   <img id="work_img" style="background-color:#f2f2f2">
+		   <img id="work_img" src="${pageContext.request.contextPath}/resources/img/book_cover.jpg">
 	      </c:if>
 	      <c:if test="${bookList.bookVO.book_cover ne null}">
 		   <img id="work_img" src="${bookList.bookVO.book_cover}" alt="표지">

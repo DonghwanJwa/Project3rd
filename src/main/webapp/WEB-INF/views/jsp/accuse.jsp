@@ -70,9 +70,10 @@
 	    		 <!-- 기타사유 텍스트필드 끝 -->
 	    		 
 	    		 
-	    		 <p class="acc_write">권리침해 신고는 먼저 침해한 게시물을 신고 후 '자몽홈페이지 권리침해 신고 사이트'에서 침해증빙
-	    		  서류를 다운 받아 내용을 작성하여 <a class="acc_link_more" href="${pageContext.request.contextPath}/policy_privacy"
-  	    target="_blank">자몽 고객센터</a>로 온라인 접수하면 처리됩니다.
+	    		 <p class="acc_write">권리침해 신고는 먼저 침해한 게시물을 신고 후 <a href="https://privacy.kisa.or.kr/main.do" 
+	    		 target="_blank" style="color: #2c91ef;">'개인정보침해신고센터'</a>에서 침해증빙
+	    		  서류를 다운 받아 내용을 작성하여 <a class="acc_link_more" href="${pageContext.request.contextPath}/inquire"
+  	    		 target="_blank">자몽 고객센터</a>로 온라인 접수하면 처리됩니다.
 	    		 </p>
 	    		 <button type="submit" class="acc_report_btn">신고하기</button>
 	    		</form>

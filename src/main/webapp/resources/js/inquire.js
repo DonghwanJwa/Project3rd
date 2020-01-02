@@ -1,8 +1,10 @@
 /**
  *  inquire.jsp inquire.css
  */
+var regExpEamil = RegExp(/^(?=.*[@]{1,50})(?=.*[\.]{1,50}).{1,50}$/); //@와 .이 반드시 들어가게 만드는 정규식
 
 function inq(){
+	$('.inq_vali_date').text('');
 	if($("#listselect option:selected").val() == "none"){
 		$('#inq_vali_list').text('목록을 선택해주세요.');
 		$("#listselect").focus();
@@ -13,8 +15,18 @@ function inq(){
 		$('#email').focus();
 		return false;
 	}
+	if(!regExpEamil.test($("#email").val())){	//이메일 정규식 양식 체크
+		$('#inq_vali_email').text('E-mail을 정확하게 입력해주세요.');
+		$('#email').focus();
+		return false
+	}
 	if($('#phone').val() == ""){
 		$('#inq_vali_phone').text('Phone번호를 입력해 주세요.');
+		$('#phone').focus();
+		return false;
+	}
+	if($('#phone').val().length<8){
+		$('#inq_vali_phone').text('Phone번호를 정확하게 입력해 주세요.');
 		$('#phone').focus();
 		return false;
 	}

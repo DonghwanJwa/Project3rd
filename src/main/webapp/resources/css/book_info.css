@@ -63,6 +63,7 @@ a {
     padding-top: 30px;
     font-size: 23px;
     height: 150px;
+    line-height: 30px;
 }
 #book_info_cover_author{
 	display: block;

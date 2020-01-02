@@ -37,10 +37,46 @@ a {
 	width:25px;
 	height:25px;
 	object-fit:cover;
+	cursor: pointer;
+}
+
+#book_create_anno_img:hover ~#book_create_anno_cont{
+	display:inline;
+	opacity:1;
 }
 
 #book_create_anno_cont{
-	
+    cursor: default;
+    padding: 7px;
+    position: relative;
+    width: 730px;
+    bottom: 50px;
+    z-index: 10;
+    font-size: 14px;
+    background-color:#f9cc5bde;
+ 	opacity:0;
+ 	display:inline;
+    -webkit-transition:display 1s, opacity 1s;
+    transition:display 1s, opacity 1s;
+    animation-name: anno;
+  	animation-duration:4s;
+}
+
+@-webkit-keyframes anno{
+  0% {
+    opacity:1;
+  }
+  80%{
+  	opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+#book_create_anno_cont span{
+	display:inline-block;
+	line-height: 22px;
 }
 
 #book_create_info {
