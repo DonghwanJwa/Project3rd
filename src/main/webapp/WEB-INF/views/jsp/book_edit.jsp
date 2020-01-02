@@ -126,7 +126,7 @@
   
   <div id="create_book">
    <input type="submit" class="btn" onclick="return editCheck()" value="만들기">
-   <input type="reset" class="btn" value="취소">
+   <input type="reset" class="btn" value="취소" onclick="history.back();">
   </div>
   </div>
 

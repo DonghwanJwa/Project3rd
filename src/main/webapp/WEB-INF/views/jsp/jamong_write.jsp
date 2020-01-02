@@ -87,7 +87,7 @@
     <div class="write_cont_fix_wrap">
      <div class="write_cont_btn_wrap">
       <button type="button" class="write_cont_save" onclick="location.href='#'; return writeCheck();">저장</button>
-      <button type="button" class="write_cont_cancle">취소</button>
+      <button type="button" class="write_cont_cancle" onclick="history.back();">취소</button>
      </div>
     </div>
    </div>

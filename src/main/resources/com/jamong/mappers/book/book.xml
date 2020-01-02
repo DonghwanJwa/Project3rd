@@ -15,7 +15,6 @@
   <result column="bo_date" property="bo_date" />
   <result column="bo_editdate" property="bo_editdate" />
   <result column="bo_lock" property="bo_lock" />
-  <result column="bo_type" property="bo_type" />
   <result column="bo_like" property="bo_like" />
   <result column="book_order" property="book_order" />
   <result column="cat_no" property="cat_no" />

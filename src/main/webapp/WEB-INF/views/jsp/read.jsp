@@ -53,6 +53,7 @@
       <div class="write_sub_title" style="color:#000">${bo.bo_subtitle}</div>
       </c:if>
       </c:if>
+    </div>
       <c:if test="${!empty bo.bo_thumbnail || !empty bo.bo_color}">
       <div class="write_article_info_center" style="color:#FFF !important;">
        <span class="write_article_by">by</span>
@@ -70,7 +71,6 @@
        <span class="write_article_date">${bo.bo_date}</span>
       </div>
       </c:if>
-    </div>
      </c:if>
      <c:if test="${bo.bo_titlespace == 1}">
      <div id="write_title_parent_bottom" style="bottom:115px;">
@@ -92,6 +92,7 @@
       <div class="write_sub_title" style="color:#000">${bo.bo_subtitle}</div>
       </c:if>
       </c:if>
+    </div>
       <!-- 하단정보 썸네일이나 배경색 있을 때 -->
       <c:if test="${!empty bo.bo_thumbnail || !empty bo.bo_color}">
       <div class="write_article_info_bottom" style="color:#FFF !important;">
@@ -110,7 +111,6 @@
        <span class="write_article_date">${bo.bo_date}</span>
       </div>
       </c:if>
-    </div>
      </c:if>
     </div>
   </div>
@@ -163,13 +163,13 @@
 			<%-- 작가 키워드 --%>
 			<div class="author_keyword">
 			 <c:if test="${!empty bo.memberVO.mem_fav1}">
-				<a href="${pageContext.request.contextPath}/search?result=post">${bo.memberVO.mem_fav1}</a>
+				<a href="${pageContext.request.contextPath}/category/${bo.memberVO.mem_fav1}">${bo.memberVO.mem_fav1}</a>
 			 </c:if>
 			 <c:if test="${!empty bo.memberVO.mem_fav2}">
-				<a href="${pageContext.request.contextPath}/search?result=post">${bo.memberVO.mem_fav2}</a>
+				<a href="${pageContext.request.contextPath}/category/${bo.memberVO.mem_fav2}">${bo.memberVO.mem_fav2}</a>
 			 </c:if>
 			 <c:if test="${!empty bo.memberVO.mem_fav3}">
-				<a href="${pageContext.request.contextPath}/search?result=post">${bo.memberVO.mem_fav3}</a>
+				<a href="${pageContext.request.contextPath}/category/${bo.memberVO.mem_fav3}">${bo.memberVO.mem_fav3}</a>
 			 </c:if>
 			</div>
 			
