@@ -50,7 +50,6 @@
 }
 .ac_adm_tr{
 	cursor:pointer;
-	border-bottom: .5px solid #d1d1d1;
 }
 .ac_adm_tr:hover{
 	background-color:aliceblue;
