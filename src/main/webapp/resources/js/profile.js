@@ -35,6 +35,16 @@ $(document).ready(function() {
 		$("#info_tab").removeClass("active");
 	});
 	
+	$("#article_all").click(function() {
+		$("#article_check").val("all");
+	});
+	$("#article_close").click(function() {
+		$("#article_check").val("close");
+	});
+	$("#article_open").click(function() {
+		$("#article_check").val("open");
+	});
+	
 // 작가 구독 텍스트 변경되게
 	$(".profile_button_type2").click(function(event) {
 		if(event.target.getAttribute("data-disabled")=='true'){
@@ -126,18 +136,19 @@ $(document).ready(function() {
 		}
 	});
 	// 구독중인 상태에서 hover시 작동
-	$('.p_follow').hover(function() {
+	$('.p_follow').on("hover",function() {
 		  $(".p_follow").text("구독해제");
 		}, function(){
 		  $(".p_follow").text("구독중");
 		});
+//글목록 공개 비공개 전환
+	
 	// 자신의 글목록 공개 비공개 여부 선택
 	$(document).on('click','.private',function(event) {
 			var num = $(this).attr("data-no");
 			if(event.target.getAttribute("data-disabled")=='true'){
 				return false;
 			}
-			console.log(num);
 			var lockImg = "/jamong.com/resources/img/lock.png";
 			var unlockImg = "/jamong.com/resources/img/unlock.png";
 			if($(event.target).hasClass('unlock')){
@@ -227,6 +238,9 @@ $(window).scroll(function(){
 		var article = $(".scrolling:last").attr("data-no");
 		var para = article.split('/');
 		var pb = $('#profile_menu_check').val();
+		var v = document.location.href.split("=");
+		var t = v.split("#");
+		
 		//ajax를 이용하여 현재 로딩 된 게시글의 마지막 bo_no를 서버로 보내어 그 다음 10개의 게시물 데이터를 받아온다.
 		if(pb == 'article'){
 		$.ajax({
@@ -237,9 +251,11 @@ $(window).scroll(function(){
 				"mem_no" : para[0],
 				"bo_no" : para[1],
 				"num" : para[2],
-				"pb" : pb
+				"pb" : pb,
+				"view" : v[1]
 			},
 			success : function(data){// ajax가 성공했을 시 수행될 function
+				console.log(v[1]);
 				var str=""; 
 				// 받아온 데이터가 "" 이거나 null이 아닌경우 DOM handling?을 해준다
 				if(data != ""){
@@ -263,20 +279,23 @@ $(window).scroll(function(){
 								+	'<a href="/jamong.com/@' + this.memberVO.mem_id + '/' + this.bo_no + '">'
 								+	'<strong class="pf_bo_title">' + this.bo_title + '</strong>'
 								+  	'<div class="article_cont">' +	this.bo_cont + '</div> <div>' 
-						if(this.bo_thumnail != null){
-							str += ' <img class="profile_post_img" alt="이미지 정보"	src="' + this.bo_thumnail + '"/>'
+						if(this.bo_thumbnail != null){
+							str += ' <img class="profile_post_img" alt="이미지 정보"	src="' + this.bo_thumbnail + '"/>'
+						}else{
 						}
 						str += '</div> </a> </div></div> <span class="pf_post_date">' + this.bo_date + '</span></li>'
 					}); // each
 					$(".scrolling:last").after(str);
 				} // if data
-			} // success
+			},error : function(){
+				alert('안됨');
+			}//에러 확인
 		}); // ajax
 	}
 		if(pb == 'magazine'){
 		var article = $(".bookList:last").attr("data-no");
-		var checking = $(".lock_checking").val();
 		var para = article.split('/');
+		
 		//ajax를 이용하여 현재 로딩 된 게시글의 마지막 bo_no를 서버로 보내어 그 다음 10개의 게시물 데이터를 받아온다.
 		$.ajax({
 			type : "post",
@@ -286,7 +305,7 @@ $(window).scroll(function(){
 				"mem_no" : para[0],
 				"book_no" : para[1],
 				"num" : para[2],
-				"pb" : pb
+				"pb" : pb,
 			},
 			success : function(data){// ajax가 성공했을 시 수행될 function
 				var str=""; 
@@ -329,12 +348,6 @@ $(window).scroll(function(){
 	} // if(scrollTop()
 }); // scroll
 			
-
-
-
-	
-
-
 // 키워드 	
 // edit 글자제한 
 var keyword_tag = {};
@@ -486,7 +499,6 @@ $(document).on("click",'.profile_edit_btn1',function() {
 	} else {}
 });
 
-
 function profileImgSelect(e){
 	var files = e.target.files;
 	var filesArr =  Array.prototype.slice.call(files);
@@ -585,7 +597,6 @@ $(document).ready(function(){
 		}
 		e.preventDefault;
 	});
-	
 	
 })
 

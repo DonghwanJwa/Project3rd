@@ -320,13 +320,23 @@ SELECT * FROM
     FROM member m
     INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
  	ON m.mem_no = b.mem_no
+ 	<!-- 세션과 자신의 아이디값이 다를때 또는 관리자가 아닐때-->
  	<if test ="mp_no != m_no and state != '9'">
  	AND b.bo_lock = 1
     WHERE m.mem_no = #{mp_no})
     X)
  	</if>
+ <!-- 자신의 아이디로 들어왔을때 또는 관리자가 들어갔을 때 -->
  	<if test ="mp_no == m_no or state == '9'">
+<!-- 공개, 비공개 분기 !-->
+  	<if test = "view == 'open'" >
+	AND b.bo_lock = 1
+ 	</if>
+ 	 	<if test = "view == 'close'" >
+	AND b.bo_lock = 0
+	</if>
     WHERE m.mem_no = #{mp_no})
+
     X)
  	</if>
     WHERE RN &lt;= 10
@@ -366,7 +376,15 @@ SELECT * FROM
     WHERE m.mem_no = #{mp_no})
     X)
  	</if>
+ 	<!-- 자신의 아이디로 들어왔을때 또는 관리자가 들어갔을 때 -->
  	<if test ="mp_no == m_no or state == '9'">
+    <!-- 공개 비공개 값 불러오기 -->
+     <if test = "view == 'open'" >
+ 	 AND b.bo_lock = 1
+ 	 </if>
+ 	 <if test = "view == 'close'" >
+	 AND b.bo_lock = 0
+	 </if>
     WHERE m.mem_no = #{mp_no})
     X)
  	</if>

@@ -403,11 +403,13 @@ public class MemberController {
 			HttpSession session )throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out =response.getWriter();
-		session = request.getSession();
+		
+		String view = request.getParameter("view");
 		
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		
 		ModelAndView mv=new ModelAndView("jsp/profile");
+		
 			mp = this.memberService.profileCheck(mem_id);
 			// 구독자 
 			SubscribeVO sub = null;
@@ -435,6 +437,7 @@ public class MemberController {
 				profileMap.put("mp_no", mp.getMem_no());
 				profileMap.put("m_no", m.getMem_no());
 				profileMap.put("state",m.getMem_state());
+				profileMap.put("view", view);
 				}else {
 				profileMap.put("mp_no", mp.getMem_no());
 				profileMap.put("m_no", 0); //session값
@@ -499,6 +502,7 @@ public class MemberController {
 				mv.addObject("subCount",subCount);
 				mv.addObject("mybook",myBookList);
 				mv.addObject("mplist",mplist);
+				mv.addObject("view",view);
 			}
 			return mv;
 	}//user_profile() => 유저 프로필 창
