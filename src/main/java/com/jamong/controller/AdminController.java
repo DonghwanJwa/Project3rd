@@ -7,32 +7,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.AccuseVO;
+import com.jamong.domain.BoardVO;
 import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.NoticeVO;
 import com.jamong.service.AccuseService;
 import com.jamong.service.AdminService;
+import com.jamong.service.BoardService;
 import com.jamong.service.InquireService;
 import com.jamong.service.MemberService;
 
 @Controller
 public class AdminController {
 	@Autowired
-	private AdminService adminService;
-	
+	private AdminService adminService;	
 	@Autowired
 	private AccuseService accuseService;
-
 	@Autowired
 	private InquireService inquireService;
-	
-	
+	@Autowired
+	private BoardService boardService;	
 	@Autowired
 	private MemberService memberService;
 	
@@ -135,5 +139,152 @@ public class AdminController {
 				"</body>");
 		
 		return null;
+	}
+	
+	@RequestMapping("statistics")
+	public ModelAndView statisticsChart() {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("jsp/statistics");
+		return mv;
+	}
+	
+	@RequestMapping("AgeGroupData")
+	public ResponseEntity<JSONObject> ageGroup_List(){
+		ResponseEntity<JSONObject> entity = null;
+		List<MemberVO> items = this.memberService.chartAgeGroup();
+		JSONObject jobj = new JSONObject();
+		
+		JSONObject cols1 = new JSONObject();
+		JSONObject cols2 = new JSONObject();
+		JSONArray title = new JSONArray();
+		cols1.put("lable","연령");
+		cols1.put("type","string");
+		cols2.put("label","분포도");
+		cols2.put("type","number");
+		
+		title.add(cols1);
+		title.add(cols2);
+		
+		jobj.put("cols",title);
+		
+		JSONArray body = new JSONArray();
+		for(MemberVO vo : items) {
+			JSONObject age = new JSONObject();
+			age.put("v",vo.getAge_group()+"대");
+			JSONObject count = new JSONObject();
+			count.put("v",vo.getCount());
+			
+			JSONArray rows = new JSONArray();
+			rows.add(age);
+			rows.add(count);
+			
+			JSONObject c = new JSONObject();
+			c.put("c",rows);
+			
+			body.add(c);
+		}
+		jobj.put("rows",body);
+		try {
+			entity = new ResponseEntity<JSONObject>(jobj, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<JSONObject>(HttpStatus.BAD_REQUEST);
+		}		
+		return entity;
+	}
+	
+	@RequestMapping("GenderData")
+	public ResponseEntity<JSONObject> genderData_List(){
+		ResponseEntity<JSONObject> entity = null;
+		List<MemberVO> items = this.memberService.chartGenderData();
+		JSONObject jobj = new JSONObject();
+		
+		JSONObject cols1 = new JSONObject();
+		JSONObject cols2 = new JSONObject();
+		JSONArray title = new JSONArray();
+		cols1.put("lable","성별");
+		cols1.put("type","string");
+		cols2.put("label","인원수");
+		cols2.put("type","number");
+		
+		title.add(cols1);
+		title.add(cols2);
+		
+		jobj.put("cols",title);
+		
+		JSONArray body = new JSONArray();
+		for(MemberVO vo : items) {
+			JSONObject gender = new JSONObject();
+			gender.put("v",vo.getMem_gender());
+			JSONObject count = new JSONObject();
+			count.put("v",vo.getCount());
+			
+			JSONArray rows = new JSONArray();
+			rows.add(gender);
+			rows.add(count);
+			
+			JSONObject c = new JSONObject();
+			c.put("c",rows);
+			
+			body.add(c);
+		}
+		jobj.put("rows",body);
+		try {
+			entity = new ResponseEntity<JSONObject>(jobj, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<JSONObject>(HttpStatus.BAD_REQUEST);
+		}		
+		return entity;
+	}
+	
+	@RequestMapping("ArticleData")
+	public ResponseEntity<JSONObject> articleData_List(){
+		ResponseEntity<JSONObject> entity = null;
+		List<BoardVO> items = this.boardService.chartArticleState();
+		JSONObject jobj = new JSONObject();
+		
+		JSONObject cols1 = new JSONObject();
+		JSONObject cols2 = new JSONObject();
+		JSONArray title = new JSONArray();
+		cols1.put("lable","");
+		cols1.put("type","string");
+		cols2.put("label","인원수");
+		cols2.put("type","number");
+		
+		title.add(cols1);
+		title.add(cols2);
+		
+		jobj.put("cols",title);
+		
+		JSONArray body = new JSONArray();
+		for(BoardVO vo : items) {
+			JSONObject gender = new JSONObject();
+			if(vo.getBo_lock() == 1) {
+				gender.put("v","공개글");				
+			}else {
+				gender.put("v","비공개글");
+			}
+			JSONObject count = new JSONObject();
+			count.put("v",vo.getCount());
+			
+			JSONArray rows = new JSONArray();
+			rows.add(gender);
+			rows.add(count);
+			
+			JSONObject c = new JSONObject();
+			c.put("c",rows);
+			
+			body.add(c);
+		}
+		jobj.put("rows",body);
+		try {
+			entity = new ResponseEntity<JSONObject>(jobj, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<JSONObject>(HttpStatus.BAD_REQUEST);
+		}		
+		return entity;
 	}
 }

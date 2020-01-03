@@ -184,5 +184,10 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO getPreBoardCont(HashMap<String, Object> bm) {
 		return this.boardDao.getPreBoardCont(bm);
 	}
+
+	@Override
+	public List<BoardVO> chartArticleState() {
+		return this.boardDao.chartArticleState();
+	}
 	
 }

@@ -32,6 +32,8 @@ public interface MemberDAO {
 	List<MemberVO> getSearchScrollMember(HashMap<String, Object> searchMap);
 	List<MemberVO> recomAuthor();
 	List<MemberVO> categoryMember(String cat_name);
+	List<MemberVO> chartAgeGroup();
+	List<MemberVO> chartGenderData();
 	MemberVO getAccusee(int ac_member);
 	void updateProfile(MemberVO mp);
 	MemberVO author_info(String mem_id);

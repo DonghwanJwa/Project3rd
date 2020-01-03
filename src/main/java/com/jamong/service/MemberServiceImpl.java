@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jamong.dao.BoardDAO;
 import com.jamong.dao.MemberDAO;
 import com.jamong.dao.SympathyDAO;
-import com.jamong.domain.BoardVO;
 import com.jamong.domain.MemberVO;
 
 @Service
@@ -139,6 +137,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO getAccusee(int ac_member) {
 		return this.memberDao.getAccusee(ac_member);
+	}
+	@Override
+	public List<MemberVO> chartAgeGroup() {
+		return this.memberDao.chartAgeGroup();
+	}
+	@Override
+	public List<MemberVO> chartGenderData() {
+		return this.memberDao.chartGenderData();
 	}
 	
 }

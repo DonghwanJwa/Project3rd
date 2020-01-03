@@ -1,7 +1,5 @@
 package com.jamong.domain;
 
-import java.util.List;
-
 /** Database member Table Value Object **/
 public class MemberVO {
 	
@@ -35,9 +33,14 @@ public class MemberVO {
 	private int mem_article;
 	private int mem_subscribe;
 	private String drop_date;
+	private String age_group;
+	private int count;
+
+	public int getCount() {		return count;	}
+	public void setCount(int count) {		this.count = count;	}
+	public String getAge_group() {		return age_group;	}
+	public void setAge_group(String age_group) {		this.age_group = age_group;	}
 	
-
-
 	/* 관리자페이지 회원관리 게시판 페이징,검색을 위한 변수 추가 (12/5) */
 	private int startrow;
 	private int endrow;

@@ -29,21 +29,20 @@ body a {
 	filter:brightness(0.7);
 }
 .write_article_info_bottom{
-	font-size:12px;
-	font-size: 12px;
+	width: 700px;
+    font-size: 12px;
     position: absolute;
-    transform: translateY(250px);
+    transform: translate(50%,250px);
     bottom: 0px;
-    left: 20%;
+    right: 50%;
+    text-align: left;
 }
 .write_article_info_center{
-	font-size:12px;
 	position: absolute;
     font-size: 12px;
-    transform: translateY(250px);
+    transform: translate(50%,250px);
     bottom: 0px;
-    right: 45%;
-	
+    right: 50%;	
 }
 .write_article_by{
 	font-style:italic;
