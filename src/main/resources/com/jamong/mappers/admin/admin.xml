@@ -61,10 +61,12 @@
 	<select id="articleCount" resultType="int">
 		SELECT COUNT(bo_no) FROM (SELECT board.* from board order by bo_editdate desc) b, member m 
 		<where>
-		b.mem_no = m.mem_no AND b.bo_lock != 0 AND b.bo_lock != 1
+		b.mem_no = m.mem_no AND b.bo_lock != 1
 		
 		<if test="find_field == 'all'"></if>
-		
+		<if test="find_field == 'hide'">
+		AND b.bo_lock = 0
+		</if>
 		<if test="find_field == 'block'">
 		AND b.bo_lock = 2
 		</if>
@@ -141,9 +143,11 @@
 	<select id="articleList" resultMap="boardMap">
 		SELECT * FROM (SELECT rowNum r, bo_no, bo_title, bo_lock, bo_date, bo_editdate, cat_name, mem_no FROM (SELECT board.* FROM board
 		<where>
-		bo_lock != 0 AND bo_lock != 1 
+		bo_lock != 1
 		<if test="find_field == 'all'"></if>
-		
+		<if test="find_field == 'all'">
+		AND bo_lock = 0
+		</if>
 		<if test="find_field == 'block'">
 		AND bo_lock = 2
 		</if>
