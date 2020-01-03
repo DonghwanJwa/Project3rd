@@ -38,146 +38,112 @@ function inq(){
 	if($('#agree').is(":checked") == true){
 		onsole.log('체크된 상태');
 	}
-	
+
 	if($('#agree').is(":checked") == false){
 		$('#inq_vali_check').text('개인정보처리 방침에 동의해 주세요.');
 		$('#agree').focus();
 		return false;
 	}
-		
+
 }
-	
-	$(document).ready(function(){
-		$("#list").on("click",function(e){
-			e.preventDefault();
-			fn_openBoardList();
+
+$(document).ready(function(){
+	$("#list").on("click",function(e){
+		e.preventDefault();
+		fn_openBoardList();
 	});
 	$("#write").on("click",function(e){
 		e.preventDefault();
 		fn_insertBoard();
 	});
-	
+
 	$("#addfile").on("click",function(e){
 		e.preventDefault();
 		fn_addFile();			
 	});
-	
+
 	$("a[name='delete']").on("click",function(e){
 		e.preventDefault();
 		fn_deletefile($(this));
 	});
-	
+
 });
-	function fn_openBoardList(){
-		var comSubmit =new ComSubmit();
-		comSubmit.setUrl("<c:url value='/views/openBoardList.do'/>");
-		comSubmit.submit();
-	}
-	
-	function fn_insertBoard(){
-		var comSubmit = new ComSubmit("inq_request");
-		comSubmit.setUrl("<c:url value='/sample/insertBoard.do'/>");
-		comSubmit.submit();
-	}
-	
-	
-		
-		function fn_deletefile(obj){
-			obj.parent().remove();
-		}
-	
-		
-		
-		/* phone 번호에 번호이외에 것이 들어가면 삭제 */
+function fn_openBoardList(){
+	var comSubmit =new ComSubmit();
+	comSubmit.setUrl("<c:url value='/views/openBoardList.do'/>");
+	comSubmit.submit();
+}
+
+function fn_insertBoard(){
+	var comSubmit = new ComSubmit("inq_request");
+	comSubmit.setUrl("<c:url value='/sample/insertBoard.do'/>");
+	comSubmit.submit();
+}
+
+
+
+function fn_deletefile(obj){
+	obj.parent().remove();
+}
+
+
+
+/* phone 번호에 번호이외에 것이 들어가면 삭제 */
 $(document).ready(function(){
 	$("#phone").on("focus",function(){
 		var x = $(this).val();
 		$(this).val(x);
 	}).on("focusout", function(){
-			var x = $(this).val();
-			if(x && x.length > 0){
-				if(!$.isNumberic(x)){
-					x = x.replace(/[^0-9]/g,"");
-				}
+		var x = $(this).val();
+		if(x && x.length > 0){
+			if(!$.isNumberic(x)){
+				x = x.replace(/[^0-9]/g,"");
 			}
+		}
 	}).on("keyup", function(){
 		$(this).val($(this).val().replace(/[^0-9]/g,""));
 	});
-	});
+});
 
 
 
 
-	$(document).ready(function(){
+$(document).ready(function(){
 	$("#info").on("keyup",function(){
 		if($('#info').val().length > $(this).attr('maxlength')){
-		 $('#inq_vali_info').text('최대글자수를 초과하셨습니다.');
-		 $('#info').focus();
-		 return false;
-	}
+			$('#inq_vali_info').text('최대글자수를 초과하셨습니다.');
+			$('#info').focus();
+			return false;
+		}
 	});	
-	});
-	
-	
-	/* 파일 업로드 */
-	$(document).ready(function(){ 
-		var fileTarget = $('.inq_wrap_upload #inq_file1'); 
-		
-		fileTarget.on('change', function(){ // 값이 변경되면 
-			if(window.FileReader){ // modern browser
-				var filename = $(this)[0].files[0].name; } 
-			else { // old IE 
-				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
-				}
-		
-		// 추출한 파일명 삽입
-		$(this).siblings('#file_name1').val(filename); 
-		}); 
-	});
-	
-	$(document).ready(function(){ 
-		var fileTarget = $('.inq_wrap_upload #inq_file2'); 
-		
-		fileTarget.on('change', function(){ // 값이 변경되면 
-			if(window.FileReader){ // modern browser
-				var filename = $(this)[0].files[0].name; } 
-			else { // old IE 
-				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
-				}
-		
-		// 추출한 파일명 삽입
-		$(this).siblings('#file_name2').val(filename); 
-		}); 
-	});
-	
-	$(document).ready(function(){ 
-		var fileTarget = $('.inq_wrap_upload #inq_file3'); 
-		
-		fileTarget.on('change', function(){ // 값이 변경되면 
-			if(window.FileReader){ // modern browser
-				var filename = $(this)[0].files[0].name; } 
-			else { // old IE 
-				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
-				}
-		
-		// 추출한 파일명 삽입
-		$(this).siblings('#file_name3').val(filename); 
-		}); 
-	});
-	
-	$(document).ready(function(){ 
-		var fileTarget = $('.inq_wrap_upload #inq_file4'); 
-		
-		fileTarget.on('change', function(){ // 값이 변경되면 
-			if(window.FileReader){ // modern browser
-				var filename = $(this)[0].files[0].name; } 
-			else { // old IE 
-				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
-				}
-		
-		// 추출한 파일명 삽입
-		$(this).siblings('#file_name4').val(filename); 
-		}); 
-	});
+});
 
-	
+/*파일 업로드*/
+$(document).ready(function(){ 
+	$("input[type=file]").bind( 'change', function (e){
+		if( !$(this).val() ) return;
+		var f = this.files[0];
+		var size = f.size || f.fileSize;
+		var limit = 10*1024*1024;
+		if( size > limit ){
+			alert( '파일용량은 10MB 를 넘을수 없습니다.' );
+			$(this).prev().prev().val('파일선택');
+			$(this).val('');
+			$(this).replaceWith($(this).clone(true));
+			return;
+		}else{
+			
+			//보여주는 이름 바꾸기
+			if(window.FileReader){ // modern browser
+				var filename = $(this)[0].files[0].name; 
+			} 
+			else { // old IE 
+				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+			}
+
+			// 추출한 파일명 삽입
+			$(this).prev().prev().val(filename); 
+		}
+	});
+});
+

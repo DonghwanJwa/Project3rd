@@ -162,22 +162,10 @@ public class AuthorController {
 		a.setAut_file3(aut_file3);
 		
 		this.authorService.sendAuthor(a);
-		
-		out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
-				"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
-				"<body>\r\n" + 
-				"<script>\r\n" + 
-				"Swal.fire({\r\n" + 
-				"		title : 'Success',\r\n" + 
-				"		text : '작가신청에 성공했습니다! \\n 결과를 기다려주세요!',\r\n" + 
-				"		icon: 'Success',\r\n" + 
-				"		}).then((result) => {\r\n" + 
-				"			if(result.value){\r\n" + 
-				"				history.back();\r\n" + 
-				"			}\r\n" + 
-				"		});\r\n" + 
-				"</script>\r\n" + 
-				"</body>");
+		out.println("<script>");
+		out.println("alert('작가신청에 성공했습니다! \\\\n 결과를 기다려주세요!');");
+		out.println("location='/jamong.com/';");
+		out.println("</script>");
 		
 		return null;
 	} // request_author_in()

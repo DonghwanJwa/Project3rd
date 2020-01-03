@@ -14,7 +14,7 @@ import com.jamong.domain.MemberVO;
 public interface BoardService {
 
 	void insertBoard(HashMap<String, Object> bm, int mem_no);
-	BoardVO getUserBoardCont(int bo_no);
+	BoardVO getUserBoardCont(int bo_no,int mem_no);
 	List<BoardVO> getListAll(BoardVO b);
 	List<BoardVO> getProfile(HashMap<String, Object> profileMap);
 	BoardVO getNextBoardCont(HashMap<String, Object> bm);

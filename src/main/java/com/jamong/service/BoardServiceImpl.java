@@ -51,9 +51,14 @@ public class BoardServiceImpl implements BoardService {
 
 	@Transactional
 	@Override
-	public BoardVO getUserBoardCont(int bo_no) {
-		this.boardDao.updateHit(bo_no);
-		return this.boardDao.getUserBoardCont(bo_no);
+	public BoardVO getUserBoardCont(int bo_no,int mem_no) {
+		BoardVO b = this.boardDao.getUserBoardCont(bo_no);
+		if(b.getBo_lock()==1) {	//공개글일때만 조회수 증가
+			if(b.getMem_no()!=mem_no) {	//공개글에서 내글이 아닐때만 조회수 증가
+				this.boardDao.updateHit(bo_no);
+			}
+		}
+		return b;
 	}
 
 	@Override
