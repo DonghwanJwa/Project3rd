@@ -149,4 +149,12 @@ public class MemberDAOImpl implements MemberDAO{
 		sm.put("UpCount",i);
 		this.sqlSession.update("SubscribeCount",sm);
 	}
+	@Override
+	public List<MemberVO> chartAgeGroup() {
+		return this.sqlSession.selectList("AgeGroup");
+	}
+	@Override
+	public List<MemberVO> chartGenderData() {
+		return this.sqlSession.selectList("GenderData");
+	}
 }

@@ -269,21 +269,12 @@ $(document).keydown(function(e){
       <div id="head-profile-service-wrap">
        <ul>
         <li id="head-profile-service-write" class="head-profile-stat-login">
-         <a href="${pageContext.request.contextPath}/write">
+         <a href="${pageContext.request.contextPath}/statistics">
           <span class="head-profile-service-bar-left"></span>
-       	  <b>글쓰기</b>
+       	  <b>통계자료</b>
           <span class="head-profile-service-bar-right"></span>
          </a>
         </li>
-        <c:if test="${m.mem_author==1}">
-        <li id="head-profile-service-publish" class="head-profile-stat-login">
-         <a href="${pageContext.request.contextPath}/book_create">
-          <span class="head-profile-service-bar-left"></span>
-       	  <b>책 발간</b>
-          <span class="head-profile-service-bar-right"></span>
-         </a>
-        </li>
-        </c:if>
         <li id="head-profile-service-setting" class="head-profile-stat-login">
          <a href="${pageContext.request.contextPath}/my_info">
           <span class="head-profile-service-bar-left"></span>
