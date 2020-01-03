@@ -27,6 +27,7 @@
 			<c:forEach var="b" items="${blist}">
 				<tr onclick="location='${pageContext.request.contextPath}/@${b.memberVO.mem_id}/${b.bo_no}';" id="to_info">
 					<td align="center" class="list_underline">
+					<c:if test='${b.bo_lock == 0}'> <font color="blue">비공개</font> </c:if>
 					<c:if test='${b.bo_lock == 2}'> <font color="red">블록</font> </c:if>
 					<c:if test='${b.bo_lock == 3}'>	<b>삭제</b> </c:if>
 					</td>
@@ -115,8 +116,11 @@
 			<option value="all" selected>
 				상태
 			</option>
+			<option value="hide" <c:if test="${find_field == 'hide'}">${'selected'}</c:if>>
+				비공개
+			</option>
 			<option value="block" <c:if test="${find_field == 'block'}">${'selected'}</c:if>>
-				정지
+				블록
 			</option>
 			<option value="delete" <c:if test="${find_field == 'delete'}">${'selected'}</c:if>>
 				삭제
