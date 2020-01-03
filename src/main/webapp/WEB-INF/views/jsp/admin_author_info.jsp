@@ -193,7 +193,7 @@
 	<form name="form2" method="post" onsubmit="return judge_check();">
 	<input type="hidden" value="${no}" name="no"/>
 	<c:if test="${a.aut_state == 0}">
-		<input type="submit" id="acc_btn" class="notice_btn" value="승인" onclick="javascript:form2.action='author_upsate?state=accept';" />
+		<input type="submit" id="acc_btn" class="notice_btn" value="승인" onclick="javascript:form2.action='author_upstate?state=accept';" />
 		<input type="submit" id="rej_btn" class="notice_btn" value="반려" onclick="javascript:form2.action='author_upstate?state=reject'" />
 	</c:if>
 		<input type="button" class="notice_btn" value="목록" onclick="location='admin_author?page=${page}';" />

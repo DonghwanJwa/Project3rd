@@ -69,7 +69,11 @@ public class BoardController {
 
 		BoardVO nextVo = this.boardService.getNextBoardCont(bm);
 		BoardVO preVo = this.boardService.getPreBoardCont(bm);
-		bo = this.boardService.getUserBoardCont(bo_no);
+		if(readM == null) {
+			bo = this.boardService.getUserBoardCont(bo_no,-1);//로그인이 되어있지 않을때에는 mem_no값을 -1로줌 
+		}else {
+			bo = this.boardService.getUserBoardCont(bo_no,readM.getMem_no());//로그인이 되어있을때는 본인 mem_no값을 전달
+		}
 
 		/** lock 0 비공개, 1 공개, 2 정지, 3 삭제 **/
 
@@ -294,7 +298,7 @@ public class BoardController {
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		if (m != null) {
 			if(mem_id.equals(m.getMem_id())) {
-				bo = this.boardService.getUserBoardCont(bo_no);
+				bo = this.boardService.getUserBoardCont(bo_no,-1);//조회수 증가되지 않고 수정할 내용을 불러옴
 				mv.addObject("bo",bo);
 				mv.setViewName("jsp/jamong_edit");
 				return mv;
@@ -446,6 +450,7 @@ public class BoardController {
 		HashMap<String,Object> bm = new HashMap<>();
 		bm.put("b",b);
 		bm.put("mem_id",m.getMem_id());
+		bm.put("mem_no", mem_no);
 
 		this.boardService.insertBoard(bm,mem_no);
 

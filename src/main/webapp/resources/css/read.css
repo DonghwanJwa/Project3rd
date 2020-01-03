@@ -292,6 +292,7 @@ body a {
 .comment_user_img {
 	border-radius:100px;
 	float: left;
+	object-fit:cover;
 }
 
 .comment_hide_button_wrap {

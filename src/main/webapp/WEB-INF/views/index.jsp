@@ -332,68 +332,7 @@ $(document).keydown(function(e){
     
    </div>
   
-  <%-- 메인-공감글 노랑--%>
-   <div id="recom_writting">
-    <div class="main-title-text">
-     <h3>SYMPATHETIC ARTICLE</h3>
-     <h5>당신을 공감시킬 글모음</h5>
-    </div>
-	<div id="recom_writting-cont">
-	
-     <ul id="recom_writting-list">
-     
- 	  <c:forEach var="blist" items="${blist}" varStatus="status">
-       <li>
-        <div class="recom_writting-item">
-         <a href="${pageContext.request.contextPath}/@${blist.memberVO.mem_id}/${blist.bo_no}" class="link_item">
-          <div class="recom_writting-item-head">
-           <div class="writting-item-head-inner">
-            <div class="writting-item-head-inner-cont">
-             <c:if test="${empty blist.bo_thumbnail}">
-              <div class="writting-item-head-inner-cont-img empty-image">
-             </c:if>             
-             <c:if test="${!empty blist.bo_thumbnail}">
-              <div class="writting-item-head-inner-cont-img" style="background-image:url(${blist.bo_thumbnail})">
-             </c:if>             
-              <img class="writting-item-head-inner-cont-tape" src="${pageContext.request.contextPath}/resources/img/recom_masking/masking${tlist[status.index]}.png">
-              <%-- 이미지 div --%>
-             </div>
-             <div class="writting-item-head-inner-cont-hs">
-              <div class="writting-item-head-inner-cont-head">
-               <p>${blist.bo_title}</p>
-              </div>
-              <div class="writting-item-head-inner-cont-sub">
-               <div>${blist.bo_cont}</div>
-              </div>
-             </div>
-             <div class="writting-item-head-inner-cont-bottom">
-              <span>by ${blist.memberVO.mem_nickname}</span>
-             </div>
-            </div>
-           </div>
-          </div>
-         </a>
-        </div> 
-       </li>
-	  </c:forEach>
-	  
-     </ul>
-     </div>
-     <div class="slide-button">
-      <a href="javascript:;" id="recom_writting-cont-slideleft" class="slide-left" onclick="scrollmove('recom_writting-cont','slideleft');"
-      	style="visibility:hidden;">
-       <img src="${pageContext.request.contextPath}/resources/img/writepage_icon/prev_btn.png" alt="왼쪽스크롤버튼"/>
-      </a>
-      <a href="javascript:;" id="recom_writting-cont-slideright" class="slide-right" onclick="scrollmove('recom_writting-cont','slideright');"
-      	style="visibility:visible;">
-       <img src="${pageContext.request.contextPath}/resources/img/writepage_icon/next_btn.png" alt="오른쪽스크롤버튼"/>
-      </a>     
-    </div>   
-   </div>
-  
-   <div class="clear"></div>
-  
-   <%-- 메인-추천책 주황--%>
+     <%-- 메인-추천책 주황--%>
    <div id="recom_book">
     <div class="main-title-text">
      <h3>RECOMMENED BOOKS</h3>
@@ -456,7 +395,68 @@ $(document).keydown(function(e){
     </div>
    
    <div class="clear"></div>
-    
+  
+  <%-- 메인-공감글 노랑--%>
+   <div id="recom_writting">
+    <div class="main-title-text">
+     <h3>SYMPATHETIC ARTICLE</h3>
+     <h5>당신을 공감시킬 글모음</h5>
+    </div>
+	<div id="recom_writting-cont">
+	
+     <ul id="recom_writting-list">
+     
+ 	  <c:forEach var="blist" items="${blist}" varStatus="status">
+       <li>
+        <div class="recom_writting-item">
+         <a href="${pageContext.request.contextPath}/@${blist.memberVO.mem_id}/${blist.bo_no}" class="link_item">
+          <div class="recom_writting-item-head">
+           <div class="writting-item-head-inner">
+            <div class="writting-item-head-inner-cont">
+             <c:if test="${empty blist.bo_thumbnail}">
+              <div class="writting-item-head-inner-cont-img empty-image">
+             </c:if>             
+             <c:if test="${!empty blist.bo_thumbnail}">
+              <div class="writting-item-head-inner-cont-img" style="background-image:url(${blist.bo_thumbnail})">
+             </c:if>             
+              <img class="writting-item-head-inner-cont-tape" src="${pageContext.request.contextPath}/resources/img/recom_masking/masking${tlist[status.index]}.png">
+              <%-- 이미지 div --%>
+             </div>
+             <div class="writting-item-head-inner-cont-hs">
+              <div class="writting-item-head-inner-cont-head">
+               <p>${blist.bo_title}</p>
+              </div>
+              <div class="writting-item-head-inner-cont-sub">
+               <div>${blist.bo_cont}</div>
+              </div>
+             </div>
+             <div class="writting-item-head-inner-cont-bottom">
+              <span>by ${blist.memberVO.mem_nickname}</span>
+             </div>
+            </div>
+           </div>
+          </div>
+         </a>
+        </div> 
+       </li>
+	  </c:forEach>
+	  
+     </ul>
+     </div>
+     <div class="slide-button">
+      <a href="javascript:;" id="recom_writting-cont-slideleft" class="slide-left" onclick="scrollmove('recom_writting-cont','slideleft');"
+      	style="visibility:hidden;">
+       <img src="${pageContext.request.contextPath}/resources/img/writepage_icon/prev_btn.png" alt="왼쪽스크롤버튼"/>
+      </a>
+      <a href="javascript:;" id="recom_writting-cont-slideright" class="slide-right" onclick="scrollmove('recom_writting-cont','slideright');"
+      	style="visibility:visible;">
+       <img src="${pageContext.request.contextPath}/resources/img/writepage_icon/next_btn.png" alt="오른쪽스크롤버튼"/>
+      </a>     
+    </div>   
+   </div>
+  
+   <div class="clear"></div>
+  
    <%-- 메인-추천 작가 초록--%>
    <div id="recom_author">
     <div class="main-title-text">

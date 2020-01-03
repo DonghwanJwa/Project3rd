@@ -80,25 +80,17 @@
 	  </div>
 	</a>
 	  <div class=cat_writing_bottom>
-	  <c:if test="${!empty blist.memberVO.mem_fav1}"> 
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
-	   <b>${blist.memberVO.mem_fav1}</b>
-	   </button>
-	  </c:if> 
-	  <c:if test="${!empty blist.memberVO.mem_fav2}"> 
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
-	   <b>${blist.memberVO.mem_fav2}</b>
-	   </button>
-	  </c:if>
-	  <c:if test="${!empty blist.memberVO.mem_fav3}">
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
-	   <b>${blist.memberVO.mem_fav3}</b>
-	   </button>
-	  </c:if>
+	  <c:forEach items="${blist.memberVO.mem_keyword.split('/')}" begin="1" end="3" var="tag">
+		<button class=cat_writing_button onclick="location.href='${pageContext.request.contextPath}/search?w=post&s=accuracy&q=${tag}'">
+	     <b>${tag}</b>
+	    </button>
+	  </c:forEach>
 	  </div>
 	 </div>
 	</div>
 	  </c:if>
+	  
+	  
 	 <c:if test="${empty blist.bo_thumbnail}">
 	<div class=cat_writing_block>
 	 <div class=cat_writing style="border-bottom: 1px solid #f57c68;">
@@ -128,21 +120,11 @@
 	  </div>
 	</a>
 	  <div class=cat_writing_bottom>
-	   <c:if test="${!empty blist.memberVO.mem_fav1}">
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
-	   <b style="color:#333">${blist.memberVO.mem_fav1}</b>
-	   </button>
-	   </c:if>
-	   <c:if test="${!empty blist.memberVO.mem_fav2}">
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
-	   <b style="color:#333">${blist.memberVO.mem_fav2}</b>	   
-	   </button>
-	   </c:if>
-	   <c:if test="${!empty blist.memberVO.mem_fav3}">
-	   <button class=cat_writing_button onclick="location.href='http://localhost:8018${pageContext.request.contextPath}/search?result=post'">
-	   <b style="color:#333">${blist.memberVO.mem_fav3}</b>
-	   </button>
-	   </c:if>
+	  <c:forEach items="${blist.memberVO.mem_keyword.split('/')}" begin="1" end="3" var="tag">
+		<button class=cat_writing_button onclick="location.href='${pageContext.request.contextPath}/search?w=post&s=accuracy&q=${tag}'">
+	     <b style="color:#333">${tag}</b>
+	    </button>
+	  </c:forEach>
 	  </div>
 	 </div>
 	</div>

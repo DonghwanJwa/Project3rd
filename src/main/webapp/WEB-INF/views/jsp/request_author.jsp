@@ -47,49 +47,34 @@ $(document).ready(function() {
     });
 });
 
+/*파일 업로드 */
 $(document).ready(function(){ 
-	var fileTarget = $('.req_form_file #aut_file1'); 
-	
-	fileTarget.on('change', function(){ // 값이 변경되면 
-		if(window.FileReader){ // modern browser
-			var filename = $(this)[0].files[0].name; } 
-		else { // old IE 
-			var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
+	$("input[type=file]").bind( 'change', function (e){
+		if( !$(this).val() ) return;
+		var f = this.files[0];
+		var size = f.size || f.fileSize;
+		var limit = 10*1024*1024;
+		if( size > limit ){
+			alert( '파일용량은 10MB 를 넘을수 없습니다.' );
+			$(this).prev().prev().val('파일선택');
+			$(this).val('');
+			$(this).replaceWith($(this).clone(true));
+			return;
+		}else{
+			
+			//보여주는 이름 바꾸기
+			if(window.FileReader){ // modern browser
+				var filename = $(this)[0].files[0].name; 
+			} 
+			else { // old IE 
+				var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
 			}
-	
-	// 추출한 파일명 삽입
-	$(this).siblings('#file_name1').val(filename); 
-	}); 
-});
-$(document).ready(function(){ 
-	var fileTarget = $('.req_form_file #aut_file2'); 
-	
-	fileTarget.on('change', function(){ // 값이 변경되면 
-		if(window.FileReader){ // modern browser
-			var filename = $(this)[0].files[0].name; } 
-		else { // old IE 
-			var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
-			}
-	
-	// 추출한 파일명 삽입
-	$(this).siblings('#file_name2').val(filename); 
-	}); 
-});
-$(document).ready(function(){ 
-	var fileTarget = $('.req_form_file #aut_file3'); 
-	
-	fileTarget.on('change', function(){ // 값이 변경되면 
-		if(window.FileReader){ // modern browser
-			var filename = $(this)[0].files[0].name; } 
-		else { // old IE 
-			var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출 
-			}
-	
-	// 추출한 파일명 삽입
-	$(this).siblings('#file_name3').val(filename); 
-	}); 
-});
 
+			// 추출한 파일명 삽입
+			$(this).prev().prev().val(filename); 
+		}
+	});
+});
 
 </script>
 <form action="request_author_in" onsubmit="return req_check();" method="post" enctype="Multipart/form-data">
