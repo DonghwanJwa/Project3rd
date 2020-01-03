@@ -323,10 +323,11 @@ a:hover{text-decoration:underline; color:#F57C68;}
 
 #notice_submit_btn {
 	border: 1px solid lightgrey;
-    border-radius: 10px;
+    border-radius: 25px;
     background-color: white;
-    padding: 5px 7px;
+    padding: 5px 13px;
     cursor:pointer;
+    outline:none;
 }
 
 #notice_submit_btn:hover {
@@ -342,6 +343,7 @@ a:hover{text-decoration:underline; color:#F57C68;}
 	padding: 5px 13px;
 	cursor:pointer;
 	margin:0 3px;
+	outline:none;
 }
 
 .notice_btn:hover {
