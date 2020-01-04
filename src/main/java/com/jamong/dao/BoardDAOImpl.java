@@ -164,4 +164,9 @@ public class BoardDAOImpl implements BoardDAO {
   		this.sqlSession.update("book_null",book_no);
   	}
 
+	@Override
+	public List<BoardVO> chartArticleState() {
+		return this.sqlSession.selectList("ArticleState");
+	}
+
 }

@@ -73,7 +73,11 @@
   	   <dd>
   	     <div class="inq_wrap_item">
   	    <input autocomplete="off" class="inq_email_info"
-  	    id="email" name="inq_email" placeholder="Example@Jamong.com">
+  	    id="email" name="inq_email" placeholder="Example@Jamong.com"
+  	    	<c:if test="${!empty m}">
+  	    	 value="${m.email_id}@${m.email_domain}"
+  	    	</c:if>
+  	    >
   	     </div>
   	      <div class="inq_vali_date" id="inq_vali_email"></div>
   	    </dd>
@@ -89,7 +93,11 @@
   	    
   	    <dd>
   	     <input autocomplete="off" class="inq_nation" name="inq_phone" id="phone"
-  	      type="text" maxlength="11" placeholder=" -없이 숫자만 입력 ex)01012345678">
+  	      type="text" maxlength="11" placeholder=" -없이 숫자만 입력 ex)01012345678"
+  	      <c:if test="${!empty m}">
+  	    	 value="${m.mem_phone01}${m.mem_phone02}${m.mem_phone03}"
+  	      </c:if>
+  	      >
   	     <div class="inq_vali_date" id="inq_vali_phone"></div>
   	    </dd>
   	   </dl>

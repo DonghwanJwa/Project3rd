@@ -403,4 +403,12 @@ SELECT * FROM
 <update id="book_null">
  UPDATE board b SET b.book_no = NULL, b.book_order = NULL WHERE b.book_no = #{book_no}
 </update>
+
+ <select id="ArticleState" resultType="b">
+  SELECT bo_lock, COUNT(bo_no) AS count 
+  FROM board 
+  WHERE bo_lock=1
+  OR bo_lock=0
+  GROUP BY bo_lock
+ </select>
 </mapper>

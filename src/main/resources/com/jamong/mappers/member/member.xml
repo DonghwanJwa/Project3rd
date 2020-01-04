@@ -230,4 +230,12 @@ UPDATE member
 		where mem_id=#{mem_id}
 </update>
 
+ <select id="AgeGroup" resultType="m">
+  SELECT age_group, count(*) count FROM (SELECT floor((to_char(sysdate,'YYYY') - mem_birth1) / 10) * 10 as age_group from member) o GROUP BY age_group
+ </select>
+ 
+ <select id="GenderData" resultType="m">
+  SELECT mem_gender, COUNT(mem_no) AS count FROM member GROUP BY mem_gender
+ </select>
+
 </mapper>

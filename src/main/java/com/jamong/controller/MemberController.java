@@ -94,7 +94,7 @@ public class MemberController {
 			if(pv==null) {//이전단계가 회원가입이 아니였을 경우
 				String ref = request.getHeader("Referer");
 				if(ref==null) {//이전페이지가 없을경우
-					session.setAttribute("ref","/jamong.com/");
+					session.setAttribute("ref","/");
 				}else {//이전페이지가 있을경우
 					if(prev==null) {	//이전페이지가 저장되어있지 않은 경우
 						session.setAttribute("ref", ref);
@@ -411,6 +411,7 @@ public class MemberController {
 		ModelAndView mv=new ModelAndView("jsp/profile");
 		
 			mp = this.memberService.profileCheck(mem_id);
+
 			// 구독자 
 			SubscribeVO sub = null;
 			
@@ -431,7 +432,8 @@ public class MemberController {
 			if(mp.getMem_portfolio() != null){
             portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
             mp.setMem_portfolio(portfolio);
-            }
+      }
+    
 			HashMap<String, Object> profileMap =new HashMap<>();
 			if(m != null) {
 				profileMap.put("mp_no", mp.getMem_no());
@@ -486,16 +488,17 @@ public class MemberController {
 						"<body>\r\n" + 
 						"<script>\r\n" + 
 						"Swal.fire({\r\n" + 
-						"		title : 'Block!',\r\n" + 
-						"		text : '탈퇴했거나 정지된 회원입니다!',\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
-						"				history.back();\r\n" + 
+						"				location='/jamong.com/';\r\n" + 
 						"			}\r\n" + 
 						"		});\r\n" + 
 						"</script>\r\n" + 
 						"</body>");
+				return null;
 			}else {
 				mv.addObject("mp",mp);
 				mv.addObject("sub",sub);

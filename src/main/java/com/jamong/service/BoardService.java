@@ -14,7 +14,7 @@ import com.jamong.domain.MemberVO;
 public interface BoardService {
 
 	void insertBoard(HashMap<String, Object> bm, int mem_no);
-	BoardVO getUserBoardCont(int bo_no);
+	BoardVO getUserBoardCont(int bo_no,int mem_no);
 	List<BoardVO> getListAll(BoardVO b);
 	List<BoardVO> getProfile(HashMap<String, Object> profileMap);
 	BoardVO getNextBoardCont(HashMap<String, Object> bm);
@@ -35,5 +35,6 @@ public interface BoardService {
 	List<BoardVO> categoryArticle(String cat_name);
 	List<BoardVO> getUserBoardContList(int mem_no);
 	List<BoardVO> profileScroll(HashMap<String, Object> scroll);
+	List<BoardVO> chartArticleState();
 
 }
