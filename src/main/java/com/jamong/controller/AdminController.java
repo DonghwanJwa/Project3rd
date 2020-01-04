@@ -18,12 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.jamong.domain.AccuseVO;
 import com.jamong.domain.BoardVO;
+import com.jamong.domain.BookVO;
 import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.NoticeVO;
 import com.jamong.service.AccuseService;
 import com.jamong.service.AdminService;
 import com.jamong.service.BoardService;
+import com.jamong.service.BookService;
 import com.jamong.service.InquireService;
 import com.jamong.service.MemberService;
 
@@ -39,6 +41,8 @@ public class AdminController {
 	private BoardService boardService;	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private BookService bookService;
 	
 	@RequestMapping("admin_main")
 	public ModelAndView admin_main(HttpSession session, HttpServletRequest request, HttpServletResponse response, NoticeVO n,AccuseVO a,InquireVO i) throws Exception {
@@ -248,9 +252,9 @@ public class AdminController {
 		JSONObject cols1 = new JSONObject();
 		JSONObject cols2 = new JSONObject();
 		JSONArray title = new JSONArray();
-		cols1.put("lable","");
+		cols1.put("lable","게시글 타입");
 		cols1.put("type","string");
-		cols2.put("label","인원수");
+		cols2.put("label","타입별 수");
 		cols2.put("type","number");
 		
 		title.add(cols1);
@@ -260,18 +264,122 @@ public class AdminController {
 		
 		JSONArray body = new JSONArray();
 		for(BoardVO vo : items) {
-			JSONObject gender = new JSONObject();
+			JSONObject type = new JSONObject();
 			if(vo.getBo_lock() == 1) {
-				gender.put("v","공개글");				
+				type.put("v","공개글");				
 			}else {
-				gender.put("v","비공개글");
+				type.put("v","비공개글");
 			}
 			JSONObject count = new JSONObject();
 			count.put("v",vo.getCount());
 			
 			JSONArray rows = new JSONArray();
-			rows.add(gender);
+			rows.add(type);
 			rows.add(count);
+			
+			JSONObject c = new JSONObject();
+			c.put("c",rows);
+			
+			body.add(c);
+		}
+		jobj.put("rows",body);
+		try {
+			entity = new ResponseEntity<JSONObject>(jobj, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<JSONObject>(HttpStatus.BAD_REQUEST);
+		}		
+		return entity;
+	}
+	
+	@RequestMapping("ArticleCategory")
+	public ResponseEntity<JSONObject> articleCategory_List(){
+		ResponseEntity<JSONObject> entity = null;
+		List<BoardVO> items = this.boardService.chartArticleCategory();
+		
+		
+		JSONObject jobj = new JSONObject();
+		
+		JSONObject cols1 = new JSONObject();
+		JSONObject cols2 = new JSONObject();
+		JSONObject cols3 = new JSONObject();
+		JSONArray title = new JSONArray();
+		cols1.put("lable","게시글 분류");
+		cols1.put("type","string");
+		cols2.put("label","분류별 게시글 수");
+		cols2.put("type","number");
+		title.add(cols1);
+		title.add(cols2);
+		
+		jobj.put("cols",title);
+		
+		JSONArray body = new JSONArray();
+		for(BoardVO vo : items) {
+			
+			JSONObject category = new JSONObject();
+			category.put("v",vo.getCat_name());
+			JSONObject count = new JSONObject();
+			count.put("v",vo.getCount());
+			
+			JSONArray rows = new JSONArray();
+			rows.add(category);
+			rows.add(count);
+			
+			JSONObject c = new JSONObject();
+			c.put("c",rows);
+			
+			body.add(c);
+		}
+		jobj.put("rows",body);
+		try {
+			entity = new ResponseEntity<JSONObject>(jobj, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<JSONObject>(HttpStatus.BAD_REQUEST);
+		}		
+		return entity;
+	}
+	
+	@RequestMapping("ArticleCount")
+	public ResponseEntity<JSONObject> articleCount_List(){
+		ResponseEntity<JSONObject> entity = null;
+		List<BoardVO> items = this.boardService.chartArticleCount();
+		List<BookVO> books = this.bookService.chartBookCount();
+		
+		
+		JSONObject jobj = new JSONObject();
+		
+		JSONObject cols1 = new JSONObject();
+		JSONObject cols2 = new JSONObject();
+		JSONObject cols3 = new JSONObject();
+		JSONArray title = new JSONArray();
+		cols1.put("lable","일별 게시글/책 작성수");
+		cols1.put("type","string");
+		cols2.put("label","게시글 수");
+		cols2.put("type","number");
+		cols3.put("label","책 수");
+		cols3.put("type","number");
+		title.add(cols1);
+		title.add(cols2);
+		title.add(cols3);
+		
+		jobj.put("cols",title);
+		
+		JSONArray body = new JSONArray();
+		for(int i=0;i<items.size();i++) {
+			BoardVO bvo = items.get(i);
+			BookVO bovo = books.get(i);
+			JSONObject date = new JSONObject();
+			date.put("v",bvo.getBo_date().substring(0,11));
+			JSONObject acount = new JSONObject();
+			acount.put("v",bvo.getCount());
+			JSONObject bcount = new JSONObject();
+			bcount.put("v",bovo.getCount());
+			
+			JSONArray rows = new JSONArray();
+			rows.add(date);
+			rows.add(acount);
+			rows.add(bcount);
 			
 			JSONObject c = new JSONObject();
 			c.put("c",rows);

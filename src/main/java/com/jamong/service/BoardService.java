@@ -36,5 +36,7 @@ public interface BoardService {
 	List<BoardVO> getUserBoardContList(int mem_no);
 	List<BoardVO> profileScroll(HashMap<String, Object> scroll);
 	List<BoardVO> chartArticleState();
+	List<BoardVO> chartArticleCategory();
+	List<BoardVO> chartArticleCount();
 
 }

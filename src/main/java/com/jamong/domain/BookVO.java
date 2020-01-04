@@ -16,6 +16,10 @@ public class BookVO {
 	private MemberVO memberVO;
 	private BoardVO boardVO;
 	
+	private int count;
+	
+	public int getCount() {		return count;	}
+	public void setCount(int count) {		this.count = count;	}
 	// Setter()
 	public void setBook_no(int book_no) 			   {		this.book_no = book_no;					}
 	public void setBook_name(String book_name) 		   {		this.book_name = book_name;				}

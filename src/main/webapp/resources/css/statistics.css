@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+#stat_title_name{
+	font-family: 'NanumMyeongjo','serif';
+    font-size: 45px;
+    text-align: center;
+    border-bottom: 1px solid #ededed;
+}

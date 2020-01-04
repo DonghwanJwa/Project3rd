@@ -189,5 +189,15 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> chartArticleState() {
 		return this.boardDao.chartArticleState();
 	}
+
+	@Override
+	public List<BoardVO> chartArticleCategory() {
+		return this.boardDao.chartArticleCategory();
+	}
+
+	@Override
+	public List<BoardVO> chartArticleCount() {
+		return this.boardDao.chartArticleCount();
+	}
 	
 }

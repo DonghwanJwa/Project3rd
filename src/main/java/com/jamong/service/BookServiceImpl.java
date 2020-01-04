@@ -143,4 +143,9 @@ public class BookServiceImpl implements BookService {
 		return this.bookDao.bookBannerList();
 	}
 
+	@Override
+	public List<BookVO> chartBookCount() {
+		return this.bookDao.chartBookCount();
+	}
+
 }
