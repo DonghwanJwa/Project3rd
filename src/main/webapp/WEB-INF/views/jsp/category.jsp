@@ -37,7 +37,7 @@
      </div>
      
      <div class=cat_write_button>
-      <div class="cat_btn_div"><button type="button" id="cat_write_button" class="cat_write_btn" onclick="location.href='#article';">Article</button></div>
+      <div class="cat_btn_div"><button type="button" style="color: black; border: 2px solid black;" id="cat_write_button" class="cat_write_btn" onclick="location.href='#article';">Article</button></div>
      </div>
       <div class="cat_write_button"><button type="button" id="cat_book_button" class="cat_book_btn" onclick="location.href='#book';">Book</button></div>     	 
    </div>
