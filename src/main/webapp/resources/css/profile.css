@@ -235,7 +235,12 @@ ul.profile_keyword_link{
 	text-align: center;
 	box-sizing: border-box;
 	height: 24px;
+	outline: none;
+	cursor: pointer;
 	/**/ 
+}
+.profile_button_type:hover{
+	border: 1.5px solid #BBB;
 }
 .profile_button_type2{
 	display: inline-block;
@@ -287,8 +292,6 @@ ul.profile_keyword_link{
     
 }
 
-
-
 #profile_menu {
 	position: relative;
     width: 700px;
@@ -298,7 +301,44 @@ ul.profile_keyword_link{
     margin-top: 40px;
     height: 40px;
     }
-
+#private_btn{
+	display: inline-block;
+	float: right;
+	margin-right: 9px;
+} 
+   
+.profile_button_type3 {
+	display: inline-block;
+    min-width: 80px;
+    border: 1px solid #fba621ed;
+    border-radius: 20px;
+    background-color: #fba6215c;
+    text-align: center;
+    box-sizing: border-box;
+    height: 24px;
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    outline: none;
+}
+.profile_button_type3:hover {
+    border: 1.5px solid #fba421
+	}	
+.profile_button_type4{
+	display: inline-block;
+    min-width: 80px;
+    border: 1.5px solid #fba621ed;
+    border-radius: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    height: 24px;
+    cursor: pointer;
+    outline: none;
+    background: #fff;
+}
+.profile_button_type4:hover {
+   border: 1px solid #fba421
+	}
+	
 #Tablist {
 	width:50%;
 	margin: 0;

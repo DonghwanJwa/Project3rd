@@ -89,9 +89,15 @@
 				</div>
 			</div>
 			<div id="profile_menu">
+			<c:if test = "${view == null}">
 			<input type="hidden" id="profile_menu_check" value="info" disabled>
+			</c:if>
+			<c:if test = "${view != null}">
+			<input type="hidden" id="profile_menu_check" value="article" disabled>
+			</c:if>
 				<%--ARIA roles 적용  --%>
 				<div id="Tablist">
+				<c:if test = "${view == null}">
 					<a href="#info">
 						<button id="info_tab" class="tab active">
 							<span class="profile_font_size">작가소개</span><b></b>
@@ -109,12 +115,35 @@
 						</button>
 					</a>
 					</c:if>
+					</c:if>
+					<%-- 비공개, 공개 버튼 클릭 후  --%>
+					<c:if test= "${view != null}">
+					<a href="#info">
+						<button id="info_tab" class="tab ">
+							<span class="profile_font_size">작가소개</span><b></b>
+						</button>
+					</a> 
+					<a href="#articles">
+						<button id="article_tab" class="tab active">
+							<span class="profile_font_size">글</span><b></b>
+						</button>
+					</a>
+					<c:if test="${mp.mem_author == 1}">
+					<a href="#magazine">
+						<button id="Magazine_tab" class="tab">
+							<span class="profile_font_size">작품</span><b></b>
+						</button>
+					</a>
+					</c:if>
+					</c:if>
 				</div>
 			</div>
 		</div>
 		<main> <!-- main : 문서의 중요한 항목을 담는것  하나의 페이지에 하나의 요소만 사용가능--> <!-- 사용되지않는 main의 요소는 화면에서 감춤처리 -->
 		<div id="profile_main_list">
-			<div id="profile_info" style="display: block;">
+			<div id="profile_info" 
+			<c:if test="${view != null}">style="display: none;"</c:if>
+			<c:if test="${view == null}">style="display: block;"</c:if>>
 				<h3 class="hide_font">작가소개</h3>
 				<div class="author_intro">
 					<strong class="profile_font_size">소개</strong>
@@ -127,9 +156,35 @@
 					</p>
 				</c:if>
 			</div>
-			<div id="article" style="display: none;">
+			
+			<div id="article"
+			<c:if test="${view == null}">style="display: none;"</c:if>
+			<c:if test="${view != null}">style="display: block;"</c:if>
+			>
 				<div class="author_intro">
 					<h3 class="hide_font">글목록</h3>
+					<c:if test ="${m.mem_id == mp.mem_id || m.mem_author == 9}">
+					<div id="private_btn">
+					<form action="${pageContext.request.contextPath}/@${mp.mem_id}">
+					<input type="hidden" id="article_check" name="view" value="" >
+						<c:if test="${view == 'open'}">
+							<input type="submit" id="article_all" class="profile_button_type3" value="전체" >
+							<input type="submit" id="article_close" class="profile_button_type3" value="비공개" >
+							<input type="submit" id="article_open" class="profile_button_type4" value="공개" >
+						</c:if>
+						<c:if test="${view == 'close'}">
+							<input type="submit" id="article_all" class="profile_button_type3" value="전체" >
+							<input type="submit" id="article_close" class="profile_button_type4" value="비공개" >
+							<input type="submit" id="article_open" class="profile_button_type3" value="공개" >
+						</c:if>
+						<c:if test="${view == 'all' || view == null}">
+							<input type="submit" id="article_all" class="profile_button_type4" value="전체" >
+							<input type="submit" id="article_close" class="profile_button_type3" value="비공개" >
+							<input type="submit" id="article_open" class="profile_button_type3" value="공개" >
+						</c:if>
+					</form>
+					</div>
+					</c:if>
 					<ul class="profile_writer_list">
 						<c:if test="${empty mplist}">
 						<div class="profile_none"> 작성한 글이 없습니다 </div> 
@@ -141,7 +196,6 @@
 								</c:if>
 								<%-- 다른사람의 프로필을 들어갔을때 --%>
                                 <c:if test="${m.mem_id != mp.mem_id || empty m }" >
-								
 									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
 										<div>
 												<div class="profile_article_main">

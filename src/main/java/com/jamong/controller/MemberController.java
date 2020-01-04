@@ -403,13 +403,86 @@ public class MemberController {
 			HttpSession session )throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out =response.getWriter();
-		session = request.getSession();
+		
+		String view = request.getParameter("view");
 		
 		MemberVO m = (MemberVO)session.getAttribute("m");
 		
 		ModelAndView mv=new ModelAndView("jsp/profile");
+		
 			mp = this.memberService.profileCheck(mem_id);
-			if(mp==null) {
+
+			// 구독자 
+			SubscribeVO sub = null;
+			
+			HashMap<String,Object>  submap= new HashMap<>();
+			if(m != null) {
+			submap.put("sub_member", m.getMem_no());
+			submap.put("mem_no", mp.getMem_no());
+
+			sub=this.subService.subCheck(submap);
+			}
+			int subCount = this.subService.subCount(mp.getMem_no());
+		
+			int state = mp.getMem_state();
+			
+			// 포트폴리오 항목 띄어쓰기 적용되게
+			String portfolio = null;
+            
+			if(mp.getMem_portfolio() != null){
+            portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
+            mp.setMem_portfolio(portfolio);
+      }
+    
+			HashMap<String, Object> profileMap =new HashMap<>();
+			if(m != null) {
+				profileMap.put("mp_no", mp.getMem_no());
+				profileMap.put("m_no", m.getMem_no());
+				profileMap.put("state",m.getMem_state());
+				profileMap.put("view", view);
+				}else {
+				profileMap.put("mp_no", mp.getMem_no());
+				profileMap.put("m_no", 0); //session값
+				profileMap.put("state", 0); //session 등급 값
+				}
+			
+ 			List<BoardVO> mplist = this.boardService.getProfile(profileMap);
+			
+			SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
+
+			for(int i=0; i < mplist.size(); i++) {
+					// 시간 계산 해서 방금, 몇분전 띄우기
+				Date mpListFormat_date = b_format.parse(mplist.get(i).getBo_date());
+				String mpListTitle_date = TIME_MAXIMUM.formatTimeString(mpListFormat_date);
+				mplist.get(i).setBo_date(mpListTitle_date);
+				
+				// 미리보여주는 글 태그 없앰 (제목)
+				String titleText = mplist.get(i).getBo_title();
+				String titleNomarText = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				mplist.get(i).setBo_title(titleNomarText);
+
+				//미리보여주는 글 태그 없앰 (내용)
+				String htmlText = mplist.get(i).getBo_cont();
+				String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				String oneSpace = nomalText.replaceAll("&nbsp; "," ");
+				mplist.get(i).setBo_cont(oneSpace);
+
+			}
+			
+			List<BoardVO> myBookList = this.bookService.myBookList(mp.getMem_no());
+			for(int i=0;i<myBookList.size();i++) {
+				Date mbListFormat_date = b_format.parse(myBookList.get(i).getBookVO().getBook_date());
+				String mbListTitle_date = date_format.format(mbListFormat_date);
+				myBookList.get(i).getBookVO().setBook_date(mbListTitle_date);
+				
+				String bookHtmlText = myBookList.get(i).getBookVO().getBook_name();
+				String bookStrippedText = bookHtmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");	
+				myBookList.get(i).getBookVO().setBook_name(bookOneSpace);
+			}
+			
+			if(state == 1 || state == 2 || mp == null) {
 				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
 						"<body>\r\n" + 
@@ -427,97 +500,12 @@ public class MemberController {
 						"</body>");
 				return null;
 			}else {
-				// 구독자 
-				SubscribeVO sub = null;
-				
-				HashMap<String,Object>  submap= new HashMap<>();
-				if(m != null) {
-				submap.put("sub_member", m.getMem_no());
-				submap.put("mem_no", mp.getMem_no());
-	
-				sub=this.subService.subCheck(submap);
-				}
-				int subCount = this.subService.subCount(mp.getMem_no());
-			
-				int state = mp.getMem_state();
-				
-				// 포트폴리오 항목 띄어쓰기 적용되게
-				String portfolio = null;
-	            
-				if(mp.getMem_portfolio() != null){
-	            portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
-	            mp.setMem_portfolio(portfolio);
-	            }
-				HashMap<String, Object> profileMap =new HashMap<>();
-				if(m != null) {
-					profileMap.put("mp_no", mp.getMem_no());
-					profileMap.put("m_no", m.getMem_no());
-					profileMap.put("state",m.getMem_state());
-					}else {
-					profileMap.put("mp_no", mp.getMem_no());
-					profileMap.put("m_no", 0); //session값
-					profileMap.put("state", 0); //session 등급 값
-					}
-				
-	 			List<BoardVO> mplist = this.boardService.getProfile(profileMap);
-				
-				SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));		
-	
-				for(int i=0; i < mplist.size(); i++) {
-						// 시간 계산 해서 방금, 몇분전 띄우기
-					Date mpListFormat_date = b_format.parse(mplist.get(i).getBo_date());
-					String mpListTitle_date = TIME_MAXIMUM.formatTimeString(mpListFormat_date);
-					mplist.get(i).setBo_date(mpListTitle_date);
-					
-					// 미리보여주는 글 태그 없앰 (제목)
-					String titleText = mplist.get(i).getBo_title();
-					String titleNomarText = titleText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-					mplist.get(i).setBo_title(titleNomarText);
-	
-					//미리보여주는 글 태그 없앰 (내용)
-					String htmlText = mplist.get(i).getBo_cont();
-					String nomalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-					String oneSpace = nomalText.replaceAll("&nbsp; "," ");
-					mplist.get(i).setBo_cont(oneSpace);
-	
-				}
-				
-				List<BoardVO> myBookList = this.bookService.myBookList(mp.getMem_no());
-				for(int i=0;i<myBookList.size();i++) {
-					Date mbListFormat_date = b_format.parse(myBookList.get(i).getBookVO().getBook_date());
-					String mbListTitle_date = date_format.format(mbListFormat_date);
-					myBookList.get(i).getBookVO().setBook_date(mbListTitle_date);
-					
-					String bookHtmlText = myBookList.get(i).getBookVO().getBook_name();
-					String bookStrippedText = bookHtmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-					String bookOneSpace = bookStrippedText.replaceAll("&nbsp;","");	
-					myBookList.get(i).getBookVO().setBook_name(bookOneSpace);
-				}
-				
-				if(state == 1 || state == 2 || mp == null) {
-					out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
-							"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
-							"<body>\r\n" + 
-							"<script>\r\n" + 
-							"Swal.fire({\r\n" + 
-							"		title : 'Block!',\r\n" + 
-							"		text : '탈퇴했거나 정지된 회원입니다!',\r\n" + 
-							"		icon: 'error',\r\n" + 
-							"		}).then((result) => {\r\n" + 
-							"			if(result.value){\r\n" + 
-							"				history.back();\r\n" + 
-							"			}\r\n" + 
-							"		});\r\n" + 
-							"</script>\r\n" + 
-							"</body>");
-				}else {
-					mv.addObject("mp",mp);
-					mv.addObject("sub",sub);
-					mv.addObject("subCount",subCount);
-					mv.addObject("mybook",myBookList);
-					mv.addObject("mplist",mplist);
-				}
+				mv.addObject("mp",mp);
+				mv.addObject("sub",sub);
+				mv.addObject("subCount",subCount);
+				mv.addObject("mybook",myBookList);
+				mv.addObject("mplist",mplist);
+				mv.addObject("view",view);
 			}
 			return mv;
 	}//user_profile() => 유저 프로필 창

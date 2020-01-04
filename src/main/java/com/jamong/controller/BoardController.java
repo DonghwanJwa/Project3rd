@@ -827,21 +827,21 @@ public class BoardController {
 		return mv;
 	}
 
-	@PostMapping("profile_scroll")
 	@ResponseBody
+	@PostMapping("profile_scroll")
 	public List<BoardVO> profileScrolling(
 			String bo_no, String mem_no, String book_no,
-			String num, String pb,
+			String num, String pb, String view,
 			HttpServletResponse response, 
 			HttpServletRequest request,
 			HttpSession session
 			) throws Exception{
 
+		
 		SimpleDateFormat b_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy",new Locale("en","US"));	
 
 		MemberVO m = (MemberVO)session.getAttribute("m");
-		
 		HashMap<String,Object> scroll = new HashMap<>();
 		if(m != null) {
 		 scroll.put("bo_no", bo_no);
@@ -849,12 +849,14 @@ public class BoardController {
 		 scroll.put("m_no", m.getMem_no());
 		 scroll.put("state",m.getMem_state());
 		 scroll.put("n", num);
+		 scroll.put("view", view);
+		 System.out.println(view);
 		}else {
 		 scroll.put("bo_no", bo_no);
 		 scroll.put("mp_no", mem_no);
 		 scroll.put("m_no", 0); //session값
 		 scroll.put("state", 0); //session 등급 값
-		 scroll.put("n", num); 
+		 scroll.put("n", num);
 		}
 		
 		if(pb.equals("article")) {
