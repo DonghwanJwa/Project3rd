@@ -32,6 +32,7 @@
       <button id="book_info_intro_like_inner">
        <img id="book_info_intro_like_img" src="${pageContext.request.contextPath}/resources/img/heart.png"/>
       </button>
+      <span class="book_info_intro_like_num">${book_recommend}</span>
      </div>
      <strong id="book_info_intro_title">자몽 책 소개</strong>
      <p id="book_info_intro_cont">

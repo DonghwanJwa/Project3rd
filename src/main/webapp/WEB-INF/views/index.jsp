@@ -352,7 +352,7 @@ $(document).keydown(function(e){
             <img class="book-item-head-inner-img" src="${pageContext.request.contextPath}/resources/img/book_cover.jpg">
            </c:if>
            <c:if test="${bolist.bookVO.book_cover ne null}">
-            <img class="book-item-head-inner-img" src="${bolist.bookVO.book_cover}">
+            <img class="book-item-head-inner-img" src="${bolist.bookVO.book_cover}" style="filter: brightness(80%);">
            </c:if>
             <div class="book-item-head-inner-cont">
              <div class="book-item-head-inner-cont-top">

@@ -1038,6 +1038,7 @@ $(function(){
 			success : function(data){
 					Swal.fire({
 						icon : 'info',
+						allowOutsideClick: false,
 						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 인증번호를 입력해주세요'
 					}).then((result) => {
 				$('#join_membership_certified_btn').attr("disabled",true);
@@ -1073,6 +1074,7 @@ $(function(){
 				if(data=="complete"){
 					Swal.fire({
 						icon : 'success',
+						allowOutsideClick: false,
 						text : '인증이 완료되었습니다!'
 					}).then(function(){
 					$('#join_membership_email_flag').val('2');

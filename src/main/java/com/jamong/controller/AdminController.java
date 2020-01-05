@@ -63,6 +63,7 @@ public class AdminController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '세션이 만료되었습니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -85,6 +86,7 @@ public class AdminController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -133,6 +135,7 @@ public class AdminController {
 				"Swal.fire({\r\n" + 
 				"		title : 'Success!',\r\n" + 
 				"		text : '로그아웃 되었습니다!',\r\n" + 
+				"		allowOutsideClick: false,\r\n" +
 				"		icon: 'success',\r\n" + 
 				"		}).then((result) => {\r\n" + 
 				"			if(result.value){\r\n" + 

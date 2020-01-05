@@ -146,18 +146,20 @@ a {
 
 #book_info_intro_like{
 	position:absolute;
-	left:220px;
+	display: flex;
+	align-items: center;
+	left: 200px;
 	top:-17px;
 }
 
 #book_info_intro_like_inner{
 	border: none;
-    outline: none;
-    margin-top: 10px;
-    height: 20px;
-    background-color: rgb(255,255,255);
-    margin: 10px -16px;
-    padding: 0;
+	outline: none;
+	margin-top: 10px;
+	height: 30px;
+	background-color: rgb(255,255,255);
+	margin: 10px -16px;
+	padding: 0;
 }
 
 #book_info_intro_like_inner:active #book_info_intro_like_img{
@@ -169,6 +171,14 @@ a {
 	width:30px;
 	height:30px;
 	background-color: rgb(255,255,255);
+}
+.book_info_intro_like_num{
+	
+height: 30px;
+	
+line-height: 30px;
+	
+margin-left: 24px;
 }
 #book_info_author_desc{
 	margin-top:20px;

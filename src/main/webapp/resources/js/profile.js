@@ -79,6 +79,7 @@ $(document).ready(function() {
 						icon : 'info',
 						title : 'Oops!',
 						text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+						allowOutsideClick: false,
 						showCancelButton : true,
 						confirmButtonText : '예',
 						cancelButtonText : '아니오'
@@ -119,6 +120,7 @@ $(document).ready(function() {
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -170,6 +172,7 @@ $(document).ready(function() {
 								icon : 'info',
 								title : 'Oops!',
 								text : '세션이 만료되었습니다. 로그인 하시겠습니까?',
+								allowOutsideClick: false,
 								showCancelButton : true,
 								confirmButtonText : '예',
 								cancelButtonText : '아니오'
@@ -205,6 +208,7 @@ $(document).ready(function() {
 								icon : 'info',
 								title : 'Oops!',
 								text : '세션이 만료되었습니다. 로그인 하시겠습니까?',
+								allowOutsideClick: false,
 								showCancelButton : true,
 								confirmButtonText : '예',
 								cancelButtonText : '아니오'

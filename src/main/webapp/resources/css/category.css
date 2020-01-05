@@ -9,7 +9,6 @@ body{
 #cat_empty{
 	width:940px;
 	height:auto;
-	text-align:center;
 	margin:0 auto;
 	background-color: #FAFAFA;
 	margin-bottom:100px;
@@ -33,7 +32,6 @@ body{
 }
 #cat_title_name{
   background: white;
-  display: inline-block;
   border-radius: 4px;
   position: relative;
   font-size: 31px;
@@ -45,12 +43,10 @@ body{
   margin:0px auto;
   vertical-align:middle;
   font-family:"NanumMyeongJo";
-  
 }
 #cat_title_name:before{
   -webkit-animation: sparkle 4s infinite linear;
   animation: sparkle 4s infinite linear;
- /* background: linear-gradient(90deg, #7FEFBD 0%, #FFF689 11%, #EC0B43 22%, #7FEFBD 33%, #FFF689 44%, #EC0B43 55%, #7FEFBD 66%, #FFF689 77%, #EC0B43 88%, #7FEFBD 100%); */
   background-size: 300% 100%;
   content: '';
   position: absolute;
@@ -103,25 +99,25 @@ body{
 }
 #cat_writer_block{
 	width:940px;
-	height:250px;
+	height: 300px;
 	min-height:200px;
 	border:0px solid #333;
 	margin-top:30px;
-	margin-bottom: 100px;
+	border: 1px solid #e0e0e0;
+	border-left: none;
+	border-right: none;
 }
 #cat_writer_title{
 	font-family:"NanumMyeongJo";
 	font-weight:bold;
 	height: 42px;
 	width:940px;
-	font-size:26px;
+	font-size: 18px;
 	margin:10px 0px;
-	vertical-align:middle;
 	color:#000000;
 	text-decoration:none;
 	background-color:#fafafa;
 	border:0px;
-	text-align:center;
 	line-height: 42px;
 }	
 #cat_writer_list{
@@ -188,10 +184,7 @@ body{
   border-top-color: #fc4700;
   border-left-color: #fc4700;
 }
-/*#cat_writer_list1:hover{
-	border:1px solid #ffad86;
-	color:#ffad86;
-}*/
+
 #cat_writer_list1:hover:after,
 #cat_writer_list1:hover:before{
 width: 100%;
@@ -345,7 +338,6 @@ width: 100%;
   transition: none;
 }
 .cat_write_btn:hover{
-	/*background-color: #bbb;*/
   color: #ddd;
   border-bottom: 4px solid #bbb;
 }
@@ -373,7 +365,6 @@ width: 100%;
   outline:none;
 }
 .cat_book_btn:before{
-  /*content: ""; */
   background-color: rgba(255, 255, 255, 0.5);
   height: 100%;
   width: 3em;
@@ -386,7 +377,6 @@ width: 100%;
   transition: none;
 }
 .cat_book_btn:hover{
- /* background-color: #bbb;*/
   color: #ddd;
   border-bottom: 4px solid #bbb;
 }

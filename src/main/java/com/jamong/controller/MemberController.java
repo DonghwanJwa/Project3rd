@@ -83,6 +83,7 @@ public class MemberController {
 					"		title : 'Oops!',\r\n" + 
 					"		text : '이미 로그인이 되어있습니다!',\r\n" + 
 					"		icon: 'warning',\r\n" + 
+					"		allowOutsideClick: false,\r\n"+
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
@@ -103,7 +104,7 @@ public class MemberController {
 					}
 				}
 			}else {//이전단계가 회원가입이였을 경우
-				session.setAttribute("ref","/jamong.com/");
+				session.setAttribute("ref","/");
 				session.removeAttribute("loginmain");
 			}
 			return "jsp/login";
@@ -132,6 +133,7 @@ public class MemberController {
 					"		title : 'Oops!',\r\n" + 
 					"		text : '이미 로그인이 되어있습니다!',\r\n" + 
 					"		icon: 'warning',\r\n" + 
+					"		allowOutsideClick: false,\r\n"+
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
 					"				location='/jamong.com/';\r\n" + 
@@ -157,6 +159,7 @@ public class MemberController {
 							"		icon : 'warning',\r\n" +
 							"		title : 'Block!',\r\n" + 
 							"		text : '자몽 정책에 위배되는 활동으로 인해 정지된 계정입니다. \\n자세한 사항은 문의를 통해 확인하여 주시기 바랍니다.',\r\n" +
+							"		allowOutsideClick: false,\r\n"+
 							"		showCancelButton : true,\r\n" +
 							"		cancelButtonText : '문의하기',\r\n" +
 							"		confirmButtonText : '메인으로',\r\n" +
@@ -208,9 +211,30 @@ public class MemberController {
 	}//member_login_ok()
 	
 	@RequestMapping("logout")
-	public String member_logout(HttpSession session)throws Exception {
+	public String member_logout(HttpSession session,HttpServletRequest request, HttpServletResponse response)throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		session=request.getSession();
 		session.invalidate();//세션만료
-		return "redirect:/";
+		
+		out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" +
+				"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+				"<body>\r\n" + 
+				"<script>\r\n" + 
+				"Swal.fire({\r\n" + 
+				"		title : 'Success!',\r\n" + 
+				"		text : '로그아웃 되었습니다!',\r\n" + 
+				"		allowOutsideClick: false,\r\n"+
+				"		icon: 'success',\r\n" + 
+				"		}).then((result) => {\r\n" + 
+				"			if(result.value){\r\n" + 
+				"				location='/jamong.com/';\r\n" + 
+				"			}\r\n" + 
+				"		});\r\n" + 
+				"</script>\r\n" + 
+				"</body>");
+		
+		return null;
 	}
 	@RequestMapping("join_membership")
 	public String user_membership(MemberVO vo,HttpSession session,
@@ -383,6 +407,7 @@ public class MemberController {
 				"Swal.fire({\r\n" + 
 				"		title : 'Success!',\r\n" + 
 				"		text : '회원가입이 되셨습니다!',\r\n" + 
+				"		allowOutsideClick: false,\r\n"+
 				"		icon: 'success',\r\n" + 
 				"		}).then((result) => {\r\n" + 
 				"			if(result.value){\r\n" + 
@@ -430,9 +455,9 @@ public class MemberController {
 			String portfolio = null;
             
 			if(mp.getMem_portfolio() != null){
-            portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
-            mp.setMem_portfolio(portfolio);
-      }
+	            portfolio=mp.getMem_portfolio().replace("\n", "<br/>");
+	            mp.setMem_portfolio(portfolio);
+			}
     
 			HashMap<String, Object> profileMap =new HashMap<>();
 			if(m != null) {
@@ -440,11 +465,11 @@ public class MemberController {
 				profileMap.put("m_no", m.getMem_no());
 				profileMap.put("state",m.getMem_state());
 				profileMap.put("view", view);
-				}else {
+			}else {
 				profileMap.put("mp_no", mp.getMem_no());
 				profileMap.put("m_no", 0); //session값
 				profileMap.put("state", 0); //session 등급 값
-				}
+			}
 			
  			List<BoardVO> mplist = this.boardService.getProfile(profileMap);
 			
@@ -490,6 +515,7 @@ public class MemberController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n"+
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -529,6 +555,7 @@ public class MemberController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n"+
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -568,6 +595,7 @@ public class MemberController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n"+
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -656,6 +684,7 @@ public class MemberController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Success!',\r\n" + 
 					"		text : '성공적으로 수정되었습니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n"+
 					"		icon: 'success',\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 

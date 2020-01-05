@@ -12,6 +12,7 @@ $(document).ready(function(){
 				url:"/jamong.com/book/recommend_up/" + para[6],
 				success:function(data){
 					if(data!=-1){
+						$('.book_info_intro_like_num').text(data);
 						$(event.target).css('background-color','RGB(245,124,104)');
 						$(event.target).prop("disabled",true);
 						setTimeout(function(){
@@ -23,13 +24,14 @@ $(document).ready(function(){
 							text : '세션이 만료되어 로그인이 필요합니다!',
 							icon: 'error',
 							showCancelButton : true,
+							allowOutsideClick: false,
 							confirmButtonText : '로그인',
-							cancelButtonText : '메인으로'
+							cancelButtonText : '이전으로'
 							}).then((result) => {
 								if(result.value){
 									location='/jamong.com/login';
 								}else if(result.dismiss === Swal.DismissReason.cancel) {
-									location='/jamong.com/';
+									window.location.reload();
 								}
 							});
 					}
@@ -40,12 +42,13 @@ $(document).ready(function(){
 			});//ajax
 			
 		}else{
-			$(event.target).css('background-color','rgb(255, 255, 255)');
 			$.ajax({
 				type:"POST",
 				url:"/jamong.com/book/recommend_down/" + para[6],
 				success:function(data){
 					if(data!=-1){
+						$('.book_info_intro_like_num').text(data);
+						$(event.target).css('background-color','rgb(255, 255, 255)');
 						$(event.target).prop("disabled",true);
 						setTimeout(function(){
 							$(event.target).prop("disabled",false);
@@ -54,6 +57,7 @@ $(document).ready(function(){
 						Swal.fire({ 
 							title : 'Oops!', 
 							text : '세션이 만료되어 로그인이 필요합니다!',
+							allowOutsideClick: false,
 							icon: 'error',
 							showCancelButton : true,
 							confirmButtonText : '로그인',

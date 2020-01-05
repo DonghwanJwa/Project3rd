@@ -14,6 +14,7 @@ function ArticleRemove(){
 		title : 'Delete?',
 		text : '게시글을 삭제 하시겠습니까?',
 		showCancelButton : true,
+		allowOutsideClick: false,
 		confirmButtonText : '예',
 		cancelButtonText : '아니오'
 	}).then((result) => {
@@ -25,7 +26,8 @@ function ArticleRemove(){
 					if(data == 1){
 						Swal.fire({
 							icon : 'success',
-							text : '게시글이 삭제되었습니다!'
+							text : '게시글이 삭제되었습니다!',
+							allowOutsideClick: false
 						}).then(function(){
 							location.href = "/jamong.com/"+para[4];							
 						});
@@ -34,6 +36,7 @@ function ArticleRemove(){
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -72,6 +75,7 @@ function CommentRemove(e){
 	Swal.fire({
 		icon : 'question',
 		title : '댓글을 삭제하시겠습니까?',
+		allowOutsideClick: false,
 		showCancelButton : true,
 		cancelButtonText : '아니오',
 		confirmButtonText : '예'
@@ -83,11 +87,12 @@ function CommentRemove(e){
 				url : "/jamong.com/commentremove",
 				success : function(data){
 					if(data == 1){
-						Swal.fire(
-								'Good Job!',
-								'댓글 삭제에 성공했습니다!',
-								'success'
-						).then(function(){
+						Swal.fire({
+							icon:'success',
+							title : 'Good Job!',
+							text :'댓글 삭제에 성공했습니다!',
+							allowOutsideClick: false
+						}).then(function(){
 							window.location.reload();
 						})
 					}else if(data == 2)
@@ -95,6 +100,7 @@ function CommentRemove(e){
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -117,6 +123,7 @@ function addComment(){
 		icon : 'question',
 		title : 'Comment?',
 		text : '댓글을 작성하시겠습니까?',
+		allowOutsideClick: false,
 		showCancelButton : true,
 		confirmButtonText : '댓글작성',
 		cancelButtonText : '취소',
@@ -133,6 +140,7 @@ function addComment(){
 					if(data == 1){
 						Swal.fire({
 							icon : 'success',
+							allowOutsideClick: false,
 							text : '댓글 작성에 성공했습니다!'
 						}).then(function(){
 							window.location.reload();							
@@ -142,6 +150,7 @@ function addComment(){
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -168,6 +177,7 @@ function addReply(e){
 		icon : 'question',
 		title : 'ReplyComment?',
 		text : '답글을 작성하시겠습니까?',
+		allowOutsideClick: false,
 		showCancelButton : true,
 		confirmButtonText : '댓글작성',
 		cancelButtonText : '취소',
@@ -187,6 +197,7 @@ function addReply(e){
 					if(data == 1){
 						Swal.fire({
 							icon : 'success',
+							allowOutsideClick: false,
 							text : '답글 작성에 성공했습니다!'
 						}).then(function(){
 							window.location.reload();							
@@ -196,6 +207,7 @@ function addReply(e){
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -218,6 +230,7 @@ function replyEditOK(e){
 		icon : 'question',
 		title : 'ReplyEdit?',
 		text : '댓글을 수정하시겠습니까?',
+		allowOutsideClick: false,
 		showCancelButton : true,
 		cancelButtonText : '취소',
 		confirmButtonText : '수정',
@@ -233,6 +246,7 @@ function replyEditOK(e){
 					if(data == 1){
 						Swal.fire({
 							icon : 'success',
+							allowOutsideClick: false,
 							text : '댓글 수정에 성공했습니다!'
 						}).then(function(){
 							window.location.reload();							
@@ -242,6 +256,7 @@ function replyEditOK(e){
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -402,6 +417,7 @@ $(document).ready(function(){
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -434,6 +450,7 @@ $(document).ready(function(){
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -476,6 +493,7 @@ $(document).ready(function(){
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -510,6 +528,7 @@ $(document).ready(function(){
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -539,6 +558,7 @@ $(document).ready(function(){
 						Swal.fire({
 							icon : 'info',
 							title : 'Article Block.',
+							allowOutsideClick: false,
 							text : '게시글이 정지되었습니다!'
 						}).then(function(){
 							window.location.reload();							
@@ -547,6 +567,7 @@ $(document).ready(function(){
 						Swal.fire({
 							icon : 'info',
 							title : 'Oops!',
+							allowOutsideClick: false,
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
 							showCancelButton : true,
 							confirmButtonText : '예',
@@ -560,6 +581,7 @@ $(document).ready(function(){
 						Swal.fire({
 							icon : 'error',
 							title : 'Oops!',
+							allowOutsideClick: false,
 							text : '접근권한이 없는 계정입니다!'
 						}).then(function(){
 							window.location.reload();							
@@ -581,6 +603,7 @@ $(document).ready(function(){
 						Swal.fire({
 							icon : 'success',
 							title : 'UnBlock!',
+							allowOutsideClick: false,
 							text : '게시글 정지가 해제되었습니다!'
 						}).then(function(){
 							window.location.reload();							
@@ -590,6 +613,7 @@ $(document).ready(function(){
 							icon : 'info',
 							title : 'Oops!',
 							text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '예',
 							cancelButtonText : '아니오'
@@ -602,6 +626,7 @@ $(document).ready(function(){
 						Swal.fire({
 							icon : 'error',
 							title : 'Oops!',
+							allowOutsideClick: false,
 							text : '접근권한이 없는 계정입니다!'
 						}).then(function(){
 							window.location.reload();							
@@ -623,6 +648,7 @@ $(document).ready(function(){
 			icon : 'question',
 			title : 'Restore?',
 			text : '해당 게시글을 복구하시겠습니까?',
+			allowOutsideClick: false,
 			showCancelButton : true,
 			cancelButtonText : '아니오',
 			confirmButtonText : '예'
@@ -638,6 +664,7 @@ $(document).ready(function(){
 							Swal.fire({
 								icon : 'success',
 								title : 'Success!',
+								allowOutsideClick: false,
 								text : '해당 게시글이 복구되었습니다!'
 							}).then(function(){
 								window.location.reload();								
@@ -647,6 +674,7 @@ $(document).ready(function(){
 								icon : 'info',
 								title : 'Oops!',
 								text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+								allowOutsideClick: false,
 								showCancelButton : true,
 								confirmButtonText : '예',
 								cancelButtonText : '아니오'
@@ -659,7 +687,12 @@ $(document).ready(function(){
 							Swal.fire({
 								icon : 'error',
 								title : 'Oops!',
+								allowOutsideClick: false,
 								text : '접근권한이 없는 계정입니다!'
+							}).then((result) => {
+								if(result.value){
+									window.location.reload();
+								}
 							});
 						}
 					}
@@ -674,6 +707,7 @@ $(document).ready(function(){
 			icon : 'question',
 			title : 'Restore?',
 			text : '해당 게시글을 삭제하시겠습니까?',
+			allowOutsideClick: false,
 			showCancelButton : true,
 			cancelButtonText : '아니오',
 			confirmButtonText : '예'
@@ -689,6 +723,7 @@ $(document).ready(function(){
 							Swal.fire({
 								icon : 'success',
 								title : 'Success!',
+								allowOutsideClick: false,
 								text : '해당 게시글이 삭제되었습니다!'
 							}).then(function(){
 								window.location.reload();								
@@ -698,6 +733,7 @@ $(document).ready(function(){
 								icon : 'info',
 								title : 'Oops!',
 								text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+								allowOutsideClick: false,
 								showCancelButton : true,
 								confirmButtonText : '예',
 								cancelButtonText : '아니오'
@@ -710,7 +746,12 @@ $(document).ready(function(){
 							Swal.fire({
 								icon : 'error',
 								title : 'Oops!',
+								allowOutsideClick: false,
 								text : '접근권한이 없는 계정입니다!'
+							}).then((result) => {
+								if(result.value){
+									window.location.reload();
+								}
 							});
 						}
 					}

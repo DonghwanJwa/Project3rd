@@ -13,6 +13,7 @@ function accuseShow(a) {
 							title : 'Oops!', 
 							text : '로그인이 필요합니다!',
 							icon: 'error',
+							allowOutsideClick: false,
 							showCancelButton : true,
 							confirmButtonText : '로그인',
 							cancelButtonText : '이전으로'

@@ -64,7 +64,7 @@ public class InquireController {
 		MultipartRequest multi = new MultipartRequest(request, filePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		/* 입력값들을 multi 로부터 가져오는 역할을합니다 */
 
-		String inq_item1 = multi.getParameter("inq_item1");
+		String inq_item = multi.getParameter("inq_item");
 		String inq_email = multi.getParameter("inq_email");
 		String inq_phone = multi.getParameter("inq_phone");
 		String inq_cont  = multi.getParameter("inq_cont");
@@ -83,7 +83,7 @@ public class InquireController {
 		i.setInq_file2(inq_file2);
 		i.setInq_file3(inq_file3);
 		i.setInq_file4(inq_file4);
-		i.setInq_item1(inq_item1);
+		i.setInq_item(inq_item);
 		i.setInq_email(inq_email);
 		i.setInq_phone(inq_phone);
 		i.setInq_cont(inq_cont);
@@ -102,6 +102,7 @@ public class InquireController {
 				"Swal.fire({\r\n" + 
 				"		title : 'Success!',\r\n" + 
 				"		text : '문의가 접수되었습니다!',\r\n" + 
+				"		allowOutsideClick: false,\r\n" +
 				"		icon: 'success',\r\n" + 
 				"		}).then((result) => {\r\n" + 
 				"			if(result.value){\r\n" + 
@@ -133,6 +134,7 @@ public class InquireController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -155,6 +157,7 @@ public class InquireController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -240,6 +243,7 @@ public class InquireController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -262,6 +266,7 @@ public class InquireController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -329,6 +334,7 @@ public class InquireController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -351,6 +357,7 @@ public class InquireController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -393,6 +400,7 @@ public class InquireController {
 							"Swal.fire({\r\n" + 
 							"		title : 'Success!',\r\n" + 
 							"		text : '문의 답변이 완료되었습니다!',\r\n" + 
+							"		allowOutsideClick: false,\r\n" +
 							"		icon: 'success',\r\n" + 
 							"		}).then((result) => {\r\n" + 
 							"			if(result.value){\r\n" + 
@@ -409,6 +417,7 @@ public class InquireController {
 							"Swal.fire({\r\n" + 
 							"		title : 'Error!',\r\n" + 
 							"		text : '처리중 오류가 발생했습니다!',\r\n" + 
+							"		allowOutsideClick: false,\r\n" +
 							"		icon: 'error',\r\n" + 
 							"		}).then((result) => {\r\n" + 
 							"			if(result.value){\r\n" + 
@@ -698,6 +707,7 @@ public class InquireController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -720,6 +730,7 @@ public class InquireController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -737,6 +748,7 @@ public class InquireController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Success!',\r\n" + 
 						"		text : '성공적으로 삭제되었습니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'success',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 

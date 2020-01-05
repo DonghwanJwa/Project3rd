@@ -8,7 +8,7 @@
 <!-- Join 하기 -->
  <resultMap type="inq" id="inquireMap">
   <id column="inq_no" property="inq_no" />
-  <result column="inq_item1" property="inq_item1" />
+  <result column="inq_item" property="inq_item" />
   <result column="inq_phone" property="inq_phone" />
   <result column="inq_cont" property="inq_cont" />
   <result column="inq_email" property="inq_email" />
@@ -56,8 +56,8 @@
 
 <!-- 문의하기 -->
 <insert id="inq_insert">
- insert into inquire (inq_no,inq_item1,inq_email,inq_phone,inq_cont,inq_file1,inq_file2,inq_file3,inq_file4,inq_date,mem_no) 
- values(inq_no_seq.nextval,#{inq_item1},#{inq_email},#{inq_phone},#{inq_cont},#{inq_file1},#{inq_file2},#{inq_file3},#{inq_file4},sysdate,#{mem_no})
+ insert into inquire (inq_no,inq_item,inq_email,inq_phone,inq_cont,inq_file1,inq_file2,inq_file3,inq_file4,inq_date,mem_no) 
+ values(inq_no_seq.nextval,#{inq_item},#{inq_email},#{inq_phone},#{inq_cont},#{inq_file1},#{inq_file2},#{inq_file3},#{inq_file4},sysdate,#{mem_no})
 </insert>
 
 		<!-- 문의 개수 -->
@@ -112,7 +112,7 @@
 		
 		<!-- 문의 목록 -->
 		<select id="inq_list" resultType="inq">
-			select * from (select rowNum rNum,inq_no,inq_item1,inq_cont,inq_phone,inq_date,mem_no,inq_state 
+			select * from (select rowNum rNum,inq_no,inq_item,inq_cont,inq_phone,inq_date,mem_no,inq_state 
 			from (select * from inquire
 			
 			<where>
@@ -173,7 +173,7 @@
 		SELECT inq.inq_no,
 			   inq.inq_state,
 			   inq.inq_date,
-			   inq.inq_item1,
+			   inq.inq_item,
 			   inq.inq_phone,
 			   inq.inq_email,
 			   inq.inq_cont,

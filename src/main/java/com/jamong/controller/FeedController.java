@@ -55,6 +55,7 @@ public class FeedController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 

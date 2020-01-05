@@ -34,15 +34,6 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 
-	@RequestMapping("book_info")
-	public ModelAndView user_book_info() { // 책 정보
-		ModelAndView mv = new ModelAndView();
-
-		mv.setViewName("jsp/book_info");
-
-		return mv;
-	}
-
 	@RequestMapping("new_book")
 	public ModelAndView user_new_book(BookVO b) { // 최신 책
 		List<BookVO> BookList = this.bookService.selectBookList(b);
@@ -86,6 +77,7 @@ public class BookController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '세션이 만료되었습니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -109,6 +101,7 @@ public class BookController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Not Author!',\r\n" + 
 						"		text : '책 집필은 작가권한이 필요합니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'warning',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -219,6 +212,7 @@ public class BookController {
 				"Swal.fire({\r\n" + 
 				"		title : 'Success!',\r\n" + 
 				"		text : '책이 출간되었습니다!',\r\n" + 
+				"		allowOutsideClick: false,\r\n" +
 				"		icon: 'success',\r\n" + 
 				"		}).then((result) => {\r\n" + 
 				"			if(result.value){\r\n" + 
@@ -252,6 +246,7 @@ public class BookController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Delete Book',\r\n" + 
 						"		text : '책이 폐간되었습니다.',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'info',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -269,6 +264,7 @@ public class BookController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -286,6 +282,7 @@ public class BookController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -335,7 +332,7 @@ public class BookController {
 		session = request.getSession();
 
 		/* 준비물 */
-		// 책 커버, 책 제목, 책 소개, 작가 이름, 작가 프로필, 작가 소개, 책 번호에 해당하는 글 리스트(제목,내용,썸네일,작성 날짜,글쓴이
+		// 책 커버, 책 제목, 책 소개, 책추천수, 작가 이름, 작가 프로필, 작가 소개, 책 번호에 해당하는 글 리스트(제목,내용,썸네일,작성 날짜,글쓴이
 		// 아이디,글 번호)
 		HashMap<String, Object> binfo = new HashMap<>();
 		binfo.put("mem_id", mem_id);
@@ -351,6 +348,7 @@ public class BookController {
 		String book_cover = book.getBook_cover();
 		String book_preface = book.getBook_preface();
 		String book_prefaceRe = book_preface.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+		int book_recommend = book.getBook_recommend();
 
 		List<BoardVO> bkifcntlist = this.bookService.bookInfoCont(binfo);
 		for (int i = 0; i < bkifcntlist.size(); i++) {
@@ -362,6 +360,7 @@ public class BookController {
 		model.addAttribute("book_name", book_name);
 		model.addAttribute("book_cover", book_cover);
 		model.addAttribute("book_preface", book_prefaceRe);
+		model.addAttribute("book_recommend", book_recommend);
 		model.addAttribute("mem_id", mem_id);
 		model.addAttribute("book_no", book_no);
 		model.addAttribute("mem_nickname", mem_nickname);
