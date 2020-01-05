@@ -98,7 +98,7 @@ $(window).scroll(function(){
 					if(data!=""){
 						$(data).each(function(){
 							num++;
-						str += '<a href="/jamong.com/book_info" class="scrolling" data-no="'+ num +'">'
+						str += '<a href="/jamong.com/book/@'+this.memberVO.mem_id+'/'+this.bookVO.book_no+'" class="scrolling" data-no="'+ num +'">'
 							+ '<div class="work_cont">'
 							if(this.bookVO.book_cover==null){
 								str+= '<img id="work_img" style="background-color:#f2f2f2">'

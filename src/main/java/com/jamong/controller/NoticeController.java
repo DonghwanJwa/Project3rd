@@ -43,6 +43,7 @@ public class NoticeController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -65,6 +66,7 @@ public class NoticeController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -133,6 +135,7 @@ public class NoticeController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -155,6 +158,7 @@ public class NoticeController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -203,6 +207,7 @@ public class NoticeController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -225,6 +230,7 @@ public class NoticeController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Oops!',\r\n" + 
 						"		text : '로그인이 필요합니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		showCancelButton : true,\r\n" + 
 						"		confirmButtonText : '로그인',\r\n" + 
@@ -286,6 +292,7 @@ public class NoticeController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -308,6 +315,7 @@ public class NoticeController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -325,6 +333,7 @@ public class NoticeController {
 							"Swal.fire({\r\n" + 
 							"		title : 'Wrong Password!',\r\n" + 
 							"		text : '게시글 비밀번호가 틀렸습니다!',\r\n" + 
+							"		allowOutsideClick: false,\r\n" +
 							"		icon: 'warning',\r\n" + 
 							"		}).then((result) => {\r\n" + 
 							"			if(result.value){\r\n" + 
@@ -365,6 +374,7 @@ public class NoticeController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -387,6 +397,7 @@ public class NoticeController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -404,6 +415,7 @@ public class NoticeController {
 							"Swal.fire({\r\n" + 
 							"		title : 'Wrong Password!',\r\n" + 
 							"		text : '게시글 비밀번호가 틀렸습니다!',\r\n" + 
+							"		allowOutsideClick: false,\r\n" +
 							"		icon: 'warning',\r\n" + 
 							"		}).then((result) => {\r\n" + 
 							"			if(result.value){\r\n" + 

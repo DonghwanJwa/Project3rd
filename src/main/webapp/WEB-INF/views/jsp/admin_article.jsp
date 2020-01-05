@@ -25,7 +25,7 @@
 		
 		<c:if test="${!empty blist}">
 			<c:forEach var="b" items="${blist}">
-				<tr onclick="location='${pageContext.request.contextPath}/@${b.memberVO.mem_id}/${b.bo_no}';" id="to_info">
+				<tr onclick="window.open('${pageContext.request.contextPath}/@${b.memberVO.mem_id}/${b.bo_no}');" id="to_info">
 					<td align="center" class="list_underline">
 					<c:if test='${b.bo_lock == 0}'> <font color="blue">비공개</font> </c:if>
 					<c:if test='${b.bo_lock == 2}'> <font color="red">블록</font> </c:if>

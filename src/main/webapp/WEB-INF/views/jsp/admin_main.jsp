@@ -46,7 +46,7 @@
 			<table class="adm_main_table3">
 				<c:forEach begin="0" end="4" step="1" var="i" items="${newInquire}"> <%-- 최신공지 5개 출력 --%>
 				<tr>
-					<th style="width:130px;"><a href="admin_inquire_info?no=${i.inq_no}">${i.inq_item1}</a></th>  <td id="adm_inq_cont">${i.inq_cont}</td>  <td style="width:130px;"><c:if test="${!empty i.mem_no}">회원문의</c:if><c:if test="${empty i.mem_no}">비회원문의</c:if></td> <td style="width:130px;">${i.inq_date}</td>
+					<th style="width:130px;"><a href="admin_inquire_info?no=${i.inq_no}">${i.inq_item}</a></th>  <td id="adm_inq_cont">${i.inq_cont}</td>  <td style="width:130px;"><c:if test="${!empty i.mem_no}">회원문의</c:if><c:if test="${empty i.mem_no}">비회원문의</c:if></td> <td style="width:130px;">${i.inq_date}</td>
 				</tr>
 				</c:forEach>
 			</table>

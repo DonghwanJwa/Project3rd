@@ -27,7 +27,7 @@
      	 	  ${i.inq_no}
      	 	</td>
      	 	<td align="center" class="inq_list_underline">
-     	 		${i.inq_item1}
+     	 		${i.inq_item}
      	 	</td>
      	 	
      	 	<td align="center" class="inq_list_underline" id="inq_cont_td">
@@ -130,9 +130,8 @@
   </table>
  </div>
 
-	<div id="inq_search_interface">
-	   <div class="select">
-		<select name="search_field" id="search_field" style="margin-right:5px;">
+	<div id="inq_search_interface"> 
+		<select name="search_field" id="search_field" class="search_field">
 			<option value="all"  selected>
 				회원구분
 			</option>
@@ -143,10 +142,8 @@
 				비회원
 			</option>
 		</select>
-	   </div>
 		
-	   <div class="select">
-		<select name="search_field_item" id="search_field_item" style="margin-right:5px;">
+		<select name="search_field_item" id="search_field_item" class="search_field">
 			<option value="all" selected>
 			  문의분류
 			</option>
@@ -160,10 +157,8 @@
 				제휴/협업문의
 			</option>
 		</select>
-	  </div>
 		
-	  <div class="select">
-		<select name="search_field_handling" id="search_field_handling" style="margin-right:5px;">
+		<select name="search_field_handling" id="search_field_handling" class="search_field">
 			<option value="all" selected>
 			 처리여부
 			</option>
@@ -174,26 +169,25 @@
 				처리대기
 			</option>
 		</select>
-	  </div>
 	  
-		<select name="search_field_info" id="search_field_info">
+		<select name="search_field_info" id="search_field_info" class="search_field">
 			<option value="all" selected>
 			  상세검색
 			</option>
-			<option value="내용" <c:if test="${search_field_info == 'i.inq_cont'}">${'selected'}</c:if>>
+			<option value="내용" <c:if test="${search_field_info == '내용'}">${'selected'}</c:if>>
 				내용
 			</option>
-			<option value="Phone" <c:if test="${search_field_info == 'i.inq_phone'}">${'selected'}</c:if>>
+			<option value="Phone" <c:if test="${search_field_info == 'Phone'}">${'selected'}</c:if>>
 				Phone
 			</option>
-			<option value="Email" <c:if test="${search_field_info == 'i.inq_email'}">${'selected'}</c:if>>
+			<option value="Email" <c:if test="${search_field_info == 'Email'}">${'selected'}</c:if>>
 				Email
 			</option>
 		</select>	
 	  
 		<!-- 검색 DIV -->
 		<input name="search_name" id="search_name" size="15" value="${search_name}" />
-		<input type="submit" value="검색"/>
+		<input type="submit" value="검색" class="notice_btn"/>
 	</div>     
 </form>
 <%@include file="../include/admin_footer.jsp" %>

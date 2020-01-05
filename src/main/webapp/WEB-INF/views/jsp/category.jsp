@@ -8,7 +8,7 @@
   onselectstart="return false">
   <div id=cat_title_name><strong>${cat_name}</strong></div>
    <div id=cat_writer_block>
-    <div id=cat_writer_title><b>Recommend Author</b></div>
+    <div id=cat_writer_title><b>Recommended Author</b></div>
      <div id=cat_writer_list>
       <c:forEach var="cat" items="${mlist}">
        <a class=cat_writer_a align="center" href="${pageContext.request.contextPath}/@${cat.mem_id}">

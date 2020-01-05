@@ -48,7 +48,7 @@
   	     <dt>문의 분류 *</dt>
   	    <dd>
   	      <div class="inq_wrap_select">
-  	       <select class="inq_list_select" name="inq_item1" id="listselect" onselect="return inq2();">
+  	       <select class="inq_list_select" name="inq_item" id="listselect" onselect="return inq2();">
   	          <option value="none">선택</option>
   	          <option value="개선/제안">개선/제안</option>
   	          <option value="일반문의">일반문의</option>

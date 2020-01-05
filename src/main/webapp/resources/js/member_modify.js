@@ -373,6 +373,7 @@ $(document).ready(function(){
 					//#01ea137a 확인된 곳엔 색 주기
 					Swal.fire({
 						icon : 'info',
+						allowOutsideClick: false,
 						text : '입력하신 이메일로 아이디가 발송되었습니다.'
 					}).then(function(){						
 						$('#member_modify_next_btn').attr('disabled', true);
@@ -412,6 +413,7 @@ $(document).ready(function(){
 				if(data=="complete"){
 					Swal.fire({
 						icon : 'success',
+						allowOutsideClick: false,
 						text : '이메일 인증에 성공하셨습니다!'
 					}).then(function(){
 						$('#member_modify_next_btn').attr('disabled', false);//수정완료버튼 활성화

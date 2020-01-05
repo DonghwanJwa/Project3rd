@@ -36,15 +36,6 @@
 .inq_adm_tr:hover{
 	background-color:aliceblue;
 }
-#search_field{
-	height:24.4px;	
-}
-#search_field_item{
-	height:24.4px;
-}
-#search_field_handling{
-	height:24.4px;
-}
 #adm_inquire_table{
 	font-size:12px;
 	width:800px;
@@ -60,4 +51,7 @@
    -webkit-box-orient: vertical;
    line-height: 24px;
    height: 16px;
+}
+.search_field {
+	margin: 0 5px;
 }

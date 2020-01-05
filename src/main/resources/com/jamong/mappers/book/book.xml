@@ -136,11 +136,11 @@
 	ON m.mem_no = bk.mem_no
 	INNER JOIN board bd
 	ON m.mem_no = bd.mem_no AND bk.book_no = bd.book_no 
-	WHERE REGEXP_LIKE(bk.book_name,#{q})
-	OR REGEXP_LIKE(m.mem_nickname,#{q})
-	OR REGEXP_LIKE(bo_title,#{q}) 
-	OR REGEXP_LIKE(bo_cont,#{q})
-	AND m.mem_state = 1
+	WHERE REGEXP_LIKE(bk.book_name,#{q},'i')
+	OR REGEXP_LIKE(m.mem_nickname,#{q},'i')
+	OR REGEXP_LIKE(bd.bo_title,#{q},'i') 
+	OR REGEXP_LIKE(bd.bo_cont,#{q},'i')
+	AND m.mem_state = 0
 	AND bo_lock=1
 	GROUP BY bk.book_no,
 		 	 bk.book_name,
@@ -168,10 +168,10 @@
 	ON m.mem_no = bk.mem_no
 	INNER JOIN board bd
 	ON m.mem_no = bd.mem_no AND bk.book_no = bd.book_no 
-	WHERE REGEXP_LIKE(bk.book_name,#{q})
-	OR REGEXP_LIKE(m.mem_nickname,#{q})
-	OR REGEXP_LIKE(bo_title,#{q}) 
-	OR REGEXP_LIKE(bo_cont,#{q})
+	WHERE REGEXP_LIKE(bk.book_name,#{q},'i')
+	OR REGEXP_LIKE(m.mem_nickname,#{q},'i')
+	OR REGEXP_LIKE(bo_title,#{q},'i') 
+	OR REGEXP_LIKE(bo_cont,#{q},'i')
 	AND m.mem_state = 0
 	AND bo_lock=1
 	GROUP BY bk.book_no,

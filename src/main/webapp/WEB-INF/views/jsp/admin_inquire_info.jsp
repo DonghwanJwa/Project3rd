@@ -40,9 +40,9 @@
 	<tr>
 		<th align="center" style="width:110px; height:40px;">문의분류</th>
 		<td align="center" style="width:120px;">
-			<c:if test="${i.inq_item1 == '개선/제안'}">개선/제안</c:if>
-			<c:if test="${i.inq_item1 == '일반문의'}">일반문의</c:if>
-			<c:if test="${i.inq_item1 == '제휴/협업 문의'}">제휴/협업 문의</c:if>
+			<c:if test="${i.inq_item == '개선/제안'}">개선/제안</c:if>
+			<c:if test="${i.inq_item == '일반문의'}">일반문의</c:if>
+			<c:if test="${i.inq_item == '제휴/협업 문의'}">제휴/협업 문의</c:if>
 		</td>
 		
 		<th align="center" style="width:150px;">PhoneNumber</th>

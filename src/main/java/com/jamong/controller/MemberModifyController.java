@@ -60,6 +60,7 @@ public class MemberModifyController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -176,6 +177,7 @@ public class MemberModifyController {
 					"		icon : 'info',\r\n" +
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다. 로그인 하시겠습니까?',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '예',\r\n" + 
@@ -205,6 +207,7 @@ public class MemberModifyController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -260,6 +263,7 @@ public class MemberModifyController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -305,6 +309,7 @@ public class MemberModifyController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -362,6 +367,7 @@ public class MemberModifyController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -386,6 +392,17 @@ public class MemberModifyController {
 			me.setMem_no(m.getMem_no());//세션에서 넘버값을 가져와서 엠이값에 넘버값을 넘긴다
 			int re = this.memberService.memberUpdate(bm);//엠이에 디비값을 담는다
 			if(re >0) {
+				MemberVO dm=this.memberService.loginCheck(m.getMem_id());
+				m.setMem_phone01(dm.getMem_phone01());
+				m.setMem_phone02(dm.getMem_phone02());
+				m.setMem_phone03(dm.getMem_phone03());
+				m.setEmail_id(dm.getEmail_id());
+				m.setEmail_domain(dm.getEmail_domain());
+				
+				if(dm.getMem_state()==9) {	//관리자일경우 이름값을 저장 ->관리자페이지에서 필요하여 넣었습니다.
+					m.setMem_name(dm.getMem_name());
+				}
+				session.setAttribute("m", m);
 				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
 						"<body>\r\n" + 
@@ -393,6 +410,7 @@ public class MemberModifyController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Success!',\r\n" + 
 						"		text : '회원정보가 성공적으로 수정되었습니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'success',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -409,6 +427,7 @@ public class MemberModifyController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '처리중 오류가 발생했습니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -487,6 +506,7 @@ public class MemberModifyController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Success!',\r\n" + 
 					"		text : '비밀번호 수정이 완료되었습니다',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'success',\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
@@ -613,6 +633,11 @@ public class MemberModifyController {
 			vo.setMem_fav2(mem_fav2);
 			vo.setMem_fav3(mem_fav3);
 			this.memberService.cat_update(vo);
+			me.setMem_fav1(mem_fav1);
+			me.setMem_fav2(mem_fav2);
+			me.setMem_fav3(mem_fav3);
+			
+			session.setAttribute("m", me);
 		}else {
 			re= 2;
 		}

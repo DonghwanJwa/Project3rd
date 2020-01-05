@@ -137,6 +137,7 @@
    SELECT mem_no,
     	mem_id, 
     	mem_author, 
+    	mem_state,
     	profile_photo, 
     	profile_cont, 
     	mem_nickname, 
@@ -164,9 +165,9 @@
   (SELECT * FROM 
   (SELECT * FROM member
   WHERE mem_state=0 AND mem_author=1) 
-  WHERE REGEXP_LIKE(mem_nickname,#{q}) 
-  OR REGEXP_LIKE(mem_keyword,#{q}) 
-  OR REGEXP_LIKE(profile_cont,#{q}))
+  WHERE REGEXP_LIKE(mem_nickname,#{q},'i') 
+  OR REGEXP_LIKE(mem_keyword,#{q},'i') 
+  OR REGEXP_LIKE(profile_cont,#{q}),'i')
   ORDER BY REGEXP_COUNT(mem_nickname,#{q}) DESC, 
   		   REGEXP_COUNT(mem_keyword,#{q}) DESC, 
   		   REGEXP_COUNT(profile_cont,#{q}) DESC)X)
@@ -184,9 +185,9 @@
   (SELECT ROWNUM RN,X.* FROM
   (SELECT * FROM 
   (SELECT * FROM member  
-  WHERE REGEXP_LIKE(mem_nickname,#{q}) 
-  OR REGEXP_LIKE(mem_keyword,#{q}) 
-  OR REGEXP_LIKE(profile_cont,#{q})
+  WHERE REGEXP_LIKE(mem_nickname,#{q},'i') 
+  OR REGEXP_LIKE(mem_keyword,#{q},'i') 
+  OR REGEXP_LIKE(profile_cont,#{q},'i')
   AND mem_state=0 AND mem_author=1) 
   ORDER BY REGEXP_COUNT(mem_nickname,#{q}) DESC, 
   		   REGEXP_COUNT(mem_keyword,#{q}) DESC, 

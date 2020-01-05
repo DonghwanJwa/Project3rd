@@ -86,6 +86,7 @@ public class BoardController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Warning',\r\n" + 
 						"		text : '비공개 게시물입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'warning',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -105,6 +106,7 @@ public class BoardController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Warning',\r\n" + 
 						"		text : '비공개 게시물입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'warning',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -124,6 +126,7 @@ public class BoardController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Warning',\r\n" + 
 						"		text : '삭제된 게시물입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'warning',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -141,6 +144,7 @@ public class BoardController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Warning',\r\n" + 
 						"		text : '삭제된 게시물입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'warning',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -160,6 +164,7 @@ public class BoardController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Warning',\r\n" + 
 						"		text : '관리자에 의해 비공개 처리된 게시글입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'warning',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -177,6 +182,7 @@ public class BoardController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Warning',\r\n" + 
 						"		text : '관리자에 의해 비공개 처리된 게시글입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'warning',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -310,6 +316,7 @@ public class BoardController {
 						"Swal.fire({\r\n" + 
 						"		title : 'Error!',\r\n" + 
 						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
 						"		icon: 'error',\r\n" + 
 						"		}).then((result) => {\r\n" + 
 						"			if(result.value){\r\n" + 
@@ -327,6 +334,7 @@ public class BoardController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '세션이 만료되었습니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -362,6 +370,7 @@ public class BoardController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요한 페이지입니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -461,6 +470,7 @@ public class BoardController {
 				"Swal.fire({\r\n" + 
 				"		title : 'Good Job!',\r\n" + 
 				"		text : '게시글이 등록되었습니다!',\r\n" + 
+				"		allowOutsideClick: false,\r\n" +
 				"		icon: 'success',\r\n" + 
 				"		}).then((result) => {\r\n" + 
 				"			if(result.value){\r\n" + 
@@ -554,6 +564,7 @@ public class BoardController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Good Job!',\r\n" + 
 					"		text : '게시글이 수정되었습니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'success',\r\n" + 
 					"		}).then((result) => {\r\n" + 
 					"			if(result.value){\r\n" + 
@@ -570,6 +581,7 @@ public class BoardController {
 					"Swal.fire({\r\n" + 
 					"		title : 'Oops!',\r\n" + 
 					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
 					"		icon: 'error',\r\n" + 
 					"		showCancelButton : true,\r\n" + 
 					"		confirmButtonText : '로그인',\r\n" + 
@@ -734,7 +746,13 @@ public class BoardController {
 		ResponseEntity<List<BoardVO>> entity = null;
 
 		try {
-			entity = new ResponseEntity<>(this.boardService.bestList(),HttpStatus.OK);		
+			List<BoardVO> bb = this.boardService.bestList();
+			for(int i=0;i<bb.size();i++) {
+				String htmlTitle = bb.get(i).getBo_title();
+				String normalTitle = htmlTitle.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+				bb.get(i).setBo_title(normalTitle);
+			}
+			entity = new ResponseEntity<>(bb,HttpStatus.OK);		
 		}catch(Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

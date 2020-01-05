@@ -39,7 +39,8 @@ $(function(){
 					//disabled 태그 속성 활성화 false 비활성화
 					Swal.fire({
 						icon : 'info',
-						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 비밀번호 찾기 페이지로 이동합니다.'
+						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 비밀번호 찾기 페이지로 이동합니다.',
+						allowOutsideClick: false
 					}).then(function(){
 						$("#find_id_sub_box_id").css("display","none");
 						$("#find_id_sub_box_pass").css("display","block");
@@ -50,6 +51,7 @@ $(function(){
 				}else if(data==-1){
 					Swal.fire({
 						icon : 'error',
+						allowOutsideClick: false,
 						text : '입력하신 정보에 해당하는 계정이 없습니다!'
 					});
 				}else if(data==-2){
@@ -115,7 +117,8 @@ $(function(){
 				if(data==1){
 					Swal.fire({
 						icon : 'info',
-						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 비밀번호 찾기 페이지로 이동합니다.'
+						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 비밀번호 찾기 페이지로 이동합니다.',
+						allowOutsideClick: false
 					}).then(function(){
 						$('#find_id_pass_email_Certified_btn').attr("disabled",true);//버튼을 못쓰게 막음
 						$('#find_id_pass_before_certified').show();
@@ -129,6 +132,7 @@ $(function(){
 				}else if(data==-1){
 					Swal.fire({
 						icon : 'error',
+						allowOutsideClick: false,
 						text : '입력하신 정보에 해당하는 계정이 없습니다!'
 					}).then(function(){
 						$('#find_id_pass_email').val("");	
@@ -171,6 +175,7 @@ $(function(){
 				if(data=="complete"){
 					Swal.fire({
 						icon : 'success',
+						allowOutsideClick: false,
 						text : '인증이 완료되었습니다!'
 					}).then(function(){
 						$('#find_id_pass_email_Certified_next_btn').attr('disabled', true);//비활성화
@@ -183,6 +188,7 @@ $(function(){
 				}else if(data == "false"){
 					Swal.fire({
 						icon : 'error',
+						allowOutsideClick: false,
 						title : '인증번호가 틀렸습니다!'
 					});
 				}

@@ -1,7 +1,7 @@
 -- 문의하기 테이블 구성
 CREATE TABLE inquire(
 inq_no NUMBER(38) PRIMARY KEY,    -- 문의번호(seq)
-inq_item1 VARCHAR2(100) NOT NULL, -- 문의 항목
+inq_item VARCHAR2(100) NOT NULL, -- 문의 항목
 inq_phone VARCHAR2(300) NOT NULL, -- 휴대폰번호
 inq_cont VARCHAR2(4000) NOT NULL, -- 문의 내용
 inq_email VARCHAR2(500) NOT NULL, -- 이메일
@@ -21,6 +21,9 @@ mem_no NUMBER(38)				  -- 회원번호 참조컬럼 0 비회원 0이아닐시 �
 
 ALTER TABLE board ADD inq_reply VARCHAR2(4000);
 ALTER TABLE board ADD inq_sender VARCHAR2(100);
+
+ALTER TABLE inquire RENAME COLUMN inq_item1 TO inq_item; --2020/01/05 변경사항
+
 
 DROP TABLE inquire;
 -- 시퀀스 생성

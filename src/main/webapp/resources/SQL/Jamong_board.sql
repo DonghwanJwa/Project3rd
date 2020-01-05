@@ -86,24 +86,7 @@ select * from ALL_CONSTRAINTS WHERE TABLE_NAME='board';
   UPDATE board AS b ,book  AS bo
   SET b.book_no=bo.book_no_seq.nextval, bo.book_name = '이거버그야'
   WHERE b.bo_no=b.bo_no;
-
- SELECT b.bo_no,
-        b.bo_title,
-        b.bo_subtitle,
-        b.bo_cont,
-        b.bo_thumbnail,
-        b.bo_date,
-        m.mem_id,
-        m.mem_nickname,
-        m.mem_keyword
-  FROM board b
-  INNER JOIN member m
-  ON b.mem_no=m.mem_no
-  WHERE REGEXP_LIKE(b.bo_title,'핫') OR REGEXP_LIKE(b.bo_subtitle,'핫') OR REGEXP_LIKE(b.bo_cont,'핫') 
-  OR REGEXP_LIKE(b.cat_name,'핫') OR REGEXP_LIKE(m.mem_nickname,'핫') AND bo_lock=1 AND rowNum <= 10
-  ORDER BY REGEXP_COUNT(bo_title,'핫') DESC, REGEXP_COUNT(bo_cont,'핫')
-  
-  
+   
   SELECT book.book_no,
   		 book.book_name,
   		 book.book_cover,
@@ -148,3 +131,32 @@ select * from ALL_CONSTRAINTS WHERE TABLE_NAME='board';
  	ON m.mem_no = b.mem_no
     WHERE m.mem_no = 3 AND b.bo_no >= 13 - 10
  
+    SELECT * FROM(
+    SELECT 
+    	b.bo_no, 
+    	b.bo_title, 
+    	b.bo_subtitle,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	count(s.sym_no) sym_count,
+    	m.mem_id,
+		m.mem_nickname
+    FROM board b
+    INNER JOIN (SELECT * FROM sympathy WHERE TO_CHAR(sym_date,'YYYYMM') = TO_CHAR(sysdate,'YYYYMM')) s
+    ON b.bo_no = s.bo_no
+    INNER JOIN member m
+    ON b.mem_no = m.mem_no
+    GROUP BY b.bo_no, 
+    	b.bo_title, 
+    	b.bo_subtitle,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	m.mem_id,
+		m.mem_nickname
+    ORDER BY count(s.sym_no) DESC)
+    WHERE ROWNUM <=5;
+    
+    SELECT * FROM sympathy WHERE TO_CHAR(sym_date,'YYYYMM') = TO_CHAR(sysdate,'YYYYMM')
+    SELECT * FROM board ORDER BY bo_no DESC;
+
+    

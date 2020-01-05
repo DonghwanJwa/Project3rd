@@ -58,6 +58,7 @@ $(document).ready(function(){
 			icon : 'question',
 			title : 'Caution!',
 			text : '정말로 회원탈퇴 하시겠습니까?',
+			allowOutsideClick: false,
 			showCancelButton : true,
 			confirmButtonText : '예',
 			cancelButtonText : '아니오',
@@ -74,6 +75,7 @@ $(document).ready(function(){
 						if(data==1){
 							Swal.fire({
 								icon : 'success',
+								allowOutsideClick: false,
 								text : '탈퇴되었습니다. 이용해 주셔서 감사합니다.'
 							}).then(function(){
 								window.location.replace("/jamong.com/");								
@@ -83,6 +85,7 @@ $(document).ready(function(){
 								icon : 'info',
 								title : 'Oops!',
 								text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+								allowOutsideClick: false,
 								showCancelButton : true,
 								confirmButtonText : '예',
 								cancelButtonText : '아니오'
@@ -115,6 +118,7 @@ $(document).ready(function(){
 				if(data==1){
 					Swal.fire({
 						icon : 'success',
+						allowOutsideClick: false,
 						text : '카테고리가 수정되었습니다!'
 					})
 				}else{
@@ -122,6 +126,7 @@ $(document).ready(function(){
 						icon : 'info',
 						title : 'Oops!',
 						text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+						allowOutsideClick: false,
 						showCancelButton : true,
 						confirmButtonText : '예',
 						cancelButtonText : '아니오'

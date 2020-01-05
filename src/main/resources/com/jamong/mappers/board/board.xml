@@ -144,10 +144,11 @@
  
  <select id="index_article" resultMap="boardMap">
  <![CDATA[
+ 	SELECT * FROM(
 	SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM)b
 	INNER JOIN member m
-	ON b.mem_no=m.mem_no
-	WHERE rowNum <= 20 and bo_lock=1
+	ON b.mem_no=m.mem_no AND bo_lock=1 AND bo_like>=10)
+	WHERE rowNum <= 20
 ]]>
  </select>
  
@@ -197,10 +198,30 @@
  <!-- 메뉴바 Best 글 가져오기 -->
  <select id="best_list" resultMap="boardMap">
   <![CDATA[
-	SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM)b
-	INNER JOIN member m
-	ON b.mem_no=m.mem_no
-	WHERE rowNum <= 5 and bo_lock=1
+	SELECT * FROM(
+    SELECT 
+    	b.bo_no, 
+    	b.bo_title, 
+    	b.bo_subtitle,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	count(s.sym_no) sym_count,
+    	m.mem_id,
+		m.mem_nickname
+    FROM board b
+    INNER JOIN (SELECT * FROM sympathy WHERE TO_CHAR(sym_date,'YYYYMM') = TO_CHAR(sysdate,'YYYYMM')) s
+    ON b.bo_no = s.bo_no AND b.bo_lock=1
+    INNER JOIN member m
+    ON b.mem_no = m.mem_no
+    GROUP BY b.bo_no, 
+    	b.bo_title, 
+    	b.bo_subtitle,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	m.mem_id,
+		m.mem_nickname
+    ORDER BY count(s.sym_no) DESC, b.bo_hit DESC)
+    WHERE ROWNUM <=5
 	]]>
  </select>
  
@@ -223,10 +244,10 @@
   FROM board b
   INNER JOIN member m
   ON b.mem_no=m.mem_no and b.bo_lock=1
-  WHERE REGEXP_LIKE(b.bo_title,#{q}) 
-  OR REGEXP_LIKE(b.bo_cont,#{q}) 
-  OR REGEXP_LIKE(m.mem_nickname,#{q}) 
-  OR REGEXP_LIKE(m.mem_keyword,#{q}))
+  WHERE REGEXP_LIKE(b.bo_title,#{q},'i') 
+  OR REGEXP_LIKE(b.bo_cont,#{q},'i') 
+  OR REGEXP_LIKE(m.mem_nickname,#{q},'i') 
+  OR REGEXP_LIKE(m.mem_keyword,#{q},'i'))
   <if test="s == 'accuracy'">
   ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC, REGEXP_COUNT(mem_nickname,#{q}) DESC) 
   </if>
@@ -256,10 +277,10 @@
   FROM board b
   INNER JOIN member m
   ON b.mem_no=m.mem_no and b.bo_lock=1
-  WHERE REGEXP_LIKE(b.bo_title,#{q}) 
-  OR REGEXP_LIKE(b.bo_cont,#{q}) 
-  OR REGEXP_LIKE(m.mem_nickname,#{q}) 
-  OR REGEXP_LIKE(m.mem_keyword,#{q}))
+  WHERE REGEXP_LIKE(b.bo_title,#{q},'i') 
+  OR REGEXP_LIKE(b.bo_cont,#{q},'i') 
+  OR REGEXP_LIKE(m.mem_nickname,#{q},'i') 
+  OR REGEXP_LIKE(m.mem_keyword,#{q},'i'))
   <if test="s == 'accuracy'">
   ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC, REGEXP_COUNT(mem_nickname,#{q}) DESC) 
   </if>

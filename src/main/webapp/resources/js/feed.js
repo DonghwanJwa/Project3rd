@@ -33,6 +33,7 @@ $(document).ready(function(){
 				icon : 'question',
 				title : 'Cancel?',
 				text : '해당 게시글을 더이상 공감하지 않으시겠습니까?',
+				allowOutsideClick: false,
 				showCancelButton : true,
 				confirmButtonText : '예',
 				cancelButtonText : '아니오',
@@ -50,6 +51,7 @@ $(document).ready(function(){
 									icon : 'info',
 									title : 'Oops!',
 									text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+									allowOutsideClick: false,
 									showCancelButton : true,
 									confirmButtonText : '예',
 									cancelButtonText : '아니오'
@@ -83,6 +85,7 @@ $(document).ready(function(){
 				icon : 'question',
 				title : 'Cancel?',
 				text : '해당 게시글을 더이상 추천하지 않으시겠습니까?',
+				allowOutsideClick: false,
 				showCancelButton : true,
 				confirmButtonText : '예',
 				cancelButtonText : '아니오',
@@ -99,6 +102,7 @@ $(document).ready(function(){
 								icon : 'info',
 								title : 'Oops!',
 								text : '로그인이 필요합니다. 로그인 하시겠습니까?',
+								allowOutsideClick: false,
 								showCancelButton : true,
 								confirmButtonText : '예',
 								cancelButtonText : '아니오'
