@@ -53,9 +53,9 @@ $(document).ready(function(){
 		if( !$(this).val() ) return;
 		var f = this.files[0];
 		var size = f.size || f.fileSize;
-		var limit = 10*1024*1024;
+		var limit = 50*1024*1024;
 		if( size > limit ){
-			alert( '파일용량은 10MB 를 넘을수 없습니다.' );
+			alert( '파일용량은 50MB 를 넘을수 없습니다.' );
 			$(this).prev().prev().val('파일선택');
 			$(this).val('');
 			$(this).replaceWith($(this).clone(true));
@@ -121,7 +121,7 @@ $(document).ready(function(){
 				혹시 미리 써둔 글이 있나요?<br/>
 				필수사항은 아니지만, 자몽 작가 선정 시 가장 중요한 자료가 된답니다.<br/>
 				작가님의 글을 보여주세요.<br/>
-				<b>* URL은 최대 3개 까지, 파일형식은 .jpg, .png, .pdf, .doc, .docx, .hwp, .zip 만 가능합니다.</b> 
+				<b>* URL은 최대 3개 까지, 파일형식은 .jpg, .png, .pdf, .doc, .docx, .hwp, .zip 만 가능합니다.(최대 50MB)</b> 
 			</p>
 			
 			<div id="req_form_upload">

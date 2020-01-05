@@ -55,7 +55,7 @@
 	    		 </span>
 	    		 <span class=acc_accuse_list>
 	    		  <input type="radio" class="acc_radio_button" 
-	    		  id="acc_vali_radio" name="list" value="H"  />
+	    		  name="ac_reason" value="기타" style=cursor:pointer;  />
 	    		  <label class=acc_accuse_label>기타</label>
 	    		 </span>
 	    		 <div class="acc_vali_date" id="acc_vali_list"></div>

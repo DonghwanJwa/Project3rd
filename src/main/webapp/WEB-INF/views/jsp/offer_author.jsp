@@ -46,7 +46,7 @@ $(document).ready(function(){
 		var size = f.size || f.fileSize;
 		var limit = 50*1024*1024;
 		if( size > limit ){
-			alert( '파일용량은 10MB 를 넘을수 없습니다.' );
+			alert( '파일용량은 50MB 를 넘을수 없습니다.' );
 			$(this).prev().prev().val('파일선택');
 			$(this).val('');
 			$(this).replaceWith($(this).clone(true));
