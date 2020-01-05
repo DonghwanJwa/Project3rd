@@ -22,12 +22,14 @@ import com.jamong.domain.BookVO;
 import com.jamong.domain.InquireVO;
 import com.jamong.domain.MemberVO;
 import com.jamong.domain.NoticeVO;
+import com.jamong.domain.VisitVO;
 import com.jamong.service.AccuseService;
 import com.jamong.service.AdminService;
 import com.jamong.service.BoardService;
 import com.jamong.service.BookService;
 import com.jamong.service.InquireService;
 import com.jamong.service.MemberService;
+import com.jamong.service.VisitService;
 
 @Controller
 public class AdminController {
@@ -43,6 +45,8 @@ public class AdminController {
 	private MemberService memberService;
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private VisitService visitService;
 	
 	@RequestMapping("admin_main")
 	public ModelAndView admin_main(HttpSession session, HttpServletRequest request, HttpServletResponse response, NoticeVO n,AccuseVO a,InquireVO i) throws Exception {
@@ -149,6 +153,9 @@ public class AdminController {
 	public ModelAndView statisticsChart() {
 		ModelAndView mv = new ModelAndView();
 		
+		List<VisitVO> allCount = this.visitService.chartTotalCount();
+		
+		mv.addObject("Count",allCount);
 		mv.setViewName("jsp/statistics");
 		return mv;
 	}
@@ -296,6 +303,7 @@ public class AdminController {
 	public ResponseEntity<JSONObject> articleCategory_List(){
 		ResponseEntity<JSONObject> entity = null;
 		List<BoardVO> items = this.boardService.chartArticleCategory();
+		List<MemberVO> members = this.memberService.chartMemberCategory();
 		
 		
 		JSONObject jobj = new JSONObject();
@@ -306,24 +314,31 @@ public class AdminController {
 		JSONArray title = new JSONArray();
 		cols1.put("lable","게시글 분류");
 		cols1.put("type","string");
-		cols2.put("label","분류별 게시글 수");
+		cols2.put("label","게시글 수");
 		cols2.put("type","number");
+		cols3.put("label","회원 수");
+		cols3.put("type","number");
 		title.add(cols1);
 		title.add(cols2);
+		title.add(cols3);
 		
 		jobj.put("cols",title);
 		
 		JSONArray body = new JSONArray();
-		for(BoardVO vo : items) {
-			
+		for(int i=0;i<items.size();i++) {
+			BoardVO bvo = items.get(i);
+			MemberVO mvo = members.get(i);
 			JSONObject category = new JSONObject();
-			category.put("v",vo.getCat_name());
+			category.put("v",bvo.getCat_name());
 			JSONObject count = new JSONObject();
-			count.put("v",vo.getCount());
+			count.put("v",bvo.getCount());
+			JSONObject mcount = new JSONObject();
+			mcount.put("v",mvo.getCount());
 			
 			JSONArray rows = new JSONArray();
 			rows.add(category);
 			rows.add(count);
+			rows.add(mcount);
 			
 			JSONObject c = new JSONObject();
 			c.put("c",rows);
@@ -345,6 +360,7 @@ public class AdminController {
 		ResponseEntity<JSONObject> entity = null;
 		List<BoardVO> items = this.boardService.chartArticleCount();
 		List<BookVO> books = this.bookService.chartBookCount();
+		List<VisitVO> visitors = this.visitService.chartVisitorCount();
 		
 		
 		JSONObject jobj = new JSONObject();
@@ -352,6 +368,7 @@ public class AdminController {
 		JSONObject cols1 = new JSONObject();
 		JSONObject cols2 = new JSONObject();
 		JSONObject cols3 = new JSONObject();
+		JSONObject cols4 = new JSONObject();
 		JSONArray title = new JSONArray();
 		cols1.put("lable","일별 게시글/책 작성수");
 		cols1.put("type","string");
@@ -359,9 +376,12 @@ public class AdminController {
 		cols2.put("type","number");
 		cols3.put("label","책 수");
 		cols3.put("type","number");
+		cols4.put("label","방문자 수");
+		cols4.put("type","number");
 		title.add(cols1);
 		title.add(cols2);
 		title.add(cols3);
+		title.add(cols4);
 		
 		jobj.put("cols",title);
 		
@@ -369,17 +389,21 @@ public class AdminController {
 		for(int i=0;i<items.size();i++) {
 			BoardVO bvo = items.get(i);
 			BookVO bovo = books.get(i);
+			VisitVO vivo = visitors.get(i);
 			JSONObject date = new JSONObject();
 			date.put("v",bvo.getBo_date().substring(0,11));
 			JSONObject acount = new JSONObject();
 			acount.put("v",bvo.getCount());
 			JSONObject bcount = new JSONObject();
 			bcount.put("v",bovo.getCount());
+			JSONObject vcount = new JSONObject();
+			vcount.put("v",vivo.getCount());
 			
 			JSONArray rows = new JSONArray();
 			rows.add(date);
 			rows.add(acount);
 			rows.add(bcount);
+			rows.add(vcount);
 			
 			JSONObject c = new JSONObject();
 			c.put("c",rows);

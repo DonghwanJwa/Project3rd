@@ -32,6 +32,7 @@ public interface MemberService {
 	List<MemberVO> categoryMember(String cat_name);
 	List<MemberVO> chartAgeGroup();
 	List<MemberVO> chartGenderData();
+	List<MemberVO> chartMemberCategory();
 	MemberVO getAccusee(int ac_member);
 	void updateProfile(MemberVO mp);
 	MemberVO author_info(String mem_id);

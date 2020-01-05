@@ -92,16 +92,16 @@ function ArticleCategory() {
 	var view = new google.visualization.DataView(data);
 
 	var options = {
-			title: "카테고리별 게시물 수",
+			title: "카테고리별 게시물 / 선호카테고리 선택 수",
 			height: 400,
 				bar: {groupWidth: "30%"},
-			legend: { position: "none" },
 			sliceVisibilityThreshold : 0,
 			animation : {
 				startup: true,
 				duration: 1000,
 				easing: 'linear',
 			},
+			colors : ['#f57c68','green']
 	};
 
 	var chart = new google.visualization.ColumnChart(document.getElementById('stat_category_chart'));
@@ -121,17 +121,20 @@ function ArticleCount() {
 	var view = new google.visualization.DataView(data);
 	
 	var options = {
-			title: "일별 게시글/책 작성수",
+			title: "일별 게시글 / 책 / 방문자 수",
 			height: 400,
 			bar: {groupWidth: "30%"},
 			sliceVisibilityThreshold : 0,
+			seriesType : 'bars',
+			series : {2 : {type : 'line'}},
 			animation : {
 				startup: true,
 				duration: 1000,
 				easing: 'linear',
 			},
+			colors : ['#f57c68','green','orange']
 	};
 	
-	var chart = new google.visualization.ColumnChart(document.getElementById('stat_artCount_chart'));
+	var chart = new google.visualization.ComboChart(document.getElementById('stat_artCount_chart'));
 	chart.draw(data, options);	
 }
