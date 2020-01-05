@@ -157,4 +157,8 @@ public class MemberDAOImpl implements MemberDAO{
 	public List<MemberVO> chartGenderData() {
 		return this.sqlSession.selectList("GenderData");
 	}
+	@Override
+	public List<MemberVO> chartMemberCategory() {
+		return this.sqlSession.selectList("MemberCategoryCount");
+	}
 }

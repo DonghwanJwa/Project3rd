@@ -81,7 +81,7 @@
   <bean id="mailService" class="mailHandler.MailServiceImpl">
 	<property name="javaMailSender" ref="javaMailSender" />
   </bean>
-  
+  <bean id="visitDAOImpl" class="com.jamong.dao.VisitDAOImpl"></bean>
   <!-- AOP xml 환경설정 -->
   <aop:config />
 </beans>

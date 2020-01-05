@@ -238,5 +238,13 @@ UPDATE member
  <select id="GenderData" resultType="m">
   SELECT mem_gender, COUNT(mem_no) AS count FROM member GROUP BY mem_gender
  </select>
+ 
+ <select id="MemberCategoryCount" resultType="m">
+  SELECT c.cat_name,COUNT(m.mem_no) count
+  FROM member m
+  RIGHT OUTER JOIN category c
+  ON m.mem_fav1 = c.cat_name OR m.mem_fav2 = c.cat_name OR m.mem_fav3 = c.cat_name
+  GROUP BY c.cat_name
+ </select>
 
 </mapper>

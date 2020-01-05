@@ -27,5 +27,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   <typeAlias type="com.jamong.domain.NoticeVO" alias="notice"/> <!-- 공지사항 -->
   <typeAlias type="com.jamong.domain.RequestAuthorVO" alias="ra"/> <!-- 관리자 작가신청 열람 -->
   <typeAlias type="com.jamong.domain.AdminOfferVO" alias="ao"/> <!-- 관리자 작가제안 열람 -->
+  <typeAlias type="com.jamong.domain.VisitVO" alias="v" /><!-- 방문자수 카운터 -->
  </typeAliases>
 </configuration>

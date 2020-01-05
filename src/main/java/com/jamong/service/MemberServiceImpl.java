@@ -146,5 +146,9 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> chartGenderData() {
 		return this.memberDao.chartGenderData();
 	}
+	@Override
+	public List<MemberVO> chartMemberCategory() {
+		return this.memberDao.chartMemberCategory();
+	}
 	
 }

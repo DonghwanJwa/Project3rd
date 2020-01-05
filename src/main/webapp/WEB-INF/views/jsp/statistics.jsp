@@ -14,6 +14,22 @@
  <div id="stat_title_name"><b>Statistics Chart</b></div>
  <div id="stat_wrap" style="min-height:calc(100vh - 162px);">
   <div id="stat_chart_wrap" style="max-width:1200px; margin:0px auto;">
+   <div id="stat_allCount">
+   <c:forEach var="items" items="${Count}" varStatus="status">
+    <c:if test="${status.index == 0}">
+    <span>게시글 수 : <b>${items.count}</b></span>·
+    </c:if>
+    <c:if test="${status.index == 1}">
+    <span>집필된 책 수 : <b>${items.count}</b></span>·
+    </c:if>
+    <c:if test="${status.index == 2}">
+    <span>회원 수 : <b>${items.count}</b></span>·
+    </c:if>
+    <c:if test="${status.index == 3}">
+    <span>총 방문자 수 : <b>${items.count}</b></span>
+    </c:if>
+   </c:forEach>
+   </div>
    <div id="stat_agegroup_chart" style="display:inline-block;"></div>
    <div id="stat_gender_chart" style="display:inline-block;"></div>
    <div id="stat_article_chart" style="display:inline-block;"></div>
