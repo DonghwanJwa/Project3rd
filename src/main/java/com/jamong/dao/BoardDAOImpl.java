@@ -142,7 +142,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public BoardVO newArticleNum(Object mem_no) {
 		return this.sqlSession.selectOne("NewArticleNumber",mem_no);
-  }
+	}
 	
 	@Override
 	public List<BoardVO> bookInfoCont(HashMap<String, Object> binfo) {
@@ -167,6 +167,16 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardVO> chartArticleState() {
 		return this.sqlSession.selectList("ArticleState");
+	}
+
+	@Override
+	public List<BoardVO> chartArticleCategory() {
+		return this.sqlSession.selectList("ArticleCategory");
+	}
+
+	@Override
+	public List<BoardVO> chartArticleCount() {
+		return this.sqlSession.selectList("ChartArticleCount");
 	}
 
 }

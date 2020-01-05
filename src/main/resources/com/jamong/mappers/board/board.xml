@@ -411,4 +411,24 @@ SELECT * FROM
   OR bo_lock=0
   GROUP BY bo_lock
  </select>
+ 
+  <select id="ArticleCategory" resultType="b">
+   SELECT c.cat_name,COUNT(b.cat_name) count
+   FROM board b
+   RIGHT OUTER JOIN category c
+   ON b.cat_name = c.cat_name
+   GROUP BY c.cat_name
+  </select>
+  
+  <select id="ChartArticleCount" resultType="b">
+  <![CDATA[
+    SELECT TO_DATE(D.DAY,'YYYYMMDD') bo_date,COUNT(b.bo_date) COUNT
+	FROM (SELECT TO_CHAR(SYSDATE - (LEVEL - 1),'YYYYMMDD') DAY
+	FROM DUAL CONNECT BY LEVEL <= 7) D
+	LEFT OUTER JOIN board b
+	ON TO_CHAR(b.bo_date,'YYYYMMDD') = D.DAY
+	GROUP BY TO_DATE(D.DAY,'YYYYMMDD')
+	ORDER BY TO_DATE(D.DAY,'YYYYMMDD')
+  ]]>
+  </select>
 </mapper>

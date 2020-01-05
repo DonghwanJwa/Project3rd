@@ -9,41 +9,25 @@ import com.jamong.domain.MemberVO;
 
 public interface BookDAO {
 
-	List<BoardVO> getBList(String mem_id);
-
 	void insertBook(HashMap<String, Object> bm);
-
-	List<BoardVO> getSearchBook(HashMap<String, Object> searchMap);
-	
-	List<BoardVO> getSearchScrollBook(HashMap<String, Object> searchMap);
-
-	List<BoardVO> recomBook();
-	
-	MemberVO getMember(String mem_id);
-
-	int selectBookNo(HashMap<String, Object> bm);
-
-	List<BookVO> selectBookList(BookVO b);
-
-	BoardVO bookInnerInfo(int book_no);
-
-	BookVO getBook(int book_no);
-
-	List<BoardVO> myBookList(int mem_no);
-
 	void recommendUpUpdate(BookVO bk);
-
-	int recommendNum(BookVO bk);
-
 	void recommendDownUpdate(BookVO bk);
-
-	List<BoardVO> bookScroll(HashMap<String, Object> bookScroll);
-
 	void bookDel(int book_no);
-
+	List<BoardVO> getBList(String mem_id);
+	List<BoardVO> getSearchBook(HashMap<String, Object> searchMap);
+	List<BoardVO> getSearchScrollBook(HashMap<String, Object> searchMap);
+	List<BoardVO> recomBook();
+	List<BookVO> selectBookList(BookVO b);
+	List<BoardVO> myBookList(int mem_no);
+	List<BoardVO> bookScroll(HashMap<String, Object> bookScroll);
 	List<BoardVO> categoryArticleBK(String cat_name);
-
 	List<BoardVO> bookBannerList();
+	List<BookVO> chartBookCount();
+	MemberVO getMember(String mem_id);
+	BoardVO bookInnerInfo(int book_no);
+	BookVO getBook(int book_no);
+	int selectBookNo(HashMap<String, Object> bm);
+	int recommendNum(BookVO bk);
 
 
 

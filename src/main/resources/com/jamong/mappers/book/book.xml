@@ -336,4 +336,16 @@ SELECT * FROM
   ON book.mem_no = m.mem_no
   WHERE ROWNUM &lt;= 5
  </select>
+ 
+ <select id="BookCount" resultType="book">
+ <![CDATA[
+  SELECT TO_DATE(D.DAY,'YYYYMMDD') book_date,COUNT(bo.book_date) COUNT
+  FROM (SELECT TO_CHAR(SYSDATE - (LEVEL - 1),'YYYYMMDD') DAY
+  FROM DUAL CONNECT BY LEVEL <= 7) D
+  LEFT OUTER JOIN book bo
+  ON TO_CHAR(bo.book_date,'YYYYMMDD') = D.DAY
+  GROUP BY TO_DATE(D.DAY,'YYYYMMDD')
+  ORDER BY TO_DATE(D.DAY,'YYYYMMDD')
+ ]]>
+ </select>
 </mapper>

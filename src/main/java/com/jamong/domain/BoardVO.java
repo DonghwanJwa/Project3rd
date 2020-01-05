@@ -30,15 +30,14 @@ public class BoardVO {
 	
 	private MemberVO memberVO;
 	private BookVO bookVO;
+	private CategoryVO catVO;
 	
 	private int count; // 통계 차트용 카운트
 
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
-	}
+	public CategoryVO getCatVO() {		return catVO;	}
+	public void setCatVO(CategoryVO catVO) {		this.catVO = catVO;	}
+	public int getCount() {		return count;	}
+	public void setCount(int count) {		this.count = count;	}
 	// Setter()
 	public void setBo_date(String bo_date)		   	 {		this.bo_date = bo_date;				}
 	public void setBo_editdate(String bo_editdate) 	 {		this.bo_editdate = bo_editdate;		}

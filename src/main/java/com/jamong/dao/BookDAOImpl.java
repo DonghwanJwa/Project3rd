@@ -107,4 +107,9 @@ public class BookDAOImpl implements BookDAO {
 		return this.sqlSession.selectList("book_banner");
 	}
 
+	@Override
+	public List<BookVO> chartBookCount() {
+		return this.sqlSession.selectList("BookCount");
+	}
+
 }

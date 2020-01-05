@@ -38,5 +38,7 @@ public interface BoardDAO {
 	List<BoardVO> bkEditList(HashMap<String, Object> be);
 	void bookNull(int book_no);
 	List<BoardVO> chartArticleState();
+	List<BoardVO> chartArticleCategory();
+	List<BoardVO> chartArticleCount();
 
 }
