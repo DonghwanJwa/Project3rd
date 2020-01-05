@@ -54,6 +54,9 @@ public class BookController {
 //			BookList.get(i).setBook_name(book_titleRe);
 //		}
 		for(int j = 0; j < bkList.size(); j++) {
+			String book_name = bkList.get(j).getBookVO().getBook_name();
+			String book_nameRe = book_name.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			bkList.get(j).getBookVO().setBook_name(book_nameRe);
 			String book_cont = bkList.get(j).getBookVO().getBook_preface();
 			String book_contRe = book_cont.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			bkList.get(j).getBookVO().setBook_preface(book_contRe);

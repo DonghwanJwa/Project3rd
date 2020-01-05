@@ -125,11 +125,6 @@ body{
     line-height: 19px;
 }
 
-#head-menu-readpage-cat:hover{
-	color: #fff;
-	background-color: #ff8040;	
-}
-
 #head-menu-readpage-booklink{
 	color: #e0849d;
     font-size: 15px;
@@ -138,9 +133,6 @@ body{
     margin-top: 0px;
     padding-top: 0px;
     line-height: 30px;
-}
-#head-menu-readpage-booklink:hover{
-	text-decoration: underline;
 }
 
 #head-menu-readpage-empty{
