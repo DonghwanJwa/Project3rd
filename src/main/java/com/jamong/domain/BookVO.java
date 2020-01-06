@@ -29,7 +29,7 @@ public class BookVO {
 	public void setMem_no(int mem_no) 				   {		this.mem_no = mem_no;					}			
 	public void setBoardVO(BoardVO boardVO) 		   {		this.boardVO = boardVO;					}
 	public void setMemberVO(MemberVO memberVO) 		   {		this.memberVO = memberVO;				}
-	public void setCount(int count) {		this.count = count;	}
+	public void setCount(int count) 				   {		this.count = count;						}
 	
 	// Getter()
 	public int getBook_no() 		 {		return book_no;			}
@@ -43,6 +43,6 @@ public class BookVO {
 	public int getMem_no() 			 {		return mem_no;			}
 	public BoardVO getBoardVO() 	 {		return boardVO;			}
 	public MemberVO getMemberVO() 	 {		return memberVO;		}
-	public int getCount() {		return count;	}
+	public int getCount() 			 {		return count;			}
 	
 }

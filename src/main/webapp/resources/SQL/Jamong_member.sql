@@ -30,11 +30,8 @@ drop_cont VARCHAR2(4000), 			  -- 회원 탈퇴사유 내용
 drop_date DATE       				  -- 회원 탈퇴 날짜 (12/19 추가)
 );
 
-DROP table member;
-DROP SEQUENCE mem_no_seq;
 
-SELECT * FROM member ORDER BY mem_no DESC;
-update member set mem_state=9 where mem_no=2;
+UPDATE member SET mem_state=9 WHERE mem_no=2; -- 관리자 계정 설정
 -- 회원번호 시퀀스 생성
 CREATE SEQUENCE mem_no_seq
 START WITH 0
@@ -43,45 +40,8 @@ MINVALUE 0
 NOCACHE;
 
 SELECT mem_no_seq.nextval FROM DUAL;
-
-update member 
-set mem_Withdrawal_reason='테스트입니다',mem_state=2,mem_Withdrawal_reason_date=sysdate 
-where mem_no=28
-
--- 회원 테이블에 작가 포트폴리오 내용 추가
-ALTER member ADD (mem_portflio CLOB);
-ALTER table member ADD (drop_cont VARCHAR2(4000));
-ALTER table member ADD (drop_date DATE);
-ALTER TABLE member ADD (mem_article NUMBER(38) DEFAULT 0);
-ALTER TABLE member ADD (mem_subscribe NUMBER(38) DEFAULT 0);
-
-
-select * from(
-    select * from member
-    order by DBMS_RANDOM.RANDOM
-) where rownum < 10;
-
-update member set mem_state=9 where mem_no=1;
-
-SELECT *
-FROM board b
-RIGHT JOIN member m
-ON b.mem_no=m.mem_no;
-
-SELECT *
-FROM board b
-RIGHT JOIN (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM) m
-ON b.mem_no=m.mem_no
-WHERE rowNum <= 9;
-
-commit;
 SELECT * FROM member ORDER BY mem_no DESC;
+DROP TABLE member;
+DROP SEQUENCE mem_no_seq;
 
-update member set mem_state=0;
-update member set mem_state=9 where mem_id='tkdgjs905';
-update member set mem_author=1 where mem_id='shtlgus0915';
-update member set mem_author=1 where mem_id='dkek112';
-update member set mem_author=1 where mem_id='tkekd000';
-update member set mem_author=1 where mem_id='tkekd00';
-update member set mem_state=9 where mem_id='tkekd00';
 

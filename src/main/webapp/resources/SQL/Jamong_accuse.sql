@@ -22,6 +22,8 @@ MINVALUE 0
 NOCACHE;
 
 DROP TABLE accuse;
+SELECT * FROM accuse ORDER BY ac_no DESC;
+SELECT ac_no_seq.nextval FROM DUAL
 
 
 -- 참조 컬럼 외래키 설정
@@ -41,5 +43,4 @@ ALTER TABLE accuse
 ADD CONSTRAINT acc_rep_no_fk FOREIGN KEY(rep_no)
 REFERENCES reply(rep_no)
 
-SELECT * FROM accuse ORDER BY ac_no DESC;
 
