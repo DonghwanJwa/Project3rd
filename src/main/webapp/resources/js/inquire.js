@@ -25,7 +25,7 @@ function inq(){
 		$('#phone').focus();
 		return false;
 	}
-	if($('#phone').val().length<8){
+	if($('#phone').val().length<9){
 		$('#inq_vali_phone').text('Phone번호를 정확하게 입력해 주세요.');
 		$('#phone').focus();
 		return false;
@@ -36,7 +36,6 @@ function inq(){
 		return false;
 	}
 	if($('#agree').is(":checked") == true){
-		onsole.log('체크된 상태');
 	}
 
 	if($('#agree').is(":checked") == false){

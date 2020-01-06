@@ -166,7 +166,7 @@ public class AuthorController {
 		
 		this.authorService.sendAuthor(a);
 		out.println("<script>");
-		out.println("alert('작가신청에 성공했습니다! \\\\n 결과를 기다려주세요!');");
+		out.println("alert('작가신청에 성공했습니다! \\n 결과를 기다려주세요!');");
 		out.println("location='/jamong.com/';");
 		out.println("</script>");
 		

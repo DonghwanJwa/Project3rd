@@ -117,7 +117,7 @@ $(function(){
 				if(data==1){
 					Swal.fire({
 						icon : 'info',
-						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 비밀번호 찾기 페이지로 이동합니다.',
+						text : '입력하신 이메일로 아이디가 발송되었습니다.',
 						allowOutsideClick: false
 					}).then(function(){
 						$('#find_id_pass_email_Certified_btn').attr("disabled",true);//버튼을 못쓰게 막음
@@ -151,9 +151,11 @@ $(function(){
 				}
 			},
 			beforeSend:function(){
+				$('.wrap-loading').show();
 				$('#find_id_pass_email_Certified_btn').attr("disabled",true);
 			},
 			complete:function(){
+				$('.wrap-loading').hide();
 				$('#find_id_pass_email_Certified_btn').attr("disabled",false	);
 			},
 			error: function(data){
@@ -275,14 +277,67 @@ $(function(){
 		    event.preventDefault();
 		  };
 		}, true);
-	document.addEventListener('keydown', function(event) {//엔터키 서브밋 막기 이벤트
+	document.addEventListener('keydown', function(event) {//스페이스키 서브밋 막기 이벤트
 		if (event.keyCode === 32) {
 			event.preventDefault();
 		};
 	}, true);
-	//disabled true가 비활성화 false가 활성화
-	//비밀번호 변경 버튼 누를 려면 인증버튼이 비활성화 되어 있어야 하고 비밀번호 정규식 넣어주어야 함
-	//확인버튼이 비활성화가 되어 있지 않으면
+	
+	$('#find_id_pass_pass').on('focus',function(){
+		if($("#find_id_pass_pass").val() == ""){
+			$("#find_pass_error_pass").text("비밀번호를 입력해주세요!");
+			return false;
+		}
+		if($.trim($('#find_id_pass_pass').val()).length<8 || $.trim($('#find_id_pass_pass').val()).length>50){
+			$('#find_pass_error_pass').text('8자이상으로 설정해주세요!');
+			return false;
+		}
+		//비밀번호 정규식 = 영문,숫자,특수문자의 조합
+		if(!regExpPw.test($("#find_id_pass_pass").val())){ 
+			$('#find_pass_error_pass').text('영문,숫자,특수문자로 입력해주세요!');
+			return false; 
+		}
+		$('#find_pass_error_pass').text('');
+	}).on('keyup',function(){
+		if($("#find_id_pass_pass").val() == ""){
+			$("#find_pass_error_pass").text("비밀번호를 입력해주세요!");
+			return false;
+		}
+		if($.trim($('#find_id_pass_pass').val()).length<8 || $.trim($('#find_id_pass_pass').val()).length>50){
+			$('#find_pass_error_pass').text('8자이상으로 설정해주세요!');
+			return false;
+		}
+		//비밀번호 정규식 = 영문,숫자,특수문자의 조합
+		if(!regExpPw.test($("#find_id_pass_pass").val())){ 
+			$('#find_pass_error_pass').text('영문,숫자,특수문자로 입력해주세요!');
+			return false; 
+		}
+		$('#find_pass_error_pass').text('');
+	});
+	
+	$('#find_id_pass_pass_check').on('focus',function(){
+		if($("#find_id_pass_pass_check").val() == ""){
+			$("#find_pass_error_pass_check").text("비밀번호를 확인해주세요!");
+			return false;
+		}
+		if($("#find_id_pass_pass_check").val() != $('#find_id_pass_pass').val()){
+			$('#find_pass_error_pass_check').text('비밀번호가 같지 않습니다!');
+			return false;
+		}
+		$('#find_id_pass_pass_check').text('');
+	}).on('keyup',function(){
+		if($("#find_id_pass_pass").val() == ""){
+			$("#find_pass_error_pass_check").text("비밀번호를 입력해주세요!");
+			return false;
+		}
+		if($("#find_id_pass_pass_check").val() != $('#find_id_pass_pass').val()){
+			$('#find_pass_error_pass_check').text('비밀번호가 같지 않습니다!');
+			return false;
+		}
+		$('#find_pass_error_pass_check').text('');
+	});
+
+	
 	$(document).on("click","#find_pass_pass_modify",function(){//비밀번호 변경 버튼 눌렀을 때
 		
 		$(".find_id_error").text('');

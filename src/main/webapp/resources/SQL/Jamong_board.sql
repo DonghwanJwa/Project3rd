@@ -12,8 +12,8 @@ bo_date DATE, 						-- 작성일
 bo_editdate DATE, 					-- 수정일
 bo_lock NUMBER(38),          		-- 공개여부 / 비공개 0, 공개 1, 차단2, 삭제 3
 bo_like NUMBER(38) DEFAULT 0, 		-- 추천 (좋아요)
-book_order NUMBER(38) DEFAULT 1, 	-- 책으로 묶었을때 순서
-cat_name VARCHAR2(50),				-- 카테고리 테이블 시퀀스 참조
+book_order NUMBER(38) DEFAULT 0, 				-- 책으로 묶었을때 순서
+cat_name VARCHAR2(50),			-- 카테고리 테이블 시퀀스 참조
 mem_no NUMBER(38),					-- 회원 테이블 시퀀스 참조
 book_no NUMBER(38) 				    -- 책 테이블 시퀀스 참조
 );

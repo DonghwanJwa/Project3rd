@@ -493,12 +493,14 @@ public class MemberModifyController {
 	
 	//비번을 바꾸려면 아이디나 이메일이 필요함
 	@RequestMapping("find_pass_ok")
-	public String user_pass_update(MemberVO vo,HttpSession session,HttpServletResponse response) throws Exception { // 비밀번호 수정
+	public String user_pass_update(MemberVO vo,HttpSession session,HttpServletRequest request, HttpServletResponse response) throws Exception { // 비밀번호 수정
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-			
+			PrintWriter out = response.getWriter();
+			session=request.getSession();
 			vo.setMem_pwd(PwdChange.getPassWordToXEMD5String(vo.getMem_pwd()));
 			this.memberService.pass_update(vo);
+			session.setAttribute("authCode", "");	
+			session.setAttribute("loginmain","/jamong.com/");
 			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
 					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
 					"<body>\r\n" + 
@@ -515,8 +517,6 @@ public class MemberModifyController {
 					"		});\r\n" + 
 					"</script>\r\n" + 
 					"</body>");
-			out.println("location='/jamong.com/login';");
-			session.invalidate();
 		return null;
 	}
 	
