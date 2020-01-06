@@ -34,10 +34,6 @@ public class BoardVO {
 	
 	private int count; // 통계 차트용 카운트
 
-	public CategoryVO getCatVO() {		return catVO;	}
-	public void setCatVO(CategoryVO catVO) {		this.catVO = catVO;	}
-	public int getCount() {		return count;	}
-	public void setCount(int count) {		this.count = count;	}
 	// Setter()
 	public void setBo_date(String bo_date)		   	 {		this.bo_date = bo_date;				}
 	public void setBo_editdate(String bo_editdate) 	 {		this.bo_editdate = bo_editdate;		}
@@ -63,6 +59,8 @@ public class BoardVO {
 	public void setBo_color(String bo_color) 		 {		this.bo_color = bo_color;			}
 	public void setBo_titlespace(int bo_titlespace)  {		this.bo_titlespace = bo_titlespace;	}
 	public void setBookVO(BookVO bookVO) 			 {		this.bookVO = bookVO;				}
+	public void setCatVO(CategoryVO catVO)			 {		this.catVO = catVO;					}
+	public void setCount(int count) 				 {		this.count = count;					}
 	
 	// Getter()
 	public int getBo_no() 		   	{		return bo_no;			}
@@ -89,5 +87,7 @@ public class BoardVO {
 	public String getBo_color() 	{		return bo_color;		}
 	public int getBo_titlespace() 	{		return bo_titlespace;	}
 	public BookVO getBookVO() 		{		return bookVO;			}
+	public CategoryVO getCatVO() 	{		return catVO;			}
+	public int getCount() 			{		return count;			}
 		
 }

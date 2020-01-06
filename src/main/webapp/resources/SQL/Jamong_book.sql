@@ -28,37 +28,5 @@ NOCACHE;
 
 SELECT * FROM book ORDER BY book_no DESC;
 SELECT book_no_seq.nextval FROM DUAL;
-ALTER TABLE book DROP (cat_no);
-ALTER TABLE book ADD (cat_no NUMBER(38));
-ALTER TABLE book ADD book_recommend NUMBER(38) DEFAULT 0;
-
-SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'book';
-
 DROP TABLE book;
-ALTER TABLE book DROP CONSTRAINT book_mem_no_fk;
-ALTER TABLE book DROP CONSTRAINT book_fav_no_fk;
- 
- SELECT book.book_no,
-  		 book.book_name,
-  		 book.book_cover,
-  		 book.book_preface,
-  		 book.book_date,
-  		 book.book_editdate,
-  		 book.cat_name,
-  		 book.mem_no,
-  		 b.mem_no,
-  		 b.book_no,
-  		 m.mem_no,
-  		 m.mem_id,
-  		 m.mem_nickname
-  FROM (SELECT * FROM book ORDER BY book_date)book
-  INNER JOIN member m,
-  ON book.mem_no = m.mem_no
-  INNER JOIN board b
-  ON b.mem_no = m.mem_no
-  WHERE m.mem_no = 3
- WHERE RN BETWEEN 7 AND 13;
- 
-ALTER TABLE book ADD (book_cover VARCHAR2(4000));
-ALTER TABLE book ADD (book_preface VARCHAR2(4000));
 

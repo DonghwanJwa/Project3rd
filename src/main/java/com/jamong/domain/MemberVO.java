@@ -34,12 +34,8 @@ public class MemberVO {
 	private int mem_subscribe;
 	private String drop_date;
 	private String age_group;
-	private int count;
+	private int count; // 통계 차트용 카운트
 
-	public int getCount() {		return count;	}
-	public void setCount(int count) {		this.count = count;	}
-	public String getAge_group() {		return age_group;	}
-	public void setAge_group(String age_group) {		this.age_group = age_group;	}
 	
 	/* 관리자페이지 회원관리 게시판 페이징,검색을 위한 변수 추가 (12/5) */
 	private int startrow;
@@ -86,8 +82,9 @@ public class MemberVO {
 	public void setMem_article(int mem_article) 					{			this.mem_article = mem_article;						}
 	public void setMem_subscribe(int mem_subscribe) 				{			this.mem_subscribe = mem_subscribe;					}
 	public void setDrop_cont(String drop_cont) 						{			this.drop_cont = drop_cont;							}
-	
-	
+	public void setCount(int count) 								{			this.count = count;									}
+	public void setAge_group(String age_group) 						{		this.age_group = age_group;								}
+		
 	// Getter()
 	public int getMem_no() 					{			return mem_no;					}
 	public String getMem_id() 				{			return mem_id;					}
@@ -111,7 +108,7 @@ public class MemberVO {
 	public String getMem_keyword() 	 		{			return mem_keyword;				}
 	public String getMem_fav1() 			{			return mem_fav1;				}
 	public String getMem_fav2() 			{			return mem_fav2;				}
-	public String getMem_fav3() 			{				return mem_fav3;			}
+	public String getMem_fav3() 			{			return mem_fav3;				}
 	public String getMem_portfolio() 		{			return mem_portfolio;			}
 	public int getStartrow() 				{			return startrow;				}
 	public int getEndrow() 			 		{			return endrow;					}
@@ -124,5 +121,7 @@ public class MemberVO {
 	public int getMem_article() 			{			return mem_article;				}
 	public int getMem_subscribe() 			{			return mem_subscribe;			}
 	public String getDrop_cont() 			{			return drop_cont;				}
+	public int getCount() 					{			return count;					}
+	public String getAge_group()			{			return age_group;				}
 	
 }

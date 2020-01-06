@@ -13,9 +13,9 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
-ALTER TABLE recommend ADD rec_date DATE;
-
+SELECT * FROM recommend ORDER BY rec_no;
 SELECT rec_no_seq.nextval FROM DUAL
+
 -- 참조키 설정
 ALTER TABLE recommend
 ADD CONSTRAINT rec_book_no_fk FOREIGN KEY(book_no)
@@ -24,5 +24,3 @@ REFERENCES book(book_no)
 ALTER TABLE recommend
 ADD CONSTRAINT rec_mem_no_fk FOREIGN KEY(mem_no)
 REFERENCES member(mem_no)
-
-SELECT * FROM recommend ORDER BY rec_no;

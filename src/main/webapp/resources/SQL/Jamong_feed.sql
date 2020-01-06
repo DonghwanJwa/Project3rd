@@ -13,9 +13,6 @@ mem_no NUMBER(38)    			 -- 멤버 아이디 ( 피드를 보여줄 회원 )
 
 -- 구분자 팔로우 유저 게시글등록 1 , 내 게시글 댓글등록 2, 내 댓글에 답글등록 3, 문의답변 4, 작가신청 결과 5, 팔로우 유저 책발간 6, 제안을받음 7)
 
-ALTER TABLE feed ADD feed_mem_no NUMBER(38);
-
-SELECT * FROM feed;
 
 CREATE SEQUENCE feed_no_seq
 START WITH 0
@@ -23,23 +20,6 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+SELECT * FROM feed;
 SELECT feed_no_seq.nextval FROM DUAL;
-
-SELECT *
-FROM feed f
-INNER JOIN member m
-ON f.feed_mem_no = m.mem_no
-WHERE f.mem_no=1
-ORDER BY feed_date DESC;
-
-  SELECT * 
-  FROM feed f
-  INNER JOIN member m 
-  ON f.feed_mem_no=m.mem_no
-  WHERE f.mem_no = 28
-  ORDER BY feed_date DESC;
-  
-  SELECT *
-  FROM feed f, member m
-  WHERE f.mem_no = 28
-  ORDER BY feed_date DESC;
+DROP TABLE feed;
