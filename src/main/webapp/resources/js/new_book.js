@@ -461,3 +461,9 @@ $(document).ready(function() {
 		$(".slide_work_list").css("margin-left",sum+"px");
 	});
 });
+
+$(window).on('load',function(){
+	$('.inner_info_cont_top').children().wordBreakKeepAll();
+	$('.new_book_banner_book_cont_top').children().wordBreakKeepAll();
+	$('.item_work_book_cont_top').children().wordBreakKeepAll();
+});

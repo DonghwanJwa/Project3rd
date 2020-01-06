@@ -255,7 +255,7 @@ $(document).ready(function(){
 			$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
 			return false;
 		}
-		if($('#member_modify_email').val()==$('#member_modify_original_email').val()){//원래 이메일과 입력한 이메일이 같으면
+		if($('#member_modify_email').val()==$('#member_modify_original_email').val() && $('#member_modify_email_datalist').val()==$('#member_modify_original_domain').val()){//원래 이메일과 입력한 이메일이 같으면
 			$('#member_modify_certified_btn').hide();
 			$('#member_modify_certified_btn').attr("disabled",true);
 			$('.member_modify_emailcheck_div').hide();
@@ -268,9 +268,9 @@ $(document).ready(function(){
 			$('#member_modify_emailcheck_btn').attr('disabled', true);		
 			$('#member_modify_next_btn').attr('disabled', true);
 		}
-		$('#find_pass_error_email').text('');
+		$('#member_modify_error_email_domain').text('');
 	}).on("keyup", function(key) {
-		if($('#member_modify_email').val()==$('#member_modify_original_email').val()){//원래 이메일과 입력한 이메일이 같으면
+		if($('#member_modify_email').val()==$('#member_modify_original_email').val() && $('#member_modify_email_datalist').val()==$('#member_modify_original_domain').val()){//원래 이메일과 입력한 이메일이 같으면
 			$('#member_modify_certified_btn').hide();
 			$('#member_modify_certified_btn').attr("disabled",true);
 			$('.member_modify_emailcheck_div').hide();
@@ -288,7 +288,7 @@ $(document).ready(function(){
 			$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
 			return false;
 		}
-		$('#find_pass_error_email').text('');
+		$('#member_modify_error_email_domain').text('');
 		if (key.keyCode == 13) {
 			$('#member_modify_email_datalist').focus();
 		}
@@ -299,7 +299,7 @@ $(document).ready(function(){
 			$('#member_modify_error_email_domain').text('도메인을 입력해주세요!');
 			return false;
 		}
-		if($('#member_modify_email_datalist').val()==$('#member_modify_original_domain').val()){//원래 이메일과 입력한 이메일이 같으면
+		if($('#member_modify_email').val()==$('#member_modify_original_email').val() && $('#member_modify_email_datalist').val()==$('#member_modify_original_domain').val()){//원래 이메일과 입력한 이메일이 같으면
 			$('#member_modify_certified_btn').hide();
 			$('#member_modify_certified_btn').attr("disabled",true);
 			$('.member_modify_emailcheck_div').hide();
@@ -312,9 +312,9 @@ $(document).ready(function(){
 			$('#member_modify_emailcheck_btn').attr('disabled', true);		
 			$('#member_modify_next_btn').attr('disabled', true);
 		}
-		$('#find_pass_error_email').text('');
+		$('#member_modify_error_email_domain').text('');
 	}).on("keyup", function(key) {
-		if($('#member_modify_email_datalist').val()==$('#member_modify_original_domain').val()){//원래 이메일과 입력한 이메일이 같으면
+		if($('#member_modify_email').val()==$('#member_modify_original_email').val() && $('#member_modify_email_datalist').val()==$('#member_modify_original_domain').val()){//원래 이메일과 입력한 이메일이 같으면
 			$('#member_modify_certified_btn').hide();
 			$('#member_modify_certified_btn').attr("disabled",true);
 			$('.member_modify_emailcheck_div').hide();
@@ -331,7 +331,7 @@ $(document).ready(function(){
 			$('#member_modify_error_email_domain').text('이메일을 입력해주세요!');
 			return false;
 		}
-		$('#find_pass_error_email').text('');
+		$('#member_modify_error_email_domain').text('');
 		if (key.keyCode == 13) {
 			$("#member_modify_certified_btn").trigger("click");
 		}
