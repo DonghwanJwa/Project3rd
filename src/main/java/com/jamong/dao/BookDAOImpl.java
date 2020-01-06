@@ -53,7 +53,7 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public List<BookVO> selectBookList(BookVO b) {
+	public List<BoardVO> selectBookList(BookVO b) {
 		return this.sqlSession.selectList("book_list",b);
 	}
 
