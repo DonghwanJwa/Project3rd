@@ -177,8 +177,8 @@ body{
   border-right-color: #fc4700;
 }
 #cat_writer_list1::before{
-  top: -5px;
-  left: -5px;
+  top: -4px;
+  left: -4px;
   border-bottom-color: transparent;
   border-right-color: transparent;
   border-top-color: #fc4700;
@@ -394,6 +394,7 @@ width: 100%;
 	margin-top:20px;
 	border:0px solid #00ffff;
 	margin-bottom:60px;
+	padding-top: 35px;
 }
 .cat_book{
 	width:260px;
