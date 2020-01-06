@@ -6,7 +6,6 @@ mem_no NUMBER(38), 			   -- 회원 참조컬럼(작가)
 sub_date DATE				   -- 구독 날짜
 );
 
-DROP table subscribe;
 
 -- 구독자 시퀀스 생성
 CREATE SEQUENCE sub_no_seq
@@ -15,17 +14,12 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+DROP TABLE subscribe;
+SELECT * FROM subscribe ORDER BY sub_no;
+SELECT sub_no_seq.nextval FROM DUAL;
+
 -- 참조키 설정
 ALTER TABLE subscribe
 ADD CONSTRAINT sub_mem_no_fk FOREIGN KEY (mem_no)
 REFERENCES member(mem_no);
 
-SELECT COUNT(sub_no) FROM subscribe WHERE mem_no = 7
-
-SELECT * FROM subscribe ORDER BY sub_no;
-SELECT * FROM subscribe WHERE sub_member=3 AND mem_no=7
-SELECT sub_no_seq.nextval FROM DUAL;
-DROP TABLE subscribe;
-DROP SEQUENCE sub_no_seq;
-
-SELECT COUNT(sub_no) FROM subscribe WHERE mem_no = 7

@@ -17,12 +17,8 @@ off_file3 VARCHAR2(4000),
 mem_no NUMBER(38)                   -- 작가 회원번호
 );
 
-DROP TABLE offer;
 
-SELECT * FROM board order by bo_no desc;
 
-ALTER TABLE member ADD (mem_article NUMBER(38) DEFAULT 0);
-ALTER TABLE member ADD (mem_subscribe NUMBER(38) DEFAULT 0);
 
 -- 시퀀스 생성
 CREATE SEQUENCE off_no_seq
@@ -31,8 +27,9 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+DROP TABLE offer;
 DROP SEQUENCE off_no_seq;
-
+SELECT * FROM offer ORDER BY off_no DESC;
 SELECT off_no_seq.nextval FROM DUAL
 
 -- 참조키 설정
@@ -44,15 +41,4 @@ ALTER TABLE offer
 ADD CONSTRAINT off_off_id_fk FOREIGN KEY (off_id)
 REFERENCES member(mem_no);
 
-SELECT * FROM offer ORDER BY off_no DESC;
 
-SELECT * FROM member ORDER BY mem_no DESC;
-
-UPDATE member set mem_author=1 where mem_id='jamong01';
-commit;
-
-SELECT * FROM (SELECT rowNum r,off_no,off_id,off_nickname,off_date,off_item,mem_no FROM
-		(SELECT offer.* FROM offer ORDER BY off_no DESC)) off
-INNER JOIN (SELECT * FROM member) m
-ON off.mem_no=m.mem_no
-WHERE r >= 1 and r <= 10 order by off.off_date desc;

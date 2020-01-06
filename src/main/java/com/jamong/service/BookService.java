@@ -15,7 +15,7 @@ public interface BookService {
 	List<BoardVO> recomBook();	
 	MemberVO getMember(String mem_id);
 	void createBook(HashMap<String, Object> bm);
-	List<BookVO> selectBookList(BookVO b);
+	List<BoardVO> selectBookList(BookVO b);
 	List<BoardVO> getBKList(int book_no);
 	BoardVO bookInnerInfo(int book_no);
 	List<BoardVO> bookInfoCont(HashMap<String, Object> binfo);

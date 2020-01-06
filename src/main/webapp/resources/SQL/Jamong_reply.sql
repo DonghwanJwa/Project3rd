@@ -11,7 +11,6 @@ mem_no NUMBER(38)				 -- 회원번호 참조 컬럼
 );
 
 DROP SEQUENCE rep_no_seq;
-DELETE FROM reply
 
 CREATE SEQUENCE rep_no_seq
 START WITH 0
@@ -19,7 +18,15 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
-SELECT rep_no_seq.currval FROM DUAL;
+SELECT *
+FROM reply r
+INNER JOIN member m
+ON r.mem_no=m.mem_no
+WHERE r.bo_no=1
+ORDER BY r.rep_ref ASC,r.rep_level
+
+SELECT * FROM reply;
+SELECT rep_no_seq.nextval FROM DUAL;
 
 -- 참조 컬럼 생성
 ALTER TABLE reply
@@ -30,24 +37,5 @@ ALTER TABLE reply
 ADD CONSTRAINT rep_mem_no_fk FOREIGN KEY(mem_no)
 REFERENCES member(mem_no)
 
-SELECT count(rep_no) FROM reply WHERE bo_no=9;
-
-SELECT * FROM reply ORDER BY rep_no DESC;
-SELECT rep_no_seq.nextval FROM DUAL;
-
-SELECT * FROM reply WHERE bo_no=9 ORDER BY rep_ref ASC,CASE WHEN rep_level IN(0) THEN 0 ELSE 1 END,rep_level DESC;
-
-SELECT *
-FROM (SELECT * FROM reply ORDER BY rep_ref ASC,rep_level) r
-INNER JOIN member m
-ON r.mem_no=m.mem_no
-WHERE r.bo_no=1;
-
-SELECT *
-FROM reply r
-INNER JOIN member m
-ON r.mem_no=m.mem_no
-WHERE r.bo_no=1
-ORDER BY r.rep_ref ASC,r.rep_level
 
 

@@ -25,20 +25,9 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
-DROP TABLE board
+SELECT * FROM board ORDER BY bo_no DESC;
+SELECT bo_no_seq.nextval FROM DUAL;
 DROP SEQUENCE bo_no_seq;
-
-ALTER TABLE board DROP COLUMN book_order;
-ALTER TABLE board ADD book_order NUMBER(38) DEFAULT 1;
-ALTER TABLE board DROP COLUMN bo_subtitle;
-ALTER TABLE board ADD bo_subtitle VARCHAR2(100);
-ALTER TABLE board 
-ALTER TABLE board ADD cat_name VARCHAR2(50);
-ALTER TABLE board DROP ();
-ALTER TABLE board ADD bo_thumbnail VARCHAR2(200);
-ALTER TABLE board ADD bo_titlespace NUMBER(38);
-ALTER TABLE board ADD bo_color VARCHAR2(100);
-ALTER TABLE board MODIFY(bo_subtitle VARCHAR2(200));
 
 -- 카테고리 테이블 참조컬럼 생성
 ALTER TABLE board
@@ -55,108 +44,7 @@ ALTER TABLE book
 ADD CONSTRAINT bo_book_no_fk FOREIGN KEY(book_no)
 REFERENCES book(book_no);
 
-ALTER TABLE book DROP CONSTRAINT bo_book_no_fk;
 
-SELECT * FROM board ORDER BY bo_no DESC;
-SELECT * FROM board ORDER BY book_no DESC;
-SELECT bo_no_seq.nextval FROM DUAL;
 
- UPDATE board SET bo_hit=bo_hit+1 WHERE bo_no=10
- 
- SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM) WHERE mem_no=1 AND rowNum <= 3;
-
-  SELECT *
-  FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM) b,member m
-  WHERE b.mem_no=m.mem_no
-  AND b.cat_name='IT' AND rowNum <= 3;
- 
-SELECT *
-FROM board b
-RIGHT JOIN (SELECT * FROM member ORDER BY DBMS_RANDOM.RANDOM)m
-ON b.mem_no=m.mem_no
-WHERE rowNum <= 9;
-
-select * from ALL_CONSTRAINTS WHERE TABLE_NAME='board';
-
- SELECT *
- FROM board b, member m
- WHERE b.mem_no=m.mem_no
- AND b.bo_no=10;
- 
-  UPDATE board AS b ,book  AS bo
-  SET b.book_no=bo.book_no_seq.nextval, bo.book_name = '이거버그야'
-  WHERE b.bo_no=b.bo_no;
-   
-  SELECT book.book_no,
-  		 book.book_name,
-  		 book.book_cover,
-  		 book.book_preface,
-  		 book.book_date,
-  		 book.book_editdate,
-  		 book.cat_name,
-  		 book.mem_no,
-  		 b.mem_no,
-  		 b.book_no
-  FROM (SELECT * FROM book ORDER BY book_no DESC)book
-  INNER JOIN board b
-  ON b.mem_no = book.mem_no 
-  WHERE book.mem_no = 3
-
-  
-  SELECT m.mem_no,
-    	m.mem_id, 
-    	m.mem_author, 
-    	m.profile_photo, 
-    	m.profile_cont, 
-    	m.mem_nickname, 
-    	m.mem_keyword, 
-    	m.mem_portfolio,
-    	b.bo_no,
-    	b.bo_title,
-    	b.bo_subtitle,
-    	b.bo_cont,
-    	b.bo_thumbnail,
-    	b.bo_hit,
-    	b.bo_date,
-    	b.bo_editdate,
-    	b.bo_lock,
-    	b.bo_type,
-    	b.bo_like,
-    	b.book_order,
-    	b.cat_name,
-    	b.mem_no,
-    	b.book_no
-    FROM member m
-    INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
- 	ON m.mem_no = b.mem_no
-    WHERE m.mem_no = 3 AND b.bo_no >= 13 - 10
- 
-    SELECT * FROM(
-    SELECT 
-    	b.bo_no, 
-    	b.bo_title, 
-    	b.bo_subtitle,
-    	b.bo_thumbnail,
-    	b.bo_hit,
-    	count(s.sym_no) sym_count,
-    	m.mem_id,
-		m.mem_nickname
-    FROM board b
-    INNER JOIN (SELECT * FROM sympathy WHERE TO_CHAR(sym_date,'YYYYMM') = TO_CHAR(sysdate,'YYYYMM')) s
-    ON b.bo_no = s.bo_no
-    INNER JOIN member m
-    ON b.mem_no = m.mem_no
-    GROUP BY b.bo_no, 
-    	b.bo_title, 
-    	b.bo_subtitle,
-    	b.bo_thumbnail,
-    	b.bo_hit,
-    	m.mem_id,
-		m.mem_nickname
-    ORDER BY count(s.sym_no) DESC)
-    WHERE ROWNUM <=5;
-    
-    SELECT * FROM sympathy WHERE TO_CHAR(sym_date,'YYYYMM') = TO_CHAR(sysdate,'YYYYMM')
-    SELECT * FROM board ORDER BY bo_no DESC;
 
     

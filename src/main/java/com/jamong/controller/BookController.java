@@ -36,14 +36,14 @@ public class BookController {
 
 	@RequestMapping("new_book")
 	public ModelAndView user_new_book(BookVO b) { // 최신 책
-		List<BookVO> BookList = this.bookService.selectBookList(b);
+		List<BoardVO> BookList = this.bookService.selectBookList(b);
 		List<BoardVO> bkList = this.bookService.bookBannerList();
 		// 책 제목 특수 태그 삭제
-//		for(int i = 0; i < BookList.size(); i++) {
-//			String book_title = BookList.get(i).getBook_name();
-//			String book_titleRe = book_title.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
-//			BookList.get(i).setBook_name(book_titleRe);
-//		}
+		for(int i = 0; i < BookList.size(); i++) {
+			String book_title = BookList.get(i).getBookVO().getBook_name();
+			String book_titleRe = book_title.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
+			BookList.get(i).getBookVO().setBook_name(book_titleRe);
+		}
 		for(int j = 0; j < bkList.size(); j++) {
 			String book_name = bkList.get(j).getBookVO().getBook_name();
 			String book_nameRe = book_name.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");

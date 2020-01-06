@@ -397,7 +397,7 @@ ul.profile_keyword_link{
     opacity: 0.6;
 }	
 .m_right{
-	margin: 0 0 0 -10px;
+	margin: 5px 0px 0 -30px;
 }
 .profile_writer_list li{
 	padding: 20px 0 20px;
@@ -472,7 +472,7 @@ ul.profile_keyword_link{
 	width:100%;
 	height: 100%;
 	object-fit:cover;
-	filter:brightness(50%);
+	filter:brightness(70%);
 }
 .box_contents{
 	display :inline-block;

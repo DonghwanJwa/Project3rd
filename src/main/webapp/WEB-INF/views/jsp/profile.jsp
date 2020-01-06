@@ -98,42 +98,30 @@
 				<%--ARIA roles 적용  --%>
 				<div id="Tablist">
 				<c:if test = "${view == null}">
-					<a href="#info">
 						<button id="info_tab" class="tab active">
 							<span class="profile_font_size">작가소개</span><b></b>
 						</button>
-					</a> 
-					<a href="#articles">
 						<button id="article_tab" class="tab">
 							<span class="profile_font_size">글</span><b></b>
 						</button>
-					</a>
 					<c:if test="${mp.mem_author == 1}">
-					<a href="#magazine">
 						<button id="Magazine_tab" class="tab">
 							<span class="profile_font_size">작품</span><b></b>
 						</button>
-					</a>
 					</c:if>
 					</c:if>
 					<%-- 비공개, 공개 버튼 클릭 후  --%>
 					<c:if test= "${view != null}">
-					<a href="#info">
 						<button id="info_tab" class="tab ">
 							<span class="profile_font_size">작가소개</span><b></b>
 						</button>
-					</a> 
-					<a href="#articles">
 						<button id="article_tab" class="tab active">
 							<span class="profile_font_size">글</span><b></b>
 						</button>
-					</a>
 					<c:if test="${mp.mem_author == 1}">
-					<a href="#magazine">
 						<button id="Magazine_tab" class="tab">
 							<span class="profile_font_size">작품</span><b></b>
 						</button>
-					</a>
 					</c:if>
 					</c:if>
 				</div>
@@ -163,7 +151,7 @@
 			>
 				<div class="author_intro">
 					<h3 class="hide_font">글목록</h3>
-					<c:if test ="${m.mem_id == mp.mem_id || m.mem_author == 9}">
+					<c:if test ="${m.mem_id == mp.mem_id || m.mem_state == 9}">
 					<div id="private_btn">
 					<form action="${pageContext.request.contextPath}/@${mp.mem_id}">
 					<input type="hidden" id="article_check" name="view" value="" >
@@ -211,8 +199,8 @@
 												         <a href="${pageContext.request.contextPath}/category/${fp.cat_name}"
 															class="profile_cat_color">${fp.cat_name}</a>
 													<c:if test="${fp.book_no ne 0}">
-														<span class="profile_book_color"
-														>Book</span>
+														<a href="${pageContext.request.contextPath}/book/@${mp.mem_id}/${mb.bookVO.book_no}"><span class="profile_book_color"
+														>Book</span></a>
 													</c:if>
 												</div>
 												<a href="${pageContext.request.contextPath}/@${mp.mem_id}/${fp.bo_no}"> 
@@ -232,7 +220,7 @@
 									</li>
 								</c:if>
 								<%-- 자신의 아이디로 로그인시 --%>
-								<c:if test="${ m.mem_id == mp.mem_id || m.mem_author == 9}">
+								<c:if test="${ m.mem_id == mp.mem_id || m.mem_state == 9}">
 									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
 											<div>
 												<div class="profile_article_main">
@@ -245,8 +233,8 @@
 												         <a href="${pageContext.request.contextPath}/category/${fp.cat_name}"
 															class="profile_cat_color">${fp.cat_name}</a>
 													<c:if test="${fp.book_no ne 0}">
-														<span class="profile_book_color"
-														>Book</span>
+														<a href="${pageContext.request.contextPath}/book/@${mp.mem_id}/${mb.bookVO.book_no}"><span class="profile_book_color"
+														>Book</span></a>
 													</c:if>
 													</div>
 												<a href="${pageContext.request.contextPath}/@${mp.mem_id}/${fp.bo_no}"> 
@@ -290,7 +278,7 @@
 									<img class="cover_img" src="${img}">
 								</c:if>
 								<c:if test="${empty img }">
-									<img class="cover_img" style="background-color:#f2f2f2" >	
+									<img class="cover_img" src="${pageContext.request.contextPath}/resources/img/book_cover.jpg" >	
 								</c:if>
 								<div class="info_cover">
 									<strong class="tit_cover">${mb.bookVO.book_name}</strong> <span>by ${mp.mem_nickname}</span>
@@ -298,7 +286,7 @@
 								<span class="book_line"></span>
 							</a>
 						</div>
-						<strong>Category ${mb.bookVO.cat_name}</strong> 
+						<strong class="profile_cat_color">${mb.bookVO.cat_name}</strong> 
 						<strong class="pf_date">${mb.bookVO.book_date}</strong>
 						<a class="profile_jm" href="${pageContext.request.contextPath}/book/@${mp.mem_id}/${mb.bookVO.book_no}">${mb.bookVO.book_name}</a>
 						<div>
