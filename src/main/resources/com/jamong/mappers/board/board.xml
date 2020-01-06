@@ -309,6 +309,7 @@
   ON b.mem_no=m.mem_no
   WHERE b.bo_no <= #{b.bo_no}
   AND b.bo_no >= #{b.bo_no} - 10
+  AND b.bo_lock = 1
  ]]>
  </select>
  <!-- 프로필 글목록 -->

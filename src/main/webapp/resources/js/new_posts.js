@@ -39,8 +39,11 @@ $(window).scroll(function(){
 										+	 "<div id='new_post_loading_cont_text'>"
 										+	  "<div class='new_post_cont_catbook'>"
 										+	   "<a href='/jamong.com/category/"+this.cat_name+"' class='new_post_cont_cat'>"+this.cat_name+"</a>"
-										if(this.book_no != null){
+										if(this.book_no != 0){
 											str += "<span class='new_post_cont_book'>Book</span>"
+												+  "</div>"
+										}else{
+											str += "<span class='new_post_cont_book'></span>"
 												+  "</div>"
 										}
 									str	+=	"<a href='/jamong.com/@"+this.memberVO.mem_id+"/"+this.bo_no+"'>"  
