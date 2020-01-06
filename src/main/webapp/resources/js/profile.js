@@ -243,8 +243,6 @@ $(window).scroll(function(){
 		var para = article.split('/');
 		var pb = $('#profile_menu_check').val();
 		var v = document.location.href.split("=");
-		var t = v.split("#");
-		
 		//ajax를 이용하여 현재 로딩 된 게시글의 마지막 bo_no를 서버로 보내어 그 다음 10개의 게시물 데이터를 받아온다.
 		if(pb == 'article'){
 		$.ajax({
@@ -259,7 +257,6 @@ $(window).scroll(function(){
 				"view" : v[1]
 			},
 			success : function(data){// ajax가 성공했을 시 수행될 function
-				console.log(v[1]);
 				var str=""; 
 				// 받아온 데이터가 "" 이거나 null이 아닌경우 DOM handling?을 해준다
 				if(data != ""){
@@ -417,7 +414,7 @@ $(document).ready(function() {
 			e.preventDefault();
 			var tagValue = self.val(); // 값 가져오기
 			if (tagValue !== "" ) { // 값이 없으면 동작 안하게
-				if (tagValue.test(s_word) || tagValue.test(k_word) || tagValue.test(n_word)){
+				if (tagValue.match(s_word) || tagValue.match(k_word) || tagValue.match(n_word)){
 					$('#profile_error_keyword').text('특수문자,미완성된 한글,숫자는 입력할 수 없습니다.');
 				}else{
 					$('#profile_error_keyword').text(''); 
@@ -528,6 +525,7 @@ function profileCheck(){
 		if (result) {
 			history.back();
 		} else {
+			$("#pf_info").val().focus();
 			return false;
 			}
 	} 
@@ -549,8 +547,9 @@ function profileCheck(){
 		$('#profile_info_error').text('');
 		
 	}
-	var folio_txt = $('#profile_portflio').html();
-	
+	if($.trim($('#profile_portflio').val()) == ""){
+		$('#profile_portflio').val("").focus();
+	}
 }	
 $(document).ready(function(){
 	
