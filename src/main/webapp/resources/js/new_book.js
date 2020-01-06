@@ -411,7 +411,7 @@ $(document).ready(function() {
 							+	"<img src='/jamong.com/resources/img/quotation.png' class='quotation'>"
 							+	"<p class='new_book_text_sentence'>" + this.bo_title + "</p>"
 							+	"<p class='new_book_text_sentence_cont'>" + this.bo_cont + "</p>"
-							+	"<p class='ment_sentence'>책 핥아보기</p>"
+							+	"<p class='ment_sentence'>책 내용 발췌</p>"
 							+	"</div>"
 							+	"</div>"
 							+	"</div>"
