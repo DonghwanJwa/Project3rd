@@ -17,7 +17,7 @@ public interface BookDAO {
 	List<BoardVO> getSearchBook(HashMap<String, Object> searchMap);
 	List<BoardVO> getSearchScrollBook(HashMap<String, Object> searchMap);
 	List<BoardVO> recomBook();
-	List<BookVO> selectBookList(BookVO b);
+	List<BoardVO> selectBookList(BookVO b);
 	List<BoardVO> myBookList(int mem_no);
 	List<BoardVO> bookScroll(HashMap<String, Object> bookScroll);
 	List<BoardVO> categoryArticleBK(String cat_name);

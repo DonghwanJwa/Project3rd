@@ -71,7 +71,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<BookVO> selectBookList(BookVO b) {
+	public List<BoardVO> selectBookList(BookVO b) {
 		return this.bookDao.selectBookList(b);
 	}
 
