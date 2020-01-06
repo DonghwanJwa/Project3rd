@@ -21,11 +21,11 @@
  </select>
  
  <select id="TotalCount" resultType="v">
-  SELECT COUNT(bo_no) COUNT FROM board
+  SELECT COUNT(bo_no) COUNT FROM board WHERE bo_lock != 3
   UNION ALL
   SELECT COUNT(book_no) FROM book
   UNION ALL
-  SELECT COUNT(mem_no) FROM member
+  SELECT COUNT(mem_no) FROM member WHERE mem_state = 1 OR mem_state = 0
   UNION ALL
   SELECT COUNT(visit_no) FROM visit
  </select>
