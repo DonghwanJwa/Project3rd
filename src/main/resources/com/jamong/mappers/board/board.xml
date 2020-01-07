@@ -147,7 +147,7 @@
  	SELECT * FROM(
 	SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM)b
 	INNER JOIN member m
-	ON b.mem_no=m.mem_no AND bo_lock=1 AND bo_like>=10)
+	ON b.mem_no=m.mem_no AND bo_lock=1 AND bo_like>=5)
 	WHERE rowNum <= 20
 ]]>
  </select>
