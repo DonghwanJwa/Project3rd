@@ -220,7 +220,7 @@
 									</li>
 								</c:if>
 								<%-- 자신의 아이디로 로그인시 --%>
-								<c:if test="${ m.mem_id == mp.mem_id || m.mem_state == 9}">
+								<c:if test="${ m.mem_id == mp.mem_id}">
 									<li class="profile_articles scrolling" data-no="${mp.mem_no}/${fp.bo_no}/${status.count}">
 											<div>
 												<div class="profile_article_main">
@@ -288,20 +288,11 @@
 						</div>
 						<strong class="profile_cat_color">${mb.bookVO.cat_name}</strong> 
 						<strong class="pf_date">${mb.bookVO.book_date}</strong>
-						<a class="profile_jm" href="${pageContext.request.contextPath}/book/@${mp.mem_id}/${mb.bookVO.book_no}">${mb.bookVO.book_name}</a>
 						<div>
-						<dl class="j_list_info">
-							<dt>
-								<span class="article_icon"></span>
-							</dt>
-							<dd class="box_contents_num">
-								<b></b>
-							</dd>
-							<dt>
-								<img class="relate" src="/jamong.com/resources/img/heart.png"/>
-							</dt>
-							<dd class="box_contents_num"></dd>
-						</dl>
+						<div class="j_list_info">
+								<img class="relate" src="${pageContext.request.contextPath}/resources/img/heart.png"/>
+							<span class="box_contents_num">${mb.bookVO.book_recommend}</span>
+						</div>
 						</div>
 						</div>
 					</c:if>

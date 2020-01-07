@@ -331,15 +331,9 @@ $(window).scroll(function(){
 								+	'<strong class="pf_date">' + this.bookVO.book_date + '</strong>'
 								+ 	'<a class="profile_jm" href="/jamong.com/book/@' + this.memberVO.mem_id + '/'+ this.bookVO.book_no + '">'+ this.bookVO.book_name + '</a>'
 								+	'<div>'
-								+	'<dl class="j_list_info">'
-								+	'<dt>' 
-								+	'<span class="article_icon">'+' '+'</span>' 
-								+	'</dt>'
-								+	'<dd class="box_contents_num">'
-								+	'<b></b>'
-								+    '</dd><dt> <img class="relate" src="/jamong.com/resources/img/heart.png"/>'
-								+	'</dt>'
-								+	'<dd class="box_contents_num"></dd>	</dl>	</div>	</div>'
+								+	'<div class="j_list_info">'
+								+	'<img class="relate" src="/jamong.com/resources/img/heart.png"/>'
+								+	'<span class="box_contents_num">'+ this.bookVO.book_recommend+'</span>	</div>	</div>'
 		                     }); // each
 						$(".bookList:last").after(str);
 					} // if data
