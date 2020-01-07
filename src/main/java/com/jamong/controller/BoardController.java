@@ -870,7 +870,6 @@ public class BoardController {
 		 scroll.put("state",m.getMem_state());
 		 scroll.put("n", num);
 		 scroll.put("view", view);
-		 System.out.println(view);
 		}else {
 		 scroll.put("bo_no", bo_no);
 		 scroll.put("mp_no", mem_no);

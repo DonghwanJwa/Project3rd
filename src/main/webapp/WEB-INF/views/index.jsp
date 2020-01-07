@@ -357,7 +357,7 @@ $(document).keydown(function(e){
             <div class="book-item-head-inner-cont">
              <div class="book-item-head-inner-cont-top">
               <strong>${bolist.bookVO.book_name}</strong>
-              <i>by ${bolist.memberVO.mem_nickname}</i>
+              <b><i>by</i> ${bolist.memberVO.mem_nickname}</b>
              </div>
              <div class="book-item-head-inner-cont-bottom">
               <span>Jamong Book</span>
@@ -422,7 +422,7 @@ $(document).keydown(function(e){
               </div>
              </div>
              <div class="writting-item-head-inner-cont-bottom">
-              <span>by ${blist.memberVO.mem_nickname}</span>
+              <span><i>by</i> ${blist.memberVO.mem_nickname}</span>
              </div>
             </div>
            </div>
