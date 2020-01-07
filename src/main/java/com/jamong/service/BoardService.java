@@ -33,7 +33,7 @@ public interface BoardService {
 	List<BoardVO> infinitiScrollDown(int bo_no);
 	List<BoardVO> getUserBoardCatArticle(String cat_name);
 	List<BoardVO> categoryArticle(String cat_name);
-	List<BoardVO> getUserBoardContList(int mem_no);
+	List<BoardVO> getUserBoardContList(BoardVO bo);
 	List<BoardVO> profileScroll(HashMap<String, Object> scroll);
 	List<BoardVO> chartArticleState();
 	List<BoardVO> chartArticleCategory();
