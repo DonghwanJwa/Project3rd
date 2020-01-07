@@ -83,18 +83,29 @@
 				<div class="folio_font" >작가님의 경험을 이야기해 주세요
 				<button type="button" id="flio_b"> </button>
 				</div>
+				<c:if test="${mp.mem_portfolio == null}">
 				<div id="pf_folio"  style="display: none;">	
 				<h3 class="profile_edit_font">포트폴리오</h3>
 						<textarea id="profile_portflio"  class="profile_edit_info" name="mem_portfolio"
 						 >${mp.mem_portfolio}</textarea>
 				</div>
 				</c:if>
+				<c:if test="${mp.mem_portfolio != null}">
+				<div id="pf_folio"  style="display: block;">	
+				<h3 class="profile_edit_font">포트폴리오</h3>
+						<textarea id="profile_portflio"  class="profile_edit_info" name="mem_portfolio"
+						 >${mp.mem_portfolio}</textarea>
+				</div>
+				</c:if>
+				</c:if>
 				<div id="profile_edit_button">
 					<!-- 경고문 띄우기 -->
 					<button type="button" class="profile_edit_btn1">취소하기</button>
 					<button type="submit" class="profile_edit_btn2">저장하기</button>
 				</div>
+				</div>
 			</form>
 		</div>
+		
 	</div>
 <%@ include file="../include/footer.jsp" %>
