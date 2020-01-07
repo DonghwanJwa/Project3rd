@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -752,6 +753,7 @@ public class BoardController {
 				String normalTitle = htmlTitle.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 				bb.get(i).setBo_title(normalTitle);
 			}
+			Collections.shuffle(bb);
 			entity = new ResponseEntity<>(bb,HttpStatus.OK);		
 		}catch(Exception e) {
 			e.printStackTrace();
