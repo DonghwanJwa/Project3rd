@@ -194,8 +194,10 @@
 		<input type="button" id="ac_list_btn" class="ac_button" value="목록으로" onclick="location='admin_accuse?page=${page}';"/>
 		<c:if test="${a.ac_state == 0}">
 		<input type="button" id="ac_re_btn" class="ac_button" value="답변하기" />
-		</c:if>		
+		</c:if>	
+		<c:if test="${a.mem_no != 0}">	
 		<input type="button" id="ac_info_btn" class="ac_button" value="회원관리" onclick="location='admin_member_info?no=${mem.mem_no}&page=${page}';" />
+		</c:if>
 		<input type="submit" id="ac_del_btn" class="ac_button" value="삭제하기" />
 	</div>
    </form>

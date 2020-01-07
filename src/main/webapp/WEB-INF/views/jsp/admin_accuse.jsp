@@ -197,7 +197,7 @@
 			<option value="처리완료" <c:if test="${search_field_handling == '처리완료'}">${'selected'}</c:if>>
 				처리완료
 			</option>
-			<option value="미처리" <c:if test="${search_field_handling == '처리대기'}">${'selected'}</c:if>>
+			<option value="처리대기" <c:if test="${search_field_handling == '처리대기'}">${'selected'}</c:if>>
 				처리대기
 			</option>
 		</select>

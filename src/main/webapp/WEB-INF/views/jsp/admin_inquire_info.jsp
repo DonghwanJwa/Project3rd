@@ -191,7 +191,9 @@
 		<c:if test="${i.inq_state == 0}">
 		<input type="button" id="inq_re_btn" class="inq_button" value="답변하기" />
 		</c:if>
+		<c:if test="${i.mem_no != 0}">
 		<input type="button" id="inq_info_btn" class="inq_button" value="회원관리" onclick="location='admin_member_info?no=${i.mem_no}&page=${page}';" />
+		</c:if>
 		<input type="submit" id="inq_del_btn" class="inq_button" value="삭제하기" />	
 	</div>
    </form> 
