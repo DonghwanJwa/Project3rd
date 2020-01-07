@@ -1,10 +1,11 @@
 -- 선호 카테고리 테이블
 CREATE TABLE category(
 cat_no NUMBER(38) PRIMARY KEY  -- 카테고리 번호
-,cat_name VARCHAR2(50) NOT NULL -- 카테고리명
+,cat_name VARCHAR2(50) UNIQUE NOT NULL -- 카테고리명
 );
 
 SELECT * FROM category;
+DROP TABLE category
 
 insert into category values(1,'감성·에세이');
 insert into category values(2,'건강·운동');

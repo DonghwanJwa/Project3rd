@@ -153,14 +153,69 @@ public class AdminController {
 	}
 	
 	@RequestMapping("statistics")
-	public ModelAndView statisticsChart() {
+	public ModelAndView statisticsChart(
+			HttpServletRequest request, 
+			HttpServletResponse response, 
+			HttpSession session) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		session = request.getSession();
+		MemberVO m = (MemberVO)session.getAttribute("m");
 		ModelAndView mv = new ModelAndView();
 		
-		List<VisitVO> allCount = this.visitService.chartTotalCount();
+		if(m != null) {
+			if(m.getMem_state() == 9) {
+				List<VisitVO> allCount = this.visitService.chartTotalCount();
+				
+				mv.addObject("Count",allCount);
+				mv.setViewName("jsp/statistics");
+				
+				return mv;
+			}else {
+				out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+						"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+						"<body>\r\n" + 
+						"<script>\r\n" + 
+						"Swal.fire({\r\n" + 
+						"		title : 'Error!',\r\n" + 
+						"		text : '잘못된 접근입니다!',\r\n" + 
+						"		allowOutsideClick: false,\r\n" +
+						"		icon: 'error',\r\n" + 
+						"		}).then((result) => {\r\n" + 
+						"			if(result.value){\r\n" + 
+						"				history.back();\r\n" + 
+						"			}\r\n" + 
+						"		});\r\n" + 
+						"</script>\r\n" + 
+						"</body>");
+			}// if else => 관리자일 때만 접속 
+		}else {
+			out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"/jamong.com/resources/css/sweetalert2.css\" />\r\n" + 
+					"<script type=\"text/javascript\" src=\"/jamong.com/resources/js/sweetalert2.min.js\"></script>\r\n" + 
+					"<script src=\"/jamong.com/resources/js/jquery.js\"></script>\r\n"+
+					"<body>\r\n" + 
+					"<script>\r\n" + 
+					"$('.wrap-loading').hide();\r\n" +
+					"Swal.fire({\r\n" + 
+					"		title : 'Oops!',\r\n" + 
+					"		text : '로그인이 필요합니다!',\r\n" + 
+					"		allowOutsideClick: false,\r\n" +
+					"		icon: 'error',\r\n" + 
+					"		showCancelButton : true,\r\n" + 
+					"		confirmButtonText : '로그인',\r\n" + 
+					"		cancelButtonText : '메인으로'\r\n" + 
+					"		}).then((result) => {\r\n" + 
+					"			if(result.value){\r\n" + 
+					"				location='/jamong.com/login';\r\n" + 
+					"			}else if(result.dismiss === Swal.DismissReason.cancel) {\r\n" + 
+					"				location='/jamong.com/';\r\n" + 
+					"			}\r\n" + 
+					"		});\r\n" + 
+					"</script>\r\n" + 
+					"</body>");
+		}// if else => 로그인이 되었을때만 접속
 		
-		mv.addObject("Count",allCount);
-		mv.setViewName("jsp/statistics");
-		return mv;
+		return null;
 	}
 	
 	@RequestMapping("AgeGroupData")

@@ -13,6 +13,8 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+DROP TABLE recommend;
+DROP SEQUENCE rec_no_seq
 SELECT * FROM recommend ORDER BY rec_no;
 SELECT rec_no_seq.nextval FROM DUAL
 

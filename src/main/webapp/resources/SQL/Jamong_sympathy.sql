@@ -5,6 +5,9 @@ mem_no NUMBER(38),			   -- 회원번호 참조컬럼
 sym_date DATE				   -- 공감한 날짜
 );
 
+DROP TABLE sympathy
+DROP SEQUENCE sym_no_seq
+
 -- 시퀀스 생성
 CREATE SEQUENCE sym_no_seq
 START WITH 0

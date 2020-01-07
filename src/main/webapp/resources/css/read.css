@@ -64,8 +64,7 @@ body a {
 	top:100%;
 }
 #write_title_parent_bottom{
-	transform:translate(50%,250%) !important;
-	-webkit-transform:translate(50%,250%) !important;
+	-webkit-transform:translate(50%,205%) !important;
 }
 /*배경*/
 #read_back {

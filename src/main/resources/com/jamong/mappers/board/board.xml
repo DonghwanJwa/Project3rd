@@ -434,11 +434,10 @@ SELECT * FROM
  </select>
  
   <select id="ArticleCategory" resultType="b">
-   SELECT c.cat_name,COUNT(b.cat_name) count
+    SELECT c.cat_name,COUNT(b.cat_name) count
    FROM board b
    RIGHT OUTER JOIN category c
-   ON b.cat_name = c.cat_name
-   WHERE b.bo_lock != 3
+   ON b.cat_name = c.cat_name AND b.bo_lock != 3
    GROUP BY c.cat_name
   </select>
   
@@ -448,8 +447,7 @@ SELECT * FROM
 	FROM (SELECT TO_CHAR(SYSDATE - (LEVEL - 1),'YYYYMMDD') DAY
 	FROM DUAL CONNECT BY LEVEL <= 7) D
 	LEFT OUTER JOIN board b
-	ON TO_CHAR(b.bo_date,'YYYYMMDD') = D.DAY
-	WHERE b.bo_lock != 3
+	ON TO_CHAR(b.bo_date,'YYYYMMDD') = D.DAY AND b.bo_lock != 3
 	GROUP BY TO_DATE(D.DAY,'YYYYMMDD')
 	ORDER BY TO_DATE(D.DAY,'YYYYMMDD')
   ]]>

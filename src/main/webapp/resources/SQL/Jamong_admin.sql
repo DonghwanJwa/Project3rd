@@ -18,4 +18,5 @@ NOCACHE;
 SELECT * FROM adm_notice;
 SELECT noti_no_seq.nextval FROM DUAL
 DROP TABLE adm_notice;
+DROP SEQUENCE adm_noti_seq
 
