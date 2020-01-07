@@ -533,7 +533,7 @@ ul.profile_keyword_link{
 
 /* 		edit 	*/
 #profile_main_edit{
-	min-height: calc(100vh - 50px);
+	min-height: calc(100vh - 160px);
 	background: 	snow;
 }
 #edit_text{
@@ -563,11 +563,9 @@ padding: 10px;
 	position: relative; 
 	width:700px;
 	min-width: 700px;
-	min-height :350px; 
 	height: auto;
 	padding: 15px 30px;
 	margin-left:50%; margin-right:50%;
-	margin-bottom: 100px;
 	transform: translate(-50%);
 	background: #fff;
 	border:  1px solid  #eee;

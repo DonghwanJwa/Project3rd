@@ -199,7 +199,7 @@
 												         <a href="${pageContext.request.contextPath}/category/${fp.cat_name}"
 															class="profile_cat_color">${fp.cat_name}</a>
 													<c:if test="${fp.book_no ne 0}">
-														<a href="${pageContext.request.contextPath}/book/@${mp.mem_id}/${mb.bookVO.book_no}"><span class="profile_book_color"
+														<a href="${pageContext.request.contextPath}/book/@${mp.mem_id}/${fp.book_no}"><span class="profile_book_color"
 														>Book</span></a>
 													</c:if>
 												</div>
@@ -233,7 +233,7 @@
 												         <a href="${pageContext.request.contextPath}/category/${fp.cat_name}"
 															class="profile_cat_color">${fp.cat_name}</a>
 													<c:if test="${fp.book_no ne 0}">
-														<a href="${pageContext.request.contextPath}/book/@${mp.mem_id}/${mb.bookVO.book_no}"><span class="profile_book_color"
+														<a href="${pageContext.request.contextPath}/book/@${mp.mem_id}/${fp.book_no}"><span class="profile_book_color"
 														>Book</span></a>
 													</c:if>
 													</div>
