@@ -190,6 +190,12 @@
  		<if test="search_field_info == '내용'">
  			and ac.ac_cont like #{search_name}
  		</if>
+ 		<if test="search_field_info == 'Phone'">
+		 	and m.mem_phone01 || m.mem_phone02 || m.mem_phone03 like #{search_name}
+		</if>
+		<if test="search_field_info == 'Email'">
+		 		and m.email_id || m.email_domain like #{search_name}
+		 </if>
  		and rNum &gt; = #{startrow} and rNum &lt;= #{endrow}
 	</where>
 	order by ac.ac_date desc
