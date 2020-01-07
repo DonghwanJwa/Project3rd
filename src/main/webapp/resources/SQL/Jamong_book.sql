@@ -13,8 +13,8 @@ mem_no NUMBER(38) 				  	-- 회원 참조 컬럼
 
 -- 참조컬럼 참조키 설정
 ALTER TABLE book
-ADD CONSTRAINT book_cat_no_fk FOREIGN KEY(cat_no)
-REFERENCES category(cat_no)
+ADD CONSTRAINT book_cat_no_fk FOREIGN KEY(cat_name)
+REFERENCES category(cat_name)
 
 ALTER TABLE book
 ADD CONSTRAINT book_mem_no_fk FOREIGN KEY(mem_no)
@@ -28,5 +28,6 @@ NOCACHE;
 
 SELECT * FROM book ORDER BY book_no DESC;
 SELECT book_no_seq.nextval FROM DUAL;
+DROP SEQUENCE book_no_seq
 DROP TABLE book;
 

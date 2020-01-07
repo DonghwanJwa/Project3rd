@@ -73,7 +73,7 @@
       </c:if>
      </c:if>
      <c:if test="${bo.bo_titlespace == 1}">
-     <div id="write_title_parent_bottom" style="bottom:115px;">
+     <div id="write_title_parent_bottom">
       <!-- 메인 타이틀 (썸네일이나 배경색상이 있을때)-->
       <c:if test="${!empty bo.bo_thumbnail || !empty bo.bo_color}">
       <h1 class="write_main_title" style="color:#FFF">${bo.bo_title}</h1>

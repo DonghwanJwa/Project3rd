@@ -15,6 +15,7 @@ MINVALUE 0
 NOCACHE;
 
 DROP TABLE subscribe;
+DROP SEQUENCE sub_no_seq
 SELECT * FROM subscribe ORDER BY sub_no;
 SELECT sub_no_seq.nextval FROM DUAL;
 

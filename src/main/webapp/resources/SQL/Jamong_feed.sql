@@ -14,12 +14,24 @@ mem_no NUMBER(38)    			 -- 멤버 아이디 ( 피드를 보여줄 회원 )
 -- 구분자 팔로우 유저 게시글등록 1 , 내 게시글 댓글등록 2, 내 댓글에 답글등록 3, 문의답변 4, 작가신청 결과 5, 팔로우 유저 책발간 6, 제안을받음 7)
 
 
+
 CREATE SEQUENCE feed_no_seq
 START WITH 0
 INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
-SELECT * FROM feed;
+SELECT * FROM feed ORDER BY feed_no DESC;
 SELECT feed_no_seq.nextval FROM DUAL;
+DROP SEQUENCE feed_no_seq
 DROP TABLE feed;
+
+ALTER TABLE feed
+ADD CONSTRAINT feed_mem_no_fk FOREIGN KEY(feed_mem_no)
+REFERENCES member(mem_no)
+
+ALTER TABLE feed
+ADD CONSTRAINT mem_no FOREIGN KEY(mem_no)
+REFERENCES member(mem_no)
+
+ALTER TABLE feed DROP CONSTRAINT mem_no;

@@ -18,6 +18,7 @@ mem_no NUMBER(38)				  -- 회원번호 참조컬럼 0 비회원 0이아닐시 �
 );
 
 
+ALTER TABLE inquire DROP CONSTRAINT inq_mem_no_fk cascade;
 
 DROP TABLE inquire;
 -- 시퀀스 생성

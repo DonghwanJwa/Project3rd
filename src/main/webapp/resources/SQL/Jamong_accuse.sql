@@ -22,6 +22,7 @@ MINVALUE 0
 NOCACHE;
 
 DROP TABLE accuse;
+DROP SEQUENCE ac_no_seq
 SELECT * FROM accuse ORDER BY ac_no DESC;
 SELECT ac_no_seq.nextval FROM DUAL
 
