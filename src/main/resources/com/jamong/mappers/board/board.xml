@@ -117,7 +117,7 @@
  <![CDATA[
   SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM) b,member m
   WHERE b.mem_no=m.mem_no 
-  AND b.mem_no=#{mem_no} AND rowNum <= 3 AND b.bo_lock = 1
+  AND b.mem_no=#{mem_no} AND rowNum <= 3 AND b.bo_lock = 1 AND b.bo_no != #{bo_no}
  ]]>
  </select>
  

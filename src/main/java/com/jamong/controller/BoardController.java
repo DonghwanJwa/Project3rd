@@ -200,7 +200,7 @@ public class BoardController {
 		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		int replyCount = this.repService.getUserReplyCount(bo_no);
 		List<BoardVO> catList = this.boardService.getUserBoardCatArticle(bo.getCat_name());
-		List<BoardVO> bList = this.boardService.getUserBoardContList(bo.getMem_no());
+		List<BoardVO> bList = this.boardService.getUserBoardContList(bo);
 
 		// 날짜 출력타입 변경
 		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
