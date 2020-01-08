@@ -11,6 +11,10 @@ h1, h2, h3, h4{
 	font-weight:normal;
 	margin:0px auto;
 }
+p{
+	margin:0px;
+	line-height:22pt;
+}
 /* 타이틀 부분 */
 #write_title{
 	width:100%;
@@ -419,7 +423,7 @@ button.write_icon_btn,button.write_font_dropdown_btn{ /* ward */
 	position:relative;
 	padding:40px 0px 115px 0px;
 	word-wrap:break-word;
-	line-height: 20pt;
+	line-height: 22pt;
 }
 .write_cont_area::selection{
 	background:RGB(245,124,104,0.6);
