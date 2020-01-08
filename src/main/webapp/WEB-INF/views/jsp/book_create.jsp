@@ -2,8 +2,8 @@
 <%@ include file="../include/header.jsp" %>
 <script src="${pageContext.request.contextPath}/resources/js/book_create.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/book_create.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/write.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/book_create.css">
 
 <div id="book_create_wrap">
  <div id="book_create_base">
