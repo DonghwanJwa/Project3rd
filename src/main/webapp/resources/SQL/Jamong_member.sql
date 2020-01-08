@@ -31,7 +31,7 @@ drop_date DATE       				  -- 회원 탈퇴 날짜 (12/19 추가)
 );
 
 
-UPDATE member SET mem_state=9 WHERE mem_no=2; -- 관리자 계정 설정
+UPDATE member SET mem_state=9 WHERE mem_no=1; -- 관리자 계정 설정
 -- 회원번호 시퀀스 생성
 CREATE SEQUENCE mem_no_seq
 START WITH 0
@@ -39,9 +39,16 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+ALTER TABLE inquire DROP CONSTRAINT INQ_MEM_NO_fk cascade;
+
 SELECT mem_no_seq.nextval FROM DUAL;
 SELECT * FROM member ORDER BY mem_no DESC;
 DROP TABLE member;
 DROP SEQUENCE mem_no_seq;
 
-
+ SELECT c.cat_name,COUNT(m.mem_no) count
+  FROM member m
+  RIGHT OUTER JOIN category c
+  ON m.mem_fav1 = c.cat_name OR m.mem_fav2 = c.cat_name OR m.mem_fav3 = c.cat_name
+  WHERE m.mem_state = 0 OR m.mem_state = 1
+  GROUP BY c.cat_name

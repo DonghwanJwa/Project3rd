@@ -11,6 +11,7 @@ mem_no NUMBER(38)				 -- 회원번호 참조 컬럼
 );
 
 DROP SEQUENCE rep_no_seq;
+DROP TABLE reply
 
 CREATE SEQUENCE rep_no_seq
 START WITH 0

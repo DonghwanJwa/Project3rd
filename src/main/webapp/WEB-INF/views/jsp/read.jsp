@@ -73,7 +73,7 @@
       </c:if>
      </c:if>
      <c:if test="${bo.bo_titlespace == 1}">
-     <div id="write_title_parent_bottom" style="bottom:115px;">
+     <div id="write_title_parent_bottom">
       <!-- 메인 타이틀 (썸네일이나 배경색상이 있을때)-->
       <c:if test="${!empty bo.bo_thumbnail || !empty bo.bo_color}">
       <h1 class="write_main_title" style="color:#FFF">${bo.bo_title}</h1>
@@ -201,9 +201,12 @@
 			 <%-- 댓글일 때 --%>
 			  <c:if test="${r.rep_step == 0}">
 				<li class="comment_frame" onmouseenter="replyBtnShow(event);" onmouseleave="replyBtnHide(event);">
-					<a href="${pageContext.request.contextPath}/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
+					<a href="${pageContext.request.contextPath}/@${r.memberVO.mem_id}"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
 					<div class="comment_info_wrap">
-					<a href="${pageContext.request.contextPath}/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
+					<a href="${pageContext.request.contextPath}/@${r.memberVO.mem_id}" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
+					<c:if test="${r.memberVO.mem_no == bo.mem_no}">
+					<span id="comment_writer_reply">작성자</span>
+					</c:if>
 					<span class="comment_info_icon">·</span>
 					<span class="comment_date">${r.rep_date}</span>
 					<span class="comment_menu">
@@ -227,9 +230,12 @@
 			  <c:if test="${r.rep_step != 0}">
 				<li class="comment_frame" onmouseenter="replyBtnShow(event);" onmouseleave="replyBtnHide(event);">
 					<span class="comment_enter_icon">ㄴ</span><span class="comment_enter_re">RE:</span>
-					<a href="${pageContext.request.contextPath}/profile"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
+					<a href="${pageContext.request.contextPath}/@${r.memberVO.mem_id}"><img class="comment_user_img" src=${r.memberVO.profile_photo} width="45" height="45"/></a>
 					<div class="comment_info_wrap">
-					<a href="${pageContext.request.contextPath}/profile" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
+					<a href="${pageContext.request.contextPath}/@${r.memberVO.mem_id}" class="comment_user_name"><span>${r.memberVO.mem_nickname}</span></a>
+					<c:if test="${r.memberVO.mem_no == bo.mem_no}">
+					<span id="comment_writer_reply">작성자</span>
+					</c:if>
 					<span class="comment_info_icon">·</span>
 					<span class="comment_date">${r.rep_date}</span>
 					<span class="comment_menu">

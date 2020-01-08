@@ -37,8 +37,4 @@ ALTER TABLE offer
 ADD CONSTRAINT off_mem_no_fk FOREIGN KEY (mem_no)
 REFERENCES member(mem_no);
 
-ALTER TABLE offer
-ADD CONSTRAINT off_off_id_fk FOREIGN KEY (off_id)
-REFERENCES member(mem_no);
-
 

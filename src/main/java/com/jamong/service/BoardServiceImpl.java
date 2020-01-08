@@ -161,8 +161,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getUserBoardContList(int mem_no) {
-		return this.boardDao.getUserBoardContList(mem_no);
+	public List<BoardVO> getUserBoardContList(BoardVO bo) {
+		return this.boardDao.getUserBoardContList(bo);
 	}
 
 	@Override

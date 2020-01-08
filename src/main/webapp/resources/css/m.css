@@ -687,13 +687,13 @@ body{
 	line-height: 35px;
 }
 
-.book-item-head-inner-cont-top i{
+.book-item-head-inner-cont-top b{
 	display: block;
 	margin:0;
 	padding: 0px 15px;
 	height:40px;
 	font-size:14px;
-	font-style:normal;
+	font-weight:normal;
 	line-height: 40px;
 }
 .book-item-head-inner-cont-bottom{

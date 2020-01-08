@@ -472,7 +472,7 @@ ul.profile_keyword_link{
 	width:100%;
 	height: 100%;
 	object-fit:cover;
-	filter:brightness(70%);
+	filter:brightness(90%);
 }
 .box_contents{
 	display :inline-block;
@@ -512,32 +512,17 @@ ul.profile_keyword_link{
 .pf_date{
 	float:right;
 }
-.profile_jm{
-	display: block;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 1;
-	color: #555;
-}
 .relate{
     height: 12px;
     width: 12px;
     display: inline-block;
-}
-.article_icon{
-background: url(../img/article.png) no-repeat;
-    background-size: 10px;
-    height: 20px;
-    width: 10px;
-    background-position: 0px 10px;
-    display: block;
-	
+        margin: 8px 0 0 0;
 }
 .j_list_info{
-	margin: 0;
-	padding: 0;
-	display: flex;
-	opacity: 0.7;
+	margin: -10px -9px 0px 0px;
+    display: inline-flex;
+    opacity: 0.7;
+    float: right;
 }
 
 .box_contents_num{
@@ -548,7 +533,7 @@ background: url(../img/article.png) no-repeat;
 
 /* 		edit 	*/
 #profile_main_edit{
-	min-height: calc(100vh - 50px);
+	min-height: calc(100vh - 160px);
 	background: 	snow;
 }
 #edit_text{
@@ -578,11 +563,9 @@ padding: 10px;
 	position: relative; 
 	width:700px;
 	min-width: 700px;
-	min-height :350px; 
 	height: auto;
 	padding: 15px 30px;
 	margin-left:50%; margin-right:50%;
-	margin-bottom: 100px;
 	transform: translate(-50%);
 	background: #fff;
 	border:  1px solid  #eee;

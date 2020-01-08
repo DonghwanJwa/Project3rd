@@ -24,51 +24,13 @@ INCREMENT BY 1
 MINVALUE 0
 NOCACHE;
 
+SELECT * FROM author ORDER BY aut_date DESC;
 select aut_no_seq.nextval from dual;
+DROP SEQUENCE aut_no_seq
 
 -- 참조키 설정
 ALTER TABLE author
 ADD CONSTRAINT aut_mem_no_fk FOREIGN KEY (mem_no)
 REFERENCES member(mem_no);
 
-SELECT * FROM author ORDER BY aut_date DESC;
 
-ALTER TABLE author ADD aut_state NUMBER(38) DEFAULT 0;
-ALTER TABLE author ADD aut_update DATE;
-
-DROP SEQUENCE aut_no_seq;
-
-DELETE FROM author WHERE aut_no=2;
-
-SELECT * FROM author aut, member m where aut.mem_no=m.mem_no order by aut.aut_no desc ;
-
-SELECT * FROM (SELECT * FROM author order by aut_no) aut, member m where aut.mem_no=m.mem_no and rowNum >= 1 and rowNum <= 10 order by aut.aut_date desc;
-SELECT * FROM author aut, member m where aut.mem_no=m.mem_no and rowNum >= 1 and rowNum <= 10 order by aut.aut_no desc;
-
-SELECT * FROM (SELECT author.* FROM author order by aut_date desc) aut, member m WHERE aut.mem_no=m.mem_no and ROWNUM >= 1 and ROWNUM <= 11 order by aut.aut_date desc;
-
-SELECT * FROM (SELECT * FROM author order by aut_date desc) aut ;
-
-SELECT * FROM author order by aut_date desc;
-SELECT * FROM member WHERE mem_no=2;
-
-SELECT COUNT(aut_no) FROM author aut, member m where aut.mem_no=m.mem_no and aut.mem_no=16;
-SELECT COUNT(aut_no) FROM author where mem_no=18 and aut_state=0;
-
-SELECT * FROM author a,member m where a.mem_no=m.mem_no and ROWNUM >=1 and ROWNUM<=11 order by a.aut_date desc;
-
-SELECT * FROM (SELECT rowNum r,aut_no,aut_intro FROM (SELECT author.* FROM author ORDER BY aut_no DESC));
-
-SELECT * FROM (SELECT rowNum r,aut_no,aut_intro,aut_date,mem_no,aut_state,aut_update FROM (SELECT author.* FROM author ORDER BY aut_no DESC)) aut
-INNER JOIN member m
-ON aut.mem_no=m.mem_no
-WHERE r >= 1 AND r <= 11 ORDER BY aut.aut_date DESC;
-
-SELECT * FROM (SELECT rowNum r,aut_no,aut_intro,aut_date,mem_no,aut_state,aut_update 
-FROM (SELECT author.* FROM author WHERE aut_state=1 ORDER BY aut_no DESC)) aut
-INNER JOIN (SELECT * FROM member where mem_nickname like '%%') m
-ON aut.mem_no=m.mem_no
-WHERE r >= 1 AND r <= 20  order by aut.aut_date desc;
-
-select * from member order by mem_date desc;
-commit;

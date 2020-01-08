@@ -54,6 +54,7 @@
   <result column="book_preface" property="book_preface" />
   <result column="book_date" property="book_date" />
   <result column="book_editdate" property="book_editdate" />
+  <result column="book_recommend" property="book_recommend" />
   <result column="cat_name" property="cat_name" />
   <result column="mem_no" property="mem_no"	/>
  </association>
@@ -104,6 +105,7 @@
   FROM (SELECT * FROM book ORDER BY book_no DESC)book
   INNER JOIN member m
   ON book.mem_no = m.mem_no
+  ORDER BY book.book_no DESC
  </select>
  
  <select id="index_book" resultMap="boardMap">
@@ -246,6 +248,7 @@
   		 book.book_cover,
   		 book.book_preface,
   		 book.book_date,
+  		 book.book_recommend,
   		 book.book_editdate,
   		 book.cat_name,
   		 book.mem_no,

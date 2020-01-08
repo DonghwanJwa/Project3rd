@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -199,7 +200,7 @@ public class BoardController {
 		List<ReplyVO> repList = this.repService.getUserBoardContReply(bo_no);
 		int replyCount = this.repService.getUserReplyCount(bo_no);
 		List<BoardVO> catList = this.boardService.getUserBoardCatArticle(bo.getCat_name());
-		List<BoardVO> bList = this.boardService.getUserBoardContList(bo.getMem_no());
+		List<BoardVO> bList = this.boardService.getUserBoardContList(bo);
 
 		// 날짜 출력타입 변경
 		SimpleDateFormat org_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -752,6 +753,7 @@ public class BoardController {
 				String normalTitle = htmlTitle.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 				bb.get(i).setBo_title(normalTitle);
 			}
+			Collections.shuffle(bb);
 			entity = new ResponseEntity<>(bb,HttpStatus.OK);		
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -868,7 +870,6 @@ public class BoardController {
 		 scroll.put("state",m.getMem_state());
 		 scroll.put("n", num);
 		 scroll.put("view", view);
-		 System.out.println(view);
 		}else {
 		 scroll.put("bo_no", bo_no);
 		 scroll.put("mp_no", mem_no);

@@ -352,12 +352,12 @@ $(document).keydown(function(e){
             <img class="book-item-head-inner-img" src="${pageContext.request.contextPath}/resources/img/book_cover.jpg">
            </c:if>
            <c:if test="${bolist.bookVO.book_cover ne null}">
-            <img class="book-item-head-inner-img" src="${bolist.bookVO.book_cover}" style="filter: brightness(80%);">
+            <img class="book-item-head-inner-img" src="${bolist.bookVO.book_cover}" style="filter: brightness(90%);">
            </c:if>
             <div class="book-item-head-inner-cont">
              <div class="book-item-head-inner-cont-top">
               <strong>${bolist.bookVO.book_name}</strong>
-              <i>by ${bolist.memberVO.mem_nickname}</i>
+              <b><i>by</i> ${bolist.memberVO.mem_nickname}</b>
              </div>
              <div class="book-item-head-inner-cont-bottom">
               <span>Jamong Book</span>
@@ -422,7 +422,7 @@ $(document).keydown(function(e){
               </div>
              </div>
              <div class="writting-item-head-inner-cont-bottom">
-              <span>by ${blist.memberVO.mem_nickname}</span>
+              <span><i>by</i> ${blist.memberVO.mem_nickname}</span>
              </div>
             </div>
            </div>

@@ -31,8 +31,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> getUserBoardContList(int mem_no) {
-		return this.sqlSession.selectList("bo_contlist", mem_no);
+	public List<BoardVO> getUserBoardContList(BoardVO bo) {
+		return this.sqlSession.selectList("bo_contlist",bo);
 	}
 
 	@Override
