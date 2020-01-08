@@ -2,7 +2,9 @@
  * book_create.js
  */
 var category_count = 0;
+
 getCategorySelect();
+
 $(document).ready(function() {
 
 	/* 책 커버 이미지 선택 */
@@ -207,10 +209,9 @@ function getCategorySelect() {
 		$(data).each(
 				function() {// each는 jQuery에서 반복함수
 					str += '<li class="join_membership_category-item">'
-							+ '<span class="join_membership_category-span">'
-							+ this.cat_name + '</span>'
-							+ '<input type="hidden" value="' + this.cat_name
-							+ '"/>' + '</li>'
+							+ '<span class="join_membership_category-span">' + this.cat_name + '</span>'
+							+ '<input type="hidden" value="' + this.cat_name + '"/>'
+							+ '</li>'
 				});
 		if ($("#join_membership_category-list").length > 0) {// 해당 구역이 존재하면
 			$('#join_membership_category-list').html(str); // ul내부에 each내용을
