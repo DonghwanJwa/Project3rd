@@ -7,8 +7,18 @@
 	font-size:14px
 }
 .inq_file_down{
-	margin-left:10px;
-	height:30px;
+	border: none;
+    background: none;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    margin: 5px 0;
+    padding: 0;
+    outline: none;
+    margin-left: 3px;
+}
+.inq_file_div{
+	height:43px;
 }
 .adm_inq_table{
 	width:900px;
