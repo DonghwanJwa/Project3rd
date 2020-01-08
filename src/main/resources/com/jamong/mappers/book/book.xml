@@ -105,6 +105,7 @@
   FROM (SELECT * FROM book ORDER BY book_no DESC)book
   INNER JOIN member m
   ON book.mem_no = m.mem_no
+  ORDER BY book.book_no DESC
  </select>
  
  <select id="index_book" resultMap="boardMap">
