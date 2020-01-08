@@ -84,16 +84,16 @@
        </c:if>
 			
 		<c:if test="${fileName1 ne 'null'}"> 
-			<div><h3 style="display:inline-block;">첨부파일 1:</h3><input type="submit" class="inq_file_down" value="${fileName1}" onclick="javascript:inq_file_form.action='inquireFile1';" /></div>
+			<div class="inq_file_div">첨부파일 1.<input type="submit" class="inq_file_down" value="${fileName1}" onclick="javascript:inq_file_form.action='inquireFile1';" /></div>
 		</c:if>	
 		<c:if test="${fileName2 ne 'null'}">	
-			<div><h3 style="display:inline-block;">첨부파일 2:</h3><input type="submit" class="inq_file_down" value="${fileName2}" onclick="javascript:inq_file_form.action='inquireFile2';"/></div>
+			<div class="inq_file_div">첨부파일 2.<input type="submit" class="inq_file_down" value="${fileName2}" onclick="javascript:inq_file_form.action='inquireFile2';"/></div>
 		</c:if>	
 		<c:if test="${fileName3 ne 'null'}">	
-			<div><h3 style="display:inline-block;">첨부파일 3:</h3><input type="submit" class="inq_file_down" value="${fileName3}" onclick="javascript:inq_file_form.action='inquireFile3';"/></div>
+			<div class="inq_file_div">첨부파일 3.<input type="submit" class="inq_file_down" value="${fileName3}" onclick="javascript:inq_file_form.action='inquireFile3';"/></div>
 		</c:if>
 		<c:if test="${fileName4 ne 'null'}">	
-			<div><h3 style="display:inline-block;">첨부파일 4:</h3><input type="submit" class="inq_file_down" value="${fileName4}" onclick="javascript:inq_file_form.action='inquireFile4';"/></div>
+			<div class="inq_file_div">첨부파일 4.<input type="submit" class="inq_file_down" value="${fileName4}" onclick="javascript:inq_file_form.action='inquireFile4';"/></div>
 	   	</c:if>
 	   </td>	
 	</tr>
