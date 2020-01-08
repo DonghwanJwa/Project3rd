@@ -34,7 +34,7 @@
           <c:if test="${fn:length(b.bo_title)>22}">
           ${fn:substring(b.bo_title,0,22)}...
          </c:if>
-          <c:if test="${fn:length(b.bo_title)<22}">
+          <c:if test="${fn:length(b.bo_title)<=22}">
           ${b.bo_title}
          </c:if>
          </div>
@@ -46,7 +46,7 @@
           <c:if test="${fn:length(b.bo_cont)>100}">
           ${fn:substring(b.bo_cont,0,100)}...
          </c:if>
-          <c:if test="${fn:length(b.bo_cont)<100}">
+          <c:if test="${fn:length(b.bo_cont)<=100}">
           ${b.bo_cont}
          </c:if>
          </div>

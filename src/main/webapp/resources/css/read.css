@@ -65,6 +65,7 @@ body a {
 }
 #write_title_parent_bottom{
 	-webkit-transform:translate(50%,205%) !important;
+	top:110px;
 }
 /*배경*/
 #read_back {
