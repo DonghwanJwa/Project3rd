@@ -58,7 +58,7 @@
 			신고한페이지 URL
 		</th>
 		<td colspan="3" id="adm_ac_url" style="height:50px;">
-			<a href="${a.ac_href}" target="_blank">신고한 페이지 이동</a>
+			<a style="cursor:pointer;" onclick="window.open('${a.ac_href}')">신고한 페이지 이동</a>
 		</td>	
 	</tr>
 	

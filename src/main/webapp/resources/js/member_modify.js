@@ -374,7 +374,7 @@ $(document).ready(function(){
 					Swal.fire({
 						icon : 'info',
 						allowOutsideClick: false,
-						text : '입력하신 이메일로 아이디가 발송되었습니다.'
+						text : '입력하신 이메일로 인증번호가 발송되었습니다.'
 					}).then(function(){						
 						$('#member_modify_next_btn').attr('disabled', true);
 						$('#member_modify_certified_btn').attr("disabled",true);//disabled 태그 속성 활성화 true

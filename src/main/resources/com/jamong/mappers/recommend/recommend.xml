@@ -58,4 +58,8 @@
  WHERE r.mem_no = #{mem_no}
  ORDER BY r.rec_date DESC
 </select>
+
+<delete id="RecommendDel">
+ DELETE FROM recommend WHERE book_no = #{book_no}
+</delete>
 </mapper>

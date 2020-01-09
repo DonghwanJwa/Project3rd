@@ -11,4 +11,5 @@ public interface RecommendDAO {
 	void recommendDownDelete(BookVO bk);
 	RecommendVO getRecommendState(RecommendVO rvo);
 	List<RecommendVO> getUserScrapBook(int mem_no);
+	void recommendDelete(int book_no);
 }

@@ -803,7 +803,7 @@ $(document).ready(function(){
 	});
 	
 //	이메일 id 유효성 검증//추후 복구해야됨!!!!
-/*	$('#join_membership_email').on("focusout", function() {
+	$('#join_membership_email').on("focusout", function() {
 		if ($.trim($('#join_membership_email').val())=="") {
 			$('#join_membership_error_email_domain').text('이메일을 입력해주세요!');
 			return false;
@@ -888,7 +888,6 @@ $(document).ready(function(){
 		$('#join_membership_email_flag').val('1');
 		$('#join_membership_next_btn').attr('disabled', true);
 	});
-*/	
 	/*닉네임 유효성 검증*/
 	$("#join_membership_profile_editor").on("focusout keydown", function(e) {//포커스가 나갈때
 		var nickname = $(this).val();		
@@ -991,7 +990,7 @@ function captureReturnKey(e) {
     }
 } 
 //이메일 인증 단계 복구해야됨!!
-/*
+
 $(function(){
 	//이메일 인증 버튼 클릭시 발생하는 이벤트 
 	$(document).on("click", "#join_membership_certified_btn", function(){
@@ -1039,7 +1038,7 @@ $(function(){
 					Swal.fire({
 						icon : 'info',
 						allowOutsideClick: false,
-						text : '입력하신 이메일로 아이디가 발송되었습니다.\n 인증번호를 입력해주세요'
+						text : '입력하신 이메일로 인증번호가 발송되었습니다.\n 인증번호를 입력해주세요'
 					}).then((result) => {
 				$('#join_membership_certified_btn').attr("disabled",true);
 				$('#join_membership_emailcheck').val('');
@@ -1104,7 +1103,7 @@ $(function(){
 		});
 	});
 });
-*/
+
 
 
 

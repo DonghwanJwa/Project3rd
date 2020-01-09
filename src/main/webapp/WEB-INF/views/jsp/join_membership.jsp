@@ -121,7 +121,6 @@
 						</div>
 					</div>
 					<div class="join_membership_button_div">
-					<%-- 메일인증 구현해야됨!!! --%> 
 						<div class="join_membership_policy_box">
 					 	 <input id="join_membership_check" type="checkbox" name="agree" >
 					 	 <label id="join_membership_check_comment" id="inq_check" for="agree">
@@ -129,7 +128,7 @@
 					 	 </label>
 					 	 <div class="join_membership_error" id="join_membership_policy_error"></div>
 					 	</div>
-						<input type="button" id="join_membership_next_btn" tabindex="17" value="다음으로" />
+						<input type="button" id="join_membership_next_btn" tabindex="17" value="다음으로" disabled/>
 					</div>
 				</div>
 
