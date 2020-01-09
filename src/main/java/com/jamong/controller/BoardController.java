@@ -226,7 +226,7 @@ public class BoardController {
 			String htmlText = bList.get(i).getBo_cont();
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String oneSpace = normalText.replaceAll("&nbsp; "," ");
-			if(normalText.length()>100) {
+			if(oneSpace.length()>100) {
 				String hundredText = oneSpace.substring(0,100);					
 				bList.get(i).setBo_cont(hundredText);
 			}else {
@@ -240,8 +240,8 @@ public class BoardController {
 			String normalText = htmlText.replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");
 			String oneSpace = normalText.replaceAll("&nbsp; "," ");
 			catList.get(i).setBo_title(normalTitle);
-			if(normalText.length()>100) {
-				String hundredText = oneSpace.substring(0,100);							
+			if(oneSpace.length()>100) {
+				String hundredText = oneSpace.substring(0,100);					
 				catList.get(i).setBo_cont(hundredText);
 			}else {
 				catList.get(i).setBo_cont(oneSpace);

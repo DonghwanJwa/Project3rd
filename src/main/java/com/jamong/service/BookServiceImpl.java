@@ -130,6 +130,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void bookDel(int book_no) {
 		this.boardDao.bookNull(book_no);
+		this.recDao.recommendDelete(book_no);
 		this.bookDao.bookDel(book_no);
 	}
 

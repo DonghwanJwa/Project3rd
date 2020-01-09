@@ -35,4 +35,9 @@ public class RecommendDAOImpl implements RecommendDAO {
 		return this.sqlSession.selectList("ScrapBook",mem_no);
 	}
 
+	@Override
+	public void recommendDelete(int book_no) {
+		this.sqlSession.delete("RecommendDel",book_no);
+	}
+
 }

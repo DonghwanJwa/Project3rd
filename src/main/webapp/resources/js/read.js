@@ -8,7 +8,6 @@ getSympathyState();
 
 function ArticleRemove(){
 	var para = document.location.href.split("/");
-	var removeOK = confirm('게시글을 삭제하시겠습니까?');
 	Swal.fire({
 		icon : 'question',
 		title : 'Delete?',
@@ -90,7 +89,7 @@ function CommentRemove(e){
 						Swal.fire({
 							icon:'success',
 							title : 'Good Job!',
-							text :'댓글 삭제에 성공했습니다!',
+							text :'댓글이 삭제되었습니다!',
 							allowOutsideClick: false
 						}).then(function(){
 							window.location.reload();
@@ -141,7 +140,7 @@ function addComment(){
 						Swal.fire({
 							icon : 'success',
 							allowOutsideClick: false,
-							text : '댓글 작성에 성공했습니다!'
+							text : '댓글이 작성되었습니다!'
 						}).then(function(){
 							window.location.reload();							
 						})
@@ -198,7 +197,7 @@ function addReply(e){
 						Swal.fire({
 							icon : 'success',
 							allowOutsideClick: false,
-							text : '답글 작성에 성공했습니다!'
+							text : '답글이 작성되었습니다!'
 						}).then(function(){
 							window.location.reload();							
 						})
@@ -247,7 +246,7 @@ function replyEditOK(e){
 						Swal.fire({
 							icon : 'success',
 							allowOutsideClick: false,
-							text : '댓글 수정에 성공했습니다!'
+							text : '댓글이 수정되었습니다!'
 						}).then(function(){
 							window.location.reload();							
 						})

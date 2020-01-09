@@ -381,6 +381,7 @@ body a {
 .rep_textarea p{
 	margin-top:0px;
 	margin-bottom:3px;
+	font-size:14px;
 }
 #comment_editarea{
 	display:inline-block;
@@ -447,6 +448,7 @@ body a {
 .reply_textarea p{
 	margin-top:0px;
 	margin-bottom:3px;
+	font-size:14px;
 }
 .reply_btn_wrap {
 	display:flex;
