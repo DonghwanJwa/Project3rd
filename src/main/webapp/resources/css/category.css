@@ -237,6 +237,7 @@ width: 100%;
 	position: absolute;
 	margin-top: 50px;
 	text-align:center;
+	font-family:"NanumMyeongjo","serif"
 }
 .cat_story_cont{
 	color:#efefef;
@@ -416,7 +417,7 @@ width: 100%;
 	font-size: 16px;
 	margin-top:45px;
 	text-align:center;
-	font: #333333;
+	font-family:"NanumMyeongjo","serif";
 }
 .cat_story_writer{
     font-size:12px;
