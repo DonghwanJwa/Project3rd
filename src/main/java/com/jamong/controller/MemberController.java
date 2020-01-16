@@ -303,7 +303,7 @@ public class MemberController {
 		sb.append("해당 코드를 인증란에 입력해주시기 바랍니다.<br/>");
 		sb.append("감사합니다.</h3>");
 		
-		return mailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail, null, request);
+		return mailService.send(subject, sb.toString(), "root-context에 입력된 구글 이메일을 입력하세요", userEmail, null, request);
 	}
 
 	@RequestMapping("join_emailCert_ok")
