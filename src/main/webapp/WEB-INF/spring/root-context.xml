@@ -22,8 +22,8 @@
    value="oracle.jdbc.OracleDriver" />
    <property name="url" 
    value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
-   <property name="username" value="jamong" />
-   <property name="password" value="jamong" />
+   <property name="username" value="database user name" />
+   <property name="password" value="database user password" />
  </bean>    
  
  <!-- 스프링 jdbc와 mybatis연결,mybatis환경설정 -->
@@ -67,8 +67,8 @@
   <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.gmail.com" />	<!-- 구글 SMTP 호스트주소 -->
     <property name="port" value="587" />			<!-- 구글 SMTP 포트번호 -->
-    <property name="username" value="projectJamong@gmail.com" />
-    <property name="password" value="jamong2019!" />
+    <property name="username" value="google email address" /> <!-- 이메일 보내는 용도로 사용할 구글 계정 -->
+    <property name="password" value="google email password" />
     <property name="javaMailProperties">
     <props>
     	<prop key="mail.transport.protocol">smtp</prop>

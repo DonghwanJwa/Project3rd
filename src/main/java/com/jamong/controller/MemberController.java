@@ -301,9 +301,9 @@ public class MemberController {
 		sb.append("<h3 style=\"font-weight:normal\">안녕하세요. 자몽입니다.<br/>");
 		sb.append("귀하의 인증 코드는 </h3><h2>" + authCode + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
 		sb.append("해당 코드를 인증란에 입력해주시기 바랍니다.<br/>");
-		sb.append("감사합니다.</h3>");
-
-		return mailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail, null, request);
+		sb.append("감사합니다.</h3>");	
+    
+		return mailService.send(subject, sb.toString(), "root-context에 입력된 구글 이메일을 입력하세요", userEmail, null, request);
 	}
 
 	@RequestMapping("join_emailCert_ok")

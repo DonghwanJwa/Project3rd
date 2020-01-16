@@ -477,7 +477,7 @@ public class MemberModifyController {
 		sb.append("해당 코드를 인증란에 입력해주시기 바랍니다.<br/>");
 		sb.append("감사합니다.</h3>");
 		
-		return MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request);
+		return MailService.send(subject, sb.toString(), "root-context에 입력된 구글 이메일을 입력하세요", userEmail,null, request);
 	}
 
 	@RequestMapping("modify_emailCert_ok")
@@ -538,7 +538,7 @@ public class MemberModifyController {
 			sb.append("귀하의 아이디는 </h3><h2>" + member.getMem_id() + "</h2><h3 style=\"font-weight:normal\">입니다.<br/>");
 			sb.append("해당 아이디로 로그인해주세요.<br/>");
 			sb.append("감사합니다.</h3>");
-			if(MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request)) {
+			if(MailService.send(subject, sb.toString(), "root-context에 입력된 구글 이메일을 입력하세요", userEmail,null, request)) {
 				//메일전송이 잘 되었으면
 				re = 1;
 			}else {
@@ -575,7 +575,7 @@ public class MemberModifyController {
 			sb.append("해당 코드를 인증란에 입력해주시기 바랍니다.<br/>");
 			sb.append("감사합니다.</h3>");
 			
-			if(MailService.send(subject, sb.toString(), "projectJamong@gmail.com", userEmail,null, request)) {
+			if(MailService.send(subject, sb.toString(), "root-context에 입력된 구글 이메일을 입력하세요", userEmail,null, request)) {
 				re=1;
 			}else {
 				re=-2;
