@@ -27,10 +27,7 @@ E. https://github.com/google/charts
 <h4>2. Program Video</h4>
 
 
-<iframe width="560" height="315" src="https://youtu.be/CBrdWPsjDzE" frameborder="0" allowfullscreen></iframe>
-
-
-[![Video Lable](https://user-images.githubusercontent.com/52551356/72502867-b52e4f80-387d-11ea-9edc-b65e05829763.JPG)](https://youtu.be/CBrdWPsjDzE)
+[![Video Lable](https://img.youtube.com/vi/CBrdWPsjDzE/0.jpg)](https://youtu.be/CBrdWPsjDzE)
 
 
   
