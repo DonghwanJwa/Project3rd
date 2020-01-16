@@ -1,0 +1,368 @@
+@charset "UTF-8";
+/* inquire.jsp */
+body{
+	font-family: 'NanumGothic', 'serif';
+	margin: 0px;
+	background-image: url(../img/background_img/login_page.png);
+	
+	oncontextmenu="return false"
+	 ondragstart="return false"
+	  onselectstart="return false"
+
+
+}
+.file_name{
+	display: inline-block;
+	padding: .2em .75em; /* label의 패딩값과 일치 */ 
+	font-size: 14px; 
+	font-family: inherit; 
+	line-height: normal; 
+	vertical-align: middle; 
+	background-color: #f5f5f5; 
+	border: 1px solid #ebebeb; 
+	border-bottom-color: #e2e2e2; 
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+	-moz-appearance: none; 
+	appearance: none;
+	margin-bottom:5px;
+}
+.inq_wrap_upload label{
+	display: inline-block; 
+	padding: .2em .75em; 
+	color: #999; 
+	font-size: 14px; 
+	line-height: normal; 
+	vertical-align: middle; 
+	background-color: #fdfdfd; 
+	border: 1px solid #ebebeb; 
+	border-bottom-color: #e2e2e2; 
+	margin-bottom:5px;
+}
+.inq_inp_file{
+	position: absolute; 
+	width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip:rect(0,0,0,0); 
+	border: 0;
+}
+.inq_vali_date{
+	width:280px;
+	height:20px;
+	border:0px solid #333;
+	display: inline-block;
+	margin: 5px 0px 0px 6px;
+	color:#fe5458;
+}
+.inq_main_art{
+	position: relative;
+	width: 940px;
+	min-height: 700px;
+	margin:0px auto;
+	margin-bottom: 62px;
+	background-color: white;
+}
+.inq_title{
+	font-size: 32px;
+	margin: 0px;
+	display: flex;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: bold;
+	padding-left: 5px;
+	background-color: white;
+	align-items: center;
+	height: 80px;
+	padding-left: 389px;
+}
+.inq_required{
+    font-size: 13px;
+    line-height: 1.5;
+    color: #1e1e1e;
+    position: absolute;
+    top: 95px;
+    right: 0;
+    margin-right: 91px;
+}
+.inq_info_confirm{
+	overflow: hidden;
+	width: 750px;
+	height:70.4px;
+}
+.inq_tit_confirm{
+	float: left;
+	width: 110px;
+	padding: 25px 15px;
+	font-size: 15px;
+	text-align: center;
+	border-top: 2px solid #1e1e1e;
+	background-color: #FBA621;
+}
+.inq_txt_caution{
+	display: block;
+	width: 110px;
+	height: 17px;
+	margin: 0 auto;
+	font-size: 14px;
+	color: black;
+}
+.inq_txt_confirm{
+	float: right;
+    width: 528px;	
+    padding: 25px 40px 23px;
+    line-height: 27px;
+    font-size: 15px;
+    background-color: #fff;
+    border: 1px solid black;
+    height: -webkit-fill-available;    
+}
+.inq_question_cont{
+    margin: 0;
+    padding: 0;
+    display: block;
+    font-size: 13px;
+    line-height: 1.5px;
+    color:#333;
+}
+.inq_question_cont dd{
+	float: left;
+	width: 581px;
+	padding: 18px 0px 18px 20px;
+	margin:0px;
+	border: 1px;
+}
+#inq_request{
+	font-size: 13px;
+	line-height: 1.5;
+	color: #1e1e1e;
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+.inq_list_select{
+	width:100%;
+	height:38px;
+	border: 0px;
+}
+.inq_question_d{
+	border-top: 1px solid #1e1e1e;
+}
+.inq_form{
+	overflow: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+.inq_wrap_select{
+	float: left;
+    position: relative;
+    margin: 0;
+    border: 1px solid #919191;
+    width: 581px;
+    height: 38px;
+    margin: 0px 0px 0px 0px;
+    border:1px solid black;
+  
+}
+.inq_email_info{
+    width: 551px;
+    height: 100%;
+    border: 0px none;
+    line-height: 36px;
+    padding: 0px 13px;
+    background-color: transparent;
+    font-size: 15px;
+}
+.inq_ico_arr{
+	width: 7px;
+	height: 5px;
+	background-position: 0 -40px;
+	background-image: url(../img/arrow.png);
+}
+.inq_wrap_select2{
+	margin-left: 10px;
+	float: left;
+	width: 282px;
+	background-color: #f9f9f9;
+	border: 1px solid #131212;
+	height: 38px;
+}
+.inq_link_select2{
+	
+}
+.inq_info_question{
+	float: left;
+    border-bottom: 1px solid #e8e8e8;
+}
+.inq_info_question dt{
+	float: left;
+    width: 132px;
+    padding: 28px 0 28px 19px;
+    font-size: 15px;
+    letter-spacing: -1px;
+}
+.inq_info_question label{
+	cursor: pointer;
+}
+.inq_link_more{
+	color: #2c91ef;
+}
+.inq_wrap_item{
+	float: right;
+	width: 578px;
+	height: 38px;
+	border: 1px solid black;
+}
+.inq_inp_info{
+	width: 551px;
+	height: 100%;
+	border: none 0;
+	line-height: 36px;
+	padding: 0 13px;
+	background-color: transparent;
+	font-size: 15px;
+	z-index: 10;
+}
+.inq_phone_out{
+	overflow: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+.inq_field_set{
+	border:none;	
+}
+.inq_place_holder{/* 국가검색 홀더 */
+	font-size:14px;
+	line-height:1.5;
+}
+.inq_middle_phone{
+	width:441px;
+	top: 8px;
+	left: 12px;
+	font-size: 15px;
+	z-index: 5;
+	color: #919191;
+}
+.inq_text_holder{,
+	
+}
+.inq_info_question{
+	float: left;
+	border-bottom: 0px;
+}
+.inq_wrap_item2{
+	height:261px;
+}
+.inq_inp_info{
+	padding: 14px;
+	resize: none;
+}
+.inq_info_agree{
+	float:left;
+	margin-left: 170px;
+}
+.inq_wrap_btn{
+	clear:both;
+}
+.inq_nation{
+	float:left;
+	width: 550px;
+	height: 38px;
+	font-size: 15px;
+	line-height:36px;
+	padding:0px 15px;
+	border: 1px solid black;
+	style= resize:none;
+}
+.inq_inp_info2{
+	width: 549px;
+	height: 230px;
+	padding: 14px;
+	resize: none;
+	border: 1px solid black;
+	float:left;
+}
+.inq_tbl_privacy td{
+	padding: 13px 17px;
+	color: #878787;
+	border-top: 1px solid #e8e8e8;
+}
+.inq_tbl_privacy{
+    color: #878787;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    width: 575px;
+}
+.inq_check_agreement{
+	-webkit-transform: scale(1.5);
+	}
+.inq_item_check{
+	font-size:14px;
+}
+.inq_btn_cs{
+	display: inline-block;
+    padding: 0 63px;
+    line-height: 40px;
+    height: 42px;
+    font-size: 13px;
+    float:right;
+    border-radius: 25px;
+    border:1px solid orange;
+    background-color:white;
+    cursor:pointer;
+    outline:0;
+}
+.inq_lab_check{
+	vertical-align:text-bottom;
+}
+::selection{
+	background:RGB(245,124,104,0.6);
+}
+.btn{
+	width: 73px;
+    display: inline-block;
+    height: 24px;
+    border: 1px solid black;
+    font-size: 13.3px;
+    align-content: center;
+    text-align: center;
+    background-color: blanchedalmond;
+    line-height: 24px;
+}
+
+
+
+
+/* placeholder 클릭만 해도 placeholder 내용 없애는 코드 */
+/* 4가지 브라우저를 호환합니다 우리는 개발자니깐요 */ 
+
+input:focus::-webkit-input-placeholder, 
+textarea:focus::-webkit-input-placeholder {/* WebKit browsers */ 
+color:transparent; 
+} 
+
+input:focus:-moz-placeholder, 
+textarea:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color:transparent; 
+}
+
+ input:focus::-moz-placeholder, 
+ textarea:focus::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:transparent; 
+  } 
+ 
+ input:focus:-ms-input-placeholder,
+ textarea:focus:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+ color:transparent; 
+ }
+

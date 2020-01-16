@@ -1,0 +1,329 @@
+@charset "EUC-KR";
+
+body{
+	margin: 0 0;
+	padding: 0 0;
+}
+#my_info_main_wrap{
+	min-width: 100%;
+	min-height:calc(100vh - 162px);
+	text-align: center;
+    margin-bottom: 20px;
+}
+#my_info_main_wrap-2{
+	width: 860px;
+	margin: 0 auto;
+}
+
+#my_info_h1_div{
+	border-bottom: 3px solid black;
+	text-align: left;
+	margin-top: 79px;
+	margin-bottom: 40px;
+}
+#my_info_h1{
+	font-size: 20px;
+}
+.my_info_table{
+	display: inline-block;
+	text-align: center;
+}
+#my_info_table{
+	margin-left:15px; 
+	margin-right:15px; 
+	padding: 0 0;
+	display: inline-block;
+	text-align: left;
+}
+
+.my_info_table.n-table-row th{
+	    font-weight: normal;
+}
+.my_info_table.n-table-row th,
+.my_info_table.n-table-row td{
+	padding: 15px 0;
+    box-sizing: border-box;
+    border-top: 1px solid #f1f1f1;
+    font-size: 14px;
+    text-align: left;
+}
+.my_info_table.n-table-row tr:first-child th,
+.my_info_table.n-table-row tr:first-child td{
+	border-top:none;
+}
+#my_info_tbody{
+	margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+    background: transparent;
+}
+#my_info_main_div{
+	background-color: white;
+	display: inline-block;	
+	text-align: center;
+	
+}
+.my_info_th{
+	padding: 13px 0;
+}
+.my_info_text{
+	margin: 0 0;
+}
+#my_info_btn{
+	background-color:white;
+	border: 1px solid #000;
+	border-radius: 25px;
+	padding: 5px 13px;
+	cursor:pointer;
+	font-size: 14px;
+	outline:none;
+	text-align: right;
+	margin-top: 15px;
+}
+#my_info_btn:active{
+	background-color: black;
+	color: white;
+	outline: none;
+}
+/*------------카테고리-----------------*/
+
+#my_info_category_container{
+	display: inline-block;	
+	width: 468px;
+	background-color: white;
+	border:1px solid gray;
+	vertical-align: top;
+	border-top:none;
+	border-right:none;
+	border-bottom:none;
+	
+}
+
+#my_info_category-wrap{
+	margin:0 50px; 
+}
+
+.my_info_category-anoun{
+	display: block;
+	font-weight: normal;
+	font-size:14px;
+	color:#3d3d3d;
+	text-align: center;
+	padding-bottom: 20px;
+	padding-top: 10px;
+	margin-left: 56px;
+}
+
+#my_info_category-list{
+	width:400px;
+	list-style: none;
+	display:flex;
+	align-items: center;
+	flex-wrap:wrap;
+	margin:0 auto;
+	padding:0;
+}
+.my_info_category-item{
+	margin: 5px 5px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.my_info_category-item span{
+	height:70px;
+	width:70px;
+	font-size:13px;
+	text-align: center;
+	line-height:70px;
+	outline:1px solid #b1b1b1;
+	cursor: pointer;
+}
+.my_info_category-item span:hover{
+	background-color: #fba621;
+	outline:none;
+}
+.member_category_check span{
+	background-color: #fba621;
+	outline:none;
+}
+.my_info_button_container{
+	display: inline-block;
+	text-align: right;
+	margin-top: 30px;
+    margin-left: 44px;
+}
+
+#my_info_before_btn, 
+#my_info_next_btn{
+	
+background-color:white;	
+border: 1px solid #000;	
+border-radius: 25px;	
+padding: 5px 13px;	
+outline:none;
+cursor:pointer;	
+font-size: 14px;	
+margin: 0 10px;
+}
+
+#my_info_before_btn:active, 
+#my_info_next_btn:hover{
+	background-color: #000;
+	color: white;
+	outline: none;
+}
+#my_info_p_div{
+	border-top:1px solid gray;
+	margin-top: 50px;
+	width: 350px;
+	text-align: left;
+}
+.my_info_p{
+	text-align: left;
+	font-size: 12px;
+}
+
+/* 회원탈퇴 페이지 */
+#my_info_leave{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    color: gray;
+    font-size: 12px;
+    padding: 0;
+    outline: none;
+}
+#my_info_layerLeave{
+	z-index:10021;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background-color: rgba(255, 255, 255, 1);
+	display: none;    
+}
+#my_info_layerLeave .link_close{
+	display: block;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    width: 20px;
+    height: 20px;
+}
+#my_info_layerLeave .img_ico {
+    background: url(//t1.daumcdn.net/brunch/static/img/help/pc/ico_view_cover.v4.png) no-repeat;
+    background-position: -90px 0;
+    outline: none;
+    cursor: pointer;
+}
+.text_hide {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    text-indent: -9988px;
+    border:none;
+}
+#my_info_pop{
+    width: 450px;
+    height: 440px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-top: -220px;
+    margin-left: -235px;
+}
+#my_info_leave_h2{
+	text-align: center;
+	margin-bottom: 10px;
+	    font-size: 30px;
+    color: #1b1b1b;
+    font-weight: 400;
+}
+#my_info_desc{
+	font-size: 12px;
+    color: #959595;
+    text-align: center;
+    line-height: 23px;
+}
+#my_info_desc b{
+	color: red;
+	font-weight: 400;
+}
+#my_info_layerLeave ul{
+	text-align: left;
+    border: solid 1px #dfdfdf;
+    width: 427px;
+    margin: 35px auto 24px;
+    padding: 17px 10px;
+    background-color: #fbfbfb;
+    list-style: none;
+}
+#my_info_layerLeave ul li{
+	font-size: 12px;
+    color: #959595;
+    height: 27px;
+    line-height: 27px;
+}
+#my_info_layerLeave .my_info_dot {
+    width: 2px;
+    height: 2px;
+    margin: 4px 10px;
+    background-color: #ccc;
+    display: inline-block;
+}
+#my_info_layerLeave .my_info_check{
+	position: absolute;
+    height: 18px;
+}
+#my_info_layerLeave .my_info_label_com{
+	font-size: 14px;
+    color: #666;
+    padding-left: 28px;
+	
+}
+#my_info_layerLeave .check_label_div{
+	text-align: center;
+}
+#my_info_layerLeave .my_info_confirm_btn{
+    width: 130px;
+    height: 40px;
+    border-radius: 25px;
+    border: solid 1px #000;
+    color: black;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: white;
+    margin-left: 156px;
+    cursor: pointer;
+    outline: none;
+}
+#my_info_layerLeave .my_info_confirm_btn:active{
+	background-color:#000;
+	color:#FFF;
+}
+.my_info_leave_text{
+	resize: none;
+    text-align: left;
+    border: solid 1px #dfdfdf;
+    background-color: #fbfbfb;
+    list-style: none;
+    outline: none;
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 410px;
+}
+
+#my_info_check_error{
+	width: 200px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 10px;
+    font-size: 12px;
+    margin: 0 auto;
+    color: red;
+    
+}

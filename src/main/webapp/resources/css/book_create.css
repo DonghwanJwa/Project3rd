@@ -1,0 +1,512 @@
+@charset "UTF-8";
+
+a {
+	text-decoration: none;
+	color: #333333;
+}
+
+[contenteditable], [contenteditable]:focus {
+	outline: 0px; /* 컨텐츠에디터블 박스포커스 파란 선 제거 */
+}
+
+#book_create_wrap {
+	
+}
+
+#book_create_base {
+	width: 940px;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+
+.ui-sortable {
+	padding-left: 0;
+}
+
+.book_create_about_div {
+	box-shadow: 4px 4px 7px #c0c0c0;
+}
+
+#book_create_announce{
+	height:50px;
+	display:flex;
+	align-items: center;
+}
+
+#book_create_anno_img{
+	width:25px;
+	height:25px;
+	object-fit:cover;
+	cursor: pointer;
+}
+
+#book_create_anno_img:hover ~#book_create_anno_cont{
+	display:inline;
+	opacity:1;
+}
+
+#book_create_anno_cont{
+    cursor: default;
+    padding: 7px;
+    position: relative;
+    width: 730px;
+    bottom: 50px;
+    z-index: 10;
+    font-size: 14px;
+    background-color:#f9cc5bde;
+ 	opacity:0;
+ 	display:inline;
+    -webkit-transition:display 1s, opacity 1s;
+    transition:display 1s, opacity 1s;
+    animation-name: anno;
+  	animation-duration:4s;
+}
+
+@-webkit-keyframes anno{
+  0% {
+    opacity:1;
+  }
+  80%{
+  	opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+#book_create_anno_cont span{
+	display:inline-block;
+	line-height: 22px;
+}
+
+#book_create_info {
+	display: flex;
+	width: 940px;
+}
+
+/* 책 커버 */
+#book_create_cover {
+	background-color: #f2f2f2;
+	position: relative;
+	display: inline-block;
+	height: 430px;
+	width: 300px;
+	border-radius: 2px 6px 6px 2px;
+	overflow: hidden;
+	margin-right: 20px;
+}
+
+#book_create_cover_img {
+	height: 430px;
+	width: 300px;
+	object-fit: cover;
+	background-repeat: no-repeat;
+	background-size: cover;
+    background-position: center;
+    background-image: url(/jamong.com/resources/img/book_cover.jpg);
+}
+
+#book_create_cover_imgFile {
+	display: none;
+}
+
+#book_create_cover_text {
+	position: absolute;
+	display: inline;
+	height: 430px;
+	width: 300px;
+	text-align: center;
+	left: 50%;
+	bottom: 0;
+	transform: translate(-50%);
+}
+
+#book_create_cover_head {
+	height: 240px;
+	margin: 0 50px;
+	margin-top: 90px;
+	background: #ffffffe0;
+	color: #333;
+}
+
+#book_create_cover_title {
+	font-family: 'NanumMyeongjo','serif';
+    display: table-cell;
+    vertical-align: middle;
+	width: 170px;
+	height: 160px;
+	line-height: 35px;
+	margin: 0;
+	padding: 0px 15px;
+	padding-top: 20px;
+	font-size: 22px;
+}
+
+#book_create_cover_title:empty::before {
+	content: "제목을 \A 입력하세요";
+	white-space: pre;
+	line-height: 1.35;
+	font-size: 23px;
+	cursor: text;
+	color: #ccc;
+	font-family: 'NanumMyeongjo', 'serif';
+	opacity: 1;
+}
+
+#book_create_cover_author {
+	display: block;
+	margin: 0;
+	padding: 0 15px;
+	padding-top: 10px;
+	height: 40px;
+	font-size: 16px;
+	line-height: 40px;	
+}
+
+#book_create_cover_bot {
+	display: block;
+	height: 40px;
+	margin: 0;
+	padding: 0 15px;
+	padding-top: 60px;
+	font-size: 16px;
+	color: #fff;
+	font-weight: bold;
+	text-shadow: 0 0 3px #333;
+}
+
+#book_create_cover_line {
+	width: 11px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+}
+
+#book_create_cover_line:after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2px;
+	height: 100%;
+	background: rgba(255, 255, 255.1);
+	content: '';
+}
+
+#book_create_cover_line:before {
+	position: absolute;
+	top: 0;
+	right: 2px;
+	width: 1px;
+	height: 100%;
+	background: rgba(0, 0, 0, .05);
+	content: '';
+}
+
+#book_create_cover_delete {
+	position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url(/jamong.com/resources/img/writepage_icon/b_del.png);
+    width: 33px;
+    height: 32px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0);
+    outline: none;
+}
+#book_create_cover_delete:hover {
+	background-image: url(/jamong.com/resources/img/writepage_icon/j_del.png);
+}
+
+/* 책 소개 */
+#book_create_intro {
+	width: 240px;
+	height: 390px;
+	border: 1px solid #c4c4c4;
+	margin-right: 20px;
+	padding: 40px 30px 0;
+}
+
+#book_create_intro_inner {
+	position: relative;
+}
+
+#book_create_intro_title {
+	padding: 0 20px 15px;
+	font-size: 15px;
+	line-height: 19px;
+}
+
+#book_create_intro_cont {
+	margin-top: 30px;
+	word-break: break-all;
+	word-wrap: break-word;
+	font-size: 13px;
+	line-height: 23px;
+	color: #666;
+}
+
+#book_create_intro_cont:empty::before {
+	content: "책 소개를 입력하세요";
+	font-size: 13px;
+	cursor: text;
+	color: #ccc;
+	font-family: 'NanumMyeongjo', 'serif';
+	opacity: 1;
+}
+
+#book_create_author_desc {
+	margin-top: 20px;
+}
+
+#book_create_author_name {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 24px;
+	color: #333;
+}
+
+#book_create_author_intro {
+	margin-top: 20px;
+}
+
+#book_create_author_intro_cont {
+	word-break: break-all;
+	word-wrap: break-word;
+	font-size: 13px;
+	line-height: 22px;
+	color: #666;
+}
+/* 저자 소개 */
+#book_create_author {
+	width: 300px;
+	height: 430px;
+	border: 1px solid #c4c4c4;
+}
+
+#book_create_author_wrap {
+	display: inline-block;
+	width: 300px;
+	height: 430px;
+}
+
+#book_create_author_head {
+	height: 97px;
+	background-color: RGB(245, 124, 104);
+}
+
+#book_create_author_main {
+	position: relative;
+	padding: 40px 30px 0;
+}
+
+#book_create_author_img {
+	position: absolute;
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+	border-radius: 50%;
+	top: -43px;
+	right: 33px;
+}
+
+#book_create_author_img img {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+}
+
+/* 글 리스트 */
+#post_list_ul {
+	border-right: none;
+	margin: 20px 10px 0px 10px;
+	display: inline-block;
+	width: 40%;
+	padding-left: 0;
+	overflow-y: auto;
+	height: 500px;
+	vertical-align: top;
+	box-shadow: 4px 4px 7px #c0c0c0;
+}
+
+#book_create_btn {
+	transform: translateY(160px);
+	display: inline-block;
+	vertical-align: top;
+}
+
+#book_create_function {
+	display: inline-block;
+	width: 135px;
+}
+
+#check_btn {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.btn {
+	width: 130px;
+	height: 40px;
+	border-radius: 25px;
+	border: 1px solid #DDD;
+	margin: 5px 0px 5px 0px;
+	background-color: #fff;
+	outline: none;
+	cursor: pointer;
+	color: #363636;
+	font-size: 15px;
+}
+
+.btn.checkAll, .btn.releaseAll {
+	background-color: #fff;
+	outline: none;
+	cursor: pointer;
+	color: #363636;
+	width: 85px;
+	font-size: 12px;
+}
+
+.btn:hover {
+	border: 2px solid orange;
+}
+
+.btn:active {
+	border: 2px solid orange;
+	background-color: #ffda6a;
+}
+
+#create_list_ul {
+	border-right: none;
+	margin: 20px 10px 0px 10px;
+	display: inline-block;
+	width: 40%;
+	padding-left: 0;
+	overflow-y: auto;
+	height: 500px;
+	vertical-align: top;
+	box-shadow: 4px 4px 7px #c0c0c0;
+}
+
+.post_list_cont {
+	border-bottom: 1px solid #DDD;
+	min-height: 30px;
+	margin: 7px;
+	padding: 5px;
+	background-color: #fff;
+	cursor: pointer;
+	text-align: center;
+	line-height: 30px;
+	display:flex;
+}
+
+.post_list_lock{
+	display:inline;
+	width:20px;
+	height:20px;
+}
+.post_list_lock_img{
+	width:20px;
+	height:20px;
+	padding-top: 4px;
+}
+
+.post_list_cont_title{
+	width: 332px;
+}
+
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="checkbox"]:checked+div.post_list_cont {
+	transform: scale(0.95, 0.9);
+	background-color: #fbfbfb;
+	background-image: url("/jamong.com/resources/img/bookcheck2.png");
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position-y: center;
+	background-position-x: 310px;
+}
+
+.ui-state-default {
+	list-style: none;
+}
+
+#create_book {
+	display: inline-block;
+}
+
+#create_book {
+	position: relative;
+	width: 290px;
+	height: 55px;
+	margin-left: 650px;
+	margin-top: 25px;
+	text-align: center;
+}
+
+.create_book_name {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: RGB(0, 0, 0, 0.6);
+	display: none;
+	z-index: 10020;
+	animation: fadein 1s;
+	-webkit-animation: fadein 1s;
+}
+
+.create_book_panel {
+	text-align: center;
+	width: 500px;
+	height: 470px;
+	background-color: #fff;
+	margin: auto;
+	z-index: 10;
+	transform: translateT(50%);
+	-webkit-transform: translateY(50%);
+	animation: fadein 1s;
+	-webkit-animation: fadein 1s;
+}
+.create_choice_wrap{
+	position: absolute;
+	top:0;
+	left: 0;
+	background-color: RGB(0,0,0,0.6);
+	display: none;
+	z-index: 10020;
+	animation: fadein 1s;
+	-webkit-animation: fadein 1s;
+}
+.create_save_panel{
+	text-align:center;
+	width:500px;
+	height:222px;
+	background-color:#FFF;
+	margin:auto;
+	margin-top:550px;
+	z-index:10;
+	transform:translateY(50%);
+	-webkit-transform:translateY(50%);
+	animation: fadein 1s;
+	-webkit-animation: fadein 1s;
+}
+.create_save_panel h3{
+	padding:15px 0px;
+	font-size:17px;
+}
+.create_save_panel td{
+	font-size:14px;
+}
+.create_save_panel caption{
+	padding-top:2px;
+	padding-bottom:2px;
+	fonx-size:15px;
+}
+::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}
+::-webkit-scrollbar-track {background: #efefef; -webkit-border-radius: 10px; border-radius:10px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2)}
+::-webkit-scrollbar-thumb {height: 50px; width: 50px; background: rgba(0,0,0,.2); -webkit-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1)}

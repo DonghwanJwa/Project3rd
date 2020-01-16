@@ -1,0 +1,59 @@
+@charset "UTF-8";
+/* admin_accuse.jsp */
+.admin_acc_title{
+	margin-left: 55px;
+}
+.adm_accuse_count{
+	padding-bottom:15px;
+}
+.admin_acc_main{
+	display: flex;
+    justify-content: center;
+    min-height: 400px;
+    width: 800px;
+    margin: 0 auto;
+}
+.admin_ac_main{
+	display: flex;
+    justify-content: center;
+    min-height: 500px;
+    width: 800px;
+    margin: 0 auto;
+}
+#adm_accuse_table{
+	width:800px;
+	font-size:12px;
+}
+#ac_cont_td{
+   overflow: hidden;
+   word-wrap: break-word;   
+   white-space: normal;    
+   text-overflow: ellipsis;
+   display: -webkit-box; 
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical;
+	line-height: 18px;
+    height: 15px;
+}
+.ac_list_underline {
+	padding: .5em .2em;
+}
+#ac_paging {
+	padding: 1em .2em;
+}
+#ac_search_interface {
+	display:flex;
+	justify-content:center;
+}
+#search_name {
+	margin: 0 7px;
+}
+.ac_adm_tr{
+	cursor:pointer;
+}
+.ac_adm_tr:hover{
+	background-color:aliceblue;
+}
+.search_field {
+	margin: 0 5px;
+}

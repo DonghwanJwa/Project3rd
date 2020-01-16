@@ -1,0 +1,140 @@
+@charset "UTF-8";
+/* admin_accuse_info */
+.adm_ac_file{
+	width:858px;
+}
+.ac_button{
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    background-color: white;
+    padding: 5px 13px;
+    cursor: pointer;
+    margin: 0 3px;
+    margin-top: 10px;
+    outline:none;
+}
+.ac_adm_table2{
+	width:900px;
+}
+.ac_adm_table3{
+	width:900px;
+}
+#ac_adm_button{
+	margin:10px 0;
+	display:flex;
+	justify-content:flex-end;
+}
+#ac_adm_remail{
+	width: 870px;
+	height: 230px;
+	padding: 14px;
+	resize: none;
+	border: 1px solid black;
+	float:left;
+
+}
+#ac_request_btn{
+	margin-left:832px;
+	margin-top:20px;
+}
+.ac_adm_request{
+	display:none;
+}
+#ac_del_btn{
+	margin-right:20px;
+}
+
+
+/* textarea 클릭만해도 placeholder 없애는 코드 */
+
+input:focus::-webkit-input-placeholder, 
+textarea:focus::-webkit-input-placeholder {/* WebKit browsers */ 
+color:transparent; 
+} 
+
+input:focus:-moz-placeholder, 
+textarea:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color:transparent; 
+}
+
+ input:focus::-moz-placeholder, 
+ textarea:focus::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:transparent; 
+  } 
+ 
+ input:focus:-ms-input-placeholder,
+ textarea:focus:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+ color:transparent; 
+ }
+ 
+ /*로딩화면을 위한 css*/
+.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background: rgba(0,0,0,0.8);
+}
+.wrap-loading div{ /*로딩 이미지*/
+    position: fixed;
+    top:50%;
+    left:50%;
+    margin-left: -21px;
+    margin-top: -21px;
+}
+#ac_complete_div{
+	display: flex;
+    justify-content: center;
+    width: 900px;
+    margin: 0 auto;
+    margin-top:60px;
+}
+#ac_adm_complete{
+    width: 900px;
+   	margin-top:100px;
+}
+#adm_ac_replyname{
+
+	}
+#ac_inq_field{
+}
+.ac_adm_retime{
+	padding-bottom:15px;
+	background-color:white;
+}
+.ac_table_div{
+	border:1px solid black;
+}
+.ac_adm_readmin{
+	background-color:white;
+	border:0px;
+}
+#adm_ac_field{
+	vertical-align: top;
+	text-align: left;
+	padding: 0px 15px;
+	font-size:14px;
+}
+table{
+	width:900px;
+	border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin: auto auto;
+    border-collapse: collapse;
+    border-color: gray;
+    font-size:14px;
+}
+table th{
+	font-weight: bold;
+	color:black;
+	background:aliceblue;
+}
+table td{
+    background: white;
+}
+.adm_inq_main{
+	font-size:14px;
+}

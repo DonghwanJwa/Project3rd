@@ -1,0 +1,91 @@
+@charset "UTF-8";
+html{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	margin: 0px;
+	padding: 0px;
+}
+#pass_modify_main_wrap{
+    background-image: url(../img/background_img/background_on.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: calc(100vh - 162px);
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#pass_modify_main_div{
+    background-color: white;
+    width: 310px;
+    margin: 0px auto;
+    text-align: center;
+ 
+	
+}
+#pass_modify_sub_div{
+	background-color:white;
+	width:310px;
+	height: 200px;
+	margin: 0px auto;
+	padding-top:50px;
+	text-align: center;
+	
+}
+
+#pass_modify_img_logo{
+	margin-top: 40px;
+	width: 200px;
+}
+#pass_modify_id{
+	cursor: default;
+	pointer-event:none;
+}
+.pass_modify_text{
+    width: 180px;
+    height: 20px;
+    font-size: 15px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
+
+#pass_modify_pass:hover{
+	
+	border-bottom: 2px solid orange;	
+}
+#pass_modify_pass:focus{
+	border-bottom: 2px solid orange;
+}
+.pass_modify_error{
+	width: 200px;
+	height: 20px;
+	line-height:20px;
+	margin-top:10px;
+	font-size:12px;
+	padding-left: 50px;
+	color: red;
+	
+}
+#pass_modify_lastbtn{
+	width: 190px;
+    height: 35px;
+    font-size: 14px;
+    background-color: white;
+    border: solid 2px orange;
+    outline: 0;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#pass_modify_lastbtn:hover{
+	background-color: orange;
+	color:white;
+}
+
+

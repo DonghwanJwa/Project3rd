@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+ <settings>
+  <setting name="jdbcTypeForNull" value="NULL"/>
+  <!-- view에서 전달되는 인자값이 null값일때 mappers 내 xml에서 받아들일 수 있게 처리하는 setting    -->
+  <!-- 참고사이트 : https://cmleo.tistory.com/36 -->
+ </settings>
+ <typeAliases>
+  <typeAlias type="com.jamong.domain.AccuseVO" alias="ac"/> <!-- 신고하기 -->
+  <typeAlias type="com.jamong.domain.AuthorVO" alias="aut"/> <!-- 작가신청 -->
+  <typeAlias type="com.jamong.domain.BoardVO" alias="b"/> <!-- 게시판 -->
+  <typeAlias type="com.jamong.domain.BookVO" alias="book"/> <!-- 책 -->
+  <typeAlias type="com.jamong.domain.CategoryVO" alias="cat"/> <!-- 카테고리 -->
+  <typeAlias type="com.jamong.domain.InquireVO" alias="inq"/> <!-- 문의 -->
+  <typeAlias type="com.jamong.domain.MemberVO" alias="m"/> <!-- 회원 -->
+  <typeAlias type="com.jamong.domain.OfferVO" alias="off"/> <!-- 작가에게 제안하기 -->
+  <typeAlias type="com.jamong.domain.RecommendVO" alias="rec"/> <!-- 추천 -->
+  <typeAlias type="com.jamong.domain.ReplyVO" alias="rep"/> <!-- 덧글&답글 -->
+  <typeAlias type="com.jamong.domain.SubscribeVO" alias="sub"/> <!-- 구독하기 -->
+  <typeAlias type="com.jamong.domain.SympathyVO" alias="sym"/> <!-- 공감 -->
+  <typeAlias type="com.jamong.domain.AdminVO" alias="adm"/> <!-- 관리자 -->
+  <typeAlias type="com.jamong.domain.FeedVO" alias="feed"/> <!-- 피드 -->
+  <typeAlias type="com.jamong.domain.NoticeVO" alias="notice"/> <!-- 공지사항 -->
+  <typeAlias type="com.jamong.domain.RequestAuthorVO" alias="ra"/> <!-- 관리자 작가신청 열람 -->
+  <typeAlias type="com.jamong.domain.AdminOfferVO" alias="ao"/> <!-- 관리자 작가제안 열람 -->
+  <typeAlias type="com.jamong.domain.VisitVO" alias="v" /><!-- 방문자수 카운터 -->
+ </typeAliases>
+</configuration>

@@ -1,0 +1,498 @@
+@charset "UTF-8";
+
+a {
+	text-decoration: none;
+	color: #333333;
+}
+
+ul li {
+	list-style: none;
+}
+
+#search_wrap{
+    min-height: calc(100vh - 187px);
+}
+
+/* 검색 결과 페이지 해더 부분 */
+#search_header {
+	width: 100%;
+	height: 133px;
+	background: #fff;
+	margin-top: 1px;
+}
+
+#search_area{
+	
+}
+
+#search_area_align{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	margin:0 auto;
+	margin-top: 25px;
+}
+
+#search_submit{
+	border: none;
+	background-color: transparent;
+	background-image: url(/jamong.com/resources/img/glass.png);
+	background-repeat: no-repeat; 
+	background-position: center;
+	background-size: cover;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    cursor: pointer;
+	outline: none;
+}
+
+#search_keyword {
+	width: 500px;
+	height: 60px;
+	font-size: 32px;
+	border: 0px;
+	text-align: center;
+	display: block;
+	outline: none;
+	border-bottom: 2px solid #ffdabb;
+	font-family: 'NanumGothic', 'serif';	
+	margin-left: 30px;
+}
+
+#search_type {
+	width: 870px;
+	margin-top: 4px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.btn.non-select {
+	background-color: #fee2c0;
+	color: #a1a1a1;
+}
+
+.btn.type_btn {
+	width: 120px;
+	margin-top: 25px;
+	border-radius: 15px 15px 0px 0px;
+	background-color: #fee2c0;
+}
+
+.btn.type_btn.view {
+	width: 120px;
+	height: 42px;
+    margin-top: 24px;
+	border-bottom: thick;
+	border-bottom-color: #fff;
+	border-radius: 15px 15px 0px 0px;
+	background-color: #fff;
+	position: relative;
+}
+
+.btn {
+	width: 80px;
+	height: 40px;
+	border-radius: 22px;
+	border: 1px solid orange;
+	margin: 5px 0px 5px 0px;
+	background-color: #fff;
+	outline: none;
+	cursor: pointer;
+	color: #363636;
+}
+
+.btn:hover {
+	border: 3px solid orange;
+}
+
+.btn:active {
+	background-color: #fedca9;
+}
+/*배경 이미지*/
+#search_result_contents {
+	width: 940px;    
+	min-height: calc(100vh - 360px);
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 50px;
+	border: 1px solid orange;
+	background: #fff;
+}
+
+.search_result_none{
+	min-height: calc(100vh - 480px);
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search_result_none span{
+	font-size: 20px;
+    font-weight: bold;
+}
+
+/* '글' 검색 결과 */
+#search_result_post {
+/* 	display: none; */
+}
+
+#search_result_post_type {
+	margin: 5px 5px 5px 760px;
+}
+
+#search_result_post_main {
+	margin: 9px;
+}
+
+#search_result_post_main .post_cont_wrap {
+	display: flex;
+	width: 800px;
+	height: 210px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-top: 1px solid #c0c0c0;
+}
+
+.post_cont_catbook{
+	height:17px;
+	display:flex;
+	justify-content: flex-start;
+	margin-bottom: 5px;
+    font-size:13px;
+	font-family: 'NanumMyeongjo','serif';
+	font-weight: bold;
+}
+
+.post_cont_cat{
+	margin-right:10px;
+	color:#ff8040;
+	text-decoration: none;
+}
+.post_cont_cat:hover{
+	text-decoration: underline;
+}
+
+.post_cont_book{
+	color:#e0849d;
+}
+.post_cont_book:hover{
+	text-decoration: underline;
+}
+
+.post_img_wrap{
+	margin-top: 25px;
+}
+
+.post_img {
+	width: 200px;
+	height: 170px;
+	object-fit: cover;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+#post_text {
+	display: inline-block;
+	width: 500px;
+	padding: 25px;
+}
+
+#post_text.post_no_img_text{
+	width: 730px;
+}
+
+#post_title {
+	font-family: 'NanumMyeongjo','serif';
+	font-weight: bold;
+	font-size: 20px;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+#post_cont {
+	width: 500px;
+	padding: 4px;
+	margin: 0;
+	font-size: 15px;
+	overflow: hidden;
+	white-space: normal;	 
+	word-wrap: break-word;	
+	text-overflow: ellipsis;
+	display: -webkit-box; 
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	height: 75px;
+	line-height: 25px;
+	margin-bottom:10px;
+}
+
+#post_cont.post_no_img_cont{
+	width: 730px;
+}
+
+.post_writer {
+	font-size: 16px;
+	text-align: right;
+	padding: 2px;
+	display:inline-block;
+	color:#ff8040;
+	text-decoration: none;
+}
+.post_writer:hover{
+	text-decoration: underline;
+}
+
+.post_writer i{
+	font-family: "NanumPen", "serif";
+}
+
+.post_ago {
+	font-size: 16px;
+	display:inline-block;
+}
+/* '글' 검색 결과 */
+
+/* '작품' 검색 결과 */
+#search_result_work {
+	
+}
+
+#search_result_work_type {
+	margin: 25px 15px 15px 800px;
+	width: 95px;
+}
+
+#search_result_work_select {
+	width: 95px;
+	height: 20px;
+	font-size: 13px;
+	text-align: center;
+}
+
+#search_result_work_main {
+	width: 922px;
+	margin: 25px 9px 60px 9px;
+	flex-wrap: nowrap;
+}
+
+#search_result_work_main .work_cont {
+	display: inline-block;
+	height: 390px;
+	margin: 16px 20px;
+	position: relative;
+	width: 260px;
+	border: 1px solid #dadada;
+	border-radius: 2px 6px 6px 2px;
+}
+
+#work_img {
+	width: 260px;
+	height: 390px;
+	object-fit: cover;
+	position: relative;
+	filter: brightness(50%);
+	border-radius: 2px 6px 6px 2px;
+}
+
+.work_cont_view {
+	position: absolute;
+	display: inline;
+	text-align: center;
+	height: 390px;
+	width: 260px;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.work_cont_view_top {
+	height: 230px;
+	margin: 0 40px;
+	margin-top: 85px;
+	background: #fff;
+	color: #333;
+}
+
+.work_cont_view_top strong {
+	font-family: 'NanumMyeongjo','serif';
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0px 15px;
+    padding-top: 19px;
+    font-size: 21px;
+    line-height: 33px;
+    height: 160px;
+    width: 160px;
+}
+
+.work_cont_view_top span {
+	display: block;
+	margin: 0;
+	padding: 0px 15px;
+	height: 40px;
+	font-size: 14px;
+	line-height: 40px;
+}
+
+.work_cont_view_bottom {
+	display: block;
+	height: 40px;
+	margin: 0;
+	padding: 0 15px;
+	padding-top: 45px;
+	font-size: 16px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.work_cont_inner_line{
+	width: 11px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.work_cont_inner_line:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: rgba(255,255,255,.1);
+    content: '';
+}
+
+.work_cont_inner_line:before {
+    position: absolute;
+    top: 0;
+    right: 2px;
+    width: 1px;
+    height: 100%;
+    background: rgba(0,0,0,.05);
+    content: '';
+}
+
+#work_title {
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%);
+	width: 220px;
+	height: auto;
+	z-index: 2;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+#work_author {
+	position: absolute;
+	top: 73%;
+	right: 2.5em;
+	color: white;
+}
+/* '작품' 검색 결과 */
+
+/* '작가' 검색 결과 */
+#search_result_author {
+	
+}
+
+#search_result_author_select {
+	width: 110px;
+	height: 20px;
+	font-size: 13px;
+	text-align: center;
+}
+
+#search_result_author_type {
+	width: 110px;
+	margin: 25px 10px 10px 790px;
+}
+
+#search_result_author_main {
+	width: 900px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#search_result_author_main .author_cont {
+	width: 900px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#search_author_list{
+	display:flex;
+	flex-wrap: wrap;
+	margin:0;
+	padding:0;
+}
+#search_author_list li{
+	margin: 17px;
+}
+
+#search_author_list li a{
+	display: inline-block;
+}
+
+.search_result_author_profile {
+	width: 410px;
+	height: 150px;
+	border: 1px solid orange;
+	display: flex;
+}
+
+.search_result_author_profile_img {
+	object-fit: cover;
+	width: 100px;
+    height: 100px;
+	border-radius: 100%;
+	display: inline-block;
+	padding: 15px;
+}
+
+.search_result_author_profile_info {
+	width: 255px;
+    padding: 15px;
+}
+
+.search_result_author_name {
+	font-family: 'NanumMyeongjo','serif';
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.search_result_author_introduce {
+	font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    height: 60px;
+    line-height: 20px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    margin-top: 5px;
+}
+
+.search_result_author_tag {
+	display:flex;
+	flex-wrap: wrap;
+    font-size: 12px;
+}
+
+.search_result_author_tag span{
+	margin-right: 10px;
+}
+/* '작가' 검색 결과 */

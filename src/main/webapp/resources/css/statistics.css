@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#stat_title_name{
+	font-family: 'NanumMyeongjo','serif';
+    font-size: 45px;
+    text-align: center;
+    border-bottom: 1px solid #ededed;
+}
+#stat_allCount{
+	text-align: center;
+    font-size: 15px;
+    font-family: "NanumMyeongjo";
+    margin-top:25px;
+}
+#stat_allCount span{
+	margin:10px
+}

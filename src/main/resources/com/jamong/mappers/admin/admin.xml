@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+
+<resultMap type="b" id="boardMap">
+  <id column="bo_no" property="bo_no" />
+  <result column="bo_title" property="bo_title" />
+  <result column="bo_subtitle" property="bo_subtitle" />
+  <result column="bo_cont" property="bo_cont" />
+  <result column="bo_thumbnail" property="bo_thumbnail" />
+  <result column="bo_hit" property="bo_hit" />
+  <result column="bo_date" property="bo_date" />
+  <result column="bo_editdate" property="bo_editdate" />
+  <result column="bo_lock" property="bo_lock" />
+  <result column="bo_like" property="bo_like" />
+  <result column="book_order" property="book_order" />
+  <result column="cat_name" property="cat_name" />
+  <result column="mem_no" property="mem_no" />
+  <result column="book_no" property="book_no" />
+  <result column="bo_titlespace" property="bo_titlespace" />
+  <result column="bo_color" property="bo_color" />
+  
+ <association javaType="m" property="memberVO">
+  <id column="mem_no" property="mem_no" />
+  <result column="mem_id" property="mem_id" />
+  <result column="mem_name" property="mem_name" />
+  <result column="mem_birth1" property="mem_birth1" />
+  <result column="mem_birth2" property="mem_birth2" />
+  <result column="mem_birth3" property="mem_birth3" />
+  <result column="email_id" property="email_id" />
+  <result column="email_domain" property="email_domain" />
+  <result column="mem_phone01" property="mem_phone01" />
+  <result column="mem_phone02" property="mem_phone02" />
+  <result column="mem_phone03" property="mem_phone03" />
+  <result column="mem_date" property="mem_date" />
+  <result column="mem_author" property="mem_author" />
+  <result column="mem_state" property="mem_state" />
+  <result column="profile_photo" property="profile_photo" />
+  <result column="profile_cont" property="profile_cont" />
+  <result column="mem_state" property="mem_state" />
+  <result column="mem_nickname" property="mem_nickname" />
+  <result column="mem_keyword" property="mem_keyword" />
+  <result column="mem_fav1" property="mem_fav1" />
+  <result column="mem_fav2" property="mem_fav2" />
+  <result column="mem_fav3" property="mem_fav3" />
+  <result column="mem_portfolio" property="mem_portfolio" />
+ </association>
+ </resultMap>
+ 
+	<select id="adm_login" resultType="adm">
+		select * from jamong_admin where adm_id=#{adm_id}
+	</select>
+	
+	<select id="newNotice" resultType="notice">
+		select * from adm_notice order by noti_date desc
+	</select>
+	
+	<select id="articleCount" resultType="int">
+		SELECT COUNT(bo_no) FROM (SELECT board.* from board order by bo_editdate desc) b, member m 
+		<where>
+		b.mem_no = m.mem_no AND b.bo_lock != 1
+		
+		<if test="find_field == 'all'"></if>
+		<if test="find_field == 'hide'">
+		AND b.bo_lock = 0
+		</if>
+		<if test="find_field == 'block'">
+		AND b.bo_lock = 2
+		</if>
+		<if test="find_field == 'delete'">
+		AND b.bo_lock = 3
+		</if>
+		
+		<if test="find_field2 == 'all'"></if>
+		
+		<if test="find_field2 == 'cat1'">
+		AND b.cat_name='감성·에세이'
+		</if>
+		<if test="find_field2 == 'cat2'">
+		AND b.cat_name='건강·운동'
+		</if>
+		<if test="find_field2 == 'cat3'">
+		AND b.cat_name='건축·설계'
+		</if>
+		<if test="find_field2 == 'cat4'">
+		AND b.cat_name='글쓰기'
+		</if>
+		<if test="find_field2 == 'cat5'">
+		AND b.cat_name='문화·예술'
+		</if>
+		<if test="find_field2 == 'cat6'">
+		AND b.cat_name='사진·촬영'
+		</if>
+		<if test="find_field2 == 'cat7'">
+		AND b.cat_name='시사·이슈'
+		</if>
+		<if test="find_field2 == 'cat8'">
+		AND b.cat_name='심리 탐구'
+		</if>
+		<if test="find_field2 == 'cat9'">
+		AND b.cat_name='여행'
+		</if>
+		<if test="find_field2 == 'cat10'">
+		AND b.cat_name='영화 리뷰'
+		</if>
+		<if test="find_field2 == 'cat11'">
+		AND b.cat_name='요리·레시피'
+		</if>
+		<if test="find_field2 == 'cat12'">
+		AND b.cat_name='육아'
+		</if>
+		<if test="find_field2 == 'cat13'">
+		AND b.cat_name='음악'
+		</if>
+		<if test="find_field2 == 'cat14'">
+		AND b.cat_name='인문학·철학'
+		</if>
+		<if test="find_field2 == 'cat15'">
+		AND b.cat_name='IT'
+		</if>
+		
+		<if test="find_field3 == 'all'"></if>
+		
+		<if test="find_field3 == 'id'">
+		AND m.mem_id like #{find_name}
+		</if>
+		<if test="find_field3 == 'nickname'">
+		AND m.mem_nickname like #{find_name}
+		</if>
+		<if test="find_field3 == 'name'">
+		AND m.mem_name like #{find_name}
+		</if>
+		<if test="find_field3 == 'title'">
+		AND b.bo_title like #{find_name}
+		</if>
+		</where>
+	</select>
+	
+	
+	<select id="articleList" resultMap="boardMap">
+		SELECT * FROM (SELECT rowNum r, bo_no, bo_title, bo_lock, bo_date, bo_editdate, cat_name, mem_no FROM (SELECT board.* FROM board
+		<where>
+		bo_lock != 1
+		<if test="find_field == 'all'"></if>
+		<if test="find_field == 'all'">
+		AND bo_lock = 0
+		</if>
+		<if test="find_field == 'block'">
+		AND bo_lock = 2
+		</if>
+		<if test="find_field == 'delete'">
+		AND bo_lock = 3
+		</if>
+		
+		<if test="find_field2 == 'all'"></if>
+		
+		<if test="find_field2 == 'cat1'">
+		AND cat_name='감성·에세이'
+		</if>
+		<if test="find_field2 == 'cat2'">
+		AND cat_name='건강·운동'
+		</if>
+		<if test="find_field2 == 'cat3'">
+		AND cat_name='건축·설계'
+		</if>
+		<if test="find_field2 == 'cat4'">
+		AND cat_name='글쓰기'
+		</if>
+		<if test="find_field2 == 'cat5'">
+		AND cat_name='문화·예술'
+		</if>
+		<if test="find_field2 == 'cat6'">
+		AND cat_name='사진·촬영'
+		</if>
+		<if test="find_field2 == 'cat7'">
+		AND cat_name='시사·이슈'
+		</if>
+		<if test="find_field2 == 'cat8'">
+		AND cat_name='심리 탐구'
+		</if>
+		<if test="find_field2 == 'cat9'">
+		AND cat_name='여행'
+		</if>
+		<if test="find_field2 == 'cat10'">
+		AND cat_name='영화 리뷰'
+		</if>
+		<if test="find_field2 == 'cat11'">
+		AND cat_name='요리·레시피'
+		</if>
+		<if test="find_field2 == 'cat12'">
+		AND cat_name='육아'
+		</if>
+		<if test="find_field2 == 'cat13'">
+		AND cat_name='음악'
+		</if>
+		<if test="find_field2 == 'cat14'">
+		AND cat_name='인문학·철학'
+		</if>
+		<if test="find_field2 == 'cat15'">
+		AND cat_name='IT'
+		</if>
+		
+		<if test="find_field3 == 'all'"></if>
+		
+		<if test="find_field3 == 'title'">
+		AND bo_title like #{find_name}
+		</if>
+		</where>
+		
+		ORDER BY bo_editdate DESC)) b
+		INNER JOIN (SELECT * FROM member
+		
+		<where>
+		<if test="find_field3 == 'id'">
+		AND mem_id like #{find_name}
+		</if>
+		<if test="find_field3 == 'nickname'">
+		AND mem_nickname like #{find_name}
+		</if>
+		<if test="find_field3 == 'name'">
+		AND mem_name like #{find_name}
+		</if>
+		</where>
+		) m
+		ON b.mem_no = m.mem_no
+		WHERE r &gt;= #{startrow} and r &lt;= #{endrow} 
+		ORDER BY b.bo_editdate DESC
+	</select>
+</mapper>

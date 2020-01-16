@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+a {
+	text-decoration: none;
+	color: #333333;
+}
+
+ul li {
+	list-style: none;
+}
+
+.new_post_cont_catbook{
+	height: 17px;
+	display:flex;
+	justify-content: flex-start;
+	margin-bottom: 5px;
+	font-size: 13px;
+	font-family: 'NanumMyeongjo','serif';
+	font-weight: bold;	
+}
+
+.new_post_cont_cat{
+	margin-right: 10px;
+	color: #ff8040;
+	text-decoration: none;
+}
+
+.new_post_cont_cat:hover{
+	text-decoration: underline;
+}
+
+.new_post_cont_book{
+	color: #e0849d;
+}
+
+#new_post_title {
+	font-family: 'NanumMyeongjo','serif';
+	font-size: 45px;
+	text-align: center;
+	font-weight: bold;
+	border-bottom: 1px solid #ededed;
+}
+
+#new_post_contents {
+	background-color: #fff;
+	width: 960px;
+	height: auto;
+	margin: 0 auto;
+}
+
+#new_post_loading {
+	padding: 15px;
+	width: 930px;
+}
+
+#new_post_loading_cont {
+	border-bottom: 2px solid #808080;
+	padding: 15px;
+}
+
+#new_post_loading_cont_text {
+	margin-left: 15px;
+	display: inline-block;
+	width: 600px;
+	height: 180px;
+	line-height: 1.6em;
+}
+
+#new_post_loading_cont_text.new_post_no_img_text{
+	width: 800px;
+}
+
+#new_post_loading_cont_text_title {
+	font-family: 'NanumMyeongjo','serif';
+	font-size: 25px;
+	padding: 20px 0;
+}
+
+#new_post_loading_cont_text_cont {
+	display: inline-block;
+	width: 600px;
+	padding:0;
+}
+
+#new_post_loading_cont_text_cont.new_post_no_img_cont{
+	width: 800px;
+}
+
+#new_post_loading_cont_text_writer {
+	display: inline-block;
+	color: #ff8040;
+}
+
+#new_post_loading_cont_text_writer i {
+	font-family: "NanumPen", "serif";
+}
+
+#new_post_loading_cont_text_tag {
+	display: inline-block;
+	width: 4px;
+	height: 4px;
+	padding:2px;
+}
+
+#new_post_loading_cont_text_ago {
+	display: inline-block;
+	font-size:13px;
+}
+
+#new_post_loading_cont_img {
+	display: inline-block;
+	object-fit: cover;
+	width: 200px;
+	height: 185px;
+	margin: 0;
+	vertical-align: bottom;
+	margin: auto 0px;
+}
+
+#new_post_loading_cont_text_cont {
+	height: 100px;
+	margin: 0;
+	font-size: 15px;
+	overflow: hidden;
+	white-space: normal;
+	word-spacing: break-word;
+	text-overflow: elipsis;
+	padding-right:30px;
+}
+
+/*로딩화면을 위한 css*/
+.wrap-loading { /*화면 전체를 어둡게 합니다.*/
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.wrap-loading div { /*로딩 이미지*/
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -21px;
+	margin-top: -21px;
+}

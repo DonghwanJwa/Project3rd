@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="visit">
+ <insert id="InsertVisitor">
+  INSERT INTO visit VALUES(visit_no_seq.nextval,sysdate)
+ </insert>
+ 
+ <select id="DayVisitorCount" resultType="v">
+  <![CDATA[
+  SELECT TO_DATE(D.DAY,'YYYYMMDD') visit_date,COUNT(v.visit_no) COUNT
+  FROM (SELECT TO_CHAR(SYSDATE - (LEVEL - 1),'YYYYMMDD') DAY
+  FROM DUAL CONNECT BY LEVEL <= 7) D
+  LEFT OUTER JOIN visit v
+  ON TO_CHAR(v.visit_date,'YYYYMMDD') = D.DAY
+  GROUP BY TO_DATE(D.DAY,'YYYYMMDD')
+  ORDER BY TO_DATE(D.DAY,'YYYYMMDD')
+  ]]>
+ </select>
+ 
+ <select id="TotalCount" resultType="v">
+  SELECT COUNT(bo_no) COUNT FROM board WHERE bo_lock != 3
+  UNION ALL
+  SELECT COUNT(book_no) FROM book
+  UNION ALL
+  SELECT COUNT(mem_no) FROM member WHERE mem_state = 1 OR mem_state = 0
+  UNION ALL
+  SELECT COUNT(visit_no) FROM visit
+ </select>
+</mapper>

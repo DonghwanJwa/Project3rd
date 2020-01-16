@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+ 
+ <resultMap type="b" id="boardMap">
+  <id column="bo_no" property="bo_no" />
+  <result column="bo_title" property="bo_title" />
+  <result column="bo_subtitle" property="bo_subtitle" />
+  <result column="bo_cont" property="bo_cont" />
+  <result column="bo_thumbnail" property="bo_thumbnail" />
+  <result column="bo_hit" property="bo_hit" />
+  <result column="bo_date" property="bo_date" />
+  <result column="bo_editdate" property="bo_editdate" />
+  <result column="bo_lock" property="bo_lock" />
+  <result column="bo_like" property="bo_like" />
+  <result column="book_order" property="book_order" />
+  <result column="cat_name" property="cat_name" />
+  <result column="mem_no" property="mem_no" />
+  <result column="book_no" property="book_no" />
+  <result column="bo_titlespace" property="bo_titlespace" />
+  <result column="bo_color" property="bo_color" />
+  
+ <association javaType="m" property="memberVO">
+  <id column="mem_no" property="mem_no" />
+  <result column="mem_id" property="mem_id" />
+  <result column="mem_name" property="mem_name" />
+  <result column="mem_birth1" property="mem_birth1" />
+  <result column="mem_birth2" property="mem_birth2" />
+  <result column="mem_birth3" property="mem_birth3" />
+  <result column="email_id" property="email_id" />
+  <result column="email_domain" property="email_domain" />
+  <result column="mem_phone01" property="mem_phone01" />
+  <result column="mem_phone02" property="mem_phone02" />
+  <result column="mem_phone03" property="mem_phone03" />
+  <result column="mem_date" property="mem_date" />
+  <result column="mem_author" property="mem_author" />
+  <result column="mem_state" property="mem_state" />
+  <result column="profile_photo" property="profile_photo" />
+  <result column="profile_cont" property="profile_cont" />
+  <result column="mem_state" property="mem_state" />
+  <result column="mem_nickname" property="mem_nickname" />
+  <result column="mem_keyword" property="mem_keyword" />
+  <result column="mem_fav1" property="mem_fav1" />
+  <result column="mem_fav2" property="mem_fav2" />
+  <result column="mem_fav3" property="mem_fav3" />
+  <result column="mem_portfolio" property="mem_portfolio" />
+ </association>
+ </resultMap>
+ 
+ <insert id="bo_insert" parameterType="java.util.HashMap">
+  INSERT INTO board (bo_no,bo_title,bo_subtitle,bo_cont,bo_thumbnail,bo_date,bo_lock,cat_name,mem_no,bo_titlespace,bo_color)
+  VALUES(bo_no_seq.nextval,#{b.bo_title},#{b.bo_subtitle},#{b.bo_cont},#{b.bo_thumbnail},sysdate,
+  #{b.bo_lock},#{b.cat_name},#{b.mem_no},#{b.bo_titlespace},#{b.bo_color})
+ </insert>
+ 
+ <select id="bo_cont" resultMap="boardMap">
+  SELECT *
+  FROM board b, member m
+  WHERE b.mem_no=m.mem_no
+  AND bo_no=#{bo_no}
+ </select>
+ 
+ <select id="NewArticleNumber" resultType="b">
+  SELECT * FROM board WHERE bo_no IN (SELECT MAX(bo_no) FROM board WHERE mem_no=#{mem_no})
+ </select>
+ 
+ <select id="NextBoardCont" resultMap="boardMap" parameterType="java.util.HashMap">
+  <![CDATA[
+  SELECT *
+  FROM board b, member m
+  WHERE m.mem_id=#{mem_id}
+  AND bo_no IN ( SELECT MIN(bo_no)
+  				 FROM board b, member m
+  				 WHERE 1=1
+  				 AND b.mem_no=m.mem_no
+  				 AND b.bo_lock=1
+  				 AND m.mem_id=#{mem_id}
+  				 AND b.bo_no > #{bo_no})
+  ]]>
+ </select>
+ 
+ <select id="PreBoardCont" resultMap="boardMap" parameterType="java.util.HashMap">
+  <![CDATA[
+  SELECT *
+  FROM board b, member m
+  WHERE m.mem_id=#{mem_id}
+  AND bo_no IN ( SELECT MAX(bo_no)
+  				 FROM board b, member m
+  				 WHERE 1=1
+  				 AND b.mem_no=m.mem_no
+  				 AND b.bo_lock=1
+  				 AND m.mem_id=#{mem_id}
+  				 AND b.bo_no < #{bo_no})
+ ]]>
+ </select>
+ 
+ 
+ <update id="bo_edit" parameterType="java.util.HashMap">
+  UPDATE board
+  SET bo_title=#{b.bo_title},
+  bo_subtitle=#{b.bo_subtitle},
+  bo_cont=#{b.bo_cont},
+  bo_titlespace=#{b.bo_titlespace},
+  bo_lock=#{b.bo_lock}
+  <if test="b.bo_thumbnail != null || b.bo_color != ''">
+  ,bo_thumbnail=#{b.bo_thumbnail}
+  ,bo_color=#{b.bo_color}
+  </if>
+  <if test="b.bo_thumbnail == null and b.bo_color == ''">
+  </if>
+  WHERE bo_no=#{bo_no}
+ </update>
+ 
+ <select id="bo_contlist" resultMap="boardMap">
+ <![CDATA[
+  SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM) b,member m
+  WHERE b.mem_no=m.mem_no 
+  AND b.mem_no=#{mem_no} AND rowNum <= 3 AND b.bo_lock = 1 AND b.bo_no != #{bo_no}
+ ]]>
+ </select>
+ 
+ <update id="article_del">
+  UPDATE board SET bo_lock=3,bo_like=0, bo_editdate=sysdate WHERE bo_no=#{bo_no}
+ </update>
+ 
+ <update id="article_rec">
+  UPDATE board SET bo_lock=1 WHERE bo_no=#{bo_no}
+ </update>
+ 
+ <select id="bo_catcontlist" resultMap="boardMap">
+  <![CDATA[
+  SELECT *
+  FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM) b,member m
+  WHERE b.mem_no=m.mem_no
+  AND b.cat_name=#{cat_name} AND rowNum <= 3 AND b.bo_lock = 1
+  ]]>
+ </select>
+ 
+ <update id="bo_hit">
+  UPDATE board SET bo_hit=bo_hit+1 WHERE bo_no=#{bo_no}
+ </update>
+ 
+ <select id="index_article" resultMap="boardMap">
+ <![CDATA[
+ 	SELECT * FROM(
+	SELECT * FROM (SELECT * FROM board ORDER BY DBMS_RANDOM.RANDOM)b
+	INNER JOIN member m
+	ON b.mem_no=m.mem_no AND bo_lock=1 AND bo_like>=5)
+	WHERE rowNum <= 20
+]]>
+ </select>
+ 
+ <select id="bo_list" resultMap="boardMap">
+ <![CDATA[
+  SELECT b.bo_no,
+         b.bo_title,
+         b.bo_subtitle,
+         b.bo_cont,
+         b.bo_thumbnail,
+         b.bo_date,
+         b.cat_name,
+         b.book_no,
+         m.mem_id,
+         m.mem_nickname,
+         m.mem_keyword
+  FROM (SELECT * FROM board ORDER BY bo_no DESC)b, member m
+  WHERE b.mem_no=m.mem_no AND b.bo_lock=1
+  AND rowNum <= 10
+  ]]>
+ </select>
+ 
+ <!-- 공감 증가 -->
+ <update id="sym_up">
+  UPDATE board SET bo_like=bo_like+1 WHERE bo_no=#{bo_no}
+ </update>
+ 
+ <!-- 공감 감소 -->
+ <update id="sym_down">
+  UPDATE board SET bo_like=bo_like-1 WHERE bo_no=#{bo_no}  
+ </update>
+ 
+ <!-- 공감 개수 가져오기 -->
+ <select id="sym_count" resultType="int">
+  SELECT bo_like FROM board WHERE bo_no=#{bo_no}
+ </select>
+ 
+ <!-- 게시글 공개/비공개 전환 -->
+ <update id="board_lock">
+  UPDATE board SET bo_lock=#{bo_lock} where bo_no=#{bo_no} and mem_no=#{mem_no}
+ </update>
+ 
+ <update id="board_ban">
+  UPDATE board SET bo_lock=#{bo_lock}, bo_editdate=sysdate where bo_no=#{bo_no}
+ </update>
+ 
+ <!-- 메뉴바 Best 글 가져오기 -->
+ <select id="best_list" resultMap="boardMap">
+  <![CDATA[
+	SELECT * FROM(
+    SELECT 
+    	b.bo_no, 
+    	b.bo_title, 
+    	b.bo_subtitle,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	count(s.sym_no) sym_count,
+    	m.mem_id,
+		m.mem_nickname
+    FROM board b
+    INNER JOIN (SELECT * FROM sympathy WHERE TO_CHAR(sym_date,'YYYYMM') = TO_CHAR(sysdate,'YYYYMM')) s
+    ON b.bo_no = s.bo_no AND b.bo_lock=1
+    INNER JOIN member m
+    ON b.mem_no = m.mem_no
+    GROUP BY b.bo_no, 
+    	b.bo_title, 
+    	b.bo_subtitle,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	m.mem_id,
+		m.mem_nickname
+    ORDER BY count(s.sym_no) DESC, b.bo_hit DESC)
+    WHERE ROWNUM <=5
+	]]>
+ </select>
+ 
+ <!-- 검색페이지 - 글 //검색시 Post 첫페이지 -->
+ <select id="search_post" parameterType="java.util.HashMap" resultMap="boardMap">
+  SELECT * FROM
+ (SELECT ROWNUM RN,X.* FROM
+ (SELECT * FROM
+ (SELECT b.bo_no,
+         b.bo_title,
+         b.bo_subtitle,
+         b.bo_cont,
+         b.bo_thumbnail,
+         b.bo_date,
+         b.cat_name,
+         b.book_no,
+         m.mem_id,
+         m.mem_nickname,
+         m.mem_keyword
+  FROM board b
+  INNER JOIN member m
+  ON b.mem_no=m.mem_no and b.bo_lock=1
+  WHERE REGEXP_LIKE(b.bo_title,#{q},'i') 
+  OR REGEXP_LIKE(b.bo_cont,#{q},'i') 
+  OR REGEXP_LIKE(m.mem_nickname,#{q},'i') 
+  OR REGEXP_LIKE(m.mem_keyword,#{q},'i'))
+  <if test="s == 'accuracy'">
+  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC, REGEXP_COUNT(mem_nickname,#{q}) DESC) 
+  </if>
+  <if test="s == 'recent'">
+  ORDER BY bo_date DESC)
+  </if>
+  X)
+  WHERE RN &lt;=10
+ </select>
+ 
+ <!-- 검색페이지 - 글 //검색시 Post 스크롤링시 로드되는 목록 -->
+ <select id="search_scroll_post" parameterType="java.util.HashMap" resultMap="boardMap">
+ SELECT * FROM
+ (SELECT ROWNUM RN,X.* FROM
+ (SELECT * FROM
+ (SELECT b.bo_no,
+         b.bo_title,
+         b.bo_subtitle,
+         b.bo_cont,
+         b.bo_thumbnail,
+         b.bo_date,
+         b.cat_name,
+         b.book_no,
+         m.mem_id,
+         m.mem_nickname,
+         m.mem_keyword
+  FROM board b
+  INNER JOIN member m
+  ON b.mem_no=m.mem_no and b.bo_lock=1
+  WHERE REGEXP_LIKE(b.bo_title,#{q},'i') 
+  OR REGEXP_LIKE(b.bo_cont,#{q},'i') 
+  OR REGEXP_LIKE(m.mem_nickname,#{q},'i') 
+  OR REGEXP_LIKE(m.mem_keyword,#{q},'i'))
+  <if test="s == 'accuracy'">
+  ORDER BY REGEXP_COUNT(bo_title,#{q}) DESC, REGEXP_COUNT(bo_cont,#{q}) DESC, REGEXP_COUNT(mem_nickname,#{q}) DESC) 
+  </if>
+  <if test="s == 'recent'">
+  ORDER BY bo_date DESC)
+  </if>
+  X)
+  WHERE RN BETWEEN (#{n}+1) AND (#{n}+10)
+ </select>
+ 
+ <select id="infinitiScrollDown" resultMap="boardMap">
+ <![CDATA[
+   SELECT b.bo_no,
+         b.bo_title,
+         b.bo_subtitle,
+         b.bo_cont,
+         b.bo_thumbnail,
+         b.bo_date,
+         b.cat_name,
+         b.book_no,
+         m.mem_id,
+         m.mem_nickname,
+         m.mem_keyword
+  FROM (SELECT * FROM board ORDER BY bo_no DESC)b
+  INNER JOIN member m
+  ON b.mem_no=m.mem_no
+  WHERE b.bo_no <= #{b.bo_no}
+  AND b.bo_no >= #{b.bo_no} - 10
+  AND b.bo_lock = 1
+ ]]>
+ </select>
+ <!-- 프로필 글목록 -->
+  <select id="profileList" parameterType="java.util.HashMap" resultMap="boardMap">
+SELECT * FROM
+(SELECT ROWNUM RN,X.* FROM
+ (SELECT m.mem_no as m_mem_no,
+    	m.mem_id, 
+    	m.mem_author, 
+    	m.mem_state, 
+    	m.profile_photo, 
+    	m.profile_cont, 
+    	m.mem_nickname, 
+    	m.mem_keyword, 
+    	m.mem_portfolio,
+    	b.bo_no,
+    	b.bo_title,
+    	b.bo_subtitle,
+    	b.bo_cont,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	b.bo_date,
+    	b.bo_editdate,
+    	b.bo_lock,
+    	b.bo_like,
+    	b.book_order,
+    	b.cat_name,
+    	b.mem_no as b_mem_no,
+    	b.book_no
+    FROM member m
+    INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
+ 	ON m.mem_no = b.mem_no
+ 	<!-- 세션과 자신의 아이디값이 다를때 또는 관리자가 아닐때-->
+ 	<if test ="mp_no != m_no and state != '9'">
+ 	AND b.bo_lock = 1
+    WHERE m.mem_no = #{mp_no})
+    X)
+ 	</if>
+ <!-- 자신의 아이디로 들어왔을때 또는 관리자가 들어갔을 때 -->
+ 	<if test ="mp_no == m_no or state == '9'">
+<!-- 공개, 비공개 분기 !-->
+  	<if test = "view == 'open'" >
+	AND b.bo_lock = 1
+ 	</if>
+ 	 	<if test = "view == 'close'" >
+	AND b.bo_lock = 0
+	</if>
+    WHERE m.mem_no = #{mp_no})
+
+    X)
+ 	</if>
+    WHERE RN &lt;= 10
+</select>
+ <!-- 프로필 글목록 스크롤시 불러오는  목록-->
+ <select id="profileScroll" parameterType="java.util.HashMap" resultMap="boardMap">
+SELECT * FROM
+(SELECT ROWNUM RN,X.* FROM
+ (SELECT m.mem_no as m_mem_no,
+    	m.mem_id, 
+    	m.mem_author,
+    	m.mem_state, 
+    	m.profile_photo, 
+    	m.profile_cont, 
+    	m.mem_nickname, 
+    	m.mem_keyword, 
+    	m.mem_portfolio,
+    	b.bo_no,
+    	b.bo_title,
+    	b.bo_subtitle,
+    	b.bo_cont,
+    	b.bo_thumbnail,
+    	b.bo_hit,
+    	b.bo_date,
+    	b.bo_editdate,
+    	b.bo_lock,
+    	b.bo_like,
+    	b.book_order,
+    	b.cat_name,
+    	b.mem_no as b_mem_no,
+    	b.book_no
+    FROM member m
+    INNER JOIN (SELECT * FROM board ORDER BY bo_date DESC)b
+ 	ON m.mem_no = b.mem_no
+ 	<if test ="mp_no != m_no and state != '9'">
+ 	AND b.bo_lock = 1
+    WHERE m.mem_no = #{mp_no})
+    X)
+ 	</if>
+ 	<!-- 자신의 아이디로 들어왔을때 또는 관리자가 들어갔을 때 -->
+ 	<if test ="mp_no == m_no or state == '9'">
+    <!-- 공개 비공개 값 불러오기 -->
+     <if test = "view == 'open'" >
+ 	 AND b.bo_lock = 1
+ 	 </if>
+ 	 <if test = "view == 'close'" >
+	 AND b.bo_lock = 0
+	 </if>
+    WHERE m.mem_no = #{mp_no})
+    X)
+ 	</if>
+ 	WHERE RN BETWEEN (#{n}+1) AND (#{n}+10)
+</select>
+ 
+  <select id="cat_board" resultMap="boardMap">
+  SELECT *
+  FROM board b,member m
+  WHERE b.mem_no = m.mem_no
+  AND b.cat_name = #{cat_name}
+  AND b.bo_lock = 1
+  ORDER BY b.bo_no DESC
+ </select>
+
+<update id="book_null">
+ UPDATE board b SET b.book_no = NULL, b.book_order = NULL WHERE b.book_no = #{book_no}
+</update>
+
+ <select id="ArticleState" resultType="b">
+  SELECT bo_lock, COUNT(bo_no) AS count 
+  FROM board 
+  WHERE bo_lock=1
+  OR bo_lock=0
+  GROUP BY bo_lock
+ </select>
+ 
+  <select id="ArticleCategory" resultType="b">
+    SELECT c.cat_name,COUNT(b.cat_name) count
+   FROM board b
+   RIGHT OUTER JOIN category c
+   ON b.cat_name = c.cat_name AND b.bo_lock != 3
+   GROUP BY c.cat_name
+  </select>
+  
+  <select id="ChartArticleCount" resultType="b">
+  <![CDATA[
+    SELECT TO_DATE(D.DAY,'YYYYMMDD') bo_date,COUNT(b.bo_date) COUNT
+	FROM (SELECT TO_CHAR(SYSDATE - (LEVEL - 1),'YYYYMMDD') DAY
+	FROM DUAL CONNECT BY LEVEL <= 7) D
+	LEFT OUTER JOIN board b
+	ON TO_CHAR(b.bo_date,'YYYYMMDD') = D.DAY AND b.bo_lock != 3
+	GROUP BY TO_DATE(D.DAY,'YYYYMMDD')
+	ORDER BY TO_DATE(D.DAY,'YYYYMMDD')
+  ]]>
+  </select>
+</mapper>

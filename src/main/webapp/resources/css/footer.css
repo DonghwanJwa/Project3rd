@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+/* footer 정보란*/
+#foot-main-footer{
+	height: 100px;
+	background-color:#F57C68;
+}
+#foot-footer{
+	potition: relative;
+	width:960px;
+	margin:0 auto;
+}
+#foot-footer-inner{
+	display:flex;
+	justify-content: center;
+}
+
+/*footer 문구*/
+#foot-inner-quotation{
+	display:inline-block;
+	margin-right:50px;
+	margin-top:10px;
+}
+.foot-inner-quotation-text{
+	width:185px;
+	height: 50px;
+	margin:0;
+	color:#fff;
+	font-size: 22px;
+	font-family: 'NanumPen','serif';
+	
+}
+.foot-inner-quotation-author{
+	margin:0;
+	margin-top:20px;
+	color:#3d3d3d;
+	font-size: 18px;
+	font-family: 'NanumPen','serif';
+}
+
+/*footer 메뉴와 링크포함된 div*/
+#foot-inner-right{
+	margin-top:12px;
+	width:581px;
+}
+
+/*footer 메뉴*/
+#foot-inner-menu{
+}
+#foot-inner-menu-list{
+	display:flex;	
+	list-style: none;
+	padding:0;
+	margin:0;
+	justify-content: flex-end;
+}
+.foot-inner-menu-item{
+	margin-right:20px;
+}
+.foot-inner-menu-item a{
+	text-decoration: none;
+	color:#fff;
+	cursor:pointer;
+}
+/*footer 링크*/
+#foot-inner-sns{
+	margin-top:20px;
+}
+#foot-inner-sns-list{
+	display:flex;
+	margin:0;
+	padding:0;
+	list-style: none;
+	justify-content: flex-end;
+}
+.foot-inner-sns-item{
+	margin-right:20px;
+}
+
+.foot-inner-sns-link{
+	text-decoration:none;
+	color:#fff;
+}
+
+.foot-inner-sns-img{
+	width:30px;
+	height:30px;
+}

@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/* admin_inquire.jsp */
+
+.admin_inq_title{
+	margin-left: 55px;
+}
+.admin_inq_main{
+	display: flex;
+    justify-content: center;
+    min-height: 400px;
+    width: 800px;
+    margin: 0 auto;
+}
+.adm_inquire_count{
+	padding-bottom:15px;
+}
+.inq_list_underline {
+	padding: .5em .2em;
+}
+#inq_paging {
+	padding: 1em .2em;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#inq_search_interface {
+	display:flex;
+	justify-content:center;
+}
+#search_name {
+	margin: 0 7px;
+}
+.inq_adm_tr{
+	cursor:pointer;
+}
+.inq_adm_tr:hover{
+	background-color:aliceblue;
+}
+#adm_inquire_table{
+	font-size:12px;
+	width:800px;
+	border-collapse:collapse;
+}
+#inq_cont_td{
+   overflow: hidden;
+   word-wrap: break-word;   
+   white-space: normal;    
+   text-overflow: ellipsis;
+   display: -webkit-box; 
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical;
+   line-height: 24px;
+   height: 16px;
+}
+.search_field {
+	margin: 0 5px;
+}

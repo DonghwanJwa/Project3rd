@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminMem">
+	<select id="adm_mem_count" resultType="int">
+		select count(mem_no) from member
+		<where>
+			<if test="search_field_state == 'all' and search_field_author == 'all'">
+				mem_state != 5
+			</if>
+			
+			<if test="search_field_state == 'all'"></if>
+			<if test="search_field_state == 'active'">
+				and mem_state=0
+			</if>
+			<if test="search_field_state == 'banned'">
+				and mem_state=1
+			</if>
+			<if test="search_field_state == 'out'">
+				and mem_state=2
+			</if>
+			<if test="search_field_state == 'admin'">
+				and mem_state=9
+			</if>
+			
+			<if test="search_field_author == 'all'"></if>
+			<if test="search_field_author == 'normal'">
+				and mem_author=0
+			</if>
+			<if test="search_field_author == 'author'">
+				and mem_author=1
+			</if>
+			
+			<if test="search_field_key == 'mem_id'">
+				and mem_id like #{search_name}
+			</if>
+			<if test="search_field_key == 'mem_nickname'">
+				and mem_nickname like #{search_name}
+			</if>
+			<if test="search_field_key == 'mem_name'">
+				and mem_name like #{search_name}
+			</if>
+		</where>
+	</select>
+
+	<select id="adm_mem_list" resultType="m">
+		select * from (select rowNum rNum,mem_no,mem_id,mem_nickname,mem_state,mem_author,mem_date from (select * from member
+			<where>
+			<if test="search_field_state == 'all' and search_field_author == 'all'">
+				mem_state != 5
+			</if>
+			
+			<if test="search_field_state == 'all'"></if>
+			<if test="search_field_state == 'active'">
+				and mem_state=0
+			</if>
+			<if test="search_field_state == 'banned'">
+				and mem_state=1
+			</if>
+			<if test="search_field_state == 'out'">
+				and mem_state=2
+			</if>
+			<if test="search_field_state == 'admin'">
+				and mem_state=9
+			</if>
+			
+			<if test="search_field_author == 'all'"></if>
+			<if test="search_field_author == 'normal'">
+				and mem_author=0
+			</if>
+			<if test="search_field_author == 'author'">
+				and mem_author=1
+			</if>
+			
+			<if test="search_field_key == 'mem_id'">
+				and mem_id like #{search_name}
+			</if>
+			<if test="search_field_key == 'mem_nickname'">
+				and mem_nickname like #{search_name}
+			</if>
+			<if test="search_field_key == 'mem_name'">
+				and mem_name like #{search_name}
+			</if>
+		</where>
+		order by mem_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+	
+	<select id="adm_mem_info" resultType="m">
+		select * from member where mem_no=#{no}
+	</select>
+	
+	<update id="adm_mem_drop">
+		UPDATE member SET mem_state=1 , drop_reason=#{drop_reason} , drop_cont=#{drop_cont} , drop_date=sysdate WHERE mem_no=#{mem_no}
+	</update>
+	<update id="adm_mem_restore">
+		UPDATE member SET mem_state=0 WHERE mem_no=#{mem_no}
+	</update>
+</mapper>

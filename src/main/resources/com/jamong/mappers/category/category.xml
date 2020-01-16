@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+
+<!-- 카테고리 리스트 불러오기 -->
+<select id="cat_list" resultType="cat">
+	select * from (select * from category order by cat_no asc) where rownum &lt;= 15
+	
+	<!-- 	* 위방법은 검색된 항목중에 순서대로 15개만 select할 떄 사용하는 방법
+			* cat_no 1부터 15사이 모두 가져오는 방법은 하단것으로 사용
+			select * from category where cat_no between 1 and 15 asc -->
+</select>
+
+</mapper>

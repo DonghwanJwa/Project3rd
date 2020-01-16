@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+<resultMap type="m" id="profileMap" >
+  <id column="mem_no" property="mem_no" />
+  <result column="mem_id" property="mem_id" />
+  <result column="mem_author" property="mem_author" />
+  <result column="profile_photo" property="profile_photo" />
+  <result column="profile_cont" property="profile_cont" />
+  <result column="mem_nickname" property="mem_nickname" />
+  <result column="mem_keyword" property="mem_keyword" />
+  <result column="mem_portfolio" property="mem_portfolio" />
+<!-- <collection property="boardVO" column="mem_no" javaType="java.util.ArrayList" ofType="b" select="profileList" /> -->  
+  <association javaType="b" property="boardVO">
+  <id column="bo_no" property="bo_no" />
+    <result column="bo_title" property="bo_title" />
+    <result column="bo_subtitle" property="bo_subtitle" />
+    <result column="bo_cont" property="bo_cont" />
+    <result column="bo_thumbnail" property="bo_thumbnail" />
+    <result column="bo_hit" property="bo_hit" />
+    <result column="bo_date" property="bo_date" />
+    <result column="bo_editdate" property="bo_editdate" />
+    <result column="bo_lock" property="bo_lock" />
+    <result column="bo_like" property="bo_like" />
+    <result column="book_order" property="book_order" />
+    <result column="cat_no" property="cat_no" />
+    <result column="mem_no" property="mem_no" />
+    <result column="book_no" property="book_no" />
+ </association> 
+ <!--  <collection ofType="book" property="bookVO" javaType="java.util.ArrayList">
+  <id column="book_no" property="book_no"/>
+  <result column="book_name" property="book_name"/>
+  <result column="book_date" property="book_date"/>
+  <result column="book_editdate"  property="book_editdate"/>
+  <result column="cat_no" property="cat_no"/>
+  <result column="mem_no" property="mem_no"/>
+ </collection> -->    
+</resultMap>
+
+<update id="member_cat_up">
+	update member set mem_fav1=#{mem_fav1},mem_fav2=#{mem_fav2},mem_fav3=#{mem_fav3} where mem_no=#{mem_no}
+</update>
+<update id="mem_update_del">
+	update member set drop_cont=#{drop_cont},mem_state=2,drop_date=sysdate where mem_no=#{mem_no}
+</update>
+<update id="mem_pwd_update">
+	update member set mem_pwd=#{mem_pwd} where mem_id=#{mem_id} and mem_name=#{mem_name}
+</update>
+<select id="mem_select_pwd" resultType="m">
+	select * from member where email_id=#{email_id} and email_domain=#{email_domain} and mem_name=#{mem_name} and mem_id=#{mem_id}
+</select>
+<select id="mem_select_id" resultType="m">
+	select * from member where email_id=#{email_id} and email_domain=#{email_domain} and mem_name=#{mem_name}
+</select>
+  
+<select id="mem_email" resultType="m">
+	select * from member where email_id=#{email_id} and email_domain=#{email_domain}
+</select>
+
+<!-- 작가에게 제안하기 시작-->
+<select id="author_info" resultType="m">
+	SELECT mem_no,mem_id,mem_nickname,profile_photo,email_id,email_domain,mem_author FROM member where mem_id=#{mem_id}
+</select>
+
+<!-- 작가에게 제안하기 끝 -->
+
+ <!-- 글작성 / 삭제 시 카운트 변경 -->
+ <update id="ArticleCount" parameterType="java.util.HashMap">
+  UPDATE member SET mem_article=mem_article+#{UpCount} WHERE mem_no=#{mem_no}
+ </update>
+ 
+ <!-- 팔로우 / 언팔로우시 카운트 변경 -->
+ <update id="SubscribeCount" parameterType="java.util.HashMap">
+  UPDATE member SET mem_subscribe=mem_subscribe+#{UpCount} WHERE mem_no=#{s.mem_no}
+ </update>
+
+	<!-- 회원정보 업데이트 -->
+<update id="mem_update" parameterType="java.util.HashMap">
+	update member set 
+	mem_name=#{me.mem_name},
+	mem_birth1=#{me.mem_birth1},mem_birth2=#{me.mem_birth2},mem_birth3=#{me.mem_birth3},
+	email_id=#{me.email_id},email_domain=#{me.email_domain},
+	<if test="me.mem_pwd != null">
+	mem_pwd=#{me.mem_pwd},
+	</if>
+	mem_phone01=#{me.mem_phone01},mem_phone02=#{me.mem_phone02},mem_phone03=#{me.mem_phone03}
+	where mem_no=#{me.mem_no}
+</update>
+
+   <!-- 회원정보가져오기 -->
+<select id="mem_myinfo" resultType="m">
+    select * from member where mem_id=#{mem_id}
+</select>
+
+ <!-- 아이디 중복체크 -->
+ <select id="mem_idcheck" parameterType="String" resultType="m">
+     select * from member where mem_id=#{mem_id} or mem_nickname=#{mem_id}
+ </select>
+
+ <!-- 회원가입 -->
+ <insert id="mem_insert" parameterType="m">
+     insert into member (mem_no,mem_id,mem_pwd,mem_name,mem_birth1,mem_birth2,mem_birth3,
+     email_id,email_domain,mem_phone01,mem_phone02,mem_phone03,mem_gender,mem_date,profile_photo,
+     profile_cont,mem_nickname,mem_fav1,mem_fav2,mem_fav3) 
+     values (mem_no_seq.nextval,#{mem_id},#{mem_pwd},#{mem_name},#{mem_birth1},#{mem_birth2},
+     #{mem_birth3},#{email_id},#{email_domain},#{mem_phone01},#{mem_phone02},#{mem_phone03},
+     #{mem_gender},sysdate,#{profile_photo},#{profile_cont},#{mem_nickname},
+     #{mem_fav1},#{mem_fav2},#{mem_fav3})
+ </insert>
+ 
+ <!-- 로그인 -->
+ <select id="mem_logincheck" parameterType="String" resultType="m">
+     select * from member where mem_id=#{mem_id}
+ </select>
+ 
+ <!-- admin 로그인 -->
+ <select id="mem_adminlogin" parameterType="String" resultType="m">
+     select * from member where mem_state=9 and  mem_id=#{mem_id}
+ </select>
+ 
+  <!-- 비번찾기=> 회원정보 검색 -->
+<select id="mem_pwdck" resultType="m">
+    select * from member where mem_id=#{mem_id}
+</select>
+
+
+<select id="mem_emailcheck" resultType="m">
+    select * from member where email_id=#{email_id} and email_domain=#{email_domain}
+</select>
+
+     <!--회원 찾기 -->
+<select id="profile_ck" resultType="m">
+   SELECT mem_no,
+    	mem_id, 
+    	mem_author, 
+    	mem_state,
+    	profile_photo, 
+    	profile_cont, 
+    	mem_nickname, 
+    	mem_keyword, 
+    	mem_portfolio
+    FROM member 
+    WHERE mem_id = #{mem_id}
+</select>
+<!-- 
+<update id="profile_up" >
+     update member set  profile_photo=#{profile_photo}, profile_cont=#{profile_cont},
+     mem_nickname=#{mem_nickname}, mem_keyword=#{mem_keyword}, mem_portfolio=#{mem_portfolio}
+     where mem_no = #{mem_no}
+</update>
+ -->
+ <select id="mem_getID" resultType="m">
+  SELECT mem_id FROM member WHERE mem_no=#{mem_no}
+ </select>
+ 
+ <!-- 검색페이지 - 회원 -->
+ <select id="search_member" parameterType="hashMap" resultType="m">
+  SELECT * FROM
+  (SELECT ROWNUM RN,X.* FROM
+  (SELECT * FROM 
+  (SELECT * FROM 
+  (SELECT * FROM member
+  WHERE mem_state=0 AND mem_author=1) 
+  WHERE REGEXP_LIKE(mem_nickname,#{q},'i') 
+  OR REGEXP_LIKE(mem_keyword,#{q},'i') 
+  OR REGEXP_LIKE(profile_cont,#{q},'i'))
+  ORDER BY REGEXP_COUNT(mem_nickname,#{q}) DESC, 
+  		   REGEXP_COUNT(mem_keyword,#{q}) DESC, 
+  		   REGEXP_COUNT(profile_cont,#{q}) DESC)X)
+  <if test="s == 'all'">
+  WHERE RN &lt;=6
+  </if>
+  <if test="s != 'all'">
+  WHERE mem_fav1=#{s} OR mem_fav2=#{s} OR mem_fav3=#{s}
+  AND RN &lt;=6
+  </if>
+ </select>
+ 
+ <select id="search_scroll_member" parameterType="hashMap" resultType="m">
+  SELECT * FROM
+  (SELECT ROWNUM RN,X.* FROM
+  (SELECT * FROM
+  (SELECT * FROM 
+  (SELECT * FROM member  
+  WHERE mem_state=0 AND mem_author=1)
+  WHERE REGEXP_LIKE(mem_nickname,#{q},'i') 
+  OR REGEXP_LIKE(mem_keyword,#{q},'i') 
+  OR REGEXP_LIKE(profile_cont,#{q},'i')) 
+  ORDER BY REGEXP_COUNT(mem_nickname,#{q}) DESC, 
+  		   REGEXP_COUNT(mem_keyword,#{q}) DESC, 
+  		   REGEXP_COUNT(profile_cont,#{q}) DESC)X)
+  <if test="s == 'all'">
+  WHERE RN BETWEEN (#{n}+1) AND (#{n}+6)
+  </if>
+  <if test="s != 'all'">
+  WHERE mem_fav1=#{s} OR mem_fav2=#{s} OR mem_fav3=#{s}
+  AND RN BETWEEN (#{n}+1) AND (#{n}+6)
+  </if>
+ </select>
+ 
+ <select id="index_author" resultType="m">
+ <![CDATA[
+  SELECT * 
+  FROM (SELECT * FROM member WHERE mem_state=0 AND mem_author=1 ORDER BY DBMS_RANDOM.RANDOM) 
+  WHERE rowNum <= 9
+  ]]> 
+ </select>
+ 
+ <select id="cat_member" resultType="m">
+ <![CDATA[
+  SELECT * FROM (SELECT * FROM (SELECT * FROM member WHERE mem_author=1 ORDER BY DBMS_RANDOM.RANDOM)
+  WHERE mem_fav1 = #{cat_name} OR mem_fav2 = #{cat_name} OR mem_fav3 = #{cat_name}) WHERE rowNum <= 4
+  ]]> 
+ </select>
+
+ <select id="mem_getfav" resultType="m">
+  SELECT mem_fav1,mem_fav2,mem_fav3 FROM member WHERE mem_no=#{mem_no}
+ </select>
+
+<select id="getAccusee" resultType="m">
+	SELECT * FROM member where mem_no = #{ac_member}
+</select>
+
+<update id="profile_up">
+UPDATE member 
+	SET mem_nickname=#{mem_nickname}, profile_photo=#{profile_photo},
+		profile_cont=#{profile_cont}, mem_keyword=#{mem_keyword},  mem_portfolio=#{mem_portfolio}
+		where mem_id=#{mem_id}
+</update>
+
+ <select id="AgeGroup" resultType="m">
+  SELECT age_group, count(*) count FROM (SELECT floor((to_char(sysdate,'YYYY') - mem_birth1) / 10) * 10 as age_group from member WHERE mem_state=0 OR mem_state=1) o GROUP BY age_group
+ </select>
+ 
+ <select id="GenderData" resultType="m">
+  SELECT mem_gender, COUNT(mem_no) AS count FROM member WHERE mem_state=0 OR mem_state=1 GROUP BY mem_gender
+ </select>
+ 
+ <select id="MemberCategoryCount" resultType="m">
+  SELECT c.cat_name,COUNT(m.mem_no) count
+  FROM member m
+  RIGHT OUTER JOIN category c
+  ON m.mem_fav1 = c.cat_name OR m.mem_fav2 = c.cat_name OR m.mem_fav3 = c.cat_name
+  WHERE m.mem_state = 0 OR m.mem_state = 1
+  GROUP BY c.cat_name
+ </select>
+
+</mapper>

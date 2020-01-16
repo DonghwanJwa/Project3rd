@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+
+body{
+	margin: 0px;
+	padding: 0px;
+}
+#find_id_main_wrap{
+	background-color: #f5f5f5;;
+	width: 100%;
+    height: 100vh;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#find_id_main_div{
+	background-color:white;
+	width: 400px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+#find_id_img_logo_link{
+	display:inline-block;
+	margin-top:50px;
+	margin-bottom: 40px;
+}
+
+#find_id_img_logo{
+	width: 230px;
+	height: 90px;
+}
+
+#find_id_btn_box a{
+display: inline-block;
+    border-top: 1px solid #f1f1f1;
+    border-right: 1px solid #f1f1f1;
+    width: 30%;
+    height: 40px;
+    line-height: 40px;
+    background: #f1f1f1;
+    color: #aaa;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+#find_id_btn_box .find_id_link1{
+		 background: orange;
+		 color:white;
+}
+#find_id_sub_box_id{
+	margin-top: 30px;
+}
+.find_id_text{
+	width: 230px;
+    height: 30px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    /* padding: 20px; */
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 14px;
+}
+.find_id_text_email{
+	width: 92px;
+    height: 30px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    /* padding: 20px; */
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 14px;
+}
+.find_id_error{
+	width:200px;
+	height:15px;
+	line-height:15px;
+	padding-left:55px;
+	margin:5px;
+	color:#ff0000;
+	font-size:12px;	
+}
+.find_id_error.long{
+	padding-left:81px;
+}
+#find_id_label{
+	font-size: 25px;
+	margin-bottom: 10px;
+	color:gray;
+	border-bottom: 1px solid gray;
+	padding-bottom: 5px;
+}
+
+.find_id_name_email_color :hover{
+	border-bottom: 2px solid orange;
+}
+
+.find_id_name_email_color :focus{
+	border-bottom: 2px solid orange;
+}
+#find_id_btn{
+	width: 252px;
+    height: 45px;
+    font-size: 1rem;
+    margin-top: 10px;
+    background-color: white;
+    border: solid 2px orange;
+    color: black;
+    outline: 0;
+    cursor: pointer;
+    margin-bottom: 90px;
+}
+#find_id_btn:hover{
+	background-color: orange;
+	color: white;
+}
+/*로딩화면을 위한 css*/
+.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background: rgba(0,0,0,0.8);
+}
+.wrap-loading div{ /*로딩 이미지*/
+    position: fixed;
+    top:50%;
+    left:50%;
+    margin-left: -21px;
+    margin-top: -21px;
+}
+
+/* 비밀번호 페이지*/
+
+#find_id_sub_box_pass{
+	display: none;
+	margin-top: 30px;
+}
+.find_id_pass_text{
+	width: 230px;
+    height: 15px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 14px;
+}
+.find_id_pass_email1{
+	width: 88px;
+    height: 15px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    /* padding: 20px; */
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 14px;
+}
+.find_id_pass_email2{
+	width: 65px;
+    height: 15px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    /* padding: 20px; */
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 14px;
+}
+.find_id_pass_Certified_text{
+	width: 191px;
+    height: 15px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    /* padding: 20px; */
+    outline: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    font-size: 14px;
+}
+
+#find_id_pass_email_Certified_btn{
+	border: 1px solid orange;
+	background-color: white;
+	width: 36px;
+	height: 25px;
+	border-radius: 25px;
+	font-size: 10px;
+	outline: none;
+	cursor: pointer;
+}
+#find_id_pass_email_Certified_next_btn{
+	border: 1px solid orange;
+	background-color: white;
+	width: 36px;
+	height: 25px;
+	border-radius: 25px;
+	font-size: 10px;
+	outline: none;
+	cursor: pointer;
+}
+
+#find_id_pass_before_certified{
+	display: none;
+}
+
+#find_id_pass_after_certified{
+	display: none;
+}	
+
+#find_pass_pass_modify{
+	width: 250px;
+	height: 45px;
+	font-size: 1rem;
+	margin-top: 10px;
+	background-color: white;
+	border: solid 2px orange;
+	color: black;
+	outline: 0;
+	cursor: pointer;
+	margin-bottom: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

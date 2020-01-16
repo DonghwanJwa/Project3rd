@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+	<!-- 공지 개수 -->
+	<select id="n_count" resultType="int">
+		select count(noti_no) from adm_notice
+		
+		<where>
+			<if test="search_field == ''"></if>
+			
+			<if test="search_field == 'noti_title'">
+				noti_title like #{search_name}
+			</if>
+			
+			<if test="search_field == 'noti_name'">
+				noti_name like #{search_name}
+			</if>
+			
+			<if test="search_field == 'noti_cont'">
+				noti_cont like #{search_name}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 공지 목록 -->
+	<select id="n_list" resultType="notice">
+		select * from (select rowNum rNum,noti_no,noti_title,noti_name,noti_hit,noti_date from (select * from adm_notice
+		
+		<where>
+			<if test="search_field == ''"></if>
+			
+			<if test="search_field == 'noti_title'">
+				noti_title like #{search_name}
+			</if>
+			
+			<if test="search_field == 'noti_name'">
+				noti_name like #{search_name}
+			</if>
+			
+			<if test="search_field == 'noti_cont'">
+				noti_cont like #{search_name}
+			</if>
+		</where>
+		order by noti_date desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+	
+	<!-- 공지사항 저장 -->
+	<insert id="n_insert">
+		insert into adm_notice(noti_no,noti_title,noti_name,noti_pwd,noti_cont,noti_date)
+		values(noti_no_seq.nextval,#{noti_title},#{noti_name},#{noti_pwd},#{noti_cont},sysdate)
+	</insert>
+	
+	<!-- 공지사항 내용보기 -->
+	<select id="n_cont" resultType="notice">
+		select * from adm_notice where noti_no=#{no}
+	</select>
+	<!-- 공지사항 조회수 증가 -->
+	<update id="upHit">
+		UPDATE adm_notice SET noti_hit=noti_hit+1 where noti_no=#{no}
+	</update>
+	
+	<!-- 공지사항 수정하기 -->
+	<update id="n_edit">
+		update adm_notice set noti_name=#{noti_name}, noti_title=#{noti_title}, noti_cont=#{noti_cont} where noti_no=#{noti_no}
+	</update>
+	
+	<!-- 공지사항 삭제하기 -->
+	<delete id="n_del">
+		delete adm_notice where noti_no=#{no}
+	</delete>
+	
+	<!-- 헤더메뉴 공지사항  리스트 가져오기 -->
+	<select id="cat_n_list" resultType="notice">
+		select noti_title,noti_date,noti_no from (select * from adm_notice order by noti_date desc) where rowNum &lt;= 5
+	</select>
+</mapper>

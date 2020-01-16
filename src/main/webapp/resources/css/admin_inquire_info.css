@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+/* admin_inquire_info */
+.adm_inq_file{
+	width:900px;
+	border-top:0px;
+	font-size:14px
+}
+.inq_file_down{
+	border: none;
+    background: none;
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+    margin: 5px 0;
+    padding: 0;
+    outline: none;
+    margin-left: 3px;
+}
+.inq_file_div{
+	height:43px;
+}
+.adm_inq_table{
+	width:900px;
+	font-size:14px;
+}
+.inq_adm_table2{
+	width:900px;
+	font-size:14px;
+}
+.inq_button{
+	border: 1px solid lightgrey;
+    border-radius: 25px;
+    background-color: white;
+    padding: 5px 13px;
+    cursor: pointer;
+    margin: 0 3px;
+    margin-top: 10px;
+    font-size: 14px;
+    outline:none;
+}
+#inq_adm_button{
+	margin:10px 0;
+	display:flex;
+	justify-content:flex-end;
+	font-size:14px;
+}
+#inq_adm_remail{
+	width: 870px;
+	height: 230px;
+	padding: 14px;
+	resize: none;
+	border: 1px solid black;
+	float:left;
+	font-size:14px;
+}
+#inq_request_btn{
+	margin-left:832px;
+	margin-top:20px;
+	font-size:14px;
+}
+.inq_adm_request{
+	display:none;
+	font-size:14px;
+}
+#inq_del_btn{
+	margin-right:20px;
+	font-size:14px;
+}
+
+
+/* textarea 클릭만해도 placeholder 없애는 코드 */
+
+input:focus::-webkit-input-placeholder, 
+textarea:focus::-webkit-input-placeholder {/* WebKit browsers */ 
+color:transparent; 
+} 
+
+input:focus:-moz-placeholder, 
+textarea:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color:transparent; 
+}
+
+ input:focus::-moz-placeholder, 
+ textarea:focus::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:transparent; 
+  } 
+ 
+ input:focus:-ms-input-placeholder,
+ textarea:focus:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+ color:transparent; 
+ }
+ 
+ /*로딩화면을 위한 css*/
+.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background: rgba(0,0,0,0.8);
+}
+.wrap-loading div{ /*로딩 이미지*/
+    position: fixed;
+    top:50%;
+    left:50%;
+    margin-left: -21px;
+    margin-top: -21px;
+}
+#inq_complete_div{
+	display: flex;
+    justify-content: center;
+    width: 900px;
+    margin: 0 auto;
+    margin-top:60px;
+    font-size:14px;
+}
+#inq_adm_complete{
+    width: 900px;
+   	margin-top:100px;
+   	font-size:14px;
+}
+#adm_inq_replyname{
+	font-size:14px;
+	}
+#adm_inq_field{
+	font-size:14px;
+	vertical-align: top;
+	text-align: left;
+	padding: 0px 15px;
+}
+.inq_adm_retime{
+	padding-bottom:15px;
+	background-color:white;
+	font-size:14px;
+}
+.adm_table_div{
+	border:1px solid black;
+	font-size:14px;
+}
+.inq_adm_readmin{
+	background-color:white;
+	border:0px;
+	font-size:14px;
+}
+table{
+	border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin: auto auto;
+    border-collapse: collapse;
+    border-color: gray;
+    font-size:14px;
+}
+table th{
+	font-weight: bold;
+	color:black;
+	background:aliceblue;
+}
+table td{
+    background: white;
+}

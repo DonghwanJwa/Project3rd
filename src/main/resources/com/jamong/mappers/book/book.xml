@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="book">
+
+ <resultMap type="b" id="boardMap">
+  <id column="bo_no" property="bo_no" />
+  <result column="bo_title" property="bo_title" />
+  <result column="bo_subtitle" property="bo_subtitle" />
+  <result column="bo_cont" property="bo_cont" />
+  <result column="bo_thumbnail" property="bo_thumbnail" />
+  <result column="bo_hit" property="bo_hit" />
+  <result column="bo_date" property="bo_date" />
+  <result column="bo_editdate" property="bo_editdate" />
+  <result column="bo_lock" property="bo_lock" />
+  <result column="bo_like" property="bo_like" />
+  <result column="book_order" property="book_order" />
+  <result column="cat_no" property="cat_no" />
+  <result column="mem_no" property="mem_no" />
+  <result column="book_no" property="book_no" />
+  
+ <association javaType="m" property="memberVO">
+  <id column="mem_no" property="mem_no" />
+  <result column="mem_id" property="mem_id" />
+  <result column="mem_name" property="mem_name" />
+  <result column="mem_birth1" property="mem_birth1" />
+  <result column="mem_birth2" property="mem_birth2" />
+  <result column="mem_birth3" property="mem_birth3" />
+  <result column="email_id" property="email_id" />
+  <result column="email_domain" property="email_domain" />
+  <result column="mem_phone01" property="mem_phone01" />
+  <result column="mem_phone02" property="mem_phone02" />
+  <result column="mem_phone03" property="mem_phone03" />
+  <result column="mem_date" property="mem_date" />
+  <result column="mem_author" property="mem_author" />
+  <result column="mem_state" property="mem_state" />
+  <result column="profile_photo" property="profile_photo" />
+  <result column="profile_cont" property="profile_cont" />
+  <result column="mem_state" property="mem_state" />
+  <result column="mem_nickname" property="mem_nickname" />
+  <result column="mem_keyword" property="mem_keyword" />
+  <result column="mem_fav1" property="mem_fav1" />
+  <result column="mem_fav2" property="mem_fav2" />
+  <result column="mem_fav3" property="mem_fav3" />
+  <result column="mem_portfolio" property="mem_portfolio" />
+ </association>
+ 
+ <association javaType="book" property="bookVO">
+  <id column="book_no" property="book_no" />
+  <result column="book_name" property="book_name" />
+  <result column="book_cover" property="book_cover" />
+  <result column="book_preface" property="book_preface" />
+  <result column="book_date" property="book_date" />
+  <result column="book_editdate" property="book_editdate" />
+  <result column="book_recommend" property="book_recommend" />
+  <result column="cat_name" property="cat_name" />
+  <result column="mem_no" property="mem_no"	/>
+ </association>
+ </resultMap>
+ 
+ <select id="create_list" resultMap="boardMap">
+  SELECT *
+  FROM board b, member m
+  WHERE b.mem_no=m.mem_no
+  AND m.mem_id=#{mem_id}
+  AND b.book_no IS NULL
+  AND b.bo_lock != 2
+  AND b.bo_lock != 3
+  ORDER BY b.bo_no DESC
+ </select>
+ 
+ <insert id="book_in" parameterType="java.util.HashMap">
+  INSERT
+  INTO book (book_no,book_name,book_cover,book_preface,book_date,cat_name,mem_no)
+  VALUES (book_no_seq.nextval,#{b.book_name},#{b.book_cover},#{b.book_preface},sysdate,#{b.cat_name},#{b.mem_no})
+ </insert>
+ 
+ <select id="book_sel" parameterType="java.util.HashMap" resultType="int">
+  SELECT book_no FROM book 
+  WHERE book_name = #{b.book_name} AND mem_no = #{b.mem_no} 
+  AND ROWNUM=1
+  ORDER BY book_date DESC
+ </select>
+ 
+ <update id="book_no_up" parameterType="java.util.HashMap">
+  <foreach collection="bo_no" index="index" item="bc" separator=";" open="DECLARE BEGIN" close="; END;">
+   UPDATE board SET book_no = #{book_no}, book_order = (#{index} + 1), bo_lock = 1 WHERE bo_no=#{bc}
+  </foreach>
+ </update>
+ 
+ <select id="book_list" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.book_date,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname,
+  		 m.profile_photo,
+  		 m.profile_cont
+  FROM (SELECT * FROM book ORDER BY book_no DESC)book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  ORDER BY book.book_no DESC
+ </select>
+ 
+ <select id="index_book" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_date,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname
+  FROM (SELECT * FROM book ORDER BY DBMS_RANDOM.RANDOM)book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  WHERE rowNum &lt;=9
+ </select>
+ 
+ <select id="search_book" parameterType="java.util.HashMap" resultMap="boardMap">
+ SELECT * FROM 
+ (SELECT ROWNUM RN, X.* FROM 
+ (SELECT * FROM 
+ (SELECT bk.book_no,
+		 bk.book_name,
+		 bk.book_cover,
+		 bk.book_date,
+		 m.mem_id,
+		 m.mem_nickname
+	FROM book bk 
+	INNER JOIN member m
+	ON m.mem_no = bk.mem_no
+	INNER JOIN board bd
+	ON m.mem_no = bd.mem_no AND bk.book_no = bd.book_no 
+	WHERE REGEXP_LIKE(bk.book_name,#{q},'i')
+	OR REGEXP_LIKE(m.mem_nickname,#{q},'i')
+	OR REGEXP_LIKE(bd.bo_title,#{q},'i') 
+	OR REGEXP_LIKE(bd.bo_cont,#{q},'i')
+	AND m.mem_state = 0
+	AND bo_lock=1
+	GROUP BY bk.book_no,
+		 	 bk.book_name,
+		 	 bk.book_cover,
+		 	 bk.book_date,
+		     m.mem_id,
+		     m.mem_nickname)
+	ORDER BY REGEXP_COUNT(book_name,#{q}) DESC, 
+		 	 REGEXP_COUNT(mem_nickname,#{q}) DESC)X)
+ WHERE RN &lt;=6
+ </select>
+ 
+ <select id="search_scroll_book" parameterType="java.util.HashMap" resultMap="boardMap">
+ SELECT * FROM 
+ (SELECT ROWNUM RN, X.* FROM 
+ (SELECT * FROM 
+ (SELECT bk.book_no,
+		 bk.book_name,
+		 bk.book_cover,
+		 bk.book_date,
+		 m.mem_id,
+		 m.mem_nickname
+	FROM book bk 
+	INNER JOIN member m
+	ON m.mem_no = bk.mem_no
+	INNER JOIN board bd
+	ON m.mem_no = bd.mem_no AND bk.book_no = bd.book_no 
+	WHERE REGEXP_LIKE(bk.book_name,#{q},'i')
+	OR REGEXP_LIKE(m.mem_nickname,#{q},'i')
+	OR REGEXP_LIKE(bo_title,#{q},'i') 
+	OR REGEXP_LIKE(bo_cont,#{q},'i')
+	AND m.mem_state = 0
+	AND bo_lock=1
+	GROUP BY bk.book_no,
+		 	 bk.book_name,
+		 	 bk.book_cover,
+		 	 bk.book_date,
+		     m.mem_id,
+		     m.mem_nickname)
+	ORDER BY REGEXP_COUNT(book_name,#{q}) DESC, 
+		 	 REGEXP_COUNT(mem_nickname,#{q}) DESC)X)
+ WHERE RN BETWEEN (#{n}+1) AND (#{n}+6)
+ </select>
+ 
+ <select id="select_bklist" resultMap="boardMap">
+  SELECT *
+  FROM board b
+  INNER JOIN book book
+  ON b.book_no=#{book_no}
+ </select>
+ 
+ <select id="book_info" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.book_date,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname,
+  		 m.profile_photo,
+  		 m.profile_cont,
+  		 b.bo_title,
+  		 b.bo_cont
+  FROM book book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  INNER JOIN board b
+  ON b.book_no = #{book_no}
+  AND b.book_order = 1
+  WHERE book.book_no = #{book_no}
+ </select>
+ 
+ <select id="book_info_cont" resultMap="boardMap">
+  SELECT m.mem_id,
+  		 m.mem_nickname,
+  		 m.profile_photo,
+  		 m.profile_cont,
+  		 b.bo_no,
+  		 b.bo_title,
+  		 b.bo_cont,
+  		 b.bo_thumbnail,
+  		 b.bo_color,
+  		 b.bo_date
+  FROM board b
+  INNER JOIN member m
+  ON b.book_no = #{book_no}
+  AND m.mem_id = #{mem_id}
+  ORDER BY b.book_order
+ </select>
+ 
+ <select id="book_get" resultType="book">
+  SELECT *
+  FROM book
+  WHERE book_no = #{book_no}
+ </select>
+ 
+ <select id="my_book_List" resultMap="boardMap">
+  <![CDATA[
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.book_date,
+  		 book.book_recommend,
+  		 book.book_editdate,
+  		 book.cat_name,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname
+  FROM (SELECT * FROM book ORDER BY book_date)book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  WHERE m.mem_no = #{mem_no}
+  AND rowNum <= 6
+  ]]>
+  </select>
+ <select id="my_book_scroll" parameterType="java.util.HashMap" resultMap="boardMap">
+SELECT * FROM
+(SELECT ROWNUM RN,X.* FROM
+ (SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.book_date,
+  		 book.book_editdate,
+  		 book.cat_name,
+  		 book.mem_no as book_mem_no,
+  		 m.mem_no as m_mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname
+  FROM (SELECT * FROM book ORDER BY book_date DESC)book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  WHERE m.mem_no = #{mem_no} )
+  X)
+  WHERE RN BETWEEN (#{n}+1) AND (#{n}+6)
+ </select>
+ <!-- 추천 증가 -->
+ <update id="rec_up">
+  UPDATE book SET book_recommend = book_recommend + 1 WHERE book_no = #{book_no}
+ </update>
+ 
+ <!-- 추천 감소 -->
+ <update id="rec_down">
+  UPDATE book SET book_recommend = book_recommend - 1 WHERE book_no = #{book_no}
+ </update>
+ 
+ <!-- 추천 개수 가져오기 -->
+ <select id="rec_count" resultType="int">
+  SELECT book_recommend FROM book WHERE book_no = #{book_no}
+ </select>
+ 
+ <select id="bkEditList" parameterType="java.util.HashMap" resultMap="boardMap">
+  SELECT *
+  FROM board b
+  INNER JOIN book book
+  ON b.book_no = #{bk.book_no}
+ </select>
+ 
+ <delete id="book_del">
+  DELETE book WHERE book_no = #{book_no}
+ </delete>
+ 
+ <select id="cat_book_list" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_cover,
+  		 book.book_name,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname
+  FROM book book
+  INNER JOIN member m
+  ON book.cat_name = #{cat_name}
+  AND book.mem_no = m.mem_no
+  ORDER BY book.book_no DESC
+ </select>
+ 
+ <select id="book_banner" resultMap="boardMap">
+  SELECT book.book_no,
+  		 book.book_name,
+  		 book.book_cover,
+  		 book.book_preface,
+  		 book.mem_no,
+  		 m.mem_no,
+  		 m.mem_id,
+  		 m.mem_nickname,
+  		 m.profile_photo,
+  		 m.profile_cont
+  FROM (SELECT * FROM book ORDER BY book_recommend DESC) book
+  INNER JOIN member m
+  ON book.mem_no = m.mem_no
+  WHERE ROWNUM &lt;= 5
+ </select>
+ 
+ <select id="BookCount" resultType="book">
+ <![CDATA[
+  SELECT TO_DATE(D.DAY,'YYYYMMDD') book_date,COUNT(bo.book_date) COUNT
+  FROM (SELECT TO_CHAR(SYSDATE - (LEVEL - 1),'YYYYMMDD') DAY
+  FROM DUAL CONNECT BY LEVEL <= 7) D
+  LEFT OUTER JOIN book bo
+  ON TO_CHAR(bo.book_date,'YYYYMMDD') = D.DAY
+  GROUP BY TO_DATE(D.DAY,'YYYYMMDD')
+  ORDER BY TO_DATE(D.DAY,'YYYYMMDD')
+ ]]>
+ </select>
+</mapper>

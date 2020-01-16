@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+ <!-- 스프링 AOP 자동프록시 설정 -->
+ <aop:aspectj-autoproxy />
+	
+	<!-- 스프링  jdbc=> DataSource -->
+ <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+   <property name="driverClassName" 
+   value="oracle.jdbc.OracleDriver" />
+   <property name="url" 
+   value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
+   <property name="username" value="database user name" />
+   <property name="password" value="database user password" />
+ </bean>    
+ 
+ <!-- 스프링 jdbc와 mybatis연결,mybatis환경설정 -->
+ <bean id="sqlSessionFactory" class=  "org.mybatis.spring.SqlSessionFactoryBean">
+  <property name="dataSource" ref="dataSource" />
+  <!-- 스프링에서 setter()메서드를 통한 의존성 주입=>  DI -->
+  <property name="configLocation"  value="classpath:/mybatis-config.xml" />
+  <!-- STS에서 보이는 가상경로 classpath는 src/main/resources이다. 
+  		이 경로의 mybatis-config.xml의 역할은  데이터 저장빈 클래스의 객체 별칭을 관리한다.-->
+   
+  <!-- mybatis mapper태그로 쿼리문을 다룸 -> mapper태그 경로 설정 -->
+    <property name="mapperLocations" value="classpath:com/jamong/mappers/*/*.xml"/>  
+ </bean>	
+  	
+   <!-- 스프링을 통한 트랜잭션 매니져 설정 -->
+ <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+ 	<property name="dataSource" ref="dataSource" />
+  <!-- 스프링의 setter() DI(의존성주입) -->
+ </bean>  
+ <tx:annotation-driven/><!-- 트랜잭션 설정 애노테이션. @Transactional 애노테이션을 이용한 트랜잭션 관리가
+가능함. -->	
+  	
+  	
+  <!-- mybatis 쿼리문 수행객체 설정 -->
+  <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+   destroy-method="clearCache">
+   <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+   <!-- 생성자를 통한 의존성 주입 -->
+  </bean>
+   
+  <!-- Model DAOImpl의 @Repository 애노테이션이 설정된 부분을 자동스캔(찾아서) 스프링 등록 -->
+  <context:component-scan base-package="com.jamong.dao"/>
+  
+    <!-- 서비스 추가목적)
+  1.스프링 AOP를 통한 트랜잭션 적용->데이터 일관성과 사이트 신뢰도 유지.
+  2.고객의 추가요구 상황을 반영
+  3.컨트롤러와 모델 DAO를 연결하는 중간 매개체 역할 -->
+  <context:component-scan base-package="com.jamong.service" />
+  
+  <!-- Gmail -->
+  <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="smtp.gmail.com" />	<!-- 구글 SMTP 호스트주소 -->
+    <property name="port" value="587" />			<!-- 구글 SMTP 포트번호 -->
+    <property name="username" value="google email address" /> <!-- 이메일 보내는 용도로 사용할 구글 계정 -->
+    <property name="password" value="google email password" />
+    <property name="javaMailProperties">
+    <props>
+    	<prop key="mail.transport.protocol">smtp</prop>
+		<prop key="mail.debug">true</prop>
+      	<prop key="mail.smtp.auth">true</prop>
+      	<prop key="mail.smtp.starttls.enable">true</prop>
+    </props>
+    </property>
+  </bean>
+  <bean id="mailService" class="mailHandler.MailServiceImpl">
+	<property name="javaMailSender" ref="javaMailSender" />
+  </bean>
+  <bean id="visitDAOImpl" class="com.jamong.dao.VisitDAOImpl"></bean>
+  <!-- AOP xml 환경설정 -->
+  <aop:config />
+</beans>

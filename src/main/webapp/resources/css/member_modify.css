@@ -1,0 +1,250 @@
+/* member_modify.jsp
+*/
+
+* { font : 14px verdana }
+
+#member_modify_main_wrap {
+	min-height: calc(100vh - 162px);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#member_modify_main_div {
+	background-color: white;
+	width: 777px;
+	margin: 0 auto;
+}
+
+#member_modify_h4_div{
+	margin-bottom:20px;
+	padding-top:20px;
+	border-bottom: 1px solid gray;	
+}
+
+#member_modify_h4{
+	display: inline-block;
+	text-align: left;
+	margin-left: 57px;
+}
+
+#member_modify_sub_div{
+	display:inline;
+	margin-left: 60px;
+}
+
+#member_modify_table{
+	text-align: left;	
+	display: inline-block;
+	border-spacing: 0 20px;
+	margin-left: 58px;
+	display: block;
+}
+#member_modify_table th{
+	padding-bottom: 20px;
+}
+#member_modify_table td{
+	padding-left: 50px;
+    width: 400px;
+}
+
+#member_pwd_modify{
+	    width: 43px;
+    height: 25px;
+    background-color: white;
+    border: solid 2px orange;
+    outline: 0;
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+#member_pwd_modify:active{
+	background-color: #000;
+	color: white;
+}
+.hide_box{
+	display: none;	
+}
+#member_modify_pwd_modify{
+	border: 1px solid #000;
+	background-color: #fff;
+	cursor: pointer;
+	border-radius: 25px;
+	padding: 5px 13px;
+	outline: 0;
+}
+#member_modify_pwd_modify:active{
+	background-color: #000;
+	color: white;
+}
+.member_modify_text { /* 인풋박스 설정 */
+	width: 270px;
+	height: 15px;
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	text-align: left;
+	padding-left:15px;
+	padding-bottom:5px;
+	border-bottom: 1px solid #000;
+}
+
+.member_modify_text.birth{
+	width: 63px;
+	height: 15px;
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	text-align: left;
+	padding-left:15px;
+	border-bottom: 1px solid #000;
+	padding-bottom:5px;
+	font-size : 14px;
+}
+
+.member_modify_text.tel{
+	width: 69px;
+	height: 15px;
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	text-align: left;
+	padding-left:15px;
+	border-bottom: 1px solid #000;
+	padding-bottom:5px;
+	font-size : 14px;
+}
+	
+.member_modify_text.email{
+	width: 118px;
+	height: 15px;
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	text-align: left;
+	border-bottom: 1px solid #000;
+	padding-bottom:5px;
+	font-size : 14px;
+	font-family: verdana;
+}
+.member_modify_text.domain{
+	width: 114px;
+}
+.member_modify_text.emailcheck{
+	width: 270px;
+	height: 15px;
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	text-align: left;
+	border-bottom:1px solid orange;
+	padding-bottom:5px;
+	font-size : 14px;
+	font-family: verdana;
+}
+
+#member_modify_select_gender {
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+    width: 120px;
+	height: 15px;
+	outline: 0;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	cursor: pointer;
+}
+
+/* #F5F0F0 셀렉트박스에 넣을 회색 */
+.member_modify_email_class {
+	display: inline;
+}
+
+#member_modify_certified_btn {
+    width: 40px;
+    height: 25px;
+    background-color: white;
+    border: solid 2px orange;
+    outline: 0;
+    margin-bottom: 5px;
+    font-size: 10px;
+	display:none;
+	cursor: pointer;
+}
+#member_modify_certified_btn:active{
+	background-color: orange;
+	color: white;
+}
+.member_modify_emailcheck_div{
+	display: none;
+}
+
+
+#member_modify_emailcheck_btn{
+    width: 41px;
+    height: 25px;
+    background-color: white;
+    border: solid 2px orange;
+    outline: 0;
+    cursor: pointer;
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+#member_modify_emailcheck_btn:active{
+	background-color: orange;
+	color: white;
+}
+#member_modify_next_btn_div{
+	border-top: 1px solid gray;
+	text-align: right;
+}
+
+#member_modify_p{
+	margin-right: 398px;
+}
+
+#member_modify_next_btn {
+    width: 110px;
+    height: 40px;
+    background-color: white;
+    border: solid 1px #000;
+    outline: 0;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+#member_modify_next_btn:active{
+	background-color: #000;
+	color: white;
+}
+.member_modify_error {
+	width: 200px;
+	height: 15px;
+	padding:5px;
+	color: #ff0000;
+}
+
+/*로딩화면을 위한 css*/
+.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background: rgba(0,0,0,0.8);
+}
+.wrap-loading div{ /*로딩 이미지*/
+    position: fixed;
+    top:50%;
+    left:50%;
+    margin-left: -21px;
+    margin-top: -21px;
+}
