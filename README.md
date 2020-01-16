@@ -7,11 +7,22 @@
 - Framework : Spring Framework, Mybatis Framework
 - Database : Oracle 11g
 - Open sources used
+
+
 A. https://github.com/summernote/summernote
+
+
 B. https://github.com/sweetalert2
+
+
 C. https://github.com/mytory/jquery-word-break-keep-all
+
+
 D. https://github.com/jquery/jquery-ui
+
+
 E. https://github.com/google/charts
+
 
 <h4>2. Program Video</h4>
 
