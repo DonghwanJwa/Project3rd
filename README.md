@@ -31,4 +31,4 @@ E. https://github.com/google/charts
 
 
   
-  Notice : We delete some sources which contain our personal information, and also delete all image file because of copyright.
+  Notice : We deleted some sources which contain our personal information, and also deleted all image file because of copyright.
